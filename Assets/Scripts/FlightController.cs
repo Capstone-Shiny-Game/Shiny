@@ -28,26 +28,23 @@ public class FlightController : MonoBehaviour
     public float forwardSpd = 15f, strafeSpd = 7.5f, hoverSpd = 5f;
     private float currForwardSpd, currStrafeSpd, currHoverSpd;
     float smooth = 5.0f;
-    float tiltAngle = 60.0f;
+    float tiltAngle = .60f;
+    public Camera cam;
     // Start is called before the first frame update
 
     public Transform start;
     public Transform end;
 
-    private Vector3 startOffset;
-    private Vector3 endOffset;
     // Time to move from sunrise to sunset position, in seconds.
     public float journeyTime = 1.0f;
 
     // The time at which the animation started.
-    private float startTime =-1;
+    private float startTime = -1;
     private bool doUTurn = false;
 
 
     void Start()
     {
-        startOffset = start.position - transform.position;
-        endOffset = end.position - transform.position;
     }
 
     // Update is called once per frame
@@ -59,36 +56,37 @@ public class FlightController : MonoBehaviour
         }
         if (doUTurn)
         {
-            if (startTime <0)
+            if (startTime < 0)
             {
-                Debug.Log("setting start time");
-                startTime = Time.time;
-                transform.position = start.position;
+                SetupSomersault();
             }
             Somersault(startTime);
         }
 
-        FlyTwoAxis();   
+        FlyTwoAxis();
     }
+    /// <summary>
+    /// Prep the start and end positions of the Slerp. The start is the player's position, the end is the midpoint between the player and the camera.
+    /// </summary>
+    private void SetupSomersault()
+    {
+        Debug.Log("setting start time");
+        startTime = Time.time;
+        start.position = transform.position;
+        float newX = transform.position.x + (cam.transform.position.x - transform.position.x) / 2;
+        float newY = transform.position.y + (cam.transform.position.y - transform.position.y) / 2 + 10f;
+        float newZ = transform.position.z + (cam.transform.position.z - transform.position.z) / 2;
 
+        end.position = new Vector3(newX, newY, newZ);
+    }
     private void FlyTwoAxis()
     {
-        //currForwardSpd = Input.GetAxisRaw("Vertical") * forwardSpd;
-        ////currStrafeSpd = Input.GetAxisRaw("Horizontal") * strafeSpd;
-        //currHoverSpd = Input.GetAxisRaw("Elevate") * hoverSpd;
-        //transform.position += (transform.forward * currForwardSpd * Time.deltaTime)+ (transform.up * currHoverSpd*Time.deltaTime);
-        ////transform.position += (transform.up * currHoverSpd * Time.deltaTime);
-        //float tiltAroundY = Input.GetAxis("Horizontal") * tiltAngle;
-        ////float tiltAroundX = Input.GetAxis("Vertical") * tiltAngle;
+        currForwardSpd = Input.GetAxisRaw("Vertical") * forwardSpd;
+        float tiltAroundY = Input.GetAxis("Horizontal") * tiltAngle;
+        currHoverSpd = Input.GetAxisRaw("Elevate") * hoverSpd;
 
-        ////// Rotate the cube by converting the angles into a quaternion.
-        //Quaternion target = Quaternion.Euler(0, tiltAroundY, 0);
-
-        ////// Dampen towards the target rotation
-        //transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
-       
-  
-
+        transform.position += (transform.forward * currForwardSpd * Time.deltaTime) + (transform.up * currHoverSpd * Time.deltaTime);
+        transform.Rotate(0, tiltAroundY, 0);
     }
     private void Somersault(float startTime)
     {
@@ -109,12 +107,18 @@ public class FlightController : MonoBehaviour
 
         transform.position = Vector3.Slerp(riseRelCenter, setRelCenter, fracComplete);
         transform.position += center;
-
-
+        //cam.transform.RotateAround(transform.position, new Vector3(0, 1, 0), 180f * Time.deltaTime);
+        StartCoroutine("StartCameraFlip");
         if (fracComplete >= 1f)
         {
             ResetSomersault();
         }
+    }
+    private IEnumerator StartCameraFlip()
+    {
+        yield return new WaitForSeconds(0.5f);
+        transform.RotateAround(transform.position, new Vector3(0, 1, 0), 180f * Time.deltaTime);
+
     }
     private void ResetSomersault()
     {
@@ -123,9 +127,10 @@ public class FlightController : MonoBehaviour
         doUTurn = false;
         startTime = -1;
 
-        start.position = transform.position + startOffset;
-        end.position = transform.position +  endOffset;
-        //startOffset = start.position - transform.position;
-        //endOffset = end.position - transform.position;
+
+
+        //TO DO: rotate camera to follow after uturn
+        //cam.transform.position = new Vector3(cam.transform.position.x,cam.transform.position.y,-cam.transform.position.z);
+        //transform.Rotate(0, 180, 0);
     }
 }
