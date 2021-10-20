@@ -19,6 +19,7 @@
  * 
  * 
  * */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,8 +29,11 @@ public class FlightController : MonoBehaviour
     public float forwardSpd = 15f, strafeSpd = 7.5f, hoverSpd = 5f;
     private float currForwardSpd, currStrafeSpd, currHoverSpd;
     float smooth = 5.0f;
-    float tiltAngle = .60f;
+    float pitchAngle = .60f;
+    float tiltAngle = 60f;
+
     public Camera cam;
+    public float speed = 15.0f;
     // Start is called before the first frame update
 
     public Transform start;
@@ -37,10 +41,14 @@ public class FlightController : MonoBehaviour
 
     // Time to move from sunrise to sunset position, in seconds.
     public float journeyTime = 1.0f;
+    public float tiltTime = 2.0f;
 
     // The time at which the animation started.
     private float startTime = -1;
+    private float startTilt = -1;
+
     private bool doUTurn = false;
+    private bool hasTilted = false;
 
 
     void Start()
@@ -50,20 +58,21 @@ public class FlightController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            doUTurn = true;
-        }
-        if (doUTurn)
-        {
-            if (startTime < 0)
-            {
-                SetupSomersault();
-            }
-            Somersault(startTime);
-        }
+        //if (Input.GetKeyDown(KeyCode.S))
+        //{
+        //    doUTurn = true;
+        //}
+        //if (doUTurn)
+        //{
+        //    if (startTime < 0)
+        //    {
+        //        SetupSomersault();
+        //    }
+        //    Somersault(startTime);
+        //}
 
-        FlyTwoAxis();
+        //FlyTwoAxis();
+        Fly();
     }
     /// <summary>
     /// Prep the start and end positions of the Slerp. The start is the player's position, the end is the midpoint between the player and the camera.
@@ -79,10 +88,57 @@ public class FlightController : MonoBehaviour
 
         end.position = new Vector3(newX, newY, newZ);
     }
+
+    private void Fly()
+    {
+        //set the acceleration based on if bird is pointed up or down
+        speed -= transform.forward.y * Time.deltaTime * 50.0f;
+        speed = Mathf.Clamp(speed, -20f, 100f);
+        transform.position += transform.forward * Time.deltaTime * speed;         //once flying, the bird is always moving
+
+
+        float turn = Input.GetAxis("Horizontal") * tiltAngle / 1.5f * Time.deltaTime; 
+        float pitch = -Input.GetAxis("Vertical") * pitchAngle;
+        float tilt = -Input.GetAxis("Horizontal") * tiltAngle * Time.deltaTime;
+
+        // Rotate
+        transform.Rotate(new Vector3(pitch, turn, tilt));
+
+        // Clamp Tilt
+        float angle = transform.rotation.eulerAngles.z;
+
+        if (angle > 45f && angle < 180f)
+            angle = Math.Min(angle, 45f);
+        else if (angle < 360f && angle > 180f)
+            angle = Math.Max(angle, 360f - 45f);
+        transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, angle);
+
+        if (tilt != 0)
+            hasTilted = true;
+        if (tilt == 0 && hasTilted) //if not pressing AD, then reset the tilt to 0
+        {
+            if (startTilt < 0)
+            {
+                startTilt = Time.time;
+                tiltTime = Math.Abs(360f - transform.rotation.z);
+            }
+            float fracComplete = (Time.time - startTilt) / tiltTime;
+
+            // Dampen towards the target rotation
+            Quaternion target = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+            transform.rotation = Quaternion.Slerp(transform.rotation, target, fracComplete);
+
+            if (fracComplete >= 1f)
+            {
+                startTilt = -1;
+                hasTilted = false;
+            }
+        }
+    }
     private void FlyTwoAxis()
     {
         currForwardSpd = Input.GetAxisRaw("Vertical") * forwardSpd;
-        float tiltAroundY = Input.GetAxis("Horizontal") * tiltAngle;
+        float tiltAroundY = Input.GetAxis("Horizontal") * pitchAngle;
         currHoverSpd = Input.GetAxisRaw("Elevate") * hoverSpd;
 
         transform.position += (transform.forward * currForwardSpd * Time.deltaTime) + (transform.up * currHoverSpd * Time.deltaTime);
@@ -117,7 +173,7 @@ public class FlightController : MonoBehaviour
     private IEnumerator StartCameraFlip()
     {
         yield return new WaitForSeconds(0.5f);
-        transform.RotateAround(transform.position, new Vector3(0, 1, 0), 180f * Time.deltaTime);
+        transform.RotateAround(transform.position, new Vector3(0, 1, 0), 100f * Time.deltaTime);
 
     }
     private void ResetSomersault()
