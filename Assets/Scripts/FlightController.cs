@@ -34,6 +34,7 @@ public class FlightController : MonoBehaviour
 
     public Camera cam;
     public float speed = 15.0f;
+    public float brake = 0.0f;
     // Start is called before the first frame update
 
     public Transform start;
@@ -49,8 +50,9 @@ public class FlightController : MonoBehaviour
 
     private bool doUTurn = false;
     private bool hasTilted = false;
+    private bool canTilt = true;
 
-
+    private Vector3 velocity = Vector3.zero;
     void Start()
     {
     }
@@ -74,6 +76,11 @@ public class FlightController : MonoBehaviour
         //FlyTwoAxis();
         Fly();
     }
+    private void LateUpdate()
+    {
+        MoveCamera();
+
+    }
     /// <summary>
     /// Prep the start and end positions of the Slerp. The start is the player's position, the end is the midpoint between the player and the camera.
     /// </summary>
@@ -88,16 +95,40 @@ public class FlightController : MonoBehaviour
 
         end.position = new Vector3(newX, newY, newZ);
     }
+    private void MoveCamera()
+    {
+        // Vector3 moveCamTo = transform.position - transform.forward * 10.0f + Vector3.up * 3.0f;
+        float bias = 0.96f;
+        //cam.transform.position = cam.transform.position * bias + moveCamTo * (1.0f-bias);
+        // cam.transform.LookAt(transform.position + transform.forward*20.0f);
 
+        Vector3 point = cam.WorldToViewportPoint(transform.position);
+        //Vector3 delta = transform.position - cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z)); //(new Vector3(0.5, 0.5, point.z));
+        Vector3 delta = transform.position - transform.forward * 25.0f + Vector3.up * 3.0f;
+        Vector3 destination = cam.transform.position * bias + delta * (1.0f - bias);
+
+        cam.transform.position = Vector3.SmoothDamp(cam.transform.position, destination, ref velocity, 0.01f);
+        cam.transform.LookAt(transform.position + transform.forward * 20.0f);
+
+    }
     private void Fly()
     {
         //set the acceleration based on if bird is pointed up or down
-        speed -= transform.forward.y * Time.deltaTime * 50.0f;
-        speed = Mathf.Clamp(speed, -20f, 100f);
+        speed -= transform.forward.y * Time.deltaTime * 30.0f;
+        if (Input.GetKey(KeyCode.LeftControl) && speed > 5f)
+            brake += 0.01f;
+        else
+            brake -= 0.01f;
+        brake = Mathf.Clamp(brake, 0f, 5f);
+        if (brake > 0 && speed > 0)
+            speed = Mathf.Clamp(speed, 1f, 100f);
+        else
+            speed = Mathf.Clamp(speed, -20f, 100f);
+        speed -= brake;
         transform.position += transform.forward * Time.deltaTime * speed;         //once flying, the bird is always moving
 
 
-        float turn = Input.GetAxis("Horizontal") * tiltAngle / 1.5f * Time.deltaTime; 
+        float turn = Input.GetAxis("Horizontal") * tiltAngle / 1.5f * Time.deltaTime;
         float pitch = -Input.GetAxis("Vertical") * pitchAngle;
         float tilt = -Input.GetAxis("Horizontal") * tiltAngle * Time.deltaTime;
 
@@ -106,12 +137,32 @@ public class FlightController : MonoBehaviour
 
         // Clamp Tilt
         float angle = transform.rotation.eulerAngles.z;
+        float angleX = transform.rotation.eulerAngles.x;
+        //Debug.Log("ANGLE " + angleX);
+        //tilted too far left
+        if (angle >= 45f && angle < 180f)
+        {
+            float diff = angle - 45f;     
+            transform.rotation *= Quaternion.AngleAxis(-diff, Vector3.forward);
+        }
+        else if (angle < 315f && angle >= 180f)
+        {
+            float diff = angle -315f;
+            transform.rotation *= Quaternion.AngleAxis(-diff, Vector3.forward);
 
-        if (angle > 45f && angle < 180f)
-            angle = Math.Min(angle, 45f);
-        else if (angle < 360f && angle > 180f)
-            angle = Math.Max(angle, 360f - 45f);
-        transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, angle);
+        }
+
+        //tilted too far down
+        if (angleX >= 80f && angleX < 180f)
+        {
+            float diff = angleX - 80f;
+            transform.rotation *= Quaternion.AngleAxis(-diff, Vector3.right);
+        }
+        else if (angleX < 280f && angleX >= 180f)
+        {
+            float diff = angleX - 280f;
+            transform.rotation *= Quaternion.AngleAxis(-diff, Vector3.right);
+        }
 
         if (tilt != 0)
             hasTilted = true;
@@ -123,17 +174,26 @@ public class FlightController : MonoBehaviour
                 tiltTime = Math.Abs(360f - transform.rotation.z);
             }
             float fracComplete = (Time.time - startTilt) / tiltTime;
-
             // Dampen towards the target rotation
-            Quaternion target = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+            //Quaternion target = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+            Quaternion target = transform.rotation;
+            target.x /= target.w;
+            target.y /= target.w;
+            target.z /= target.w;
+            target.w = 1.0f;
+            float angleZero = 2.0f * Mathf.Rad2Deg * Mathf.Atan(0);
+            target.z = Mathf.Tan(0.5f * Mathf.Deg2Rad * angleZero);
             transform.rotation = Quaternion.Slerp(transform.rotation, target, fracComplete);
 
-            if (fracComplete >= 1f)
+            float diff = transform.rotation.eulerAngles.z - target.eulerAngles.z;
+            float degree = 0.5f;
+            if (Mathf.Abs(diff) <= degree)
             {
                 startTilt = -1;
                 hasTilted = false;
             }
         }
+
     }
     private void FlyTwoAxis()
     {
@@ -182,11 +242,5 @@ public class FlightController : MonoBehaviour
         //Rotation slerp has finished. Do something else now.
         doUTurn = false;
         startTime = -1;
-
-
-
-        //TO DO: rotate camera to follow after uturn
-        //cam.transform.position = new Vector3(cam.transform.position.x,cam.transform.position.y,-cam.transform.position.z);
-        //transform.Rotate(0, 180, 0);
     }
 }
