@@ -18,6 +18,7 @@ public class FlightController : MonoBehaviour
     public float brake = 0.0f;
     public float glideThreshold = 0.2f;
     public float acceleration = 20.0f;
+    public float maxSpeed = 80f;
 
     // Time to move back from the tilted position, in seconds.
     private float smoothTilt = 2.0f;
@@ -59,9 +60,9 @@ public class FlightController : MonoBehaviour
             brake -= 0.01f;
         brake = Mathf.Clamp(brake, 0f, 5f);
         if (brake > 0 && speed > 0)
-            speed = Mathf.Clamp(speed, 1f, 100f);
+            speed = Mathf.Clamp(speed, 1f, maxSpeed);
         else
-            speed = Mathf.Clamp(speed, -5f, 100f);
+            speed = Mathf.Clamp(speed, -5f, maxSpeed);
         speed -= brake;
     }
     private void Fly()
