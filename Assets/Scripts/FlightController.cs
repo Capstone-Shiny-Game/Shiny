@@ -16,7 +16,8 @@ public class FlightController : MonoBehaviour
     public Camera cam;
     public float speed = 15.0f;
     public float brake = 0.0f;
-    public float glideThreshold = 0.1f;
+    public float glideThreshold = 0.2f;
+    public float acceleration = 20.0f;
 
     // Time to move back from the tilted position, in seconds.
     private float smoothTilt = 2.0f;
@@ -68,7 +69,12 @@ public class FlightController : MonoBehaviour
         //set the acceleration based on if bird is pointed up or down
         //don't alter speed if relatively straight
         if (Math.Abs(transform.forward.y) > glideThreshold) 
-            speed -= transform.forward.y * Time.deltaTime * 30.0f;
+            speed -= transform.forward.y * Time.deltaTime * acceleration;
+        else
+        {
+            //if straightened out, set the speed to a set velocity
+            speed = Mathf.Clamp(speed, 20f, 100f);
+        }
         Brake();
         transform.position += transform.forward * Time.deltaTime * speed;         //once flying, the bird is always moving
 
