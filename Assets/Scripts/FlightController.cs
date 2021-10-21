@@ -58,8 +58,13 @@ public class FlightController : MonoBehaviour
         Vector3 destination = cam.transform.position * bias + delta * (1.0f - bias);
 
         cam.transform.position = Vector3.SmoothDamp(cam.transform.position, destination, ref velocity, 0.01f);
-        cam.transform.LookAt(transform.position + transform.forward * 20.0f);
+        //cam.transform.LookAt(transform.position + transform.forward * 20.0f);
+        //cam.transform.rotation = Quaternion.LookRotation(destination, transform.forward);
+        Vector3 relativePos = transform.position - cam.transform.position;
 
+        // the second argument, upwards, defaults to Vector3.up
+        Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+        cam.transform.rotation = rotation;
     }
     private void Fly()
     {
@@ -88,17 +93,20 @@ public class FlightController : MonoBehaviour
         // Clamp Tilt
         float angle = transform.rotation.eulerAngles.z;
         float angleX = transform.rotation.eulerAngles.x;
-        //Debug.Log("ANGLE " + angleX);
         //tilted too far left
         if (angle >= 45f && angle < 180f)
         {
-            float diff = angle - 45f;     
-            transform.rotation *= Quaternion.AngleAxis(-diff, Vector3.forward);
+            Debug.Log("ANGLE " + angle);
+
+            float diff = angle - 45f;
+            transform.Rotate(new Vector3(0, 0, -diff));
         }
         else if (angle < 315f && angle >= 180f)
         {
+            Debug.Log("ANGLE " + angle);
+
             float diff = angle -315f;
-            transform.rotation *= Quaternion.AngleAxis(-diff, Vector3.forward);
+            transform.Rotate(new Vector3(0, 0, -diff));
 
         }
 
