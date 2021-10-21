@@ -93,7 +93,15 @@ public class FlightController : MonoBehaviour
             float fracComplete = (Time.time - start) / smoothTilt;
             DampenAngleToZero("z", fracComplete);
         }
-
+        CheckCollisions();
+    }
+    private void CheckCollisions()
+    {
+        float terrainHeight = Terrain.activeTerrain.SampleHeight(transform.position);
+        if(terrainHeight > transform.position.y)
+        {
+            transform.position = new Vector3(transform.position.x, terrainHeight+0.1f, transform.position.z);
+        }
     }
     private void ClampRotations()
     {
