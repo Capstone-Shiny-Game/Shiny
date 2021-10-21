@@ -75,7 +75,7 @@ public class FlightController : MonoBehaviour
             if (Math.Abs(transform.forward.y) < glideThreshold && speed > maxGlideSpeed)
                 speed = Mathf.Lerp(speed, maxGlideSpeed, Time.deltaTime);
             else if (Math.Abs(transform.forward.y) > 0)
-                speed += 0.03f;
+                speed += 0.05f;
             if (speed > 15f)
                 stamina -= 0.2f;
         }
@@ -163,7 +163,7 @@ public class FlightController : MonoBehaviour
         }
        if( pitch == 0 && hasPitch && Math.Abs(transform.forward.y) < glideThreshold)
         {
-            if (angleX < 10f && angleX > 0f || angleX > 350f && angleX < 360f)
+            if (angleX < 20f && angleX > 0f || angleX > 340f && angleX < 360f)
             {
                 Quaternion target = transform.rotation;
                 target = Quaternion.Euler(0, target.eulerAngles.y, target.eulerAngles.z);
