@@ -11,9 +11,11 @@ public class ItemAssets : MonoBehaviour
         Instance = this;
     }
 
-    public Sprite item;
-    public Sprite item1;
-    public Sprite item2;
+    public Transform pfItemPickUpWorld;
+
+    public Sprite potion;//item sprites listed here
+    public Sprite food;
+    public Sprite shiny;
     public Sprite item3;
     public Sprite item4;
 }

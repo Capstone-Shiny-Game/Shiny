@@ -7,7 +7,7 @@ public class Item
     public enum ItemType { 
         potion,
         food,
-        shiney,
+        shiny,
     
     }
 
@@ -17,7 +17,11 @@ public class Item
     public Sprite GetSprite() {
         switch (itemType) {
             default:
-            case ItemType.food: return ItemAssets.Instance.item1;
+                //returns the correct sprite for the object, take from ItemAssets
+            case ItemType.potion:       return ItemAssets.Instance.potion;
+            case ItemType.food:         return ItemAssets.Instance.food;
+            case ItemType.shiny:        return ItemAssets.Instance.shiny;
+             // syntax is case ItemType.<item name from enum>: return ItemAssets.Instance.<item name from ItemAssets>;
         }
     }
 }
