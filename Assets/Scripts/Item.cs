@@ -13,4 +13,11 @@ public class Item
 
     public ItemType itemType;
     public int amount;
+
+    public Sprite GetSprite() {
+        switch (itemType) {
+            default:
+            case ItemType.food: return ItemAssets.Instance.item1;
+        }
+    }
 }

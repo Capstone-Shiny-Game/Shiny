@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class ItemAssets : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static ItemAssets Instance { get; private set; }
+
+    private void Awake()
     {
-        
+        Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Sprite item;
+    public Sprite item1;
+    public Sprite item2;
+    public Sprite item3;
+    public Sprite item4;
 }
