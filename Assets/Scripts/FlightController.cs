@@ -11,15 +11,15 @@ public class FlightController : MonoBehaviour
 {
     public float forwardSpd = 15f, strafeSpd = 7.5f, hoverSpd = 5f;
     float pitchAngle = .2f;
-    float tiltAngle = 60f;
+    float tiltAngle = 80f;
     public MeshCollider world;
     public Camera cam;
     public float speed = 15.0f;
     public float brake = 0.0f;
     public float glideThreshold = 0.5f;
     public float acceleration = 20.0f;
-    public float maxDiveSpeed = 80f;
-    public float maxGlideSpeed = 50f;
+    public float maxDiveSpeed = 60f;
+    public float maxGlideSpeed = 30f;
     public float stamina = 100f;
     // Time to move back from the tilted position, in seconds.
     private float smoothTilt = 2.0f;
@@ -34,6 +34,7 @@ public class FlightController : MonoBehaviour
     private bool moveCamera = true;
     private bool isBouncing = false;
     private bool isBoost = false;
+    private bool isSlowing = false;
     private Vector3 endBounce;
     private float bounce;
     // Update is called once per frame
@@ -51,13 +52,13 @@ public class FlightController : MonoBehaviour
     {
 
         //don't snap camera immediately to player
-        float bias = 0.96f;
+        float bias = 0.90f;
         //Move the camera away if the player is faster
-        float distance = 12f;
+        float distance = 15f;
         Vector3 delta = transform.position - transform.forward * distance + Vector3.up * 1.5f;
 
-        if (Math.Abs(transform.rotation.x) < .2f && Math.Abs(transform.forward.y) < 0.3f && !isBouncing)
-            delta += transform.forward * distance * .75f;
+        //if (Math.Abs(transform.rotation.x) < .2f && Math.Abs(transform.forward.y) < 0.3f && !isBouncing)
+          //  delta += transform.forward * distance * 1f;
         Vector3 destination = cam.transform.position * bias + delta * (1.0f - bias);
 
         cam.transform.position = Vector3.SmoothDamp(cam.transform.position, destination, ref velocity, 0.01f);
@@ -117,9 +118,11 @@ public class FlightController : MonoBehaviour
         else
         {
             //if straightened out, set the speed to a set velocity
-            speed = Mathf.Clamp(speed, 20f, 100f);
+            speed = Mathf.Clamp(speed, 20f, maxDiveSpeed);
         }
         Brake();
+        //if (isSlowing && speed > 20f)
+        //  speed -= 10f;
         if (!isBouncing)
             transform.position += transform.forward * Time.deltaTime * speed;         //once flying, the bird is always moving
         else
@@ -162,22 +165,22 @@ public class FlightController : MonoBehaviour
 
             bounce = 2.5f;
             if (norm.y >= 0.8f)//bounce the bird farther from the ground if they were flying straight down. TO DO: don't do this if the player is holding the landing button.
-                bounce = 5f;
+                bounce = 1f;
             endBounce = transform.position + norm * bounce;
             speed -= 5;
             Debug.Log(norm);
-            //if (Math.Abs(norm.x) > 0 && Math.Abs(norm.y) < 0.9)
-            //{
-            //    if (Input.GetAxis("Horizontal") < 0)
-            //        transform.Rotate(0, -45, 0);
-            //    else
-            //    {
-            //        transform.Rotate(0, 45, 0);
-            //    }
-            //    transform.Rotate(0, 180, 0);
-            //    //transform.rotation = Quaternion.FromToRotation(new Vector3(0, 0, 1), norm);
+          /*  if (Math.Abs(norm.x) > 0 && Math.Abs(norm.y) < 0.9)
+            {
+                if (Input.GetAxis("Horizontal") < 0)
+                    transform.Rotate(0, -45, 0);
+                else
+                {
+                    transform.Rotate(0, 45, 0);
+                }
+                //transform.Rotate(0, 180, 0);
+                //transform.rotation = Quaternion.FromToRotation(new Vector3(0, 0, 1), norm);
 
-            //}
+            }*/
             isBouncing = true;
             Invoke("StopBounce", 0.3f);
         }
@@ -189,6 +192,23 @@ public class FlightController : MonoBehaviour
             Debug.Log("RING");
             StartBoost();
         }
+        else
+        {
+            Debug.Log("AAAAA");
+            StartSlow();
+        }
+    }
+    void StartSlow()
+    {
+
+        //speed -= 15f;
+        isSlowing = true;
+        Invoke("StartSlow", 0.1f);
+
+    }
+    void StopSlow()
+    {
+        isSlowing = false;
     }
     void StartBoost()
     {
