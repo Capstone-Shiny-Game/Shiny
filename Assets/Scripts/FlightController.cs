@@ -57,7 +57,7 @@ public class FlightController : MonoBehaviour
         Vector3 delta = transform.position - transform.forward * distance + Vector3.up * 1.5f;
 
         if (Math.Abs(transform.rotation.x) < .2f && Math.Abs(transform.forward.y) < 0.3f && !isBouncing)
-            delta += transform.forward * distance *.75f;
+            delta += transform.forward * distance * .75f;
         Vector3 destination = cam.transform.position * bias + delta * (1.0f - bias);
 
         cam.transform.position = Vector3.SmoothDamp(cam.transform.position, destination, ref velocity, 0.01f);
@@ -160,10 +160,24 @@ public class FlightController : MonoBehaviour
         {
             Vector3 norm = collision.GetContact(0).normal;
 
-            bounce = 6f;
+            bounce = 2.5f;
             if (norm.y >= 0.8f)//bounce the bird farther from the ground if they were flying straight down. TO DO: don't do this if the player is holding the landing button.
-                bounce = 20f;
+                bounce = 5f;
             endBounce = transform.position + norm * bounce;
+            speed -= 5;
+            Debug.Log(norm);
+            //if (Math.Abs(norm.x) > 0 && Math.Abs(norm.y) < 0.9)
+            //{
+            //    if (Input.GetAxis("Horizontal") < 0)
+            //        transform.Rotate(0, -45, 0);
+            //    else
+            //    {
+            //        transform.Rotate(0, 45, 0);
+            //    }
+            //    transform.Rotate(0, 180, 0);
+            //    //transform.rotation = Quaternion.FromToRotation(new Vector3(0, 0, 1), norm);
+
+            //}
             isBouncing = true;
             Invoke("StopBounce", 0.3f);
         }
@@ -178,8 +192,8 @@ public class FlightController : MonoBehaviour
     }
     void StartBoost()
     {
-         speed += 15f;
-       
+        speed += 15f;
+
         isBoost = true;
         Invoke("StopBoost", 0.5f);
     }
