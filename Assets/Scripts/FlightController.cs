@@ -33,6 +33,7 @@ public class FlightController : MonoBehaviour
     private bool slerpInProgress = false;
     private bool moveCamera = true;
     private bool isBouncing = false;
+    private bool isBoost = false;
     private Vector3 endBounce;
     private float bounce;
     // Update is called once per frame
@@ -117,6 +118,8 @@ public class FlightController : MonoBehaviour
             transform.position += transform.forward * Time.deltaTime * speed;         //once flying, the bird is always moving
         else
             StartCoroutine(MoveToPosition(endBounce, bounce/25f));
+
+
         //gameObject.GetComponent<Rigidbody>().MovePosition(Vector3.Lerp(transform.position,endBounce,2f));
 
 
@@ -145,14 +148,7 @@ public class FlightController : MonoBehaviour
         }
         //straighten out plane if the user's close enough
     }
-    private void CheckCollisions()
-    {
-        //float terrainHeight = Terrain.activeTerrain.SampleHeight(transform.position);
-        //if (terrainHeight > transform.position.y)
-        //{
-        //    transform.position = new Vector3(transform.position.x, terrainHeight + 0.1f, transform.position.z);
-        //}
-    }
+
     private void OnCollisionEnter(Collision collision)
     {
         moveCamera = false;
@@ -161,18 +157,31 @@ public class FlightController : MonoBehaviour
             Vector3 norm = collision.GetContact(0).normal;
      
             bounce = 6f;
-            if (norm.y >= 0.8f)
+            if (norm.y >= 0.8f)//bounce the bird farther from the ground if they were flying straight down. TO DO: don't do this if the player is holding the landing button.
                 bounce = 20f;
             endBounce = transform.position+ norm * bounce;
             isBouncing = true;
             Invoke("StopBounce", 0.3f);
-
-
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Equals("Ring"))
+        {
+            Debug.Log("RING");        
+            speed += 20f;
+            isBoost = true;
+            Invoke("StopBoost", 0.5f);
         }
     }
     void StopBounce()
     {
         isBouncing = false;
+    }
+    void StopBoost()
+    {
+        isBoost = false;
+        speed -= 10f;
     }
     private void OnCollisionExit(Collision collision)
     {
