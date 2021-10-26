@@ -50,7 +50,7 @@ public class PitcherWaterLevel : MonoBehaviour
         // If rock threshold is met,
         // Allow player to drink lower water level
         //
-        // Do not allow any more rocks to be put in and raise the water level again
+        // Do not allow any more rocks to be put in
         if(RockCount == RockThreshhold)
         {
             CanGrow = false;
@@ -59,6 +59,7 @@ public class PitcherWaterLevel : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
+        // Destroy the rock to avoid duplicate collisions
         Destroy(col.collider.gameObject);
 
         if (CanGrow && col.gameObject.tag == "Rock")
