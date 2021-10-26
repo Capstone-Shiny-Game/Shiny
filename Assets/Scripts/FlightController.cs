@@ -56,8 +56,8 @@ public class FlightController : MonoBehaviour
         float distance = 12f;
         Vector3 delta = transform.position - transform.forward * distance + Vector3.up * 1.5f;
 
-        if (Math.Abs(transform.rotation.x) < .2f && Math.Abs(transform.forward.y) < 0.3f)
-            delta += transform.forward * distance;
+        if (Math.Abs(transform.rotation.x) < .2f && Math.Abs(transform.forward.y) < 0.3f && !isBouncing)
+            delta += transform.forward * distance *.75f;
         Vector3 destination = cam.transform.position * bias + delta * (1.0f - bias);
 
         cam.transform.position = Vector3.SmoothDamp(cam.transform.position, destination, ref velocity, 0.01f);
