@@ -10,7 +10,7 @@ using UnityEngine;
 public class FlightController : MonoBehaviour
 {
     public float forwardSpd = 15f, strafeSpd = 7.5f, hoverSpd = 5f;
-    float pitchAngle = .3f;
+    float pitchAngle = .2f;
     float tiltAngle = 60f;
     public MeshCollider world;
     public Camera cam;
@@ -53,7 +53,11 @@ public class FlightController : MonoBehaviour
         //don't snap camera immediately to player
         float bias = 0.96f;
         //Move the camera away if the player is faster
-        Vector3 delta = transform.position - transform.forward * 22.0f + Vector3.up * 3.0f;
+        float distance = 12f;
+        Vector3 delta = transform.position - transform.forward * distance + Vector3.up * 1.5f;
+
+        if (Math.Abs(transform.rotation.x) < .2f && Math.Abs(transform.forward.y) < 0.3f)
+            delta += transform.forward * distance;
         Vector3 destination = cam.transform.position * bias + delta * (1.0f - bias);
 
         cam.transform.position = Vector3.SmoothDamp(cam.transform.position, destination, ref velocity, 0.01f);
@@ -76,18 +80,20 @@ public class FlightController : MonoBehaviour
     }
     private void FlapWings()
     {
-        if (Input.GetKey(KeyCode.Space) && stamina > 0)
+        if (Input.GetKey(KeyCode.Space) && !isBoost)
         {
-            speed += 0.02f;
-            if (Math.Abs(transform.forward.y) < glideThreshold && speed > maxGlideSpeed)
-                speed = Mathf.Lerp(speed, maxGlideSpeed, Time.deltaTime);
-            else if (Math.Abs(transform.forward.y) > 0)
-                speed += 0.05f;
-            if (speed > 15f)
-                stamina -= 0.2f;
+            StartBoost();
+
+            //    speed += 0.02f;
+            //    if (Math.Abs(transform.forward.y) < glideThreshold && speed > maxGlideSpeed)
+            //        speed = Mathf.Lerp(speed, maxGlideSpeed, Time.deltaTime);
+            //    else if (Math.Abs(transform.forward.y) > 0)
+            //        speed += 0.05f;
+            //    if (speed > 15f)
+            //        stamina -= 0.2f;
         }
-        else if (stamina < 100f)
-            stamina += 0.1f;
+        //else if (stamina < 100f)
+        //    stamina += 0.1f;
     }
     private IEnumerator MoveToPosition(Vector3 newPosition, float time)
     {
@@ -97,7 +103,7 @@ public class FlightController : MonoBehaviour
         {
             transform.position = Vector3.Lerp(startingPos, newPosition, (elapsedTime / time));
             elapsedTime += Time.deltaTime;
-            yield return null ;
+            yield return null;
         }
     }
     private void Fly()
@@ -114,13 +120,11 @@ public class FlightController : MonoBehaviour
             speed = Mathf.Clamp(speed, 20f, 100f);
         }
         Brake();
-        if(!isBouncing)
+        if (!isBouncing)
             transform.position += transform.forward * Time.deltaTime * speed;         //once flying, the bird is always moving
         else
-            StartCoroutine(MoveToPosition(endBounce, bounce/25f));
+            StartCoroutine(MoveToPosition(endBounce, bounce / 20f));
 
-
-        //gameObject.GetComponent<Rigidbody>().MovePosition(Vector3.Lerp(transform.position,endBounce,2f));
 
 
         // Rotate
@@ -155,24 +159,29 @@ public class FlightController : MonoBehaviour
         if (collision.gameObject.tag.Equals("Terrain"))
         {
             Vector3 norm = collision.GetContact(0).normal;
-     
+
             bounce = 6f;
             if (norm.y >= 0.8f)//bounce the bird farther from the ground if they were flying straight down. TO DO: don't do this if the player is holding the landing button.
                 bounce = 20f;
-            endBounce = transform.position+ norm * bounce;
+            endBounce = transform.position + norm * bounce;
             isBouncing = true;
             Invoke("StopBounce", 0.3f);
         }
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("Ring"))
+        if (other.gameObject.tag.Equals("Ring") && !isBoost)
         {
-            Debug.Log("RING");        
-            speed += 20f;
-            isBoost = true;
-            Invoke("StopBoost", 0.5f);
+            Debug.Log("RING");
+            StartBoost();
         }
+    }
+    void StartBoost()
+    {
+         speed += 15f;
+       
+        isBoost = true;
+        Invoke("StopBoost", 0.5f);
     }
     void StopBounce()
     {
@@ -181,7 +190,8 @@ public class FlightController : MonoBehaviour
     void StopBoost()
     {
         isBoost = false;
-        speed -= 10f;
+        if (speed > 15f)
+            speed -= 10f;
     }
     private void OnCollisionExit(Collision collision)
     {
