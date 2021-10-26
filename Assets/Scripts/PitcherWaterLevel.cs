@@ -38,7 +38,7 @@ public class PitcherWaterLevel : MonoBehaviour
         // If you need to change these values, the only thing you need to keep in mind
         // is that the PosChange value needs to be exactly 1/2 of the ScaleChange value.
         //
-        // This is so that the 
+        // This is so that the illusion of the water level stays in place and only scales upward
         ScaleChange = new Vector3(0f, 0.1f, 0f);
         PosChange = new Vector3(0f, 0.05f, 0f);
     }
