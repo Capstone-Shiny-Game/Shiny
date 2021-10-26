@@ -10,14 +10,32 @@ public class PitcherWaterLevel : MonoBehaviour
     private int RockCount;
 
     /// <summary>
+    /// Private bool to keep track of when threshold has been met
+    /// </summary>
+    private bool CanGrow;
+
+    /// <summary>
+    /// Private delta by which to scale the water level
+    /// </summary>
+    private Vector3 ScaleChange;
+
+    /// <summary>
+    /// Private delta to move water level, so it looks like it stays in place with the scale
+    /// </summary>
+    private Vector3 PosChange;
+
+    /// <summary>
     /// How many rocks should the player have to put into the pitcher
     /// </summary>
     public int RockThreshhold;
+
     // Start is called before the first frame update
     void Start()
     {        
         RockCount = 0;
-        Debug.Log("Init setup was done");
+        CanGrow = true;
+        ScaleChange = new Vector3(0f, 0.1f, 0f);
+        PosChange = new Vector3(0f, 0.05f, 0f);
     }
 
     // Update is called once per frame
@@ -32,6 +50,7 @@ public class PitcherWaterLevel : MonoBehaviour
         // Allow player to drink lower water level
         if(RockCount == RockThreshhold)
         {
+            CanGrow = false;
             Debug.Log("threshold has been met");
         }
     }
@@ -39,9 +58,10 @@ public class PitcherWaterLevel : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
 
-        if (col.gameObject.tag == "Rock")
+        if (CanGrow && col.gameObject.tag == "Rock")
         {
             RockCount++;
+            Destroy(col.collider.gameObject);
             RaiseWaterLever();
             Debug.Log("RockCount: " + RockCount);
         }
@@ -49,6 +69,7 @@ public class PitcherWaterLevel : MonoBehaviour
 
     void RaiseWaterLever()
     {
-
+        this.transform.localScale += ScaleChange;
+        this.transform.position += PosChange;
     }
 }
