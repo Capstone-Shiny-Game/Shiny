@@ -34,6 +34,11 @@ public class PitcherWaterLevel : MonoBehaviour
     {        
         RockCount = 0;
         CanGrow = true;
+
+        // If you need to change these values, the only thing you need to keep in mind
+        // is that the PosChange value needs to be exactly 1/2 of the ScaleChange value.
+        //
+        // This is so that the 
         ScaleChange = new Vector3(0f, 0.1f, 0f);
         PosChange = new Vector3(0f, 0.05f, 0f);
     }
@@ -42,26 +47,23 @@ public class PitcherWaterLevel : MonoBehaviour
     void Update()
     {
         // TODO:
-        // If rock collides with pitcher water,
-        // increment rock counter and raise water level
-
-        // TODO:
         // If rock threshold is met,
         // Allow player to drink lower water level
+        //
+        // Do not allow any more rocks to be put in and raise the water level again
         if(RockCount == RockThreshhold)
         {
             CanGrow = false;
-            Debug.Log("threshold has been met");
         }
     }
 
     void OnCollisionEnter(Collision col)
     {
+        Destroy(col.collider.gameObject);
 
         if (CanGrow && col.gameObject.tag == "Rock")
         {
             RockCount++;
-            Destroy(col.collider.gameObject);
             RaiseWaterLever();
             Debug.Log("RockCount: " + RockCount);
         }
