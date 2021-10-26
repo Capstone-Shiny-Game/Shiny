@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class ItemAssets : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static ItemAssets Instance { get; private set; }
+
+    private void Awake()
     {
-        
+        Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Transform pfItemPickUpWorld;
+
+    public Sprite potion;//item sprites listed here
+    public Sprite food;
+    public Sprite shiny;
+    public Sprite item3;
+    public Sprite item4;
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_inventory : MonoBehaviour
 {
@@ -26,10 +27,12 @@ public class UI_inventory : MonoBehaviour
         int y = 0;
         
         foreach (Item item in inventory.GetItemList()) {
-           RectTransform itemSlotRectTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();
-           itemSlotRectTransform.gameObject.SetActive(true);
-           itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
-           x++;//go to next position
+            RectTransform itemSlotRectTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();
+            itemSlotRectTransform.gameObject.SetActive(true);
+            itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
+            Image image = itemSlotRectTransform.Find("image").GetComponent<Image>();
+            image.sprite = item.GetSprite();
+            x++;//go to next position
             //reached end of row, return to start
             if (x > slotsPerRow) {
                 x = 0;

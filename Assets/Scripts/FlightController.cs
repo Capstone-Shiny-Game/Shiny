@@ -10,9 +10,9 @@ using UnityEngine;
 public class FlightController : MonoBehaviour
 {
     public float forwardSpd = 15f, strafeSpd = 7.5f, hoverSpd = 5f;
-    float pitchAngle = .3f;
+    float pitchAngle = .2f;
     float tiltAngle = 60f;
-
+    public MeshCollider world;
     public Camera cam;
     public float speed = 15.0f;
     public float brake = 0.0f;
@@ -31,6 +31,11 @@ public class FlightController : MonoBehaviour
     private bool hasPitch = false;
     private Vector3 velocity = Vector3.zero;
     private bool slerpInProgress = false;
+    private bool moveCamera = true;
+    private bool isBouncing = false;
+    private bool isBoost = false;
+    private Vector3 endBounce;
+    private float bounce;
     // Update is called once per frame
     void Update()
     {
@@ -38,15 +43,21 @@ public class FlightController : MonoBehaviour
     }
     void LateUpdate()
     {
-        MoveCamera(); //moving the camera during update causes jitter
+        if (moveCamera)
+            MoveCamera(); //moving the camera during update causes jitter
     }
 
     private void MoveCamera()
     {
+
         //don't snap camera immediately to player
         float bias = 0.96f;
         //Move the camera away if the player is faster
-        Vector3 delta = transform.position - transform.forward * 22.0f + Vector3.up * 3.0f;
+        float distance = 12f;
+        Vector3 delta = transform.position - transform.forward * distance + Vector3.up * 1.5f;
+
+        if (Math.Abs(transform.rotation.x) < .2f && Math.Abs(transform.forward.y) < 0.3f && !isBouncing)
+            delta += transform.forward * distance * .75f;
         Vector3 destination = cam.transform.position * bias + delta * (1.0f - bias);
 
         cam.transform.position = Vector3.SmoothDamp(cam.transform.position, destination, ref velocity, 0.01f);
@@ -69,25 +80,38 @@ public class FlightController : MonoBehaviour
     }
     private void FlapWings()
     {
-        if (Input.GetKey(KeyCode.Space) && stamina > 0)
+        if (Input.GetKey(KeyCode.Space) && !isBoost)
         {
-            speed += 0.02f;
-            if (Math.Abs(transform.forward.y) < glideThreshold && speed > maxGlideSpeed)
-                speed = Mathf.Lerp(speed, maxGlideSpeed, Time.deltaTime);
-            else if (Math.Abs(transform.forward.y) > 0)
-                speed += 0.03f;
-            if (speed > 15f)
-                stamina -= 0.2f;
+            StartBoost();
+
+            //    speed += 0.02f;
+            //    if (Math.Abs(transform.forward.y) < glideThreshold && speed > maxGlideSpeed)
+            //        speed = Mathf.Lerp(speed, maxGlideSpeed, Time.deltaTime);
+            //    else if (Math.Abs(transform.forward.y) > 0)
+            //        speed += 0.05f;
+            //    if (speed > 15f)
+            //        stamina -= 0.2f;
         }
-        else if (stamina < 100f)
-            stamina += 0.1f;
+        //else if (stamina < 100f)
+        //    stamina += 0.1f;
+    }
+    private IEnumerator MoveToPosition(Vector3 newPosition, float time)
+    {
+        float elapsedTime = 0;
+        Vector3 startingPos = transform.position;
+        while (elapsedTime < time)
+        {
+            transform.position = Vector3.Lerp(startingPos, newPosition, (elapsedTime / time));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
     }
     private void Fly()
     {
         //set the acceleration based on if bird is pointed up or down
         //don't alter speed if relatively straight
         FlapWings();
-        Debug.Log(transform.forward.y);
+        //Debug.Log(transform.forward.y);
         if (Math.Abs(transform.forward.y) > glideThreshold)
             speed -= transform.forward.y * Time.deltaTime * acceleration;
         else
@@ -96,7 +120,11 @@ public class FlightController : MonoBehaviour
             speed = Mathf.Clamp(speed, 20f, 100f);
         }
         Brake();
-        transform.position += transform.forward * Time.deltaTime * speed;         //once flying, the bird is always moving
+        if (!isBouncing)
+            transform.position += transform.forward * Time.deltaTime * speed;         //once flying, the bird is always moving
+        else
+            StartCoroutine(MoveToPosition(endBounce, bounce / 20f));
+
 
 
         // Rotate
@@ -120,19 +148,68 @@ public class FlightController : MonoBehaviour
                 smoothTilt = Math.Abs(Math.Min(transform.rotation.z, 360f - transform.rotation.z)) * 15f;
             }
             float fracComplete = (Time.time - startZ) / smoothTilt;
-            DampenAngleToZero(false,false,true, fracComplete);
+            DampenAngleToZero(false, false, true, fracComplete);
         }
         //straighten out plane if the user's close enough
-
-        CheckCollisions();
     }
-    private void CheckCollisions()
+
+    private void OnCollisionEnter(Collision collision)
     {
-        float terrainHeight = Terrain.activeTerrain.SampleHeight(transform.position);
-        if (terrainHeight > transform.position.y)
+        moveCamera = false;
+        if (collision.gameObject.tag.Equals("Terrain"))
         {
-            transform.position = new Vector3(transform.position.x, terrainHeight + 0.1f, transform.position.z);
+            Vector3 norm = collision.GetContact(0).normal;
+
+            bounce = 2.5f;
+            if (norm.y >= 0.8f)//bounce the bird farther from the ground if they were flying straight down. TO DO: don't do this if the player is holding the landing button.
+                bounce = 5f;
+            endBounce = transform.position + norm * bounce;
+            speed -= 5;
+            Debug.Log(norm);
+            //if (Math.Abs(norm.x) > 0 && Math.Abs(norm.y) < 0.9)
+            //{
+            //    if (Input.GetAxis("Horizontal") < 0)
+            //        transform.Rotate(0, -45, 0);
+            //    else
+            //    {
+            //        transform.Rotate(0, 45, 0);
+            //    }
+            //    transform.Rotate(0, 180, 0);
+            //    //transform.rotation = Quaternion.FromToRotation(new Vector3(0, 0, 1), norm);
+
+            //}
+            isBouncing = true;
+            Invoke("StopBounce", 0.3f);
         }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag.Equals("Ring") && !isBoost)
+        {
+            Debug.Log("RING");
+            StartBoost();
+        }
+    }
+    void StartBoost()
+    {
+        speed += 15f;
+
+        isBoost = true;
+        Invoke("StopBoost", 0.5f);
+    }
+    void StopBounce()
+    {
+        isBouncing = false;
+    }
+    void StopBoost()
+    {
+        isBoost = false;
+        if (speed > 15f)
+            speed -= 10f;
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        moveCamera = true;
     }
     private void ClampRotations(float pitch)
     {
@@ -161,16 +238,16 @@ public class FlightController : MonoBehaviour
             float diff = angleX - 280f;
             transform.rotation *= Quaternion.AngleAxis(-diff, Vector3.right);
         }
-       if( pitch == 0 && hasPitch && Math.Abs(transform.forward.y) < glideThreshold)
+        if (pitch == 0 && hasPitch && Math.Abs(transform.forward.y) < glideThreshold)
         {
-            if (angleX < 10f && angleX > 0f || angleX > 350f && angleX < 360f)
+            if (angleX < 20f && angleX > 0f || angleX > 340f && angleX < 360f)
             {
                 Quaternion target = transform.rotation;
                 target = Quaternion.Euler(0, target.eulerAngles.y, target.eulerAngles.z);
                 transform.rotation = Quaternion.Lerp(transform.rotation, target, Time.deltaTime);
             }
         }
-        
+
 
 
     }
