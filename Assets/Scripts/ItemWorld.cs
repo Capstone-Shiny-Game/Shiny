@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,5 +24,15 @@ public class ItemWorld : MonoBehaviour
     public void SetItem(Item item) {
         this.item = item;
         //TODO: set mesh reder
+    }
+
+    internal void DestroySelf()
+    {
+        Destroy(gameObject);
+    }
+
+    public Item GetItem()
+    {
+        return item;
     }
 }

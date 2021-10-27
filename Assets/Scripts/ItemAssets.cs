@@ -8,7 +8,6 @@ public class ItemAssets : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("hi");
         Instance = this;
     }
 
