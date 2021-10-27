@@ -24,8 +24,8 @@ public class invTestPlayer : MonoBehaviour
 
         //testing stuffs below, to be deleted
         ItemWorld.SpawnItemWorld(new Vector3(20,2,20), new Item { itemType = Item.ItemType.shiny, amount = 1});
-        ItemWorld.SpawnItemWorld(new Vector3(-20, 2, 20), new Item { itemType = Item.ItemType.shiny, amount = 1 });
-        ItemWorld.SpawnItemWorld(new Vector3(0, 2, 20), new Item { itemType = Item.ItemType.shiny, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(-20, 2, 20), new Item { itemType = Item.ItemType.food, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(0, 2, 20), new Item { itemType = Item.ItemType.potion, amount = 1 });
     }
 
     void Update()

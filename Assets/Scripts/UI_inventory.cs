@@ -38,9 +38,9 @@ public class UI_inventory : MonoBehaviour
             Destroy(child.gameObject);
         }
 
+
         int x = 0;
         int y = 0;
-        
         foreach (Item item in inventory.GetItemList()) {
             RectTransform itemSlotRectTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();//instantiate template
             itemSlotRectTransform.gameObject.SetActive(true);
