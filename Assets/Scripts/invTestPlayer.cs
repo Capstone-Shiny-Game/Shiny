@@ -12,7 +12,7 @@ public class invTestPlayer : MonoBehaviour
     private float gravityValue = -9.81f;
 
     private Inventory inventory;
-    [SerializeField] private UI_inventory uiInventory;
+    [SerializeField] private UI_inventory uiInventory; //this variable holds the ui_inventory object from the scene
 
 
     private void Start()
@@ -22,7 +22,9 @@ public class invTestPlayer : MonoBehaviour
 
     private void Awake()
     {
+        //inventory initialization
         inventory = new Inventory();
+        uiInventory.SetInventory(inventory);
     }
 
     void Update()

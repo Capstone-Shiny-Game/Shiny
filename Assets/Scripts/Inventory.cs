@@ -10,6 +10,8 @@ public class Inventory
         itemList = new List<Item>();
 
         AddItem(new Item { itemType = Item.ItemType.shiny, amount = 1 });
+        AddItem(new Item { itemType = Item.ItemType.food, amount = 1 });
+        AddItem(new Item { itemType = Item.ItemType.potion, amount = 1 });
         Debug.Log(itemList.Count);
     }
 

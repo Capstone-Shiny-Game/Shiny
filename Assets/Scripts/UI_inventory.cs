@@ -27,11 +27,13 @@ public class UI_inventory : MonoBehaviour
         int y = 0;
         
         foreach (Item item in inventory.GetItemList()) {
-            RectTransform itemSlotRectTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();
+            RectTransform itemSlotRectTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();//instantiate template
             itemSlotRectTransform.gameObject.SetActive(true);
+            //find and set item image
+            //Image image = itemSlotRectTransform.Find("image").GetComponent<Image>();
+            //image.sprite = item.GetSprite();
+            //item slots in grid array
             itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
-            Image image = itemSlotRectTransform.Find("image").GetComponent<Image>();
-            image.sprite = item.GetSprite();
             x++;//go to next position
             //reached end of row, return to start
             if (x > slotsPerRow) {
