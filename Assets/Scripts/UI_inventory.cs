@@ -30,8 +30,8 @@ public class UI_inventory : MonoBehaviour
             RectTransform itemSlotRectTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();//instantiate template
             itemSlotRectTransform.gameObject.SetActive(true);
             //find and set item image
-            //Image image = itemSlotRectTransform.Find("image").GetComponent<Image>();
-            //image.sprite = item.GetSprite();
+            Image image = itemSlotRectTransform.Find("itemImage").GetComponent<Image>();
+            image.sprite = item.GetSprite();
             //item slots in grid array
             itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
             x++;//go to next position

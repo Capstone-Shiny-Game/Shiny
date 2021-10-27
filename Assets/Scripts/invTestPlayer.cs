@@ -18,13 +18,12 @@ public class invTestPlayer : MonoBehaviour
     private void Start()
     {
         controller = gameObject.AddComponent<CharacterController>();
-    }
-
-    private void Awake()
-    {
         //inventory initialization
         inventory = new Inventory();
         uiInventory.SetInventory(inventory);
+        ItemWorld.SpawnItemWorld(new Vector3(20,2,20), new Item { itemType = Item.ItemType.shiny, amount = 1});
+        ItemWorld.SpawnItemWorld(new Vector3(-20, 2, 20), new Item { itemType = Item.ItemType.shiny, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(0, 2, 20), new Item { itemType = Item.ItemType.shiny, amount = 1 });
     }
 
     void Update()

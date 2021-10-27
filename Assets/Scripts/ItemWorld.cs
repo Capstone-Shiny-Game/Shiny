@@ -13,9 +13,15 @@ public class ItemWorld : MonoBehaviour
         return itemWorld;
     }
     private Item item;
+    private MeshRenderer meshRenderer;
+
+    private void Awake()
+    {
+        meshRenderer = GetComponent<MeshRenderer>();
+    }
 
     public void SetItem(Item item) {
         this.item = item;
-
+        //TODO: set mesh reder
     }
 }

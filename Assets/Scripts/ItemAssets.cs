@@ -8,14 +8,13 @@ public class ItemAssets : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("hi");
         Instance = this;
     }
 
     public Transform pfItemPickUpWorld;
 
-    public Sprite potion;//item sprites listed here
-    public Sprite food;
-    public Sprite shiny;
-    public Sprite item3;
-    public Sprite item4;
+    public Sprite potionSprite;//item sprites listed here
+    public Sprite foodSprite;
+    public Sprite shinySprite;
 }
