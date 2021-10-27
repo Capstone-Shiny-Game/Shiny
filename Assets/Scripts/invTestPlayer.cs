@@ -11,10 +11,18 @@ public class invTestPlayer : MonoBehaviour
     public float playerSpeed = 5.0f;
     private float gravityValue = -9.81f;
 
+    private Inventory inventory;
+    [SerializeField] private UI_inventory uiInventory;
+
 
     private void Start()
     {
         controller = gameObject.AddComponent<CharacterController>();
+    }
+
+    private void Awake()
+    {
+        inventory = new Inventory();
     }
 
     void Update()
@@ -35,6 +43,9 @@ public class invTestPlayer : MonoBehaviour
         {
             gameObject.transform.forward = move;
         }
+
+
+        //inventory testing stuffs
 
     }
 }
