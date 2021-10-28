@@ -19,13 +19,28 @@ public class UI_inventory : MonoBehaviour
 
     public void SetInventory(Inventory inv) {
         inventory = inv;
+
+        inventory.OnItemListChanged += Inventory_OnItemListChanged;
+        RefreshInventoryItems();
+    }
+
+    private void Inventory_OnItemListChanged(object sender, System.EventArgs e)
+    {
         RefreshInventoryItems();
     }
 
     private void RefreshInventoryItems() {
+        //destory old ui elements to avoid duplicates
+        foreach (Transform child in itemSlotContainer) {
+            if (child == itemSlotTemplate) {//dont destory the template
+                continue;
+            }
+            Destroy(child.gameObject);
+        }
+
+
         int x = 0;
         int y = 0;
-        
         foreach (Item item in inventory.GetItemList()) {
             RectTransform itemSlotRectTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();//instantiate template
             itemSlotRectTransform.gameObject.SetActive(true);
@@ -33,10 +48,10 @@ public class UI_inventory : MonoBehaviour
             Image image = itemSlotRectTransform.Find("itemImage").GetComponent<Image>();
             image.sprite = item.GetSprite();
             //item slots in grid array
-            itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
+            itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, -y * itemSlotCellSize);
             x++;//go to next position
             //reached end of row, return to start
-            if (x > slotsPerRow) {
+            if (x >= slotsPerRow) {
                 x = 0;
                 y++;
             }

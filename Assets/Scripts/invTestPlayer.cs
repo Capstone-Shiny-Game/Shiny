@@ -21,9 +21,11 @@ public class invTestPlayer : MonoBehaviour
         //inventory initialization
         inventory = new Inventory();
         uiInventory.SetInventory(inventory);
+
+        //testing stuffs below, to be deleted
         ItemWorld.SpawnItemWorld(new Vector3(20,2,20), new Item { itemType = Item.ItemType.shiny, amount = 1});
-        ItemWorld.SpawnItemWorld(new Vector3(-20, 2, 20), new Item { itemType = Item.ItemType.shiny, amount = 1 });
-        ItemWorld.SpawnItemWorld(new Vector3(0, 2, 20), new Item { itemType = Item.ItemType.shiny, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(-20, 2, 20), new Item { itemType = Item.ItemType.food, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(0, 2, 20), new Item { itemType = Item.ItemType.potion, amount = 1 });
     }
 
     void Update()
@@ -48,5 +50,20 @@ public class invTestPlayer : MonoBehaviour
 
         //inventory testing stuffs
 
+    }
+
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("touching item");
+        //add items to inventory
+        ItemWorld itemWorld = other.GetComponent<ItemWorld>();
+        if (itemWorld != null) {
+            //touching item
+            Debug.Log(itemWorld.GetItem().GetType());
+            inventory.AddItem(itemWorld.GetItem());
+            itemWorld.DestroySelf();
+
+        }
     }
 }
