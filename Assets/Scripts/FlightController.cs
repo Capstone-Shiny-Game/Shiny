@@ -30,7 +30,7 @@ public class FlightController : MonoBehaviour
 
     private bool slerpInProgress = false;
     private bool isBouncing = false;
-    private bool isBoost = false;
+    public bool isBoost = false;
     private bool isSlowing = false;
     private Vector3 endBounce;
     private float bounce;
@@ -174,40 +174,23 @@ public class FlightController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void SetBounce(Vector3 norm)
     {
-        Debug.Log("BOUNCE");
-        if (collision.gameObject.tag.Equals("Terrain"))
-        {
-            Vector3 norm = collision.GetContact(0).normal;
+        bounce = 2.5f;
+        if (norm.y >= 0.8f)//bounce the bird farther from the ground if they were flying straight down. TO DO: don't do this if the player is holding the landing button.
+            bounce = 1f;
+        endBounce = transform.position + norm * bounce;
+        speed -= 5;
 
-            bounce = 2.5f;
-            if (norm.y >= 0.8f)//bounce the bird farther from the ground if they were flying straight down. TO DO: don't do this if the player is holding the landing button.
-                bounce = 1f;
-            endBounce = transform.position + norm * bounce;
-            speed -= 5;
-
-            isBouncing = true;
-            Invoke("StopBounce", 0.3f);
-        }
+        isBouncing = true;
+        Invoke("StopBounce", 0.3f);
     }
-    private void OnTriggerEnter(Collider other)
+
+    public void SetTargetRing(Transform ringTransform)
     {
-        if (other.gameObject.tag.Equals("Ring") && !isBoost)
-        {
-            Debug.Log("RING2");
-            targetRing = other.gameObject.transform;
-            //transform.LookAt(targetRing);
-            StartBoost();
-        }
-        else if (other.gameObject.tag.Equals("Terrain"))
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y + 5f, transform.position.z);
-
-            Debug.Log("AAAAA");
-            StartSlow();
-        }
+        targetRing = ringTransform;
     }
+
     private void PlayerMoveTowards(Transform target)
     {
         // Move our position a step closer to the target.
@@ -215,7 +198,7 @@ public class FlightController : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, target.position, step);
 
     }
-    void StartSlow()
+    public void StartSlow()
     {
 
         //speed -= 15f;
@@ -223,16 +206,16 @@ public class FlightController : MonoBehaviour
         Invoke("StopSlow", 0.1f);
 
     }
-    void StopSlow()
-    {
-        isSlowing = false;
-    }
-    void StartBoost()
+    public void StartBoost()
     {
         speed += 15f;
 
         isBoost = true;
         Invoke("StopRingFollow", 0.25f);
+    }
+    void StopSlow()
+    {
+        isSlowing = false;
     }
     void StopBounce()
     {
