@@ -11,36 +11,37 @@ public class PlayerController : MonoBehaviour
         flightController = GetComponent<FlightController>();
     }
 
-    public void SetFixedPosition(Vector3 position)
-    {
-        flightController.enabled = false;
-        this.transform.position = position;
-    }
-
     private void OnEnable()
     {
         // register the function for the collision event
-        NPCInteraction.OnPlayerCollided += SetFixedPosition;
+        //NPCInteraction.OnPlayerCollided += SetFixedPosition;
     }
 
     private void OnDisable()
     {
         // degregister the function
-        NPCInteraction.OnPlayerCollided -= SetFixedPosition;
+        //NPCInteraction.OnPlayerCollided -= SetFixedPosition;
     }
+
+    private void StartFlight() => flightController.enabled = true;
+
+    private void StopFlight() => flightController.enabled = false;
+
+    private void SetFixedPosition(Vector3 position) => this.transform.position = position;
 
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("BOUNCE");
-        if (collision.gameObject.tag.Equals("Terrain"))
+        if (collision.gameObject.CompareTag("Terrain"))
         {
             Vector3 norm = collision.GetContact(0).normal;
             flightController.SetBounce(norm);
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag.Equals("Ring") && !flightController.isBoost)
+        if (other.CompareTag("Ring") && !flightController.isBoost)
         {
             Debug.Log("RING2");
             Transform targetRing = other.gameObject.transform;
@@ -48,12 +49,20 @@ public class PlayerController : MonoBehaviour
             //transform.LookAt(targetRing);
             flightController.StartBoost();
         }
-        else if (other.gameObject.tag.Equals("Terrain"))
+        else if (other.CompareTag("Terrain"))
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y + 5f, transform.position.z);
+            transform.position = new Vector3(
+                transform.position.x, transform.position.y + 5f, transform.position.z);
 
             Debug.Log("AAAAA");
             flightController.StartSlow();
+        }
+        else if (other.CompareTag("NPC"))
+        {
+            Vector3 npcFront = other.gameObject.transform.position + other.transform.forward * 3.0f;
+
+            StopFlight();
+            SetFixedPosition(npcFront);
         }
     }
 }
