@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
     public GameObject crow;
 
     public Camera cam;
-    private bool toggleFirstPersonCam = false;
+    public bool toggleFirstPersonCam = false;
     private Vector3 velocity = Vector3.zero;
 
     void LateUpdate()
@@ -31,20 +31,23 @@ public class CameraController : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             toggleFirstPersonCam = !toggleFirstPersonCam;
+            crow.SetActive(!toggleFirstPersonCam);
         }
-        
+
         if (toggleFirstPersonCam)
         {
-            cam.transform.Rotate(-rotateVertical, 0f, 0f, Space.Self);
-            cam.transform.Rotate(0f, rotateHorizontal, 0f, Space.World);
-            cam.transform.position = crow.transform.position;
-            crow.SetActive(false);
+            LookAroundCamera(-rotateVertical, rotateHorizontal);
         }
         else
         {
-            crow.SetActive(true);
             MoveDynamicCamera();
         }
+    }
+    private void LookAroundCamera(float x, float y)
+    {
+        cam.transform.Rotate(x, 0f, 0f, Space.Self);
+        cam.transform.Rotate(0f, y, 0f, Space.World);
+        cam.transform.position = crow.transform.position;
     }
     private void MoveDynamicCamera()
     {

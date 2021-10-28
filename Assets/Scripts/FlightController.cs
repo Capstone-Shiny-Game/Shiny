@@ -10,16 +10,15 @@ using UnityEngine;
 public class FlightController : MonoBehaviour
 {
     public float forwardSpd = 15f, strafeSpd = 7.5f, hoverSpd = 5f;
-    float pitchAngle = .2f;
+    float pitchAngle = .1f;
     float tiltAngle = 80f;
     public Camera cam;
-    public float speed = 15.0f;
+    public float speed = 10.0f;
     public float brake = 0.0f;
     public float glideThreshold = 0.7f;
     public float acceleration = 20.0f;
-    public float maxDiveSpeed = 60f;
-    public float maxGlideSpeed = 30f;
-    public float stamina = 100f;
+    public float maxDiveSpeed = 40f;
+    public float minGlideSpeed = 10f;
     // Time to move back from the tilted position, in seconds.
     private float smoothTilt = 2.0f;
     // The time at which the animation started.
@@ -36,10 +35,17 @@ public class FlightController : MonoBehaviour
 
     public GameObject camPlacement;
     public GameObject crow;
+    private CameraController CamController;
 
+    public void Start()
+    {
+        CamController = GetComponent<CameraController>();
+
+    }
     void Update()
     {
         Fly();
+
     }
     /// <summary>
     /// Slows down the player
@@ -64,7 +70,7 @@ public class FlightController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space) && !isBoost)
         {
-            StartBoost();
+            StartCoroutine("Boost");
         }
     }
     private IEnumerator MoveToPosition(Vector3 newPosition, float time)
@@ -88,7 +94,7 @@ public class FlightController : MonoBehaviour
         else
         {
             //if straightened out, set the speed to a set velocity
-            speed = Mathf.Clamp(speed, 20f, maxDiveSpeed);
+            speed = Mathf.Clamp(speed, minGlideSpeed, maxDiveSpeed);
         }
         SlowDown();
 
@@ -106,8 +112,11 @@ public class FlightController : MonoBehaviour
             StartCoroutine(MoveToPosition(endBounce, bounce / 18f));
 
         }
+        if (!CamController.toggleFirstPersonCam)
+        {
+            GetPlayerControls();
 
-        GetPlayerControls();
+        }
     }
     private void GetPlayerControls()
     {
@@ -126,7 +135,7 @@ public class FlightController : MonoBehaviour
 
         //if no longer turning, then reset the tilt to 0
         bool resetZ = tilt == 0 && hasTilted;
-        if (resetZ) 
+        if (resetZ)
         {
 
             if (startZ < 0)
@@ -177,17 +186,6 @@ public class FlightController : MonoBehaviour
         }
     }
 
-    public void SetBounce(Vector3 norm)
-    {
-        bounce = 2.5f;
-        if (norm.y >= 0.8f)//bounce the bird farther from the ground if they were flying straight down. TO DO: don't do this if the player is holding the landing button.
-            bounce = 1f;
-        endBounce = transform.position + norm * bounce;
-        speed -= 5;
-
-        isBouncing = true;
-        Invoke("StopBounce", 0.3f);
-    }
 
     public void SetTargetRing(Transform ringTransform)
     {
@@ -201,42 +199,39 @@ public class FlightController : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, target.position, step);
 
     }
-    public void StartSlow()
-    {
 
-        //speed -= 15f;
-        isSlowing = true;
-        Invoke("StopSlow", 0.1f);
+    public IEnumerator BounceOnCollision(Vector3 norm)
+    {
+        bounce = 2.5f;
+        if (norm.y >= 0.8f)//bounce the bird farther from the ground if they were flying straight down. TO DO: don't do this if the player is holding the landing button.
+            bounce = 1f;
+        endBounce = transform.position + norm * bounce;
+        speed -= 5;
 
-    }
-    public void StartBoost()
-    {
-        speed += 15f;
-
-        isBoost = true;
-        Invoke("StopRingFollow", 0.25f);
-    }
-    void StopSlow()
-    {
-        isSlowing = false;
-    }
-    void StopBounce()
-    {
+        isBouncing = true;
+        yield return new WaitForSeconds(.3f);
         isBouncing = false;
     }
-    void StopRingFollow()
+    public IEnumerator Boost()
     {
+        speed += 15f;
+        isBoost = true;
+        yield return new WaitForSeconds(.25f);
         targetRing = null;
-        Invoke("StopBoost", 0.35f);
-    }
-    void StopBoost()
-    {
-        isBoost = false;
+        yield return new WaitForSeconds(.35f);
         if (speed > 15f)
             speed -= 10f;
+        yield return new WaitForSeconds(2f);
+        isBoost = false;
 
     }
+    public IEnumerator Slow()
+    {
+        isSlowing = true;
+        yield return new WaitForSeconds(.1f);
+        isSlowing = false;
 
+    }
 
     private void DampenAngleToZero(bool x, bool y, bool z, float fracComplete)
     {
@@ -259,5 +254,20 @@ public class FlightController : MonoBehaviour
         }
 
 
+    }
+
+    //----------------USING IN PLAYER CONTROLLER ----------------------------------------//
+
+    public void SetBounce(Vector3 norm)
+    {
+        StartCoroutine(BounceOnCollision(norm));
+    }
+    public void StartBoost()
+    {
+        StartCoroutine("Boost");
+    }
+    public void StartSlow()
+    {
+        StartCoroutine("Slow");
     }
 }
