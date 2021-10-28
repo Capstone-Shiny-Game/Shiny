@@ -9,14 +9,12 @@ using UnityEngine;
 
 public class FlightController : MonoBehaviour
 {
-    public float forwardSpd = 15f, strafeSpd = 7.5f, hoverSpd = 5f;
-    float pitchAngle = .1f;
-    float tiltAngle = 80f;
-    public Camera cam;
+    float pitchSensitivity = 50f;
+    float tiltSensitivity = 80f;
     public float speed = 10.0f;
     public float brake = 0.0f;
-    public float glideThreshold = 0.7f;
-    public float acceleration = 20.0f;
+    public float glideAngleThreshold = 0.7f;
+    public float acceleration = 15.0f;
     public float maxDiveSpeed = 40f;
     public float minGlideSpeed = 10f;
     // Time to move back from the tilted position, in seconds.
@@ -32,9 +30,6 @@ public class FlightController : MonoBehaviour
     private Vector3 endBounce;
     private float bounce;
     private Transform targetRing;
-
-    public GameObject camPlacement;
-    public GameObject crow;
     private CameraController CamController;
 
     public void Start()
@@ -89,7 +84,7 @@ public class FlightController : MonoBehaviour
         //set the acceleration based on if bird is pointed up or down
         //don't alter speed if relatively straight
         BoostByFlappingWings();
-        if (Math.Abs(transform.forward.y) > glideThreshold)
+        if (Math.Abs(transform.forward.y) > glideAngleThreshold)
             speed -= transform.forward.y * Time.deltaTime * acceleration;
         else
         {
@@ -121,9 +116,9 @@ public class FlightController : MonoBehaviour
     private void GetPlayerControls()
     {
         // Rotate
-        float turn = Input.GetAxis("Horizontal") * tiltAngle / 1.5f * Time.deltaTime;
-        float pitch = -Input.GetAxis("Vertical") * pitchAngle;
-        float tilt = -Input.GetAxis("Horizontal") * tiltAngle * Time.deltaTime;
+        float turn = Input.GetAxis("Horizontal") * tiltSensitivity / 1.5f * Time.deltaTime;
+        float pitch = -Input.GetAxis("Vertical") * pitchSensitivity * Time.deltaTime;
+        float tilt = -Input.GetAxis("Horizontal") * tiltSensitivity * Time.deltaTime;
         transform.Rotate(new Vector3(pitch, turn, tilt));
 
         if (tilt != 0)
@@ -153,7 +148,7 @@ public class FlightController : MonoBehaviour
         // Clamp Tilt
         float angle = transform.rotation.eulerAngles.z;
         float angleX = transform.rotation.eulerAngles.x;
-        //tilted too far left
+        //tilted too far left or right
         if (angle >= 45f && angle < 180f)
         {
             float diff = angle - 45f;
@@ -164,7 +159,7 @@ public class FlightController : MonoBehaviour
             float diff = angle - 315f;
             transform.Rotate(new Vector3(0, 0, -diff));
         }
-        //tilted too far down
+        //tilted too far down or up
         if (angleX >= 80f && angleX < 180f)
         {
             float diff = angleX - 80f;
@@ -175,7 +170,7 @@ public class FlightController : MonoBehaviour
             float diff = angleX - 280f;
             transform.rotation *= Quaternion.AngleAxis(-diff, Vector3.right);
         }
-        if (pitch == 0 && hasPitch && Math.Abs(transform.forward.y) < glideThreshold)
+        if (pitch == 0 && hasPitch && Math.Abs(transform.forward.y) < glideAngleThreshold)
         {
             if (angleX < 20f && angleX > 0f || angleX > 340f && angleX < 360f)
             {

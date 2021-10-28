@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Terrain"))
         {
             Vector3 norm = collision.GetContact(0).normal;
-            flightController.SetBounce(norm);
+            StartCoroutine(flightController.BounceOnCollision(norm));
         }
     }
 
@@ -47,15 +47,16 @@ public class PlayerController : MonoBehaviour
             Transform targetRing = other.gameObject.transform;
             flightController.SetTargetRing(targetRing);
             //transform.LookAt(targetRing);
-            flightController.StartBoost();
+            StartCoroutine(flightController.Boost());
+
         }
         else if (other.CompareTag("Terrain"))
         {
             transform.position = new Vector3(
                 transform.position.x, transform.position.y + 5f, transform.position.z);
 
-            Debug.Log("AAAAA");
-            flightController.StartSlow();
+            StartCoroutine(flightController.Slow());
+
         }
         else if (other.CompareTag("NPC"))
         {
