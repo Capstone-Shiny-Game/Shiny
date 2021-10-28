@@ -251,18 +251,4 @@ public class FlightController : MonoBehaviour
 
     }
 
-    //----------------USING IN PLAYER CONTROLLER ----------------------------------------//
-
-    public void SetBounce(Vector3 norm)
-    {
-        StartCoroutine(BounceOnCollision(norm));
-    }
-    public void StartBoost()
-    {
-        StartCoroutine("Boost");
-    }
-    public void StartSlow()
-    {
-        StartCoroutine("Slow");
-    }
 }
