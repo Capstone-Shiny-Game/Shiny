@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
     public GameObject crow;
 
     public Camera cam;
-    private bool hasRotated = false;
+    private bool toggleFirstPersonCam = false;
     private Vector3 velocity = Vector3.zero;
 
     void LateUpdate()
@@ -21,6 +21,8 @@ public class CameraController : MonoBehaviour
         float rotateHorizontal = Input.GetAxis("Mouse X");
         float rotateVertical = Input.GetAxis("Mouse Y");
 
+        //locks the cursor so it doesn't get off the window
+        //TO DO: allow user to get mouse again when pressing alt?
         if (Input.GetMouseButtonDown(0))
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -28,9 +30,18 @@ public class CameraController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            hasRotated = !hasRotated;
+            toggleFirstPersonCam = !toggleFirstPersonCam;
         }
-        if (hasRotated)
+
+
+        if (Input.GetMouseButtonDown(2) || !toggleFirstPersonCam)
+        {
+          
+            this.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
+            this.GetComponent<Rigidbody>().angularVelocity = new Vector3(0f, 0f, 0f);
+        }
+        
+        if (toggleFirstPersonCam)
         {
             cam.transform.Rotate(-rotateVertical, 0f, 0f, Space.Self);
             cam.transform.Rotate(0f, rotateHorizontal, 0f, Space.World);

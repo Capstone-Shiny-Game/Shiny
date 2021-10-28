@@ -12,7 +12,6 @@ public class FlightController : MonoBehaviour
     public float forwardSpd = 15f, strafeSpd = 7.5f, hoverSpd = 5f;
     float pitchAngle = .2f;
     float tiltAngle = 80f;
-    public MeshCollider world;
     public Camera cam;
     public float speed = 15.0f;
     public float brake = 0.0f;
@@ -45,11 +44,11 @@ public class FlightController : MonoBehaviour
         Fly();
     }
     /// <summary>
-    /// 
+    /// Slows down the player
     /// </summary>
-    private void Brake()
+    private void SlowDown()
     {
-        if (Input.GetKey(KeyCode.LeftControl) && speed > 5f) //don't brake if speed negative
+        if (Input.GetAxis("Brake") > 0 && speed > 5f) //don't brake if speed negative
             brake += 0.01f;
         else
             brake -= 0.01f;
@@ -57,10 +56,13 @@ public class FlightController : MonoBehaviour
         if (brake > 0 && speed > 0)
             speed = Mathf.Clamp(speed, 1f, maxDiveSpeed);
         else
-            speed = Mathf.Clamp(speed, 0f, maxDiveSpeed);
-        speed -= brake;
+            speed = Mathf.Clamp(speed, 5f, maxDiveSpeed);
+        speed -= brake; //adjust the speed based on how much you're breaking
     }
-    private void FlapWings()
+    /// <summary>
+    /// TO DO: Have a cooldown on boost?
+    /// </summary>
+    private void BoostByFlappingWings()
     {
         if (Input.GetKey(KeyCode.Space) && !isBoost)
         {
@@ -82,7 +84,7 @@ public class FlightController : MonoBehaviour
     {
         //set the acceleration based on if bird is pointed up or down
         //don't alter speed if relatively straight
-        FlapWings();
+        BoostByFlappingWings();
         if (Math.Abs(transform.forward.y) > glideThreshold)
             speed -= transform.forward.y * Time.deltaTime * acceleration;
         else
@@ -90,34 +92,40 @@ public class FlightController : MonoBehaviour
             //if straightened out, set the speed to a set velocity
             speed = Mathf.Clamp(speed, 20f, maxDiveSpeed);
         }
-        Brake();
-        //if (isSlowing && speed > 20f)
-        //  speed -= 10f;
-        if (isBoost && targetRing != null)
-            MovePlayerTowards(targetRing);
+        SlowDown();
 
+        //magnetize the player towards boost rings
+        if (isBoost && targetRing != null)
+            PlayerMoveTowards(targetRing);
+
+        //once flying, the bird is always moving. Don't continue trying to move foward if in middle of collision
         if (!isBouncing)
-            transform.position += transform.forward * Time.deltaTime * speed;         //once flying, the bird is always moving
+            transform.position += transform.forward * Time.deltaTime * speed;        
         else
             StartCoroutine(MoveToPosition(endBounce, bounce / 18f));
 
-
-
+        GetPlayerControls();
+    }
+    private void GetPlayerControls()
+    {
         // Rotate
         float turn = Input.GetAxis("Horizontal") * tiltAngle / 1.5f * Time.deltaTime;
         float pitch = -Input.GetAxis("Vertical") * pitchAngle;
         float tilt = -Input.GetAxis("Horizontal") * tiltAngle * Time.deltaTime;
         transform.Rotate(new Vector3(pitch, turn, tilt));
 
-        ClampRotations(pitch);
-
         if (tilt != 0)
             hasTilted = true;
         if (pitch != 0)
             hasPitch = true;
+
+        ClampRotations(pitch);
+
+        //if no longer turning, then reset the tilt to 0
         bool resetZ = tilt == 0 && hasTilted;
-        if (resetZ) //if no longer turning, then reset the tilt to 0
+        if (resetZ) 
         {
+
             if (startZ < 0)
             {
                 startZ = Time.time;
@@ -126,7 +134,44 @@ public class FlightController : MonoBehaviour
             float fracComplete = (Time.time - startZ) / smoothTilt;
             DampenAngleToZero(false, false, true, fracComplete);
         }
-        //straighten out plane if the user's close enough
+    }
+
+    private void ClampRotations(float pitch)
+    {
+        // Clamp Tilt
+        float angle = transform.rotation.eulerAngles.z;
+        float angleX = transform.rotation.eulerAngles.x;
+        //tilted too far left
+        if (angle >= 45f && angle < 180f)
+        {
+            float diff = angle - 45f;
+            transform.Rotate(new Vector3(0, 0, -diff));
+        }
+        else if (angle < 315f && angle >= 180f)
+        {
+            float diff = angle - 315f;
+            transform.Rotate(new Vector3(0, 0, -diff));
+        }
+        //tilted too far down
+        if (angleX >= 80f && angleX < 180f)
+        {
+            float diff = angleX - 80f;
+            transform.rotation *= Quaternion.AngleAxis(-diff, Vector3.right);
+        }
+        else if (angleX < 280f && angleX >= 180f)
+        {
+            float diff = angleX - 280f;
+            transform.rotation *= Quaternion.AngleAxis(-diff, Vector3.right);
+        }
+        if (pitch == 0 && hasPitch && Math.Abs(transform.forward.y) < glideThreshold)
+        {
+            if (angleX < 20f && angleX > 0f || angleX > 340f && angleX < 360f)
+            {
+                Quaternion target = transform.rotation;
+                target = Quaternion.Euler(0, target.eulerAngles.y, target.eulerAngles.z);
+                transform.rotation = Quaternion.Lerp(transform.rotation, target, Time.deltaTime);
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -163,7 +208,7 @@ public class FlightController : MonoBehaviour
             StartSlow();
         }
     }
-    private void MovePlayerTowards(Transform target)
+    private void PlayerMoveTowards(Transform target)
     {
         // Move our position a step closer to the target.
         float step = speed * Time.deltaTime; // calculate distance to move
@@ -206,46 +251,7 @@ public class FlightController : MonoBehaviour
 
     }
 
-    private void ClampRotations(float pitch)
-    {
-        // Clamp Tilt
-        float angle = transform.rotation.eulerAngles.z;
-        float angleX = transform.rotation.eulerAngles.x;
-        //tilted too far left
-        if (angle >= 45f && angle < 180f)
-        {
-            float diff = angle - 45f;
-            transform.Rotate(new Vector3(0, 0, -diff));
-        }
-        else if (angle < 315f && angle >= 180f)
-        {
-            float diff = angle - 315f;
-            transform.Rotate(new Vector3(0, 0, -diff));
-        }
-        //tilted too far down
-        if (angleX >= 80f && angleX < 180f)
-        {
-            float diff = angleX - 80f;
-            transform.rotation *= Quaternion.AngleAxis(-diff, Vector3.right);
-        }
-        else if (angleX < 280f && angleX >= 180f)
-        {
-            float diff = angleX - 280f;
-            transform.rotation *= Quaternion.AngleAxis(-diff, Vector3.right);
-        }
-        if (pitch == 0 && hasPitch && Math.Abs(transform.forward.y) < glideThreshold)
-        {
-            if (angleX < 20f && angleX > 0f || angleX > 340f && angleX < 360f)
-            {
-                Quaternion target = transform.rotation;
-                target = Quaternion.Euler(0, target.eulerAngles.y, target.eulerAngles.z);
-                transform.rotation = Quaternion.Lerp(transform.rotation, target, Time.deltaTime);
-            }
-        }
 
-
-
-    }
     private void DampenAngleToZero(bool x, bool y, bool z, float fracComplete)
     {
         Quaternion target = transform.rotation;
