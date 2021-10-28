@@ -32,14 +32,6 @@ public class CameraController : MonoBehaviour
         {
             toggleFirstPersonCam = !toggleFirstPersonCam;
         }
-
-
-        if (Input.GetMouseButtonDown(2) || !toggleFirstPersonCam)
-        {
-          
-            this.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
-            this.GetComponent<Rigidbody>().angularVelocity = new Vector3(0f, 0f, 0f);
-        }
         
         if (toggleFirstPersonCam)
         {

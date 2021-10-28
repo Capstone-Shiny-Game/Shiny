@@ -22,13 +22,11 @@ public class FlightController : MonoBehaviour
     public float stamina = 100f;
     // Time to move back from the tilted position, in seconds.
     private float smoothTilt = 2.0f;
-    private float smoothPitch = 2.0f;
     // The time at which the animation started.
     private float startZ = -1;
     private bool hasTilted = false;
     private bool hasPitch = false;
 
-    private bool slerpInProgress = false;
     private bool isBouncing = false;
     public bool isBoost = false;
     private bool isSlowing = false;
@@ -100,9 +98,14 @@ public class FlightController : MonoBehaviour
 
         //once flying, the bird is always moving. Don't continue trying to move foward if in middle of collision
         if (!isBouncing)
-            transform.position += transform.forward * Time.deltaTime * speed;        
+            transform.position += transform.forward * Time.deltaTime * speed;
         else
+        {
+            this.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
+            this.GetComponent<Rigidbody>().angularVelocity = new Vector3(0f, 0f, 0f);
             StartCoroutine(MoveToPosition(endBounce, bounce / 18f));
+
+        }
 
         GetPlayerControls();
     }
