@@ -131,8 +131,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 156634312342430373, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
-      propertyPath: m_IsTrigger
+      propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 156634312342430373, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7261759843059480626, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: cam
@@ -189,6 +193,18 @@ PrefabInstance:
     - target: {fileID: 7324057266532042077, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: m_Name
       value: CrowPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324057266532042079, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7324057266532042079, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8245471309187584260, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: m_Mass
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}

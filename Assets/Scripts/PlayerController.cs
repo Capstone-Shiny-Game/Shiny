@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
         flightController = GetComponent<FlightController>();
         walkingController = GetComponent<WalkingController>();
         StartFlight();
+        StopWalk();
     }
 
     private void OnEnable()
@@ -27,15 +28,10 @@ public class PlayerController : MonoBehaviour
         //NPCInteraction.OnPlayerCollided -= SetFixedPosition;
     }
 
-    private void StartFlight() {
-        flightController.enabled = true;
-        walkingController.enabled = false;
-    }
-
-    private void StopFlight() {
-        flightController.enabled = false;
-        walkingController.enabled = true;
-    }
+    private void StartFlight() => flightController.enabled = true;
+    private void StopFlight() => flightController.enabled = false;
+    private void StartWalk() => walkingController.enabled = true;
+    private void StopWalk() => walkingController.enabled = false;
 
     private void SetFixedPosition(Vector3 position) => this.transform.position = position;
 
@@ -66,6 +62,7 @@ public class PlayerController : MonoBehaviour
             if (SceneManager.GetActiveScene().name == "WalkingTest")
             {
                 StopFlight();
+                StartWalk();
             }
             else
             {
@@ -82,6 +79,7 @@ public class PlayerController : MonoBehaviour
             Vector3 npcFront = other.gameObject.transform.position + other.transform.forward * 3.0f;
 
             StopFlight();
+            StopWalk();
             SetFixedPosition(npcFront);
         }
     }
