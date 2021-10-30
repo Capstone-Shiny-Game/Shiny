@@ -11,6 +11,8 @@ public class CameraController : MonoBehaviour
     public bool toggleFirstPersonCam = false;
     private Vector3 velocity = Vector3.zero;
 
+    public bool isWalking = false;
+
     void LateUpdate()
     {
         RotateCamera();
@@ -66,5 +68,12 @@ public class CameraController : MonoBehaviour
         Vector3 relativePos = transform.position - cam.transform.position;
         Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up); //camera.LookAt will spin the camera if player is looking directly up or down
         cam.transform.rotation = rotation;
+
+        if (isWalking)
+        {
+            cam.transform.position = crow.transform.position;
+            cam.transform.rotation = crow.transform.rotation;
+            cam.transform.position -= cam.transform.forward * 5f;
+        }
     }
 }

@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     private FlightController flightController;
+    private WalkingController walkingController;
 
     private void Start()
     {
         flightController = GetComponent<FlightController>();
+        walkingController = GetComponent<WalkingController>();
+        StartFlight();
     }
 
     private void OnEnable()
@@ -23,9 +27,15 @@ public class PlayerController : MonoBehaviour
         //NPCInteraction.OnPlayerCollided -= SetFixedPosition;
     }
 
-    private void StartFlight() => flightController.enabled = true;
+    private void StartFlight() {
+        flightController.enabled = true;
+        walkingController.enabled = false;
+    }
 
-    private void StopFlight() => flightController.enabled = false;
+    private void StopFlight() {
+        flightController.enabled = false;
+        walkingController.enabled = true;
+    }
 
     private void SetFixedPosition(Vector3 position) => this.transform.position = position;
 
@@ -52,11 +62,20 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.CompareTag("Terrain"))
         {
-            transform.position = new Vector3(
-                transform.position.x, transform.position.y + 5f, transform.position.z);
+            // TODO (Ella) : This is evil. 
+            if (SceneManager.GetActiveScene().name == "WalkingTest")
+            {
+                StopFlight();
+            }
+            else
+            {
+                transform.position = new Vector3(
+                    transform.position.x,
+                    transform.position.y + 5f,
+                    transform.position.z);
 
-            StartCoroutine(flightController.Slow());
-
+                StartCoroutine(flightController.Slow());
+            }
         }
         else if (other.CompareTag("NPC"))
         {
