@@ -17,15 +17,15 @@ public class Item
     public int amount;
 
     //returns the weight of the entire stack of inventory items
-    public int getStackWeight() {
+    public double getStackWeight() {
         switch (itemType)
         {
             //stackable
             default:
-            case ItemType.potion: return 1 * this.amount;
+            case ItemType.potion: return 1.0 * this.amount;
             //not stackable
             case ItemType.food:
-            case ItemType.shiny: return 2 * this.amount;
+            case ItemType.shiny: return 2.0 * this.amount;
         }
 
     }
