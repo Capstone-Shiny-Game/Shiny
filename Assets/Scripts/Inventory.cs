@@ -10,16 +10,29 @@ public class Inventory
 
     public Inventory() {
         itemList = new List<Item>();
-        //TODO delete testing materials 
-        AddItem(new Item { itemType = Item.ItemType.shiny, amount = 1 });
-        AddItem(new Item { itemType = Item.ItemType.food, amount = 1 });
-        AddItem(new Item { itemType = Item.ItemType.potion, amount = 1 });
-        Debug.Log(itemList.Count);
     }
 
     public void AddItem(Item item)
     {
-        itemList.Add(item);
+        if (item.IsStackable())
+        {
+            bool itemAlreadyInInv = false;
+            foreach (Item invItem in itemList) {
+                if (invItem.itemType == item.itemType)
+                {
+                    invItem.amount += item.amount;
+                    itemAlreadyInInv = true;
+                }
+            }
+            if (!itemAlreadyInInv)
+            {
+                itemList.Add(item);
+            }
+        }
+        else
+        {
+            itemList.Add(item);
+        }
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }
 

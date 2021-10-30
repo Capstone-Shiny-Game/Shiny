@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UI_inventory : MonoBehaviour
 {
@@ -47,6 +48,15 @@ public class UI_inventory : MonoBehaviour
             //find and set item image
             Image image = itemSlotRectTransform.Find("itemImage").GetComponent<Image>();
             image.sprite = item.GetSprite();
+            //find and set text to display amount of items
+            TextMeshProUGUI uiText = itemSlotRectTransform.Find("amountText").GetComponent<TextMeshProUGUI>();
+            if (item.amount > 1)
+            {
+                uiText.SetText(item.amount.ToString());
+            }
+            else {
+                uiText.SetText("");
+            }
             //item slots in grid array
             itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, -y * itemSlotCellSize);
             x++;//go to next position
