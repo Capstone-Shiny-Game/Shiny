@@ -14,6 +14,9 @@ public class CameraController : MonoBehaviour
 
     public bool isWalking = false;
 
+    public float WalkingViewAngle = 30f;
+    public float WalkingViewDistance = 5f;
+
     void LateUpdate()
     {
         RotateCamera();
@@ -70,11 +73,13 @@ public class CameraController : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up); //camera.LookAt will spin the camera if player is looking directly up or down
         cam.transform.rotation = rotation;
 
+        // TODO (Ella): this is still evil
         if (SceneManager.GetActiveScene().name == "WalkingTest" && isWalking)
         {
             cam.transform.position = crow.transform.position;
             cam.transform.rotation = crow.transform.rotation;
-            cam.transform.position -= cam.transform.forward * 5f;
+            cam.transform.Rotate(WalkingViewAngle, 0, 0);
+            cam.transform.position -= cam.transform.forward * WalkingViewDistance;
         }
     }
 }

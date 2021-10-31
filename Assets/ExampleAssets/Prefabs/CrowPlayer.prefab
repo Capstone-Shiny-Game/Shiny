@@ -120,6 +120,8 @@ MonoBehaviour:
   cam: {fileID: 0}
   toggleFirstPersonCam: 0
   isWalking: 0
+  WalkingViewAngle: 30
+  WalkingViewDistance: 5
 --- !u!114 &7324057266532042076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59588ac47d0b6094aa852ba3b8c731c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiInventory: {fileID: 0}
 --- !u!54 &8245471309187584260
 Rigidbody:
   m_ObjectHideFlags: 0

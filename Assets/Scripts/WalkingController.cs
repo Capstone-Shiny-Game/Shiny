@@ -5,6 +5,7 @@ using UnityEngine;
 public class WalkingController : MonoBehaviour
 {
     public float ForwardSpeed = 8f;
+    public float BackwardsSpeed = 4f;
     public float TurningSpeed = 60f;
 
     private CameraController cameraController;
@@ -26,6 +27,8 @@ public class WalkingController : MonoBehaviour
     void Update()
     {
         transform.Rotate(0, Input.GetAxis("Horizontal") * Time.deltaTime * TurningSpeed, 0);
-        transform.position += transform.forward * Input.GetAxis("Vertical") * Time.deltaTime * ForwardSpeed;
+        float displacement = Input.GetAxis("Vertical") * Time.deltaTime;
+        displacement *= displacement >= 0 ? ForwardSpeed : BackwardsSpeed;
+        transform.position += transform.forward * displacement;
     }
 }
