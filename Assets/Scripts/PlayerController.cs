@@ -19,11 +19,12 @@ public class PlayerController : MonoBehaviour
         StopWalk();
         //inventory initialization
         inventory = new Inventory();
-        uiInventory.SetInventory(inventory);
 
         // TODO : replace with GameObjects in the scene that have the attached scripts
         if (SceneManager.GetActiveScene().name == "Gym") 
         {
+            uiInventory.SetInventory(inventory);
+
             ItemWorld.SpawnItemWorld(new Vector3(-104.9f, 4, 253.2f), new Item { itemType = Item.ItemType.shiny, amount = 1 });
             ItemWorld.SpawnItemWorld(new Vector3(-104.9f, 4, 301.4f), new Item { itemType = Item.ItemType.food, amount = 1 });
             ItemWorld.SpawnItemWorld(new Vector3(-104.9f, 4, 339.4f), new Item { itemType = Item.ItemType.potion, amount = 1 });
