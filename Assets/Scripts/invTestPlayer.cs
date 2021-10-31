@@ -26,6 +26,8 @@ public class invTestPlayer : MonoBehaviour
         ItemWorld.SpawnItemWorld(new Vector3(20,2,20), new Item { itemType = Item.ItemType.shiny, amount = 1});
         ItemWorld.SpawnItemWorld(new Vector3(-20, 2, 20), new Item { itemType = Item.ItemType.food, amount = 1 });
         ItemWorld.SpawnItemWorld(new Vector3(0, 2, 20), new Item { itemType = Item.ItemType.potion, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(10, 2, 10), new Item { itemType = Item.ItemType.potion, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(-10, 2, 10), new Item { itemType = Item.ItemType.potion, amount = 1 });
     }
 
     void Update()
@@ -61,6 +63,7 @@ public class invTestPlayer : MonoBehaviour
         if (itemWorld != null) {
             //touching item
             Debug.Log(itemWorld.GetItem().GetType());
+            //TODO : add weights here
             inventory.AddItem(itemWorld.GetItem());
             itemWorld.DestroySelf();
 

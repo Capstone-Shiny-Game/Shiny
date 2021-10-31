@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7324057266532042072}
   - component: {fileID: 7324057266532042073}
   - component: {fileID: 7324057266532042078}
-  - component: {fileID: 156634312342430373}
   - component: {fileID: 7324057266532042079}
   - component: {fileID: 7261759843059480626}
   - component: {fileID: 7324057266532042076}
@@ -90,20 +89,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &156634312342430373
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7324057266532042077}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.32
-  m_Height: 0.8
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.21, z: 0}
 --- !u!136 &7324057266532042079
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -114,10 +99,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 3.2016678
-  m_Height: 6.4033356
+  m_Radius: 0.5
+  m_Height: 3
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: -0.47003937}
+  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!114 &7261759843059480626
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraController : MonoBehaviour
 {
@@ -69,7 +70,7 @@ public class CameraController : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up); //camera.LookAt will spin the camera if player is looking directly up or down
         cam.transform.rotation = rotation;
 
-        if (isWalking)
+        if (SceneManager.GetActiveScene().name == "WalkingTest" && isWalking)
         {
             cam.transform.position = crow.transform.position;
             cam.transform.rotation = crow.transform.rotation;
