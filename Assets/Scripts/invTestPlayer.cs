@@ -63,6 +63,7 @@ public class invTestPlayer : MonoBehaviour
         if (itemWorld != null) {
             //touching item
             Debug.Log(itemWorld.GetItem().GetType());
+            //TODO : add weights here
             inventory.AddItem(itemWorld.GetItem());
             itemWorld.DestroySelf();
 

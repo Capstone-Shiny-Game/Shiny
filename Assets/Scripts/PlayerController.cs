@@ -8,12 +8,24 @@ public class PlayerController : MonoBehaviour
     private FlightController flightController;
     private WalkingController walkingController;
 
+    private Inventory inventory;
+    [SerializeField] private UI_inventory uiInventory; //this variable holds the ui_inventory object from the scene
+
     private void Start()
     {
         flightController = GetComponent<FlightController>();
-        walkingController = GetComponent<WalkingController>();
+        //walkingController = GetComponent<WalkingController>();
         StartFlight();
-        StopWalk();
+        //StopWalk();
+        //inventory initialization
+        inventory = new Inventory();
+        uiInventory.SetInventory(inventory);
+
+        ItemWorld.SpawnItemWorld(new Vector3(-104.9f, 4, 253.2f), new Item { itemType = Item.ItemType.shiny, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(-20, 2, 20), new Item { itemType = Item.ItemType.food, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(0, 2, 20), new Item { itemType = Item.ItemType.potion, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(10, 2, 10), new Item { itemType = Item.ItemType.potion, amount = 1 });
+        ItemWorld.SpawnItemWorld(new Vector3(-10, 2, 10), new Item { itemType = Item.ItemType.potion, amount = 1 });
     }
 
     private void OnEnable()
@@ -27,11 +39,11 @@ public class PlayerController : MonoBehaviour
         // degregister the function
         //NPCInteraction.OnPlayerCollided -= SetFixedPosition;
     }
-
+    
     private void StartFlight() => flightController.enabled = true;
     private void StopFlight() => flightController.enabled = false;
-    private void StartWalk() => walkingController.enabled = true;
-    private void StopWalk() => walkingController.enabled = false;
+    /* private void StartWalk() => walkingController.enabled = true;
+     private void StopWalk() => walkingController.enabled = false;*/
 
     private void SetFixedPosition(Vector3 position) => this.transform.position = position;
 
@@ -43,6 +55,7 @@ public class PlayerController : MonoBehaviour
             Vector3 norm = collision.GetContact(0).normal;
             StartCoroutine(flightController.BounceOnCollision(norm));
         }
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -62,7 +75,7 @@ public class PlayerController : MonoBehaviour
             if (SceneManager.GetActiveScene().name == "WalkingTest")
             {
                 StopFlight();
-                StartWalk();
+                //StartWalk();
             }
             else
             {
@@ -79,8 +92,19 @@ public class PlayerController : MonoBehaviour
             Vector3 npcFront = other.gameObject.transform.position + other.transform.forward * 3.0f;
 
             StopFlight();
-            StopWalk();
+            //StopWalk();
             SetFixedPosition(npcFront);
+        }
+        //add items to inventory
+        ItemWorld itemWorld = other.GetComponent<ItemWorld>();
+        if (itemWorld != null)
+        {
+            //touching item
+            Debug.Log(itemWorld.GetItem().GetType());
+            //TODO : add weights here
+            inventory.AddItem(itemWorld.GetItem());
+            itemWorld.DestroySelf();
+
         }
     }
 }
