@@ -134,6 +134,7 @@ MonoBehaviour:
   crow: {fileID: 9127852693752691409}
   cam: {fileID: 0}
   toggleFirstPersonCam: 0
+  isWalking: 0
 --- !u!114 &7324057266532042076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,6 +194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca9080415d654e44825fedf445b4cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ForwardSpeed: 8
+  TurningSpeed: 60
 --- !u!1 &8245471309768777031
 GameObject:
   m_ObjectHideFlags: 0

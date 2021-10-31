@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class WalkingController : MonoBehaviour
 {
+    public float ForwardSpeed = 8f;
+    public float TurningSpeed = 60f;
 
-    public float speed = 4f;
-
-    private CameraController CamController;
+    private CameraController cameraController;
+    private Rigidbody rigidbody;
 
     // Start is called before the first frame update
     void Start()
     {
-        CamController = GetComponent<CameraController>();
-        CamController.isWalking = true;
+        cameraController = GetComponent<CameraController>();
+        cameraController.isWalking = true;
+        rigidbody = GetComponent<Rigidbody>();
+        // rigidbody.useGravity = true;
         Vector3 v = transform.eulerAngles;
         v.x = 0f;
         transform.eulerAngles = v;
@@ -22,6 +25,7 @@ public class WalkingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += transform.forward * Time.deltaTime * speed;
+        transform.Rotate(0, Input.GetAxis("Horizontal") * Time.deltaTime * TurningSpeed, 0);
+        transform.position += transform.forward * Input.GetAxis("Vertical") * Time.deltaTime * ForwardSpeed;
     }
 }
