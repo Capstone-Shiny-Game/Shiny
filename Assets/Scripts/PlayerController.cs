@@ -14,18 +14,22 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         flightController = GetComponent<FlightController>();
-        //walkingController = GetComponent<WalkingController>();
+        walkingController = GetComponent<WalkingController>();
         StartFlight();
-        //StopWalk();
+        StopWalk();
         //inventory initialization
         inventory = new Inventory();
         uiInventory.SetInventory(inventory);
 
-        ItemWorld.SpawnItemWorld(new Vector3(-104.9f, 4, 253.2f), new Item { itemType = Item.ItemType.shiny, amount = 1 });
-        ItemWorld.SpawnItemWorld(new Vector3(-20, 2, 20), new Item { itemType = Item.ItemType.food, amount = 1 });
-        ItemWorld.SpawnItemWorld(new Vector3(0, 2, 20), new Item { itemType = Item.ItemType.potion, amount = 1 });
-        ItemWorld.SpawnItemWorld(new Vector3(10, 2, 10), new Item { itemType = Item.ItemType.potion, amount = 1 });
-        ItemWorld.SpawnItemWorld(new Vector3(-10, 2, 10), new Item { itemType = Item.ItemType.potion, amount = 1 });
+        // TODO : replace with GameObjects in the scene that have the attached scripts
+        if (SceneManager.GetActiveScene().name == "Gym") 
+        {
+            ItemWorld.SpawnItemWorld(new Vector3(-104.9f, 4, 253.2f), new Item { itemType = Item.ItemType.shiny, amount = 1 });
+            ItemWorld.SpawnItemWorld(new Vector3(-104.9f, 4, 301.4f), new Item { itemType = Item.ItemType.food, amount = 1 });
+            ItemWorld.SpawnItemWorld(new Vector3(-104.9f, 4, 339.4f), new Item { itemType = Item.ItemType.potion, amount = 1 });
+            ItemWorld.SpawnItemWorld(new Vector3(-104.9f, 4, 359.4f), new Item { itemType = Item.ItemType.potion, amount = 1 });
+            ItemWorld.SpawnItemWorld(new Vector3(-104.9f, 4, 379.4f), new Item { itemType = Item.ItemType.potion, amount = 1 });
+        }
     }
 
     private void OnEnable()
@@ -42,8 +46,8 @@ public class PlayerController : MonoBehaviour
     
     private void StartFlight() => flightController.enabled = true;
     private void StopFlight() => flightController.enabled = false;
-    /* private void StartWalk() => walkingController.enabled = true;
-     private void StopWalk() => walkingController.enabled = false;*/
+    private void StartWalk() => walkingController.enabled = true;
+    private void StopWalk() => walkingController.enabled = false;
 
     private void SetFixedPosition(Vector3 position) => this.transform.position = position;
 
@@ -75,7 +79,7 @@ public class PlayerController : MonoBehaviour
             if (SceneManager.GetActiveScene().name == "WalkingTest")
             {
                 StopFlight();
-                //StartWalk();
+                StartWalk();
             }
             else
             {
@@ -89,10 +93,9 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.CompareTag("NPC"))
         {
-            Vector3 npcFront = other.gameObject.transform.position + other.transform.forward * 3.0f;
-
             StopFlight();
-            //StopWalk();
+            StopWalk();
+            Vector3 npcFront = other.gameObject.transform.position + other.transform.forward * 3.0f;
             SetFixedPosition(npcFront);
         }
         //add items to inventory
