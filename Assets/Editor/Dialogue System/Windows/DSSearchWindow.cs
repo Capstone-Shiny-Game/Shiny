@@ -46,8 +46,7 @@ public class DSSearchWindow : ScriptableObject, ISearchWindowProvider
         switch (SearchTreeEntry.userData)
         {
             case Group _:
-                Group group = graphView.CreateGroup("DialogueGroup", localMousePosition);
-                graphView.AddElement(group);
+                graphView.CreateGroup("DialogueGroup", localMousePosition);
                 return true;
 
             case DSDialogueType.SingleChoice:

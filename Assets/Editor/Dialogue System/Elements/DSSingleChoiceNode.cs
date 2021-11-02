@@ -10,9 +10,11 @@ public class DSSingleChoiceNode : DSNode
     {
         base.Draw();
 
-        foreach (string choice in Choices)
+        foreach (DSChoiceSaveData choice in Choices)
         {
-            Port choicePort = this.CreatePort(choice);
+            Port choicePort = this.CreatePort(choice.Text);
+
+            choicePort.userData = choice;
 
             outputContainer.Add(choicePort);
         }
@@ -20,12 +22,17 @@ public class DSSingleChoiceNode : DSNode
         RefreshExpandedState();
     }
 
-    public override void Initialize(Vector2 position)
+    public override void Initialize(DSGraphView dsGraphView, Vector2 position)
     {
-        base.Initialize(position);
+        base.Initialize(dsGraphView, position);
 
         DialogueType = DSDialogueType.SingleChoice;
 
-        Choices.Add("Next Dialogue");
+        DSChoiceSaveData choiceData = new DSChoiceSaveData()
+        {
+            Text = "Next Dialogue",
+        };
+
+        Choices.Add(choiceData);
     }
 }
