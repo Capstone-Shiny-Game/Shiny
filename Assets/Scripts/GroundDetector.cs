@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class GroundDetector : MonoBehaviour
 {
-    public Vector3 DetectGround()
+    private RaycastHit hit;
+
+    private float distance = 100f;
+
+    public Vector3? FindGround()
     {
-        return new Vector3();
+        if (Physics.Raycast(this.transform.position, Vector3.down, out hit, distance))
+        {
+            return hit.point += new Vector3(0, transform.localScale.y / 2, 0);
+        }
+
+        return null;
     }
 }

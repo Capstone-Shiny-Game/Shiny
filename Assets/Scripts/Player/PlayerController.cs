@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private Inventory inventory;
     [SerializeField] private UI_inventory uiInventory; //this variable holds the ui_inventory object from the scene
 
-    [SerializeField] private GameObject groundDetector;
+    [SerializeField] private GameObject groundDetectorObj;
 
     private void Start()
     {
@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
         StopWalk();
         //inventory initialization
         inventory = new Inventory();
-
         // TODO : replace with GameObjects in the scene that have the attached scripts
         if (SceneManager.GetActiveScene().name == "Gym") 
         {
@@ -100,6 +99,8 @@ public class PlayerController : MonoBehaviour
             StopWalk();
             Vector3 npcFront = other.gameObject.transform.position + other.transform.forward * 3.0f;
             SetFixedPosition(npcFront);
+
+            TryPlaceOnGround();
         }
         //add items to inventory
         ItemWorld itemWorld = other.GetComponent<ItemWorld>();
@@ -111,6 +112,17 @@ public class PlayerController : MonoBehaviour
             inventory.AddItem(itemWorld.GetItem());
             itemWorld.DestroySelf();
 
+        }
+    }
+
+    private void TryPlaceOnGround()
+    {
+        GameObject gdo = Instantiate(groundDetectorObj, this.transform.position, Quaternion.identity);
+        GroundDetector gd = gdo.GetComponent<GroundDetector>();
+        Vector3? groundPos = gd.FindGround();
+        if (groundPos != null)
+        {
+            SetFixedPosition((Vector3)groundPos);
         }
     }
 }
