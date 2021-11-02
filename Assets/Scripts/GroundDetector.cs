@@ -5,8 +5,7 @@ using UnityEngine;
 public class GroundDetector : MonoBehaviour
 {
     private RaycastHit hit;
-
-    private float distance = 100f;
+    private float distance = 100f; // shouldn't need more than this right now
 
     public Vector3? FindGround()
     {

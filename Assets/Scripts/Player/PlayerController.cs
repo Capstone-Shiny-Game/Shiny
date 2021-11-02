@@ -118,11 +118,11 @@ public class PlayerController : MonoBehaviour
     private void TryPlaceOnGround()
     {
         GameObject gdo = Instantiate(groundDetectorObj, this.transform.position, Quaternion.identity);
-        GroundDetector gd = gdo.GetComponent<GroundDetector>();
-        Vector3? groundPos = gd.FindGround();
+        Vector3? groundPos = gdo.GetComponent<GroundDetector>().FindGround();
         if (groundPos != null)
         {
             SetFixedPosition((Vector3)groundPos);
         }
+        Destroy(gdo);
     }
 }
