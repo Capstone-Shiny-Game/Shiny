@@ -11,8 +11,6 @@ public class PlayerController : MonoBehaviour
     private Inventory inventory;
     [SerializeField] private UI_inventory uiInventory; //this variable holds the ui_inventory object from the scene
 
-    [SerializeField] private GameObject groundDetectorObj;
-
     private void Start()
     {
         flightController = GetComponent<FlightController>();
@@ -117,12 +115,11 @@ public class PlayerController : MonoBehaviour
 
     private void TryPlaceOnGround()
     {
-        GameObject gdo = Instantiate(groundDetectorObj, this.transform.position, Quaternion.identity);
-        Vector3? groundPos = gdo.GetComponent<GroundDetector>().FindGround();
+        Vector3? groundPos = this.gameObject.AddComponent<GroundDetector>().FindGround();
         if (groundPos != null)
         {
             SetFixedPosition((Vector3)groundPos);
         }
-        Destroy(gdo);
+        Destroy(this.gameObject.GetComponent<GroundDetector>());
     }
 }
