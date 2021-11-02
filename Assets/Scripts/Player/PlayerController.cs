@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private Inventory inventory;
     [SerializeField] private UI_inventory uiInventory; //this variable holds the ui_inventory object from the scene
 
+    [SerializeField] private GameObject groundDetector;
+
     private void Start()
     {
         flightController = GetComponent<FlightController>();
