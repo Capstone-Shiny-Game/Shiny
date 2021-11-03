@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +37,21 @@ public class DSNode : Node
         {
             TextField target = (TextField)callback.target;
             target.value = callback.newValue.RemoveWhitespaces().RemoveSpecialCharacters();
+
+            if (string.IsNullOrEmpty(target.value))
+            {
+                if (!string.IsNullOrEmpty(DialogueName))
+                {
+                    ++graphView.RepeatedNameCount;
+                }
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(DialogueName))
+                {
+                    --graphView.RepeatedNameCount;
+                }
+            }
 
             if (Group == null)
             {
@@ -76,7 +92,10 @@ public class DSNode : Node
 
         Foldout textFoldout = DSElementUtilty.CreateFoldout("Dialogue Text");
 
-        TextField textTextField = DSElementUtilty.CreateTextArea(Text);
+        TextField textTextField = DSElementUtilty.CreateTextArea(Text, null, callback =>
+        {
+            Text = callback.newValue;
+        });
 
         textTextField.AddClasses("ds-node__text-field", "ds-node__quote-textfield");
 
@@ -112,6 +131,13 @@ public class DSNode : Node
 
             graphView.DeleteElements(port.connections);
         }
+    }
+
+    public bool IsStartingNode()
+    {
+        Port inputPort = (Port)inputContainer.Children().First();
+
+        return !inputPort.connected;
     }
 
     public void SetErrorStyle(Color color)

@@ -1,0 +1,273 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: GraphTutorialGraph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: GraphTutorial
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: 1932077c-55ad-41db-878b-bc12101ecb26
+    <Name>k__BackingField: StartNode
+    <Text>k__BackingField: 'There should be only one node with an empty input
+
+      This
+      is the start point for a dialogue chain'
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: ed076092-eb0d-4212-96fd-1f4c3cf8a190
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 211, y: 304}
+  - <ID>k__BackingField: ed076092-eb0d-4212-96fd-1f4c3cf8a190
+    <Name>k__BackingField: Connections
+    <Text>k__BackingField: 'Nodes are connected by dragging an output to an input
+
+      This
+      will tell the dialogue the correct order of operations'
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 32956300-51e9-4dae-a2eb-771b111bdfd2
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 627, y: 304}
+  - <ID>k__BackingField: 32956300-51e9-4dae-a2eb-771b111bdfd2
+    <Name>k__BackingField: SingleChoiceNode
+    <Text>k__BackingField: 'This (and the nodes before it) are single choice nodes
+
+      These
+      nodes take one input and send out one output
+
+      Perfect for dialogue with
+      no options'
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: fc1a419e-5b5c-4a09-b0a5-ae3934f3abd9
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1056, y: 304}
+  - <ID>k__BackingField: fc1a419e-5b5c-4a09-b0a5-ae3934f3abd9
+    <Name>k__BackingField: MultipleChoiceNode
+    <Text>k__BackingField: 'This is a multiple choice node
+
+      It must have at
+      least one output, but can have as many as you want
+
+      Add choice creates
+      a new choice, and the X will delete a choice'
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Errors
+      <NodeID>k__BackingField: 036c50f4-4461-4423-a83b-d858275085a8
+    - <Text>k__BackingField: Instructions
+      <NodeID>k__BackingField: 40b38ab2-59bf-4df9-8d05-aca828cb0ddd
+    - <Text>k__BackingField: Groups
+      <NodeID>k__BackingField: 3e51ec1f-b1a7-4c7e-98a4-95e12980821a
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 1
+    <Position>k__BackingField: {x: 1480, y: 304}
+  - <ID>k__BackingField: 036c50f4-4461-4423-a83b-d858275085a8
+    <Name>k__BackingField: Errors
+    <Text>k__BackingField: 'Nodes CANNOT have the same name (for saving reasons)
+
+      If
+      a node is any color other than this default gray, then something is wrong
+
+      Look
+      for the other node that is the same color and make sure they don''t share a
+      name'
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1961, y: 33}
+  - <ID>k__BackingField: 3e51ec1f-b1a7-4c7e-98a4-95e12980821a
+    <Name>k__BackingField: Oops
+    <Text>k__BackingField: 'Groups kinda work
+
+      They are the best way to organize
+      nodes, also allowing for duplicate node names
+
+      (in certain contexts)
+
+
+      However,
+      currently there is a small bug that if a group is deleted, the nodes inside
+      cannot be deleted.
+
+      It throws an error until you put them back into a
+      group
+
+
+      Might not be worth using right now, up to you though.'
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1961, y: 621}
+  - <ID>k__BackingField: 40b38ab2-59bf-4df9-8d05-aca828cb0ddd
+    <Name>k__BackingField: Controls
+    <Text>k__BackingField: 'Left Click: Select and Edit
+
+      Right Click: Contextual
+      Menu
+
+      Middle Click: Move Camera
+
+      Space: Search
+
+
+      Left-Drag:
+      Rectangle Select
+
+      Del: Delete Selection'
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 4cec0ae3-2755-4bdc-9d5a-b278d52eefa1
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1961, y: 304}
+  - <ID>k__BackingField: 4cec0ae3-2755-4bdc-9d5a-b278d52eefa1
+    <Name>k__BackingField: AddingANode
+    <Text>k__BackingField: 'There are two main ways to add a Node; the contextual
+      menu and the search
+
+
+      The contextual menu can be opened by rightclicking
+      anywhere on the background.
+
+      Clicking either "Add Node" option will create
+      said node under the cursor
+
+
+      Search can be reached by pressing space
+
+      It
+      has submenus for each node, clicking on them will create a node under the cursor'
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 6cefe704-2ba8-4f81-9aa5-4eee175153fa
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 2242, y: 304}
+  - <ID>k__BackingField: 6cefe704-2ba8-4f81-9aa5-4eee175153fa
+    <Name>k__BackingField: EditingANode
+    <Text>k__BackingField: 'To edit a node click on any text, it will open the text
+      box for editing
+
+      In SingleChoiceNodes, only the node name (in the top
+      bar) and the text (here) are editable
+
+
+      Try Changing them in the next
+      node'
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: c1ee3645-0996-46de-9801-c045d3616ef7
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 2824, y: 304}
+  - <ID>k__BackingField: c1ee3645-0996-46de-9801-c045d3616ef7
+    <Name>k__BackingField: ChangeMyName
+    <Text>k__BackingField: Add Some Text Here
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: b98b2124-3833-41ed-978b-ccec730b4ded
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 3446, y: 304}
+  - <ID>k__BackingField: b98b2124-3833-41ed-978b-ccec730b4ded
+    <Name>k__BackingField: MultiChoiceEdit
+    <Text>k__BackingField: 'The only difference with multi choice nodes are the extra
+      outputs
+
+      Like any other text, clicking on them makes them editable
+
+
+      Try
+      changing the text, adding a output and removing an output'
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next
+      <NodeID>k__BackingField: c9b1dbdb-6856-4507-9123-0ea878ae15af
+    - <Text>k__BackingField: Rename Me
+      <NodeID>k__BackingField: 
+    - <Text>k__BackingField: Delete Me
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 1
+    <Position>k__BackingField: {x: 3718, y: 304}
+  - <ID>k__BackingField: c9b1dbdb-6856-4507-9123-0ea878ae15af
+    <Name>k__BackingField: ConnectingNodes
+    <Text>k__BackingField: 'Nodes are connected simply by dragging from an output
+      to an input
+
+      Click and dragging from the small circle near the output
+      will give you control of the connection'
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: b1633bd6-6929-48a7-bb4e-b79418a0b206
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 4216, y: 304}
+  - <ID>k__BackingField: b1633bd6-6929-48a7-bb4e-b79418a0b206
+    <Name>k__BackingField: Saving
+    <Text>k__BackingField: "The save button is setup to try to prevent you from ever
+      saving anything that is broken\nIt probably isn't foolproof, but it's trying
+      its best. \n\nIf the save button is grayed out, then you have an error somewhere
+      in your graph. Go look for it"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 922a3922-f28a-422d-8487-2958923beb2b
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 4898, y: 304}
+  - <ID>k__BackingField: 922a3922-f28a-422d-8487-2958923beb2b
+    <Name>k__BackingField: Loading
+    <Text>k__BackingField: It don't work yet. My b.
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 7f094382-d4e8-4647-8912-9b4960337dc1
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 5549, y: 304}
+  - <ID>k__BackingField: 7f094382-d4e8-4647-8912-9b4960337dc1
+    <Name>k__BackingField: GoodLuck
+    <Text>k__BackingField: 'GLHF
+
+
+      The system should be pretty reliable, but
+      if there are ever issues, please let Matt know'
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 5896, y: 304}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - StartNode
+  - Connections
+  - SingleChoiceNode
+  - MultipleChoiceNode
+  - Errors
+  - Oops
+  - Controls
+  - AddingANode
+  - EditingANode
+  - ChangeMyName
+  - MultiChoiceEdit
+  - ConnectingNodes
+  - Saving
+  - Loading
+  - GoodLuck
+  <OldGroupedNodeNames>k__BackingField:
+    list: []
