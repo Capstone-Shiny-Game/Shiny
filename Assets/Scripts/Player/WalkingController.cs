@@ -10,7 +10,6 @@ public class WalkingController : MonoBehaviour
 
     void Start()
     {
-        GetComponent<CameraController>().isWalking = true;
         Vector3 v = transform.eulerAngles;
         v.x = 0;
         transform.eulerAngles = v;

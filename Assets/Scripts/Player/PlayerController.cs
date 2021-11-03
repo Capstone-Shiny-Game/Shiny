@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     private FlightController flightController;
     private WalkingController walkingController;
+    private CameraController cameraController;
 
     private Inventory inventory;
     [SerializeField] private UI_inventory uiInventory; //this variable holds the ui_inventory object from the scene
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
     {
         flightController = GetComponent<FlightController>();
         walkingController = GetComponent<WalkingController>();
+        cameraController = GetComponent<CameraController>();
         StartFlight();
         StopWalk();
         //inventory initialization
@@ -29,6 +31,19 @@ public class PlayerController : MonoBehaviour
             ItemWorld.SpawnItemWorld(new Vector3(-104.9f, 4, 339.4f), new Item { itemType = Item.ItemType.potion, amount = 1 });
             ItemWorld.SpawnItemWorld(new Vector3(-104.9f, 4, 359.4f), new Item { itemType = Item.ItemType.potion, amount = 1 });
             ItemWorld.SpawnItemWorld(new Vector3(-104.9f, 4, 379.4f), new Item { itemType = Item.ItemType.potion, amount = 1 });
+        }
+    }
+
+    private void Update()
+    {
+        if (walkingController.enabled && Input.GetKey(KeyCode.Space))
+        {
+            Vector3 pos = transform.position;
+            pos.y += 10;
+            transform.position = pos;
+            StartFlight();
+            StopWalk();
+            cameraController.isWalking = false;
         }
     }
 
@@ -80,6 +95,7 @@ public class PlayerController : MonoBehaviour
             {
                 StopFlight();
                 StartWalk();
+                cameraController.isWalking = true;
             }
             else
             {
