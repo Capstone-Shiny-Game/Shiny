@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class WalkingController : MonoBehaviour
@@ -22,7 +23,8 @@ public class WalkingController : MonoBehaviour
         displacement *= displacement >= 0 ? ForwardSpeed : BackwardsSpeed;
         transform.position += transform.forward * displacement;
         Vector3 pos = transform.position;
-        pos.y = Terrain.activeTerrain.SampleHeight(pos) + HeightOffset;
+        // TODO (Ella): will we ever have more than one terrain
+        pos.y = Terrain.activeTerrains.Select(t => t.SampleHeight(pos)).Max() + HeightOffset;
         transform.position = pos;
     }
 }
