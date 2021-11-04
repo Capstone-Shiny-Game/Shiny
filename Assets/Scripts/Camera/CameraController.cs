@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using static PlayerControllerInput;
 
-public class CameraController : MonoBehaviour, IFlightMapActions
+public class CameraController : MonoBehaviour
 {
     public GameObject camPlacement;
     public GameObject crow;
@@ -19,32 +19,15 @@ public class CameraController : MonoBehaviour, IFlightMapActions
     public float WalkingViewAngle = 30f;
     public float WalkingViewDistance = 5f;
 
-    private bool isFirstPerson = false;
+    private bool switchPOV = false;
     private bool isCursorLocked = false;
     private float mouseX = 0.0f;
     private float mouseY = 0.0f;
-    private PlayerControllerInput PlayerInput;
-
+    public float sensitivity = .5f;
 
     void LateUpdate()
     {
         RotateCamera();
-    }
-
-    public void OnEnable()
-    {
-        if (PlayerInput == null)
-        {
-            PlayerInput = new PlayerControllerInput();
-            PlayerInput.FlightMap.SetCallbacks(this);
-        }
-
-        PlayerInput.FlightMap.Enable();
-    }
-
-    public void OnDisable()
-    {
-        PlayerInput.FlightMap.Disable();
     }
 
 
@@ -60,12 +43,12 @@ public class CameraController : MonoBehaviour, IFlightMapActions
         //     Cursor.lockState = CursorLockMode.Locked;
         // }
 
-        if (isFirstPerson)
+        if (switchPOV)
         {
             toggleFirstPersonCam = !toggleFirstPersonCam;
             crow.SetActive(!toggleFirstPersonCam);
 
-            isFirstPerson = false;
+            switchPOV = false;
         }
 
         if (toggleFirstPersonCam)
@@ -111,38 +94,16 @@ public class CameraController : MonoBehaviour, IFlightMapActions
         }
     }
 
-    public void OnFlight(InputAction.CallbackContext context)
+
+    public void OnLook(float x, float y)
     {
-        // UNUSED
+        mouseX = x*sensitivity;
+        mouseY = y*sensitivity;
     }
 
-    public void OnLook(InputAction.CallbackContext context)
+    public void TogglePOV()
     {
-        //mouseX = context.ReadValue<Vector2>().x;
-        //mouseY = context.ReadValue<Vector2>().y;
+        switchPOV = true;
     }
 
-    public void OnToggleFirstPerson(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            isFirstPerson = !isFirstPerson;
-        }
-    }
-
-    public void OnBoost(InputAction.CallbackContext context)
-    {
-        // UNUSED
-    }
-
-    public void OnBrake(InputAction.CallbackContext context)
-    {
-        // UNUSED
-    }
-
-    public void OnLockCursor(InputAction.CallbackContext context)
-    {
-        //isCursorLocked = !isCursorLocked;
-
-    }
 }

@@ -9,13 +9,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static PlayerControllerInput;
 
-public class FlightController : MonoBehaviour, IFlightMapActions
+public class FlightController : MonoBehaviour
 {
     float pitchSensitivity = 50f;
     float tiltSensitivity = 80f;
     public float speed = 10.0f;
     public float brake = 0.0f;
-    public float glideAngleThreshold = 0.7f;
+    public float glideAngleThreshold = 0.5f;
     public float acceleration = 15.0f;
     public float maxDiveSpeed = 40f;
     public float minGlideSpeed = 10f;
@@ -38,29 +38,12 @@ public class FlightController : MonoBehaviour, IFlightMapActions
     private float bounce;
     private Transform targetRing;
     private CameraController CamController;
-    private PlayerControllerInput PlayerInput;
 
 
 
     public void Start()
     {
         CamController = GetComponent<CameraController>();        
-    }
-
-    public void OnEnable()
-    {
-        if (PlayerInput == null)
-        {
-            PlayerInput = new PlayerControllerInput();
-            PlayerInput.FlightMap.SetCallbacks(this);
-        }
-
-        PlayerInput.FlightMap.Enable();
-    }
-
-    public void OnDisable()
-    {
-        PlayerInput.FlightMap.Disable();
     }
 
     void Update()
@@ -76,7 +59,7 @@ public class FlightController : MonoBehaviour, IFlightMapActions
         if (isBraking && speed > 5f) //don't brake if speed negative
             brake += 0.01f;
         else
-            brake -= 0.01f;
+            brake -= 0.02f;
         brake = Mathf.Clamp(brake, 0f, 5f);
         if (brake > 0 && speed > 0)
             speed = Mathf.Clamp(speed, 1f, maxDiveSpeed);
@@ -91,6 +74,7 @@ public class FlightController : MonoBehaviour, IFlightMapActions
     {
         if (isBoosting && !isBoost)
         {
+            Debug.Log("BOOST");
             StartCoroutine("Boost");
         }
     }
@@ -135,15 +119,16 @@ public class FlightController : MonoBehaviour, IFlightMapActions
         }
         if (!CamController.toggleFirstPersonCam)
         {
-            GetPlayerControls();
+            GetPlayerControls(moveX, moveY);
         }
     }
-    private void GetPlayerControls()
+    private void GetPlayerControls(float inputX, float inputY)
     {
+        
         // Rotate
-        float turn = moveX * tiltSensitivity / 1.5f * Time.deltaTime;
-        float pitch = -moveY * pitchSensitivity * Time.deltaTime;
-        float tilt = -moveX * tiltSensitivity * Time.deltaTime;
+        float turn = inputX * tiltSensitivity * .8f * Time.deltaTime;
+        float pitch = -inputY * pitchSensitivity * Time.deltaTime;
+        float tilt = -inputX * tiltSensitivity * Time.deltaTime;
         transform.Rotate(new Vector3(pitch, turn, tilt));
 
         if (tilt != 0)
@@ -276,35 +261,18 @@ public class FlightController : MonoBehaviour, IFlightMapActions
 
     }
 
-
-    public void OnFlight(InputAction.CallbackContext context)
+    public void SetFlightXY(float x, float y)
     {
-        moveX = context.ReadValue<Vector2>().x;
-        moveY = context.ReadValue<Vector2>().y;
+        moveX = x;
+        moveY = y;
+    }
+    public void SetBoost(bool b)
+    {
+        isBoosting = b;
     }
 
-    public void OnLook(InputAction.CallbackContext context)
+    public void SetBrake(bool b)
     {
-        // UNUSED
-    }
-
-    public void OnToggleFirstPerson(InputAction.CallbackContext context)
-    {
-        // UNUSED
-    }
-
-    public void OnBoost(InputAction.CallbackContext context)
-    {
-        isBoosting = context.ReadValueAsObject() != null;
-    }
-
-    public void OnBrake(InputAction.CallbackContext context)
-    {
-        isBraking = context.ReadValueAsObject() != null;
-    }
-
-    public void OnLockCursor(InputAction.CallbackContext context)
-    {
-        // UNUSED
+        isBraking = b;
     }
 }
