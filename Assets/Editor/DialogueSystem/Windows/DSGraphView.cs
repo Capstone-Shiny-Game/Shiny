@@ -235,6 +235,21 @@ public class DSGraphView : GraphView
 
             dSGroup.title = newTitle.RemoveWhitespaces().RemoveSpecialCharacters();
 
+            if (string.IsNullOrEmpty(dSGroup.title))
+            {
+                if (!string.IsNullOrEmpty(dSGroup.oldTitle))
+                {
+                    ++RepeatedNameCount;
+                }
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(dSGroup.oldTitle))
+                {
+                    --RepeatedNameCount;
+                }
+            }
+
             RemoveGroup(dSGroup);
 
             dSGroup.oldTitle = dSGroup.title.ToLower();
