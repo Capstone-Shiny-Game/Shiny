@@ -66,6 +66,13 @@ public class PlayerController : MonoBehaviour
 
     private void SetFixedPosition(Vector3 position) => this.transform.position = position;
 
+    public void ResetToWalk()
+    {
+        StopFlight();
+        StartWalk();
+        cameraController.isWalking = true;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("BOUNCE");
@@ -115,6 +122,9 @@ public class PlayerController : MonoBehaviour
             SetFixedPosition(npcFront);
 
             TryPlaceOnGround();
+
+            //call ui
+            //bind "ok" button to start walk
         }
         //add items to inventory
         ItemWorld itemWorld = other.GetComponent<ItemWorld>();
