@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
         cameraController = GetComponent<CameraController>();
         StartFlight();
         StopWalk();
+
+        groundDetector = GetComponent<GroundDetector>() ?? gameObject.AddComponent<GroundDetector>();
+
         //inventory initialization
         inventory = new Inventory();
         // TODO : replace with GameObjects in the scene that have the attached scripts
@@ -32,13 +35,13 @@ public class PlayerController : MonoBehaviour
         {
             uiInventory.SetInventory(inventory);
 
-            ItemWorld.SpawnItemWorld(new Vector3(40f, 6.4f, 50f), new Item { itemType = Item.ItemType.shiny, amount = 1 });
-            ItemWorld.SpawnItemWorld(new Vector3(40f, 6.4f, 40f), new Item { itemType = Item.ItemType.food, amount = 1 });
-            ItemWorld.SpawnItemWorld(new Vector3(40f, 6.4f, 30f), new Item { itemType = Item.ItemType.potion, amount = 1 });
+            float yPos = 5.3f;
+            ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 50f), new Item { itemType = Item.ItemType.shiny, amount = 1 });
+            ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 40f), new Item { itemType = Item.ItemType.food, amount = 1 });
+            ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 30f), new Item { itemType = Item.ItemType.potion, amount = 1 });
             //ItemWorld.SpawnItemWorld(new Vector3(-104.9f, 4, 359.4f), new Item { itemType = Item.ItemType.potion, amount = 1 });
             //ItemWorld.SpawnItemWorld(new Vector3(-104.9f, 4, 379.4f), new Item { itemType = Item.ItemType.potion, amount = 1 });
         }
-        groundDetector = GetComponent<GroundDetector>() ?? gameObject.AddComponent<GroundDetector>();
     }
 
     private void toggleFlight()
