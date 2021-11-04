@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7695470114484064583}
   - component: {fileID: 8245471309187584260}
   - component: {fileID: 442309360877959849}
+  - component: {fileID: 1549047582993915451}
   m_Layer: 0
   m_Name: CrowPlayer
   m_TagString: Player
@@ -183,7 +184,75 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ForwardSpeed: 8
+  BackwardsSpeed: 4
   TurningSpeed: 60
+  HeightOffset: 0.5
+--- !u!114 &1549047582993915451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7324057266532042077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 2821eef9f6a3eda4a98b900a091a9a6f, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: 30a0f24286293f542b8ba1cc15fb877d, type: 3}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: da0c6682-e16b-44fd-b26a-9292cb47ae44
+    m_ActionName: FlightMap/Flight[/Keyboard/w,/Keyboard/d,/Keyboard/a]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 25c75b4b-4825-4c58-ac84-ccc63dd9d17e
+    m_ActionName: FlightMap/Look[/Mouse/delta,/Pen/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 834ae251-2bbc-4d76-b69e-470d984b5fcc
+    m_ActionName: FlightMap/ToggleFirstPerson[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6bc89b0c-aa8c-4094-9be1-f208d2cdb9b5
+    m_ActionName: FlightMap/Boost[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2f3d5767-b19f-4b17-86f0-c3fec64b982b
+    m_ActionName: FlightMap/Brake[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 44d4a4da-759a-4383-89f0-d27fcdc2900d
+    m_ActionName: FlightMap/LockCursor[/Mouse/leftButton]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: FlightMap
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &8245471309768777031
 GameObject:
   m_ObjectHideFlags: 0
