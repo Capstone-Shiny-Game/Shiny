@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private FlightController flightController;
     private WalkingController walkingController;
     private CameraController cameraController;
+    public GameObject NPCUI;
 
     private Inventory inventory;
     [SerializeField] private UI_inventory uiInventory; //this variable holds the ui_inventory object from the scene
@@ -131,6 +132,7 @@ public class PlayerController : MonoBehaviour
             TryPlaceOnGround();
 
             //call ui
+            NPCUI.SetActive(true);
             //bind "ok" button to start walk
         }
         //add items to inventory
