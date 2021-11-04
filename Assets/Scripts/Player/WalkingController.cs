@@ -26,6 +26,11 @@ public class WalkingController : MonoBehaviour
         ground = GetComponent<GroundDetector>() ?? gameObject.AddComponent<GroundDetector>();
     }
 
+    void OnEnable()
+    {
+        transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
+    }
+
     void Update()
     {
         transform.Rotate(0, Input.GetAxis("Horizontal") * Time.deltaTime * TurningSpeed, 0, Space.World);
