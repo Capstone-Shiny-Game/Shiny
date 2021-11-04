@@ -75,8 +75,8 @@ public class PlayerController : MonoBehaviour
 
     public void ResetToWalk()
     {
-        StopFlight();
-        StartWalk();
+        //StopFlight();
+        //StartWalk();
         cameraController.isWalking = true;
     }
 

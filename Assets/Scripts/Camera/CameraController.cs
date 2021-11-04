@@ -29,10 +29,10 @@ public class CameraController : MonoBehaviour
 
         //locks the cursor so it doesn't get off the window
         //TO DO: allow user to get mouse again when pressing alt?
-        if (Input.GetMouseButtonDown(0))
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
+        // if (Input.GetMouseButtonDown(0))
+        // {
+        //     //Cursor.lockState = CursorLockMode.Locked;
+        // }
 
         if (Input.GetMouseButtonDown(1))
         {
