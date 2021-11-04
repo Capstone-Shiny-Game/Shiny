@@ -1,4 +1,5 @@
 using UnityEditor;
+using System;
 using System.IO;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
@@ -7,7 +8,7 @@ using UnityEditor.UIElements;
 public class DialogSystemEditWindow : EditorWindow
 {
     private readonly string defaultFilename = "DialogueFilename";
-    private TextField fileNameTextField;
+    private static TextField fileNameTextField;
     private Button saveButton;
     private DSGraphView graphView;
 
@@ -50,8 +51,15 @@ public class DialogSystemEditWindow : EditorWindow
 
         saveButton = DSElementUtilty.CreateButton("Save", () => Save());
 
+        Button clearButton = DSElementUtilty.CreateButton("Clear", () => Clear());
+        Button resetButton = DSElementUtilty.CreateButton("Reset", () => ResetGraph());
+        Button loadButton = DSElementUtilty.CreateButton("Load", () => Load());
+
         toolbar.Add(fileNameTextField);
         toolbar.Add(saveButton);
+        toolbar.Add(loadButton);
+        toolbar.Add(clearButton);
+        toolbar.Add(resetButton);
 
         toolbar.AddStyleSheets("Dialogue System/DSToolbarStyles.uss");
 
@@ -67,6 +75,37 @@ public class DialogSystemEditWindow : EditorWindow
         }
         DSIOUtility.Initialize(fileNameTextField.value, graphView);
         DSIOUtility.Save();
+    }
+
+    private void Load()
+    {
+        string filePath = EditorUtility.OpenFilePanel("Dialogue Graphs", "Assets/Editor/DialogueSystem/Graphs", "asset");
+
+        if (string.IsNullOrEmpty(filePath))
+        {
+            return;
+        }
+
+        Clear();
+
+        DSIOUtility.Initialize(Path.GetFileNameWithoutExtension(filePath), graphView);
+        DSIOUtility.Load();
+    }
+
+    private void Clear()
+    {
+        graphView.ClearGraph();
+    }
+
+    private void ResetGraph()
+    {
+        graphView.ClearGraph();
+        UpdateFilename(defaultFilename);
+    }
+
+    public static void UpdateFilename(string newFilename)
+    {
+        fileNameTextField.value = newFilename;
     }
 
     public void EnableSave()

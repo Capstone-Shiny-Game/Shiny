@@ -16,10 +16,10 @@ public class DSNode : Node
     protected DSGraphView graphView;
     public DSGroup Group { get; set; }
 
-    public virtual void Initialize(DSGraphView dsGraphView, Vector2 position)
+    public virtual void Initialize(string nodeName, DSGraphView dsGraphView, Vector2 position)
     {
         ID = Guid.NewGuid().ToString();
-        DialogueName = "DialogueName";
+        DialogueName = nodeName;
         Choices = new List<DSChoiceSaveData>();
         Text = "Dialogue text.";
 
