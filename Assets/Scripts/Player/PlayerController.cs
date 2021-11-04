@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private WalkingController walkingController;
     private CameraController cameraController;
     public GameObject NPCUI;
+    public GameObject ControllerUI;
     private InputAction walkAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/F");
 
     private Inventory inventory;
@@ -138,6 +139,7 @@ public class PlayerController : MonoBehaviour
 
             //call ui
             NPCUI.SetActive(true);
+            ControllerUI.SetActive(false);
             //bind "ok" button to start walk
         }
         //add items to inventory
