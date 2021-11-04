@@ -6,10 +6,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using static PlayerControllerInput;
 
-public class FlightController : MonoBehaviour, IFlightMapActions
+public class FlightController : MonoBehaviour
 {
     float pitchSensitivity = 50f;
     float tiltSensitivity = 80f;
@@ -19,7 +17,6 @@ public class FlightController : MonoBehaviour, IFlightMapActions
     public float acceleration = 15.0f;
     public float maxDiveSpeed = 40f;
     public float minGlideSpeed = 10f;
-
     // Time to move back from the tilted position, in seconds.
     private float smoothTilt = 2.0f;
     // The time at which the animation started.
@@ -30,50 +27,27 @@ public class FlightController : MonoBehaviour, IFlightMapActions
     private bool isBouncing = false;
     public bool isBoost = false;
     private bool isSlowing = false;
-    private float moveX = 0.0f;
-    private float moveY = 0.0f;
-    private bool isBraking = false;
-    private bool isBoosting = false;
     private Vector3 endBounce;
     private float bounce;
     private Transform targetRing;
     private CameraController CamController;
-    private PlayerControllerInput PlayerInput;
-
-
 
     public void Start()
     {
-        CamController = GetComponent<CameraController>();        
+        CamController = GetComponent<CameraController>();
+
     }
-
-    public void OnEnable()
-    {
-        if (PlayerInput == null)
-        {
-            PlayerInput = new PlayerControllerInput();
-            PlayerInput.FlightMap.SetCallbacks(this);
-        }
-
-        PlayerInput.FlightMap.Enable();
-    }
-
-    public void OnDisable()
-    {
-        PlayerInput.FlightMap.Disable();
-    }
-
     void Update()
     {
         Fly();
-    }
 
+    }
     /// <summary>
     /// Slows down the player
     /// </summary>
     private void SlowDown()
     {
-        if (isBraking && speed > 5f) //don't brake if speed negative
+        if (Input.GetAxis("Brake") > 0 && speed > 5f) //don't brake if speed negative
             brake += 0.01f;
         else
             brake -= 0.01f;
@@ -89,7 +63,7 @@ public class FlightController : MonoBehaviour, IFlightMapActions
     /// </summary>
     private void BoostByFlappingWings()
     {
-        if (isBoosting && !isBoost)
+        if (Input.GetKey(KeyCode.Space) && !isBoost)
         {
             StartCoroutine("Boost");
         }
@@ -136,14 +110,15 @@ public class FlightController : MonoBehaviour, IFlightMapActions
         if (!CamController.toggleFirstPersonCam)
         {
             GetPlayerControls();
+
         }
     }
     private void GetPlayerControls()
     {
         // Rotate
-        float turn = moveX * tiltSensitivity / 1.5f * Time.deltaTime;
-        float pitch = -moveY * pitchSensitivity * Time.deltaTime;
-        float tilt = -moveX * tiltSensitivity * Time.deltaTime;
+        float turn = Input.GetAxis("Horizontal") * tiltSensitivity / 1.5f * Time.deltaTime;
+        float pitch = -Input.GetAxis("Vertical") * pitchSensitivity * Time.deltaTime;
+        float tilt = -Input.GetAxis("Horizontal") * tiltSensitivity * Time.deltaTime;
         transform.Rotate(new Vector3(pitch, turn, tilt));
 
         if (tilt != 0)
@@ -276,35 +251,4 @@ public class FlightController : MonoBehaviour, IFlightMapActions
 
     }
 
-
-    public void OnFlight(InputAction.CallbackContext context)
-    {
-        moveX = context.ReadValue<Vector2>().x;
-        moveY = context.ReadValue<Vector2>().y;
-    }
-
-    public void OnLook(InputAction.CallbackContext context)
-    {
-        // UNUSED
-    }
-
-    public void OnToggleFirstPerson(InputAction.CallbackContext context)
-    {
-        // UNUSED
-    }
-
-    public void OnBoost(InputAction.CallbackContext context)
-    {
-        isBoosting = context.ReadValueAsObject() != null;
-    }
-
-    public void OnBrake(InputAction.CallbackContext context)
-    {
-        isBraking = context.ReadValueAsObject() != null;
-    }
-
-    public void OnLockCursor(InputAction.CallbackContext context)
-    {
-        // UNUSED
-    }
 }

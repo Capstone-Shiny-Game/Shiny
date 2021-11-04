@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using static PlayerControllerInput;
 
-public class CameraController : MonoBehaviour, IFlightMapActions
+public class CameraController : MonoBehaviour
 {
     public GameObject camPlacement;
     public GameObject crow;
@@ -19,53 +17,27 @@ public class CameraController : MonoBehaviour, IFlightMapActions
     public float WalkingViewAngle = 30f;
     public float WalkingViewDistance = 5f;
 
-    private bool isFirstPerson = false;
-    private bool isCursorLocked = false;
-    private float mouseX = 0.0f;
-    private float mouseY = 0.0f;
-    private PlayerControllerInput PlayerInput;
-
-
     void LateUpdate()
     {
         RotateCamera();
     }
 
-    public void OnEnable()
-    {
-        if (PlayerInput == null)
-        {
-            PlayerInput = new PlayerControllerInput();
-            PlayerInput.FlightMap.SetCallbacks(this);
-        }
-
-        PlayerInput.FlightMap.Enable();
-    }
-
-    public void OnDisable()
-    {
-        PlayerInput.FlightMap.Disable();
-    }
-
-
     private void RotateCamera()
     {
-        float rotateHorizontal = mouseX;
-        float rotateVertical = mouseY;
+        float rotateHorizontal = Input.GetAxis("Mouse X");
+        float rotateVertical = Input.GetAxis("Mouse Y");
 
         //locks the cursor so it doesn't get off the window
         //TO DO: allow user to get mouse again when pressing alt?
-        // if (isCursorLocked)
+        // if (Input.GetMouseButtonDown(0))
         // {
-        //     Cursor.lockState = CursorLockMode.Locked;
+        //     //Cursor.lockState = CursorLockMode.Locked;
         // }
 
-        if (isFirstPerson)
+        if (Input.GetMouseButtonDown(1))
         {
             toggleFirstPersonCam = !toggleFirstPersonCam;
             crow.SetActive(!toggleFirstPersonCam);
-
-            isFirstPerson = false;
         }
 
         if (toggleFirstPersonCam)
@@ -109,40 +81,5 @@ public class CameraController : MonoBehaviour, IFlightMapActions
             cam.transform.Rotate(WalkingViewAngle, 0, 0);
             cam.transform.position -= cam.transform.forward * WalkingViewDistance;
         }
-    }
-
-    public void OnFlight(InputAction.CallbackContext context)
-    {
-        // UNUSED
-    }
-
-    public void OnLook(InputAction.CallbackContext context)
-    {
-        //mouseX = context.ReadValue<Vector2>().x;
-        //mouseY = context.ReadValue<Vector2>().y;
-    }
-
-    public void OnToggleFirstPerson(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            isFirstPerson = !isFirstPerson;
-        }
-    }
-
-    public void OnBoost(InputAction.CallbackContext context)
-    {
-        // UNUSED
-    }
-
-    public void OnBrake(InputAction.CallbackContext context)
-    {
-        // UNUSED
-    }
-
-    public void OnLockCursor(InputAction.CallbackContext context)
-    {
-        //isCursorLocked = !isCursorLocked;
-
     }
 }
