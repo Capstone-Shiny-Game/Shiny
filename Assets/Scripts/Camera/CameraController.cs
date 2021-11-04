@@ -74,7 +74,7 @@ public class CameraController : MonoBehaviour
         cam.transform.rotation = rotation;
 
         // TODO (Ella): this is still evil
-        if (SceneManager.GetActiveScene().name == "WalkingTest" && isWalking)
+        if ((SceneManager.GetActiveScene().name == "WalkingTest" || SceneManager.GetActiveScene().name.Contains("Gym")) && isWalking)
         {
             cam.transform.position = crow.transform.position;
             cam.transform.rotation = crow.transform.rotation;
