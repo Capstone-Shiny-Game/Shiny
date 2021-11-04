@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -142,6 +142,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1502789574}
+    - target: {fileID: 7261759843059480626, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: crow
+      value: 
+      objectReference: {fileID: 256773910}
     - target: {fileID: 7324057266532042072, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -210,6 +214,10 @@ PrefabInstance:
       propertyPath: groundDetectorObj
       value: 
       objectReference: {fileID: 212670087877810467, guid: 50af6314b7e51ab4fab7863584463fb2, type: 3}
+    - target: {fileID: 8245471309187584260, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
 --- !u!1 &130142425 stripped
@@ -217,26 +225,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6946296850612248336, guid: 3cab0da293e4c074093086209458c0bd, type: 3}
   m_PrefabInstance: {fileID: 2510173314105379982}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &256773910 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7324057266532042077, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+  m_PrefabInstance: {fileID: 87808397}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &256773913 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7695470114484064583, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
   m_PrefabInstance: {fileID: 87808397}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 256773910}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59588ac47d0b6094aa852ba3b8c731c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &256773914 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7324057266532042076, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
-  m_PrefabInstance: {fileID: 87808397}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30a0f24286293f542b8ba1cc15fb877d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1174031136 stripped
@@ -819,14 +821,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 4570073446826957874, guid: 3cab0da293e4c074093086209458c0bd, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 256773914}
-    - target: {fileID: 4570073446826957874, guid: 3cab0da293e4c074093086209458c0bd, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 256773913}
+    - target: {fileID: 2510173312800763323, guid: 3cab0da293e4c074093086209458c0bd, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -222
+      objectReference: {fileID: 0}
+    - target: {fileID: 2510173312800763323, guid: 3cab0da293e4c074093086209458c0bd, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 4.02
+      objectReference: {fileID: 0}
     - target: {fileID: 6946296850612248336, guid: 3cab0da293e4c074093086209458c0bd, type: 3}
       propertyPath: m_Name
       value: NPC Convo
