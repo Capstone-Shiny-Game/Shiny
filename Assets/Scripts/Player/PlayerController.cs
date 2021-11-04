@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private WalkingController walkingController;
     private CameraController cameraController;
     public GameObject NPCUI;
+    private InputAction walkAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/F");
 
     private Inventory inventory;
     [SerializeField] private UI_inventory uiInventory; //this variable holds the ui_inventory object from the scene
@@ -35,9 +37,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void toggleFlight()
     {
-        if (walkingController.enabled && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.F)))
+        if (walkingController.enabled)
         {
             Vector3 pos = transform.position;
             pos.y += 10;
@@ -46,7 +48,7 @@ public class PlayerController : MonoBehaviour
             StopWalk();
             cameraController.isWalking = false;
         }
-        else if (flightController.enabled && Input.GetKeyDown(KeyCode.F))
+        else if (flightController.enabled)
         {
             StopFlight();
             StartWalk();
@@ -58,12 +60,15 @@ public class PlayerController : MonoBehaviour
     {
         // register the function for the collision event
         //NPCInteraction.OnPlayerCollided += SetFixedPosition;
+        walkAction.performed += ctx => toggleFlight();
+        walkAction.Enable();
     }
 
     private void OnDisable()
     {
         // degregister the function
         //NPCInteraction.OnPlayerCollided -= SetFixedPosition;
+        walkAction.Disable();
     }
 
     private void StartFlight() => flightController.enabled = true;

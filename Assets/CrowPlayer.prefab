@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7695470114484064583}
   - component: {fileID: 8245471309187584260}
   - component: {fileID: 442309360877959849}
+  - component: {fileID: 5036188381387300824}
   m_Layer: 0
   m_Name: CrowPlayer
   m_TagString: Player
@@ -187,6 +188,60 @@ MonoBehaviour:
   BackwardsSpeed: 4
   TurningSpeed: 60
   HeightOffset: 0.5
+--- !u!114 &5036188381387300824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7324057266532042077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 12bd867ceabafdd4f99a797ebbfbbdd5, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 41696a77-9cba-432b-b51f-5182550e4e03
+    m_ActionName: FlightMap/Flight
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: be7428bb-b38c-41d1-95c9-41550f6659d0
+    m_ActionName: FlightMap/Look
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bfc54581-d016-4562-ad9b-e158d29ffeea
+    m_ActionName: FlightMap/ToggleFirstPerson
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c4d5a96c-aad8-4132-b475-6805ec72ee37
+    m_ActionName: FlightMap/Boost
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3a4a991a-bf42-4265-91a5-1fa49268bea2
+    m_ActionName: FlightMap/Brake
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f0f36d86-4d0c-4094-819f-fd1a08cb2512
+    m_ActionName: FlightMap/LockCursor
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: FlightMap
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &8245471309768777031
 GameObject:
   m_ObjectHideFlags: 0
