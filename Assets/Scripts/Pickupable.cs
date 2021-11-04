@@ -8,7 +8,6 @@ public class Pickupable : MonoBehaviour
 
     private Rigidbody rigidbody;
     private FlightController flightController;
-    private MeshRenderer meshRenderer;
     private bool attached;
     private bool inRange;
 
@@ -16,7 +15,6 @@ public class Pickupable : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody>();
         flightController = Crow.GetComponent<FlightController>();
-        meshRenderer = GetComponent<MeshRenderer>();
     }
 
     private void Update()
