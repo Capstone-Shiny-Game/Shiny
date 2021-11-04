@@ -55,10 +55,10 @@ public class CameraController : MonoBehaviour, IFlightMapActions
 
         //locks the cursor so it doesn't get off the window
         //TO DO: allow user to get mouse again when pressing alt?
-        if (isCursorLocked)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
+        // if (isCursorLocked)
+        // {
+        //     Cursor.lockState = CursorLockMode.Locked;
+        // }
 
         if (isFirstPerson)
         {
@@ -123,9 +123,9 @@ public class CameraController : MonoBehaviour, IFlightMapActions
     }
 
     public void OnToggleFirstPerson(InputAction.CallbackContext context)
-    {        
-        if(context.performed)
-        {            
+    {
+        if (context.performed)
+        {
             isFirstPerson = !isFirstPerson;
         }
     }
@@ -142,6 +142,7 @@ public class CameraController : MonoBehaviour, IFlightMapActions
 
     public void OnLockCursor(InputAction.CallbackContext context)
     {
-        isCursorLocked = !isCursorLocked;
+        //isCursorLocked = !isCursorLocked;
+
     }
 }
