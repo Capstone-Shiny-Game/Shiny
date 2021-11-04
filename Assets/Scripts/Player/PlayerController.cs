@@ -28,15 +28,15 @@ public class PlayerController : MonoBehaviour
         //inventory initialization
         inventory = new Inventory();
         // TODO : replace with GameObjects in the scene that have the attached scripts
-        if (SceneManager.GetActiveScene().name == "Gym")
+        if (SceneManager.GetActiveScene().name == "GymItems")
         {
             uiInventory.SetInventory(inventory);
 
-            ItemWorld.SpawnItemWorld(new Vector3(-104.9f, 4, 253.2f), new Item { itemType = Item.ItemType.shiny, amount = 1 });
-            ItemWorld.SpawnItemWorld(new Vector3(-104.9f, 4, 301.4f), new Item { itemType = Item.ItemType.food, amount = 1 });
-            ItemWorld.SpawnItemWorld(new Vector3(-104.9f, 4, 339.4f), new Item { itemType = Item.ItemType.potion, amount = 1 });
-            ItemWorld.SpawnItemWorld(new Vector3(-104.9f, 4, 359.4f), new Item { itemType = Item.ItemType.potion, amount = 1 });
-            ItemWorld.SpawnItemWorld(new Vector3(-104.9f, 4, 379.4f), new Item { itemType = Item.ItemType.potion, amount = 1 });
+            ItemWorld.SpawnItemWorld(new Vector3(40f, 6.4f, 50f), new Item { itemType = Item.ItemType.shiny, amount = 1 });
+            ItemWorld.SpawnItemWorld(new Vector3(40f, 6.4f, 40f), new Item { itemType = Item.ItemType.food, amount = 1 });
+            ItemWorld.SpawnItemWorld(new Vector3(40f, 6.4f, 30f), new Item { itemType = Item.ItemType.potion, amount = 1 });
+            //ItemWorld.SpawnItemWorld(new Vector3(-104.9f, 4, 359.4f), new Item { itemType = Item.ItemType.potion, amount = 1 });
+            //ItemWorld.SpawnItemWorld(new Vector3(-104.9f, 4, 379.4f), new Item { itemType = Item.ItemType.potion, amount = 1 });
         }
         groundDetector = GetComponent<GroundDetector>() ?? gameObject.AddComponent<GroundDetector>();
     }
