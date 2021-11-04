@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (walkingController.enabled && Input.GetKey(KeyCode.Space))
+        if (walkingController.enabled && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.F)))
         {
             Vector3 pos = transform.position;
             pos.y += 10;
@@ -44,6 +44,12 @@ public class PlayerController : MonoBehaviour
             StartFlight();
             StopWalk();
             cameraController.isWalking = false;
+        }
+        else if (flightController.enabled && Input.GetKeyDown(KeyCode.F))
+        {
+            StopFlight();
+            StartWalk();
+            cameraController.isWalking = true;
         }
     }
 
