@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
         else if (other.CompareTag("Terrain"))
         {
             // TODO (Ella) : This is evil. 
-            if (SceneManager.GetActiveScene().name == "WalkingTest")
+            if (SceneManager.GetActiveScene().name == "WalkingTest"||SceneManager.GetActiveScene().name.Contains("Gym"))
             {
                 StopFlight();
                 StartWalk();
