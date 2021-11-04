@@ -19,13 +19,16 @@ public class WalkingController : MonoBehaviour
         v.z = 0;
         transform.eulerAngles = v;
 
-        transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
-
         // TODO (Ella) *hisses at these sins*
         //useTerrain = SceneManager.GetActiveScene().name == "WalkingTest";
         //if (!useTerrain)
         useTerrain = false;
         ground = GetComponent<GroundDetector>() ?? gameObject.AddComponent<GroundDetector>();
+    }
+
+    void OnEnable()
+    {
+        transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
     }
 
     void Update()
