@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &442051123 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7324057266532042077, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
-  m_PrefabInstance: {fileID: 1842840370}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &807393428
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,10 +413,6 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 807393430}
-    - target: {fileID: 7261759843059480626, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
-      propertyPath: crow
-      value: 
-      objectReference: {fileID: 442051123}
     - target: {fileID: 7324057266532042072, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -469,22 +460,6 @@ PrefabInstance:
     - target: {fileID: 7324057266532042077, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: m_Name
       value: CrowPlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 7324057266532042079, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7324057266532042079, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7695470114484064583, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
-      propertyPath: uiInventory
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8245471309187584260, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
-      propertyPath: m_Mass
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}

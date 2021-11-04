@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
         //inventory initialization
         inventory = new Inventory();
         // TODO : replace with GameObjects in the scene that have the attached scripts
-        if (SceneManager.GetActiveScene().name == "Gym") 
+        if (SceneManager.GetActiveScene().name == "Gym")
         {
             uiInventory.SetInventory(inventory);
 
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         // degregister the function
         //NPCInteraction.OnPlayerCollided -= SetFixedPosition;
     }
-    
+
     private void StartFlight() => flightController.enabled = true;
     private void StopFlight() => flightController.enabled = false;
     private void StartWalk() => walkingController.enabled = true;
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
             Vector3 norm = collision.GetContact(0).normal;
             StartCoroutine(flightController.BounceOnCollision(norm));
         }
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -104,8 +104,9 @@ public class PlayerController : MonoBehaviour
         else if (other.CompareTag("Terrain"))
         {
             // TODO (Ella) : This is evil. 
-            if (SceneManager.GetActiveScene().name == "WalkingTest"||SceneManager.GetActiveScene().name.Contains("Gym"))
+            if (SceneManager.GetActiveScene().name == "WalkingTest" || SceneManager.GetActiveScene().name.Contains("Gym"))
             {
+                flightController.speed = 10.0f;
                 StopFlight();
                 StartWalk();
                 cameraController.isWalking = true;

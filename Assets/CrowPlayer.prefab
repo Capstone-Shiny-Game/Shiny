@@ -121,7 +121,7 @@ MonoBehaviour:
   toggleFirstPersonCam: 0
   isWalking: 0
   WalkingViewAngle: 30
-  WalkingViewDistance: 5
+  WalkingViewDistance: 15
 --- !u!114 &7324057266532042076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,13 +177,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7324057266532042077}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aca9080415d654e44825fedf445b4cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ForwardSpeed: 8
+  BackwardsSpeed: 4
   TurningSpeed: 60
+  HeightOffset: 0.5
 --- !u!1 &8245471309768777031
 GameObject:
   m_ObjectHideFlags: 0

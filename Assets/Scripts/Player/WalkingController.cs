@@ -16,17 +16,19 @@ public class WalkingController : MonoBehaviour
     {
         Vector3 v = transform.eulerAngles;
         v.x = 0;
+        v.z = 0;
         transform.eulerAngles = v;
 
         // TODO (Ella) *hisses at these sins*
-        useTerrain = SceneManager.GetActiveScene().name == "WalkingTest";
-        if (!useTerrain)
-            ground = GetComponent<GroundDetector>() ?? gameObject.AddComponent<GroundDetector>();
+        //useTerrain = SceneManager.GetActiveScene().name == "WalkingTest";
+        //if (!useTerrain)
+        useTerrain = false;
+        ground = GetComponent<GroundDetector>() ?? gameObject.AddComponent<GroundDetector>();
     }
 
     void Update()
     {
-        transform.Rotate(0, Input.GetAxis("Horizontal") * Time.deltaTime * TurningSpeed, 0);
+        transform.Rotate(0, Input.GetAxis("Horizontal") * Time.deltaTime * TurningSpeed, 0, Space.World);
         float displacement = Input.GetAxis("Vertical") * Time.deltaTime;
         displacement *= displacement >= 0 ? ForwardSpeed : BackwardsSpeed;
         transform.position += transform.forward * displacement;
