@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     private FlightController flightController;
     private WalkingController walkingController;
     private CameraController cameraController;
-    public GameObject NPCUI;
+    //public GameObject NPCUI;
     public GameObject ControllerUI;
     private InputAction walkAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/F");
 
@@ -39,8 +39,6 @@ public class PlayerController : MonoBehaviour
             ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 50f), new Item { itemType = Item.ItemType.shiny, amount = 1 });
             ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 40f), new Item { itemType = Item.ItemType.food, amount = 1 });
             ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 30f), new Item { itemType = Item.ItemType.potion, amount = 1 });
-            //ItemWorld.SpawnItemWorld(new Vector3(-104.9f, 4, 359.4f), new Item { itemType = Item.ItemType.potion, amount = 1 });
-            //ItemWorld.SpawnItemWorld(new Vector3(-104.9f, 4, 379.4f), new Item { itemType = Item.ItemType.potion, amount = 1 });
         }
     }
 
@@ -65,16 +63,16 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        // register the function for the collision event
-        //NPCInteraction.OnPlayerCollided += SetFixedPosition;
+        NPCInteraction.OnNPCInteractEvent += EnterNPCDialogue;
+
         walkAction.performed += ctx => toggleFlight();
         walkAction.Enable();
     }
 
     private void OnDisable()
     {
-        // degregister the function
-        //NPCInteraction.OnPlayerCollided -= SetFixedPosition;
+        NPCInteraction.OnNPCInteractEvent -= EnterNPCDialogue;
+
         walkAction.Disable();
     }
 
@@ -92,6 +90,14 @@ public class PlayerController : MonoBehaviour
         cameraController.isWalking = true;
     }
 
+    private void EnterNPCDialogue()
+    {
+        //call ui
+        //NPCUI.SetActive(true);
+        ControllerUI.SetActive(false);
+        //bind "ok" button to start walk
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("BOUNCE");
@@ -100,7 +106,6 @@ public class PlayerController : MonoBehaviour
             Vector3 norm = collision.GetContact(0).normal;
             StartCoroutine(flightController.BounceOnCollision(norm));
         }
-
     }
 
     private void OnTriggerEnter(Collider other)
@@ -138,15 +143,9 @@ public class PlayerController : MonoBehaviour
         {
             StopFlight();
             StopWalk();
-            Vector3 npcFront = other.gameObject.transform.position + other.transform.forward * 3.0f;
+            Vector3 npcFront = other.gameObject.transform.position + other.transform.forward * 4.0f;
             SetFixedPosition(npcFront);
-
             TryPlaceOnGround();
-
-            //call ui
-            NPCUI.SetActive(true);
-            ControllerUI.SetActive(false);
-            //bind "ok" button to start walk
         }
         //add items to inventory
         ItemWorld itemWorld = other.GetComponent<ItemWorld>();
