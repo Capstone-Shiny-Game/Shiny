@@ -139,6 +139,7 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(flightController.Slow());
             }
         }
+        // TODO (Jakob) : the NPC also registers this event - figure out how to consolidate
         else if (other.CompareTag("NPC"))
         {
             StopFlight();
