@@ -19,6 +19,8 @@ public class NPCInteraction : MonoBehaviour
 
     private DSDialogueSO currentDialogue;
 
+    private readonly string OK = "OK";
+
     private void Start()
     {
         tmpGUI = npcConvoText.GetComponent<TextMeshProUGUI>();
@@ -61,14 +63,14 @@ public class NPCInteraction : MonoBehaviour
 
     public void ContinueDialogue(Button button)
     {
-        TextMeshProUGUI tmpGUI = button.GetComponentInChildren<TextMeshProUGUI>();
-        string text = tmpGUI.text;
+        TextMeshProUGUI btnTmpGUI = button.GetComponentInChildren<TextMeshProUGUI>();
+        string text = btnTmpGUI.text;
         foreach (DSDialogueChoiceData choice in currentDialogue.Choices)
         {
-            if (text.Equals(choice.Text))
+            if (text.Equals(choice.Text) || text.Equals(OK))
             {
                 currentDialogue = choice.NextDialogue;
-                tmpGUI.text = currentDialogue.Text;
+                this.tmpGUI.text = currentDialogue.Text; // breaks with MultipleChoice node
                 break;
             }
         }
