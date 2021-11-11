@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class NPCInteraction : MonoBehaviour
 {
@@ -10,13 +12,22 @@ public class NPCInteraction : MonoBehaviour
     public static event NPCInteract OnNPCInteractEvent;
 
     public GameObject npcUI;
+    public GameObject npcConvoText;
+    private TextMeshProUGUI tmpGUI;
+
     public DSDialogueContainerSO dialogueContainer;
 
     private DSDialogueSO currentDialogue;
 
+    private void Start()
+    {
+        tmpGUI = npcConvoText.GetComponent<TextMeshProUGUI>();
+    }
+
     private void OnEnable()
     {
         OnNPCInteractEvent += EnterDialogue;
+        // ContinueDialogue event here*
     }
     private void OnDisable()
     {
@@ -40,24 +51,26 @@ public class NPCInteraction : MonoBehaviour
         {
             if (dialogue.IsStartingDialogue)
             {
+                npcUI.SetActive(true);
                 currentDialogue = dialogue;
-                StartCoroutine(ContinueDialogue());
+                tmpGUI.text = currentDialogue.Text;
                 break;
             }
         }
     }
 
-    private IEnumerator ContinueDialogue()
+    public void ContinueDialogue(Button button)
     {
-        npcUI.SetActive(true);
-
-        while (currentDialogue != null)
+        TextMeshProUGUI tmpGUI = button.GetComponentInChildren<TextMeshProUGUI>();
+        string text = tmpGUI.text;
+        foreach (DSDialogueChoiceData choice in currentDialogue.Choices)
         {
-            //Debug.Log(currentDialogue.Text);
-
-            yield return new WaitForFixedUpdate();
+            if (text.Equals(choice.Text))
+            {
+                currentDialogue = choice.NextDialogue;
+                tmpGUI.text = currentDialogue.Text;
+                break;
+            }
         }
-
-
     }
 }
