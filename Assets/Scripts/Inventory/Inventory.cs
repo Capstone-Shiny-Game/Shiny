@@ -7,8 +7,7 @@ public class Inventory
 {
     public event EventHandler OnItemListChanged;
     private List<Item> itemList;
-    // TODO: If this gets attached somewhere, we may need to expose this in Unity for in-editor modification
-    public Vector3 spawnOffset = new Vector3(0.2f, 0.02f, 0.2f);
+    
 
     public Inventory()
     {
@@ -37,10 +36,9 @@ public class Inventory
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    public void DropItem(Vector3 playerPosition, Item item)
+    public void DropItem(Vector3 dropPosition, Item item)
     {
-        // TODO: Figure out where we're calling this from
-        ItemWorld.SpawnItemWorld(playerPosition + spawnOffset, item);
+        ItemWorld.SpawnItemWorld(dropPosition, item);
         if (!item.IsStackable())
         {
             itemList.Remove(item);

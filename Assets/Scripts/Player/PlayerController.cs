@@ -12,9 +12,14 @@ public class PlayerController : MonoBehaviour
     //public GameObject NPCUI;
     public GameObject ControllerUI;
     private InputAction walkAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/F");
+    private InputAction dropItemAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/G");
 
     private Inventory inventory;
     [SerializeField] private UI_inventory uiInventory; //this variable holds the ui_inventory object from the scene
+
+    //specifies where inventory item should appear when dropped by player
+    public Vector3 dropItemOffsetWalking = new Vector3(0.2f, 0.02f, 0.2f);
+    public Vector3 dropItemOffsetFlying = new Vector3(0.2f, 0.02f, 0.2f);
 
     private GroundDetector groundDetector;
 
@@ -61,12 +66,29 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void dropItLikeItsHot()
+    {
+        if (walkingController.enabled)
+        {
+            //TODO drop the correct item
+            inventory.DropItem(this.transform.position + dropItemOffsetWalking, inventory.GetItemList()[0]);
+        }
+        else if (flightController.enabled)
+        {
+            //TODO drop the correct item
+            inventory.DropItem(this.transform.position + dropItemOffsetFlying, inventory.GetItemList()[0]);
+        }
+    }
+
     private void OnEnable()
     {
         NPCInteraction.OnNPCInteractEvent += EnterNPCDialogue;
 
         walkAction.performed += ctx => toggleFlight();
         walkAction.Enable();
+
+        dropItemAction.performed += ctx => dropItLikeItsHot();
+        dropItemAction.Enable();
     }
 
     private void OnDisable()
@@ -74,6 +96,7 @@ public class PlayerController : MonoBehaviour
         NPCInteraction.OnNPCInteractEvent -= EnterNPCDialogue;
 
         walkAction.Disable();
+        dropItemAction.Disable();
     }
 
     private void StartFlight() => flightController.enabled = true;
