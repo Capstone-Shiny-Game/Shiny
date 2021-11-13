@@ -24,10 +24,12 @@ public class Item
         {
             //stackable
             default:
-            case ItemType.potion: return 1.0 * this.amount;
+            case ItemType.potion:
+                return 1.0 * this.amount;
             //not stackable
             case ItemType.food:
-            case ItemType.shiny: return 2.0 * this.amount;
+            case ItemType.shiny:
+                return 2.0 * this.amount;
         }
 
     }
@@ -38,9 +40,12 @@ public class Item
         {
             default:
             //returns the correct sprite for the object, take from ItemAssets
-            case ItemType.potion: return ItemAssets.Instance.potionSprite;
-            case ItemType.food: return ItemAssets.Instance.foodSprite;
-            case ItemType.shiny: return ItemAssets.Instance.shinySprite;
+            case ItemType.potion:
+                return ItemAssets.Instance.potionSprite;
+            case ItemType.food:
+                return ItemAssets.Instance.foodSprite;
+            case ItemType.shiny:
+                return ItemAssets.Instance.shinySprite;
                 // syntax is case ItemType.<item name from enum>: return ItemAssets.Instance.<item name from ItemAssets>;
         }
     }
@@ -51,10 +56,12 @@ public class Item
         {
             //stackable
             default:
-            case ItemType.potion: return true;
+            case ItemType.potion:
+                return true;
             //not stackable
             case ItemType.food:
-            case ItemType.shiny: return false;
+            case ItemType.shiny:
+                return false;
         }
 
     }
