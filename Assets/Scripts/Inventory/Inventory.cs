@@ -22,7 +22,7 @@ public class Inventory
             {
                 if (invItem.itemType == item.itemType)
                 {
-                    invItem.amount += item.amount;
+                    invItem.amount += 1;
                     itemAlreadyInInv = true;
                 }
             }
