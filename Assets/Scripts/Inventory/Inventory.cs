@@ -52,7 +52,7 @@ public class Inventory
                 return;
             }
             inventoryItem.amount -= item.amount;
-            if (inventoryItem.amount <= 0)
+            if (inventoryItem.amount <= 0)//TODO bug test this
             {
                 itemList.Remove(item);
             }
@@ -67,7 +67,7 @@ public class Inventory
         {
             if (inventoryItem.itemType == item.itemType)
             {
-                if (inventoryItem.amount <= 0)
+                if (inventoryItem.amount > 0)
                 {
                     return inventoryItem;
                 }

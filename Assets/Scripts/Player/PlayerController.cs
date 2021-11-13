@@ -18,8 +18,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private UI_inventory uiInventory; //this variable holds the ui_inventory object from the scene
 
     //specifies where inventory item should appear when dropped by player
-    public Vector3 dropItemOffsetWalking = new Vector3(0.2f, 0.02f, 0.2f);
-    public Vector3 dropItemOffsetFlying = new Vector3(0.2f, 0.02f, 0.2f);
+    public float dropItemForwardOffsetWalking = 0;
+    public float dropItemHeightOffsetWalking = 0;
+    public float dropItemForwardOffsetFlying = 0;
+    public float dropItemHeightOffsetFlying = 0;
 
     private GroundDetector groundDetector;
 
@@ -70,13 +72,17 @@ public class PlayerController : MonoBehaviour
     {
         if (walkingController.enabled)
         {
+            Vector3 offset = this.transform.forward * dropItemForwardOffsetWalking;
+            offset.y = dropItemHeightOffsetWalking;
             //TODO drop the correct item
-            inventory.DropItem(this.transform.position + dropItemOffsetWalking, inventory.GetItemList()[0]);
+            inventory.DropItem(this.transform.position + offset, inventory.GetItemList()[0]);
         }
         else if (flightController.enabled)
         {
+            Vector3 offset = this.transform.forward * dropItemForwardOffsetFlying;
+            offset.y = dropItemHeightOffsetFlying;
             //TODO drop the correct item
-            inventory.DropItem(this.transform.position + dropItemOffsetFlying, inventory.GetItemList()[0]);
+            inventory.DropItem(this.transform.position + offset, inventory.GetItemList()[0]);
         }
     }
 
