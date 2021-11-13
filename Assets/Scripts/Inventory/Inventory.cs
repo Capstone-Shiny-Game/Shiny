@@ -8,7 +8,8 @@ public class Inventory
     public event EventHandler OnItemListChanged;
     private List<Item> itemList;
 
-    public Inventory() {
+    public Inventory()
+    {
         itemList = new List<Item>();
     }
 
@@ -17,7 +18,8 @@ public class Inventory
         if (item.IsStackable())
         {
             bool itemAlreadyInInv = false;
-            foreach (Item invItem in itemList) {
+            foreach (Item invItem in itemList)
+            {
                 if (invItem.itemType == item.itemType)
                 {
                     invItem.amount += item.amount;
@@ -36,7 +38,8 @@ public class Inventory
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    public List<Item> GetItemList() {
+    public List<Item> GetItemList()
+    {
         return itemList;
     }
 }

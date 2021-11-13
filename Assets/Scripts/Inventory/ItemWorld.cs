@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class ItemWorld : MonoBehaviour
 {
-    public static ItemWorld SpawnItemWorld(Vector3 position, Item item) {
-        Transform transform = Instantiate(ItemAssets.Instance.pfItemPickUpWorld,position,Quaternion.identity);
+    public static ItemWorld SpawnItemWorld(Vector3 position, Item item)
+    {
+        Transform transform = Instantiate(ItemAssets.Instance.pfItemPickUpWorld, position, Quaternion.identity);
 
         ItemWorld itemWorld = transform.GetComponent<ItemWorld>();
         itemWorld.SetItem(item);
-        Debug.Log("hi");
+        Debug.Log("set item");
 
         return itemWorld;
     }
@@ -22,7 +23,8 @@ public class ItemWorld : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
     }
 
-    public void SetItem(Item item) {
+    public void SetItem(Item item)
+    {
         this.item = item;
         //TODO: set mesh reder
     }

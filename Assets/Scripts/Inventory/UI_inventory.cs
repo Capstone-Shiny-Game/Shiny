@@ -18,7 +18,8 @@ public class UI_inventory : MonoBehaviour
         itemSlotTemplate = itemSlotContainer.Find("itemSlotTemplate"); ;
     }
 
-    public void SetInventory(Inventory inv) {
+    public void SetInventory(Inventory inv)
+    {
         inventory = inv;
 
         inventory.OnItemListChanged += Inventory_OnItemListChanged;
@@ -30,10 +31,13 @@ public class UI_inventory : MonoBehaviour
         RefreshInventoryItems();
     }
 
-    private void RefreshInventoryItems() {
+    private void RefreshInventoryItems()
+    {
         //destory old ui elements to avoid duplicates
-        foreach (Transform child in itemSlotContainer) {
-            if (child == itemSlotTemplate) {//dont destory the template
+        foreach (Transform child in itemSlotContainer)
+        {
+            if (child == itemSlotTemplate)
+            {//dont destory the template
                 continue;
             }
             Destroy(child.gameObject);
@@ -42,7 +46,8 @@ public class UI_inventory : MonoBehaviour
 
         int x = 0;
         int y = 0;
-        foreach (Item item in inventory.GetItemList()) {
+        foreach (Item item in inventory.GetItemList())
+        {
             RectTransform itemSlotRectTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();//instantiate template
             itemSlotRectTransform.gameObject.SetActive(true);
             //find and set item image
@@ -54,18 +59,20 @@ public class UI_inventory : MonoBehaviour
             {
                 uiText.SetText(item.amount.ToString());
             }
-            else {
+            else
+            {
                 uiText.SetText("");
             }
             //item slots in grid array
             itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, -y * itemSlotCellSize);
             x++;//go to next position
             //reached end of row, return to start
-            if (x >= slotsPerRow) {
+            if (x >= slotsPerRow)
+            {
                 x = 0;
                 y++;
             }
-            
+
         }
 
     }
