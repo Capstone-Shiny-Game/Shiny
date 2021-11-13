@@ -16,6 +16,16 @@ public class Item
 
     public ItemType itemType;
     public int amount;
+    public Item(ItemType itemType, int amount)
+    {
+        this.amount = amount;
+        this.itemType = itemType;
+    }
+    public Item(ItemType itemType)
+    {
+        this.amount = 1;
+        this.itemType = itemType;
+    }
 
     //returns the weight of the entire stack of inventory items
     public double getStackWeight()

@@ -7,15 +7,17 @@ public class Inventory
 {
     public event EventHandler OnItemListChanged;
     private List<Item> itemList;
-    
+    public int maxItemCount = 8;
+
 
     public Inventory()
     {
         itemList = new List<Item>();
     }
 
-    public void AddItem(Item item)
+    public bool AddItem(Item item)
     {
+
         if (item.IsStackable())
         {
             Item inventoryItem = GetItemFromList(item);
@@ -30,18 +32,23 @@ public class Inventory
         }
         else
         {
+            if (itemList.Count == maxItemCount)
+            {
+                return false;
+            }
             itemList.Add(item);
         }
         // Update UI
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
+        return true;
     }
 
-    public void DropItem(Vector3 dropPosition, Item item)
+    public bool DropItem(Vector3 dropPosition, Item item, int dropAmount = 1)
     {
-        ItemWorld.SpawnItemWorld(dropPosition, item);
         if (!item.IsStackable())
         {
             itemList.Remove(item);
+            ItemWorld.SpawnItemWorld(dropPosition, item);
         }
         else
         {
@@ -49,16 +56,23 @@ public class Inventory
             if (inventoryItem is null)
             {
                 Debug.LogWarning("Tried to drop object that doesn't exist in DropItem within Inventory.cs");
-                return;
+                return false;
             }
-            inventoryItem.amount -= item.amount;
-            if (inventoryItem.amount <= 0)//TODO bug test this
+            if (inventoryItem.amount < dropAmount)
+            {
+                Debug.LogWarning($"Unable to drop {item.amount} items");
+                return false;
+            }
+            ItemWorld.SpawnItemWorld(dropPosition, new Item(item.itemType, dropAmount));
+            inventoryItem.amount -= dropAmount;
+            if (inventoryItem.amount <= 0)
             {
                 itemList.Remove(item);
             }
         }
         // Update UI
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
+        return true;
     }
 
     public Item GetItemFromList(Item item)

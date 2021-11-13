@@ -4,8 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
+
+
 public class PlayerController : MonoBehaviour
 {
+    [System.Serializable]
+    public struct Offset
+    {
+        public float forward;
+        public float up;
+    }
     private FlightController flightController;
     private WalkingController walkingController;
     private CameraController cameraController;
@@ -15,13 +23,13 @@ public class PlayerController : MonoBehaviour
     private InputAction dropItemAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/G");
 
     private Inventory inventory;
-    [SerializeField] private UI_inventory uiInventory; //this variable holds the ui_inventory object from the scene
+    [SerializeField]
+    private UI_inventory uiInventory; //this variable holds the ui_inventory object from the scene
 
     //specifies where inventory item should appear when dropped by player
-    public float dropItemForwardOffsetWalking = 0;
-    public float dropItemHeightOffsetWalking = 0;
-    public float dropItemForwardOffsetFlying = 0;
-    public float dropItemHeightOffsetFlying = 0;
+    public Offset walkingOffset = new Offset { forward = 0, up = 0 };
+    public Offset flyingOffset = new Offset { forward = 0, up = 0 };
+
 
     private GroundDetector groundDetector;
 
@@ -43,9 +51,9 @@ public class PlayerController : MonoBehaviour
             uiInventory.SetInventory(inventory);
 
             float yPos = 5.3f;
-            ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 50f), new Item { itemType = Item.ItemType.shiny, amount = 1 });
-            ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 40f), new Item { itemType = Item.ItemType.food, amount = 1 });
-            ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 30f), new Item { itemType = Item.ItemType.potion, amount = 1 });
+            ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 50f), new Item(Item.ItemType.shiny));
+            ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 40f), new Item(Item.ItemType.food));
+            ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 30f), new Item(Item.ItemType.potion));
         }
     }
 
@@ -70,19 +78,23 @@ public class PlayerController : MonoBehaviour
 
     private void dropItLikeItsHot()
     {
+        if (inventory.GetItemList().Count == 0)
+        {
+            return;
+        }
         if (walkingController.enabled)
         {
-            Vector3 offset = this.transform.forward * dropItemForwardOffsetWalking;
-            offset.y = dropItemHeightOffsetWalking;
+            Vector3 offset = this.transform.forward * walkingOffset.forward;
+            offset.y = walkingOffset.up;
             //TODO drop the correct item
             inventory.DropItem(this.transform.position + offset, inventory.GetItemList()[0]);
         }
         else if (flightController.enabled)
         {
-            Vector3 offset = this.transform.forward * dropItemForwardOffsetFlying;
-            offset.y = dropItemHeightOffsetFlying;
+            Vector3 offset = this.transform.forward * flyingOffset.forward;
+            offset.y = flyingOffset.up;
             //TODO drop the correct item
-            inventory.DropItem(this.transform.position + offset, inventory.GetItemList()[0]);
+            inventory.DropItem(this.transform.position + offset, new Item(inventory.GetItemList()[0].itemType));
         }
     }
 
@@ -150,7 +162,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.CompareTag("Terrain"))
         {
-            // TODO (Ella) : This is evil. 
+            // TODO (Ella) : This is evil.
             if (SceneManager.GetActiveScene().name == "WalkingTest" || SceneManager.GetActiveScene().name.Contains("Gym"))
             {
                 flightController.speed = 10.0f;
@@ -184,9 +196,10 @@ public class PlayerController : MonoBehaviour
             //touching item
             Debug.Log(itemWorld.GetItem().GetType());
             //TODO : add weights here
-            inventory.AddItem(itemWorld.GetItem());
-            itemWorld.DestroySelf();
-
+            if (inventory.AddItem(itemWorld.GetItem()))
+            {
+                itemWorld.DestroySelf();
+            }
         }
     }
 
