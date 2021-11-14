@@ -44,14 +44,19 @@ public class Inventory
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
         return true;
     }
+    public bool DropItem(Vector3 dropPosition, Item item, int dropAmount = 1) {
+        return RemoveItem(dropPosition, item, dropAmount, true);
+    }
 
-    public bool DropItem(Vector3 dropPosition, Item item, int dropAmount = 1)
+    public bool RemoveItem(Vector3 dropPosition, Item item, int removeAmount = 1, bool dropItem = false)
     {
         if (!item.IsStackable())
         {
             weight -= item.getStackWeight(); 
             itemList.Remove(item);
-            ItemWorld.SpawnItemWorld(dropPosition, new Item(item.itemType, dropAmount));
+            if (dropItem) {
+                ItemWorld.SpawnItemWorld(dropPosition, new Item(item.itemType, removeAmount));
+            }
         }
         else
         {
@@ -61,14 +66,17 @@ public class Inventory
                 Debug.LogWarning("Tried to drop object that doesn't exist in DropItem within Inventory.cs");
                 return false;
             }
-            if (inventoryItem.amount < dropAmount)
+            if (inventoryItem.amount < removeAmount)
             {
                 Debug.LogWarning($"Unable to drop {item.amount} items");
                 return false;
             }
             weight -= item.getStackWeight();
-            ItemWorld.SpawnItemWorld(dropPosition, new Item(item.itemType, dropAmount));
-            inventoryItem.amount -= dropAmount;
+            if (dropItem)
+            {
+                ItemWorld.SpawnItemWorld(dropPosition, new Item(item.itemType, removeAmount));
+            }
+            inventoryItem.amount -= removeAmount;
             if (inventoryItem.amount <= 0)
             {
                 itemList.Remove(item);
