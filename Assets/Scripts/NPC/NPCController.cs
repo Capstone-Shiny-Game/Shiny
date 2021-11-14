@@ -20,7 +20,7 @@ public class NPCController : MonoBehaviour
     private int currWaypointIdx;
     private bool isTravelling;
     private bool isWaiting;
-    private bool doesMoveForward;
+    private bool doesMoveForward = true;
     private float waitTimer;
 
 
@@ -70,7 +70,6 @@ public class NPCController : MonoBehaviour
 
     private void SetDestination()
     {
-        Debug.Log("Moving to waypoint: " + currWaypointIdx);
         Vector3 target = waypoints[currWaypointIdx].transform.position;
         agent.SetDestination(target);
         isTravelling = true;
