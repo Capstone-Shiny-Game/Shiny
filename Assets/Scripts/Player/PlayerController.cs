@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
             Vector3 offset = this.transform.forward * flyingOffset.forward;
             offset.y = flyingOffset.up;
             //TODO drop the correct item
-            inventory.DropItem(this.transform.position + offset, new Item(inventory.GetItemList()[0].itemType));
+            inventory.DropItem(this.transform.position + offset, inventory.GetItemList()[0]);
         }
     }
 

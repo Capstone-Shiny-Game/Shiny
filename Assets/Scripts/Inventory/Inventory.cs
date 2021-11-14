@@ -51,7 +51,7 @@ public class Inventory
         {
             weight -= item.getStackWeight(); 
             itemList.Remove(item);
-            ItemWorld.SpawnItemWorld(dropPosition, item);
+            ItemWorld.SpawnItemWorld(dropPosition, new Item(item.itemType, dropAmount));
         }
         else
         {
