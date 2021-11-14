@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
         {
             uiInventory.SetInventory(inventory);
 
-            float yPos = 5.3f;
+            float yPos = 10.3f;
             ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 50f), new Item(Item.ItemType.shiny));
             ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 40f), new Item(Item.ItemType.food));
             ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 30f), new Item(Item.ItemType.potion));
