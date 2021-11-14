@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     //specifies where inventory item should appear when dropped by player
     public Offset walkingOffset = new Offset { forward = 0, up = 0 };
     public Offset flyingOffset = new Offset { forward = 0, up = 0 };
-
+    public double maxCarryWeight = 0;
 
     private GroundDetector groundDetector;
 
@@ -194,12 +194,15 @@ public class PlayerController : MonoBehaviour
         if (itemWorld != null)
         {
             //touching item
-            Debug.Log(itemWorld.GetItem().GetType());
-            //TODO : add weights here
-            if (inventory.AddItem(itemWorld.GetItem()))
-            {
-                itemWorld.DestroySelf();
+            //Debug.Log(itemWorld.GetItem().GetType());
+            Item item = itemWorld.GetItem();
+            if (maxCarryWeight >= (inventory.GetWeight() + item.getStackWeight())) { //check if picking this up would add to much weight
+                if (inventory.AddItem(item))
+                {
+                    itemWorld.DestroySelf();
+                }
             }
+            //Debug.Log(inventory.GetWeight());
         }
     }
 

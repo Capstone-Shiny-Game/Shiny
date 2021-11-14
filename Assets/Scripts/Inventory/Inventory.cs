@@ -8,16 +8,18 @@ public class Inventory
     public event EventHandler OnItemListChanged;
     private List<Item> itemList;
     public int maxItemCount = 8;
+    private double weight;
 
 
     public Inventory()
     {
         itemList = new List<Item>();
+        weight = 0;
     }
 
     public bool AddItem(Item item)
     {
-
+        weight += item.getStackWeight();
         if (item.IsStackable())
         {
             Item inventoryItem = GetItemFromList(item);
@@ -47,6 +49,7 @@ public class Inventory
     {
         if (!item.IsStackable())
         {
+            weight -= item.getStackWeight(); 
             itemList.Remove(item);
             ItemWorld.SpawnItemWorld(dropPosition, item);
         }
@@ -63,6 +66,7 @@ public class Inventory
                 Debug.LogWarning($"Unable to drop {item.amount} items");
                 return false;
             }
+            weight -= item.getStackWeight();
             ItemWorld.SpawnItemWorld(dropPosition, new Item(item.itemType, dropAmount));
             inventoryItem.amount -= dropAmount;
             if (inventoryItem.amount <= 0)
@@ -88,6 +92,11 @@ public class Inventory
             }
         }
         return null;
+    }
+
+    public double GetWeight()
+    {
+        return weight;
     }
 
     public List<Item> GetItemList()
