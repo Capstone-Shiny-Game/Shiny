@@ -44,6 +44,14 @@ public class Inventory
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
         return true;
     }
+
+    public void RotateItems() {
+        Item first = itemList[0];
+        itemList.RemoveAt(0);
+        itemList.Add(first);
+        OnItemListChanged?.Invoke(this, EventArgs.Empty);
+    }
+
     public bool DropItem(Vector3 dropPosition, Item item, int dropAmount = 1) {
         return RemoveItem(dropPosition, item, dropAmount, true);
     }

@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public GameObject ControllerUI;
     private InputAction walkAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/F");
     private InputAction dropItemAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/G");
+    private InputAction rotateInventoryAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/R");
 
     private Inventory inventory;
     [SerializeField]
@@ -97,6 +98,9 @@ public class PlayerController : MonoBehaviour
             inventory.DropItem(this.transform.position + offset, inventory.GetItemList()[0]);
         }
     }
+    private void RotateInventory() {
+        inventory.RotateItems();
+    }
 
     private void OnEnable()
     {
@@ -107,6 +111,9 @@ public class PlayerController : MonoBehaviour
 
         dropItemAction.performed += ctx => dropItLikeItsHot();
         dropItemAction.Enable();
+
+        rotateInventoryAction.performed += ctx => RotateInventory();
+        rotateInventoryAction.Enable();
     }
 
     private void OnDisable()
@@ -115,6 +122,7 @@ public class PlayerController : MonoBehaviour
 
         walkAction.Disable();
         dropItemAction.Disable();
+        rotateInventoryAction.Disable();
     }
 
     private void StartFlight() => flightController.enabled = true;
