@@ -77,9 +77,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Drops the first item in the inventory.
+    /// </summary>
     private void dropItLikeItsHot()
     {
-        if (inventory.GetItemList().Count == 0)
+        if (inventory.itemList.Count == 0)
         {
             return;
         }
@@ -87,18 +90,20 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 offset = this.transform.forward * walkingOffset.forward;
             offset.y = walkingOffset.up;
-            //TODO drop the correct item
-            inventory.DropItem(this.transform.position + offset, inventory.GetItemList()[0]);
+            inventory.DropItem(this.transform.position + offset, inventory.itemList[0]);
         }
         else if (flightController.enabled)
         {
             Vector3 offset = this.transform.forward * flyingOffset.forward;
             offset.y = flyingOffset.up;
-            //TODO drop the correct item
-            inventory.DropItem(this.transform.position + offset, inventory.GetItemList()[0]);
+            inventory.DropItem(this.transform.position + offset, inventory.itemList[0]);
         }
     }
-    private void RotateInventory() {
+    /// <summary>
+    /// Rotates the inventory to the left by one
+    /// </summary>
+    private void RotateInventory()
+    {
         inventory.RotateItems();
     }
 
@@ -204,7 +209,8 @@ public class PlayerController : MonoBehaviour
             //touching item
             //Debug.Log(itemWorld.GetItem().GetType());
             Item item = itemWorld.GetItem();
-            if (maxCarryWeight >= (inventory.GetWeight() + item.getStackWeight())) { //check if picking this up would add to much weight
+            if (maxCarryWeight >= (inventory.weight + item.getStackWeight()))
+            { //check if picking this up would add to much weight
                 if (inventory.AddItem(item))
                 {
                     itemWorld.DestroySelf();

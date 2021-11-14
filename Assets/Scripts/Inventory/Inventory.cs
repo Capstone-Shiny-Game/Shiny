@@ -6,17 +6,25 @@ using UnityEngine;
 public class Inventory
 {
     public event EventHandler OnItemListChanged;
-    private List<Item> itemList;
+    public List<Item> itemList { get; private set; }
     public int maxItemCount = 8;
-    private double weight;
+    public double weight { get; private set; }
 
 
+    /// <summary>
+    /// Constructor for inventory
+    /// </summary>
     public Inventory()
     {
         itemList = new List<Item>();
         weight = 0;
     }
 
+    /// <summary>
+    /// Adds an item to the inventory
+    /// </summary>
+    /// <param name="item"> The item to add to the inventory </param>
+    /// <returns> True when the item is successfully added and false otherwise </returns>
     public bool AddItem(Item item)
     {
         weight += item.getStackWeight();
@@ -45,24 +53,49 @@ public class Inventory
         return true;
     }
 
-    public void RotateItems() {
+    /// <summary>
+    /// Rotates the list of items by one to the left. Allows the player to choose
+    /// which item they want to drop.
+    /// </summary>
+    public void RotateItems()
+    {
         Item first = itemList[0];
         itemList.RemoveAt(0);
         itemList.Add(first);
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    public bool DropItem(Vector3 dropPosition, Item item, int dropAmount = 1) {
-        return RemoveItem(dropPosition, item, dropAmount, true);
+    /// <summary>
+    /// Drops a specific item from the inventory.
+    /// </summary>
+    /// <param name="item"> The item to be dropped </param>
+    /// <param name="dropAmount"></param>
+    /// <param name="dropPosition"> The position at which to drop the item</param>
+    /// <returns> True when the item is successfully dropped and false otherwise </returns>
+    public bool DropItem(Vector3 dropPosition, Item item, int dropAmount = 1)
+    {
+        return RemoveItem(item, dropAmount, true, dropPosition);
     }
 
-    public bool RemoveItem(Vector3 dropPosition, Item item, int removeAmount = 1, bool dropItem = false)
+    /// <summary>
+    /// Removes an item from the inventory. Optionally drops the item in space.
+    /// </summary>
+    /// <param name="item"> The item to be removed </param>
+    /// <param name="removeAmount"> The amount to be removed </param>
+    /// <param name="dropItem"> If true, drops the item in space </param>
+    /// <param name="dropPosition"> Where the item should be dropped if `dropItem` is true </param>
+    /// <returns></returns>
+    public bool RemoveItem(Item item,
+                           int removeAmount = 1,
+                           bool dropItem = false,
+                           Vector3 dropPosition = new Vector3())
     {
         if (!item.IsStackable())
         {
-            weight -= item.getStackWeight(); 
+            weight -= item.getStackWeight();
             itemList.Remove(item);
-            if (dropItem) {
+            if (dropItem)
+            {
                 ItemWorld.SpawnItemWorld(dropPosition, new Item(item.itemType, removeAmount));
             }
         }
@@ -95,7 +128,16 @@ public class Inventory
         return true;
     }
 
-    public Item GetItemFromList(Item item)
+    /// <summary>
+    /// Searches the inventory's item list and returns a reference to the item
+    /// if it is found.
+    /// </summary>
+    /// <param name="item"> The item being searched for. </param>
+    /// <returns>
+    /// The item being searched for in the list, if it is found. Returns
+    /// null otherwise.
+    /// </returns>
+    private Item GetItemFromList(Item item)
     {
         foreach (Item inventoryItem in itemList)
         {
@@ -110,13 +152,4 @@ public class Inventory
         return null;
     }
 
-    public double GetWeight()
-    {
-        return weight;
-    }
-
-    public List<Item> GetItemList()
-    {
-        return itemList;
-    }
 }
