@@ -37,6 +37,7 @@ public class FlightController : MonoBehaviour, IFlightMapActions
     private PlayerControllerInput PlayerInput;
     public GameObject LeftTrail;
     public GameObject RightTrail;
+    private Vector3 scaleChange;
 
 
 
@@ -277,16 +278,12 @@ public class FlightController : MonoBehaviour, IFlightMapActions
 
     public void ShowOrHideTrail()
     {
-        if (speed > 20)
-        {
-            LeftTrail.SetActive(true);
-            RightTrail.SetActive(true);
-        }
-        if (speed < 20)
-        {
-            LeftTrail.SetActive(false);
-            RightTrail.SetActive(false);
-        }
+        float scaleX = (speed - 10) / 30;
+        if (scaleX < 0)
+            scaleX = 0;
+        scaleChange = new Vector3(scaleX, scaleX, scaleX);
+        LeftTrail.transform.localScale = scaleChange;
+        RightTrail.transform.localScale = scaleChange;
     }
 
 

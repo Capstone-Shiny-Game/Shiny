@@ -1040,6 +1040,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: CrowTrailR
       objectReference: {fileID: 0}
+    - target: {fileID: 3878035159048285546, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3878035159048285546, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4566357708408431920, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: scalingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596066366068997632, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7261759843059480626, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: cam
       value: 
@@ -1129,6 +1145,10 @@ PrefabInstance:
       value: CrowPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 7349597127457028209, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: scalingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7349597127457028209, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: TrailModule.mode
       value: 0
       objectReference: {fileID: 0}
@@ -1212,5 +1232,13 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 8933138296794399039, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8933138296794399039, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
