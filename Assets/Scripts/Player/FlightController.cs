@@ -279,6 +279,11 @@ public class FlightController : MonoBehaviour, IFlightMapActions
         moveY = context.ReadValue<Vector2>().y;
     }
 
+    public float GetSpeed()
+    {
+        return speed;
+    }
+
     public void OnLook(InputAction.CallbackContext context)
     {
         // UNUSED
