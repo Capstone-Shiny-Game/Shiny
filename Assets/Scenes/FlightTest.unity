@@ -508,19 +508,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2513769111650297511, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
   m_PrefabInstance: {fileID: 8245471308961508310}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &575090841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 575090840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4c0be6418018f045903c886013e02de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trailObject: {fileID: 575090840}
 --- !u!1001 &617703287
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1037,6 +1024,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 0
   m_Mesh: {fileID: 3237046608918968389, guid: dd63136e7c4417645af2e285a056a522, type: 3}
+--- !u!1 &2092734025 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6653725517932171460, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+  m_PrefabInstance: {fileID: 8245471308961508310}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8245471308961508310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1104,6 +1096,14 @@ PrefabInstance:
       propertyPath: speed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7324057266532042076, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: LeftTrail
+      value: 
+      objectReference: {fileID: 2092734025}
+    - target: {fileID: 7324057266532042076, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: RightTrail
+      value: 
+      objectReference: {fileID: 575090840}
     - target: {fileID: 7324057266532042076, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: forwardSpd
       value: 15

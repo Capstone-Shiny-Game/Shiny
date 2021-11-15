@@ -35,6 +35,8 @@ public class FlightController : MonoBehaviour, IFlightMapActions
     private Transform targetRing;
     private CameraController CamController;
     private PlayerControllerInput PlayerInput;
+    public GameObject LeftTrail;
+    public GameObject RightTrail;
 
 
 
@@ -62,6 +64,7 @@ public class FlightController : MonoBehaviour, IFlightMapActions
     void Update()
     {
         Fly();
+        ShowOrHideTrail();
     }
 
     /// <summary>
@@ -272,16 +275,25 @@ public class FlightController : MonoBehaviour, IFlightMapActions
 
     }
 
+    public void ShowOrHideTrail()
+    {
+        if (speed > 20)
+        {
+            LeftTrail.SetActive(true);
+            RightTrail.SetActive(true);
+        }
+        if (speed < 20)
+        {
+            LeftTrail.SetActive(false);
+            RightTrail.SetActive(false);
+        }
+    }
+
 
     public void OnFlight(InputAction.CallbackContext context)
     {
         moveX = context.ReadValue<Vector2>().x;
         moveY = context.ReadValue<Vector2>().y;
-    }
-
-    public float GetSpeed()
-    {
-        return speed;
     }
 
     public void OnLook(InputAction.CallbackContext context)
