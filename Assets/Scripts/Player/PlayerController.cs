@@ -110,6 +110,7 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         NPCInteraction.OnNPCInteractEvent += EnterNPCDialogue;
+        NPCInteraction.OnNPCInteractEndEvent += ExitNPCDialogue;
 
         walkAction.performed += ctx => toggleFlight();
         walkAction.Enable();
@@ -119,11 +120,13 @@ public class PlayerController : MonoBehaviour
 
         rotateInventoryAction.performed += ctx => RotateInventory();
         rotateInventoryAction.Enable();
+
     }
 
     private void OnDisable()
     {
         NPCInteraction.OnNPCInteractEvent -= EnterNPCDialogue;
+        NPCInteraction.OnNPCInteractEndEvent -= ExitNPCDialogue;
 
         walkAction.Disable();
         dropItemAction.Disable();
@@ -150,6 +153,14 @@ public class PlayerController : MonoBehaviour
         //NPCUI.SetActive(true);
         ControllerUI.SetActive(false);
         //bind "ok" button to start walk
+    }
+
+    private void ExitNPCDialogue()
+    {
+        //NPCUI.SetActive(false);
+        ControllerUI.SetActive(true);
+        SetFixedPosition(new Vector3(transform.position.x - 5, transform.position.y, transform.position.z - 5));
+        StartWalk();
     }
 
     private void OnCollisionEnter(Collision collision)
