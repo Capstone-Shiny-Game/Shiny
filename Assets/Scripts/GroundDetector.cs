@@ -1,19 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GroundDetector : MonoBehaviour
 {
-    private RaycastHit hit;
-    private float distance = 100f; // shouldn't need more than this right now
+    private const float RaycastDistance = 100;
 
     public Vector3? FindGround()
     {
-        if (Physics.Raycast(this.transform.position, Vector3.down, out hit, distance))
-        {
-            return hit.point += new Vector3(0, transform.localScale.y / 2, 0);
-        }
-
-        return null;
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, RaycastDistance)
+            && hit.transform.tag == "Terrain")
+            return hit.point + new Vector3(0, transform.localScale.y / 2, 0);
+        else
+            return null;
     }
+
+    // TODO (Ella #65) : Add FindWater() method or similar
+    // TODO (Ella #66) : Consider normal
 }
