@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         StartFlight();
         StopWalk();
 
-        groundDetector = GetComponent<GroundDetector>() ?? gameObject.AddComponent<GroundDetector>();
+        groundDetector = GetComponent<GroundDetector>();
 
         //inventory initialization
         inventory = new Inventory();
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
             StopWalk();
             cameraController.isWalking = false;
         }
-        else if (flightController.enabled)
+        else if (flightController.enabled && groundDetector.FindGround() is Vector3)
         {
             StopFlight();
             StartWalk();
@@ -165,12 +165,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        // TODO : Is this useful?
         Debug.Log("BOUNCE");
-        if (collision.gameObject.CompareTag("Terrain"))
-        {
+        //if (collision.gameObject.CompareTag("Terrain"))
+        //{
             Vector3 norm = collision.GetContact(0).normal;
             StartCoroutine(flightController.BounceOnCollision(norm));
-        }
+        //}
     }
 
     private void OnTriggerEnter(Collider other)
@@ -184,25 +185,12 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(flightController.Boost());
 
         }
-        else if (other.CompareTag("Terrain"))
+        else if (other.CompareTag("Terrain") && flightController.enabled)
         {
-            // TODO (Ella) : This is evil.
-            if (SceneManager.GetActiveScene().name == "WalkingTest" || SceneManager.GetActiveScene().name.Contains("Gym"))
-            {
-                flightController.speed = 10.0f;
-                StopFlight();
-                StartWalk();
-                cameraController.isWalking = true;
-            }
-            else
-            {
-                transform.position = new Vector3(
-                    transform.position.x,
-                    transform.position.y + 5f,
-                    transform.position.z);
-
-                StartCoroutine(flightController.Slow());
-            }
+            flightController.speed = 10.0f;
+            StopFlight();
+            StartWalk();
+            cameraController.isWalking = true;
         }
         // TODO (Jakob) : the NPC also registers this event - figure out how to consolidate
         else if (other.CompareTag("NPC"))
@@ -213,6 +201,18 @@ public class PlayerController : MonoBehaviour
             SetFixedPosition(npcFront);
             TryPlaceOnGround();
         }
+        else if (flightController.enabled)
+        {
+            // TODO : We also need to prevent the player from e.g. flying horizontally through vertical objects
+            transform.position = new Vector3(
+                transform.position.x,
+                transform.position.y + 5f,
+                transform.position.z);
+
+            StartCoroutine(flightController.Slow());
+        }
+        // TODO (Ella, #?) : Prevent the player from walking through objects.
+
         //add items to inventory
         ItemWorld itemWorld = other.GetComponent<ItemWorld>();
         if (itemWorld != null)
@@ -234,10 +234,6 @@ public class PlayerController : MonoBehaviour
     private void TryPlaceOnGround()
     {
         if (groundDetector.FindGround() is Vector3 groundPos)
-        {
-            // TODO : cleanup
-            groundPos.y += walkingController.HeightOffset;
             SetFixedPosition(groundPos);
-        }
     }
 }
