@@ -6,7 +6,6 @@ using TMPro;
 
 public class NPCInteraction : MonoBehaviour
 {
-    // separate delegate to pass NPC position for Player position relocation?
     public delegate void NPCInteract();
     public static event NPCInteract OnNPCInteractEvent;
     public delegate void NPCInteractEnd();
@@ -23,20 +22,19 @@ public class NPCInteraction : MonoBehaviour
 
     private DSDialogueSO currentDialogue;
     private GameObject avatar;
-    private Image BGImage;
+    private Image bgImage;
     private TextMeshProUGUI nameText;
     private TextMeshProUGUI bodyText;
     private GameObject[] buttonList;
 
-
-    private readonly string OK = "Continue";
+    private readonly string CONTINUE = "Continue";
 
     private void Start()
     {
         avatar = npcUI.transform.Find("Avatars").Find(avatarName).gameObject;
-        BGImage = npcUI.transform.Find("TextBg").GetComponent<Image>();
-        nameText = BGImage.gameObject.transform.Find("NameDisplay").GetComponent<TextMeshProUGUI>();
-        bodyText = BGImage.gameObject.transform.Find("TextDisplay").GetComponent<TextMeshProUGUI>();
+        bgImage = npcUI.transform.Find("TextBg").GetComponent<Image>();
+        nameText = bgImage.gameObject.transform.Find("NameDisplay").GetComponent<TextMeshProUGUI>();
+        bodyText = bgImage.gameObject.transform.Find("TextDisplay").GetComponent<TextMeshProUGUI>();
         Transform buttons = npcUI.transform.Find("Buttons");
         buttonList = new GameObject[3] {
             buttons.Find("Button3").gameObject,
@@ -49,7 +47,6 @@ public class NPCInteraction : MonoBehaviour
     {
         OnNPCInteractEvent += EnterDialogue;
         OnNPCInteractEvent += ApplyTheme;
-        // ContinueDialogue event here*
     }
     private void OnDisable()
     {
@@ -61,10 +58,7 @@ public class NPCInteraction : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (OnNPCInteractEvent != null)
-            {
-                OnNPCInteractEvent();
-            }
+            OnNPCInteractEvent?.Invoke();
         }
     }
 
@@ -92,7 +86,7 @@ public class NPCInteraction : MonoBehaviour
 
         foreach (DSDialogueChoiceData choice in currentDialogue.Choices)
         {
-            if (text.Equals(choice.Text) || text.Equals(OK))
+            if (text.Equals(choice.Text) || text.Equals(CONTINUE))
             {
                 if (choice.NextDialogue == null)
                 {
@@ -101,7 +95,7 @@ public class NPCInteraction : MonoBehaviour
                     break;
                 }
                 currentDialogue = choice.NextDialogue;
-                this.bodyText.text = currentDialogue.Text; // breaks with MultipleChoice node
+                this.bodyText.text = currentDialogue.Text;
                 EnableButtons();
                 break;
             }
@@ -121,7 +115,7 @@ public class NPCInteraction : MonoBehaviour
         if (currentDialogue.Choices.Count == 1)
         {
             buttonList[0].SetActive(true);
-            buttonList[0].GetComponentInChildren<TextMeshProUGUI>().text = OK;
+            buttonList[0].GetComponentInChildren<TextMeshProUGUI>().text = CONTINUE;
         }
         else
         {
@@ -137,6 +131,6 @@ public class NPCInteraction : MonoBehaviour
     {
         avatar.SetActive(true);
         nameText.text = characterName;
-        BGImage.color = bgColor;
+        bgImage.color = bgColor;
     }
 }
