@@ -9,10 +9,8 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
     public float ForwardSpeed = 8;
     public float BackwardsSpeed = 4;
     public float TurningSpeed = 60;
-    public float HeightOffset = 0.5f;
 
-    private GroundDetector ground;
-    private bool useTerrain;
+    private GroundDetector groundDetector;
     private PlayerControllerInput PlayerInput;
 
     private float moveX = 0;
@@ -25,11 +23,7 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
         v.z = 0;
         transform.eulerAngles = v;
 
-        // TODO (Ella) *hisses at these sins*
-        //useTerrain = SceneManager.GetActiveScene().name == "WalkingTest";
-        //if (!useTerrain)
-        useTerrain = false;
-        ground = GetComponent<GroundDetector>() ?? gameObject.AddComponent<GroundDetector>();
+        groundDetector = GetComponent<GroundDetector>();
     }
 
     void OnEnable()
@@ -55,13 +49,9 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
         float displacement = moveY * Time.deltaTime;
         displacement *= displacement >= 0 ? ForwardSpeed : BackwardsSpeed;
         transform.position += transform.forward * displacement;
-        Vector3 pos = transform.position;
-        // TODO (Ella): will we ever have more than one terrain
-        if (useTerrain)
-            pos.y = Terrain.activeTerrains.Select(t => t.SampleHeight(pos)).Max() + HeightOffset;
-        else if (ground.FindGround() is Vector3 groundPos)
-            pos.y = groundPos.y + HeightOffset;
-        transform.position = pos;
+
+        if (groundDetector.FindGround() is Vector3 groundPos)
+            transform.position = groundPos;
     }
 
     public void OnFlight(InputAction.CallbackContext context)
