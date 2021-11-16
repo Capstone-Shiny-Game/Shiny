@@ -45,6 +45,7 @@ public class InputController : MonoBehaviour
 
     public void OnEnable()
     {
+        Debug.Log("enable me");
         PlayerInput.FlightMap.Enable();
         //subscribe to the events when the following is triggered:
         PlayerInput.FlightMap.Flight.performed += OnFlight;
@@ -70,6 +71,7 @@ public class InputController : MonoBehaviour
 
     private void OnToggleFirstPerson(InputAction.CallbackContext context)
     {
+        Debug.Log("Calling Toggle");
         flightTogglePOVHandler.Invoke();
     }
     private void OnLook(InputAction.CallbackContext context)

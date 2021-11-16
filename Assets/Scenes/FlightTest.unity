@@ -123,6 +123,146 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &76621121 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7324057266532042076, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+  m_PrefabInstance: {fileID: 8245471308961508310}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a0f24286293f542b8ba1cc15fb877d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &76621122 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7261759843059480626, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+  m_PrefabInstance: {fileID: 8245471308961508310}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76b00d522dbdc864b9d6fc1f80379880, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &178587925
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 178587927}
+  - component: {fileID: 178587926}
+  m_Layer: 0
+  m_Name: InputManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &178587926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178587925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41053c1bdc4425f44bd2b0c1be4c3219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flightMoveHandler:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 76621121}
+        m_TargetAssemblyTypeName: FlightController, Assembly-CSharp
+        m_MethodName: SetFlightXY
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  flightLookHandler:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 76621122}
+        m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
+        m_MethodName: OnLook
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  flightBrakeHandler:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 76621121}
+        m_TargetAssemblyTypeName: FlightController, Assembly-CSharp
+        m_MethodName: SetBrake
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  flightBoostHandler:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 76621121}
+        m_TargetAssemblyTypeName: FlightController, Assembly-CSharp
+        m_MethodName: SetBoost
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  flightTogglePOVHandler:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 76621122}
+        m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
+        m_MethodName: TogglePOV
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!4 &178587927
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178587925}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &186855863
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1319,6 +1459,58 @@ PrefabInstance:
     - target: {fileID: 4596066366068997632, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036188381387300824, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: m_Actions
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: 2821eef9f6a3eda4a98b900a091a9a6f, type: 3}
+    - target: {fileID: 5036188381387300824, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_ActionId
+      value: da0c6682-e16b-44fd-b26a-9292cb47ae44
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036188381387300824, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_ActionId
+      value: 25c75b4b-4825-4c58-ac84-ccc63dd9d17e
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036188381387300824, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionId
+      value: 834ae251-2bbc-4d76-b69e-470d984b5fcc
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036188381387300824, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionId
+      value: 6bc89b0c-aa8c-4094-9be1-f208d2cdb9b5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036188381387300824, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionId
+      value: 2f3d5767-b19f-4b17-86f0-c3fec64b982b
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036188381387300824, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionId
+      value: 44d4a4da-759a-4383-89f0-d27fcdc2900d
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036188381387300824, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_ActionName
+      value: FlightMap/Flight[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036188381387300824, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_ActionName
+      value: FlightMap/Look[/Mouse/delta,/Pen/delta]
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036188381387300824, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionName
+      value: FlightMap/ToggleFirstPerson[/Mouse/rightButton]
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036188381387300824, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_ActionName
+      value: FlightMap/Boost[/Keyboard/q]
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036188381387300824, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: m_ActionEvents.Array.data[4].m_ActionName
+      value: FlightMap/Brake[/Keyboard/e]
+      objectReference: {fileID: 0}
+    - target: {fileID: 5036188381387300824, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_ActionName
+      value: FlightMap/LockCursor[/Mouse/leftButton]
       objectReference: {fileID: 0}
     - target: {fileID: 7261759843059480626, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: cam

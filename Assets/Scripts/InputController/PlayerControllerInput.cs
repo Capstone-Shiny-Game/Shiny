@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/PlayerControllerInput.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/InputController/PlayerControllerInput.inputactions'
 
 using System;
 using System.Collections;
@@ -16,12 +16,12 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
     ""maps"": [
         {
             ""name"": ""FlightMap"",
-            ""id"": ""a053fb5f-2425-4647-8988-9a16a8170227"",
+            ""id"": ""ea112126-2d30-49b5-ad97-0543cd57b29d"",
             ""actions"": [
                 {
                     ""name"": ""Flight"",
                     ""type"": ""Value"",
-                    ""id"": ""41696a77-9cba-432b-b51f-5182550e4e03"",
+                    ""id"": ""da0c6682-e16b-44fd-b26a-9292cb47ae44"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -29,7 +29,7 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Look"",
                     ""type"": ""Value"",
-                    ""id"": ""be7428bb-b38c-41d1-95c9-41550f6659d0"",
+                    ""id"": ""25c75b4b-4825-4c58-ac84-ccc63dd9d17e"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -37,7 +37,7 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""ToggleFirstPerson"",
                     ""type"": ""Button"",
-                    ""id"": ""bfc54581-d016-4562-ad9b-e158d29ffeea"",
+                    ""id"": ""834ae251-2bbc-4d76-b69e-470d984b5fcc"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -45,7 +45,7 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Boost"",
                     ""type"": ""Button"",
-                    ""id"": ""c4d5a96c-aad8-4132-b475-6805ec72ee37"",
+                    ""id"": ""6bc89b0c-aa8c-4094-9be1-f208d2cdb9b5"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -53,15 +53,15 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Brake"",
                     ""type"": ""Value"",
-                    ""id"": ""3a4a991a-bf42-4265-91a5-1fa49268bea2"",
-                    ""expectedControlType"": ""Button"",
+                    ""id"": ""2f3d5767-b19f-4b17-86f0-c3fec64b982b"",
+                    ""expectedControlType"": ""Integer"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
                     ""name"": ""LockCursor"",
                     ""type"": ""Button"",
-                    ""id"": ""f0f36d86-4d0c-4094-819f-fd1a08cb2512"",
+                    ""id"": ""44d4a4da-759a-4383-89f0-d27fcdc2900d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -70,62 +70,7 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""9c76ea18-ef1d-4a25-9d2d-88c0598227cd"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Look"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8543264a-b976-418b-ab13-a259bea5451f"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ToggleFirstPerson"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4a471abc-2690-462a-bc75-b2dbe19d09ac"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Boost"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0765267f-2f2c-48b7-81d6-c96b45e6a99d"",
-                    ""path"": ""<Keyboard>/shift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Brake"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c8ca559e-977b-4f13-8f48-f313fb2db9e7"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LockCursor"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9399807f-bd63-4ada-bac3-8efc1770b258"",
+                    ""id"": ""c99466a3-163d-4a1c-9dc0-905e4c648fa0"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -135,8 +80,8 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""178a8056-ee0d-4a6f-beeb-4004c31f314e"",
+                    ""name"": ""WASD"",
+                    ""id"": ""afdc5b6e-7dcc-43cb-afea-5f93056d6257"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -147,7 +92,7 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""641b13f6-9e98-4c79-90b2-42dbe36e94d1"",
+                    ""id"": ""77e056d8-2ec7-48df-a885-d2b1a7aa0d53"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -158,7 +103,7 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""8fd7d325-3f5c-4676-970a-93fe92a448dc"",
+                    ""id"": ""407e330b-2cb0-43d0-b039-713a57756bfb"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -169,7 +114,7 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""d9aa308a-8884-48ea-a937-fa60919a4f8c"",
+                    ""id"": ""5348f0f3-acc1-469c-940c-a8e7758389db"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -180,7 +125,7 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""dca10acd-569a-4380-a3da-a85bd5b18013"",
+                    ""id"": ""eb8a063e-af05-4b6d-aec0-1f5d2626d1ea"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -188,6 +133,105 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
                     ""action"": ""Flight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6235f709-32c4-40e0-b0bb-1dcb10636a6f"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1f1fe46f-e246-46ec-ae36-26eb35840f8e"",
+                    ""path"": ""<Pointer>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cf950a29-0cb3-42d7-84e9-64b798516eca"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleFirstPerson"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3d9d728c-17db-499f-ba46-8257e67848d4"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleFirstPerson"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5fb94888-b5b2-4fa0-8afc-3ccc52ac564d"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Boost"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""007930f4-0d87-4384-a0fd-09f1015fefce"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Boost"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3e32f2bb-5c36-4ea3-a990-629cf1d42768"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Brake"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d521862d-6812-4e4a-8061-1a4f02c5ca71"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Brake"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d32f931f-0a50-4afe-9b39-960ce01c47c5"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LockCursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
