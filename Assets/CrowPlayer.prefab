@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2529584591201865136}
   m_Layer: 0
-  m_Name: CrowTrail
+  m_Name: CrowTrailR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +57,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2546136047665995552}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: -0.066, z: 0.306}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4596066366068997632}
@@ -138,7 +138,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 0
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -4862,7 +4862,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5105916863276297152}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: -0.066, z: 0.306}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2529584591201865136}
@@ -4943,7 +4943,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 0
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -5583,12 +5583,12 @@ ParticleSystem:
     randomPositionAmount: 0
     radius:
       value: 0.19
-      mode: 0
+      mode: 2
       spread: 0
       speed:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 1
+        scalar: 0
         minScalar: 1
         maxCurve:
           serializedVersion: 2
@@ -6131,7 +6131,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   ColorModule:
-    enabled: 0
+    enabled: 1
     gradient:
       serializedVersion: 2
       minMaxState: 1
@@ -6139,8 +6139,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 1, b: 1, a: 1}
+        key0: {r: 0.2971698, g: 0.9299775, b: 1, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 0}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -8761,13 +8761,13 @@ ParticleSystem:
         m_RotationOrder: 4
     maxLights: 20
   TrailModule:
-    enabled: 0
+    enabled: 1
     mode: 0
-    ratio: 1
+    ratio: 0.15
     lifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.58
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -8831,7 +8831,7 @@ ParticleSystem:
     attachRibbonsToTransform: 0
     colorOverLifetime:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 1
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
@@ -9595,6 +9595,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 0}
+  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9615,10 +9616,10 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_RenderMode: 0
+  m_RenderMode: 5
   m_SortMode: 0
   m_MinParticleSize: 0
-  m_MaxParticleSize: 0.5
+  m_MaxParticleSize: 0.4
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
   m_LengthScale: 2
@@ -9635,7 +9636,7 @@ ParticleSystemRenderer:
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
   m_VertexStreams: 00010304
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -9704,7 +9705,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7324057266532042077}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 157.4, z: 168.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9797,6 +9798,7 @@ MonoBehaviour:
   isWalking: 0
   WalkingViewAngle: 30
   WalkingViewDistance: 15
+  sensitivity: 0.5
 --- !u!114 &7324057266532042076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9809,13 +9811,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30a0f24286293f542b8ba1cc15fb877d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 10
   brake: 0
   glideAngleThreshold: 0.7
-  acceleration: 20
-  maxDiveSpeed: 80
+  acceleration: 10
+  maxDiveSpeed: 40
   minGlideSpeed: 10
   isBoost: 0
+  LeftTrail: {fileID: 6653725517932171460}
+  RightTrail: {fileID: 2513769111650297511}
 --- !u!114 &7695470114484064583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9880,7 +9884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 12bd867ceabafdd4f99a797ebbfbbdd5, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 2821eef9f6a3eda4a98b900a091a9a6f, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -9895,28 +9899,28 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 41696a77-9cba-432b-b51f-5182550e4e03
-    m_ActionName: FlightMap/Flight
+    m_ActionId: da0c6682-e16b-44fd-b26a-9292cb47ae44
+    m_ActionName: FlightMap/Flight[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: be7428bb-b38c-41d1-95c9-41550f6659d0
-    m_ActionName: FlightMap/Look
+    m_ActionId: 25c75b4b-4825-4c58-ac84-ccc63dd9d17e
+    m_ActionName: FlightMap/Look[/Mouse/delta,/Pen/delta]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: bfc54581-d016-4562-ad9b-e158d29ffeea
-    m_ActionName: FlightMap/ToggleFirstPerson
+    m_ActionId: 834ae251-2bbc-4d76-b69e-470d984b5fcc
+    m_ActionName: FlightMap/ToggleFirstPerson[/Mouse/rightButton]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: c4d5a96c-aad8-4132-b475-6805ec72ee37
-    m_ActionName: FlightMap/Boost
+    m_ActionId: 6bc89b0c-aa8c-4094-9be1-f208d2cdb9b5
+    m_ActionName: FlightMap/Boost[/Keyboard/q]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 3a4a991a-bf42-4265-91a5-1fa49268bea2
-    m_ActionName: FlightMap/Brake
+    m_ActionId: 2f3d5767-b19f-4b17-86f0-c3fec64b982b
+    m_ActionName: FlightMap/Brake[/Keyboard/e]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: f0f36d86-4d0c-4094-819f-fd1a08cb2512
-    m_ActionName: FlightMap/LockCursor
+    m_ActionId: 44d4a4da-759a-4383-89f0-d27fcdc2900d
+    m_ActionName: FlightMap/LockCursor[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: FlightMap
