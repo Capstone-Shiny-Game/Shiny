@@ -55,9 +55,6 @@ public class CameraController : MonoBehaviour
                 cam.transform.LookAt(crow.transform, Vector3.up);
                 relRotX = crow.transform.rotation.eulerAngles.x;
                 relRotY = crow.transform.rotation.eulerAngles.y;
-
-                Debug.Log("RELATIVE: " + relRotX + ",  " + relRotY);
-
             }
             switchPOV = false;
         }
