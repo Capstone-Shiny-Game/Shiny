@@ -12,9 +12,7 @@ using UnityEngine.AI;
 public class NPCController : MonoBehaviour
 {
     public NavMeshAgent agent;
-    public bool doesWait;
     public float switchDirProb = 0.2f;
-    public float totalWaitTime = 3.0f;
     public List<WaypointScript> waypoints;
 
     private int currWaypointIdx;
@@ -43,7 +41,7 @@ public class NPCController : MonoBehaviour
         {
             isTravelling = false;
 
-            if (doesWait)
+            if (waypoints[currWaypointIdx].doesWait)
             {
                 isWaiting = true;
                 waitTimer = 0f;
@@ -58,7 +56,7 @@ public class NPCController : MonoBehaviour
         if (isWaiting)
         {
             waitTimer += Time.deltaTime;
-            if (waitTimer >= totalWaitTime)
+            if (waitTimer >= waypoints[currWaypointIdx].waitTime)
             {
                 isWaiting = false;
 
