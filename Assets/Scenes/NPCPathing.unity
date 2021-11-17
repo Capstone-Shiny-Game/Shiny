@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 38080834}
   - component: {fileID: 38080833}
   m_Layer: 0
-  m_Name: Waypoint4
+  m_Name: Waypoint5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -264,6 +264,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe02606be183d664eb81aa57bf5b47d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doesWait: 0
+  waitTime: 0
 --- !u!4 &38080834
 Transform:
   m_ObjectHideFlags: 0
@@ -276,7 +278,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &202943140
 GameObject:
@@ -423,6 +425,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe02606be183d664eb81aa57bf5b47d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doesWait: 0
+  waitTime: 0
 --- !u!4 &293253153
 Transform:
   m_ObjectHideFlags: 0
@@ -778,7 +782,7 @@ GameObject:
   - component: {fileID: 867890065}
   - component: {fileID: 867890064}
   m_Layer: 0
-  m_Name: Waypoint1
+  m_Name: Waypoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -796,6 +800,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe02606be183d664eb81aa57bf5b47d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doesWait: 1
+  waitTime: 5
 --- !u!4 &867890065
 Transform:
   m_ObjectHideFlags: 0
@@ -808,7 +814,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &872549433
 GameObject:
@@ -839,6 +845,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe02606be183d664eb81aa57bf5b47d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doesWait: 0
+  waitTime: 0
 --- !u!4 &872549435
 Transform:
   m_ObjectHideFlags: 0
@@ -976,7 +984,7 @@ GameObject:
   - component: {fileID: 975539994}
   - component: {fileID: 975539993}
   m_Layer: 0
-  m_Name: Waypoint2
+  m_Name: Waypoint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -994,6 +1002,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe02606be183d664eb81aa57bf5b47d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doesWait: 0
+  waitTime: 0
 --- !u!4 &975539994
 Transform:
   m_ObjectHideFlags: 0
@@ -1006,7 +1016,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &985684105
 GameObject:
@@ -1037,6 +1047,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe02606be183d664eb81aa57bf5b47d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doesWait: 0
+  waitTime: 0
 --- !u!4 &985684107
 Transform:
   m_ObjectHideFlags: 0
@@ -1277,9 +1289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 1441042381}
-  doesWait: 1
-  switchDirProb: 0.2
-  totalWaitTime: 3
+  switchDirProb: 0
   waypoints:
   - {fileID: 975539993}
   - {fileID: 867890064}
@@ -1618,7 +1628,7 @@ GameObject:
   - component: {fileID: 2135018772}
   - component: {fileID: 2135018771}
   m_Layer: 0
-  m_Name: Waypoint5
+  m_Name: Waypoint4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1636,6 +1646,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe02606be183d664eb81aa57bf5b47d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doesWait: 0
+  waitTime: 0
 --- !u!4 &2135018772
 Transform:
   m_ObjectHideFlags: 0
@@ -1648,5 +1660,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
