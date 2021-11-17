@@ -9713,6 +9713,7 @@ Transform:
   - {fileID: 8495887887593169003}
   - {fileID: 2529584591201865136}
   - {fileID: 4596066366068997632}
+  - {fileID: 1400363571894820030}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9968,6 +9969,112 @@ Transform:
   m_Father: {fileID: 7324057266532042072}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &6935477135389726404
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7324057266532042072}
+    m_Modifications:
+    - target: {fileID: 8309375004648114808, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: m_Name
+      value: InputManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114810, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114810, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 959.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114810, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 532.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114810, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114810, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114810, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114810, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114810, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114810, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114810, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114810, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightBrakeHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightLookHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7261759843059480626}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightMoveHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7324057266532042076}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightBoostHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7324057266532042076}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightBrakeHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7324057266532042076}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightLookHandler.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnLook
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightMoveHandler.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetFlightXY
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightBoostHandler.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetBoost
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightBrakeHandler.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetBrake
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightTogglePOVHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7261759843059480626}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightTogglePOVHandler.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TogglePOV
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+--- !u!4 &1400363571894820030 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8309375004648114810, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+  m_PrefabInstance: {fileID: 6935477135389726404}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8245471309513197440
 PrefabInstance:
   m_ObjectHideFlags: 0
