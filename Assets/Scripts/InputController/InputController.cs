@@ -33,6 +33,7 @@ public class InputController : MonoBehaviour
 
     public FlightBrakeEvent flightBrakeHandler;
     public FlightBoostEvent flightBoostHandler;
+
     public FlightTogglePOVEvent flightTogglePOVHandler;
 
     private void Awake()
@@ -45,7 +46,6 @@ public class InputController : MonoBehaviour
 
     public void OnEnable()
     {
-        Debug.Log("enable me");
         PlayerInput.FlightMap.Enable();
         //subscribe to the events when the following is triggered:
         PlayerInput.FlightMap.Flight.performed += OnFlight;
@@ -71,7 +71,6 @@ public class InputController : MonoBehaviour
 
     private void OnToggleFirstPerson(InputAction.CallbackContext context)
     {
-        Debug.Log("Calling Toggle");
         flightTogglePOVHandler.Invoke();
     }
     private void OnLook(InputAction.CallbackContext context)
@@ -98,7 +97,7 @@ public class InputController : MonoBehaviour
     }
     private void OnBrakeExit(InputAction.CallbackContext context)
     {
-        flightBrakeHandler.Invoke(false);
+       flightBrakeHandler.Invoke(false);
     }
     private void OnBoost(InputAction.CallbackContext context)
     {

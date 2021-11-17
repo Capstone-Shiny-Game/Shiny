@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,9 @@ public class CameraController : MonoBehaviour
     private float mouseY = 0.0f;
     public float sensitivity = .5f;
 
+    private float relRotX = 0.0f;
+    private float relRotY = 0.0f;
+
     void LateUpdate()
     {
         RotateCamera();
@@ -44,10 +48,17 @@ public class CameraController : MonoBehaviour
 
         if (switchPOV)
         {
-            Debug.Log("Please toggle");
             toggleFirstPersonCam = !toggleFirstPersonCam;
             crow.SetActive(!toggleFirstPersonCam);
+            if (toggleFirstPersonCam)
+            {
+                cam.transform.LookAt(crow.transform, Vector3.up);
+                relRotX = crow.transform.rotation.eulerAngles.x;
+                relRotY = crow.transform.rotation.eulerAngles.y;
 
+                Debug.Log("RELATIVE: " + relRotX + ",  " + relRotY);
+
+            }
             switchPOV = false;
         }
 
@@ -62,8 +73,25 @@ public class CameraController : MonoBehaviour
     }
     private void LookAroundCamera(float x, float y)
     {
-        cam.transform.Rotate(x, 0f, 0f, Space.Self);
-        cam.transform.Rotate(0f, y, 0f, Space.World);
+        Transform newRot = cam.transform;
+        newRot.Rotate(x, 0f, 0f, Space.Self);
+        newRot.Rotate(0f, y, 0f, Space.World);
+
+        float newAngleX = newRot.rotation.eulerAngles.x;
+        float newAngleY = newRot.rotation.eulerAngles.y;
+
+        newRot.Rotate(-x, 0f, 0f, Space.Self);
+        newRot.Rotate(0f, -y, 0f, Space.World);
+
+        if (Math.Abs(newAngleX-relRotX) <= 60f || Math.Abs(newAngleX - relRotX) >= 300f)
+        {
+            cam.transform.Rotate(x, 0f, 0f, Space.Self);
+        }
+        if (Math.Abs(newAngleY - relRotY) <= 60f || Math.Abs(newAngleY - relRotY) >= 300f)
+        {
+            cam.transform.Rotate(0f, y, 0f, Space.World);
+        }
+
         cam.transform.position = crow.transform.position;
     }
     private void MoveDynamicCamera()
@@ -102,7 +130,6 @@ public class CameraController : MonoBehaviour
 
     public void TogglePOV()
     {
-        Debug.Log("TOGGLE EVENT");
         switchPOV = true;
     }
 }

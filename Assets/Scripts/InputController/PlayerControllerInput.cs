@@ -52,9 +52,9 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Brake"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""2f3d5767-b19f-4b17-86f0-c3fec64b982b"",
-                    ""expectedControlType"": ""Integer"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
