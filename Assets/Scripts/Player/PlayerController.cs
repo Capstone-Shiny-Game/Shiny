@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public GameObject ControllerUI;
     private InputAction walkAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/F");
     private InputAction dropItemAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/G");
+    private InputAction rotateInventoryAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/R");
 
     private Inventory inventory;
     [SerializeField]
@@ -41,7 +42,7 @@ public class PlayerController : MonoBehaviour
         StartFlight();
         StopWalk();
 
-        groundDetector = GetComponent<GroundDetector>() ?? gameObject.AddComponent<GroundDetector>();
+        groundDetector = GetComponent<GroundDetector>();
 
         //inventory initialization
         inventory = new Inventory();
@@ -50,14 +51,14 @@ public class PlayerController : MonoBehaviour
         {
             uiInventory.SetInventory(inventory);
 
-            float yPos = 5.3f;
+            float yPos = 10.3f;
             ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 50f), new Item(Item.ItemType.shiny));
             ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 40f), new Item(Item.ItemType.food));
             ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 30f), new Item(Item.ItemType.potion));
         }
     }
 
-    private void toggleFlight()
+    private void ToggleFlight()
     {
         if (walkingController.enabled)
         {
@@ -68,7 +69,7 @@ public class PlayerController : MonoBehaviour
             StopWalk();
             cameraController.isWalking = false;
         }
-        else if (flightController.enabled)
+        else if (flightController.enabled && groundDetector.FindGround() is Vector3)
         {
             StopFlight();
             StartWalk();
@@ -76,9 +77,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void dropItLikeItsHot()
+    /// <summary>
+    /// Drops the first item in the inventory.
+    /// </summary>
+    private void DropItLikeItsHot()
     {
-        if (inventory.GetItemList().Count == 0)
+        if (inventory.itemList.Count == 0)
         {
             return;
         }
@@ -86,35 +90,47 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 offset = this.transform.forward * walkingOffset.forward;
             offset.y = walkingOffset.up;
-            //TODO drop the correct item
-            inventory.DropItem(this.transform.position + offset, inventory.GetItemList()[0]);
+            inventory.DropItem(this.transform.position + offset, inventory.itemList[0]);
         }
         else if (flightController.enabled)
         {
             Vector3 offset = this.transform.forward * flyingOffset.forward;
             offset.y = flyingOffset.up;
-            //TODO drop the correct item
-            inventory.DropItem(this.transform.position + offset, new Item(inventory.GetItemList()[0].itemType));
+            inventory.DropItem(this.transform.position + offset, inventory.itemList[0]);
         }
+    }
+    /// <summary>
+    /// Rotates the inventory to the left by one
+    /// </summary>
+    private void RotateInventory()
+    {
+        inventory.RotateItems();
     }
 
     private void OnEnable()
     {
         NPCInteraction.OnNPCInteractEvent += EnterNPCDialogue;
+        NPCInteraction.OnNPCInteractEndEvent += ExitNPCDialogue;
 
-        walkAction.performed += ctx => toggleFlight();
+        walkAction.performed += ctx => ToggleFlight();
         walkAction.Enable();
 
-        dropItemAction.performed += ctx => dropItLikeItsHot();
+        dropItemAction.performed += ctx => DropItLikeItsHot();
         dropItemAction.Enable();
+
+        rotateInventoryAction.performed += ctx => RotateInventory();
+        rotateInventoryAction.Enable();
+
     }
 
     private void OnDisable()
     {
         NPCInteraction.OnNPCInteractEvent -= EnterNPCDialogue;
+        NPCInteraction.OnNPCInteractEndEvent -= ExitNPCDialogue;
 
         walkAction.Disable();
         dropItemAction.Disable();
+        rotateInventoryAction.Disable();
     }
 
     private void StartFlight() => flightController.enabled = true;
@@ -139,14 +155,23 @@ public class PlayerController : MonoBehaviour
         //bind "ok" button to start walk
     }
 
+    private void ExitNPCDialogue()
+    {
+        //NPCUI.SetActive(false);
+        ControllerUI.SetActive(true);
+        SetFixedPosition(new Vector3(transform.position.x - 5, transform.position.y, transform.position.z - 5));
+        StartWalk();
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
+        // TODO : Is this useful?
         Debug.Log("BOUNCE");
-        if (collision.gameObject.CompareTag("Terrain"))
-        {
+        //if (collision.gameObject.CompareTag("Terrain"))
+        //{
             Vector3 norm = collision.GetContact(0).normal;
             StartCoroutine(flightController.BounceOnCollision(norm));
-        }
+        //}
     }
 
     private void OnTriggerEnter(Collider other)
@@ -160,25 +185,12 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(flightController.Boost());
 
         }
-        else if (other.CompareTag("Terrain"))
+        else if (other.CompareTag("Terrain") && flightController.enabled)
         {
-            // TODO (Ella) : This is evil.
-            if (SceneManager.GetActiveScene().name == "WalkingTest" || SceneManager.GetActiveScene().name.Contains("Gym"))
-            {
-                flightController.speed = 10.0f;
-                StopFlight();
-                StartWalk();
-                cameraController.isWalking = true;
-            }
-            else
-            {
-                transform.position = new Vector3(
-                    transform.position.x,
-                    transform.position.y + 5f,
-                    transform.position.z);
-
-                StartCoroutine(flightController.Slow());
-            }
+            flightController.speed = 10.0f;
+            StopFlight();
+            StartWalk();
+            cameraController.isWalking = true;
         }
         // TODO (Jakob) : the NPC also registers this event - figure out how to consolidate
         else if (other.CompareTag("NPC"))
@@ -189,6 +201,18 @@ public class PlayerController : MonoBehaviour
             SetFixedPosition(npcFront);
             TryPlaceOnGround();
         }
+        else if (flightController.enabled)
+        {
+            // TODO : We also need to prevent the player from e.g. flying horizontally through vertical objects
+            transform.position = new Vector3(
+                transform.position.x,
+                transform.position.y + 5f,
+                transform.position.z);
+
+            StartCoroutine(flightController.Slow());
+        }
+        // TODO (Ella, #?) : Prevent the player from walking through objects.
+
         //add items to inventory
         ItemWorld itemWorld = other.GetComponent<ItemWorld>();
         if (itemWorld != null)
@@ -196,7 +220,8 @@ public class PlayerController : MonoBehaviour
             //touching item
             //Debug.Log(itemWorld.GetItem().GetType());
             Item item = itemWorld.GetItem();
-            if (maxCarryWeight >= (inventory.GetWeight() + item.getStackWeight())) { //check if picking this up would add to much weight
+            if (maxCarryWeight >= (inventory.weight + item.getStackWeight()))
+            { //check if picking this up would add to much weight
                 if (inventory.AddItem(item))
                 {
                     itemWorld.DestroySelf();
@@ -209,10 +234,6 @@ public class PlayerController : MonoBehaviour
     private void TryPlaceOnGround()
     {
         if (groundDetector.FindGround() is Vector3 groundPos)
-        {
-            // TODO : cleanup
-            groundPos.y += walkingController.HeightOffset;
             SetFixedPosition(groundPos);
-        }
     }
 }

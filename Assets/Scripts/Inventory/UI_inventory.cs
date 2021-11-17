@@ -46,7 +46,7 @@ public class UI_inventory : MonoBehaviour
 
         int x = 0;
         int y = 0;
-        foreach (Item item in inventory.GetItemList())
+        foreach (Item item in inventory.itemList)
         {
             RectTransform itemSlotRectTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();//instantiate template
             itemSlotRectTransform.gameObject.SetActive(true);
