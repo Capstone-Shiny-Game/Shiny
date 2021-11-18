@@ -149,12 +149,14 @@ public class PlayerController : MonoBehaviour
         cameraController.isWalking = true;
     }
 
-    private void EnterNPCDialogue()
+    private void EnterNPCDialogue(Transform npcTransform)
     {
-        //call ui
-        //NPCUI.SetActive(true);
+        StopFlight();
+        StopWalk();
+        Vector3 npcFront = npcTransform.position + npcTransform.forward * 4.0f;
+        SetFixedPosition(npcFront);
+        TryPlaceOnGround();
         ControllerUI.SetActive(false);
-        //bind "ok" button to start walk
     }
 
     private void ExitNPCDialogue()
@@ -197,11 +199,7 @@ public class PlayerController : MonoBehaviour
         // TODO (Jakob) : the NPC also registers this event - figure out how to consolidate
         else if (other.CompareTag("NPC"))
         {
-            StopFlight();
-            StopWalk();
-            Vector3 npcFront = other.gameObject.transform.position + other.transform.forward * 4.0f;
-            SetFixedPosition(npcFront);
-            TryPlaceOnGround();
+            
         }
         else if (flightController.enabled)
         {

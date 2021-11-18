@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class NPCInteraction : MonoBehaviour
 {
-    public delegate void NPCInteract();
+    public delegate void NPCInteract(Transform trans);
     public static event NPCInteract OnNPCInteractEvent;
     public delegate void NPCInteractEnd();
     public static event NPCInteractEnd OnNPCInteractEndEvent;
@@ -29,6 +30,8 @@ public class NPCInteraction : MonoBehaviour
 
     private readonly string CONTINUE = "Continue";
 
+    private InputAction npcInteractAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/T");
+
     private void Start()
     {
         avatar = npcUI.transform.Find("Avatars").Find(avatarName).gameObject;
@@ -45,20 +48,35 @@ public class NPCInteraction : MonoBehaviour
 
     private void OnEnable()
     {
-        OnNPCInteractEvent += EnterDialogue;
-        OnNPCInteractEvent += ApplyTheme;
+        // OnNPCInteractEvent += EnterDialogue;
+        // OnNPCInteractEvent += ApplyTheme;
+
+        npcInteractAction.performed += ctx => TryEnterDialogue();
+        npcInteractAction.Enable();
     }
     private void OnDisable()
     {
-        OnNPCInteractEvent -= EnterDialogue;
-        OnNPCInteractEvent -= ApplyTheme;
+        // OnNPCInteractEvent -= EnterDialogue;
+        // OnNPCInteractEvent -= ApplyTheme;
+
+        npcInteractAction.Disable();
     }
 
-    private void OnTriggerEnter(Collider other)
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     if (other.CompareTag("Player"))
+    //     {
+    //         OnNPCInteractEvent?.Invoke();
+    //     }
+    // }
+
+    private void TryEnterDialogue() 
     {
-        if (other.CompareTag("Player"))
+        if (true) // replace
         {
-            OnNPCInteractEvent?.Invoke();
+            OnNPCInteractEvent?.Invoke(this.transform);
+            EnterDialogue();
+            ApplyTheme();
         }
     }
 
