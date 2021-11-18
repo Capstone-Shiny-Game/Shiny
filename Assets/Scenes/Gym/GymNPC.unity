@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -408,23 +408,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5678762799445554897, guid: c1e731cbf728c9742aa08ee5c6753c64, type: 3}
   m_PrefabInstance: {fileID: 737459253}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &344878823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 344878822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6331b61d419c4ca44baf1bba22aa367c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterName: Witch
-  avatarName: WitchAvatar
-  bgColor: {r: 0.7921569, g: 0.57254905, b: 0.57254905, a: 1}
-  npcUI: {fileID: 2122834700}
-  dialogueContainer: {fileID: 11400000, guid: caa9d793999150c488b700f6838e2e2c, type: 2}
 --- !u!54 &344878824
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -441,6 +424,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &344878829 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4801553023324649388, guid: c1e731cbf728c9742aa08ee5c6753c64, type: 3}
+  m_PrefabInstance: {fileID: 737459253}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344878822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6331b61d419c4ca44baf1bba22aa367c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &347944422
 GameObject:
   m_ObjectHideFlags: 0
@@ -1022,9 +1016,45 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0f29e3c1c576f6641b9e474f6b194480, type: 2}
+    - target: {fileID: 4801553023324649388, guid: c1e731cbf728c9742aa08ee5c6753c64, type: 3}
+      propertyPath: npcUI
+      value: 
+      objectReference: {fileID: 2122834700}
+    - target: {fileID: 4801553023324649388, guid: c1e731cbf728c9742aa08ee5c6753c64, type: 3}
+      propertyPath: bgColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801553023324649388, guid: c1e731cbf728c9742aa08ee5c6753c64, type: 3}
+      propertyPath: bgColor.b
+      value: 0.57254905
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801553023324649388, guid: c1e731cbf728c9742aa08ee5c6753c64, type: 3}
+      propertyPath: bgColor.g
+      value: 0.57254905
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801553023324649388, guid: c1e731cbf728c9742aa08ee5c6753c64, type: 3}
+      propertyPath: bgColor.r
+      value: 0.7921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801553023324649388, guid: c1e731cbf728c9742aa08ee5c6753c64, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801553023324649388, guid: c1e731cbf728c9742aa08ee5c6753c64, type: 3}
+      propertyPath: avatarName
+      value: WitchAvatar
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801553023324649388, guid: c1e731cbf728c9742aa08ee5c6753c64, type: 3}
+      propertyPath: characterName
+      value: Witch
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801553023324649388, guid: c1e731cbf728c9742aa08ee5c6753c64, type: 3}
+      propertyPath: dialogueContainer
+      value: 
+      objectReference: {fileID: 11400000, guid: caa9d793999150c488b700f6838e2e2c, type: 2}
     - target: {fileID: 5678762799445554897, guid: c1e731cbf728c9742aa08ee5c6753c64, type: 3}
       propertyPath: m_Name
-      value: NPC
+      value: TestNPC
       objectReference: {fileID: 0}
     - target: {fileID: 5678762799445554897, guid: c1e731cbf728c9742aa08ee5c6753c64, type: 3}
       propertyPath: m_TagString
@@ -2937,7 +2967,7 @@ PrefabInstance:
     - target: {fileID: 8634655693768758709, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 344878823}
+      objectReference: {fileID: 344878829}
     - target: {fileID: 8634655693768758709, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -2969,7 +2999,7 @@ PrefabInstance:
     - target: {fileID: 8634655693848229819, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 344878823}
+      objectReference: {fileID: 344878829}
     - target: {fileID: 8634655693848229819, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -3009,7 +3039,7 @@ PrefabInstance:
     - target: {fileID: 8634655694034600904, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 344878823}
+      objectReference: {fileID: 344878829}
     - target: {fileID: 8634655694034600904, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
