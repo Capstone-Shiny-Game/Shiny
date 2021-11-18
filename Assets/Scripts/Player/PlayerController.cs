@@ -44,6 +44,8 @@ public class PlayerController : MonoBehaviour
 
         groundDetector = GetComponent<GroundDetector>();
 
+        walkingController.WalkedOffEdge += ToggleFlight; 
+
         //inventory initialization
         inventory = new Inventory();
         // TODO : replace with GameObjects in the scene that have the attached scripts

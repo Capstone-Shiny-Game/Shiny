@@ -1,14 +1,15 @@
-using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using static PlayerControllerInput;
+using System;
 
 public class WalkingController : MonoBehaviour, IFlightMapActions
 {
     public float ForwardSpeed = 8;
     public float BackwardsSpeed = 4;
     public float TurningSpeed = 60;
+
+    public event Action WalkedOffEdge;
 
     private GroundDetector groundDetector;
     private PlayerControllerInput PlayerInput;
@@ -51,7 +52,13 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
         transform.position += transform.forward * displacement;
 
         if (groundDetector.FindGround() is Vector3 groundPos)
-            transform.position = groundPos;
+        {
+            float dY = transform.position.y - groundPos.y;
+            if (dY > transform.localScale.y)
+                WalkedOffEdge?.Invoke();
+            else
+                transform.position = groundPos;
+        }
     }
 
     public void OnFlight(InputAction.CallbackContext context)
