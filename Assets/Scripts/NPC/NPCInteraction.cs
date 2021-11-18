@@ -32,6 +32,8 @@ public class NPCInteraction : MonoBehaviour
 
     private InputAction npcInteractAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/T");
 
+    private BoxCollider interactionCollider;
+
     private void Start()
     {
         avatar = npcUI.transform.Find("Avatars").Find(avatarName).gameObject;
@@ -44,6 +46,7 @@ public class NPCInteraction : MonoBehaviour
             buttons.Find("Button2").gameObject,
             buttons.Find("Button1").gameObject
         };
+        interactionCollider = GetComponentInChildren<BoxCollider>();
     }
 
     private void OnEnable()
@@ -72,7 +75,7 @@ public class NPCInteraction : MonoBehaviour
 
     private void TryEnterDialogue() 
     {
-        if (true) // replace
+        if (interactionCollider.bounds.Contains(GameObject.FindGameObjectWithTag("Player").gameObject.transform.position)) // oof
         {
             OnNPCInteractEvent?.Invoke(this.transform);
             EnterDialogue();
