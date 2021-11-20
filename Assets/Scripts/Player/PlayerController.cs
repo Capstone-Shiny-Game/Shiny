@@ -69,12 +69,14 @@ public class PlayerController : MonoBehaviour
             transform.position = pos;
             StartFlight();
             StopWalk();
+            flightController.ShowTrail();
             cameraController.isWalking = false;
         }
         else if (flightController.enabled && groundDetector.FindGround() is Vector3)
         {
             StopFlight();
             StartWalk();
+            flightController.HideTrail();
             cameraController.isWalking = true;
         }
     }
@@ -135,10 +137,26 @@ public class PlayerController : MonoBehaviour
         rotateInventoryAction.Disable();
     }
 
-    private void StartFlight() => flightController.enabled = true;
-    private void StopFlight() => flightController.enabled = false;
-    private void StartWalk() => walkingController.enabled = true;
-    private void StopWalk() => walkingController.enabled = false;
+    private void StartFlight()
+    {
+        flightController.enabled = true;
+        flightController.ShowTrail();
+    }
+    private void StopFlight()
+    {
+        flightController.enabled = false;
+        flightController.HideTrail();
+    }
+    private void StartWalk()
+    {
+        walkingController.enabled = true;
+        flightController.HideTrail();
+    }
+    private void StopWalk()
+    {
+        walkingController.enabled = false;
+        flightController.ShowTrail();
+    }
 
     private void SetFixedPosition(Vector3 position) => this.transform.position = position;
 
