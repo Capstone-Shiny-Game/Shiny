@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     // this variable holds the ui_inventory object from the scene
     [SerializeField]
-    public UI_inventory uiInventory { get; private set; }
+    UI_inventory uiInventory;
 
     // specifies where inventory item should appear when dropped by player
     public Offset walkingOffset = new Offset { forward = 0, up = 0 };

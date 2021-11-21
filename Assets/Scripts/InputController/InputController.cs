@@ -97,7 +97,7 @@ public class InputController : MonoBehaviour
     }
     private void OnBrakeExit(InputAction.CallbackContext context)
     {
-       flightBrakeHandler.Invoke(false);
+        flightBrakeHandler.Invoke(false);
     }
     private void OnBoost(InputAction.CallbackContext context)
     {
