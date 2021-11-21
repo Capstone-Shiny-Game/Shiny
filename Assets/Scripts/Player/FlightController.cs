@@ -48,7 +48,7 @@ public class FlightController : MonoBehaviour
     void Update()
     {
         Fly();
-        ShowOrHideTrail();
+        TrailScale();
     }
 
     /// <summary>
@@ -259,7 +259,7 @@ public class FlightController : MonoBehaviour
 
     }
 
-    public void ShowOrHideTrail()
+    public void TrailScale()
     {
         float scaleX = (speed - 10) / 30;
         if (scaleX < 0)
@@ -268,7 +268,16 @@ public class FlightController : MonoBehaviour
         LeftTrail.transform.localScale = scaleChange;
         RightTrail.transform.localScale = scaleChange;
     }
-
+    public void HideTrail()
+    {
+        LeftTrail.SetActive(false);
+        RightTrail.SetActive(false);
+    }
+    public void ShowTrail()
+    {
+        LeftTrail.SetActive(true);
+        RightTrail.SetActive(true);
+    }
     public void SetFlightXY(float x, float y)
     {
         moveX = x;
