@@ -10,20 +10,19 @@ public class PauseMenu : MonoBehaviour
     public void Pause()
     {
         pauseMenu.SetActive(true);
-        Time.timeScale = 0f;//pause game time doesnt pass
+        Time.timeScale = 0f; // pause game time doesnt pass
     }
 
     public void Resume()
     {
         pauseMenu.SetActive(false);
-        Time.timeScale = 1f;//set time back to normal
-
+        Time.timeScale = 1f; // set time back to normal
     }
 
-    public void Home(int SceneID) {
-        Time.timeScale = 1f;//set time back to normal
+    public void Home(int SceneID)
+    {
+        Time.timeScale = 1f; // set time back to normal
         SceneManager.LoadScene(SceneID);
-
     }
 
 }
