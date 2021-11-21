@@ -6,6 +6,12 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
+    private GameObject uiInventory;
+
+    private void Start()
+    {
+        uiInventory = GameObject.Find("UI_inventory");
+    }
 
     public void Pause()
     {
@@ -23,6 +29,26 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f; // set time back to normal
         SceneManager.LoadScene(SceneID);
+    }
+
+    public void OpenInventory()
+    {
+        if (uiInventory is null)
+        {
+            Debug.Log("uiInventory is null in OpenInventory within PauseMenu.cs");
+            return;
+        }
+        uiInventory.SetActive(true);
+    }
+
+    public void CloseInventory()
+    {
+        if (uiInventory is null)
+        {
+            Debug.Log("uiInventory is null in CloseInventory within PauseMenu.cs");
+            return;
+        }
+        uiInventory.SetActive(false);
     }
 
 }

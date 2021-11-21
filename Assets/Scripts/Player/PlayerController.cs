@@ -17,17 +17,19 @@ public class PlayerController : MonoBehaviour
     private FlightController flightController;
     private WalkingController walkingController;
     private CameraController cameraController;
-    //public GameObject NPCUI;
+    // public GameObject NPCUI;
     public GameObject ControllerUI;
     private InputAction walkAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/F");
     private InputAction dropItemAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/G");
     private InputAction rotateInventoryAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/R");
 
     private Inventory inventory;
-    [SerializeField]
-    private UI_inventory uiInventory; //this variable holds the ui_inventory object from the scene
 
-    //specifies where inventory item should appear when dropped by player
+    // this variable holds the ui_inventory object from the scene
+    [SerializeField]
+    public UI_inventory uiInventory { get; private set; }
+
+    // specifies where inventory item should appear when dropped by player
     public Offset walkingOffset = new Offset { forward = 0, up = 0 };
     public Offset flyingOffset = new Offset { forward = 0, up = 0 };
     public double maxCarryWeight = 0;
@@ -44,9 +46,9 @@ public class PlayerController : MonoBehaviour
 
         groundDetector = GetComponent<GroundDetector>();
 
-        walkingController.WalkedOffEdge += () => ToggleFlight(5); 
+        walkingController.WalkedOffEdge += () => ToggleFlight(5);
 
-        //inventory initialization
+        // inventory initialization
         inventory = new Inventory();
         // TODO : replace with GameObjects in the scene that have the attached scripts
         if (SceneManager.GetActiveScene().name == "GymItems")
@@ -191,8 +193,8 @@ public class PlayerController : MonoBehaviour
         Debug.Log("BOUNCE");
         //if (collision.gameObject.CompareTag("Terrain"))
         //{
-            Vector3 norm = collision.GetContact(0).normal;
-            StartCoroutine(flightController.BounceOnCollision(norm));
+        Vector3 norm = collision.GetContact(0).normal;
+        StartCoroutine(flightController.BounceOnCollision(norm));
         //}
     }
 
@@ -217,7 +219,7 @@ public class PlayerController : MonoBehaviour
         // TODO (Jakob) : the NPC also registers this event - figure out how to consolidate
         else if (other.CompareTag("NPC"))
         {
-            
+
         }
         else if (flightController.enabled)
         {
