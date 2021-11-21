@@ -93,29 +93,29 @@ public class CameraController : MonoBehaviour
     }
     private void MoveDynamicCamera()
     {
-
-        //don't snap camera immediately to player
-        float bias = 0.90f;
-        //Move the camera away if the player is faster
-        float distance = 15f;
-        Vector3 delta = transform.position - transform.forward * distance + Vector3.up * 1.5f;
-
-        //if (Math.Abs(transform.rotation.x) < .2f && Math.Abs(transform.forward.y) < 0.3f && !isBouncing)
-        //  delta += transform.forward * distance * 1f;
-        Vector3 destination = cam.transform.position * bias + delta * (1.0f - bias);
-
-        cam.transform.position = Vector3.SmoothDamp(cam.transform.position, destination, ref velocity, 0.01f);
-        Vector3 relativePos = transform.position - cam.transform.position;
-        Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up); //camera.LookAt will spin the camera if player is looking directly up or down
-        cam.transform.rotation = rotation;
-
-        // TODO (Ella): this is still evil
-        if (SceneManager.GetActiveScene().name == "WalkingTest" && isWalking)
+        if (isWalking)
         {
             cam.transform.position = crow.transform.position;
             cam.transform.rotation = crow.transform.rotation;
             cam.transform.Rotate(WalkingViewAngle, 0, 0);
             cam.transform.position -= cam.transform.forward * WalkingViewDistance;
+        }
+        else
+        {
+            //don't snap camera immediately to player
+            float bias = 0.90f;
+            //Move the camera away if the player is faster
+            float distance = 15f;
+            Vector3 delta = transform.position - transform.forward * distance + Vector3.up * 1.5f;
+
+            //if (Math.Abs(transform.rotation.x) < .2f && Math.Abs(transform.forward.y) < 0.3f && !isBouncing)
+            //  delta += transform.forward * distance * 1f;
+            Vector3 destination = cam.transform.position * bias + delta * (1.0f - bias);
+
+            cam.transform.position = Vector3.SmoothDamp(cam.transform.position, destination, ref velocity, 0.01f);
+            Vector3 relativePos = transform.position - cam.transform.position;
+            Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up); //camera.LookAt will spin the camera if player is looking directly up or down
+            cam.transform.rotation = rotation;
         }
     }
 
