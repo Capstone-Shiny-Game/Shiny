@@ -64,20 +64,17 @@ public class PlayerController : MonoBehaviour
     {
         if (walkingController.enabled)
         {
+            StopWalk();
             Vector3 pos = transform.position;
             pos.y += addY;
             transform.position = pos;
             StartFlight();
-            StopWalk();
-            flightController.ShowTrail();
-            cameraController.isWalking = false;
         }
-        else if (flightController.enabled && groundDetector.FindGround() is Vector3)
+        else if (flightController.enabled && groundDetector.FindGround() is Vector3 groundPos)
         {
             StopFlight();
+            transform.position = groundPos;
             StartWalk();
-            flightController.HideTrail();
-            cameraController.isWalking = true;
         }
     }
 
@@ -140,6 +137,7 @@ public class PlayerController : MonoBehaviour
     private void StartFlight()
     {
         flightController.enabled = true;
+        cameraController.isWalking = false;
         flightController.ShowTrail();
     }
     private void StopFlight()
@@ -150,11 +148,13 @@ public class PlayerController : MonoBehaviour
     private void StartWalk()
     {
         walkingController.enabled = true;
+        cameraController.isWalking = true;
         flightController.HideTrail();
     }
     private void StopWalk()
     {
         walkingController.enabled = false;
+        cameraController.isWalking = false;
         flightController.ShowTrail();
     }
 

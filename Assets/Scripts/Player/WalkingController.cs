@@ -25,9 +25,6 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
         transform.eulerAngles = v;
 
         groundDetector = GetComponent<GroundDetector>();
-
-        if (groundDetector.FindGround() is Vector3 groundPos)
-            transform.position = groundPos;
     }
 
     void OnEnable()
