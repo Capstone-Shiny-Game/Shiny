@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (flightController.enabled && groundDetector.FindGround() is Vector3 groundPos)
         {
+            flightController.speed = 10.0f;
             StopFlight();
             transform.position = groundPos;
             StartWalk();
