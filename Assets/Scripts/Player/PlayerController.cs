@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
         public float forward;
         public float up;
     }
+    public Animator birdAnimator;
     private FlightController flightController;
     private WalkingController walkingController;
     private CameraController cameraController;
@@ -142,11 +143,13 @@ public class PlayerController : MonoBehaviour
         flightController.enabled = true;
         cameraController.isWalking = false;
         flightController.ShowTrail();
+        birdAnimator.SetBool("isFlying", true);
     }
     private void StopFlight()
     {
         flightController.enabled = false;
         flightController.HideTrail();
+        birdAnimator.SetBool("isFlying", false);
     }
     private void StartWalk()
     {
