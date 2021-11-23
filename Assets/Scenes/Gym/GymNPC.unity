@@ -735,6 +735,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486204779}
   m_CullTransparentMesh: 1
+--- !u!95 &604215975 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1846422527554764652, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+  m_PrefabInstance: {fileID: 1442017691}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &632995410
 GameObject:
   m_ObjectHideFlags: 0
@@ -1650,6 +1655,10 @@ PrefabInstance:
       propertyPath: ControllerUI
       value: 
       objectReference: {fileID: 461785537}
+    - target: {fileID: 7695470114484064583, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: birdAnimator
+      value: 
+      objectReference: {fileID: 604215975}
     - target: {fileID: 8245471309187584260, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: m_Mass
       value: 1
