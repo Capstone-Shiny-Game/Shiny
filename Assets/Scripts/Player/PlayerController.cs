@@ -73,12 +73,13 @@ public class PlayerController : MonoBehaviour
             transform.position = pos;
             StartFlight();
         }
-        else if (flightController.enabled && groundDetector.FindGround() is Vector3 groundPos)
+        else if (flightController.enabled && groundDetector.FindGround(out Vector3 groundPos, out bool isWater))
         {
             flightController.speed = 10.0f;
             StopFlight();
             transform.position = groundPos;
             StartWalk();
+            walkingController.Swimming = isWater;
         }
     }
 
@@ -213,7 +214,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(flightController.Boost());
 
         }
-        else if (other.CompareTag("Terrain") && flightController.enabled)
+        else if ((other.CompareTag("Terrain") || other.CompareTag("Water")) && flightController.enabled)
         {
             flightController.speed = 10.0f;
             StopFlight();
@@ -257,7 +258,7 @@ public class PlayerController : MonoBehaviour
 
     private void TryPlaceOnGround()
     {
-        if (groundDetector.FindGround() is Vector3 groundPos)
+        if (groundDetector.FindGround(out Vector3 groundPos, out _))
             SetFixedPosition(groundPos);
     }
 }
