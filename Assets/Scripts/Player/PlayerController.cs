@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
             StopFlight();
             transform.position = groundPos;
             StartWalk();
-            walkingController.Swimming = isWater;
+            walkingController.Splashing = isWater;
         }
     }
 
