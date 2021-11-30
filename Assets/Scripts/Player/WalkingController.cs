@@ -7,10 +7,10 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
 {
     public float ForwardSpeed = 8;
     public float BackwardsSpeed = 4;
-    public float SwimmingSpeed = 4;
+    public float SplashingSpeed = 4; // TODO (Ella) : Only allow crow to slowly walk in shallow water
     public float TurningSpeed = 60;
 
-    public bool Swimming = false;
+    public bool Splashing = false;
 
     public event Action WalkedOffEdge;
 
@@ -51,15 +51,15 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
     {
         transform.Rotate(0, moveX * Time.deltaTime * TurningSpeed, 0, Space.World);
         float displacement = moveY * Time.deltaTime;
-        if (Swimming)
-            displacement *= SwimmingSpeed;
+        if (Splashing)
+            displacement *= SplashingSpeed;
         else if (displacement >= 0)
             displacement *= ForwardSpeed;
         else
             displacement *= BackwardsSpeed;
         transform.position += transform.forward * displacement;
 
-        if (groundDetector.FindGround(out Vector3 groundPos, out Swimming))
+        if (groundDetector.FindGround(out Vector3 groundPos, out Splashing))
         {
             float dY = transform.position.y - groundPos.y;
             if (dY > transform.localScale.y)
