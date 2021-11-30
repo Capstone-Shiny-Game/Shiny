@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
 
         groundDetector = GetComponent<GroundDetector>();
 
-        walkingController.WalkedOffEdge += () => ToggleFlight(5);
+        walkingController.WalkedOffEdge += () => ToggleFlight(0.5f);
 
         // inventory initialization
         inventory = new Inventory();
@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void ToggleFlight(float addY = 10)
+    private void ToggleFlight(float addY = 2)
     {
         if (walkingController.enabled)
         {
