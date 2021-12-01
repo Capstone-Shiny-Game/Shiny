@@ -31,7 +31,7 @@ public class NPCController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not enough waypoints for a path");
+            Debug.LogWarning("Not enough waypoints for a path");
         }
     }
 
