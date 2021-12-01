@@ -105,7 +105,7 @@ public class CameraController : MonoBehaviour
             //don't snap camera immediately to player
             float bias = 0.90f;
             //Move the camera away if the player is faster
-            float distance = 15f;
+            float distance = 4;
             Vector3 delta = transform.position - transform.forward * distance + Vector3.up * 1.5f;
 
             //if (Math.Abs(transform.rotation.x) < .2f && Math.Abs(transform.forward.y) < 0.3f && !isBouncing)
