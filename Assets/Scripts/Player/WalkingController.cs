@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static PlayerControllerInput;
 using System;
+using System.Linq;
 
 public class WalkingController : MonoBehaviour, IFlightMapActions
 {
@@ -57,15 +58,23 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
             displacement *= ForwardSpeed;
         else
             displacement *= BackwardsSpeed;
-        transform.position += transform.forward * displacement;
-
-        if (groundDetector.FindGround(out Vector3 groundPos, out Splashing))
+        Vector3 newPosition = transform.position + (transform.forward * displacement);
+        Collider[] colliders = Physics.OverlapSphere(newPosition, transform.localScale.magnitude);
+        bool collided = colliders.Any(collider => {
+            string tag = collider.transform.tag;
+            return tag != "Player" && tag != "Terrain" && tag != "Water";
+        });
+        if (!collided)
         {
-            float dY = transform.position.y - groundPos.y;
-            if (dY > transform.localScale.y)
-                WalkedOffEdge?.Invoke();
-            else
-                transform.position = groundPos;
+            transform.position = newPosition;
+            if (groundDetector.FindGround(out Vector3 groundPos, out Splashing))
+            {
+                float dY = transform.position.y - groundPos.y;
+                if (dY > transform.localScale.y)
+                    WalkedOffEdge?.Invoke();
+                else
+                    transform.position = groundPos;
+            }
         }
     }
 
