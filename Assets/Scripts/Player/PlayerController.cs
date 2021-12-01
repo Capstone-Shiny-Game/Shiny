@@ -236,7 +236,6 @@ public class PlayerController : MonoBehaviour
 
             StartCoroutine(flightController.Slow());
         }
-        // TODO (Ella, #?) : Prevent the player from walking through objects.
 
         //add items to inventory
         ItemWorld itemWorld = other.GetComponent<ItemWorld>();
