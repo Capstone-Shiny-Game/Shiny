@@ -71,12 +71,14 @@ public class PlayerController : MonoBehaviour
             Vector3 pos = transform.position;
             pos.y += addY;
             transform.position = pos;
+            birdAnimator.SetBool("WalktoFly", true);
             StartFlight();
         }
         else if (flightController.enabled && groundDetector.FindGround(out Vector3 groundPos, out bool isWater))
         {
             flightController.speed = 10.0f;
             StopFlight();
+            birdAnimator.SetBool("WalktoFly", false);
             transform.position = groundPos;
             StartWalk();
             walkingController.Splashing = isWater;
@@ -157,12 +159,14 @@ public class PlayerController : MonoBehaviour
         walkingController.enabled = true;
         cameraController.isWalking = true;
         flightController.HideTrail();
+        birdAnimator.SetBool("isWalking", true);
     }
     private void StopWalk()
     {
         walkingController.enabled = false;
         cameraController.isWalking = false;
         flightController.ShowTrail();
+        birdAnimator.SetBool("isWalking", false);
     }
 
     private void SetFixedPosition(Vector3 position) => this.transform.position = position;
