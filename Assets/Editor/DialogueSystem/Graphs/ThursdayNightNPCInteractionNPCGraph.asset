@@ -18,15 +18,15 @@ MonoBehaviour:
   - <ID>k__BackingField: 7b3fa1e0-a812-4b28-9a1b-9a9f2cccea26
     <Name>k__BackingField: NPCFollowup
     <Text>k__BackingField: "That\u2019s understandable. I did ask her at the last
-      minute. Thank you for letting me know! Have a good day CROW. text."
+      minute. Thank you for letting me know! Have a good day CROW. "
     <Choices>k__BackingField:
     - <Text>k__BackingField: Next Dialogue
-      <NodeID>k__BackingField: 9005474c-e199-48c8-b04c-8365afdc37e3
+      <NodeID>k__BackingField: 
     <GroupID>k__BackingField: 
     <DialogueType>k__BackingField: 0
     <Position>k__BackingField: {x: 1108, y: 405}
   - <ID>k__BackingField: 49e915b8-4936-429e-9853-6bd833657c70
-    <Name>k__BackingField: DialogueName
+    <Name>k__BackingField: FarmGirlNPCinteraction
     <Text>k__BackingField: "Oh, you\u2019re earlier than expected! WITCH must\u2019ve
       worked all night to get this done. Is it ready?"
     <Choices>k__BackingField:
@@ -35,19 +35,9 @@ MonoBehaviour:
     <GroupID>k__BackingField: 
     <DialogueType>k__BackingField: 1
     <Position>k__BackingField: {x: 427, y: 374}
-  - <ID>k__BackingField: 9005474c-e199-48c8-b04c-8365afdc37e3
-    <Name>k__BackingField: end
-    <Text>k__BackingField: End
-    <Choices>k__BackingField:
-    - <Text>k__BackingField: Next Dialogue
-      <NodeID>k__BackingField: 
-    <GroupID>k__BackingField: 
-    <DialogueType>k__BackingField: 0
-    <Position>k__BackingField: {x: 1857, y: 406}
   <OldGroupNames>k__BackingField: []
   <OldUngroupedNodeNames>k__BackingField:
   - NPCFollowup
-  - DialogueName
-  - end
+  - FarmGirlNPCinteraction
   <OldGroupedNodeNames>k__BackingField:
     list: []
