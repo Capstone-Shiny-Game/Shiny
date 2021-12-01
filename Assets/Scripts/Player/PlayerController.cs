@@ -82,6 +82,13 @@ public class PlayerController : MonoBehaviour
             transform.position = groundPos;
             StartWalk();
             walkingController.Splashing = isWater;
+            if(isWater==true){
+                birdAnimator.SetBool("isSwim", true);
+            }
+            else
+            {
+                birdAnimator.SetBool("isSwim", false);
+            }
         }
     }
 
