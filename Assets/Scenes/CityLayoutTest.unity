@@ -14646,6 +14646,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1960509324}
+    - target: {fileID: 7261759843059480626, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: birdAnimator
+      value: 
+      objectReference: {fileID: 1557518619}
     - target: {fileID: 7324057266532042072, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: m_RootOrder
       value: 42
@@ -49337,6 +49341,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bb72b52af9854b0428061b7665d27c7c, type: 3}
   m_PrefabInstance: {fileID: 1557157280}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1557518619 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1789890149, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+  m_PrefabInstance: {fileID: 464356190}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1560395947
 PrefabInstance:
