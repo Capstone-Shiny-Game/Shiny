@@ -14642,38 +14642,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 140313497592034138, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 3.1927
-      objectReference: {fileID: 0}
-    - target: {fileID: 140313497592034138, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 3.1927
-      objectReference: {fileID: 0}
-    - target: {fileID: 140313497592034138, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 3.1927
-      objectReference: {fileID: 0}
-    - target: {fileID: 140313497592034138, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.025005
-      objectReference: {fileID: 0}
-    - target: {fileID: 140313497592034138, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.36622
-      objectReference: {fileID: 0}
-    - target: {fileID: 140313497592034138, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.10304
-      objectReference: {fileID: 0}
     - target: {fileID: 7261759843059480626, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 1960509324}
-    - target: {fileID: 7261759843059480626, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
-      propertyPath: crow
-      value: 
-      objectReference: {fileID: 1789890147}
     - target: {fileID: 7324057266532042072, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: m_RootOrder
       value: 42
@@ -14726,10 +14698,6 @@ PrefabInstance:
       propertyPath: ControllerUI
       value: 
       objectReference: {fileID: 117240270}
-    - target: {fileID: 7695470114484064583, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
-      propertyPath: birdAnimator
-      value: 
-      objectReference: {fileID: 1789890149}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
 --- !u!1001 &469091466
@@ -55260,30 +55228,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780071754}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1789890147 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 772841008434653664, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
-  m_PrefabInstance: {fileID: 464356190}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1789890149
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1789890147}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fd4f30c437e199e49a71562e8815f5a5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1793372385
 PrefabInstance:
   m_ObjectHideFlags: 0
