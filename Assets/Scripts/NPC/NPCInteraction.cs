@@ -133,7 +133,7 @@ public class NPCInteraction : MonoBehaviour
 
     private void EnableButtons()
     {
-        if (currentDialogue.Choices.Count == 1)
+        if (currentDialogue.DSDialogueType == DSDialogueType.SingleChoice)
         {
             buttonList[0].SetActive(true);
             buttonList[0].GetComponentInChildren<TextMeshProUGUI>().text = CONTINUE;
