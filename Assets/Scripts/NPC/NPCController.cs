@@ -40,7 +40,6 @@ public class NPCController : MonoBehaviour
         if (isTravelling && agent.remainingDistance <= 1.0f)
         {
             isTravelling = false;
-            Debug.Log(agent.remainingDistance);
             if (waypoints[currWaypointIdx].doesWait)
             {
                 isWaiting = true;
