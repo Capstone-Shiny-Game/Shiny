@@ -268,6 +268,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 transform.position -= transform.forward;
+                // TODO : instead of always going right, go the way the crow has to turn less
                 transform.RotateAround(transform.position, transform.up, 30);
             }
 
