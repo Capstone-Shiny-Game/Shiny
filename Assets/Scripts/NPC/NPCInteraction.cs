@@ -51,27 +51,13 @@ public class NPCInteraction : MonoBehaviour
 
     private void OnEnable()
     {
-        // OnNPCInteractEvent += EnterDialogue;
-        // OnNPCInteractEvent += ApplyTheme;
-
         npcInteractAction.performed += ctx => TryEnterDialogue();
         npcInteractAction.Enable();
     }
     private void OnDisable()
     {
-        // OnNPCInteractEvent -= EnterDialogue;
-        // OnNPCInteractEvent -= ApplyTheme;
-
         npcInteractAction.Disable();
     }
-
-    // private void OnTriggerEnter(Collider other)
-    // {
-    //     if (other.CompareTag("Player"))
-    //     {
-    //         OnNPCInteractEvent?.Invoke();
-    //     }
-    // }
 
     private void TryEnterDialogue() 
     {
@@ -116,7 +102,7 @@ public class NPCInteraction : MonoBehaviour
                     break;
                 }
                 currentDialogue = choice.NextDialogue;
-                this.bodyText.text = currentDialogue.Text;
+                bodyText.text = currentDialogue.Text;
                 EnableButtons();
                 break;
             }
