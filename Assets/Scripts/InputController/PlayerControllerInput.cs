@@ -234,6 +234,44 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""GUIMap"",
+            ""id"": ""0813bbc5-9e26-4810-9dfa-abdb60148828"",
+            ""actions"": [
+                {
+                    ""name"": ""Settings"",
+                    ""type"": ""Button"",
+                    ""id"": ""088ffe75-0272-42d9-b31e-2a1b7117d700"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""4fbc6d98-db3f-4bc5-8305-46023e9abacf"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Settings"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e944ccd6-bc1b-4102-aaa3-7b3914a5b873"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Settings"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -246,6 +284,9 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
         m_FlightMap_Boost = m_FlightMap.FindAction("Boost", throwIfNotFound: true);
         m_FlightMap_Brake = m_FlightMap.FindAction("Brake", throwIfNotFound: true);
         m_FlightMap_LockCursor = m_FlightMap.FindAction("LockCursor", throwIfNotFound: true);
+        // GUIMap
+        m_GUIMap = asset.FindActionMap("GUIMap", throwIfNotFound: true);
+        m_GUIMap_Settings = m_GUIMap.FindAction("Settings", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -364,6 +405,39 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
         }
     }
     public FlightMapActions @FlightMap => new FlightMapActions(this);
+
+    // GUIMap
+    private readonly InputActionMap m_GUIMap;
+    private IGUIMapActions m_GUIMapActionsCallbackInterface;
+    private readonly InputAction m_GUIMap_Settings;
+    public struct GUIMapActions
+    {
+        private @PlayerControllerInput m_Wrapper;
+        public GUIMapActions(@PlayerControllerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Settings => m_Wrapper.m_GUIMap_Settings;
+        public InputActionMap Get() { return m_Wrapper.m_GUIMap; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GUIMapActions set) { return set.Get(); }
+        public void SetCallbacks(IGUIMapActions instance)
+        {
+            if (m_Wrapper.m_GUIMapActionsCallbackInterface != null)
+            {
+                @Settings.started -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnSettings;
+                @Settings.performed -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnSettings;
+                @Settings.canceled -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnSettings;
+            }
+            m_Wrapper.m_GUIMapActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Settings.started += instance.OnSettings;
+                @Settings.performed += instance.OnSettings;
+                @Settings.canceled += instance.OnSettings;
+            }
+        }
+    }
+    public GUIMapActions @GUIMap => new GUIMapActions(this);
     public interface IFlightMapActions
     {
         void OnFlight(InputAction.CallbackContext context);
@@ -372,5 +446,9 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
         void OnBoost(InputAction.CallbackContext context);
         void OnBrake(InputAction.CallbackContext context);
         void OnLockCursor(InputAction.CallbackContext context);
+    }
+    public interface IGUIMapActions
+    {
+        void OnSettings(InputAction.CallbackContext context);
     }
 }

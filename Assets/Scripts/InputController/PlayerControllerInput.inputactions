@@ -221,6 +221,44 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "GUIMap",
+            "id": "0813bbc5-9e26-4810-9dfa-abdb60148828",
+            "actions": [
+                {
+                    "name": "Settings",
+                    "type": "Button",
+                    "id": "088ffe75-0272-42d9-b31e-2a1b7117d700",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4fbc6d98-db3f-4bc5-8305-46023e9abacf",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Settings",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e944ccd6-bc1b-4102-aaa3-7b3914a5b873",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Settings",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
