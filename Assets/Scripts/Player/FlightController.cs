@@ -56,7 +56,7 @@ public class FlightController : MonoBehaviour
     /// </summary>
     private void SlowDown()
     {
-        if (isBraking && speed > 5f) //don't brake if speed negative
+        if ((isBraking && speed > 5f) || (isSlowing && speed > 0)) //don't brake if speed negative
             brake += 0.01f;
         else
             brake -= 0.02f;

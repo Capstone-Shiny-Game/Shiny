@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
-
-
+using System.Linq;
 
 public class PlayerController : MonoBehaviour
 {
@@ -188,11 +187,16 @@ public class PlayerController : MonoBehaviour
         cameraController.isWalking = true;
     }
 
+    private Vector3 positionBeforeDialogue;
+    private Quaternion rotationBeforeDialogue; 
+
     private void EnterNPCDialogue(Transform npcTransform)
     {
         StopFlight();
         StopWalk();
         Vector3 npcFront = npcTransform.position + npcTransform.forward * 4.0f;
+        positionBeforeDialogue = transform.position;
+        rotationBeforeDialogue = transform.rotation;
         SetFixedPosition(npcFront);
         TryPlaceOnGround();
         ControllerUI.SetActive(false);
@@ -202,13 +206,15 @@ public class PlayerController : MonoBehaviour
     {
         //NPCUI.SetActive(false);
         ControllerUI.SetActive(true);
-        SetFixedPosition(new Vector3(transform.position.x - 5, transform.position.y, transform.position.z - 5));
+        // SetFixedPosition(new Vector3(transform.position.x - 5, transform.position.y, transform.position.z - 5));
+        transform.position = positionBeforeDialogue;
+        transform.rotation = rotationBeforeDialogue;
         StartWalk();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        // TODO : Is this useful?
+        // TODO : this is never used; it should either be removed or subsituted for the collision handling below
         Debug.Log("BOUNCE");
         //if (collision.gameObject.CompareTag("Terrain"))
         //{
@@ -242,11 +248,29 @@ public class PlayerController : MonoBehaviour
         }
         else if (flightController.enabled)
         {
-            // TODO : We also need to prevent the player from e.g. flying horizontally through vertical objects
-            transform.position = new Vector3(
-                transform.position.x,
-                transform.position.y + 5f,
-                transform.position.z);
+            Vector3 bouncedUp = transform.position + (transform.up * 5);
+            Collider[] colliders = Physics.OverlapSphere(bouncedUp, transform.localScale.magnitude);
+            bool collided = colliders.Any(collider => {
+                if (collider.isTrigger)
+                    return false;
+
+                string tag = collider.transform.tag;
+                if (tag == "Player" || tag == "Terrain" || tag == "Water")
+                    return false;
+
+                return true;
+            });
+
+            if (!collided)
+            {
+                transform.position = bouncedUp;
+            }
+            else
+            {
+                transform.position -= transform.forward;
+                // TODO : instead of always going right, go the way the crow has to turn less
+                transform.RotateAround(transform.position, transform.up, 30);
+            }
 
             StartCoroutine(flightController.Slow());
         }
