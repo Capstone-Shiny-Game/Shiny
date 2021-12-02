@@ -188,11 +188,16 @@ public class PlayerController : MonoBehaviour
         cameraController.isWalking = true;
     }
 
+    private Vector3 positionBeforeDialogue;
+    private Quaternion rotationBeforeDialogue; 
+
     private void EnterNPCDialogue(Transform npcTransform)
     {
         StopFlight();
         StopWalk();
         Vector3 npcFront = npcTransform.position + npcTransform.forward * 4.0f;
+        positionBeforeDialogue = transform.position;
+        rotationBeforeDialogue = transform.rotation;
         SetFixedPosition(npcFront);
         TryPlaceOnGround();
         ControllerUI.SetActive(false);
@@ -202,7 +207,9 @@ public class PlayerController : MonoBehaviour
     {
         //NPCUI.SetActive(false);
         ControllerUI.SetActive(true);
-        SetFixedPosition(new Vector3(transform.position.x - 5, transform.position.y, transform.position.z - 5));
+        // SetFixedPosition(new Vector3(transform.position.x - 5, transform.position.y, transform.position.z - 5));
+        transform.position = positionBeforeDialogue;
+        transform.rotation = rotationBeforeDialogue;
         StartWalk();
     }
 
