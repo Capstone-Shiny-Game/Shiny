@@ -82,13 +82,6 @@ public class PlayerController : MonoBehaviour
             transform.position = groundPos;
             StartWalk();
             walkingController.Splashing = isWater;
-            if(isWater==true){
-                birdAnimator.SetBool("isSwim", true);
-            }
-            else
-            {
-                birdAnimator.SetBool("isSwim", false);
-            }
         }
     }
 
@@ -166,7 +159,16 @@ public class PlayerController : MonoBehaviour
         walkingController.enabled = true;
         cameraController.isWalking = true;
         flightController.HideTrail();
-        birdAnimator.SetBool("isWalking", true);
+        if (walkingController.Splashing == true) {
+        birdAnimator.SetBool("isSwim", true);
+        birdAnimator.SetBool("isWalking", false);
+        }
+       else if(walkingController.Splashing == false)
+        {
+            birdAnimator.SetBool("isSwim", false);
+            birdAnimator.SetBool("isWalking", true);
+        }
+
     }
     private void StopWalk()
     {
@@ -174,6 +176,7 @@ public class PlayerController : MonoBehaviour
         cameraController.isWalking = false;
         flightController.ShowTrail();
         birdAnimator.SetBool("isWalking", false);
+        birdAnimator.SetBool("isSwim", false);
     }
 
     private void SetFixedPosition(Vector3 position) => this.transform.position = position;
