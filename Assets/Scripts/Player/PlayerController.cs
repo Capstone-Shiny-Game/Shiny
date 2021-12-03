@@ -213,16 +213,18 @@ public class PlayerController : MonoBehaviour
         StartWalk();
     }
 
+    // TODO : remove or fold bouncing into method below
+    /*
     private void OnCollisionEnter(Collision collision)
     {
-        // TODO : this is never used; it should either be removed or subsituted for the collision handling below
         Debug.Log("BOUNCE");
-        //if (collision.gameObject.CompareTag("Terrain"))
-        //{
+        if (collision.gameObject.CompareTag("Terrain"))
+        {
         Vector3 norm = collision.GetContact(0).normal;
         StartCoroutine(flightController.BounceOnCollision(norm));
-        //}
+        }
     }
+    */
 
     private void OnTriggerEnter(Collider other)
     {
@@ -258,14 +260,19 @@ public class PlayerController : MonoBehaviour
             });
 
             if (!collided)
-            {
                 transform.position = bouncedUp;
-            }
             else
             {
-                transform.position -= transform.forward;
-                // TODO : instead of always going right, go the way the crow has to turn less
-                transform.RotateAround(transform.position, transform.up, 30);
+                transform.position -= transform.forward * 2;
+                // TODO (Ella) : make less cursed
+                if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 50))
+                {
+                    float turn = 45 * Mathf.Sign(Vector3.SignedAngle(
+                        Vector3.ProjectOnPlane(transform.forward, Vector3.up),
+                        Vector3.ProjectOnPlane(hit.normal, Vector3.up),
+                        transform.up));
+                    transform.RotateAround(transform.position, Vector3.up, turn);
+                }
             }
 
             StartCoroutine(flightController.Slow());
