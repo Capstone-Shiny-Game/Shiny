@@ -10,25 +10,22 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
-        uiInventory = GameObject.Find("UI_inventory");
+        uiInventory = GameObject.Find("UIInventory");
     }
 
-    public void Pause()
+    public void OnEnable()
     {
-        pauseMenu.SetActive(true);
         Time.timeScale = 0f; // pause game time doesnt pass
     }
-
-    public void Resume()
+    public void OnDisable()
     {
-        pauseMenu.SetActive(false);
         Time.timeScale = 1f; // set time back to normal
     }
 
     public void Home(int SceneID)
     {
         Time.timeScale = 1f; // set time back to normal
-        SceneManager.LoadScene(SceneID);
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void OpenInventory()

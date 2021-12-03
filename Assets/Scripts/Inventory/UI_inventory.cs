@@ -15,7 +15,7 @@ public class UI_inventory : MonoBehaviour
     public float nextItemSize = 30f;
     public int slotsPerRow = 4;
 
-    private void Awake()
+    private void OnEnable()
     {
         itemSlotContainer = transform.Find("itemSlotContainer");
         itemSlotTemplate = itemSlotContainer.Find("itemSlotTemplate"); ;
@@ -127,9 +127,11 @@ public class UI_inventory : MonoBehaviour
     /// </summary>
     private void ClearInventory()
     {
+        Debug.Log("before ");
         // destroy old ui elements to avoid duplicates
         foreach (Transform child in itemSlotContainer)
         {
+            Debug.Log("during");
             if (child == itemSlotTemplate)
             {
                 // don't destroy the template
@@ -137,5 +139,6 @@ public class UI_inventory : MonoBehaviour
             }
             Destroy(child.gameObject);
         }
+        Debug.Log("after");
     }
 }
