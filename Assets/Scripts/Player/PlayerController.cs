@@ -19,16 +19,16 @@ public class PlayerController : MonoBehaviour
     private CameraController cameraController;
     // public GameObject NPCUI;
     public GameObject ControllerUI;
-    // TODO: fix drop thing wyatt please help I can't remember
+
     private InputAction walkAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/F");
-    private InputAction dropItemAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/G");
-    private InputAction rotateInventoryAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/R");
 
     private Inventory inventory;
 
     // this variable holds the ui_inventory object from the scene
     [SerializeField]
     UI_inventory uiInventory;
+    [SerializeField]
+    UIHotbar uiHotbar;
 
     // specifies where inventory item should appear when dropped by player
     public Offset walkingOffset = new Offset { forward = 0, up = 0 };
@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "GymItems")
         {
             uiInventory.SetInventory(inventory);
+            uiHotbar.SetInventory(inventory);
 
             float yPos = 10.3f;
             ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 50f), new Item(Item.ItemType.shiny));
@@ -124,12 +125,6 @@ public class PlayerController : MonoBehaviour
         walkAction.performed += ctx => ToggleFlight();
         walkAction.Enable();
 
-        dropItemAction.performed += ctx => DropItLikeItsHot();
-        dropItemAction.Enable();
-
-        rotateInventoryAction.performed += ctx => RotateInventory();
-        rotateInventoryAction.Enable();
-
     }
 
     private void OnDisable()
@@ -138,8 +133,6 @@ public class PlayerController : MonoBehaviour
         NPCInteraction.OnNPCInteractEndEvent -= ExitNPCDialogue;
 
         walkAction.Disable();
-        dropItemAction.Disable();
-        rotateInventoryAction.Disable();
     }
 
     private void StartFlight()
@@ -213,16 +206,18 @@ public class PlayerController : MonoBehaviour
         StartWalk();
     }
 
+    // TODO : remove or fold bouncing into method below
+    /*
     private void OnCollisionEnter(Collision collision)
     {
-        // TODO : this is never used; it should either be removed or subsituted for the collision handling below
         Debug.Log("BOUNCE");
-        //if (collision.gameObject.CompareTag("Terrain"))
-        //{
+        if (collision.gameObject.CompareTag("Terrain"))
+        {
         Vector3 norm = collision.GetContact(0).normal;
         StartCoroutine(flightController.BounceOnCollision(norm));
-        //}
+        }
     }
+    */
 
     private void OnTriggerEnter(Collider other)
     {
@@ -258,14 +253,19 @@ public class PlayerController : MonoBehaviour
             });
 
             if (!collided)
-            {
                 transform.position = bouncedUp;
-            }
             else
             {
-                transform.position -= transform.forward;
-                // TODO : instead of always going right, go the way the crow has to turn less
-                transform.RotateAround(transform.position, transform.up, 30);
+                transform.position -= transform.forward * 2;
+                // TODO (Ella) : make less cursed
+                if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 50))
+                {
+                    float turn = 45 * Mathf.Sign(Vector3.SignedAngle(
+                        Vector3.ProjectOnPlane(transform.forward, Vector3.up),
+                        Vector3.ProjectOnPlane(hit.normal, Vector3.up),
+                        transform.up));
+                    transform.RotateAround(transform.position, Vector3.up, turn);
+                }
             }
 
             StartCoroutine(flightController.Slow());

@@ -320,10 +320,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4180478959496027110, guid: 75b1bd4d28156e04c9cc923d4d88f873, type: 3}
-      propertyPath: m_Name
-      value: HotBar
-      objectReference: {fileID: 0}
     - target: {fileID: 8778734579908224427, guid: 75b1bd4d28156e04c9cc923d4d88f873, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2041,6 +2037,10 @@ PrefabInstance:
       value: CrowPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 7695470114484064583, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: uiHotbar
+      value: 
+      objectReference: {fileID: 1846606244}
+    - target: {fileID: 7695470114484064583, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: maxWeight
       value: 10
       objectReference: {fileID: 0}
@@ -2066,6 +2066,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+--- !u!114 &1846606244 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8608785002829062055, guid: 75b1bd4d28156e04c9cc923d4d88f873, type: 3}
+  m_PrefabInstance: {fileID: 395458598}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f87669ced6645345911ed1be6dd2211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1898279749
 GameObject:
   m_ObjectHideFlags: 0
