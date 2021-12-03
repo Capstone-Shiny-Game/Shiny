@@ -5,30 +5,32 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] GameObject pauseMenu;
     private GameObject uiInventory;
 
     private void Start()
     {
-        uiInventory = GameObject.Find("UI_inventory");
+        uiInventory = GameObject.Find("UIInventory");
     }
 
-    public void Pause()
+    public void OnEnable()
     {
-        pauseMenu.SetActive(true);
         Time.timeScale = 0f; // pause game time doesnt pass
     }
-
-    public void Resume()
+    public void OnDisable()
     {
-        pauseMenu.SetActive(false);
         Time.timeScale = 1f; // set time back to normal
     }
 
-    public void Home(int SceneID)
+    public void LoadMainMenu()
     {
         Time.timeScale = 1f; // set time back to normal
-        SceneManager.LoadScene(SceneID);
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ReloadScene()
+    {
+        Time.timeScale = 1f; // set time back to normal
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void OpenInventory()

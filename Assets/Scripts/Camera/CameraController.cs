@@ -9,7 +9,7 @@ public class CameraController : MonoBehaviour
 {
     public GameObject camPlacement;
     public GameObject crow;
-
+    public GameObject crowMesh;
     public Camera cam;
     public bool toggleFirstPersonCam = false;
     private Vector3 velocity = Vector3.zero;
@@ -28,6 +28,8 @@ public class CameraController : MonoBehaviour
     private float relRotX = 0.0f;
     private float relRotY = 0.0f;
 
+    public Animator birdAnimator;
+    private bool lastFlyingState;
     void LateUpdate()
     {
         RotateCamera();
@@ -49,12 +51,20 @@ public class CameraController : MonoBehaviour
         if (switchPOV)
         {
             toggleFirstPersonCam = !toggleFirstPersonCam;
+            if (toggleFirstPersonCam)//get animation state of bird before we disable it        
+                lastFlyingState = birdAnimator.GetBool("isFlying");
+
             crow.SetActive(!toggleFirstPersonCam);
+
             if (toggleFirstPersonCam)
             {
                 cam.transform.LookAt(crow.transform, Vector3.up);
                 relRotX = crow.transform.rotation.eulerAngles.x;
                 relRotY = crow.transform.rotation.eulerAngles.y;
+            }
+            else
+            {
+                birdAnimator.SetBool("isFlying", lastFlyingState);
             }
             switchPOV = false;
         }
@@ -105,8 +115,8 @@ public class CameraController : MonoBehaviour
             //don't snap camera immediately to player
             float bias = 0.90f;
             //Move the camera away if the player is faster
-            float distance = 4;
-            Vector3 delta = transform.position - transform.forward * distance + Vector3.up * 1.5f;
+            float distance = 10.5f;
+            Vector3 delta = transform.position - transform.forward * distance + Vector3.up * 7.5f;
 
             //if (Math.Abs(transform.rotation.x) < .2f && Math.Abs(transform.forward.y) < 0.3f && !isBouncing)
             //  delta += transform.forward * distance * 1f;

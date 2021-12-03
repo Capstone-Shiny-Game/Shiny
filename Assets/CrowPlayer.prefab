@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!95 &1846422527554764652
+--- !u!95 &1789890149
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -9812,7 +9812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camPlacement: {fileID: 8245471309768777031}
-  crow: {fileID: 0}
+  crow: {fileID: 772841008434653664}
   cam: {fileID: 0}
   toggleFirstPersonCam: 0
   isWalking: 0
@@ -9852,7 +9852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59588ac47d0b6094aa852ba3b8c731c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  birdAnimator: {fileID: 0}
+  birdAnimator: {fileID: 1789890149}
   ControllerUI: {fileID: 0}
   uiInventory: {fileID: 0}
   walkingOffset:
@@ -9892,7 +9892,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ForwardSpeed: 8
   BackwardsSpeed: 4
+  SplashingSpeed: 4
   TurningSpeed: 60
+  Splashing: 0
 --- !u!114 &5036188381387300824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9942,6 +9944,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 44d4a4da-759a-4383-89f0-d27fcdc2900d
     m_ActionName: FlightMap/LockCursor[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 088ffe75-0272-42d9-b31e-2a1b7117d700
+    m_ActionName: GUIMap/Settings[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: FlightMap
@@ -10001,16 +10007,28 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.1927
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.1927
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.1927
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.025005
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.36622
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.10304
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
       propertyPath: m_LocalRotation.w

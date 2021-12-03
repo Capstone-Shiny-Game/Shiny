@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private CameraController cameraController;
     // public GameObject NPCUI;
     public GameObject ControllerUI;
+    // TODO: fix drop thing wyatt please help I can't remember
     private InputAction walkAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/F");
     private InputAction dropItemAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/G");
     private InputAction rotateInventoryAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/R");
@@ -188,7 +189,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private Vector3 positionBeforeDialogue;
-    private Quaternion rotationBeforeDialogue; 
+    private Quaternion rotationBeforeDialogue;
 
     private void EnterNPCDialogue(Transform npcTransform)
     {
@@ -204,7 +205,6 @@ public class PlayerController : MonoBehaviour
 
     private void ExitNPCDialogue()
     {
-        //NPCUI.SetActive(false);
         ControllerUI.SetActive(true);
         // SetFixedPosition(new Vector3(transform.position.x - 5, transform.position.y, transform.position.z - 5));
         transform.position = positionBeforeDialogue;
@@ -240,11 +240,6 @@ public class PlayerController : MonoBehaviour
             StopFlight();
             StartWalk();
             cameraController.isWalking = true;
-        }
-        // TODO (Jakob) : the NPC also registers this event - figure out how to consolidate
-        else if (other.CompareTag("NPC"))
-        {
-
         }
         else if (flightController.enabled)
         {

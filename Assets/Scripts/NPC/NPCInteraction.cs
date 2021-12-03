@@ -51,27 +51,13 @@ public class NPCInteraction : MonoBehaviour
 
     private void OnEnable()
     {
-        // OnNPCInteractEvent += EnterDialogue;
-        // OnNPCInteractEvent += ApplyTheme;
-
         npcInteractAction.performed += ctx => TryEnterDialogue();
         npcInteractAction.Enable();
     }
     private void OnDisable()
     {
-        // OnNPCInteractEvent -= EnterDialogue;
-        // OnNPCInteractEvent -= ApplyTheme;
-
         npcInteractAction.Disable();
     }
-
-    // private void OnTriggerEnter(Collider other)
-    // {
-    //     if (other.CompareTag("Player"))
-    //     {
-    //         OnNPCInteractEvent?.Invoke();
-    //     }
-    // }
 
     private void TryEnterDialogue() 
     {
@@ -91,7 +77,8 @@ public class NPCInteraction : MonoBehaviour
             {
                 currentDialogue = dialogue;
                 EnableButtons();
-                bodyText.text = currentDialogue.Text;
+                //bodyText.text = currentDialogue.Text;
+                StartCoroutine(TypeBodyText());
                 npcUI.SetActive(true);
                 break;
             }
@@ -105,6 +92,8 @@ public class NPCInteraction : MonoBehaviour
         TextMeshProUGUI btnTmpGUI = button.GetComponentInChildren<TextMeshProUGUI>();
         string text = btnTmpGUI.text;
 
+        StopCoroutine(TypeBodyText());
+
         foreach (DSDialogueChoiceData choice in currentDialogue.Choices)
         {
             if (text.Equals(choice.Text) || text.Equals(CONTINUE))
@@ -116,10 +105,23 @@ public class NPCInteraction : MonoBehaviour
                     break;
                 }
                 currentDialogue = choice.NextDialogue;
-                this.bodyText.text = currentDialogue.Text;
+                //bodyText.text = currentDialogue.Text;
+                StartCoroutine(TypeBodyText());
                 EnableButtons();
                 break;
             }
+        }
+    }
+
+    // TODO (Jakob) : handle words that break a line
+    private IEnumerator TypeBodyText()
+    {
+        string dialogue = currentDialogue.Text;
+        bodyText.text = string.Empty;
+        foreach (char c in dialogue)
+        {
+            bodyText.text += c;
+            yield return new WaitForSeconds(0.035f);
         }
     }
 
@@ -133,7 +135,7 @@ public class NPCInteraction : MonoBehaviour
 
     private void EnableButtons()
     {
-        if (currentDialogue.Choices.Count == 1)
+        if (currentDialogue.DSDialogueType == DSDialogueType.SingleChoice)
         {
             buttonList[0].SetActive(true);
             buttonList[0].GetComponentInChildren<TextMeshProUGUI>().text = CONTINUE;
