@@ -77,7 +77,8 @@ public class NPCInteraction : MonoBehaviour
             {
                 currentDialogue = dialogue;
                 EnableButtons();
-                bodyText.text = currentDialogue.Text;
+                //bodyText.text = currentDialogue.Text;
+                StartCoroutine(TypeBodyText());
                 npcUI.SetActive(true);
                 break;
             }
@@ -102,10 +103,23 @@ public class NPCInteraction : MonoBehaviour
                     break;
                 }
                 currentDialogue = choice.NextDialogue;
-                bodyText.text = currentDialogue.Text;
+                //bodyText.text = currentDialogue.Text;
+                StartCoroutine(TypeBodyText());
                 EnableButtons();
                 break;
             }
+        }
+    }
+
+    // TODO (Jakob) : handle words that break a line
+    private IEnumerator TypeBodyText()
+    {
+        string dialogue = currentDialogue.Text;
+        bodyText.text = string.Empty;
+        foreach (char c in dialogue)
+        {
+            bodyText.text += c;
+            yield return new WaitForSeconds(0.035f);
         }
     }
 

@@ -106,6 +106,7 @@ public class PlayerController : MonoBehaviour
             inventory.DropItem(this.transform.position + offset, inventory.itemList[0]);
         }
     }
+
     /// <summary>
     /// Rotates the inventory to the left by one
     /// </summary>
@@ -158,9 +159,10 @@ public class PlayerController : MonoBehaviour
         walkingController.enabled = true;
         cameraController.isWalking = true;
         flightController.HideTrail();
-        if (walkingController.Splashing == true) {
-        birdAnimator.SetBool("isSwim", true);
-        birdAnimator.SetBool("isWalking", false);
+        if (walkingController.Splashing == true) 
+        {
+            birdAnimator.SetBool("isSwim", true);
+            birdAnimator.SetBool("isWalking", false);
         }
        else if(walkingController.Splashing == false)
         {
@@ -182,8 +184,6 @@ public class PlayerController : MonoBehaviour
 
     public void ResetToWalk()
     {
-        //StopFlight();
-        //StartWalk();
         cameraController.isWalking = true;
     }
 
@@ -194,6 +194,7 @@ public class PlayerController : MonoBehaviour
     {
         StopFlight();
         StopWalk();
+        flightController.HideTrail(); // maybe move trail rendering out of fly/walk calls?
         Vector3 npcFront = npcTransform.position + npcTransform.forward * 4.0f;
         positionBeforeDialogue = transform.position;
         rotationBeforeDialogue = transform.rotation;
