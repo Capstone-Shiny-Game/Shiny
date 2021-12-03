@@ -67,42 +67,34 @@ public class Inventory
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    /// <summary>
-    /// changes the currently selected item 1 slot to the left, wraps around if out of bounds
-    /// </summary>
-    public void moveSelectionLeft()
-    {
-        selectionIndex--;
-        normalizeSelection();
-        // Update UI (can be optimized if needed by adding another event for updating only selection)
-        OnItemListChanged?.Invoke(this, EventArgs.Empty); 
-    }
+
     /// <summary>
     /// changes the currently selected item 1 slot to the right, wraps around if out of bounds
     /// </summary>
-    public void moveSelectionRight()
+    public void MoveSelectionRight()
     {
         selectionIndex++;
-        normalizeSelection();
+        NormalizeSelection();
         // Update UI (can be optimized if needed by adding another event for updating only selection)
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }
     /// <summary>
     /// makes sure the selecion is within bounds of the inventory
     /// </summary>
-    private void normalizeSelection() {
-        if (itemList.Count == 0) {
+    private void NormalizeSelection()
+    {
+        if (itemList.Count == 0)
+        {
             selectionIndex = 0;
             return;
         }
         selectionIndex %= itemList.Count;
-
     }
 
     /// <summary>
     /// returns the currently selected item
     /// </summary>
-    public Item getSelectedItem()
+    public Item GetSelectedItem()
     {
         return itemList[selectionIndex];
     }
@@ -165,7 +157,7 @@ public class Inventory
                 itemList.Remove(item);
             }
         }
-        normalizeSelection();
+        NormalizeSelection();
         // Update UI
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
         return true;
