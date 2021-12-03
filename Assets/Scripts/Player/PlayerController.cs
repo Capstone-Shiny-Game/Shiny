@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Drops the first item in the inventory.
     /// </summary>
-    private void DropItLikeItsHot()
+    public void DropItLikeItsHot()
     {
         if (inventory.itemList.Count == 0)
         {
@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Rotates the inventory to the left by one
     /// </summary>
-    private void RotateInventory()
+    public void RotateInventory()
     {
         inventory.RotateItems();
     }
@@ -122,13 +122,6 @@ public class PlayerController : MonoBehaviour
 
         walkAction.performed += ctx => ToggleFlight();
         walkAction.Enable();
-
-        dropItemAction.performed += ctx => DropItLikeItsHot();
-        dropItemAction.Enable();
-
-        rotateInventoryAction.performed += ctx => RotateInventory();
-        rotateInventoryAction.Enable();
-
     }
 
     private void OnDisable()
@@ -137,8 +130,6 @@ public class PlayerController : MonoBehaviour
         NPCInteraction.OnNPCInteractEndEvent -= ExitNPCDialogue;
 
         walkAction.Disable();
-        dropItemAction.Disable();
-        rotateInventoryAction.Disable();
     }
 
     private void StartFlight()

@@ -72,6 +72,7 @@ public class InputController : MonoBehaviour
 
         PlayerInput.FlightMap.ToggleFirstPerson.performed += OnToggleFirstPerson;
 
+        PlayerInput.GUIMap.Enable();
         PlayerInput.GUIMap.PauseMenu.performed += OnPause;
         PlayerInput.GUIMap.DropItem.performed += OnDrop;
         PlayerInput.GUIMap.RotateSelection.performed += OnRotateSelection;
@@ -81,6 +82,7 @@ public class InputController : MonoBehaviour
     public void OnDisable()
     {
         PlayerInput.FlightMap.Disable();
+        PlayerInput.GUIMap.Disable();
     }
 
     private void OnToggleFirstPerson(InputAction.CallbackContext context)
