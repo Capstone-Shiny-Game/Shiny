@@ -66,7 +66,7 @@ public class UI_inventory : MonoBehaviour
 
         }
 
-        UpdateUISelection();
+        //UpdateUISelection();
 
     }
 

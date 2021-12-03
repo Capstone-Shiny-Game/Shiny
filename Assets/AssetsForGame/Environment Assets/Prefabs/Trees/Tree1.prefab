@@ -46,15 +46,15 @@ LODGroup:
   serializedVersion: 2
   m_LocalReferencePoint: {x: 0.7080929, y: 4.4041424, z: 0.57501984}
   m_Size: 8.834694
-  m_FadeMode: 1
+  m_FadeMode: 0
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.29142234
+  - screenRelativeHeight: 0.09947704
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 6885614203468891245}
-  - screenRelativeHeight: 0.12572052
+  - screenRelativeHeight: 0.06977607
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 51429802726263523}
@@ -75,7 +75,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.3, y: 3, z: 0.3}
-  m_Center: {x: 1.2, y: 1.45, z: 0}
+  m_Center: {x: -0.5, y: 1.45, z: 0}
 --- !u!208 &4944870824621034361
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -90,7 +90,7 @@ NavMeshObstacle:
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
-  m_Center: {x: 1.2, y: 1.45, z: 0}
+  m_Center: {x: -0.5, y: 1.45, z: 0}
   m_TimeToStationary: 0.5
 --- !u!1001 &1690858134374749799
 PrefabInstance:
