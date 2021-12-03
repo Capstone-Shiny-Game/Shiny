@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour
             Vector3 pos = transform.position;
             pos.y += addY;
             transform.position = pos;
+            transform.RotateAround(transform.position, transform.right, -30);
             birdAnimator.SetBool("WalktoFly", true);
             StartFlight();
         }
