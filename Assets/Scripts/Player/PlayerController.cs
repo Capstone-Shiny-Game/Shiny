@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Drops the first item in the inventory.
     /// </summary>
-    private void DropItLikeItsHot()
+    public void DropItLikeItsHot()
     {
         if (inventory.itemList.Count == 0)
         {
@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Rotates the inventory to the left by one
     /// </summary>
-    private void RotateInventory()
+    public void RotateInventory()
     {
         inventory.RotateItems();
     }
@@ -153,11 +153,12 @@ public class PlayerController : MonoBehaviour
         walkingController.enabled = true;
         cameraController.isWalking = true;
         flightController.HideTrail();
-        if (walkingController.Splashing == true) {
-        birdAnimator.SetBool("isSwim", true);
-        birdAnimator.SetBool("isWalking", false);
+        if (walkingController.Splashing == true)
+        {
+            birdAnimator.SetBool("isSwim", true);
+            birdAnimator.SetBool("isWalking", false);
         }
-       else if(walkingController.Splashing == false)
+        else if (walkingController.Splashing == false)
         {
             birdAnimator.SetBool("isSwim", false);
             birdAnimator.SetBool("isWalking", true);
@@ -241,7 +242,8 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 bouncedUp = transform.position + (transform.up * 5);
             Collider[] colliders = Physics.OverlapSphere(bouncedUp, transform.localScale.magnitude);
-            bool collided = colliders.Any(collider => {
+            bool collided = colliders.Any(collider =>
+            {
                 if (collider.isTrigger)
                     return false;
 
