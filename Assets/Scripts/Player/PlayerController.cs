@@ -238,7 +238,7 @@ public class PlayerController : MonoBehaviour
             StartWalk();
             cameraController.isWalking = true;
         }
-        else if (flightController.enabled)
+        else if (flightController.enabled && !other.isTrigger)
         {
             Vector3 bouncedUp = transform.position + (transform.up * 5);
             Collider[] colliders = Physics.OverlapSphere(bouncedUp, transform.localScale.magnitude);
