@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private CameraController cameraController;
     // public GameObject NPCUI;
     public GameObject ControllerUI;
+    // TODO: fix drop thing wyatt please help I can't remember
     private InputAction walkAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/F");
     private InputAction dropItemAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/G");
     private InputAction rotateInventoryAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/R");
@@ -87,7 +88,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Drops the first item in the inventory.
     /// </summary>
-    public void DropItLikeItsHot()
+    private void DropItLikeItsHot()
     {
         if (inventory.itemList.Count == 0)
         {
@@ -106,11 +107,10 @@ public class PlayerController : MonoBehaviour
             inventory.DropItem(this.transform.position + offset, inventory.itemList[0]);
         }
     }
-
     /// <summary>
     /// Rotates the inventory to the left by one
     /// </summary>
-    public void RotateInventory()
+    private void RotateInventory()
     {
         inventory.RotateItems();
     }
@@ -122,6 +122,13 @@ public class PlayerController : MonoBehaviour
 
         walkAction.performed += ctx => ToggleFlight();
         walkAction.Enable();
+
+        dropItemAction.performed += ctx => DropItLikeItsHot();
+        dropItemAction.Enable();
+
+        rotateInventoryAction.performed += ctx => RotateInventory();
+        rotateInventoryAction.Enable();
+
     }
 
     private void OnDisable()
@@ -130,6 +137,8 @@ public class PlayerController : MonoBehaviour
         NPCInteraction.OnNPCInteractEndEvent -= ExitNPCDialogue;
 
         walkAction.Disable();
+        dropItemAction.Disable();
+        rotateInventoryAction.Disable();
     }
 
     private void StartFlight()
@@ -150,10 +159,9 @@ public class PlayerController : MonoBehaviour
         walkingController.enabled = true;
         cameraController.isWalking = true;
         flightController.HideTrail();
-        if (walkingController.Splashing == true) 
-        {
-            birdAnimator.SetBool("isSwim", true);
-            birdAnimator.SetBool("isWalking", false);
+        if (walkingController.Splashing == true) {
+        birdAnimator.SetBool("isSwim", true);
+        birdAnimator.SetBool("isWalking", false);
         }
        else if(walkingController.Splashing == false)
         {
@@ -175,17 +183,18 @@ public class PlayerController : MonoBehaviour
 
     public void ResetToWalk()
     {
+        //StopFlight();
+        //StartWalk();
         cameraController.isWalking = true;
     }
 
     private Vector3 positionBeforeDialogue;
-    private Quaternion rotationBeforeDialogue; 
+    private Quaternion rotationBeforeDialogue;
 
     private void EnterNPCDialogue(Transform npcTransform)
     {
         StopFlight();
         StopWalk();
-        flightController.HideTrail(); // maybe move trail rendering out of fly/walk calls?
         Vector3 npcFront = npcTransform.position + npcTransform.forward * 4.0f;
         positionBeforeDialogue = transform.position;
         rotationBeforeDialogue = transform.rotation;
@@ -203,18 +212,16 @@ public class PlayerController : MonoBehaviour
         StartWalk();
     }
 
-    // TODO : remove or fold bouncing into below
-    /*
     private void OnCollisionEnter(Collision collision)
     {
+        // TODO : this is never used; it should either be removed or subsituted for the collision handling below
         Debug.Log("BOUNCE");
-        if (collision.gameObject.CompareTag("Terrain"))
-        {
-            Vector3 norm = collision.GetContact(0).normal;
-            StartCoroutine(flightController.BounceOnCollision(norm));
-        }
+        //if (collision.gameObject.CompareTag("Terrain"))
+        //{
+        Vector3 norm = collision.GetContact(0).normal;
+        StartCoroutine(flightController.BounceOnCollision(norm));
+        //}
     }
-    */
 
     private void OnTriggerEnter(Collider other)
     {
@@ -250,19 +257,14 @@ public class PlayerController : MonoBehaviour
             });
 
             if (!collided)
+            {
                 transform.position = bouncedUp;
+            }
             else
             {
-                transform.position -= transform.forward * 2;
-                // TODO : make less cursed
-                if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 50))
-                {
-                    float turn = 45 * Mathf.Sign(Vector3.SignedAngle(
-                        Vector3.ProjectOnPlane(transform.forward, Vector3.up),
-                        Vector3.ProjectOnPlane(hit.normal, Vector3.up),
-                        transform.up));
-                    transform.RotateAround(transform.position, Vector3.up, turn);
-                }
+                transform.position -= transform.forward;
+                // TODO : instead of always going right, go the way the crow has to turn less
+                transform.RotateAround(transform.position, transform.up, 30);
             }
 
             StartCoroutine(flightController.Slow());

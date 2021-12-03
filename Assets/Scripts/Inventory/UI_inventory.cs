@@ -8,18 +8,12 @@ using System;
 public class UI_inventory : MonoBehaviour
 {
     private Inventory inventory;
-    private Transform itemSlotContainer;
-    private Transform itemSlotTemplate;
+    public Transform itemSlotContainer;
+    public Transform itemSlotTemplate;
     public float itemSlotCellSize = 30f;
     public float selectedItemSize = 60f;
     public float nextItemSize = 30f;
     public int slotsPerRow = 4;
-
-    private void OnEnable()
-    {
-        itemSlotContainer = transform.Find("itemSlotContainer");
-        itemSlotTemplate = itemSlotContainer.Find("itemSlotTemplate"); ;
-    }
 
     public void SetInventory(Inventory inv)
     {
@@ -31,12 +25,10 @@ public class UI_inventory : MonoBehaviour
 
     private void Inventory_OnItemListChanged(object sender, System.EventArgs e)
     {
-        RefreshHotbarItems();
-    }
-
-    private void UpdateUISelection()
-    {
-        //TODO : make this lol
+        if (this.enabled == true)
+        {
+            RefreshHotbarItems();
+        }
     }
 
     private void RefreshInventoryItems()
@@ -127,11 +119,9 @@ public class UI_inventory : MonoBehaviour
     /// </summary>
     private void ClearInventory()
     {
-        Debug.Log("before ");
         // destroy old ui elements to avoid duplicates
         foreach (Transform child in itemSlotContainer)
         {
-            Debug.Log("during");
             if (child == itemSlotTemplate)
             {
                 // don't destroy the template
@@ -139,6 +129,5 @@ public class UI_inventory : MonoBehaviour
             }
             Destroy(child.gameObject);
         }
-        Debug.Log("after");
     }
 }

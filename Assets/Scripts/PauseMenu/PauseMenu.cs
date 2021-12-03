@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] GameObject pauseMenu;
     private GameObject uiInventory;
 
     private void Start()
@@ -22,10 +21,16 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f; // set time back to normal
     }
 
-    public void Home(int SceneID)
+    public void LoadMainMenu()
     {
         Time.timeScale = 1f; // set time back to normal
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ReloadScene()
+    {
+        Time.timeScale = 1f; // set time back to normal
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void OpenInventory()

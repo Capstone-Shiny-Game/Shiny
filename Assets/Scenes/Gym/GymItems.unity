@@ -313,11 +313,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
---- !u!1 &351523057 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1925263175131101425, guid: 75b1bd4d28156e04c9cc923d4d88f873, type: 3}
-  m_PrefabInstance: {fileID: 395458598}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &395458598
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -328,10 +323,6 @@ PrefabInstance:
     - target: {fileID: 4180478959496027110, guid: 75b1bd4d28156e04c9cc923d4d88f873, type: 3}
       propertyPath: m_Name
       value: HotBar
-      objectReference: {fileID: 0}
-    - target: {fileID: 4776231310390553782, guid: 75b1bd4d28156e04c9cc923d4d88f873, type: 3}
-      propertyPath: m_ControlPath
-      value: <Gamepad>/start
       objectReference: {fileID: 0}
     - target: {fileID: 8778734579908224427, guid: 75b1bd4d28156e04c9cc923d4d88f873, type: 3}
       propertyPath: m_Pivot.x
@@ -1658,6 +1649,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1681128465 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1021753355436380455, guid: 75b1bd4d28156e04c9cc923d4d88f873, type: 3}
+  m_PrefabInstance: {fileID: 395458598}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1715174034
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1901,7 +1897,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: PauseHandler.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: PauseHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: PauseHandler.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
@@ -1911,13 +1915,25 @@ PrefabInstance:
     - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: PauseHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 351523057}
+      objectReference: {fileID: 1681128465}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: PauseHandler.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 880833714}
     - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: DropHandler.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: DropItLikeItsHot
       objectReference: {fileID: 0}
     - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: PauseHandler.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: PauseHandler.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: PauseHandler.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
@@ -1937,8 +1953,16 @@ PrefabInstance:
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: PauseHandler.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: PauseHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: PauseHandler.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: RotateSelectionHandler.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1950,6 +1974,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: PauseHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: PauseHandler.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
