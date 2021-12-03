@@ -227,9 +227,25 @@
             "id": "0813bbc5-9e26-4810-9dfa-abdb60148828",
             "actions": [
                 {
-                    "name": "Settings",
+                    "name": "PauseMenu",
                     "type": "Button",
                     "id": "088ffe75-0272-42d9-b31e-2a1b7117d700",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "DropItem",
+                    "type": "Button",
+                    "id": "04d33bb1-4b2d-481b-b5eb-0c71faa42ac9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "RotateSelection",
+                    "type": "Button",
+                    "id": "7113ddf8-b1df-495e-a333-de949a7be5cc",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -243,7 +259,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Settings",
+                    "action": "PauseMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -254,7 +270,51 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Settings",
+                    "action": "PauseMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "423dde94-1fab-4918-85aa-ad9e4e802a38",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DropItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "90e035dc-8f42-498e-a73a-bcf1246da425",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DropItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "83f70623-8a84-4124-8fcc-383d54df5cec",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateSelection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "26a64350-37fd-449a-82ae-706c284662d1",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateSelection",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

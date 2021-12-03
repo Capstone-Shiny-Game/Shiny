@@ -240,9 +240,25 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
             ""id"": ""0813bbc5-9e26-4810-9dfa-abdb60148828"",
             ""actions"": [
                 {
-                    ""name"": ""Settings"",
+                    ""name"": ""PauseMenu"",
                     ""type"": ""Button"",
                     ""id"": ""088ffe75-0272-42d9-b31e-2a1b7117d700"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""DropItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""04d33bb1-4b2d-481b-b5eb-0c71faa42ac9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""RotateSelection"",
+                    ""type"": ""Button"",
+                    ""id"": ""7113ddf8-b1df-495e-a333-de949a7be5cc"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -256,7 +272,7 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Settings"",
+                    ""action"": ""PauseMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -267,7 +283,51 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Settings"",
+                    ""action"": ""PauseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""423dde94-1fab-4918-85aa-ad9e4e802a38"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DropItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""90e035dc-8f42-498e-a73a-bcf1246da425"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DropItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""83f70623-8a84-4124-8fcc-383d54df5cec"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateSelection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""26a64350-37fd-449a-82ae-706c284662d1"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RotateSelection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -286,7 +346,9 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
         m_FlightMap_LockCursor = m_FlightMap.FindAction("LockCursor", throwIfNotFound: true);
         // GUIMap
         m_GUIMap = asset.FindActionMap("GUIMap", throwIfNotFound: true);
-        m_GUIMap_Settings = m_GUIMap.FindAction("Settings", throwIfNotFound: true);
+        m_GUIMap_PauseMenu = m_GUIMap.FindAction("PauseMenu", throwIfNotFound: true);
+        m_GUIMap_DropItem = m_GUIMap.FindAction("DropItem", throwIfNotFound: true);
+        m_GUIMap_RotateSelection = m_GUIMap.FindAction("RotateSelection", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -409,12 +471,16 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
     // GUIMap
     private readonly InputActionMap m_GUIMap;
     private IGUIMapActions m_GUIMapActionsCallbackInterface;
-    private readonly InputAction m_GUIMap_Settings;
+    private readonly InputAction m_GUIMap_PauseMenu;
+    private readonly InputAction m_GUIMap_DropItem;
+    private readonly InputAction m_GUIMap_RotateSelection;
     public struct GUIMapActions
     {
         private @PlayerControllerInput m_Wrapper;
         public GUIMapActions(@PlayerControllerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Settings => m_Wrapper.m_GUIMap_Settings;
+        public InputAction @PauseMenu => m_Wrapper.m_GUIMap_PauseMenu;
+        public InputAction @DropItem => m_Wrapper.m_GUIMap_DropItem;
+        public InputAction @RotateSelection => m_Wrapper.m_GUIMap_RotateSelection;
         public InputActionMap Get() { return m_Wrapper.m_GUIMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -424,16 +490,28 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_GUIMapActionsCallbackInterface != null)
             {
-                @Settings.started -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnSettings;
-                @Settings.performed -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnSettings;
-                @Settings.canceled -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnSettings;
+                @PauseMenu.started -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnPauseMenu;
+                @PauseMenu.performed -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnPauseMenu;
+                @PauseMenu.canceled -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnPauseMenu;
+                @DropItem.started -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnDropItem;
+                @DropItem.performed -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnDropItem;
+                @DropItem.canceled -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnDropItem;
+                @RotateSelection.started -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnRotateSelection;
+                @RotateSelection.performed -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnRotateSelection;
+                @RotateSelection.canceled -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnRotateSelection;
             }
             m_Wrapper.m_GUIMapActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Settings.started += instance.OnSettings;
-                @Settings.performed += instance.OnSettings;
-                @Settings.canceled += instance.OnSettings;
+                @PauseMenu.started += instance.OnPauseMenu;
+                @PauseMenu.performed += instance.OnPauseMenu;
+                @PauseMenu.canceled += instance.OnPauseMenu;
+                @DropItem.started += instance.OnDropItem;
+                @DropItem.performed += instance.OnDropItem;
+                @DropItem.canceled += instance.OnDropItem;
+                @RotateSelection.started += instance.OnRotateSelection;
+                @RotateSelection.performed += instance.OnRotateSelection;
+                @RotateSelection.canceled += instance.OnRotateSelection;
             }
         }
     }
@@ -449,6 +527,8 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
     }
     public interface IGUIMapActions
     {
-        void OnSettings(InputAction.CallbackContext context);
+        void OnPauseMenu(InputAction.CallbackContext context);
+        void OnDropItem(InputAction.CallbackContext context);
+        void OnRotateSelection(InputAction.CallbackContext context);
     }
 }

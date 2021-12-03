@@ -18,6 +18,12 @@ public class FlightBrakeEvent : UnityEvent<bool> { }
 
 [Serializable]
 public class FlightBoostEvent : UnityEvent<bool> { }
+[Serializable]
+public class PauseEvent : UnityEvent { }
+[Serializable]
+public class DropEvent : UnityEvent { }
+[Serializable]
+public class RotateSelectionEvent : UnityEvent { }
 public class InputController : MonoBehaviour
 {
     //public GameObject cam;
@@ -33,6 +39,10 @@ public class InputController : MonoBehaviour
 
     public FlightBrakeEvent flightBrakeHandler;
     public FlightBoostEvent flightBoostHandler;
+
+    public PauseEvent PauseHandler;
+    public DropEvent DropHandler;
+    public RotateSelectionEvent RotateSelectionHandler;
 
     public FlightTogglePOVEvent flightTogglePOVHandler;
 
@@ -61,6 +71,10 @@ public class InputController : MonoBehaviour
         PlayerInput.FlightMap.Look.canceled += OnLookExit;
 
         PlayerInput.FlightMap.ToggleFirstPerson.performed += OnToggleFirstPerson;
+
+        PlayerInput.GUIMap.PauseMenu.performed += OnPause;
+        PlayerInput.GUIMap.DropItem.performed += OnDrop;
+        PlayerInput.GUIMap.RotateSelection.performed += OnRotateSelection;
 
     }
 
@@ -107,6 +121,22 @@ public class InputController : MonoBehaviour
     private void OnBoostExit(InputAction.CallbackContext context)
     {
         flightBoostHandler.Invoke(false);
+    }
+
+
+    private void OnPause(InputAction.CallbackContext context)
+    {
+        PauseHandler.Invoke();
+    }
+
+    private void OnDrop(InputAction.CallbackContext context)
+    {
+        DropHandler.Invoke();
+    }
+
+    private void OnRotateSelection(InputAction.CallbackContext context)
+    {
+        RotateSelectionHandler.Invoke();
     }
 
 
