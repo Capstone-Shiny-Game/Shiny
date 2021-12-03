@@ -31,6 +31,11 @@ public class UI_inventory : MonoBehaviour
         RefreshInventoryItems();
     }
 
+    private void UpdateUISelection()
+    {
+        //TODO : make this lol
+    }
+
     private void RefreshInventoryItems()
     {
         //destory old ui elements to avoid duplicates
@@ -42,7 +47,7 @@ public class UI_inventory : MonoBehaviour
             }
             Destroy(child.gameObject);
         }
-
+        
 
         int x = 0;
         int y = 0;
@@ -74,6 +79,8 @@ public class UI_inventory : MonoBehaviour
             }
 
         }
+
+        UpdateUISelection();
 
     }
 }
