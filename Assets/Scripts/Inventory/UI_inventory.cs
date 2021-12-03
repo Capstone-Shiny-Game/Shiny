@@ -20,99 +20,61 @@ public class UI_inventory : MonoBehaviour
         inventory = inv;
 
         inventory.OnItemListChanged += Inventory_OnItemListChanged;
-        RefreshHotbarItems();
+        if (this.enabled == true)
+        {
+            RefreshInventoryItems();
+        }
     }
 
     private void Inventory_OnItemListChanged(object sender, System.EventArgs e)
     {
         if (this.enabled == true)
         {
-            RefreshHotbarItems();
+            RefreshInventoryItems();
+        }
+    }
+
+    public static void fillTemplate(RectTransform templateRectTransform, Item item) {
+        templateRectTransform.gameObject.SetActive(true);
+        // find and set item image
+        Image image = templateRectTransform.Find("itemImage").GetComponent<Image>();
+        image.sprite = item.GetSprite();
+        // find and set text to display amount of items
+        TextMeshProUGUI uiText = templateRectTransform.Find("amountText").GetComponent<TextMeshProUGUI>();
+        if (item.amount > 1)
+        {
+            uiText.SetText(item.amount.ToString());
+        }
+        else
+        {
+            uiText.SetText("");
         }
     }
 
     private void RefreshInventoryItems()
     {
-        return;
-    }
-
-    private void RefreshHotbarItems()
-    {
         ClearInventory();
 
-        for (int i = 0; i < Math.Min(inventory.itemList.Count, 2); i++)
+        int x = 0;
+        int y = 0;
+        foreach (Item item in inventory.itemList)
         {
-            Item item = inventory.itemList[i];
-
             // instantiate template
             RectTransform itemSlotRectTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();
-            itemSlotRectTransform.gameObject.SetActive(true);
-            // find and set item image
-            Image image = itemSlotRectTransform.Find("itemImage").GetComponent<Image>();
-            image.sprite = item.GetSprite();
-            // find and set text to display amount of items
-            TextMeshProUGUI uiText = itemSlotRectTransform.Find("amountText").GetComponent<TextMeshProUGUI>();
-            if (item.amount > 1)
-            {
-                uiText.SetText(item.amount.ToString());
-            }
-            else
-            {
-                uiText.SetText("");
-            }
+
+            fillTemplate(itemSlotRectTransform, item);
             // item slots in grid array
-            itemSlotRectTransform.anchoredPosition = new Vector2(i * itemSlotCellSize, 0f);
+            itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, -y * itemSlotCellSize);
             // go to next position
-
+            x++;
+            // reached end of row, return to start
+            if (x >= slotsPerRow)
+            {
+                x = 0;
+                y++;
+            }
         }
-
-        //UpdateUISelection();
-
     }
-
-    // private void RefreshInventoryItems()
-    // {
-    //     ClearInventory();
-
-    //     int x = 0;
-    //     int y = 0;
-    //     for (int i = 0; i < inventory.itemList.Count; i++)
-    //     {
-    //         if (i >= 2)
-    //         {
-    //             break;
-    //         }
-    //         Item item = inventory.itemList[i];
-
-    //         // instantiate template
-    //         RectTransform itemSlotRectTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();
-    //         itemSlotRectTransform.gameObject.SetActive(true);
-    //         // find and set item image
-    //         Image image = itemSlotRectTransform.Find("itemImage").GetComponent<Image>();
-    //         image.sprite = item.GetSprite();
-    //         // find and set text to display amount of items
-    //         TextMeshProUGUI uiText = itemSlotRectTransform.Find("amountText").GetComponent<TextMeshProUGUI>();
-    //         if (item.amount > 1)
-    //         {
-    //             uiText.SetText(item.amount.ToString());
-    //         }
-    //         else
-    //         {
-    //             uiText.SetText("");
-    //         }
-    //         // item slots in grid array
-    //         itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, -y * itemSlotCellSize);
-    //         // go to next position
-    //         x++;
-    //         // reached end of row, return to start
-    //         if (x >= slotsPerRow)
-    //         {
-    //             x = 0;
-    //             y++;
-    //         }
-    //     }
-    //     UpdateUISelection();
-    // }
 
     /// <summary>
     /// Clears out all instantiated sprites
