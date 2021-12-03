@@ -9,6 +9,7 @@ public class Inventory
     public List<Item> itemList { get; private set; }
     public int maxItemCount = 8;
     public double weight { get; private set; }
+    public int selectionIndex { get; private set; }
 
 
     /// <summary>
@@ -18,6 +19,7 @@ public class Inventory
     {
         itemList = new List<Item>();
         weight = 0;
+        selectionIndex = 0;
     }
 
     /// <summary>
@@ -63,6 +65,38 @@ public class Inventory
         itemList.RemoveAt(0);
         itemList.Add(first);
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+
+    /// <summary>
+    /// changes the currently selected item 1 slot to the right, wraps around if out of bounds
+    /// </summary>
+    public void MoveSelectionRight()
+    {
+        selectionIndex++;
+        NormalizeSelection();
+        // Update UI (can be optimized if needed by adding another event for updating only selection)
+        OnItemListChanged?.Invoke(this, EventArgs.Empty);
+    }
+    /// <summary>
+    /// makes sure the selecion is within bounds of the inventory
+    /// </summary>
+    private void NormalizeSelection()
+    {
+        if (itemList.Count == 0)
+        {
+            selectionIndex = 0;
+            return;
+        }
+        selectionIndex %= itemList.Count;
+    }
+
+    /// <summary>
+    /// returns the currently selected item
+    /// </summary>
+    public Item GetSelectedItem()
+    {
+        return itemList[selectionIndex];
     }
 
     /// <summary>
@@ -123,6 +157,7 @@ public class Inventory
                 itemList.Remove(item);
             }
         }
+        NormalizeSelection();
         // Update UI
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
         return true;
