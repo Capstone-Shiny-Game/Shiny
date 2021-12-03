@@ -92,6 +92,8 @@ public class NPCInteraction : MonoBehaviour
         TextMeshProUGUI btnTmpGUI = button.GetComponentInChildren<TextMeshProUGUI>();
         string text = btnTmpGUI.text;
 
+        StopCoroutine(TypeBodyText());
+
         foreach (DSDialogueChoiceData choice in currentDialogue.Choices)
         {
             if (text.Equals(choice.Text) || text.Equals(CONTINUE))
