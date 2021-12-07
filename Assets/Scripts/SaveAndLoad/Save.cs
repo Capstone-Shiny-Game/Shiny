@@ -8,30 +8,28 @@ public class Save
     public struct SaveData
     {
         private Inventory playerinventory;
-        private int playerLevel;
-        private int playerExp;
-        private List<int> enemyHealthList;
 
-        public SaveData(Inventory playerinventory, int playerLevel, int playerExp,
-            List<int> enemyHealthList)
-        {
-            this.playerinventory = playerinventory;
-            this.playerLevel = playerLevel;
-            this.playerExp = playerExp;
-            this.enemyHealthList = enemyHealthList;
-        }
     }
     //static List<Savable> savables;
 
     public void SaveDataJson(string filename) 
     {
+        SaveData saveData = new SaveData();
         string filepath = ConstructFilePath(filename);
-        // for each savable call their save function and add the returned object to a list
+        foreach (Savable savableobj in Savable.savables) {
+            savableobj.GetSaveData(saveData);
+        }
+        WriteToFile(filepath, saveData);
+
     }
     public void LoadDataJson(string filename)
     {
         string filepath = ConstructFilePath(filename);
-        
+        SaveData saveData = ReadFromFile(filepath);
+        foreach (Savable savableobj in Savable.savables)
+        {
+            savableobj.LoadData(saveData);
+        }
     }
 
     /// <summary>

@@ -8,9 +8,9 @@ public abstract class Savable
 
     public Savable() {
         savables.Add(this);
-    }
+    }//requires testing
 
-    public abstract void GetSaveData();
+    public abstract void GetSaveData(Save.SaveData saveData);
 
-    public abstract void LoadData();
+    public abstract void LoadData(Save.SaveData saveData);
 }
