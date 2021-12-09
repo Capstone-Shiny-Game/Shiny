@@ -7,10 +7,11 @@ using UnityEngine;
 public class Inventory
 {
     public event EventHandler OnItemListChanged;
-    public List<Item> itemList { get; private set; }
+
+    [field: SerializeField, HideInInspector] public List<Item> itemList { get; private set; }
     public int maxItemCount = 8;
-    public double weight { get; private set; }
-    public int selectionIndex { get; private set; }
+    [field: SerializeField, HideInInspector] public double weight { get; private set; }
+    [field: SerializeField, HideInInspector] public int selectionIndex { get; private set; }
 
 
     /// <summary>

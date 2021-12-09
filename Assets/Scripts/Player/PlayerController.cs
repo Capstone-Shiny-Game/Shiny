@@ -50,12 +50,15 @@ public class PlayerController : MonoBehaviour, Savable
         walkingController.WalkedOffEdge += () => ToggleFlight(0.5f);
 
         // inventory initialization
-        inventory = new Inventory();
-        uiInventory.SetInventory(inventory);
-        uiHotbar.SetInventory(inventory);
-
+        SetInventory(new Inventory());
         //Save initialization
         AddSelfToSavablesList();
+    }
+
+    private void SetInventory(Inventory inventory) {
+        this.inventory = inventory;
+        uiInventory.SetInventory(inventory);
+        uiHotbar.SetInventory(inventory);
     }
 
     private void ToggleFlight(float addY = 2)
@@ -301,8 +304,7 @@ public class PlayerController : MonoBehaviour, Savable
     }
 
     public void LoadData(ref Save.SaveData saveData) {
-        inventory = saveData.playerinventory;
-
+        SetInventory(saveData.playerinventory);
         Debug.Log(inventory);
     }
 }
