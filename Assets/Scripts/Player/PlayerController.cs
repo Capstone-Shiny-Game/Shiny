@@ -51,6 +51,8 @@ public class PlayerController : MonoBehaviour, Savable
 
         // inventory initialization
         inventory = new Inventory();
+        uiInventory.SetInventory(inventory);
+        uiHotbar.SetInventory(inventory);
         // TODO : replace with GameObjects in the scene that have the attached scripts
         if (SceneManager.GetActiveScene().name == "GymItems")
         {
@@ -59,9 +61,9 @@ public class PlayerController : MonoBehaviour, Savable
             uiHotbar.SetInventory(inventory);
 
             float yPos = 10.3f;
-            ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 50f), new Item(Item.ItemType.shiny));
-            ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 40f), new Item(Item.ItemType.food));
-            ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 30f), new Item(Item.ItemType.potion));
+            // ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 50f), new Item(Item.ItemType.shiny));
+            // ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 40f), new Item(Item.ItemType.food));
+            // ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 30f), new Item(Item.ItemType.potion));
         }
     }
 

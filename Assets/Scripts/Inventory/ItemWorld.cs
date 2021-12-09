@@ -5,16 +5,17 @@ using UnityEngine;
 
 public class ItemWorld : MonoBehaviour
 {
-    public static ItemWorld SpawnItemWorld(Vector3 position, Item item)
+    public static ItemWorld SpawnItemWorld(GameObject spawnedObject, Vector3 position)
     {
-        Transform transform = Instantiate(ItemAssets.Instance.pfItemPickUpWorld, position, Quaternion.identity);
+        Transform transform = Instantiate(spawnedObject.transform, position, Quaternion.identity);
 
         ItemWorld itemWorld = transform.GetComponent<ItemWorld>();
-        itemWorld.SetItem(item);
+        //Item item = spawnedObject.GetComponent<Item>();
+        //itemWorld.SetItem(item);
 
         return itemWorld;
     }
-    private Item item;
+    public Item item;
     private MeshRenderer meshRenderer;
 
     private void Awake()
@@ -30,7 +31,7 @@ public class ItemWorld : MonoBehaviour
 
     internal void DestroySelf()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     public Item GetItem()

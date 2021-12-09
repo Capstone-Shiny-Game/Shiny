@@ -23,11 +23,11 @@ public class invTestPlayer : MonoBehaviour
         uiInventory.SetInventory(inventory);
 
         //testing stuffs below, to be deleted
-        ItemWorld.SpawnItemWorld(new Vector3(20, 2, 20), new Item(Item.ItemType.shiny));
-        ItemWorld.SpawnItemWorld(new Vector3(-20, 2, 20), new Item(Item.ItemType.food));
-        ItemWorld.SpawnItemWorld(new Vector3(0, 2, 20), new Item(Item.ItemType.potion));
-        ItemWorld.SpawnItemWorld(new Vector3(10, 2, 10), new Item(Item.ItemType.potion));
-        ItemWorld.SpawnItemWorld(new Vector3(-10, 2, 10), new Item(Item.ItemType.potion));
+        // ItemWorld.SpawnItemWorld(new Vector3(20, 2, 20), new Item(Item.ItemType.shiny));
+        // ItemWorld.SpawnItemWorld(new Vector3(-20, 2, 20), new Item(Item.ItemType.food));
+        // ItemWorld.SpawnItemWorld(new Vector3(0, 2, 20), new Item(Item.ItemType.potion));
+        // ItemWorld.SpawnItemWorld(new Vector3(10, 2, 10), new Item(Item.ItemType.potion));
+        // ItemWorld.SpawnItemWorld(new Vector3(-10, 2, 10), new Item(Item.ItemType.potion));
     }
 
     void Update()

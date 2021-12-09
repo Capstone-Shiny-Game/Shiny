@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 6893989219414503421}
   - component: {fileID: 7494980706387222616}
   - component: {fileID: 5757696507810485394}
+  - component: {fileID: 6768860129461300795}
+  - component: {fileID: 5019879575012466853}
   m_Layer: 0
-  m_Name: honey_prefab
+  m_Name: Honey_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6118014783114622279}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.949074, y: 5.77, z: -21.752424}
-  m_LocalScale: {x: 212.03511, y: 212.03511, z: 212.03511}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -81,3 +83,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6768860129461300795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6118014783114622279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5165012dacea594bbeac140cab2f53c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item:
+    itemType: 4
+    amount: 1
+    sprite: {fileID: 21300000, guid: d5dc703f5d875a14c83e588dcd20562b, type: 3}
+    prefab: {fileID: 6118014783114622279}
+--- !u!135 &5019879575012466853
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6118014783114622279}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.02
+  m_Center: {x: 0, y: -0.00016941084, z: -4.656613e-10}

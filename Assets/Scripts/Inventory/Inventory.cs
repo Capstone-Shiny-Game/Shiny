@@ -130,7 +130,8 @@ public class Inventory
             itemList.Remove(item);
             if (dropItem)
             {
-                ItemWorld.SpawnItemWorld(dropPosition, new Item(item.itemType, removeAmount));
+                item.prefab.transform.position = dropPosition;
+                item.prefab.SetActive(true);
             }
         }
         else
@@ -149,7 +150,9 @@ public class Inventory
             weight -= item.getStackWeight();
             if (dropItem)
             {
-                ItemWorld.SpawnItemWorld(dropPosition, new Item(item.itemType, removeAmount));
+                item.prefab.transform.position = dropPosition;
+                item.prefab.SetActive(true);
+                //ItemWorld.SpawnItemWorld(item.prefab, dropPosition);
             }
             inventoryItem.amount -= removeAmount;
             if (inventoryItem.amount <= 0)

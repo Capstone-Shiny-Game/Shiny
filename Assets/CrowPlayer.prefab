@@ -9965,13 +9965,14 @@ MonoBehaviour:
   birdAnimator: {fileID: 1789890149}
   ControllerUI: {fileID: 0}
   uiInventory: {fileID: 0}
+  uiHotbar: {fileID: 0}
   walkingOffset:
-    forward: 0
+    forward: 4
     up: 0
   flyingOffset:
     forward: 0
-    up: 0
-  maxCarryWeight: 0
+    up: -4
+  maxCarryWeight: 10
 --- !u!54 &8245471309187584260
 Rigidbody:
   m_ObjectHideFlags: 0
