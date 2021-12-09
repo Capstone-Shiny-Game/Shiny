@@ -7,6 +7,7 @@ public class Quest : MonoBehaviour
     public SerializableDictionary<GameObject, Vector3> questItemsAndPositions;
     public DSDialogueContainerSO dialogueContainer;
 
+    private GameObject interactButton;
     private BoxCollider interactionCollider;
     private List<GameObject> spawnedItems;
 
@@ -16,26 +17,42 @@ public class Quest : MonoBehaviour
     {
         interactionCollider = GetComponentInChildren<BoxCollider>();
         spawnedItems = new List<GameObject>();
-
-
-        StartQuest();
+        interactButton = GetComponentInChildren<BillboardFX>().gameObject;
     }
 
     void FixedUpdate()
     {
+        if (spawnedItems.Count <= 0)
+        {
+            return;
+        }
+
         if (interactionCollider.bounds.Contains(GameObject.FindGameObjectWithTag("Player").gameObject.transform.position)) // oof
         {
             if (CheckQuestItems())
             {
-                Debug.Log("Quest complete");
-                //DO THING
+                foreach (GameObject item in spawnedItems)
+                {
+                    Destroy(item);
+                }
+                spawnedItems.Clear();
+                interactButton.SetActive(true);
+                GetComponent<NPCInteraction>().dialogueContainer = dialogueContainer;
+                Destroy(this);
             }
         }
     }
 
-    private void StartQuest()
+    public void StartQuest()
     {
+        interactButton.SetActive(false);
         SpawnQuestItems();
+    }
+
+    public void resetList(GameObject item)
+    {
+        spawnedItems.Clear();
+        spawnedItems.Add(item);
     }
 
     private void SpawnQuestItems()

@@ -20,6 +20,7 @@ public class NPCInteraction : MonoBehaviour
     [Header("Objects")]
     public GameObject npcUI;
     public DSDialogueContainerSO dialogueContainer;
+    public GameObject objectToSpawn;
 
     private DSDialogueSO currentDialogue;
     private GameObject avatar;
@@ -31,10 +32,12 @@ public class NPCInteraction : MonoBehaviour
     private Coroutine typeBodyText;
 
     private readonly string CONTINUE = "Continue";
+    private readonly string WAIT = "Wait";
 
     private InputAction npcInteractAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/T");
 
     private BoxCollider interactionCollider;
+    private Quest quest;
 
     private void Start()
     {
@@ -43,6 +46,7 @@ public class NPCInteraction : MonoBehaviour
         nameText = bgImage.gameObject.transform.Find("NameDisplay").GetComponent<TextMeshProUGUI>();
         bodyText = bgImage.gameObject.transform.Find("TextDisplay").GetComponent<TextMeshProUGUI>();
         Transform buttons = npcUI.transform.Find("Buttons");
+        quest = GetComponent<Quest>();
         buttonList = new GameObject[3] {
             buttons.Find("Button3").gameObject,
             buttons.Find("Button2").gameObject,
@@ -61,7 +65,7 @@ public class NPCInteraction : MonoBehaviour
         npcInteractAction.Disable();
     }
 
-    private void TryEnterDialogue() 
+    private void TryEnterDialogue()
     {
         if (interactionCollider.bounds.Contains(GameObject.FindGameObjectWithTag("Player").gameObject.transform.position)) // oof
         {
@@ -100,12 +104,30 @@ public class NPCInteraction : MonoBehaviour
 
         foreach (DSDialogueChoiceData choice in currentDialogue.Choices)
         {
-            if (text.Equals(choice.Text) || text.Equals(CONTINUE))
+            if (choice.Text == WAIT)
+            {
+                //FADE
+                //SPAWN ITEM
+                if (objectToSpawn != null)
+                {
+                    ItemWorld.SpawnItemWorld(objectToSpawn, transform.position + new Vector3(2, 5, 0));
+                    objectToSpawn = null;
+                }
+                currentDialogue = choice.NextDialogue;
+                bodyText.text = currentDialogue.Text;
+                EnableButtons();
+                break;
+            }
+            else if (text.Equals(choice.Text) || text.Equals(CONTINUE))
             {
                 if (choice.NextDialogue == null)
                 {
                     npcUI.SetActive(false);
                     OnNPCInteractEndEvent();
+                    if (quest != null)
+                    {
+                        quest.StartQuest();
+                    }
                     break;
                 }
                 currentDialogue = choice.NextDialogue;

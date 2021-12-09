@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: WitchPotionDialogueGraph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: WitchPotionDialogue
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: 9b8cf447-11d4-4307-b17c-4c201d63f83c
+    <Name>k__BackingField: EnterNode
+    <Text>k__BackingField: "Excellent, these will do perfectly! Now hold still while
+      I take one of your feathers. \nI\u2019ll try and make this quick."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: bd648789-d959-4feb-b3f1-14348da49b9f
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 498, y: 273}
+  - <ID>k__BackingField: bd648789-d959-4feb-b3f1-14348da49b9f
+    <Name>k__BackingField: WaitNode
+    <Text>k__BackingField: "Sorry! I\u2019ll let you have some of the leftover honey
+      to make up for that. \nGive me a few minutes to make this potion and then you
+      can deliver it."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Wait
+      <NodeID>k__BackingField: fc6d8e9c-fbab-44f6-a0e3-5e9f32ffad4a
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 1
+    <Position>k__BackingField: {x: 1155, y: 263}
+  - <ID>k__BackingField: fc6d8e9c-fbab-44f6-a0e3-5e9f32ffad4a
+    <Name>k__BackingField: PotionNode
+    <Text>k__BackingField: "All done! \nHere\u2019s the potion and a letter I\u2019ve
+      written explaining our situation. \nHopefully we\u2019ll be allowed to stay
+      here. \r"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 6bde8287-2176-4be4-b2a8-22305dc735dc
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1702, y: 288}
+  - <ID>k__BackingField: 6bde8287-2176-4be4-b2a8-22305dc735dc
+    <Name>k__BackingField: EndNode
+    <Text>k__BackingField: "You should be able to find the mayor in the town hall.\nMake
+      sure you come back to let me know how it went!\r"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Leave
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 1
+    <Position>k__BackingField: {x: 2172, y: 278}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - EnterNode
+  - WaitNode
+  - PotionNode
+  - EndNode
+  <OldGroupedNodeNames>k__BackingField:
+    list: []
