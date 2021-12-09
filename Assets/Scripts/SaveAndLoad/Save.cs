@@ -3,33 +3,47 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class Save
+public static class Save
 {
+
+    public static List<Savable> savables;
     public struct SaveData
     {
-        private Inventory playerinventory;
+        public Inventory playerinventory;
 
     }
-    //static List<Savable> savables;
 
-    public void SaveDataJson(string filename) 
+    public static void SaveDataJson(string filename) 
     {
         SaveData saveData = new SaveData();
         string filepath = ConstructFilePath(filename);
-        foreach (Savable savableobj in Savable.savables) {
-            savableobj.GetSaveData(saveData);
+        foreach (Savable savableobj in savables) {
+            savableobj.GetSaveData(ref saveData);
         }
         WriteToFile(filepath, saveData);
 
     }
-    public void LoadDataJson(string filename)
+    public static void LoadDataJson(string filename)
     {
         string filepath = ConstructFilePath(filename);
-        SaveData saveData = ReadFromFile(filepath);
-        foreach (Savable savableobj in Savable.savables)
-        {
-            savableobj.LoadData(saveData);
+        if (!File.Exists(filepath)) {
+            Debug.Log("save file not found at " + filepath);
+            return;
         }
+        SaveData saveData = ReadFromFile(filepath);
+        foreach (Savable savableobj in savables)
+        {
+            savableobj.LoadData(ref saveData);
+        }
+    }
+
+    public static List<string> GetSaveFileNames() {
+        string[] filePaths = Directory.GetFiles(Application.persistentDataPath+ "/", " *.json");
+        List<string> fileNames = new List<string>();
+        foreach (string filePath in filePaths) {
+            fileNames.Add(FilenameFromFilePath(filePath));
+        }
+        return fileNames;
     }
 
     /// <summary>
@@ -37,8 +51,18 @@ public class Save
     /// </summary>
     /// <param name="filename"></param>
     /// <returns></returns>
-    private string ConstructFilePath(string filename) {
+    private static string ConstructFilePath(string filename) {
         return Application.persistentDataPath + "/" + filename + ".json";
+    }
+
+    /// <summary>
+    /// takes a file name and creates a platform specific filepath that includes the file name and ends in .json
+    /// </summary>
+    /// <param name="filename"></param>
+    /// <returns></returns>
+    private static string FilenameFromFilePath(string filePath)
+    {
+        return filePath.Substring(Application.persistentDataPath.Length + 1, filePath.Length - 6);
     }
 
     /// <summary>

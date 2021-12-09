@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System.Linq;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, Savable
 {
     [System.Serializable]
     public struct Offset
@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
         // TODO : replace with GameObjects in the scene that have the attached scripts
         if (SceneManager.GetActiveScene().name == "GymItems")
         {
+            AddSelfToSavablesList();
             uiInventory.SetInventory(inventory);
             uiHotbar.SetInventory(inventory);
 
@@ -295,5 +296,17 @@ public class PlayerController : MonoBehaviour
     {
         if (groundDetector.FindGround(out Vector3 groundPos, out _))
             SetFixedPosition(groundPos);
+    }
+
+    public void AddSelfToSavablesList() {
+        Save.savables.Add(this);
+    }
+
+    public void GetSaveData(ref Save.SaveData saveData) {
+        saveData.playerinventory = inventory;
+    }
+
+    public void LoadData(ref Save.SaveData saveData) {
+        inventory = saveData.playerinventory;
     }
 }

@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Savable 
+public interface Savable 
 {
-    public static List<Savable> savables;
+    /// <summary>
+    /// unity doesnt support default implementation of interfaces, implementation of this method should be
+    ///  Save.savables.Add(this);
+    /// </summary>
+    public void AddSelfToSavablesList();
+    
+    public void GetSaveData(ref Save.SaveData saveData);
 
-    public Savable() {
-        savables.Add(this);
-    }//requires testing
-
-    public abstract void GetSaveData(Save.SaveData saveData);
-
-    public abstract void LoadData(Save.SaveData saveData);
+    public void LoadData(ref Save.SaveData saveData);
 }
