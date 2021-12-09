@@ -6,10 +6,12 @@ public class SaveMenu : MonoBehaviour
 {
     private List<string> gameNames;
     string Savename;
+    public bool enablesaving;
 
     public void OnEnable()
     {
         gameNames = Save.GetSaveFileNames();
+        Time.timeScale = 0f; // pause game time doesnt pass
     }
 
     public void LoadGame()

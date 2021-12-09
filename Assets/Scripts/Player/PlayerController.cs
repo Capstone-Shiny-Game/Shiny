@@ -53,18 +53,9 @@ public class PlayerController : MonoBehaviour, Savable
         inventory = new Inventory();
         uiInventory.SetInventory(inventory);
         uiHotbar.SetInventory(inventory);
-        // TODO : replace with GameObjects in the scene that have the attached scripts
-        if (SceneManager.GetActiveScene().name == "GymItems")
-        {
-            AddSelfToSavablesList();
-            uiInventory.SetInventory(inventory);
-            uiHotbar.SetInventory(inventory);
 
-            float yPos = 10.3f;
-            // ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 50f), new Item(Item.ItemType.shiny));
-            // ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 40f), new Item(Item.ItemType.food));
-            // ItemWorld.SpawnItemWorld(new Vector3(40f, yPos, 30f), new Item(Item.ItemType.potion));
-        }
+        //Save initialization
+        AddSelfToSavablesList();
     }
 
     private void ToggleFlight(float addY = 2)
@@ -301,14 +292,17 @@ public class PlayerController : MonoBehaviour, Savable
     }
 
     public void AddSelfToSavablesList() {
-        Save.savables.Add(this);
+        Save.AddSelfToSavablesList(this);
     }
 
     public void GetSaveData(ref Save.SaveData saveData) {
+        saveData.i = 5;
         saveData.playerinventory = inventory;
     }
 
     public void LoadData(ref Save.SaveData saveData) {
         inventory = saveData.playerinventory;
+
+        Debug.Log(inventory);
     }
 }

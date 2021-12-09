@@ -5,12 +5,24 @@ using UnityEngine;
 
 public static class Save
 {
-
-    public static List<Savable> savables;
+    public static List<Savable> savables { get; private set; }
     public struct SaveData
     {
+        //player data
         public Inventory playerinventory;
+        public int i;
+        
+        //quest data
 
+    }
+
+    public static void AddSelfToSavablesList(Savable self)
+    {
+        if (Save.savables is null)
+        {
+            Save.savables = new List<Savable>();
+        }
+        Save.savables.Add(self);
     }
 
     public static void SaveDataJson(string filename) 
@@ -30,6 +42,7 @@ public static class Save
             Debug.Log("save file not found at " + filepath);
             return;
         }
+        Debug.Log("save found at " + filepath);
         SaveData saveData = ReadFromFile(filepath);
         foreach (Savable savableobj in savables)
         {
@@ -72,6 +85,7 @@ public static class Save
     /// <param name="saveData">object or struct to be serialized and saved</param>
     private static void WriteToFile(string filepath, SaveData saveData) {
         string saveJSON = JsonUtility.ToJson(saveData);
+        Debug.Log(saveJSON);
         using (StreamWriter sw = new StreamWriter(filepath))
         {
             sw.WriteLine(saveJSON);

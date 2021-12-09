@@ -6,7 +6,7 @@ public interface Savable
 {
     /// <summary>
     /// unity doesnt support default implementation of interfaces, implementation of this method should be
-    ///  Save.savables.Add(this);
+    ///  Save.AddSelfToSavablesList(this);
     /// </summary>
     public void AddSelfToSavablesList();
     
