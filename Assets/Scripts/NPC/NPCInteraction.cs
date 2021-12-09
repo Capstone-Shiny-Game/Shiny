@@ -22,6 +22,8 @@ public class NPCInteraction : MonoBehaviour
     public DSDialogueContainerSO dialogueContainer;
     public GameObject objectToSpawn;
     public GameObject otherNPC;
+    public GameObject blackOutSquare;
+
 
     //DELETE AFTER BETA
     public DSDialogueContainerSO dialogueContainer2;
@@ -112,8 +114,6 @@ public class NPCInteraction : MonoBehaviour
                 //FADE
                 if (objectToSpawn != null)
                 {
-                    //GameObject spawnedObject = ItemWorld.SpawnItemWorld(objectToSpawn, transform.position + new Vector3(2, 5, 0)).item.prefab;
-
                     if (otherNPC != null)
                     {
                         otherNPC.AddComponent<Quest>();
@@ -121,9 +121,8 @@ public class NPCInteraction : MonoBehaviour
                         otherNPC.GetComponent<Quest>().dialogueContainer = dialogueContainer2;
                         otherNPC.GetComponent<Quest>().interactButton = otherNPC.GetComponentInChildren<BillboardFX>(true).gameObject;
                         otherNPC.GetComponent<Quest>().resetList(objectToSpawn, transform.position + new Vector3(2, 5, 0));
-                        otherNPC.GetComponent<Quest>().StartQuest();
+                        StartCoroutine(FadeBlackOutSquare());
                     }
-                    objectToSpawn = null;
                 }
                 currentDialogue = choice.NextDialogue;
                 bodyText.text = currentDialogue.Text;
@@ -192,5 +191,29 @@ public class NPCInteraction : MonoBehaviour
         avatar.SetActive(true);
         nameText.text = characterName;
         bgImage.color = bgColor;
+    }
+
+    private IEnumerator FadeBlackOutSquare(int fadeSpeed = 1)
+    {
+        Color objectColor = blackOutSquare.GetComponent<Image>().color;
+        float fadeAmount;
+
+        while (blackOutSquare.GetComponent<Image>().color.a < 1)
+        {
+            fadeAmount = blackOutSquare.GetComponent<Image>().color.a + (Time.deltaTime * fadeSpeed);
+            blackOutSquare.GetComponent<Image>().color = new Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
+            yield return null;
+        }
+
+        otherNPC.GetComponent<Quest>().StartQuest();
+        objectToSpawn = null;
+        yield return new WaitForSeconds(0.5f);
+
+        while (blackOutSquare.GetComponent<Image>().color.a > 0)
+        {
+            fadeAmount = blackOutSquare.GetComponent<Image>().color.a - (Time.deltaTime * fadeSpeed);
+            blackOutSquare.GetComponent<Image>().color = new Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
+            yield return null;
+        }
     }
 }
