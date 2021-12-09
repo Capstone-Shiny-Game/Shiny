@@ -25,7 +25,6 @@ public class NPCInteraction : MonoBehaviour
 
     //DELETE AFTER BETA
     public DSDialogueContainerSO dialogueContainer2;
-
     private DSDialogueSO currentDialogue;
     private GameObject avatar;
     private Image bgImage;
@@ -125,7 +124,6 @@ public class NPCInteraction : MonoBehaviour
                         otherNPC.GetComponent<Quest>().StartQuest();
                     }
                     objectToSpawn = null;
-                    gameObject.GetComponentInChildren<BillboardFX>().gameObject.SetActive(false);
                 }
                 currentDialogue = choice.NextDialogue;
                 bodyText.text = currentDialogue.Text;

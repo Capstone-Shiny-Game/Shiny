@@ -10,14 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8b42b93d442f2c42859a388e9da4ccb, type: 3}
-  m_Name: DialogueName
+  m_Name: EndNode
   m_EditorClassIdentifier: 
-  <DialogueName>k__BackingField: DialogueName
-  <Text>k__BackingField: 'Hello litte buddy!
-
-    I''m the mayor of this town'
+  <DialogueName>k__BackingField: EndNode
+  <Text>k__BackingField: "You can keep exploring if you\u2019d like!"
   <Choices>k__BackingField:
-  - <Text>k__BackingField: Leave
+  - <Text>k__BackingField: Explore
     <NextDialogue>k__BackingField: {fileID: 0}
   <DSDialogueType>k__BackingField: 1
-  <IsStartingDialogue>k__BackingField: 1
+  <IsStartingDialogue>k__BackingField: 0

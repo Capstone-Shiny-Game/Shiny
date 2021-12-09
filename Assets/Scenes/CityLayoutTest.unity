@@ -13773,11 +13773,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doesWait: 0
   waitTime: 0
---- !u!1 &928517678 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8624877651147282799, guid: fc624f5ddea0e1545864d3655b9cd3a2, type: 3}
-  m_PrefabInstance: {fileID: 4309226570937262793}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &932510474
 GameObject:
   m_ObjectHideFlags: 0
@@ -21931,24 +21926,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3966575530329175377, guid: fc624f5ddea0e1545864d3655b9cd3a2, type: 3}
   m_PrefabInstance: {fileID: 4309226570937262793}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1495219239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495219238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad94801d6342c84e8c2c1d32d05e388, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questItemsAndPositions:
-    list:
-    - Key: {fileID: 4307572895384478502, guid: a0ae7c4b18e453b47be89b840ad984f6, type: 3}
-      Value: {x: 0, y: 0, z: 0}
-  dialogueContainer: {fileID: 11400000, guid: b7ee9b1e74d2d0046949d60142adb776, type: 2}
-  interactButton: {fileID: 928517678}
 --- !u!1001 &1500436767
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30746,6 +30723,10 @@ PrefabInstance:
       propertyPath: dialogueContainer
       value: 
       objectReference: {fileID: 11400000, guid: 54b659da471f25f4399254b438eb103a, type: 2}
+    - target: {fileID: 3717840619147615719, guid: 2d9b482595f857a4b894341b68b2c679, type: 3}
+      propertyPath: dialogueContainer2
+      value: 
+      objectReference: {fileID: 11400000, guid: b7ee9b1e74d2d0046949d60142adb776, type: 2}
     - target: {fileID: 3752295795071826442, guid: 2d9b482595f857a4b894341b68b2c679, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -30849,9 +30830,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5809536296626981469, guid: c764753883b80864b816ba5738b3393a, type: 3}
     - target: {fileID: 4309226570987452091, guid: fc624f5ddea0e1545864d3655b9cd3a2, type: 3}
+      propertyPath: dialogueContainer
+      value: 
+      objectReference: {fileID: 11400000, guid: 134ab51c7015ac449863db42f48e02cb, type: 2}
+    - target: {fileID: 4309226570987452091, guid: fc624f5ddea0e1545864d3655b9cd3a2, type: 3}
       propertyPath: dialogueContainer2
       value: 
-      objectReference: {fileID: 11400000, guid: caa9d793999150c488b700f6838e2e2c, type: 2}
+      objectReference: {fileID: 11400000, guid: bbf469649f185ef42b283eda8698ca95, type: 2}
     - target: {fileID: 4343664396731854827, guid: fc624f5ddea0e1545864d3655b9cd3a2, type: 3}
       propertyPath: m_RootOrder
       value: 4
