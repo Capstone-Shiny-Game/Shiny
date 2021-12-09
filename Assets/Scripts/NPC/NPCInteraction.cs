@@ -21,6 +21,10 @@ public class NPCInteraction : MonoBehaviour
     public GameObject npcUI;
     public DSDialogueContainerSO dialogueContainer;
     public GameObject objectToSpawn;
+    public GameObject otherNPC;
+
+    //DELETE AFTER BETA
+    public DSDialogueContainerSO dialogueContainer2;
 
     private DSDialogueSO currentDialogue;
     private GameObject avatar;
@@ -107,11 +111,21 @@ public class NPCInteraction : MonoBehaviour
             if (choice.Text == WAIT)
             {
                 //FADE
-                //SPAWN ITEM
                 if (objectToSpawn != null)
                 {
-                    ItemWorld.SpawnItemWorld(objectToSpawn, transform.position + new Vector3(2, 5, 0));
+                    //GameObject spawnedObject = ItemWorld.SpawnItemWorld(objectToSpawn, transform.position + new Vector3(2, 5, 0)).item.prefab;
+
+                    if (otherNPC != null)
+                    {
+                        otherNPC.AddComponent<Quest>();
+                        otherNPC.GetComponent<Quest>().questItemsAndPositions = new SerializableDictionary<GameObject, Vector3>();
+                        otherNPC.GetComponent<Quest>().dialogueContainer = dialogueContainer2;
+                        otherNPC.GetComponent<Quest>().interactButton = otherNPC.GetComponentInChildren<BillboardFX>(true).gameObject;
+                        otherNPC.GetComponent<Quest>().resetList(objectToSpawn, transform.position + new Vector3(2, 5, 0));
+                        otherNPC.GetComponent<Quest>().StartQuest();
+                    }
                     objectToSpawn = null;
+                    gameObject.GetComponentInChildren<BillboardFX>().gameObject.SetActive(false);
                 }
                 currentDialogue = choice.NextDialogue;
                 bodyText.text = currentDialogue.Text;

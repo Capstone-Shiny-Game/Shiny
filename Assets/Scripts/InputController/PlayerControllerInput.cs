@@ -267,17 +267,6 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""4fbc6d98-db3f-4bc5-8305-46023e9abacf"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PauseMenu"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""e944ccd6-bc1b-4102-aaa3-7b3914a5b873"",
                     ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
@@ -289,34 +278,12 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""423dde94-1fab-4918-85aa-ad9e4e802a38"",
-                    ""path"": ""<Keyboard>/g"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""DropItem"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""90e035dc-8f42-498e-a73a-bcf1246da425"",
                     ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""DropItem"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""83f70623-8a84-4124-8fcc-383d54df5cec"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RotateSelection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },

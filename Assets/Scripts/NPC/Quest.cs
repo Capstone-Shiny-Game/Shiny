@@ -7,17 +7,17 @@ public class Quest : MonoBehaviour
     public SerializableDictionary<GameObject, Vector3> questItemsAndPositions;
     public DSDialogueContainerSO dialogueContainer;
 
-    private GameObject interactButton;
+    public GameObject interactButton;
     private BoxCollider interactionCollider;
     private List<GameObject> spawnedItems;
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         interactionCollider = GetComponentInChildren<BoxCollider>();
         spawnedItems = new List<GameObject>();
-        interactButton = GetComponentInChildren<BillboardFX>().gameObject;
+        //interactButton = GetComponentInChildren<BillboardFX>();
     }
 
     void FixedUpdate()
@@ -45,14 +45,15 @@ public class Quest : MonoBehaviour
 
     public void StartQuest()
     {
+
         interactButton.SetActive(false);
         SpawnQuestItems();
     }
 
-    public void resetList(GameObject item)
+    public void resetList(GameObject item, Vector3 position)
     {
-        spawnedItems.Clear();
-        spawnedItems.Add(item);
+        questItemsAndPositions.Clear();
+        questItemsAndPositions.Add(item, position);
     }
 
     private void SpawnQuestItems()

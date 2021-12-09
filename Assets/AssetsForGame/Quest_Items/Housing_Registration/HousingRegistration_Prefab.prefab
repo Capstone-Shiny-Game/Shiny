@@ -40,6 +40,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6617000441538466023}
   - component: {fileID: 2949570944820729608}
+  - component: {fileID: 3147624604137862918}
+  - component: {fileID: 8998711002067929136}
   m_Layer: 0
   m_Name: HousingRegistration_Prefab
   m_TagString: Untagged
@@ -55,8 +57,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5809536296626981469}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.795036, y: 4.81, z: -26.16517}
-  m_LocalScale: {x: 35.967896, y: 35.967896, z: 35.967896}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children:
   - {fileID: 6027077327073960383}
   - {fileID: 4603735299908712582}
@@ -80,6 +82,31 @@ MonoBehaviour:
     amount: 1
     sprite: {fileID: 21300000, guid: 6e0f5f40dc3cf5a4dab1467def7bf75b, type: 3}
     prefab: {fileID: 5809536296626981469}
+--- !u!114 &3147624604137862918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5809536296626981469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6743aeec08a9434dba5835a2077c353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &8998711002067929136
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5809536296626981469}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.04
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6831549792977124770
 GameObject:
   m_ObjectHideFlags: 0
