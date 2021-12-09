@@ -55,12 +55,6 @@ public class PlayerController : MonoBehaviour, Savable
         AddSelfToSavablesList();
     }
 
-    private void SetInventory(Inventory inventory) {
-        this.inventory = inventory;
-        uiInventory.SetInventory(inventory);
-        uiHotbar.SetInventory(inventory);
-    }
-
     private void ToggleFlight(float addY = 2)
     {
         if (walkingController.enabled)
@@ -299,12 +293,22 @@ public class PlayerController : MonoBehaviour, Savable
     }
 
     public void GetSaveData(ref Save.SaveData saveData) {
-        saveData.i = 5;
         saveData.playerinventory = inventory;
     }
 
     public void LoadData(ref Save.SaveData saveData) {
         SetInventory(saveData.playerinventory);
         Debug.Log(inventory);
+    }
+
+    /// <summary>
+    /// sets the inventory and updates the UI with the new inventory
+    /// </summary>
+    /// <param name="inventory"></param>
+    private void SetInventory(Inventory inventory)
+    {
+        this.inventory = inventory;
+        uiInventory.SetInventory(inventory);
+        uiHotbar.SetInventory(inventory);
     }
 }

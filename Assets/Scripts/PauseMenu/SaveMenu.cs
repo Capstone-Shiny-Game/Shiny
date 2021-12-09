@@ -17,7 +17,8 @@ public class SaveMenu : MonoBehaviour
     public void LoadGame()
     {
         Savename = "hi"; //TODO get save name from user from list picker
-        Save.LoadDataJson(Savename);
+        //TODO warn player that it will overrite current game
+        Save.LoadDataJson(Savename); 
     }
     public void SaveGame()
     {

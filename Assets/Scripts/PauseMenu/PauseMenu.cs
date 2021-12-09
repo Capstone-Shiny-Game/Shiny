@@ -15,10 +15,12 @@ public class PauseMenu : MonoBehaviour
     public void OnEnable()
     {
         Time.timeScale = 0f; // pause game time doesnt pass
+        //TODO : fix this when opening the save menu
     }
     public void OnDisable()
     {
         Time.timeScale = 1f; // set time back to normal
+        //TODO : fix this when opening the save menu
     }
 
     public void LoadMainMenu()
@@ -54,12 +56,12 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void SaveGamesMenu() {
-        //TODO : open save menu
+        //TODO : open save menu with save enabled
 
     }
     public void LoadGamesMenu()
     {
-        //TODO : open save menu
+        //TODO : open save menu with load enabled
 
     }
 

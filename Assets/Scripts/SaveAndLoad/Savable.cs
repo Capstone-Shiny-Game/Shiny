@@ -9,8 +9,19 @@ public interface Savable
     ///  Save.AddSelfToSavablesList(this);
     /// </summary>
     public void AddSelfToSavablesList();
-    
+
+    /// <summary>
+    /// when implementing this method you should add fields to Save.SaveData
+    /// then store your data in the passed in saveData struct in the feilds you created.
+    /// </summary>
+    /// <param name="saveData"></param>
     public void GetSaveData(ref Save.SaveData saveData);
 
+    /// <summary>
+    /// when implementing this method you should add fields to Save.SaveData
+    /// then read your stored data from the passed in saveData struct in the feilds you created.
+    /// this process is essentially doing the opposite of GetSaveData
+    /// </summary>
+    /// <param name="saveData"></param>
     public void LoadData(ref Save.SaveData saveData);
 }

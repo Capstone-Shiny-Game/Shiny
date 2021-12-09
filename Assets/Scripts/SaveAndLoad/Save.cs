@@ -5,17 +5,33 @@ using UnityEngine;
 
 public static class Save
 {
+    /// <summary>
+    /// list of all savable objects that will be added to the save file
+    /// </summary>
     public static List<Savable> savables { get; private set; }
+
+    /// <summary>
+    /// Struct containing all feilds that need to be saved for the game
+    /// struct should be edited when Savable.GetSaveData is called 
+    /// with each savable object adding it's own feilds to the stuct and filling them.
+    /// struct should be read when Savable.LoadData is called
+    /// with each savable object reading the feilds it filled when saving.
+    /// </summary>
     public struct SaveData
     {
         //player data
         public Inventory playerinventory;
-        public int i;
         
         //quest data
 
     }
 
+
+    /// <summary>
+    /// used in Savable.AddSelfToSavablesList() to ensure that SavablesList exists and add the passed savable to the list of objects that will be saved.
+    /// Savable.AddSelfToSavablesList() should be called in an awake or start function.
+    /// </summary>
+    /// <param name="self"></param>
     public static void AddSelfToSavablesList(Savable self)
     {
         if (Save.savables is null)
@@ -25,6 +41,12 @@ public static class Save
         Save.savables.Add(self);
     }
 
+    /// <summary>
+    /// meant to be called from the save menu,
+    /// requests all savable objects in savables to save their data into the SaveData struct, 
+    /// then uses the filename and the platform independant file location to save the json serialized struct to a file
+    /// </summary>
+    /// <param name="filename"></param>
     public static void SaveDataJson(string filename) 
     {
         SaveData saveData = new SaveData();
@@ -35,6 +57,12 @@ public static class Save
         WriteToFile(filepath, saveData);
 
     }
+    /// <summary>
+    /// meant to be called from the save menu, 
+    /// uses the filename and the platform independant file location to get a save file and load it's data into the SaveData struct
+    /// then requests all savable objects in savables to get their data from the SaveData struct.
+    /// </summary>
+    /// <param name="filename"></param>
     public static void LoadDataJson(string filename)
     {
         string filepath = ConstructFilePath(filename);
@@ -50,6 +78,10 @@ public static class Save
         }
     }
 
+    /// <summary>
+    /// returns a list of all the names of the current save files from the platform independant file location
+    /// </summary>
+    /// <returns></returns>
     public static List<string> GetSaveFileNames() {
         string[] filePaths = Directory.GetFiles(Application.persistentDataPath+ "/", " *.json");
         List<string> fileNames = new List<string>();
@@ -92,6 +124,11 @@ public static class Save
         }
     }
 
+    /// <summary>
+    /// loads data from the Json File Format at the specified filepath into SaveData struct and returns it
+    /// </summary>
+    /// <param name="filepath"></param>
+    /// <returns></returns>
     private static SaveData ReadFromFile(string filepath) {
         string saveJSON = "";
         using (StreamReader sr = new StreamReader(filepath))
