@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,10 @@ public class BoostBug : MonoBehaviour
     }
     void StartRespawn()
     {
-        StartCoroutine("Respawn");
+        if (this.gameObject.activeInHierarchy)//prevents exception when game is closed
+        {
+            StartCoroutine("Respawn");
+        }
     }
 
     void Update()
@@ -24,7 +28,10 @@ public class BoostBug : MonoBehaviour
     public IEnumerator Respawn()
     {
         yield return new WaitForSeconds(respawnTime);
-        Sparkles.gameObject.SetActive(true);
+        if (this.gameObject.activeInHierarchy)//prevents exception when game is closed
+        {
+            Sparkles.gameObject.SetActive(true);
+        }
     }
     public float UpDown() {
         return movementRange * Mathf.Sin(frequency * (Time.time));
