@@ -17,6 +17,16 @@ public class ConfirmPopup : MonoBehaviour
         }
         messageBox.SetText(message);
     }
+    /// <summary>
+    /// shows the pupup with the passed in message and calls the passed in handler with the user choice
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="handler"></param>
+    public void ShowPopUP(string message, ConfirmHander handler) {
+        this.message = message;
+        SetListener(handler);
+        gameObject.SetActive(true);
+    }
 
     public void ConfirmClicked(bool value) {
         BroadcastConfirm?.Invoke(value);

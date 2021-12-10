@@ -7,6 +7,7 @@ public class SaveMenu : MonoBehaviour
     private List<string> gameNames;
     string Savename;
     private bool savingIsEnabled;
+    public ConfirmPopup confirmPopup;
 
     public void OnEnable()
     {
@@ -32,25 +33,29 @@ public class SaveMenu : MonoBehaviour
 
     public void LoadGame()
     {
-        Savename = "hi"; //TODO get save name from user from list picker
+        Savename = "save1"; //TODO get save name from user from list picker
         //TODO warn player that it will overrite current game
         Save.LoadDataJson(Savename); 
     }
     public void SaveGame()
     {
-        Savename = "hi"; //TODO get save name from user
+        Savename = "save1"; //TODO get save name from user
         if (gameNames.Contains(Savename))
         {
-            //TODO: tell user name is already in use and ask to confirm with overwrite
-            //TODO: add return statement
+            confirmPopup.ShowPopUP("are you sure you want to overwrite this Save?\n\"" + Savename + "\"", overwriteSave);
+            this.gameObject.SetActive(false);
+            return;
         }
         makeSaveFile();
     }
 
-    public void overwriteSave()
+    public void overwriteSave(bool value)
     {
-        Savename = ""; //TODO get save name from user
-        makeSaveFile();
+        this.gameObject.SetActive(true);
+        if (value)
+        {
+            makeSaveFile();
+        }
     }
 
     /// <summary>

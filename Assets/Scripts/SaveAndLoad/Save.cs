@@ -70,7 +70,7 @@ public static class Save
             Debug.Log("save file not found at " + filepath);
             return;
         }
-        Debug.Log("save found at " + filepath);
+        //Debug.Log("save found at " + filepath);
         SaveData saveData = ReadFromFile(filepath);
         foreach (Savable savableobj in savables)
         {
@@ -117,7 +117,8 @@ public static class Save
     /// <param name="saveData">object or struct to be serialized and saved</param>
     private static void WriteToFile(string filepath, SaveData saveData) {
         string saveJSON = JsonUtility.ToJson(saveData);
-        Debug.Log(saveJSON);
+        //Debug.Log(saveJSON);
+        Debug.Log("saving");
         using (StreamWriter sw = new StreamWriter(filepath))
         {
             sw.WriteLine(saveJSON);
