@@ -222,6 +222,12 @@ public class PlayerController : MonoBehaviour, Savable
             StartCoroutine(flightController.Boost());
 
         }
+        else if (other.CompareTag("BoostBug") && !flightController.isBoost)
+        {
+            other.gameObject.SetActive(false);
+            StartCoroutine(flightController.Boost());
+
+        }
         else if ((other.CompareTag("Terrain") || other.CompareTag("Water")) && flightController.enabled)
         {
             flightController.speed = 10.0f;
