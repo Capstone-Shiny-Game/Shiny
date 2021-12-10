@@ -6,13 +6,31 @@ public class SaveMenu : MonoBehaviour
 {
     private List<string> gameNames;
     string Savename;
-    public bool enablesaving;
+    private bool savingIsEnabled;
 
     public void OnEnable()
     {
         gameNames = Save.GetSaveFileNames();
-        Time.timeScale = 0f; // pause game time doesnt pass
+        
+        //Debug.Log(JsonUtility.ToJson(gameNames));
+
+        if (savingIsEnabled)
+        {
+            //TODO set save menu active
+        }
+        else { 
+            //TODO set load menu active
+        }
     }
+
+    /// <summary>
+    /// set if the save menu should be enabled or the load menu
+    /// </summary>
+    /// <param name="enable"></param>
+    public void SetSavingisEnabled(bool enable) {
+        savingIsEnabled = enable;
+    }
+
 
     public void LoadGame()
     {

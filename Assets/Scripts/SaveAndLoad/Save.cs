@@ -83,7 +83,7 @@ public static class Save
     /// </summary>
     /// <returns></returns>
     public static List<string> GetSaveFileNames() {
-        string[] filePaths = Directory.GetFiles(Application.persistentDataPath+ "/", " *.json");
+        string[] filePaths = Directory.GetFiles(Application.persistentDataPath);
         List<string> fileNames = new List<string>();
         foreach (string filePath in filePaths) {
             fileNames.Add(FilenameFromFilePath(filePath));
@@ -97,7 +97,7 @@ public static class Save
     /// <param name="filename"></param>
     /// <returns></returns>
     private static string ConstructFilePath(string filename) {
-        return Application.persistentDataPath + "/" + filename + ".json";
+        return Application.persistentDataPath + filename + ".json";
     }
 
     /// <summary>
@@ -107,7 +107,7 @@ public static class Save
     /// <returns></returns>
     private static string FilenameFromFilePath(string filePath)
     {
-        return filePath.Substring(Application.persistentDataPath.Length + 1, filePath.Length - 6);
+        return filePath.Substring(Application.persistentDataPath.Length + 1, filePath.Length - (6 + Application.persistentDataPath.Length));
     }
 
     /// <summary>

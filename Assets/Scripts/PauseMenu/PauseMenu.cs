@@ -55,16 +55,6 @@ public class PauseMenu : MonoBehaviour
         uiInventory.SetActive(false);
     }
 
-    public void SaveGamesMenu() {
-        //TODO : open save menu with save enabled
-
-    }
-    public void LoadGamesMenu()
-    {
-        //TODO : open save menu with load enabled
-
-    }
-
     
 
 }
