@@ -8,6 +8,7 @@ public class BoostBug : MonoBehaviour
 
     public float frequency;
     public float movementRange;
+    public float respawnTime;
     public BoostBugChild Sparkles;
     void Start()
     {
@@ -26,7 +27,7 @@ public class BoostBug : MonoBehaviour
     }
     public IEnumerator Respawn()
     {
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(respawnTime);
         Sparkles.gameObject.SetActive(true);
         Debug.Log("BoostBug");
     }
