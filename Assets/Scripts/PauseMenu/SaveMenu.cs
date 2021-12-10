@@ -11,8 +11,6 @@ public class SaveMenu : MonoBehaviour
     public void OnEnable()
     {
         gameNames = Save.GetSaveFileNames();
-        
-        //Debug.Log(JsonUtility.ToJson(gameNames));
 
         if (savingIsEnabled)
         {
@@ -55,6 +53,9 @@ public class SaveMenu : MonoBehaviour
         makeSaveFile();
     }
 
+    /// <summary>
+    /// helper function for code re-use
+    /// </summary>
     private void makeSaveFile()
     {
         Save.SaveDataJson(Savename);
