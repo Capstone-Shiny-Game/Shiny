@@ -42,14 +42,14 @@ public class SaveMenu : MonoBehaviour
         Savename = "save1"; //TODO get save name from user
         if (gameNames.Contains(Savename))
         {
-            confirmPopup.ShowPopUP("are you sure you want to overwrite this Save?\n\"" + Savename + "\"", overwriteSave);
+            confirmPopup.ShowPopUP("are you sure you want to overwrite this Save?\n\"" + Savename + "\"", confirmOverwriteSave);
             this.gameObject.SetActive(false);
             return;
         }
         makeSaveFile();
     }
 
-    public void overwriteSave(bool value)
+    public void confirmOverwriteSave(bool value)
     {
         this.gameObject.SetActive(true);
         if (value)
