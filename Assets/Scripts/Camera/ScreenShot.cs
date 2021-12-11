@@ -5,4 +5,6 @@ using UnityEngine;
 public class ScreenShot : MonoBehaviour
 {
     //TODO for thumbnail inmages when saving 
+
+    
 }

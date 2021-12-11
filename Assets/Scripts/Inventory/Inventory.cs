@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class Inventory
 {
-    public event EventHandler OnItemListChanged;
+    [field: NonSerialized] public event EventHandler OnItemListChanged;
 
     [field: SerializeField, HideInInspector] public List<Item> itemList { get; private set; }
     public int maxItemCount = 8;
@@ -23,7 +23,6 @@ public class Inventory
         weight = 0;
         selectionIndex = 0;
     }
-
     /// <summary>
     /// Adds an item to the inventory
     /// </summary>
