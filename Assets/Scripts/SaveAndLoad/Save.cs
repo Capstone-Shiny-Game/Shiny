@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 public static class Save
 {
@@ -49,6 +50,7 @@ public static class Save
     public struct SaveDescriptorData
     {
         public string timestamp;
+        public Image saveScreenshot;
 
     }
 
