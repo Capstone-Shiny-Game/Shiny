@@ -60,7 +60,9 @@ public class SaveMenu : MonoBehaviour
             this.gameObject.SetActive(false);
             return;
         }
+        gameNames.Add(Savename);
         makeSaveFile();
+
     }
 
     public void confirmOverwriteSave(bool value)
