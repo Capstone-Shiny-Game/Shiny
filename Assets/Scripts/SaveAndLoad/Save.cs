@@ -141,8 +141,10 @@ public static class Save
     /// returns a list of all the names of the current save files from the platform independant file location
     /// </summary>
     /// <returns></returns>
-    public static List<string> GetSaveFileNames() {
-        string[] filePaths = Directory.GetFiles(Application.persistentDataPath, "*.sav");
+    public static List<string> GetSaveFileNames(string extentionPattern = "*.sav") {
+        string[] filePaths = Directory.GetFiles(Path.Combine(Application.persistentDataPath, ""),extentionPattern);
+        //Debug.Log(Path.Combine(Application.persistentDataPath, ""));
+        //Debug.Log(filePaths.Length);
         List<string> fileNames = new List<string>();
         foreach (string filePath in filePaths) {
             fileNames.Add(FilenameFromFilePath(filePath));
@@ -154,9 +156,9 @@ public static class Save
     /// returns a list of all the names of the current save files from the platform independant file location
     /// </summary>
     /// <returns></returns>
-    public static List<SaveDescriptorData> GetSaveFileDescriptors()
+    public static List<SaveDescriptorData> GetSaveFileDescriptors(string extentionPattern = "*.desc")
     {
-        string[] filePaths = Directory.GetFiles(Application.persistentDataPath, "*.desc");
+        string[] filePaths = Directory.GetFiles(Path.Combine(Application.persistentDataPath,""), extentionPattern);
         List<SaveDescriptorData> fileDescriptors = new List<SaveDescriptorData>();
         foreach (string filePath in filePaths)
         {
@@ -171,7 +173,7 @@ public static class Save
     /// <param name="filename"></param>
     /// <returns></returns>
     private static string ConstructFilePath(string filename, string extention = ".sav") {
-        return Application.persistentDataPath + filename + extention;
+        return Path.Combine(Application.persistentDataPath, (filename + extention));
     }
 
     /// <summary>
@@ -181,7 +183,7 @@ public static class Save
     /// <returns></returns>
     private static string FilenameFromFilePath(string filePath)
     {
-        return filePath.Substring(Application.persistentDataPath.Length + 1, filePath.Length - (5 + Application.persistentDataPath.Length));
+        return Path.GetFileNameWithoutExtension(filePath);
     }
 
     /// <summary>
@@ -193,6 +195,7 @@ public static class Save
         string saveJSON = JsonUtility.ToJson(saveData);
         //Debug.Log(saveJSON);
         Debug.Log("saving");
+        //Debug.Log(filepath);
         using (StreamWriter sw = new StreamWriter(filepath))
         {
             sw.WriteLine(saveJSON);

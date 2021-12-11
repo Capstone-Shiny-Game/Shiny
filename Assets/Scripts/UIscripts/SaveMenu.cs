@@ -8,6 +8,7 @@ public class SaveMenu : MonoBehaviour
     string Savename;
     private bool savingIsEnabled;
     public ConfirmPopup confirmPopup;
+    public TMPro.TMP_InputField SaveNameInput;
 
     public void OnEnable()
     {
@@ -33,13 +34,26 @@ public class SaveMenu : MonoBehaviour
 
     public void LoadGame()
     {
-        Savename = "save1"; //TODO get save name from user from list picker
+        if (SaveNameInput.text is null|| SaveNameInput.text == "") {
+            return;
+        }
+        Savename = SaveNameInput.text; //TODO get save name from user from list picker
         //TODO warn player that it will overrite current game
-        Save.LoadDataJson(Savename); 
+        if (gameNames.Contains(Savename))
+        {
+            Save.LoadDataJson(Savename);
+        }
+        else {
+            Debug.Log("save name not found");
+        }
     }
     public void SaveGame()
     {
-        Savename = "save1"; //TODO get save name from user
+        if (SaveNameInput.text is null || SaveNameInput.text == "")
+        {
+            return;
+        }
+        Savename = SaveNameInput.text;
         if (gameNames.Contains(Savename))
         {
             confirmPopup.ShowPopUP("are you sure you want to overwrite this Save?\n\"" + Savename + "\"", confirmOverwriteSave);
