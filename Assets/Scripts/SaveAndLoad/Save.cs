@@ -94,6 +94,7 @@ public static class Save
     public static void SaveDataJson(string filename) 
     {
         //save level data
+        //Debug.Log("saving");
         string filepath = ConstructFilePath(filename);
         if (!(Save.savables is null))
         {
@@ -199,7 +200,6 @@ public static class Save
     private static void WriteToFile(string filepath, object saveData) {
         string saveJSON = JsonUtility.ToJson(saveData);
         //Debug.Log(saveJSON);
-        Debug.Log("saving");
         //Debug.Log(filepath);
         using (StreamWriter sw = new StreamWriter(filepath))
         {
