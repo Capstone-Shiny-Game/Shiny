@@ -104,7 +104,7 @@ public static class Save
             }
             WriteToFile(filepath, saveData);
         }
-        Save.saveDescriptors = new List<SaveDescriptor>();//TODO remove this line
+        Save.saveDescriptors = new List<SaveDescriptor>();//TODO remove this line when save descriptor interface is implemented
         //save descriptor data
         if (!(Save.saveDescriptors is null))
         {
