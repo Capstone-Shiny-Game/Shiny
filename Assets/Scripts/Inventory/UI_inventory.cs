@@ -38,7 +38,7 @@ public class UI_inventory : MonoBehaviour
         templateRectTransform.gameObject.SetActive(true);
         // find and set item image
         Image image = templateRectTransform.Find("itemImage").GetComponent<Image>();
-        image.sprite = item.GetSprite();
+        image.sprite = item.GetSprite();//TODO : fix bug with this (new implementation of item prefabs)
         // find and set text to display amount of items
         TextMeshProUGUI uiText = templateRectTransform.Find("amountText").GetComponent<TextMeshProUGUI>();
         if (item.amount > 1)
