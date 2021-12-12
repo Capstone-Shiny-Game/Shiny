@@ -60,7 +60,7 @@ public class ScreenShot : MonoBehaviour, SaveDescriptor
         Debug.Log("screenshot.cs GetSaveDescriptorData looped " + i + " times");
         if (outputImage)
         {
-            saveData.saveScreenshot = outputImage;
+            saveData.saveScreenshot = outputImage.sprite;
         }
     }
 }

@@ -9,8 +9,8 @@ public static class Save
     /// <summary>
     /// list of all savable objects that will be added to the save file
     /// </summary>
-    public static List<Savable> savables { get; private set; }
-    
+    public static List<Savable> savables{ get; private set; }
+
 
     /// <summary>
     /// Struct containing all feilds that need to be saved for the game
@@ -49,8 +49,10 @@ public static class Save
     /// </summary>
     public struct SaveDescriptorData
     {
+        public string SaveName;
         public string timestamp;
-        public Image saveScreenshot;
+        public Sprite saveScreenshot;
+        public string CurrentQuestName;
 
     }
 
@@ -102,11 +104,13 @@ public static class Save
             }
             WriteToFile(filepath, saveData);
         }
+        Save.saveDescriptors = new List<SaveDescriptor>();//TODO remove this line
         //save descriptor data
         if (!(Save.saveDescriptors is null))
         {
             SaveDescriptorData saveDescriptorData = new SaveDescriptorData();
-            saveDescriptorData.timestamp = System.DateTime.Now.ToString("yyyyMMddTHHmmss");
+            saveDescriptorData.SaveName = filename;
+            saveDescriptorData.timestamp = System.DateTime.Now.ToString("MM/dd/y h:mm tt");
             foreach (SaveDescriptor descriptor in saveDescriptors)
             {
                 descriptor.GetSaveDescriptorData(ref saveDescriptorData);
@@ -159,6 +163,7 @@ public static class Save
     public static List<SaveDescriptorData> GetSaveFileDescriptors(string extentionPattern = "*.desc")
     {
         string[] filePaths = Directory.GetFiles(Path.Combine(Application.persistentDataPath,""), extentionPattern);
+        //Debug.Log(Application.persistentDataPath);
         List<SaveDescriptorData> fileDescriptors = new List<SaveDescriptorData>();
         foreach (string filePath in filePaths)
         {
