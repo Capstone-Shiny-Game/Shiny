@@ -299,12 +299,11 @@ public class PlayerController : MonoBehaviour, Savable
     }
 
     public void GetSaveData(ref Save.SaveData saveData) {
-        saveData.playerinventory = inventory;
+        saveData.playerinventory = this.inventory;
     }
 
     public void LoadData(ref Save.SaveData saveData) {
         SetInventory(saveData.playerinventory);
-        Debug.Log(inventory);
     }
 
     /// <summary>
