@@ -312,8 +312,8 @@ public class PlayerController : MonoBehaviour, Savable
     /// <param name="inventory"></param>
     private void SetInventory(Inventory inventory)
     {
-        this.inventory = inventory;
         uiInventory.SetInventory(inventory);
         uiHotbar.SetInventory(inventory);
+        this.inventory = inventory;
     }
 }

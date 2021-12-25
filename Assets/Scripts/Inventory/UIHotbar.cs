@@ -9,6 +9,10 @@ public class UIHotbar : MonoBehaviour
     public RectTransform nextItemRectTransform;
     public void SetInventory(Inventory inv)
     {
+        if (!(inventory is null))
+        {
+            inventory.OnItemListChanged -= Inventory_OnItemListChanged;
+        }
         inventory = inv;
 
         inventory.OnItemListChanged += Inventory_OnItemListChanged;
