@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SettingsMenu : MonoBehaviour
 {
-    Settings settings;
+    public Settings settings { get; private set; }
     // Start is called before the first frame update
     void Start()
     {
