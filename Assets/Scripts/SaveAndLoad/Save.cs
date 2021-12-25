@@ -24,7 +24,7 @@ public static class Save
         //TODO : EDIT ME!!!
         //player data
         public Inventory playerinventory;
-        public SettingsPackage settingsPackage;
+        public SettingsData settingsPackage;
 
         //quest data
 
