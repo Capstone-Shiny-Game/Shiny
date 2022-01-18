@@ -7,7 +7,7 @@ public class Settings : Savable
 {
     public static event EventHandler OnSettingsChanged;
     public static SettingsData settingsData { get; private set; }
-
+    
     public static void UpdateSettingData(SettingsData newSettings)
     {
         settingsData = newSettings;
@@ -16,6 +16,7 @@ public class Settings : Savable
     public Settings() {
         AddSelfToSavablesList();
     }
+    //TODO : use built in dict to save settings across all saves.
     public void AddSelfToSavablesList()
     {
         Save.AddSelfToSavablesList(this);
