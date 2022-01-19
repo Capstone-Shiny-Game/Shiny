@@ -75,6 +75,7 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
             transform.position = newPosition;
             if (groundDetector.FindGround(out Vector3 groundPos, out Splashing))
             {
+                // TODO : Update the crow's `state` to Walking or Splashing as appropriate walking from ground to water or vice versa
                 float dY = transform.position.y - groundPos.y;
                 if (dY > transform.localScale.y)
                     WalkedOffEdge?.Invoke();
