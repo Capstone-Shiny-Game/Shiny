@@ -326,12 +326,12 @@ public class FlightController : MonoBehaviour
         LeftTrail.transform.localScale = scaleChange;
         RightTrail.transform.localScale = scaleChange;
     }
-    public void HideTrail()
+    private void OnDisable()
     {
         LeftTrail.SetActive(false);
         RightTrail.SetActive(false);
     }
-    public void ShowTrail()
+    private void OnEnable()
     {
         LeftTrail.SetActive(true);
         RightTrail.SetActive(true);
