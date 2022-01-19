@@ -5,7 +5,7 @@ using UnityEngine;
 public class RespawnChildInWorld : MonoBehaviour
 {
     public float respawnTime;
-    public Respawnable respawnable;
+    public Respawnable respawnable; //the child object to respawn
     void Start()
     {
         respawnable.RespawnME.AddListener(StartRespawn);

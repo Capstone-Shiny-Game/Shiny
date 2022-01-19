@@ -7,13 +7,14 @@ public class FloatUpDown : MonoBehaviour
 {
     public float Speed;
     public float movementRange;
-    void StartRespawn()
+    void Update()
     {
-        if (this.gameObject.activeInHierarchy)//prevents exception when game is closed
-        {
-            StartCoroutine("Respawn");
-        }
+        gameObject.transform.localPosition = new Vector3(0, UpDown(), 0);
     }
+    /// <summary>
+    /// uses the sine function to determine the new hight of the object.
+    /// </summary>
+    /// <returns></returns>
     public float UpDown() {
         return movementRange * Mathf.Sin(Speed * (Time.time));
     }

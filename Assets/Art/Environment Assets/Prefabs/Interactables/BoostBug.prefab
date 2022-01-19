@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2816532445134813191}
-  - component: {fileID: 2816532445134813190}
   - component: {fileID: 2444880971337178669}
   m_Layer: 0
   m_Name: BoostBug
@@ -33,20 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2816532445134813190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2816532445134813188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8029de0dceac5264cb78c408ca424c28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 3
-  movementRange: 0.7
 --- !u!114 &2444880971337178669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,6 +59,7 @@ GameObject:
   - component: {fileID: 2816532445896265313}
   - component: {fileID: 2816532445896265314}
   - component: {fileID: 2889833987599926345}
+  - component: {fileID: 4750779392301771401}
   m_Layer: 0
   m_Name: sparkles
   m_TagString: BoostBug
@@ -4896,6 +4882,20 @@ MonoBehaviour:
   RespawnME:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4750779392301771401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2816532445896265375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8029de0dceac5264cb78c408ca424c28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 3
+  movementRange: 0.7
 --- !u!1 &2816532446896541049
 GameObject:
   m_ObjectHideFlags: 0
