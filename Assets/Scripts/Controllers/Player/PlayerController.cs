@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour, Savable
         birdAnimator.SetBool("isWalking", state == CrowState.Walking);
         birdAnimator.SetBool("isSwim", state == CrowState.Splashing);
 
-        if (previous == CrowState.Walking && state == CrowState.Flying)
+        if ((previous == CrowState.Walking || previous == CrowState.Splashing) && state == CrowState.Flying)
         {
             // pitch up on takeoff
             transform.RotateAround(transform.position, transform.right, -30);
