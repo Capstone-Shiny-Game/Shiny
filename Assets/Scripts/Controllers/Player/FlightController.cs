@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static PlayerControllerInput;
@@ -38,7 +39,7 @@ public class FlightController : MonoBehaviour
     public GameObject RightTrail;
     private Vector3 scaleChange;
 
-
+    public event Action Landed;
 
     public void Start()
     {
@@ -49,6 +50,63 @@ public class FlightController : MonoBehaviour
     {
         Fly();
         TrailScale();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Ring") && !isBoost)
+        {
+            Debug.Log("RING2");
+            Transform targetRing = other.gameObject.transform;
+            SetTargetRing(targetRing);
+            //transform.LookAt(targetRing);
+            StartCoroutine(Boost());
+
+        }
+        else if (other.CompareTag("BoostBug") && !isBoost)
+        {
+            other.gameObject.SetActive(false);
+            StartCoroutine(Boost());
+        }
+        else if ((other.CompareTag("Terrain") || other.CompareTag("Water")))
+        {
+            speed = 10.0f;
+            Landed?.Invoke();
+        }
+        else if (!other.isTrigger)
+        {
+            Vector3 bouncedUp = transform.position + (transform.up * 5);
+            Collider[] colliders = Physics.OverlapSphere(bouncedUp, transform.localScale.magnitude);
+            bool collided = colliders.Any(collider =>
+            {
+                if (collider.isTrigger)
+                    return false;
+
+                string tag = collider.transform.tag;
+                if (tag == "Player" || tag == "Terrain" || tag == "Water")
+                    return false;
+
+                return true;
+            });
+
+            if (!collided)
+                transform.position = bouncedUp;
+            else
+            {
+                transform.position -= transform.forward * 2;
+                // TODO (Ella) : make less cursed
+                if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 50))
+                {
+                    float turn = 45 * Mathf.Sign(Vector3.SignedAngle(
+                        Vector3.ProjectOnPlane(transform.forward, Vector3.up),
+                        Vector3.ProjectOnPlane(hit.normal, Vector3.up),
+                        transform.up));
+                    transform.RotateAround(transform.position, Vector3.up, turn);
+                }
+            }
+
+            StartCoroutine(Slow());
+        }
     }
 
     /// <summary>

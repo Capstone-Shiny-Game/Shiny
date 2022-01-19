@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
-using System.Linq;
 
 public class PlayerController : MonoBehaviour, Savable
 {
@@ -48,6 +47,7 @@ public class PlayerController : MonoBehaviour, Savable
         groundDetector = GetComponent<GroundDetector>();
 
         walkingController.WalkedOffEdge += () => ToggleFlight(0.5f);
+        flightController.Landed += () => ToggleFlight();
 
         // inventory initialization
         SetInventory(new Inventory());
@@ -198,93 +198,22 @@ public class PlayerController : MonoBehaviour, Savable
         StartWalk();
     }
 
-    // TODO : remove or fold bouncing into method below
-    /*
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("BOUNCE");
-        if (collision.gameObject.CompareTag("Terrain"))
-        {
-        Vector3 norm = collision.GetContact(0).normal;
-        StartCoroutine(flightController.BounceOnCollision(norm));
-        }
-    }
-    */
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Ring") && !flightController.isBoost)
-        {
-            Debug.Log("RING2");
-            Transform targetRing = other.gameObject.transform;
-            flightController.SetTargetRing(targetRing);
-            //transform.LookAt(targetRing);
-            StartCoroutine(flightController.Boost());
-
-        }
-        else if (other.CompareTag("BoostBug") && !flightController.isBoost)
-        {
-            other.gameObject.SetActive(false);
-            StartCoroutine(flightController.Boost());
-
-        }
-        else if ((other.CompareTag("Terrain") || other.CompareTag("Water")) && flightController.enabled)
-        {
-            flightController.speed = 10.0f;
-            StopFlight();
-            StartWalk();
-            cameraController.isWalking = true;
-        }
-        else if (flightController.enabled && !other.isTrigger)
-        {
-            Vector3 bouncedUp = transform.position + (transform.up * 5);
-            Collider[] colliders = Physics.OverlapSphere(bouncedUp, transform.localScale.magnitude);
-            bool collided = colliders.Any(collider =>
-            {
-                if (collider.isTrigger)
-                    return false;
-
-                string tag = collider.transform.tag;
-                if (tag == "Player" || tag == "Terrain" || tag == "Water")
-                    return false;
-
-                return true;
-            });
-
-            if (!collided)
-                transform.position = bouncedUp;
-            else
-            {
-                transform.position -= transform.forward * 2;
-                // TODO (Ella) : make less cursed
-                if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 50))
-                {
-                    float turn = 45 * Mathf.Sign(Vector3.SignedAngle(
-                        Vector3.ProjectOnPlane(transform.forward, Vector3.up),
-                        Vector3.ProjectOnPlane(hit.normal, Vector3.up),
-                        transform.up));
-                    transform.RotateAround(transform.position, Vector3.up, turn);
-                }
-            }
-
-            StartCoroutine(flightController.Slow());
-        }
-
         //add items to inventory
         ItemWorld itemWorld = other.GetComponent<ItemWorld>();
         if (itemWorld != null)
         {
             //touching item
-            //Debug.Log(itemWorld.GetItem().GetType());
             Item item = itemWorld.GetItem();
             if (maxCarryWeight >= (inventory.weight + item.getStackWeight()))
-            { //check if picking this up would add to much weight
+            {
+                //check if picking this up would add to much weight
                 if (inventory.AddItem(item))
                 {
                     itemWorld.DestroySelf();
                 }
             }
-            //Debug.Log(inventory.GetWeight());
         }
     }
 
