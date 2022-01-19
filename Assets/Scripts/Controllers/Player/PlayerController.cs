@@ -6,6 +6,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour, Savable
 {
+    private enum CrowState { Flying, Walking, Splashing, Talking };
+
+    private CrowState state;
+
     [System.Serializable]
     public struct Offset
     {
@@ -41,40 +45,61 @@ public class PlayerController : MonoBehaviour, Savable
         flightController = GetComponent<FlightController>();
         walkingController = GetComponent<WalkingController>();
         cameraController = GetComponent<CameraController>();
-        StartFlight();
-        StopWalk();
 
         groundDetector = GetComponent<GroundDetector>();
 
-        walkingController.WalkedOffEdge += () => ToggleFlight(0.5f);
-        flightController.Landed += () => ToggleFlight();
+        walkingController.WalkedOffEdge += () => SetState(CrowState.Flying, 0.5f);
+        flightController.Landed += AttemptToLand;
 
         // inventory initialization
         SetInventory(new Inventory());
         //Save initialization
         AddSelfToSavablesList();
+
+        SetState(CrowState.Flying);
     }
 
-    private void ToggleFlight(float addY = 2)
+    private void SetState(CrowState next, float addYForTakeoff = 0)
     {
-        if (walkingController.enabled)
+        CrowState previous = state;
+        state = next;
+
+        if (state == CrowState.Flying && addYForTakeoff != 0)
         {
-            StopWalk();
             Vector3 pos = transform.position;
-            pos.y += addY;
+            pos.y += addYForTakeoff;
             transform.position = pos;
+        }
+
+        flightController.enabled = state == CrowState.Flying;
+        walkingController.enabled = state == CrowState.Walking || state == CrowState.Splashing;
+        cameraController.isWalking = walkingController.enabled;
+
+        birdAnimator.SetBool("isFlying", state == CrowState.Flying);
+        birdAnimator.SetBool("isWalking", state == CrowState.Walking);
+        birdAnimator.SetBool("isSwim", state == CrowState.Splashing);
+
+        if (previous == CrowState.Walking && state == CrowState.Flying)
+        {
+            // pitch up on takeoff
             transform.RotateAround(transform.position, transform.right, -30);
             birdAnimator.SetBool("WalktoFly", true);
-            StartFlight();
         }
-        else if (flightController.enabled && groundDetector.FindGround(out Vector3 groundPos, out bool isWater))
+
+        if (previous == CrowState.Flying && walkingController.enabled)
         {
             flightController.speed = 10.0f;
-            StopFlight();
             birdAnimator.SetBool("WalktoFly", false);
-            transform.position = groundPos;
-            StartWalk();
-            walkingController.Splashing = isWater;
+        }
+    }
+
+    private void AttemptToLand()
+    {
+        if (state == CrowState.Flying && groundDetector.FindGround(out Vector3 groundPos, out bool isWater))
+        {
+            flightController.speed = 10.0f;
+            SetState(isWater ? CrowState.Splashing : CrowState.Walking);
+            SetFixedPosition(groundPos);
         }
     }
 
@@ -113,7 +138,13 @@ public class PlayerController : MonoBehaviour, Savable
         NPCInteraction.OnNPCInteractEvent += EnterNPCDialogue;
         NPCInteraction.OnNPCInteractEndEvent += ExitNPCDialogue;
 
-        walkAction.performed += ctx => ToggleFlight();
+        walkAction.performed += ctx =>
+        {
+            if (state == CrowState.Walking || state == CrowState.Splashing)
+                SetState(CrowState.Flying, 2.0f);
+            else
+                AttemptToLand();
+        };
         walkAction.Enable();
 
     }
@@ -124,45 +155,6 @@ public class PlayerController : MonoBehaviour, Savable
         NPCInteraction.OnNPCInteractEndEvent -= ExitNPCDialogue;
 
         walkAction.Disable();
-    }
-
-    private void StartFlight()
-    {
-        flightController.enabled = true;
-        cameraController.isWalking = false;
-        flightController.ShowTrail();
-        birdAnimator.SetBool("isFlying", true);
-    }
-    private void StopFlight()
-    {
-        flightController.enabled = false;
-        flightController.HideTrail();
-        birdAnimator.SetBool("isFlying", false);
-    }
-    private void StartWalk()
-    {
-        walkingController.enabled = true;
-        cameraController.isWalking = true;
-        flightController.HideTrail();
-        if (walkingController.Splashing == true)
-        {
-            birdAnimator.SetBool("isSwim", true);
-            birdAnimator.SetBool("isWalking", false);
-        }
-        else if (walkingController.Splashing == false)
-        {
-            birdAnimator.SetBool("isSwim", false);
-            birdAnimator.SetBool("isWalking", true);
-        }
-
-    }
-    private void StopWalk()
-    {
-        walkingController.enabled = false;
-        cameraController.isWalking = false;
-        flightController.ShowTrail();
-        birdAnimator.SetBool("isWalking", false);
-        birdAnimator.SetBool("isSwim", false);
     }
 
     private void SetFixedPosition(Vector3 position) => this.transform.position = position;
@@ -179,8 +171,7 @@ public class PlayerController : MonoBehaviour, Savable
 
     private void EnterNPCDialogue(Transform npcTransform)
     {
-        StopFlight();
-        StopWalk();
+        SetState(CrowState.Talking);
         Vector3 npcFront = npcTransform.position + npcTransform.forward * 4.0f;
         positionBeforeDialogue = transform.position;
         rotationBeforeDialogue = transform.rotation;
@@ -195,7 +186,7 @@ public class PlayerController : MonoBehaviour, Savable
         // SetFixedPosition(new Vector3(transform.position.x - 5, transform.position.y, transform.position.z - 5));
         transform.position = positionBeforeDialogue;
         transform.rotation = rotationBeforeDialogue;
-        StartWalk();
+        SetState(CrowState.Walking);
     }
 
     private void OnTriggerEnter(Collider other)
