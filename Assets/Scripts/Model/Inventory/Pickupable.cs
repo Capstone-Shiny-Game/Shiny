@@ -11,6 +11,8 @@ public class Pickupable : MonoBehaviour
     private PlayerController playerController;
     private FlightController flightController;
 
+    private Vector3 smallScale;
+    private Vector3 largeScale;
     private bool attached;
     private bool inRange;
 
@@ -19,11 +21,13 @@ public class Pickupable : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         playerController = Crow.GetComponent<PlayerController>();
         flightController = Crow.GetComponent<FlightController>();
+        smallScale = transform.localScale;
+        largeScale = smallScale * 2;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (false) //Input.GetKeyDown(KeyCode.E))
         {
             if (attached)
             {
@@ -41,7 +45,8 @@ public class Pickupable : MonoBehaviour
         if (attached)
             transform.position = Crow.transform.position - Crow.transform.forward * 5f;
 
-        transform.localScale = Vector3.one * (inRange && !attached ? 5 : 2);
+        // TODO : we should probably do something more clever than just embiggening to indicate that the player needs to interact with this
+        transform.localScale = inRange && !attached ? largeScale : smallScale;
     }
 
     private void OnTriggerEnter(Collider other)
