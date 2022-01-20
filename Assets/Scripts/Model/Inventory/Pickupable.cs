@@ -1,22 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+// TODO (Elaine) : We need to decide exactly how the pickup-but-not-add-to-inventory behavior should work.
+// TODO (Ella) : Replace this code with something more appropriate for long term use per above. #110
 
 public class Pickupable : MonoBehaviour
 {
     public GameObject Crow;
 
-    private Rigidbody rigidbody;
+    private new Rigidbody rigidbody;
+    private PlayerController playerController;
     private FlightController flightController;
-    private MeshRenderer meshRenderer;
+
     private bool attached;
     private bool inRange;
 
     private void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+        playerController = Crow.GetComponent<PlayerController>();
         flightController = Crow.GetComponent<FlightController>();
-        meshRenderer = GetComponent<MeshRenderer>();
     }
 
     private void Update()
@@ -25,7 +27,9 @@ public class Pickupable : MonoBehaviour
         {
             if (attached)
             {
-                rigidbody.velocity = Crow.transform.forward * flightController.speed;
+                // TODO : get speed when walking or splashing
+                float speed = playerController.state == PlayerController.CrowState.Flying ? flightController.speed : 0;
+                rigidbody.velocity = Crow.transform.forward * speed;
                 attached = false;
             }
             else if (inRange)
