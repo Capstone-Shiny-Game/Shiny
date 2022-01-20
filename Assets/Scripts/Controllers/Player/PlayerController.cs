@@ -6,9 +6,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour, Savable
 {
-    private enum CrowState { Flying, Walking, Splashing, Talking };
+    public enum CrowState { Flying, Walking, Splashing, Talking };
 
-    private CrowState state;
+    public CrowState state { get; private set; }
 
     [System.Serializable]
     public struct Offset
