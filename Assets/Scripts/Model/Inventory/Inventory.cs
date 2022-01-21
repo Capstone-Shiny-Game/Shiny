@@ -152,7 +152,7 @@ public class Inventory
             if (dropItem)
             {
                 item.prefab.transform.position = dropPosition;
-                item.prefab.SetActive(true);
+                item.prefab.SetActive(true);//May have something to do with error
                 //ItemWorld.SpawnItemWorld(item.prefab, dropPosition);
             }
             inventoryItem.amount -= removeAmount;
