@@ -5,31 +5,32 @@ using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
-    public Settings settings { get; private set; }
+    [HideInInspector]public Settings settings;
     public Slider musicVolumeSlider;
     public Slider dialogueVolumeSlider;
     public SettingsData defaultSettings = new SettingsData {musicVolume = .50f, dialogueVolume = .50f, lefthanded = false};
     private SettingsData prefferedSettings;
-    // Start is called before the first frame update
-    void Start()
-    {
-        settings = new Settings(defaultSettings); //creates settings with previously saved settings or default if previous not found.
-    }
     private void OnEnable()
     {
         prefferedSettings = Settings.settingsData;
+        //Debug.Log("music vol : " + Settings.settingsData.musicVolume);
+        //Debug.Log("dialogue vol : " + Settings.settingsData.dialogueVolume);
         musicVolumeSlider.value = Settings.settingsData.musicVolume;
         dialogueVolumeSlider.value = Settings.settingsData.dialogueVolume;
         musicVolumeSlider.onValueChanged.AddListener(changeMusicVolume);
         dialogueVolumeSlider.onValueChanged.AddListener(changeDialogueVolume);
     }
 
-    private void changeMusicVolume(float volume) { 
-
+    private void changeMusicVolume(float volume) {
+        SettingsData updatedSettingsData = Settings.settingsData;
+        updatedSettingsData.musicVolume = volume;
+        Settings.UpdateSettingData(updatedSettingsData);
     }
     private void changeDialogueVolume(float volume)
     {
-
+        SettingsData updatedSettingsData = Settings.settingsData;
+        updatedSettingsData.dialogueVolume = volume;
+        Settings.UpdateSettingData(updatedSettingsData);
     }
 
     public void SaveSettings() {
@@ -39,6 +40,8 @@ public class SettingsMenu : MonoBehaviour
     public void DefaultSettings()
     {
         Settings.UpdateSettingData(defaultSettings);
+        //Debug.Log("music vol : " + Settings.settingsData.musicVolume);
+        //Debug.Log("dialogue vol : " + Settings.settingsData.dialogueVolume);
     }
 
     private void OnDisable()

@@ -29,6 +29,8 @@ public class SaveToPlayerPrefs
     public static SettingsData LoadSettings()
     {
         string settingsJSON = PlayerPrefs.GetString(key: settingsSaveLocation);
-        return JsonUtility.FromJson<SettingsData>(settingsJSON);
+        SettingsData loadedSettings = JsonUtility.FromJson<SettingsData>(settingsJSON);
+        //Debug.Log("loaded music volume : " + loadedSettings.musicVolume);
+        return loadedSettings;
     }
 }
