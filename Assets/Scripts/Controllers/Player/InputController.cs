@@ -83,11 +83,6 @@ public class InputController : MonoBehaviour
         PlayerInput.GUIMap.PickupItem.performed += OnPickup;
     }
 
-    private void OnPickup(InputAction.CallbackContext obj)
-    {
-        throw new NotImplementedException();
-    }
-
     public void OnDisable()
     {
         PlayerInput.FlightMap.Disable();
@@ -143,6 +138,11 @@ public class InputController : MonoBehaviour
     private void OnDrop(InputAction.CallbackContext context)
     {
         DropHandler.Invoke();
+    }
+
+    private void OnPickup(InputAction.CallbackContext obj)
+    {
+        ItemHander.Invoke();
     }
 
     private void OnRotateSelection(InputAction.CallbackContext context)
