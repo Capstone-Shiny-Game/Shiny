@@ -902,7 +902,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "enter save name\u200B"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2718,6 +2718,8 @@ MonoBehaviour:
   saveTemplate: {fileID: 432026039997854084}
   ListContent: {fileID: 6488829453435338207}
   SavingOnlyOptions: {fileID: 9066883651993728578}
+  backButton: {fileID: 5287080455434624757}
+  UnsavedProgressSafeToLoseSeconds: 30
   confirmPopup: {fileID: 1714953117954474983}
   SaveNameInput: {fileID: 3794407188616454332}
 --- !u!1 &2805468859384808040
@@ -3162,7 +3164,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: enter save name
+  m_Text: 
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -5794,6 +5796,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   message: 
   messageBox: {fileID: 4075907567645550892}
+  confirmButtonText: {fileID: 1872297383029913197}
+  cancelButtonText: {fileID: 3021779776615968027}
 --- !u!1 &5551161378663072807
 GameObject:
   m_ObjectHideFlags: 0
@@ -6853,7 +6857,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6761363615904632303}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -6866,7 +6870,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enter text...
+  m_text: "enter save name\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8426,7 +8430,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2265793150227292984
 RectTransform:
   m_ObjectHideFlags: 0

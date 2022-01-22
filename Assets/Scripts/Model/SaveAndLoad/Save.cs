@@ -51,7 +51,7 @@ public static class Save
     public struct SaveDescriptorData
     {
         public string SaveName;
-        public string timestamp;
+        public System.DateTime timestamp;
         public Sprite saveScreenshot;
         public string CurrentQuestName;
 
@@ -112,7 +112,7 @@ public static class Save
         {
             SaveDescriptorData saveDescriptorData = new SaveDescriptorData();
             saveDescriptorData.SaveName = filename;
-            saveDescriptorData.timestamp = System.DateTime.Now.ToString("MM/dd/y h:mm tt");
+            saveDescriptorData.timestamp = System.DateTime.Now;
             foreach (SaveDescriptor descriptor in saveDescriptors)
             {
                 descriptor.GetSaveDescriptorData(ref saveDescriptorData);

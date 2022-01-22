@@ -320,6 +320,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1162276475326840943, guid: 75b1bd4d28156e04c9cc923d4d88f873, type: 3}
+      propertyPath: m_text
+      value: "enter save name\u200B"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714953117954474983, guid: 75b1bd4d28156e04c9cc923d4d88f873, type: 3}
+      propertyPath: cancelButtonText
+      value: 
+      objectReference: {fileID: 780606775}
+    - target: {fileID: 1714953117954474983, guid: 75b1bd4d28156e04c9cc923d4d88f873, type: 3}
+      propertyPath: confirmButtonText
+      value: 
+      objectReference: {fileID: 1721247881}
+    - target: {fileID: 5506365125093278082, guid: 75b1bd4d28156e04c9cc923d4d88f873, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5695601469215867666, guid: 75b1bd4d28156e04c9cc923d4d88f873, type: 3}
+      propertyPath: backButton
+      value: 
+      objectReference: {fileID: 1900084807}
+    - target: {fileID: 5695601469215867666, guid: 75b1bd4d28156e04c9cc923d4d88f873, type: 3}
+      propertyPath: disableLoadgameConfirmfornumSecondsSinceSaveWasCreated
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754052921550770860, guid: 75b1bd4d28156e04c9cc923d4d88f873, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8778734579908224427, guid: 75b1bd4d28156e04c9cc923d4d88f873, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -713,6 +741,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9999999, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &780606775 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3021779776615968027, guid: 75b1bd4d28156e04c9cc923d4d88f873, type: 3}
+  m_PrefabInstance: {fileID: 395458598}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &807393428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1699,6 +1738,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e4276e3a99be7d43ab61d87b177537e, type: 3}
+--- !u!114 &1721247881 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1872297383029913197, guid: 75b1bd4d28156e04c9cc923d4d88f873, type: 3}
+  m_PrefabInstance: {fileID: 395458598}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1781747069
 GameObject:
   m_ObjectHideFlags: 0
@@ -2027,6 +2077,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1900084807 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5287080455434624757, guid: 75b1bd4d28156e04c9cc923d4d88f873, type: 3}
+  m_PrefabInstance: {fileID: 395458598}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1905686784 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7695470114484064583, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}

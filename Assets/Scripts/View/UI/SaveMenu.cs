@@ -11,7 +11,9 @@ public class SaveMenu : MonoBehaviour
     [SerializeField] private RectTransform saveTemplate;
     [SerializeField] private Transform ListContent;
     [SerializeField] private GameObject SavingOnlyOptions;
-
+    public Button backButton;
+    public int UnsavedProgressSafeToLoseSeconds = 45;
+    System.DateTime lastSaveTime = System.DateTime.MinValue;
     private List<string> gameNames;
     private string saveName;
     private bool savingIsEnabled;
@@ -39,9 +41,8 @@ public class SaveMenu : MonoBehaviour
 
     public void NewSaveGame()
     {
-        if (SaveNameInput.text is null || SaveNameInput.text == "")
+        if (SaveNameInput.text is null || SaveNameInput.text.Trim() == "")
         {
-            //TODO : warn user that save name can't be blank
             return;
         }
         saveName = SaveNameInput.text;
@@ -63,7 +64,8 @@ public class SaveMenu : MonoBehaviour
     private void makeSaveFile()
     {
         Save.SaveDataJson(saveName);
-        if (savingIsEnabled)
+        lastSaveTime = System.DateTime.Now;
+        if (savingIsEnabled)//repopulate the list with new save
         {
             PopulateSaveGameList("Overwrite");
         }
@@ -118,9 +120,9 @@ public class SaveMenu : MonoBehaviour
         Button button = templateRectTransform.Find("Button").GetComponent<Button>();
         button.GetComponentInChildren<TextMeshProUGUI>().text = loadOrOverwrite;
         //private delegate void OverwriteOrLoadHandler(string gameSaveName);
-        button.onClick.AddListener(delegate { OverwriteOrLoadSaveHander(gameDescriptor.SaveName); });
+        button.onClick.AddListener(delegate { OverwriteOrLoadSaveHander(gameDescriptor); });
         // find and set template text values
-        templateRectTransform.Find("SaveDate").GetComponent<TextMeshProUGUI>().text = gameDescriptor.timestamp;
+        templateRectTransform.Find("SaveDate").GetComponent<TextMeshProUGUI>().text = gameDescriptor.timestamp.ToString("MM/dd/y h:mm tt");
         templateRectTransform.Find("SaveName").GetComponent<TextMeshProUGUI>().text = gameDescriptor.SaveName;
         if (gameDescriptor.CurrentQuestName is null || gameDescriptor.CurrentQuestName == "")
         {
@@ -131,8 +133,9 @@ public class SaveMenu : MonoBehaviour
         }
     }
 
-    public void OverwriteOrLoadSaveHander(string gameSaveName)
+    public void OverwriteOrLoadSaveHander(Save.SaveDescriptorData gameDescriptor)
     {
+        string gameSaveName = gameDescriptor.SaveName;
         saveName = gameSaveName;
         if (saveName is null || saveName == "")
         {
@@ -145,15 +148,23 @@ public class SaveMenu : MonoBehaviour
         }
         else
         {
-            LoadGame();
+            LoadGame(gameDescriptor);
         }
     }
-    private void LoadGame()
+    private void LoadGame(Save.SaveDescriptorData gameDescriptor)
     {
-        //TODO warn player that it will overrite current game
         if (gameNames.Contains(saveName))
         {
-            Save.LoadDataJson(saveName);
+            if (((lastSaveTime - System.DateTime.Now).TotalSeconds) > UnsavedProgressSafeToLoseSeconds)
+            {//if it's only been a short time since last save, dont ask to confirm loading the save
+                confirmPopup.ShowPopUP("when loading this game, You will loose all unsaved progress\n\"" + saveName + "\"", confirmLoadGame);
+                this.gameObject.SetActive(false);
+                return;
+            }
+            else {
+                Save.LoadDataJson(saveName);
+                backButton.onClick.Invoke();
+            }
         }
         else
         {
@@ -175,10 +186,19 @@ public class SaveMenu : MonoBehaviour
 
     private void confirmOverwriteSave(bool value)
     {
-        this.gameObject.SetActive(true);
+        this.gameObject.SetActive(true);//set save menu active
         if (value)
         {
             makeSaveFile();
+        }
+    }
+    private void confirmLoadGame(bool value)
+    {
+        this.gameObject.SetActive(true);//set save menu active
+        if (value)
+        {
+            Save.LoadDataJson(saveName);
+            backButton.onClick.Invoke();
         }
     }
 }
