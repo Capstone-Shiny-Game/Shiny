@@ -249,6 +249,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "PickupItem",
+                    "type": "Button",
+                    "id": "88a677ad-d817-4b1e-8df5-76b5fddc7bb9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -282,6 +290,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "RotateSelection",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e76b2935-e368-4514-93aa-f3d8faa8bcf7",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PickupItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

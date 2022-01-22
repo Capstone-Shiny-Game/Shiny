@@ -23,6 +23,8 @@ public class PauseEvent : UnityEvent { }
 [Serializable]
 public class DropEvent : UnityEvent { }
 [Serializable]
+public class PickupItemEvent : UnityEvent { }
+[Serializable]
 public class RotateSelectionEvent : UnityEvent { }
 public class InputController : MonoBehaviour
 {
@@ -42,6 +44,7 @@ public class InputController : MonoBehaviour
 
     public PauseEvent PauseHandler;
     public DropEvent DropHandler;
+    public PickupItemEvent ItemHander;
     public RotateSelectionEvent RotateSelectionHandler;
 
     public FlightTogglePOVEvent flightTogglePOVHandler;
@@ -77,6 +80,12 @@ public class InputController : MonoBehaviour
         PlayerInput.GUIMap.DropItem.performed += OnDrop;
         PlayerInput.GUIMap.RotateSelection.performed += OnRotateSelection;
 
+        PlayerInput.GUIMap.PickupItem.performed += OnPickup;
+    }
+
+    private void OnPickup(InputAction.CallbackContext obj)
+    {
+        throw new NotImplementedException();
     }
 
     public void OnDisable()

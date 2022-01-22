@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/InputController/PlayerControllerInput.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/PlayerControllerInput.inputactions'
 
 using System;
 using System.Collections;
@@ -262,6 +262,14 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""PickupItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""88a677ad-d817-4b1e-8df5-76b5fddc7bb9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -297,6 +305,17 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
                     ""action"": ""RotateSelection"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e76b2935-e368-4514-93aa-f3d8faa8bcf7"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PickupItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -316,6 +335,7 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
         m_GUIMap_PauseMenu = m_GUIMap.FindAction("PauseMenu", throwIfNotFound: true);
         m_GUIMap_DropItem = m_GUIMap.FindAction("DropItem", throwIfNotFound: true);
         m_GUIMap_RotateSelection = m_GUIMap.FindAction("RotateSelection", throwIfNotFound: true);
+        m_GUIMap_PickupItem = m_GUIMap.FindAction("PickupItem", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -441,6 +461,7 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_GUIMap_PauseMenu;
     private readonly InputAction m_GUIMap_DropItem;
     private readonly InputAction m_GUIMap_RotateSelection;
+    private readonly InputAction m_GUIMap_PickupItem;
     public struct GUIMapActions
     {
         private @PlayerControllerInput m_Wrapper;
@@ -448,6 +469,7 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
         public InputAction @PauseMenu => m_Wrapper.m_GUIMap_PauseMenu;
         public InputAction @DropItem => m_Wrapper.m_GUIMap_DropItem;
         public InputAction @RotateSelection => m_Wrapper.m_GUIMap_RotateSelection;
+        public InputAction @PickupItem => m_Wrapper.m_GUIMap_PickupItem;
         public InputActionMap Get() { return m_Wrapper.m_GUIMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -466,6 +488,9 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
                 @RotateSelection.started -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnRotateSelection;
                 @RotateSelection.performed -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnRotateSelection;
                 @RotateSelection.canceled -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnRotateSelection;
+                @PickupItem.started -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnPickupItem;
+                @PickupItem.performed -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnPickupItem;
+                @PickupItem.canceled -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnPickupItem;
             }
             m_Wrapper.m_GUIMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -479,6 +504,9 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
                 @RotateSelection.started += instance.OnRotateSelection;
                 @RotateSelection.performed += instance.OnRotateSelection;
                 @RotateSelection.canceled += instance.OnRotateSelection;
+                @PickupItem.started += instance.OnPickupItem;
+                @PickupItem.performed += instance.OnPickupItem;
+                @PickupItem.canceled += instance.OnPickupItem;
             }
         }
     }
@@ -497,5 +525,6 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
         void OnPauseMenu(InputAction.CallbackContext context);
         void OnDropItem(InputAction.CallbackContext context);
         void OnRotateSelection(InputAction.CallbackContext context);
+        void OnPickupItem(InputAction.CallbackContext context);
     }
 }
