@@ -20,9 +20,6 @@ public class SaveMenu : MonoBehaviour
     public ConfirmPopup confirmPopup;
     public TMPro.TMP_InputField SaveNameInput;
     private List<Save.SaveDescriptorData> gamesDescriptors;
-    
-    
-    
 
     public void OnEnable()
     {
@@ -135,8 +132,7 @@ public class SaveMenu : MonoBehaviour
 
     public void OverwriteOrLoadSaveHander(Save.SaveDescriptorData gameDescriptor)
     {
-        string gameSaveName = gameDescriptor.SaveName;
-        saveName = gameSaveName;
+        saveName = gameDescriptor.SaveName;
         if (saveName is null || saveName == "")
         {
             Debug.Log("error: saveName not found in Savemenu.cs");
@@ -155,13 +151,14 @@ public class SaveMenu : MonoBehaviour
     {
         if (gameNames.Contains(saveName))
         {
-            if (((lastSaveTime - System.DateTime.Now).TotalSeconds) > UnsavedProgressSafeToLoseSeconds)
+            if (System.Math.Abs((lastSaveTime - System.DateTime.Now).TotalSeconds) > UnsavedProgressSafeToLoseSeconds)
             {//if it's only been a short time since last save, dont ask to confirm loading the save
-                confirmPopup.ShowPopUP("when loading this game, You will loose all unsaved progress\n\"" + saveName + "\"", confirmLoadGame);
+                confirmPopup.ShowPopUP("when loading this game, You will lose all unsaved progress", confirmLoadGame);
                 this.gameObject.SetActive(false);
                 return;
             }
             else {
+                lastSaveTime = System.DateTime.Now;
                 Save.LoadDataJson(saveName);
                 backButton.onClick.Invoke();
             }
@@ -198,6 +195,7 @@ public class SaveMenu : MonoBehaviour
         if (value)
         {
             Save.LoadDataJson(saveName);
+            lastSaveTime = System.DateTime.Now;
             backButton.onClick.Invoke();
         }
     }
