@@ -18,11 +18,11 @@ public class UI_inventory : MonoBehaviour
     public void SetInventory(Inventory inv)
     {
         if (!(inventory is null)) {
-            inventory.OnItemListChanged -= Inventory_OnItemListChanged;
+            inventory.onItemListChanged -= Inventory_OnItemListChanged;
         }
         inventory = inv;
 
-        inventory.OnItemListChanged += Inventory_OnItemListChanged;
+        inventory.onItemListChanged += Inventory_OnItemListChanged;
         if (this.enabled == true)
         {
             RefreshInventoryItems();

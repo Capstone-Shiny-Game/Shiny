@@ -20,7 +20,7 @@ public class Item
     public ItemType itemType;
     public int amount;
     public Sprite sprite;
-    public GameObject prefab;//TODO fix this when saving, if object doesnt exist or has been destoryed get missing reference 
+    public GameObject prefab;//TODO fix this when saving, if object doesnt exist or has been destoryed get missing reference
     public Item(ItemType itemType, int amount)
     {
         this.amount = amount;

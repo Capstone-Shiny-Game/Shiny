@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class Inventory
 {
-    [field: NonSerialized] public event EventHandler OnItemListChanged;
+    [field: NonSerialized] public event EventHandler onItemListChanged;
 
     [field: SerializeField, HideInInspector] public List<Item> itemList { get; private set; }
     public int maxItemCount = 8;
@@ -52,7 +52,7 @@ public class Inventory
             itemList.Add(item);
         }
         // Update UI
-        OnItemListChanged?.Invoke(this, EventArgs.Empty);
+        onItemListChanged?.Invoke(this, EventArgs.Empty);
         return true;
     }
 
@@ -65,7 +65,7 @@ public class Inventory
         Item first = itemList[0];
         itemList.RemoveAt(0);
         itemList.Add(first);
-        OnItemListChanged?.Invoke(this, EventArgs.Empty);
+        onItemListChanged?.Invoke(this, EventArgs.Empty);
     }
 
 
@@ -77,7 +77,7 @@ public class Inventory
         selectionIndex++;
         NormalizeSelection();
         // Update UI (can be optimized if needed by adding another event for updating only selection)
-        OnItemListChanged?.Invoke(this, EventArgs.Empty);
+        onItemListChanged?.Invoke(this, EventArgs.Empty);
     }
     /// <summary>
     /// makes sure the selecion is within bounds of the inventory
@@ -163,7 +163,7 @@ public class Inventory
         }
         NormalizeSelection();
         // Update UI
-        OnItemListChanged?.Invoke(this, EventArgs.Empty);
+        onItemListChanged?.Invoke(this, EventArgs.Empty);
         return true;
     }
 
