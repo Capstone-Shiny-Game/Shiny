@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 // TODO (Elaine) : We need to decide exactly how the pickup-but-not-add-to-inventory behavior should work.
 // TODO (Ella) : Replace this code with something more appropriate for long term use per above. #110
@@ -11,22 +10,10 @@ public class Pickupable : MonoBehaviour
     private new Rigidbody rigidbody;
     private PlayerController playerController;
     private FlightController flightController;
-    private InputAction grabAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/E"); // TODO : This seems very wrong. Angelique would know what to do better.
     private Vector3 smallScale;
     private Vector3 largeScale;
     private bool attached;
     private bool inRange;
-
-    private void OnEnable()
-    {
-        grabAction.performed += ctx => TryGrabOrRelease();
-        grabAction.Enable();
-    }
-
-    private void OnDisable()
-    {
-        grabAction.Disable();
-    }
 
     private void Start()
     {
@@ -48,7 +35,7 @@ public class Pickupable : MonoBehaviour
         transform.localScale = inRange && !attached ? largeScale : smallScale;
     }
 
-    private void TryGrabOrRelease()
+    public void TryGrabOrRelease()
     {
         if (attached)
         {
@@ -64,12 +51,18 @@ public class Pickupable : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == Crow)
+        {
             inRange = true;
+            PlayerController.AttemptedGrabOrRelease += TryGrabOrRelease;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject == Crow)
+        {
             inRange = false;
+            // PlayerController.AttemptedGrabOrRelease -= TryGrabOrRelease; // TODO : currently unable to drop if uncommented
+        }
     }
 }

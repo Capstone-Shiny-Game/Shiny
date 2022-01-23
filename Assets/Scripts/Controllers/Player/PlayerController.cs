@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using System;
 
 public class PlayerController : MonoBehaviour, Savable
 {
@@ -39,6 +40,8 @@ public class PlayerController : MonoBehaviour, Savable
     public double maxCarryWeight = 0;
 
     private GroundDetector groundDetector;
+
+    public static event Action AttemptedGrabOrRelease;
 
     private void Start()
     {
@@ -125,6 +128,15 @@ public class PlayerController : MonoBehaviour, Savable
             inventory.DropItem(this.transform.position + offset, inventory.itemList[0]);
         }
     }
+
+    /// <summary>
+    /// TODO (Ella) : Consider simplification as part of #110
+    /// </summary>
+    public void AttemptPickup()
+    {
+        AttemptedGrabOrRelease?.Invoke();
+    }
+
     /// <summary>
     /// Rotates the inventory to the left by one
     /// </summary>
