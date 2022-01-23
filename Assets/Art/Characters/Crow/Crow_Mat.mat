@@ -8,20 +8,27 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Crow_Mat
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 4f0d995b98f587640942f3485a27607f, type: 3}
   m_ShaderKeywords: _OCCLUSIONMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_6b89473bb6bd4c6586197ae2a4270ec3:
+        m_Texture: {fileID: 2800000, guid: e66e76151d0d99448b58220384bbfca6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_79a9b028e9b7451aae674ba15e5b867e:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: e2dcd5d088d35a04386d7af1e8d71de2, type: 3}
+        m_Texture: {fileID: 2800000, guid: e66e76151d0d99448b58220384bbfca6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -45,7 +52,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: e2dcd5d088d35a04386d7af1e8d71de2, type: 3}
+        m_Texture: {fileID: 2800000, guid: e66e76151d0d99448b58220384bbfca6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -77,6 +84,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_51f2e0e02b2a47f48a527934ac8575fd: 0
+    - Vector1_bfb4dc00b57945b1a8e9ea8b09ccd7a5: 0
+    - Vector1_d0a99bc407ae4c8397b699f77554b7c0: 0
+    - Vector1_e86f06428ef54f1cb1c9035dcfd8c23d: 0.5
+    - Vector1_f19e42ddfba24ef79a94237866cd548b: 5
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -104,7 +116,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - Color_8e82145d400249cc8090889f4e474074: {r: 0.1764706, g: 0.1764706, b: 0.1764706, a: 0}
+    - _BaseColor: {r: 0.1764706, g: 0.1764706, b: 0.1764706, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
