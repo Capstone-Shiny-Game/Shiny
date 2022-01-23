@@ -113,11 +113,12 @@ public class SaveMenu : MonoBehaviour
             Image image = templateRectTransform.Find("SaveImage").GetComponent<Image>();
             image.sprite = gameDescriptor.saveScreenshot;
         }
+        Button deleteButton = templateRectTransform.Find("DeleteButton").GetComponent<Button>();//TODO : hook this button up
         // find and set template button text and onclick
-        Button button = templateRectTransform.Find("Button").GetComponent<Button>();
-        button.GetComponentInChildren<TextMeshProUGUI>().text = loadOrOverwrite;
+        Button loadButton = templateRectTransform.Find("LoadButton").GetComponent<Button>();
+        loadButton.GetComponentInChildren<TextMeshProUGUI>().text = loadOrOverwrite;
         //private delegate void OverwriteOrLoadHandler(string gameSaveName);
-        button.onClick.AddListener(delegate { OverwriteOrLoadSaveHander(gameDescriptor); });
+        loadButton.onClick.AddListener(delegate { OverwriteOrLoadSaveHander(gameDescriptor); });
         // find and set template text values
         templateRectTransform.Find("SaveDate").GetComponent<TextMeshProUGUI>().text = gameDescriptor.timestamp.ToString("MM/dd/y h:mm tt");
         templateRectTransform.Find("SaveName").GetComponent<TextMeshProUGUI>().text = gameDescriptor.SaveName;
