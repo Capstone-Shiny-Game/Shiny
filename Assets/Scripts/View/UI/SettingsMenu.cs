@@ -11,6 +11,9 @@ public class SettingsMenu : MonoBehaviour
     public SettingsData defaultSettings = new SettingsData {musicVolume = .50f, dialogueVolume = .50f, lefthanded = false};
     private SettingsData prefferedSettings;
     public ConfirmPopup confirmPopup;
+    public UI_inventory UIInventory;
+    public GameObject PauseMenuButtons;
+
     private void OnEnable()
     {
         prefferedSettings = Settings.settingsData;//save old settings 
@@ -51,7 +54,7 @@ public class SettingsMenu : MonoBehaviour
 
     private void OnDisable()
     {
-        confirmPopup.ShowPopUP("save these new settings?", confirmNewSettings, "Save","Discard");
+        confirmPopup.ShowPopUP("there were unsaved changes to your settings, save these new settings?", confirmNewSettings, "Save","Discard");
         this.gameObject.SetActive(false);
         musicVolumeSlider.onValueChanged.RemoveListener(changeMusicVolume);
         dialogueVolumeSlider.onValueChanged.RemoveListener(changeDialogueVolume);
@@ -63,5 +66,7 @@ public class SettingsMenu : MonoBehaviour
             prefferedSettings = Settings.settingsData;
         }
         Settings.UpdateSettingData(prefferedSettings);
+        UIInventory.gameObject.SetActive(true);
+        PauseMenuButtons.SetActive(true);
     }
 }
