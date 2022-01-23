@@ -12,14 +12,15 @@ public class SaveToPlayerPrefs
     public static void SaveSettings(SettingsData settingsData)
     {
         string settingsJSON = JsonUtility.ToJson(settingsData);
-        PlayerPrefs.SetString(key:settingsSaveLocation, settingsJSON);
+        PlayerPrefs.SetString(key: settingsSaveLocation, settingsJSON);
     }
     /// <summary>
     /// checks if settings exist to be loaded
     /// </summary>
     /// <returns></returns>
-    public static bool SettingsExist() {
-        return PlayerPrefs.HasKey(key:settingsSaveLocation);
+    public static bool SettingsExist()
+    {
+        return PlayerPrefs.HasKey(key: settingsSaveLocation);
     }
     /// <summary>
     /// loads the settings data Json from player prefs at the settingsSaveLocation

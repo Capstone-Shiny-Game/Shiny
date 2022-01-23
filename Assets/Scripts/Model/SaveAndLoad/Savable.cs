@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Savable 
+public interface Savable
 {
     /// <summary>
     /// unity doesnt support default implementation of interfaces, implementation of this method should be
