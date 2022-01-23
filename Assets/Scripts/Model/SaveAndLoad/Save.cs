@@ -157,6 +157,22 @@ public static class Save
         }
         return fileNames;
     }
+    /// <summary>
+    /// deletes the save file if it exists
+    /// </summary>
+    /// <param name="filename"></param>
+    /// <param name="extentionPattern"></param>
+    /// <param name="DescriptorExtentionPattern"></param>
+    public static void DeleteSave(string filename, string extentionPattern = "*.sav", string DescriptorExtentionPattern = "*.desc") {
+        string savefilepath = ConstructFilePath(filename, extentionPattern);
+        string descfilepath = ConstructFilePath(filename, DescriptorExtentionPattern);
+        if (File.Exists(savefilepath)) {
+            File.Delete(savefilepath);
+        }
+        if(File.Exists(descfilepath)){
+            File.Delete(descfilepath);
+        }
+    }
 
     /// <summary>
     /// returns a list of all the names of the current save files from the platform independant file location
