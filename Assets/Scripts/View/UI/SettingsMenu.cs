@@ -39,7 +39,7 @@ public class SettingsMenu : MonoBehaviour
 
     public void DefaultSettings()
     {
-        Settings.UpdateSettingData(defaultSettings);
+        Settings.UpdateSettingData(defaultSettings);//TODO update sliders
         //Debug.Log("music vol : " + Settings.settingsData.musicVolume);
         //Debug.Log("dialogue vol : " + Settings.settingsData.dialogueVolume);
     }
@@ -49,5 +49,6 @@ public class SettingsMenu : MonoBehaviour
         Settings.UpdateSettingData(prefferedSettings);
         musicVolumeSlider.onValueChanged.RemoveListener(changeMusicVolume);
         dialogueVolumeSlider.onValueChanged.RemoveListener(changeDialogueVolume);
+        //TODO add confirm if exiting without saving
     }
 }
