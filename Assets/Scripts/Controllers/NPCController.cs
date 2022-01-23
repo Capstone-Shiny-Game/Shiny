@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 /// <summary>
 /// This class is majorly inspired by the video linked below.
-/// 
+///
 /// https://www.youtube.com/watch?v=5q4JHuJAAcQ
 /// </summary>
 public class NPCController : MonoBehaviour
@@ -88,7 +88,7 @@ public class NPCController : MonoBehaviour
                 currWaypointIdx = 0;
             }
         }
-        else 
+        else
         {
             currWaypointIdx--;
 

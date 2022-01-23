@@ -51,7 +51,7 @@ public class CameraController : MonoBehaviour
         if (switchPOV)
         {
             toggleFirstPersonCam = !toggleFirstPersonCam;
-            if (toggleFirstPersonCam)//get animation state of bird before we disable it        
+            if (toggleFirstPersonCam)//get animation state of bird before we disable it
                 lastFlyingState = birdAnimator.GetBool("isFlying");
 
             crow.SetActive(!toggleFirstPersonCam);
@@ -90,7 +90,7 @@ public class CameraController : MonoBehaviour
         newRot.Rotate(-x, 0f, 0f, Space.Self);
         newRot.Rotate(0f, -y, 0f, Space.World);
 
-        if (Math.Abs(newAngleX-relRotX) <= 60f || Math.Abs(newAngleX - relRotX) >= 300f)
+        if (Math.Abs(newAngleX - relRotX) <= 60f || Math.Abs(newAngleX - relRotX) >= 300f)
         {
             cam.transform.Rotate(x, 0f, 0f, Space.Self);
         }

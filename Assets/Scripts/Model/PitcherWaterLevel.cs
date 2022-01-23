@@ -31,7 +31,7 @@ public class PitcherWaterLevel : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {        
+    {
         RockCount = 0;
         CanGrow = true;
 
@@ -51,7 +51,7 @@ public class PitcherWaterLevel : MonoBehaviour
         // Allow player to drink lower water level
         //
         // Do not allow any more rocks to be put in
-        if(RockCount == RockThreshhold)
+        if (RockCount == RockThreshhold)
         {
             CanGrow = false;
         }

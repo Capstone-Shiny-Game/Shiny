@@ -15,7 +15,8 @@ public class FloatUpDown : MonoBehaviour
     /// uses the sine function to determine the new hight of the object.
     /// </summary>
     /// <returns></returns>
-    public float UpDown() {
+    public float UpDown()
+    {
         return movementRange * Mathf.Sin(Speed * (Time.time));
     }
 }

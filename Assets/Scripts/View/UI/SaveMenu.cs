@@ -146,7 +146,7 @@ public class SaveMenu : MonoBehaviour
         }
         if (gameNames.Contains(saveName))
         {
-            confirmPopup.ShowPopUP("are you sure you want to delete this Save?\n\"" + saveName + "\"", confirmDeleteSave,"Delete");
+            confirmPopup.ShowPopUP("are you sure you want to delete this Save?\n\"" + saveName + "\"", confirmDeleteSave, "Delete");
             this.gameObject.SetActive(false);
         }
 

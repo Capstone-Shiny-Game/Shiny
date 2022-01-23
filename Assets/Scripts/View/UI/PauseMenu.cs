@@ -55,6 +55,6 @@ public class PauseMenu : MonoBehaviour
         uiInventory.SetActive(false);
     }
 
-    
+
 
 }

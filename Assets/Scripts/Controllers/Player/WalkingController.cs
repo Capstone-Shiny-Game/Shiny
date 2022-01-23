@@ -60,7 +60,8 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
             displacement *= BackwardsSpeed;
         Vector3 newPosition = transform.position + (transform.forward * displacement);
         Collider[] colliders = Physics.OverlapSphere(newPosition, transform.localScale.magnitude);
-        bool collided = colliders.Any(collider => {
+        bool collided = colliders.Any(collider =>
+        {
             if (collider.isTrigger)
                 return false;
 

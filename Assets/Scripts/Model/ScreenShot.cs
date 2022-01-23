@@ -54,7 +54,8 @@ public class ScreenShot : MonoBehaviour, SaveDescriptor
         outputImage = null;
         ScreenshotToImage();
         int i = 0;
-        while (outputImage is null && i < 10000) {
+        while (outputImage is null && i < 10000)
+        {
             i++;
         }
         Debug.Log("screenshot.cs GetSaveDescriptorData looped " + i + " times");

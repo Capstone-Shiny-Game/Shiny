@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour, Savable
     private GameObject flightCam;
     private GameObject walkCam;
 
-    
+
     // public GameObject NPCUI;
     public GameObject ControllerUI;
 
@@ -242,15 +242,18 @@ public class PlayerController : MonoBehaviour, Savable
             SetFixedPosition(groundPos);
     }
 
-    public void AddSelfToSavablesList() {
+    public void AddSelfToSavablesList()
+    {
         Save.AddSelfToSavablesList(this);
     }
 
-    public void GetSaveData(ref Save.SaveData saveData) {
+    public void GetSaveData(ref Save.SaveData saveData)
+    {
         saveData.playerinventory = this.inventory;
     }
 
-    public void LoadData(ref Save.SaveData saveData) {
+    public void LoadData(ref Save.SaveData saveData)
+    {
         SetInventory(saveData.playerinventory);
     }
 

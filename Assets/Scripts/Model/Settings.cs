@@ -7,7 +7,7 @@ public class Settings
 {
     public static event EventHandler OnSettingsChanged;
     public static SettingsData settingsData { get; private set; }
-    
+
     public static void UpdateSettingData(SettingsData newSettings)
     {
         settingsData = newSettings;
@@ -15,7 +15,8 @@ public class Settings
         OnSettingsChanged?.Invoke(newSettings, EventArgs.Empty);
     }
 
-    public Settings(SettingsData defaultSettings) {
+    public Settings(SettingsData defaultSettings)
+    {
         if (!LoadSettings())
         {
             UpdateSettingData(defaultSettings);
@@ -28,7 +29,8 @@ public class Settings
     /// <returns></returns>
     private bool LoadSettings()
     {
-        if (SaveToPlayerPrefs.SettingsExist()) {
+        if (SaveToPlayerPrefs.SettingsExist())
+        {
             SettingsData newSettings = SaveToPlayerPrefs.LoadSettings();
             UpdateSettingData(newSettings);
             return true;
@@ -37,7 +39,8 @@ public class Settings
     }
 }
 [Serializable]
-public struct SettingsData {
+public struct SettingsData
+{
     public float musicVolume;
     public float dialogueVolume;
     public bool lefthanded;

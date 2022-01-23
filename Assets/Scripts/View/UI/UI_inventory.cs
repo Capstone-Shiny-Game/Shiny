@@ -17,7 +17,8 @@ public class UI_inventory : MonoBehaviour
 
     public void SetInventory(Inventory inv)
     {
-        if (!(inventory is null)) {
+        if (!(inventory is null))
+        {
             inventory.onItemListChanged -= Inventory_OnItemListChanged;
         }
         inventory = inv;
@@ -39,7 +40,8 @@ public class UI_inventory : MonoBehaviour
         }
     }
 
-    public static void fillTemplate(RectTransform templateRectTransform, Item item) {
+    public static void fillTemplate(RectTransform templateRectTransform, Item item)
+    {
         templateRectTransform.gameObject.SetActive(true);
         // find and set item image
         Image image = templateRectTransform.Find("itemImage").GetComponent<Image>();
