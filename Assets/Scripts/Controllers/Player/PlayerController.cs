@@ -82,14 +82,13 @@ public class PlayerController : MonoBehaviour, Savable
         }
         if (state == CrowState.Flying)
         {
-            // TODO (Angelique and Evan) : consider changing ?. back to . once cameras are confirmed to work
-            flightCam?.SetActive(true);
-            walkCam?.SetActive(false);
+            flightCam.SetActive(true);
+            walkCam.SetActive(false);
         }
         else
         {
-            flightCam?.SetActive(false);
-            walkCam?.SetActive(true);
+            flightCam.SetActive(false);
+            walkCam.SetActive(true);
         }
         flightController.enabled = state == CrowState.Flying;
         walkingController.enabled = state == CrowState.Walking || state == CrowState.Splashing;
