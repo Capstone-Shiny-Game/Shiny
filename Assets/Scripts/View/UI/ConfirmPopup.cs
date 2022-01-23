@@ -6,7 +6,7 @@ using UnityEngine;
 public class ConfirmPopup : MonoBehaviour
 {
     public delegate void ConfirmHander(bool e);
-    private event ConfirmHander BroadcastConfirm;
+    private event ConfirmHander broadcastConfirm;
     private ConfirmHander listener;
     [HideInInspector] public string message;
     public TMPro.TMP_Text messageBox;
@@ -36,13 +36,13 @@ public class ConfirmPopup : MonoBehaviour
 
     public void ConfirmClicked(bool value)
     {
-        BroadcastConfirm?.Invoke(value);
+        broadcastConfirm?.Invoke(value);
     }
 
     public void SetListener(ConfirmHander handler)
     {
-        BroadcastConfirm -= listener;
-        BroadcastConfirm += handler;
+        broadcastConfirm -= listener;
+        broadcastConfirm += handler;
         listener = handler;
     }
 }

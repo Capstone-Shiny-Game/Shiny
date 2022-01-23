@@ -50,10 +50,10 @@ public static class Save
     /// </summary>
     public struct SaveDescriptorData
     {
-        public string SaveName;
+        public string saveName;
         public System.DateTime timestamp;
         public Sprite saveScreenshot;
-        public string CurrentQuestName;
+        public string currentQuestName;
 
     }
 
@@ -106,12 +106,13 @@ public static class Save
             }
             WriteToFile(filepath, saveData);
         }
-        Save.saveDescriptors = new List<SaveDescriptor>();//TODO remove this line when save descriptor interface is implemented
+        // TODO: remove this line when save descriptor interface is implemented
+        Save.saveDescriptors = new List<SaveDescriptor>();
         //save descriptor data
         if (!(Save.saveDescriptors is null))
         {
             SaveDescriptorData saveDescriptorData = new SaveDescriptorData();
-            saveDescriptorData.SaveName = filename;
+            saveDescriptorData.saveName = filename;
             saveDescriptorData.timestamp = System.DateTime.Now;
             foreach (SaveDescriptor descriptor in saveDescriptors)
             {

@@ -9,16 +9,16 @@ public class SaveMenu : MonoBehaviour
 
 
     [SerializeField] private RectTransform saveTemplate;
-    [SerializeField] private Transform ListContent;
-    [SerializeField] private GameObject SavingOnlyOptions;
+    [SerializeField] private Transform listContent;
+    [SerializeField] private GameObject savingOnlyOptions;
     public Button backButton;
-    public int UnsavedProgressSafeToLoseSeconds = 45;
+    public int unsavedProgressSafeToLoseSeconds = 45;
     System.DateTime lastSaveTime = System.DateTime.MinValue;
     private List<string> gameNames;
     private string saveName;
     private bool savingIsEnabled;
     public ConfirmPopup confirmPopup;
-    public TMPro.TMP_InputField SaveNameInput;
+    public TMPro.TMP_InputField saveNameInput;
     private List<Save.SaveDescriptorData> gamesDescriptors;
 
     public void OnEnable()
@@ -26,23 +26,23 @@ public class SaveMenu : MonoBehaviour
         gameNames = Save.GetSaveFileNames();
         if (savingIsEnabled)
         {
-            SavingOnlyOptions.SetActive(true);
+            savingOnlyOptions.SetActive(true);
             PopulateSaveGameList("Overwrite");
         }
         else
         {
-            SavingOnlyOptions.SetActive(false);
+            savingOnlyOptions.SetActive(false);
             PopulateSaveGameList("Load");
         }
     }
 
     public void NewSaveGame()
     {
-        if (SaveNameInput.text is null || SaveNameInput.text.Trim() == "")
+        if (saveNameInput.text is null || saveNameInput.text.Trim() == "")
         {
             return;
         }
-        saveName = SaveNameInput.text;
+        saveName = saveNameInput.text;
         SaveGame();
     }
 
@@ -80,7 +80,7 @@ public class SaveMenu : MonoBehaviour
         //Debug.Log(gamesDescriptors.Count);
         foreach (Save.SaveDescriptorData gameDescriptor in gamesDescriptors)
         {
-            RectTransform newTemplate = Instantiate(saveTemplate, ListContent, false);
+            RectTransform newTemplate = Instantiate(saveTemplate, listContent, false);
             fillSaveTemplate(newTemplate, gameDescriptor, loadOrOverwrite);
         }
     }
@@ -91,7 +91,7 @@ public class SaveMenu : MonoBehaviour
     private void ClearSaveList()
     {
         // destroy old ui elements to avoid duplicates
-        foreach (Transform child in ListContent)
+        foreach (Transform child in listContent)
         {
             if (child == saveTemplate)
             {
@@ -126,19 +126,19 @@ public class SaveMenu : MonoBehaviour
         loadButton.onClick.AddListener(delegate { OverwriteOrLoadSaveHander(gameDescriptor); });
         // find and set template text values
         templateRectTransform.Find("SaveDate").GetComponent<TextMeshProUGUI>().text = gameDescriptor.timestamp.ToString("MM/dd/y h:mm tt");
-        templateRectTransform.Find("SaveName").GetComponent<TextMeshProUGUI>().text = gameDescriptor.SaveName;
-        if (gameDescriptor.CurrentQuestName is null || gameDescriptor.CurrentQuestName == "")
+        templateRectTransform.Find("SaveName").GetComponent<TextMeshProUGUI>().text = gameDescriptor.saveName;
+        if (gameDescriptor.currentQuestName is null || gameDescriptor.currentQuestName == "")
         {
             templateRectTransform.Find("CurrentQuestName").GetComponent<TextMeshProUGUI>().text = "Shiny";
         }
         else
         {
-            templateRectTransform.Find("CurrentQuestName").GetComponent<TextMeshProUGUI>().text = gameDescriptor.CurrentQuestName;
+            templateRectTransform.Find("CurrentQuestName").GetComponent<TextMeshProUGUI>().text = gameDescriptor.currentQuestName;
         }
     }
     public void DeleteSaveHandler(Save.SaveDescriptorData gameDescriptor)
     {
-        saveName = gameDescriptor.SaveName;
+        saveName = gameDescriptor.saveName;
         if (saveName is null || saveName == "")
         {
             Debug.Log("error: saveName not found in Savemenu.cs");
@@ -172,7 +172,7 @@ public class SaveMenu : MonoBehaviour
 
     public void OverwriteOrLoadSaveHander(Save.SaveDescriptorData gameDescriptor)
     {
-        saveName = gameDescriptor.SaveName;
+        saveName = gameDescriptor.saveName;
         if (saveName is null || saveName == "")
         {
             Debug.Log("error: saveName not found in Savemenu.cs");
@@ -191,7 +191,7 @@ public class SaveMenu : MonoBehaviour
     {
         if (gameNames.Contains(saveName))
         {
-            if (System.Math.Abs((lastSaveTime - System.DateTime.Now).TotalSeconds) > UnsavedProgressSafeToLoseSeconds)
+            if (System.Math.Abs((lastSaveTime - System.DateTime.Now).TotalSeconds) > unsavedProgressSafeToLoseSeconds)
             {//if it's only been a short time since last save, dont ask to confirm loading the save
                 confirmPopup.ShowPopUP("when loading this game, You will lose all unsaved progress", confirmLoadGame);
                 this.gameObject.SetActive(false);
