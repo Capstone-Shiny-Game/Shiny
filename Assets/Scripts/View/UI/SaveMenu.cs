@@ -117,7 +117,7 @@ public class SaveMenu : MonoBehaviour
             Image image = templateRectTransform.Find("SaveImage").GetComponent<Image>();
             image.sprite = gameDescriptor.saveScreenshot;
         }
-        Button deleteButton = templateRectTransform.Find("DeleteButton").GetComponent<Button>();//TODO : hook this button up
+        Button deleteButton = templateRectTransform.Find("DeleteButton").GetComponent<Button>();
         deleteButton.onClick.AddListener(delegate { DeleteSaveHandler(gameDescriptor); });
         // find and set template button text and onclick
         Button loadButton = templateRectTransform.Find("LoadButton").GetComponent<Button>();
@@ -146,7 +146,7 @@ public class SaveMenu : MonoBehaviour
         }
         if (gameNames.Contains(saveName))
         {
-            confirmPopup.ShowPopUP("are you sure you want to delete this Save?\n\"" + saveName + "\"", confirmDeleteSave);
+            confirmPopup.ShowPopUP("are you sure you want to delete this Save?\n\"" + saveName + "\"", confirmDeleteSave,"Delete");
             this.gameObject.SetActive(false);
         }
 

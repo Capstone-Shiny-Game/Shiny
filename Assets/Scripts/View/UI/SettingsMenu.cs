@@ -10,15 +10,21 @@ public class SettingsMenu : MonoBehaviour
     public Slider dialogueVolumeSlider;
     public SettingsData defaultSettings = new SettingsData {musicVolume = .50f, dialogueVolume = .50f, lefthanded = false};
     private SettingsData prefferedSettings;
+    public ConfirmPopup confirmPopup;
     private void OnEnable()
     {
-        prefferedSettings = Settings.settingsData;
+        prefferedSettings = Settings.settingsData;//save old settings 
         //Debug.Log("music vol : " + Settings.settingsData.musicVolume);
         //Debug.Log("dialogue vol : " + Settings.settingsData.dialogueVolume);
-        musicVolumeSlider.value = Settings.settingsData.musicVolume;
-        dialogueVolumeSlider.value = Settings.settingsData.dialogueVolume;
+        RefreshUI();
         musicVolumeSlider.onValueChanged.AddListener(changeMusicVolume);
         dialogueVolumeSlider.onValueChanged.AddListener(changeDialogueVolume);
+    }
+
+    private void RefreshUI()
+    {
+        musicVolumeSlider.value = Settings.settingsData.musicVolume;
+        dialogueVolumeSlider.value = Settings.settingsData.dialogueVolume;
     }
 
     private void changeMusicVolume(float volume) {
@@ -40,15 +46,22 @@ public class SettingsMenu : MonoBehaviour
     public void DefaultSettings()
     {
         Settings.UpdateSettingData(defaultSettings);//TODO update sliders
-        //Debug.Log("music vol : " + Settings.settingsData.musicVolume);
-        //Debug.Log("dialogue vol : " + Settings.settingsData.dialogueVolume);
+        RefreshUI();
     }
 
     private void OnDisable()
     {
-        Settings.UpdateSettingData(prefferedSettings);
+        confirmPopup.ShowPopUP("save these new settings?", confirmNewSettings, "Save","Discard");
+        this.gameObject.SetActive(false);
         musicVolumeSlider.onValueChanged.RemoveListener(changeMusicVolume);
         dialogueVolumeSlider.onValueChanged.RemoveListener(changeDialogueVolume);
-        //TODO add confirm if exiting without saving
+    }
+    private void confirmNewSettings(bool value)
+    {
+        if (value)
+        {
+            prefferedSettings = Settings.settingsData;
+        }
+        Settings.UpdateSettingData(prefferedSettings);
     }
 }
