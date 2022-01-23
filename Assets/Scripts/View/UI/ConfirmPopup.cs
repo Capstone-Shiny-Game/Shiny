@@ -12,7 +12,7 @@ public class ConfirmPopup : MonoBehaviour
     public TMPro.TMP_Text messageBox;
     public TMPro.TMP_Text confirmButtonText;
     public TMPro.TMP_Text cancelButtonText;
-    void Start()
+    void OnEnable()
     {
         if ((message is null) || (message == "")) {
             message = "error in ConfirmPopup.cs message not set to a value";

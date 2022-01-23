@@ -75,6 +75,7 @@ public class SaveMenu : MonoBehaviour
     private void PopulateSaveGameList(string loadOrOverwrite = "Load")
     {
         ClearSaveList();
+        gameNames = Save.GetSaveFileNames();
         gamesDescriptors = Save.GetSaveFileDescriptors();
         //Debug.Log(gamesDescriptors.Count);
         foreach (Save.SaveDescriptorData gameDescriptor in gamesDescriptors)
@@ -117,6 +118,7 @@ public class SaveMenu : MonoBehaviour
             image.sprite = gameDescriptor.saveScreenshot;
         }
         Button deleteButton = templateRectTransform.Find("DeleteButton").GetComponent<Button>();//TODO : hook this button up
+        deleteButton.onClick.AddListener(delegate { DeleteSaveHandler(gameDescriptor); });
         // find and set template button text and onclick
         Button loadButton = templateRectTransform.Find("LoadButton").GetComponent<Button>();
         loadButton.GetComponentInChildren<TextMeshProUGUI>().text = loadOrOverwrite;
@@ -132,6 +134,39 @@ public class SaveMenu : MonoBehaviour
         else
         {
             templateRectTransform.Find("CurrentQuestName").GetComponent<TextMeshProUGUI>().text = gameDescriptor.CurrentQuestName;
+        }
+    }
+    public void DeleteSaveHandler(Save.SaveDescriptorData gameDescriptor)
+    {
+        saveName = gameDescriptor.SaveName;
+        if (saveName is null || saveName == "")
+        {
+            Debug.Log("error: saveName not found in Savemenu.cs");
+            return;
+        }
+        if (gameNames.Contains(saveName))
+        {
+            confirmPopup.ShowPopUP("are you sure you want to delete this Save?\n\"" + saveName + "\"", confirmDeleteSave);
+            this.gameObject.SetActive(false);
+        }
+
+    }
+
+    private void confirmDeleteSave(bool value)
+    {
+        this.gameObject.SetActive(true);//set save menu active
+        if (value)
+        {
+            Save.DeleteSave(saveName);
+        }
+
+        if (savingIsEnabled)//repopulate the list with new save
+        {
+            PopulateSaveGameList("Overwrite");
+        }
+        else
+        {
+            PopulateSaveGameList("Load");
         }
     }
 

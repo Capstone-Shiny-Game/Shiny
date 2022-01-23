@@ -160,13 +160,13 @@ public static class Save
         }
         return fileNames;
     }
-    /// <summary>
+    /// <summary>savingIsEnabled
     /// deletes the save file if it exists
     /// </summary>
     /// <param name="filename"></param>
     /// <param name="extentionPattern"></param>
     /// <param name="DescriptorExtentionPattern"></param>
-    public static void DeleteSave(string filename, string extentionPattern = "*.sav", string DescriptorExtentionPattern = "*.desc")
+    public static void DeleteSave(string filename, string extentionPattern = ".sav", string DescriptorExtentionPattern = ".desc")
     {
         string savefilepath = ConstructFilePath(filename, extentionPattern);
         string descfilepath = ConstructFilePath(filename, DescriptorExtentionPattern);
@@ -187,7 +187,7 @@ public static class Save
     public static List<SaveDescriptorData> GetSaveFileDescriptors(string extentionPattern = "*.desc")
     {
         string[] filePaths = Directory.GetFiles(Path.Combine(Application.persistentDataPath, ""), extentionPattern);
-        //Debug.Log(Application.persistentDataPath);
+        Debug.Log(filePaths);
         List<SaveDescriptorData> fileDescriptors = new List<SaveDescriptorData>();
         foreach (string filePath in filePaths)
         {
