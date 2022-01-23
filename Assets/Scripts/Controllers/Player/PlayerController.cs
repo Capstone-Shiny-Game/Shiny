@@ -21,6 +21,10 @@ public class PlayerController : MonoBehaviour, Savable
     private FlightController flightController;
     private WalkingController walkingController;
     private CameraController cameraController;
+    private GameObject flightCam;
+    private GameObject walkCam;
+
+    
     // public GameObject NPCUI;
     public GameObject ControllerUI;
 
@@ -45,6 +49,9 @@ public class PlayerController : MonoBehaviour, Savable
 
     private void Start()
     {
+        flightCam = GameObject.Find("CM Flying");
+        walkCam = GameObject.Find("CM Walking");
+
         flightController = GetComponent<FlightController>();
         walkingController = GetComponent<WalkingController>();
         cameraController = GetComponent<CameraController>();
@@ -73,7 +80,16 @@ public class PlayerController : MonoBehaviour, Savable
             pos.y += addYForTakeoff;
             transform.position = pos;
         }
-
+        if (state == CrowState.Flying)
+        {
+            flightCam.SetActive(true);
+            walkCam.SetActive(false);
+        }
+        else
+        {
+            flightCam.SetActive(false);
+            walkCam.SetActive(true);
+        }
         flightController.enabled = state == CrowState.Flying;
         walkingController.enabled = state == CrowState.Walking || state == CrowState.Splashing;
         cameraController.isWalking = walkingController.enabled;

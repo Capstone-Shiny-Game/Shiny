@@ -43,6 +43,7 @@ public class FlightController : MonoBehaviour
 
     public void Start()
     {
+        //InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
         CamController = GetComponent<CameraController>();
     }
 
@@ -181,6 +182,9 @@ public class FlightController : MonoBehaviour
     }
     private void GetPlayerControls()
     {
+        //if (UnityEngine.InputSystem.Gyroscope.current.enabled)
+        //    Debug.Log("Gyroscope is enabled");
+
         // Rotate
         float turn = moveX * tiltSensitivity / 1.5f * Time.deltaTime;
         float pitch = -moveY * pitchSensitivity * Time.deltaTime;

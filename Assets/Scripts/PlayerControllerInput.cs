@@ -135,6 +135,61 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""01b887a6-5714-4708-8b1c-7022adda9e63"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flight"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""d319a086-c255-4fae-b106-554979dd7949"",
+                    ""path"": ""<Accelerometer>/acceleration/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""479449c7-145d-428c-9a27-1fd18c7c8536"",
+                    ""path"": ""<Accelerometer>/acceleration/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""dddd653b-24fe-4663-abaa-fb46838322f8"",
+                    ""path"": ""<Accelerometer>/acceleration/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""82d769da-4bbb-497b-8449-df203194ddc9"",
+                    ""path"": ""<Accelerometer>/acceleration/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""6235f709-32c4-40e0-b0bb-1dcb10636a6f"",
                     ""path"": ""<Gamepad>/rightStick"",
