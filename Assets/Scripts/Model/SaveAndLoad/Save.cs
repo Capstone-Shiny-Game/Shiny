@@ -9,12 +9,12 @@ public static class Save
     /// <summary>
     /// list of all savable objects that will be added to the save file
     /// </summary>
-    public static List<Savable> savables{ get; private set; }
+    public static List<Savable> savables { get; private set; }
 
 
     /// <summary>
     /// Struct containing all feilds that need to be saved for the game
-    /// struct should be edited when Savable.GetSaveData is called 
+    /// struct should be edited when Savable.GetSaveData is called
     /// with each savable object adding it's own feilds to the stuct and filling them.
     /// struct should be read when Savable.LoadData is called
     /// with each savable object reading the feilds it filled when saving.
@@ -37,13 +37,13 @@ public static class Save
     */
 
     /// <summary>
-    /// list of all save descriptors 
+    /// list of all save descriptors
     /// </summary>
     public static List<SaveDescriptor> saveDescriptors { get; private set; }
 
     /// <summary>
     /// Struct containing all feilds that describe a save file
-    /// struct should be edited when SaveDescriptor.GetSaveDescriptorData is called 
+    /// struct should be edited when SaveDescriptor.GetSaveDescriptorData is called
     /// with each savable object adding it's own feilds to the stuct and filling them.
     /// struct should be read when Savable.LoadData is called
     /// with each savable object reading the feilds it filled when saving.
@@ -88,11 +88,11 @@ public static class Save
 
     /// <summary>
     /// meant to be called from the save menu,
-    /// requests all savable objects in savables to save their data into the SaveData struct, 
+    /// requests all savable objects in savables to save their data into the SaveData struct,
     /// then uses the filename and the platform independant file location to save the json serialized struct to a file
     /// </summary>
     /// <param name="filename"></param>
-    public static void SaveDataJson(string filename) 
+    public static void SaveDataJson(string filename)
     {
         //save level data
         //Debug.Log("saving");
@@ -123,7 +123,7 @@ public static class Save
 
     }
     /// <summary>
-    /// meant to be called from the save menu, 
+    /// meant to be called from the save menu,
     /// uses the filename and the platform independant file location to get a save file and load it's data into the SaveData struct
     /// then requests all savable objects in savables to get their data from the SaveData struct.
     /// </summary>
@@ -131,7 +131,8 @@ public static class Save
     public static void LoadDataJson(string filename)
     {
         string filepath = ConstructFilePath(filename);
-        if (!File.Exists(filepath)) {
+        if (!File.Exists(filepath))
+        {
             Debug.Log("save file not found at " + filepath);
             return;
         }
@@ -147,12 +148,14 @@ public static class Save
     /// returns a list of all the names of the current save files from the platform independant file location
     /// </summary>
     /// <returns></returns>
-    public static List<string> GetSaveFileNames(string extentionPattern = "*.sav") {
-        string[] filePaths = Directory.GetFiles(Path.Combine(Application.persistentDataPath, ""),extentionPattern);
+    public static List<string> GetSaveFileNames(string extentionPattern = "*.sav")
+    {
+        string[] filePaths = Directory.GetFiles(Path.Combine(Application.persistentDataPath, ""), extentionPattern);
         //Debug.Log(Path.Combine(Application.persistentDataPath, ""));
         //Debug.Log(filePaths.Length);
         List<string> fileNames = new List<string>();
-        foreach (string filePath in filePaths) {
+        foreach (string filePath in filePaths)
+        {
             fileNames.Add(FilenameFromFilePath(filePath));
         }
         return fileNames;
@@ -163,13 +166,16 @@ public static class Save
     /// <param name="filename"></param>
     /// <param name="extentionPattern"></param>
     /// <param name="DescriptorExtentionPattern"></param>
-    public static void DeleteSave(string filename, string extentionPattern = "*.sav", string DescriptorExtentionPattern = "*.desc") {
+    public static void DeleteSave(string filename, string extentionPattern = "*.sav", string DescriptorExtentionPattern = "*.desc")
+    {
         string savefilepath = ConstructFilePath(filename, extentionPattern);
         string descfilepath = ConstructFilePath(filename, DescriptorExtentionPattern);
-        if (File.Exists(savefilepath)) {
+        if (File.Exists(savefilepath))
+        {
             File.Delete(savefilepath);
         }
-        if(File.Exists(descfilepath)){
+        if (File.Exists(descfilepath))
+        {
             File.Delete(descfilepath);
         }
     }
@@ -180,7 +186,7 @@ public static class Save
     /// <returns></returns>
     public static List<SaveDescriptorData> GetSaveFileDescriptors(string extentionPattern = "*.desc")
     {
-        string[] filePaths = Directory.GetFiles(Path.Combine(Application.persistentDataPath,""), extentionPattern);
+        string[] filePaths = Directory.GetFiles(Path.Combine(Application.persistentDataPath, ""), extentionPattern);
         //Debug.Log(Application.persistentDataPath);
         List<SaveDescriptorData> fileDescriptors = new List<SaveDescriptorData>();
         foreach (string filePath in filePaths)
@@ -195,7 +201,8 @@ public static class Save
     /// </summary>
     /// <param name="filename"></param>
     /// <returns></returns>
-    private static string ConstructFilePath(string filename, string extention = ".sav") {
+    private static string ConstructFilePath(string filename, string extention = ".sav")
+    {
         return Path.Combine(Application.persistentDataPath, (filename + extention));
     }
 
@@ -214,7 +221,8 @@ public static class Save
     /// </summary>
     /// <param name="filepath">the full path of the file</param>
     /// <param name="saveData">object or struct to be serialized and saved</param>
-    private static void WriteToFile(string filepath, object saveData) {
+    private static void WriteToFile(string filepath, object saveData)
+    {
         string saveJSON = JsonUtility.ToJson(saveData);
         //Debug.Log(saveJSON);
         //Debug.Log(filepath);

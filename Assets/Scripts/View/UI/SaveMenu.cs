@@ -72,11 +72,13 @@ public class SaveMenu : MonoBehaviour
         }
     }
 
-    private void PopulateSaveGameList(string loadOrOverwrite = "Load") {
+    private void PopulateSaveGameList(string loadOrOverwrite = "Load")
+    {
         ClearSaveList();
         gamesDescriptors = Save.GetSaveFileDescriptors();
         //Debug.Log(gamesDescriptors.Count);
-        foreach (Save.SaveDescriptorData gameDescriptor in gamesDescriptors) {
+        foreach (Save.SaveDescriptorData gameDescriptor in gamesDescriptors)
+        {
             RectTransform newTemplate = Instantiate(saveTemplate, ListContent, false);
             fillSaveTemplate(newTemplate, gameDescriptor, loadOrOverwrite);
         }
@@ -101,7 +103,8 @@ public class SaveMenu : MonoBehaviour
 
     private void fillSaveTemplate(RectTransform templateRectTransform, Save.SaveDescriptorData gameDescriptor, string loadOrOverwrite = "Load")
     {
-        if (templateRectTransform is null) {
+        if (templateRectTransform is null)
+        {
             Debug.Log("error : templateRectTransform is null in SaveMenu.cs");
             return;
         }
@@ -126,7 +129,8 @@ public class SaveMenu : MonoBehaviour
         {
             templateRectTransform.Find("CurrentQuestName").GetComponent<TextMeshProUGUI>().text = "Shiny";
         }
-        else {
+        else
+        {
             templateRectTransform.Find("CurrentQuestName").GetComponent<TextMeshProUGUI>().text = gameDescriptor.CurrentQuestName;
         }
     }
@@ -158,7 +162,8 @@ public class SaveMenu : MonoBehaviour
                 this.gameObject.SetActive(false);
                 return;
             }
-            else {
+            else
+            {
                 lastSaveTime = System.DateTime.Now;
                 Save.LoadDataJson(saveName);
                 backButton.onClick.Invoke();
