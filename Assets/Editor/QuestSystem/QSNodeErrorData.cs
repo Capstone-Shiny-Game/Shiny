@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 
-public class DSNodeErrorData
+public class QSNodeErrorData
 {
     public DSErrorData errorData { get; set; }
-    public List<DSNode> Nodes { get; set; }
+    public List<QSNode> Nodes { get; set; }
 
-    public DSNodeErrorData()
+    public QSNodeErrorData()
     {
         errorData = new DSErrorData();
-        Nodes = new List<DSNode>();
+        Nodes = new List<QSNode>();
     }
 }

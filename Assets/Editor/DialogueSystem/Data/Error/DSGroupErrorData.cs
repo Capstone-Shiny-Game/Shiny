@@ -1,7 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor.Experimental.GraphView;
 
 public class DSGroupErrorData
 {
@@ -13,6 +10,4 @@ public class DSGroupErrorData
         errorData = new DSErrorData();
         Groups = new List<DSGroup>();
     }
-
-
 }

@@ -1,19 +1,20 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 using UnityEngine.UIElements;
 
-public class DSGraphView : GraphView
+public class QSGraphView : GraphView
 {
-    DialogSystemEditWindow editorWindow;
-    private DSSearchWindow searchWindow;
-    private SerializableDictionary<string, DSNodeErrorData> ungroupedNodes;
-    private SerializableDictionary<string, DSGroupErrorData> groups;
-    private SerializableDictionary<Group, SerializableDictionary<string, DSNodeErrorData>> groupedNodes;
+    private QuestSystemEditWindow editorWindow;
+    private QSSearchWindow searchWindow;
+    private SerializableDictionary<string, QSNodeErrorData> ungroupedNodes;
+    private SerializableDictionary<string, QSGroupErrorData> groups;
+    private SerializableDictionary<Group, SerializableDictionary<string, QSNodeErrorData>> groupedNodes;
 
     private int repeatedNameCount;
 
+    // TODO : enforce invariant of single start node
     public int RepeatedNameCount
     {
         get
@@ -35,12 +36,12 @@ public class DSGraphView : GraphView
         }
     }
 
-    public DSGraphView(DialogSystemEditWindow dSEditorWindow)
+    public QSGraphView(QuestSystemEditWindow dSEditorWindow)
     {
         editorWindow = dSEditorWindow;
-        ungroupedNodes = new SerializableDictionary<string, DSNodeErrorData>();
-        groupedNodes = new SerializableDictionary<Group, SerializableDictionary<string, DSNodeErrorData>>();
-        groups = new SerializableDictionary<string, DSGroupErrorData>();
+        ungroupedNodes = new SerializableDictionary<string, QSNodeErrorData>();
+        groupedNodes = new SerializableDictionary<Group, SerializableDictionary<string, QSNodeErrorData>>();
+        groups = new SerializableDictionary<string, QSGroupErrorData>();
 
         AddSearchWindow();
         AddManipulators();
@@ -72,7 +73,7 @@ public class DSGraphView : GraphView
     {
         if (searchWindow == null)
         {
-            searchWindow = ScriptableObject.CreateInstance<DSSearchWindow>();
+            searchWindow = ScriptableObject.CreateInstance<QSSearchWindow>();
             searchWindow.Initialize(this);
         }
         nodeCreationRequest = context => SearchWindow.Open(new SearchWindowContext(context.screenMousePosition), searchWindow);
@@ -84,7 +85,11 @@ public class DSGraphView : GraphView
 
         ports.ForEach(port =>
         {
-            if (port.direction != startPort.direction && port.node != startPort.node)
+            if (
+                port.direction != startPort.direction
+                && startPort.portType == port.portType
+                && port.node != startPort.node
+            )
             {
                 compatiblePorts.Add(port);
             }
@@ -93,12 +98,15 @@ public class DSGraphView : GraphView
         return compatiblePorts;
     }
 
-    public DSNode CreateNode(string nodeName, DSDialogueType dialogueType, Vector2 position, bool shouldDraw = true)
+    public QSNode CreateNode(Type type, Vector2 position, string enumName = null, bool shouldDraw = true)
     {
-        Type nodeType = Type.GetType($"DS{dialogueType}Node");
-        DSNode node = (DSNode)Activator.CreateInstance(nodeType);
+        QSNodeSO nodeSO = (QSNodeSO)ScriptableObject.CreateInstance(type);
+        if (nodeSO is QSNPCNodeSO || nodeSO is QSItemNodeSO)
+            nodeSO.Name = enumName;
+        nodeSO.InitializeEditor();
+        QSNode node = (QSNode)Activator.CreateInstance(typeof(QSNode));
 
-        node.Initialize(nodeName, this, position);
+        node.Initialize(nodeSO, this, position);
         if (shouldDraw)
         {
             node.Draw();
@@ -109,13 +117,13 @@ public class DSGraphView : GraphView
         return node;
     }
 
-    public void AddUngroupedNode(DSNode node)
+    public void AddUngroupedNode(QSNode node)
     {
-        string nodeName = node.DialogueName.ToLower();
+        string nodeName = node.Name.ToLower();
 
         if (!ungroupedNodes.ContainsKey(nodeName))
         {
-            DSNodeErrorData nodeErrorData = new DSNodeErrorData();
+            QSNodeErrorData nodeErrorData = new QSNodeErrorData();
             nodeErrorData.Nodes.Add(node);
             ungroupedNodes.Add(nodeName, nodeErrorData);
 
@@ -139,15 +147,15 @@ public class DSGraphView : GraphView
     {
         deleteSelection = (operationName, askUser) =>
         {
-            Type groupType = typeof(DSGroup);
+            Type groupType = typeof(QSGroup);
             Type edgeType = typeof(Edge);
 
-            List<DSNode> nodesToDelete = new List<DSNode>();
+            List<QSNode> nodesToDelete = new List<QSNode>();
             List<Edge> edgesToDelete = new List<Edge>();
-            List<DSGroup> groupsToDelete = new List<DSGroup>();
+            List<QSGroup> groupsToDelete = new List<QSGroup>();
             foreach (GraphElement element in selection)
             {
-                if (element is DSNode node)
+                if (element is QSNode node)
                 {
                     nodesToDelete.Add(node);
                     continue;
@@ -164,22 +172,19 @@ public class DSGraphView : GraphView
                     continue;
                 }
 
-                DSGroup group = (DSGroup)element;
+                QSGroup group = (QSGroup)element;
 
                 groupsToDelete.Add(group);
             }
 
-            foreach (DSGroup group in groupsToDelete)
+            foreach (QSGroup group in groupsToDelete)
             {
-                List<DSNode> groupNodes = new List<DSNode>();
+                List<QSNode> groupNodes = new List<QSNode>();
 
                 foreach (GraphElement element in group.containedElements)
                 {
-                    if (!(element is DSNode node))
-                    {
-                        continue;
-                    }
-                    groupNodes.Add((DSNode)element);
+                    if (element is QSNode node)
+                        groupNodes.Add(node);
                 }
 
                 group.RemoveElements(groupNodes);
@@ -191,13 +196,12 @@ public class DSGraphView : GraphView
 
             DeleteElements(edgesToDelete);
 
-            foreach (DSNode node in nodesToDelete)
+            foreach (QSNode node in nodesToDelete)
             {
                 if (node.Group != null)
                 {
                     node.Group.RemoveElement(node);
                 }
-
                 RemoveUngroupedNode(node);
 
                 node.DisconnectAllPorts();
@@ -213,12 +217,12 @@ public class DSGraphView : GraphView
         {
             foreach (GraphElement element in elements)
             {
-                if (!(element is DSNode))
+                if (!(element is QSNode))
                 {
                     continue;
                 }
-                DSGroup nodeGroup = (DSGroup)group;
-                DSNode node = (DSNode)element;
+                QSGroup nodeGroup = (QSGroup)group;
+                QSNode node = (QSNode)element;
 
                 RemoveUngroupedNode(node);
 
@@ -231,30 +235,31 @@ public class DSGraphView : GraphView
     {
         groupTitleChanged = (group, newTitle) =>
         {
-            DSGroup dSGroup = (DSGroup)group;
+            QSGroup qSGroup = (QSGroup)group;
 
-            dSGroup.title = newTitle.RemoveWhitespaces().RemoveSpecialCharacters();
+            qSGroup.title = newTitle; //.RemoveWhitespaces().RemoveSpecialCharacters();
+            // TODO : determine if allowing whitespace, special characters will break anything
 
-            if (string.IsNullOrEmpty(dSGroup.title))
+            if (string.IsNullOrEmpty(qSGroup.title))
             {
-                if (!string.IsNullOrEmpty(dSGroup.oldTitle))
+                if (!string.IsNullOrEmpty(qSGroup.oldTitle))
                 {
                     ++RepeatedNameCount;
                 }
             }
             else
             {
-                if (string.IsNullOrEmpty(dSGroup.oldTitle))
+                if (string.IsNullOrEmpty(qSGroup.oldTitle))
                 {
                     --RepeatedNameCount;
                 }
             }
 
-            RemoveGroup(dSGroup);
+            RemoveGroup(qSGroup);
 
-            dSGroup.oldTitle = dSGroup.title.ToLower();
+            qSGroup.oldTitle = qSGroup.title.ToLower();
 
-            AddGroup(dSGroup);
+            AddGroup(qSGroup);
         };
     }
 
@@ -266,9 +271,8 @@ public class DSGraphView : GraphView
             {
                 foreach (Edge edge in changes.edgesToCreate)
                 {
-                    DSNode nextNode = (DSNode)edge.input.node;
-                    DSChoiceSaveData choiceData = (DSChoiceSaveData)edge.output.userData;
-                    choiceData.NodeID = nextNode.ID;
+                    QSNode nextNode = (QSNode)edge.input.node;
+                    // TODO (Ella) : userData
                 }
             }
             if (changes.elementsToRemove != null)
@@ -284,9 +288,7 @@ public class DSGraphView : GraphView
 
                     Edge edge = (Edge)element;
 
-                    DSChoiceSaveData choiceData = (DSChoiceSaveData)edge.output.userData;
-
-                    choiceData.NodeID = "";
+                    // TODO (Ella) : userData
                 }
             }
 
@@ -300,12 +302,12 @@ public class DSGraphView : GraphView
         {
             foreach (GraphElement element in elements)
             {
-                if (!(element is DSNode))
+                if (!(element is QSNode))
                 {
                     continue;
                 }
 
-                DSNode node = (DSNode)element;
+                QSNode node = (QSNode)element;
 
                 RemoveGroupedNode(group, node);
 
@@ -314,9 +316,9 @@ public class DSGraphView : GraphView
         };
     }
 
-    public void RemoveGroupedNode(Group group, DSNode node)
+    public void RemoveGroupedNode(Group group, QSNode node)
     {
-        string nodeName = node.DialogueName.ToLower();
+        string nodeName = node.Name.ToLower();
 
         if (!groupedNodes.ContainsKey(group))
         {
@@ -346,20 +348,20 @@ public class DSGraphView : GraphView
         }
     }
 
-    public void AddGroupedNode(DSGroup group, DSNode node)
+    public void AddGroupedNode(QSGroup group, QSNode node)
     {
-        string nodeName = node.DialogueName.ToLower();
+        string nodeName = node.Name.ToLower();
 
         node.Group = group;
 
         if (!groupedNodes.ContainsKey(group))
         {
-            groupedNodes.Add(group, new SerializableDictionary<string, DSNodeErrorData>());
+            groupedNodes.Add(group, new SerializableDictionary<string, QSNodeErrorData>());
         }
 
         if (!groupedNodes[group].ContainsKey(nodeName))
         {
-            DSNodeErrorData nodeErrorData = new DSNodeErrorData();
+            QSNodeErrorData nodeErrorData = new QSNodeErrorData();
             nodeErrorData.Nodes.Add(node);
             groupedNodes[group].Add(nodeName, nodeErrorData);
 
@@ -379,9 +381,9 @@ public class DSGraphView : GraphView
         }
     }
 
-    public void RemoveUngroupedNode(DSNode node)
+    public void RemoveUngroupedNode(QSNode node)
     {
-        string nodeName = node.DialogueName.ToLower();
+        string nodeName = node.Name.ToLower();
 
         node.Group = null;
 
@@ -403,12 +405,12 @@ public class DSGraphView : GraphView
         }
     }
 
-    public void AddGroup(DSGroup group)
+    public void AddGroup(QSGroup group)
     {
         string groupName = group.title.ToLower();
         if (!groups.ContainsKey(groupName))
         {
-            DSGroupErrorData groupErrorData = new DSGroupErrorData();
+            QSGroupErrorData groupErrorData = new QSGroupErrorData();
 
             groupErrorData.Groups.Add(group);
 
@@ -429,7 +431,7 @@ public class DSGraphView : GraphView
         }
     }
 
-    public void RemoveGroup(DSGroup group)
+    public void RemoveGroup(QSGroup group)
     {
         string groupName = group.oldTitle.ToLower();
 
@@ -460,8 +462,12 @@ public class DSGraphView : GraphView
     {
         SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale);
 
-        this.AddManipulator(CreateNodeContextualMenu("Add Node (Single Choice)", DSDialogueType.SingleChoice));
-        this.AddManipulator(CreateNodeContextualMenu("Add Node (Multiple Choice)", DSDialogueType.MultipleChoice));
+        foreach ((string, Type) pair in QS.NodeTypes)
+            this.AddManipulator(CreateNodeContextualMenu($"Add Node/{pair.Item1}", pair.Item2));
+        foreach (QSNPC npc in Enum.GetValues(typeof(QSNPC)))
+            this.AddManipulator(CreateNodeContextualMenu($"Add Node/NPC/{npc}", typeof(QSNPCNodeSO), npc.ToString()));
+        foreach (QSItem item in Enum.GetValues(typeof(QSItem)))
+            this.AddManipulator(CreateNodeContextualMenu($"Add Node/Item/{item}", typeof(QSItemNodeSO), item.ToString()));
 
         this.AddManipulator(new ContentDragger());
         this.AddManipulator(new SelectionDragger());
@@ -473,15 +479,15 @@ public class DSGraphView : GraphView
     private IManipulator CreateGroupContextualMenu()
     {
         ContextualMenuManipulator contextualMenuManipulator = new ContextualMenuManipulator(
-            menuEvent => menuEvent.menu.AppendAction("Add Group", actionEvent => CreateGroup("DialogueGroup", GetLocalMousePosition(actionEvent.eventInfo.localMousePosition)))
+            menuEvent => menuEvent.menu.AppendAction("Add Group", actionEvent => CreateGroup(GetLocalMousePosition(actionEvent.eventInfo.localMousePosition)))
         );
 
         return contextualMenuManipulator;
     }
 
-    public DSGroup CreateGroup(string title, Vector2 localMousePosition)
+    public QSGroup CreateGroup(Vector2 localMousePosition)
     {
-        DSGroup group = new DSGroup(title, localMousePosition);
+        QSGroup group = new QSGroup(localMousePosition);
 
         AddGroup(group);
 
@@ -489,23 +495,17 @@ public class DSGraphView : GraphView
 
         foreach (GraphElement element in selection)
         {
-            if (!(element is DSNode))
-            {
-                continue;
-            }
-
-            DSNode node = (DSNode)element;
-
-            group.AddElement(node);
+            if (element is QSNode node)
+                group.AddElement(node);
         }
 
         return group;
     }
 
-    private IManipulator CreateNodeContextualMenu(string actionTitle, DSDialogueType dialogueType)
+    private IManipulator CreateNodeContextualMenu(string actionTitle, Type type, string enumName = null)
     {
         ContextualMenuManipulator contextualMenuManipulator = new ContextualMenuManipulator(
-            menuEvent => menuEvent.menu.AppendAction(actionTitle, actionEvent => AddElement(CreateNode("DialogueName", dialogueType, GetLocalMousePosition(actionEvent.eventInfo.localMousePosition))))
+            menuEvent => menuEvent.menu.AppendAction(actionTitle, actionEvent => AddElement(CreateNode(type, GetLocalMousePosition(actionEvent.eventInfo.localMousePosition), enumName)))
         );
 
         return contextualMenuManipulator;
@@ -537,5 +537,4 @@ public class DSGraphView : GraphView
 
         RepeatedNameCount = 0;
     }
-
 }

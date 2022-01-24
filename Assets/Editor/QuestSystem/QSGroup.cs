@@ -2,18 +2,18 @@ using System;
 using UnityEngine;
 using UnityEditor.Experimental.GraphView;
 
-public class DSGroup : Group
+public class QSGroup : Group
 {
     public string ID { get; set; }
     private Color defaultBorderColor;
     private float defaultBorderWidth;
     public string oldTitle { get; set; }
 
-    public DSGroup(string groupTitle, Vector2 position)
+    public QSGroup(Vector2 position)
     {
         ID = Guid.NewGuid().ToString();
-        title = groupTitle;
-        oldTitle = groupTitle;
+        title = $"Quest Group #{ID.Substring(ID.Length - 4)}";
+        oldTitle = title;
 
         SetPosition(new Rect(position, Vector2.zero));
 
