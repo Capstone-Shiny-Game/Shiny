@@ -1,9 +1,8 @@
-using UnityEditor;
-using System;
 using System.IO;
-using UnityEngine.UIElements;
+using UnityEditor;
 using UnityEditor.UIElements;
-
+using UnityEngine;
+using UnityEngine.UIElements;
 
 public class DialogSystemEditWindow : EditorWindow
 {
@@ -15,7 +14,8 @@ public class DialogSystemEditWindow : EditorWindow
     [MenuItem("Window/Dialog Graph")]
     public static void Open()
     {
-        GetWindow<DialogSystemEditWindow>();
+        DialogSystemEditWindow window = GetWindow<DialogSystemEditWindow>();
+        window.titleContent = new GUIContent("Dialog Graph Editor");
     }
 
     private void OnEnable()
