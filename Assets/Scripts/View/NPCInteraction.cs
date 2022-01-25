@@ -149,14 +149,13 @@ public class NPCInteraction : MonoBehaviour
         }
     }
 
-    // TODO (Jakob) : handle words that break a line
     private IEnumerator TypeBodyText()
     {
-        string dialogue = currentDialogue.Text;
-        bodyText.text = string.Empty;
-        foreach (char c in dialogue)
+        bodyText.maxVisibleCharacters = 0;
+        bodyText.text = currentDialogue.Text;
+        for (int i = 1; i < bodyText.text.Length; i++)
         {
-            bodyText.text += c;
+            bodyText.maxVisibleCharacters = i;
             yield return new WaitForSeconds(0.035f);
         }
     }
