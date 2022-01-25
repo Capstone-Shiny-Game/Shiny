@@ -5,9 +5,9 @@ using UnityEngine;
 public class Branch_child_control : MonoBehaviour
 {
     [SerializeField] Collider coll;
-    private void OnCollisionEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.CompareTag("Terrain"))
+        if (other.gameObject.CompareTag("Terrain"))
         {
             coll.enabled = true;
         }
