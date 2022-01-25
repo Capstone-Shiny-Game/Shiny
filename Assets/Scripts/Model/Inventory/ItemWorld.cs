@@ -5,6 +5,33 @@ using UnityEngine;
 
 public class ItemWorld : MonoBehaviour
 {
+   
+    public Item item;
+    private MeshRenderer meshRenderer;
+    
+
+    private void Start()
+    {
+        meshRenderer = GetComponent<MeshRenderer>();
+
+    }
+
+    public void SetItem(Item item)
+    {
+        this.item = item;
+        //TODO: set mesh reder
+    }
+
+    internal void DestroySelf()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public Item GetItem()
+    {
+        return item;
+    }
+
     public static ItemWorld SpawnItemWorld(GameObject spawnedObject, Vector3 position)
     {
 
@@ -24,29 +51,6 @@ public class ItemWorld : MonoBehaviour
         //itemWorld.SetItem(item);
 
         return itemWorld;
-    }
-    public Item item;
-    private MeshRenderer meshRenderer;
-
-    private void Awake()
-    {
-        meshRenderer = GetComponent<MeshRenderer>();
-    }
-
-    public void SetItem(Item item)
-    {
-        this.item = item;
-        //TODO: set mesh reder
-    }
-
-    internal void DestroySelf()
-    {
-        gameObject.SetActive(false);
-    }
-
-    public Item GetItem()
-    {
-        return item;
     }
 
     private void OnTriggerEnter(Collider other)
