@@ -33,7 +33,7 @@ public class Pickupable : MonoBehaviour
         rigidbody.useGravity = !attached;
 
         if (attached)
-            transform.position = Crow.transform.position - Crow.transform.up;
+            transform.position = Crow.transform.position - Crow.transform.forward * 2f;
 
         // TODO : we should probably do something more clever than just embiggening to indicate that the player needs to interact with this
         transform.localScale = inRange && !attached ? largeScale : smallScale;
