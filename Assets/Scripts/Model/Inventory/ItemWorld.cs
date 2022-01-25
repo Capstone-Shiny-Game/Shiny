@@ -48,4 +48,27 @@ public class ItemWorld : MonoBehaviour
     {
         return item;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        ////add items to inventory
+        //ItemWorld itemWorld = other.GetComponent<ItemWorld>();
+
+        //touching item
+        //Item item = itemWorld.GetItem();
+        //maxcarryweight is on player
+        //    if (maxCarryWeight >= (inventory.weight + item.getStackWeight()))
+        //    {
+        //check if picking this up would add to much weight
+        if (other.CompareTag("Player"))
+        {
+            if (other.GetComponent<PlayerController>().inventory.AddItem(item))
+            {
+                DestroySelf();
+            }
+        }
+           
+         //   }
+        
+    }
 }

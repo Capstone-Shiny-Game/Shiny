@@ -30,7 +30,8 @@ public class PlayerController : MonoBehaviour, Savable
 
     private InputAction walkAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/F");
 
-    private Inventory inventory;
+    [System.NonSerialized]
+    public Inventory inventory;
 
     // this variable holds the ui_inventory object from the scene
     [SerializeField]
@@ -217,24 +218,7 @@ public class PlayerController : MonoBehaviour, Savable
         SetState(CrowState.Walking);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        //add items to inventory
-        ItemWorld itemWorld = other.GetComponent<ItemWorld>();
-        if (itemWorld != null)
-        {
-            //touching item
-            Item item = itemWorld.GetItem();
-            if (maxCarryWeight >= (inventory.weight + item.getStackWeight()))
-            {
-                //check if picking this up would add to much weight
-                if (inventory.AddItem(item))
-                {
-                    itemWorld.DestroySelf();
-                }
-            }
-        }
-    }
+
 
     private void TryPlaceOnGround()
     {
