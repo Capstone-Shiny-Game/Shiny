@@ -21,7 +21,7 @@ public class Pickupable : MonoBehaviour
         playerController = Crow.GetComponent<PlayerController>();
         flightController = Crow.GetComponent<FlightController>();
         smallScale = transform.localScale;
-        largeScale = smallScale * 2;
+        largeScale = smallScale * 1.2f;
     }
 
     private void Update()
@@ -29,7 +29,7 @@ public class Pickupable : MonoBehaviour
         rigidbody.useGravity = !attached;
 
         if (attached)
-            transform.position = Crow.transform.position - Crow.transform.forward * 5f;
+            transform.position = Crow.transform.position - Crow.transform.forward * 1.1f;
 
         // TODO : we should probably do something more clever than just embiggening to indicate that the player needs to interact with this
         transform.localScale = inRange && !attached ? largeScale : smallScale;
