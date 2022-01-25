@@ -367,7 +367,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 424106117}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Dig_controller, Assembly-CSharp
         m_MethodName: OnButtonInteraction
         m_Mode: 1
@@ -532,26 +532,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b76e041e6953f5d47b08f426ec286893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &424106116 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4607266340335711416, guid: c7af66dc6ee0b9249b98698b26c681d6, type: 3}
-  m_PrefabInstance: {fileID: 1503886682845251971}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &424106117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 424106116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31452b37d43331f419f45a11c3162cf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 2104849251}
-  objectToSpawn: {fileID: 0}
-  spawnLocation: {x: 0, y: 0, z: 0}
 --- !u!1 &424558062 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7324057266532042077, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
@@ -2717,30 +2697,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e4276e3a99be7d43ab61d87b177537e, type: 3}
---- !u!1 &2104849245 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5896335010212840720, guid: c7af66dc6ee0b9249b98698b26c681d6, type: 3}
-  m_PrefabInstance: {fileID: 1503886682845251971}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &2104849251
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2104849245}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f9829ed99adbbde48ae8140ef4f36641, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &2131600579 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5564376134073035150, guid: 0e4276e3a99be7d43ab61d87b177537e, type: 3}
@@ -2821,10 +2777,6 @@ PrefabInstance:
     - target: {fileID: 4607266340335711416, guid: c7af66dc6ee0b9249b98698b26c681d6, type: 3}
       propertyPath: m_Name
       value: DirtMound
-      objectReference: {fileID: 0}
-    - target: {fileID: 4607266340335711416, guid: c7af66dc6ee0b9249b98698b26c681d6, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5868515688967904033, guid: c7af66dc6ee0b9249b98698b26c681d6, type: 3}
       propertyPath: VanishDistance
