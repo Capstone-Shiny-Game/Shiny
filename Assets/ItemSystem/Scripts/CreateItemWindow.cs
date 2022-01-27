@@ -1,9 +1,8 @@
-using UnityEngine;
-using System.Collections;
-using UnityEditor;
-using System.IO;
-using System.Collections;
 using System.Collections.Generic;
+using System.Collections;
+using System.IO;
+using UnityEditor;
+using UnityEngine;
 
 public class CreateItemWindow : EditorWindow
 {
@@ -27,16 +26,12 @@ public class CreateItemWindow : EditorWindow
 
     void OnGUI()
     {
+        // TODO: Fix corner case of renaming item to overwrite existing key
+        // TODO: Add deletion
         string buttonText = "Create Item";
         itemDB = CreateAsset<ItemDB>(path, databaseName);
         items = itemDB.items;
 
-        // GUILayout.Label("Base Settings", EditorStyles.boldLabel);
-        // myString = EditorGUILayout.TextField("Text Field", myString);
-        // groupEnabled = EditorGUILayout.BeginToggleGroup("Optional Settings", groupEnabled);
-        // myBool = EditorGUILayout.Toggle("Toggle", myBool);
-        // myFloat = EditorGUILayout.Slider("Slider", myFloat, -3, 3);
-        // EditorGUILayout.EndToggleGroup();
         List<string> options = new List<string>(items.Keys);
         options.Insert(0, "Add New Item");
         int response = EditorGUILayout.Popup("Label", selected, options.ToArray());
@@ -84,17 +79,14 @@ public class CreateItemWindow : EditorWindow
         {
             return;
         }
-        Debug.Log("d");
         if (itemType == "item name" && weight == 0.0f && sprite is null && prefab is null)
         {
-            Debug.Log("e");
             EditorUtility.DisplayDialog("Unchanged Values",
                                         "Please update the item values to be something different",
                                         "OK");
         }
-        else if (items.ContainsKey(loadedItemType))
+        else if (!(loadedItemType is null) && items.ContainsKey(loadedItemType))
         {
-            Debug.Log("f");
             if (EditorUtility.DisplayDialog("Existing Object",
                                             $"Replace previously created {loadedItemType} with new item {itemType}?",
                                             "Replace Item",
@@ -111,7 +103,6 @@ public class CreateItemWindow : EditorWindow
         }
         else if (items.ContainsKey(itemType))
         {
-            Debug.Log("g");
             if (EditorUtility.DisplayDialog("Existing Object",
                                             $"The item type {itemType} already exists. Overwrite?",
                                             "Overwrite Item",
@@ -123,7 +114,6 @@ public class CreateItemWindow : EditorWindow
         }
         else
         {
-            Debug.Log("h");
             UpdateItems(CreateItem());
         }
 
