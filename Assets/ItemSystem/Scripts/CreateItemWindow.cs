@@ -37,7 +37,6 @@ public class CreateItemWindow : EditorWindow
         // myBool = EditorGUILayout.Toggle("Toggle", myBool);
         // myFloat = EditorGUILayout.Slider("Slider", myFloat, -3, 3);
         // EditorGUILayout.EndToggleGroup();
-
         List<string> options = new List<string>(items.Keys);
         options.Insert(0, "Add New Item");
         int response = EditorGUILayout.Popup("Label", selected, options.ToArray());
@@ -85,17 +84,20 @@ public class CreateItemWindow : EditorWindow
         {
             return;
         }
+        Debug.Log("d");
         if (itemType == "item name" && weight == 0.0f && sprite is null && prefab is null)
         {
+            Debug.Log("e");
             EditorUtility.DisplayDialog("Unchanged Values",
                                         "Please update the item values to be something different",
                                         "OK");
         }
         else if (items.ContainsKey(loadedItemType))
         {
+            Debug.Log("f");
             if (EditorUtility.DisplayDialog("Existing Object",
-                                            $"The item type {itemType} already exists. Overwrite?",
-                                            "Overwrite Item",
+                                            $"Replace previously created {loadedItemType} with new item {itemType}?",
+                                            "Replace Item",
                                             "Cancel"))
             {
                 // We need to get rid of the old item first
@@ -103,28 +105,25 @@ public class CreateItemWindow : EditorWindow
                 {
                     return;
                 }
-                items.Remove(itemType);
+                items.Remove(loadedItemType);
                 UpdateItems(CreateItem());
             }
         }
         else if (items.ContainsKey(itemType))
         {
+            Debug.Log("g");
             if (EditorUtility.DisplayDialog("Existing Object",
                                             $"The item type {itemType} already exists. Overwrite?",
                                             "Overwrite Item",
                                             "Cancel"))
             {
-                // We need to get rid of the old item first
-                if (loadedItemType is null)
-                {
-                    return;
-                }
                 items.Remove(itemType);
                 UpdateItems(CreateItem());
             }
         }
         else
         {
+            Debug.Log("h");
             UpdateItems(CreateItem());
         }
 
