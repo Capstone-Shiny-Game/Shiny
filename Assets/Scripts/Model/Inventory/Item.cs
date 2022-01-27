@@ -15,7 +15,6 @@ public class Item
         honey,
         title,
         acorn,
-
     }
 
     public ItemType itemType;
