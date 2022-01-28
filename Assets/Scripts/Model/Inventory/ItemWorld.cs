@@ -5,37 +5,15 @@ using UnityEngine;
 
 public class ItemWorld : MonoBehaviour
 {
-   
+
     public Item item;
-    private MeshRenderer meshRenderer;
-    
-
-    private void Start()
-    {
-        meshRenderer = GetComponent<MeshRenderer>();
-
-    }
-
-    public void SetItem(Item item)
-    {
-        this.item = item;
-        //TODO: set mesh reder
-    }
-
     internal void DestroySelf()
     {
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 
-    public Item GetItem()
+    public static void PutItemOnGround(Transform transform, Vector3 position)
     {
-        return item;
-    }
-
-    public static ItemWorld SpawnItemWorld(GameObject spawnedObject, Vector3 position)
-    {
-
-        Transform transform = Instantiate(spawnedObject.transform, position, Quaternion.identity);
 
         transform.GetComponent<GroundDetector>().FindGround(out Vector3 groundPos, out bool isWater);
         if (groundPos != null)
@@ -46,10 +24,28 @@ public class ItemWorld : MonoBehaviour
         }
         Destroy(transform.GetComponent<GroundDetector>());
 
-        ItemWorld itemWorld = transform.GetComponent<ItemWorld>();
-        //Item item = spawnedObject.GetComponent<Item>();
-        //itemWorld.SetItem(item);
+    }
 
+
+    public static ItemWorld SpawnItemWorld(GameObject spawnedObject, Vector3 position,bool SpawnOnGround = true)
+    {
+        Transform transform = Instantiate(spawnedObject.transform, position, Quaternion.identity);
+        if (SpawnOnGround) {
+            PutItemOnGround(transform, position);
+        }
+        ItemWorld itemWorld = transform.GetComponent<ItemWorld>();
+        return itemWorld;
+    }
+
+    public static ItemWorld SpawnItemWorld(Item itemSpawned, Vector3 position, bool SpawnOnGround = false)
+    {
+        Transform transform = Instantiate(itemSpawned.GetPrefab(), position, Quaternion.identity).transform;
+        if (SpawnOnGround)
+        {
+            PutItemOnGround(transform, position);
+        }
+        ItemWorld itemWorld = transform.GetComponent<ItemWorld>();
+        itemWorld.item = itemSpawned;
         return itemWorld;
     }
 

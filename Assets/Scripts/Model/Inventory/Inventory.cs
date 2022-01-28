@@ -30,7 +30,6 @@ public class Inventory
     /// <returns> True when the item is successfully added and false otherwise </returns>
     public bool AddItem(Item item)
     {
-        weight += item.getStackWeight();
         if (item.IsStackable())
         {
             Item inventoryItem = GetItemFromList(item);
@@ -51,6 +50,7 @@ public class Inventory
             }
             itemList.Add(item);
         }
+        weight += item.getStackWeight();
         // Update UI
         onItemListChanged?.Invoke(this, EventArgs.Empty);
         return true;
@@ -116,7 +116,7 @@ public class Inventory
     /// Removes an item from the inventory. Optionally drops the item in space.
     /// </summary>
     /// <param name="item"> The item to be removed </param>
-    /// <param name="removeAmount"> The amount to be removed </param>
+    /// <param name="removeAmount"> The amount to be removed (for stackable items) </param>
     /// <param name="dropItem"> If true, drops the item in space </param>
     /// <param name="dropPosition"> Where the item should be dropped if `dropItem` is true </param>
     /// <returns></returns>
@@ -131,8 +131,7 @@ public class Inventory
             itemList.Remove(item);
             if (dropItem)
             {
-                item.prefab.transform.position = dropPosition;
-                item.prefab.SetActive(true);
+                ItemWorld.SpawnItemWorld(item, dropPosition);
             }
         }
         else
@@ -151,9 +150,7 @@ public class Inventory
             weight -= item.getStackWeight();
             if (dropItem)
             {
-                item.prefab.transform.position = dropPosition;
-                item.prefab.SetActive(true);//May have something to do with error
-                //ItemWorld.SpawnItemWorld(item.prefab, dropPosition);
+                ItemWorld.SpawnItemWorld(item, dropPosition);
             }
             inventoryItem.amount -= removeAmount;
             if (inventoryItem.amount <= 0)
