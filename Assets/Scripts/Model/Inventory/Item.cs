@@ -6,7 +6,9 @@ using UnityEngine;
 [Serializable]
 public class Item
 {
-    public enum ItemType
+    [field: NonSerialized] static ItemDB itemDB = new ItemDB();//TODO replace this with a call to find inventory item db
+    //TODO tell item to get itemDB
+    public enum ItemType//TODO remove this
     {
         potion,
         food,
@@ -17,12 +19,12 @@ public class Item
         acorn,
     }
 
-    public ItemType itemType;
+    public ItemType itemType;//TODO change this to string
     public int amount;
-    public Sprite sprite;
-    public GameObject prefab;//TODO fix this when saving, if object doesnt exist or has been destoryed get missing reference
+    public Sprite sprite; //TODO remove this
+    public GameObject prefab;//TODO remove this
     public Item(ItemType itemType, int amount)
-    {
+    {   //TODO check item db for type
         this.amount = amount;
         this.itemType = itemType;
     }
@@ -36,52 +38,29 @@ public class Item
     public double getStackWeight()
     {
         return 0.0;
-        // switch (itemType)
-        // {
-        //     //stackable
-        //     default:
-        //     case ItemType.potion:
-        //         return 1.0 * this.amount;
-        //     //not stackable
-        //     case ItemType.food:
-        //     case ItemType.shiny:
-        //         return 2.0 * this.amount;
-        // }
+        
+        return itemDB.items["itemType"].weight * this.amount;//TODO replace with item type ;
 
     }
 
     public Sprite GetSprite()
     {
         return sprite;
-
-        // switch (itemType)
-        // {
-        //     default:
-        //     //returns the correct sprite for the object, take from ItemAssets
-        //     case ItemType.potion:
-        //         return ItemAssets.Instance.potionSprite;
-        //     case ItemType.food:
-        //         return ItemAssets.Instance.foodSprite;
-        //     case ItemType.shiny:
-        //         return ItemAssets.Instance.shinySprite;
-        //         // syntax is case ItemType.<item name from enum>: return ItemAssets.Instance.<item name from ItemAssets>;
-        // }
+        //TODO remove sprite variable
+        return itemDB.items["itemType"].sprite;//TODO replace with item type
+    }
+    public GameObject GetPrefab()
+    {
+        return prefab;
+        //TODO remove prefab variable
+        return itemDB.items["itemType"].prefab;//TODO replace with item type
     }
 
     public bool IsStackable()
     {
         return false;
-        // switch (itemType)
-        // {
-        //     //stackable
-        //     default:
-        //     case ItemType.potion:
-        //         return true;
-        //     //not stackable
-        //     case ItemType.food:
-        //     case ItemType.shiny:
-        //         return false;
-        // }
+
+        return itemDB.items["itemType"].stackable;//TODO replace with item type
 
     }
 }

@@ -758,7 +758,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 40, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1415,7 +1415,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 40, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3015,12 +3015,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveTemplate: {fileID: 432026039997854084}
-  ListContent: {fileID: 6488829453435338207}
-  SavingOnlyOptions: {fileID: 9066883651993728578}
+  listContent: {fileID: 0}
+  savingOnlyOptions: {fileID: 0}
   backButton: {fileID: 5287080455434624757}
-  UnsavedProgressSafeToLoseSeconds: 30
+  unsavedProgressSafeToLoseSeconds: 45
   confirmPopup: {fileID: 1714953117954474983}
-  SaveNameInput: {fileID: 3794407188616454332}
+  saveNameInput: {fileID: 0}
 --- !u!1 &2805468859384808040
 GameObject:
   m_ObjectHideFlags: 0
@@ -6521,7 +6521,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7185,7 +7185,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7903,7 +7903,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f4130fec3052963419bde6805b394739, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c34819d01662b7145a15c15835a144a6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8829,7 +8829,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2265793150227292984
 RectTransform:
   m_ObjectHideFlags: 0
