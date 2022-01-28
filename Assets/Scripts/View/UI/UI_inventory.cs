@@ -45,6 +45,7 @@ public class UI_inventory : MonoBehaviour
         templateRectTransform.gameObject.SetActive(true);
         // find and set item image
         Image image = templateRectTransform.Find("itemImage").GetComponent<Image>();
+        Debug.Log("filling template");
         image.sprite = item.GetSprite();
         // find and set text to display amount of items
         TextMeshProUGUI uiText = templateRectTransform.Find("amountText").GetComponent<TextMeshProUGUI>();
@@ -56,6 +57,7 @@ public class UI_inventory : MonoBehaviour
         {
             uiText.SetText("");
         }
+        Debug.Log("done!");
     }
 
     private void RefreshInventoryItems()

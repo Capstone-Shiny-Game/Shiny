@@ -5,11 +5,17 @@ using UnityEngine;
 
 public class ItemWorld : MonoBehaviour
 {
-
+    
     public Item item;
     internal void DestroySelf()
     {
         Destroy(gameObject);
+    }
+    private void Awake()
+    {
+        if (Item.itemDB is null) { 
+            Item.SetItemDB();
+        }
     }
 
     public static void PutItemOnGround(Transform transform, Vector3 position)
@@ -24,17 +30,6 @@ public class ItemWorld : MonoBehaviour
         }
         Destroy(transform.GetComponent<GroundDetector>());
 
-    }
-
-
-    public static ItemWorld SpawnItemWorld(GameObject spawnedObject, Vector3 position,bool SpawnOnGround = true)
-    {
-        Transform transform = Instantiate(spawnedObject.transform, position, Quaternion.identity);
-        if (SpawnOnGround) {
-            PutItemOnGround(transform, position);
-        }
-        ItemWorld itemWorld = transform.GetComponent<ItemWorld>();
-        return itemWorld;
     }
 
     public static ItemWorld SpawnItemWorld(Item itemSpawned, Vector3 position, bool SpawnOnGround = false)
@@ -62,13 +57,13 @@ public class ItemWorld : MonoBehaviour
         //check if picking this up would add to much weight
         if (other.CompareTag("Player"))
         {
+            Debug.Log("helpful place");
             if (other.GetComponent<PlayerController>().inventory.AddItem(item))
             {
+                Debug.Log("happy place");
                 DestroySelf();
             }
         }
-           
-         //   }
         
     }
 }

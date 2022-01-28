@@ -7,12 +7,14 @@ using UnityEngine;
 public class Item
 {
     [field: NonSerialized] public static ItemDB itemDB;
-    //other item variables are in itemSO
-    public string itemType;
-    public int amount;
+    //other item variables are in itemSO 
+    //see itemTypeDropdown.cs for why this is hidden
+    [HideInInspector] public string itemType;
+    [Range(1, 6)] public int amount;
     public static void SetItemDB() {
         //TODO maybe change this to it's own load function
-        CreateItemWindow.LoadAsset<ItemDB>(CreateItemWindow.path, CreateItemWindow.databaseName);
+        itemDB = CreateItemWindow.LoadAsset<ItemDB>(CreateItemWindow.path, CreateItemWindow.databaseName);
+        Debug.Log(itemDB.items["apple"].sprite.name);
     }
 
     public Item(string itemType, int amount)
@@ -29,7 +31,8 @@ public class Item
     //returns the weight of the entire stack of inventory items
     public double getStackWeight()
     {
-        return itemDB.items[itemType].weight * this.amount;
+        return 0;//TODO re-add this
+        //return itemDB.items[itemType].weight * this.amount;
     }
 
     public Sprite GetSprite()
@@ -43,6 +46,9 @@ public class Item
 
     public bool IsStackable()
     {
-        return itemDB.items[itemType].stackable;
+        return false; //TODO add stackability to items in create item window
+        //return itemDB.items[itemType].stackable;
     }
+
 }
+

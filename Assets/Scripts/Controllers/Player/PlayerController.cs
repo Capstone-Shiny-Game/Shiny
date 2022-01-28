@@ -64,9 +64,7 @@ public class PlayerController : MonoBehaviour, Savable
 
         // inventory initialization
         Item.SetItemDB();
-        if(inventory is null) { 
-            SetInventory(new Inventory());
-        }
+        SetInventory(new Inventory());
         //Save initialization
         AddSelfToSavablesList();
 

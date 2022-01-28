@@ -14,6 +14,7 @@ public class CreateItemWindow : EditorWindow
     string loadedItemType;
     string itemType;
     float weight;
+    bool stackable;
     Sprite sprite;
     GameObject prefab;
     bool changedSelection = true;
@@ -47,6 +48,7 @@ public class CreateItemWindow : EditorWindow
             {
                 itemType = "item name";
                 weight = 0.0f;
+                stackable = false;
                 buttonText = "Create Item";
                 changedSelection = false;
                 sprite = null;
