@@ -63,7 +63,10 @@ public class PlayerController : MonoBehaviour, Savable
         flightController.Landed += AttemptToLand;
 
         // inventory initialization
-        SetInventory(new Inventory());
+        Item.SetItemDB();
+        if(inventory is null) { 
+            SetInventory(new Inventory());
+        }
         //Save initialization
         AddSelfToSavablesList();
 

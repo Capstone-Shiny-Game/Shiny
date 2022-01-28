@@ -60,7 +60,7 @@ public class Quest : MonoBehaviour
     {
         foreach (KeyValuePair<GameObject, Vector3> item in questItemsAndPositions)
         {
-            spawnedItems.Add(ItemWorld.SpawnItemWorld(item.Key, item.Value).item.prefab);//TODO Please change this to the new spawn item world
+            //spawnedItems.Add(ItemWorld.SpawnItemWorld(item.Key, item.Value).item.GetPrefab());//TODO Please change this to the new spawn item world
         }
     }
 

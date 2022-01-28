@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class CreateItemWindow : EditorWindow
 {
-    private static string path = "Assets/ItemSystem/ItemDatabase/";
-    private static string databaseName = "itemDB";
+    public static string path = "Assets/ItemSystem/ItemDatabase/";
+    public static string databaseName = "itemDB";
     private static ItemDB itemDB;
     public static SerializableDictionary<string, ItemSO> items { get; set; }
     int selected = 0;
@@ -136,7 +136,7 @@ public class CreateItemWindow : EditorWindow
         SaveAsset(itemDB);
     }
 
-    private static T LoadAsset<T>(string path, string assetName) where T : ScriptableObject
+    public static T LoadAsset<T>(string path, string assetName) where T : ScriptableObject
     {
         return AssetDatabase.LoadAssetAtPath<T>($"{path}/{assetName}.asset");
     }
