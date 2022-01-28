@@ -11,12 +11,6 @@ public class ItemWorld : MonoBehaviour
     {
         Destroy(gameObject);
     }
-    private void Awake()
-    {
-        if (Item.itemDB is null) { 
-            Item.SetItemDB();
-        }
-    }
 
     public static void PutItemOnGround(Transform transform, Vector3 position)
     {
@@ -30,6 +24,18 @@ public class ItemWorld : MonoBehaviour
         }
         Destroy(transform.GetComponent<GroundDetector>());
 
+    }
+    //TODO REMOVE this it is depreciated
+    public static ItemWorld SpawnItemWorld(GameObject prefab, Vector3 position, bool SpawnOnGround = true)
+    {
+        Transform transform = Instantiate(prefab, position, Quaternion.identity).transform;
+        if (SpawnOnGround)
+        {
+            PutItemOnGround(transform, position);
+        }
+        ItemWorld itemWorld = transform.GetComponent<ItemWorld>();
+        itemWorld.item = new Item(itemWorld.item.itemType, itemWorld.item.amount);
+        return itemWorld;
     }
 
     public static ItemWorld SpawnItemWorld(Item itemSpawned, Vector3 position, bool SpawnOnGround = false)

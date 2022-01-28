@@ -9,12 +9,10 @@ public class Item
     [field: NonSerialized] public static ItemDB itemDB;
     //other item variables are in itemSO 
     //see itemTypeDropdown.cs for why this is hidden
-    [HideInInspector] public string itemType;
+     public string itemType;
     [Range(1, 6)] public int amount;
-    public static void SetItemDB() {
-        //TODO maybe change this to it's own load function
-        itemDB = CreateItemWindow.LoadAsset<ItemDB>(CreateItemWindow.path, CreateItemWindow.databaseName);
-        Debug.Log(itemDB.items["apple"].sprite.name);
+    public static void SetItemDB(ItemDB replacementItemDB) {
+        itemDB = replacementItemDB;
     }
 
     public Item(string itemType, int amount)
@@ -37,11 +35,22 @@ public class Item
 
     public Sprite GetSprite()
     {
-        return itemDB.items[itemType].sprite;
+        ItemSO itemSO;
+        if (itemDB.items.TryGetValue(itemType, out itemSO)){ 
+            return itemDB.items[itemType].sprite;
+        }
+        Debug.Log("error in item.cs this doesnt appear in itemDB : " + itemType);
+        return null;
     }
     public GameObject GetPrefab()
     {
-        return itemDB.items[itemType].prefab;
+        ItemSO itemSO;
+        if (itemDB.items.TryGetValue(itemType, out itemSO))
+        {
+            return itemDB.items[itemType].prefab;
+        }
+        Debug.Log("error in item.cs this doesnt appear in itemDB : " + itemType);
+        return null;
     }
 
     public bool IsStackable()

@@ -33,13 +33,18 @@ public class PlayerController : MonoBehaviour, Savable
     [System.NonSerialized]
     public Inventory inventory;
 
+
     // this variable holds the ui_inventory object from the scene
+    [Header("inventory references")]
     [SerializeField]
     UI_inventory uiInventory;
     [SerializeField]
     UIHotbar uiHotbar;
+    [SerializeField]
+    ItemDB itemDB;
 
     // specifies where inventory item should appear when dropped by player
+    [Header("inventory drop items")]
     public Offset walkingOffset = new Offset { forward = 0, up = 0 };
     public Offset flyingOffset = new Offset { forward = 0, up = 0 };
     public double maxCarryWeight = 0;
@@ -63,7 +68,7 @@ public class PlayerController : MonoBehaviour, Savable
         flightController.Landed += AttemptToLand;
 
         // inventory initialization
-        Item.SetItemDB();
+        Item.SetItemDB(itemDB);
         SetInventory(new Inventory());
         //Save initialization
         AddSelfToSavablesList();
