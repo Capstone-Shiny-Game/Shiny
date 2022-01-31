@@ -9,6 +9,6 @@ public class TimeTrialRing : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        OnRingCollision?.Invoke(gameObject);
     }
 }

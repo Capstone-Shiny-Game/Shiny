@@ -5,9 +5,11 @@ using UnityEngine;
 public class TimeTrial : MonoBehaviour
 {
     public List<GameObject> rings;
+    public float timeInterval;
 
     private LinkedList<GameObject> ringOrder;
     private GameObject currRing;
+    private Coroutine startTimePeriod;
 
     void Start()
     {
@@ -30,10 +32,42 @@ public class TimeTrial : MonoBehaviour
     private void OnDisable()
     {
         TimeTrialRing.OnRingCollision -= UpdateTimeTrial;
+        StopAllCoroutines();
     }
 
     private void UpdateTimeTrial(GameObject ring)
     {
+        if (ring == currRing)
+        {
+            currRing.SetActive(false);
+            currRing = ringOrder.Find(ring).Next?.Value;
+            if (currRing == null)
+            {
+                // win state
+                StopCoroutine(startTimePeriod);
+                Debug.Log("You beat the time trial!");
+            }
+            else
+            {
+                // activate next ring
+                if (startTimePeriod != null)
+                {
+                    StopCoroutine(startTimePeriod);
+                }
+                currRing.SetActive(true);
+                startTimePeriod = StartCoroutine(StartTimePeriod());
+            }
+        }
+    }
 
+    private IEnumerator StartTimePeriod()
+    {
+        yield return new WaitForSeconds(timeInterval);
+
+        // gets here if player does not make it to the current ring on time,
+        // reset the time trial
+        currRing.SetActive(false);
+        currRing = ringOrder.First.Value;
+        currRing.SetActive(true);
     }
 }
