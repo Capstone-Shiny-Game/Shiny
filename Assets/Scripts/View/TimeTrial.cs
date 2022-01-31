@@ -46,6 +46,8 @@ public class TimeTrial : MonoBehaviour
                 // win state
                 StopCoroutine(startTimePeriod);
                 Debug.Log("You beat the time trial!");
+                // cleanup
+                Destroy(gameObject);
             }
             else
             {
