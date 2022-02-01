@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using static PlayerControllerInput;
 
 public class FlightController : MonoBehaviour
@@ -38,6 +40,7 @@ public class FlightController : MonoBehaviour
     public GameObject LeftTrail;
     public GameObject RightTrail;
     private Vector3 scaleChange;
+    public TMP_Text test;
 
     public event Action Landed;
 
@@ -192,7 +195,10 @@ public class FlightController : MonoBehaviour
         transform.Rotate(new Vector3(pitch, turn, tilt));
 
         if (UnityEngine.InputSystem.Accelerometer.current != null)
+        {
             Debug.Log(Accelerometer.current.acceleration.ReadValue());
+            test.text = Accelerometer.current.acceleration.ReadValue().ToString();
+        }
         if (tilt != 0)
             hasTilted = true;
         if (pitch != 0)
