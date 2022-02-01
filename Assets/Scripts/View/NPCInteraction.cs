@@ -176,7 +176,7 @@ public class NPCInteraction : MonoBehaviour
 
     private bool HasUnfinishedDialogue()
     {
-        if (bodyText.maxVisibleCharacters != bodyText.text.Length)
+        if (bodyText.maxVisibleCharacters < bodyText.text.Length)
         {
             StopCoroutine(typeBodyText);
             bodyText.maxVisibleCharacters = bodyText.text.Length;
