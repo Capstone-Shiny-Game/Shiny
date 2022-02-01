@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: TestDialogueGraph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: TestDialogue
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: 4e62ff6d-3880-448f-b44b-ee21d86314b6
+    <Name>k__BackingField: TestDialogue1
+    <Text>k__BackingField: Hello! This is some test dialogue.
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 6308b5b6-6c7d-4800-b685-929893f605a1
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 500.8, y: 278.40002}
+  - <ID>k__BackingField: 6308b5b6-6c7d-4800-b685-929893f605a1
+    <Name>k__BackingField: TestDialogue2
+    <Text>k__BackingField: Wow! More test dialogue!
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 92ca2419-0536-44d8-824b-b80ada53c845
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 831.2, y: 279.2}
+  - <ID>k__BackingField: 92ca2419-0536-44d8-824b-b80ada53c845
+    <Name>k__BackingField: TestDialogue3
+    <Text>k__BackingField: This one tests the multiple choice options. Neat!
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Yes
+      <NodeID>k__BackingField: be5d59f8-157f-4ad9-b101-59c167781093
+    - <Text>k__BackingField: No
+      <NodeID>k__BackingField: ef7a9a54-6538-4164-9eb0-17112fe3e992
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 1
+    <Position>k__BackingField: {x: 1150.4, y: 254.40001}
+  - <ID>k__BackingField: be5d59f8-157f-4ad9-b101-59c167781093
+    <Name>k__BackingField: TestDialogue4
+    <Text>k__BackingField: Yep, that's some text.
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1588, y: 174.4}
+  - <ID>k__BackingField: ef7a9a54-6538-4164-9eb0-17112fe3e992
+    <Name>k__BackingField: TestDialogue5
+    <Text>k__BackingField: Look at all of these words!
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1589.6, y: 382.40002}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - TestDialogue1
+  - TestDialogue2
+  - TestDialogue3
+  - TestDialogue4
+  - TestDialogue5
+  <OldGroupedNodeNames>k__BackingField:
+    list: []
