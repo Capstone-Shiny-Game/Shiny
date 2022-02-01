@@ -141,7 +141,7 @@ public class NPCInteraction : MonoBehaviour
 
                     currentDialogueValue++;
                     //TEMP: Switch Dialogue if multiple
-                    if(currentDialogueValue < dialogueContainers.Length)
+                    if (currentDialogueValue < dialogueContainers.Length)
                     {
                         dialogueContainer = dialogueContainers[currentDialogueValue];
                     }
@@ -154,9 +154,19 @@ public class NPCInteraction : MonoBehaviour
                     }
                     break;
                 }
-                currentDialogue = choice.NextDialogue;
-                typeBodyText = StartCoroutine(TypeBodyText());
-                EnableButtons();
+                // finish current dialogue if necessary
+                if (bodyText.maxVisibleCharacters != bodyText.text.Length)
+                {
+                    StopCoroutine(typeBodyText);
+                    bodyText.maxVisibleCharacters = bodyText.text.Length;
+                    EnableButtons();
+                }
+                else
+                {
+                    currentDialogue = choice.NextDialogue;
+                    typeBodyText = StartCoroutine(TypeBodyText());
+                    EnableButtons();
+                }
                 break;
             }
         }
@@ -166,7 +176,7 @@ public class NPCInteraction : MonoBehaviour
     {
         bodyText.maxVisibleCharacters = 0;
         bodyText.text = currentDialogue.Text;
-        for (int i = 1; i < bodyText.text.Length; i++)
+        for (int i = 1; i < bodyText.text.Length + 1; i++)
         {
             bodyText.maxVisibleCharacters = i;
             yield return new WaitForSeconds(0.035f);
