@@ -115,6 +115,10 @@ public class NPCInteraction : MonoBehaviour
         {
             if (choice.Text == WAIT)
             {
+                if (HasUnfinishedDialogue())
+                {
+                    break;
+                }
                 //FADE
                 if (objectToSpawn != null)
                 {
@@ -137,6 +141,11 @@ public class NPCInteraction : MonoBehaviour
             {
                 if (choice.NextDialogue == null)
                 {
+                    if (HasUnfinishedDialogue())
+                    {
+                        break;
+                    }
+
                     npcUI.SetActive(false);
 
                     currentDialogueValue++;
@@ -154,14 +163,7 @@ public class NPCInteraction : MonoBehaviour
                     }
                     break;
                 }
-                // finish current dialogue if necessary
-                if (bodyText.maxVisibleCharacters != bodyText.text.Length)
-                {
-                    StopCoroutine(typeBodyText);
-                    bodyText.maxVisibleCharacters = bodyText.text.Length;
-                    EnableButtons();
-                }
-                else
+                if (!HasUnfinishedDialogue())
                 {
                     currentDialogue = choice.NextDialogue;
                     typeBodyText = StartCoroutine(TypeBodyText());
@@ -170,6 +172,18 @@ public class NPCInteraction : MonoBehaviour
                 break;
             }
         }
+    }
+
+    private bool HasUnfinishedDialogue()
+    {
+        if (bodyText.maxVisibleCharacters != bodyText.text.Length)
+        {
+            StopCoroutine(typeBodyText);
+            bodyText.maxVisibleCharacters = bodyText.text.Length;
+            EnableButtons();
+            return true;
+        }
+        return false;
     }
 
     private IEnumerator TypeBodyText()
