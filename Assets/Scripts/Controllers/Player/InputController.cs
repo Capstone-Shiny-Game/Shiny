@@ -81,6 +81,8 @@ public class InputController : MonoBehaviour
         PlayerInput.GUIMap.RotateSelection.performed += OnRotateSelection;
 
         PlayerInput.GUIMap.PickupItem.performed += OnPickup;
+        if (UnityEngine.InputSystem.Accelerometer.current != null)
+            InputSystem.EnableDevice(Accelerometer.current);
     }
 
     public void OnDisable()

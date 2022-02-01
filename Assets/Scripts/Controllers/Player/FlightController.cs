@@ -191,6 +191,8 @@ public class FlightController : MonoBehaviour
         float tilt = -moveX * tiltSensitivity * Time.deltaTime;
         transform.Rotate(new Vector3(pitch, turn, tilt));
 
+        if (UnityEngine.InputSystem.Accelerometer.current != null)
+            Debug.Log(Accelerometer.current.acceleration.ReadValue());
         if (tilt != 0)
             hasTilted = true;
         if (pitch != 0)
