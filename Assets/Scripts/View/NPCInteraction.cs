@@ -19,6 +19,9 @@ public class NPCInteraction : MonoBehaviour
 
     [Header("Objects")]
     public GameObject npcUI;
+    public DSDialogueContainerSO[] dialogueContainers;
+    private int currentDialogueValue = 0;
+    [System.NonSerialized]
     public DSDialogueContainerSO dialogueContainer;
     public GameObject objectToSpawn;
     public GameObject otherNPC;
@@ -58,6 +61,7 @@ public class NPCInteraction : MonoBehaviour
             buttons.Find("Button1").gameObject
         };
         interactionCollider = GetComponentInChildren<BoxCollider>();
+        dialogueContainer = dialogueContainers[0];
     }
 
     private void OnEnable()
@@ -134,6 +138,15 @@ public class NPCInteraction : MonoBehaviour
                 if (choice.NextDialogue == null)
                 {
                     npcUI.SetActive(false);
+
+                    currentDialogueValue++;
+                    //TEMP: Switch Dialogue if multiple
+                    if(currentDialogueValue < dialogueContainers.Length)
+                    {
+                        dialogueContainer = dialogueContainers[currentDialogueValue];
+                    }
+
+
                     OnNPCInteractEndEvent();
                     if (quest != null)
                     {
