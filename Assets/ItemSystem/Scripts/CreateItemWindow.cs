@@ -101,6 +101,7 @@ public class CreateItemWindow : EditorWindow
         {
             // TODO: Make sure loadedItemType doesn't return a null reference exception
             // Haven't seen one yet, but you never know
+            // TODO: Make sure delete actually deletes the items themselves
             if (EditorUtility.DisplayDialog("Delete Object",
                                     $"Really delete {loadedItemType}?",
                                     "Delete",
@@ -160,12 +161,14 @@ public class CreateItemWindow : EditorWindow
 
     private ItemSO CreateItem()
     {
-        ItemSO itemToAdd = CreateAsset<ItemSO>(itemPath, itemType); //item type as the name here
+        // item type as the name here
+        ItemSO itemToAdd = CreateAsset<ItemSO>(itemPath, itemType);
         itemToAdd.itemType = itemType;
         itemToAdd.weight = weight;
         itemToAdd.stackable = stackable;
         itemToAdd.sprite = sprite;
-        itemToAdd.prefab = prefab;//TODO if prefab has item world component add correct type and amount there too
+        // TODO: if prefab has item world component add correct type and amount there too
+        itemToAdd.prefab = prefab;
         return itemToAdd;
     }
 
@@ -173,6 +176,7 @@ public class CreateItemWindow : EditorWindow
     {
         items.Add(itemType, itemToAdd);
         itemDB.items = items;
+        SaveAsset((UnityEngine.Object)itemToAdd);
         SaveAsset(itemDB);
     }
 
