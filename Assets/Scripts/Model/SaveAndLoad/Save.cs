@@ -19,6 +19,7 @@ public static class Save
     /// struct should be read when Savable.LoadData is called
     /// with each savable object reading the feilds it filled when saving.
     /// </summary>
+    [System.Serializable]
     public struct SaveData
     {
         //TODO : EDIT ME!!!
@@ -48,6 +49,7 @@ public static class Save
     /// struct should be read when Savable.LoadData is called
     /// with each savable object reading the feilds it filled when saving.
     /// </summary>
+    [System.Serializable]
     public struct SaveDescriptorData
     {
         public string saveName;
@@ -226,7 +228,7 @@ public static class Save
     /// <param name="saveData">object or struct to be serialized and saved</param>
     private static void WriteToFile(string filepath, SaveData saveData)
     {
-        string saveJSON = JsonUtility.ToJson(saveData);
+        string saveJSON = Serialize<SaveData>(saveData);
         //Debug.Log(saveJSON);
         //Debug.Log(filepath);
         using (StreamWriter sw = new StreamWriter(filepath))
@@ -251,7 +253,7 @@ public static class Save
                 saveJSON += line;
             }
         }
-        SaveData saveData = JsonUtility.FromJson<SaveData>(saveJSON);
+        SaveData saveData = Deserialize<SaveData>(saveJSON);
         return saveData;
     }
 
@@ -262,7 +264,7 @@ public static class Save
     /// <param name="saveData">object or struct to be serialized and saved</param>
     private static void WriteDescriptorToFile(string filepath, SaveDescriptorData saveData)
     {
-        string saveJSON = JsonUtility.ToJson(saveData);
+        string saveJSON = Serialize<SaveDescriptorData>(saveData);
         Debug.Log(saveJSON);
         //Debug.Log(filepath);
         using (StreamWriter sw = new StreamWriter(filepath))
@@ -287,8 +289,16 @@ public static class Save
                 saveJSON += line;
             }
         }
-        SaveDescriptorData saveData = JsonUtility.FromJson<SaveDescriptorData>(saveJSON);
+        SaveDescriptorData saveData = Deserialize<SaveDescriptorData>(saveJSON);
         return saveData;
+    }
+
+    private static string Serialize<T>(T obj) {
+        return JsonUtility.ToJson(obj);
+    }
+    private static T Deserialize<T>(string serialized)
+    {
+        return JsonUtility.FromJson<T>(serialized);
     }
 
 }
