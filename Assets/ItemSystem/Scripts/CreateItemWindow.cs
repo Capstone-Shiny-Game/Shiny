@@ -17,8 +17,9 @@ public class CreateItemWindow : EditorWindow
     Sprite sprite;
     GameObject prefab;
     bool changedSelection = true;
+    string buttonText = "Create Item";
 
-    [MenuItem("Editor Tools/Add or Update Item")]
+    [MenuItem("Editor Tools/Item Editor")]
     public static void ShowWindow()
     {
         EditorWindow.GetWindow(typeof(CreateItemWindow));
@@ -26,9 +27,6 @@ public class CreateItemWindow : EditorWindow
 
     void OnGUI()
     {
-        // TODO: Fix corner case of renaming item to overwrite existing key
-        // TODO: Add deletion
-        string buttonText = "Create Item";
         // Loads the database, or creates it if necessary
         itemDB = CreateAsset<ItemDB>(path, databaseName);
         items = itemDB.items;
@@ -96,6 +94,8 @@ public class CreateItemWindow : EditorWindow
         if (GUILayout.Button(buttonText))
         {
             UpdateButtonClick(options);
+            selected = 0;
+            changedSelection = true;
         }
         if (selected != 0 && GUILayout.Button($"Delete item"))
         {
