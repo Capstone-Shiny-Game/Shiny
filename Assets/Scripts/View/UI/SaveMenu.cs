@@ -61,7 +61,7 @@ public class SaveMenu : MonoBehaviour
     /// </summary>
     private void makeSaveFile()
     {
-        Save.SaveDataJson(saveName);
+        //Save.SaveDataJson(saveName);
         lastSaveTime = System.DateTime.Now;
         if (savingIsEnabled)//repopulate the list with new save
         {
