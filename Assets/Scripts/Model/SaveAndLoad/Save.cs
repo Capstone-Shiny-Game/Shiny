@@ -114,12 +114,13 @@ public static class Save
             SaveDescriptorData saveDescriptorData = new SaveDescriptorData();
             saveDescriptorData.saveName = filename;
             saveDescriptorData.timestamp = System.DateTime.Now;
+            Debug.Log(saveDescriptorData.timestamp);
             foreach (SaveDescriptor descriptor in saveDescriptors)
             {
                 descriptor.GetSaveDescriptorData(ref saveDescriptorData);
             }
             filepath = ConstructFilePath(filename, ".desc");
-            WriteToFile(filepath, saveDescriptorData);
+            WriteDescriptorToFile(filepath, saveDescriptorData);
         }
 
     }
@@ -188,10 +189,11 @@ public static class Save
     public static List<SaveDescriptorData> GetSaveFileDescriptors(string extentionPattern = "*.desc")
     {
         string[] filePaths = Directory.GetFiles(Path.Combine(Application.persistentDataPath, ""), extentionPattern);
-        Debug.Log(filePaths);
+        //Debug.Log(filePaths);
         List<SaveDescriptorData> fileDescriptors = new List<SaveDescriptorData>();
         foreach (string filePath in filePaths)
         {
+            //Debug.Log("reading descriptor");
             fileDescriptors.Add(ReadDescriptorFromFile(filePath));
         }
         return fileDescriptors;
@@ -222,7 +224,7 @@ public static class Save
     /// </summary>
     /// <param name="filepath">the full path of the file</param>
     /// <param name="saveData">object or struct to be serialized and saved</param>
-    private static void WriteToFile(string filepath, object saveData)
+    private static void WriteToFile(string filepath, SaveData saveData)
     {
         string saveJSON = JsonUtility.ToJson(saveData);
         //Debug.Log(saveJSON);
@@ -251,6 +253,22 @@ public static class Save
         }
         SaveData saveData = JsonUtility.FromJson<SaveData>(saveJSON);
         return saveData;
+    }
+
+    /// <summary>
+    /// saves data with the Json File Format at the specified filepath
+    /// </summary>
+    /// <param name="filepath">the full path of the file</param>
+    /// <param name="saveData">object or struct to be serialized and saved</param>
+    private static void WriteDescriptorToFile(string filepath, SaveDescriptorData saveData)
+    {
+        string saveJSON = JsonUtility.ToJson(saveData);
+        Debug.Log(saveJSON);
+        //Debug.Log(filepath);
+        using (StreamWriter sw = new StreamWriter(filepath))
+        {
+            sw.WriteLine(saveJSON);
+        }
     }
 
     /// <summary>
