@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: NarrativeTest1Graph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: NarrativeTest1
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: 887ac135-9916-4131-ae04-2abeddf1bd6f
+    <Name>k__BackingField: TestDialogue5
+    <Text>k__BackingField: "Nox, this is a witch\u2019s hut! Well, it was a witch\u2019s
+      hut a long time ago. \nI think we could fix it up a bit and stay here. \nThe
+      townspeople wouldn\u2019t mind, right?"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 1720bf77-9fbe-4f9c-8b21-facf215b318a
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 2148.8, y: 279.2}
+  - <ID>k__BackingField: 1720bf77-9fbe-4f9c-8b21-facf215b318a
+    <Name>k__BackingField: TestDialogue6
+    <Text>k__BackingField: "We should start by patching up the walls and the roof.
+      \nCan you fly into the forest and find some branches, rocks, and long grass
+      for me?"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 0c7c659c-fe6a-4f4a-94a3-6159120959a2
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 2651.2, y: 277.6}
+  - <ID>k__BackingField: 0c7c659c-fe6a-4f4a-94a3-6159120959a2
+    <Name>k__BackingField: TestDialogue7
+    <Text>k__BackingField: " I could seal up the holes with my magic as long as I
+      have enough materials to work with.\nBring the items back to me once you\u2019ve
+      found them all!\r\n"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 3204.8, y: 276}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - TestDialogue5
+  - TestDialogue6
+  - TestDialogue7
+  <OldGroupedNodeNames>k__BackingField:
+    list: []
