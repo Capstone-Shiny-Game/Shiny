@@ -63,10 +63,8 @@ public class ItemWorld : MonoBehaviour
         //check if picking this up would add to much weight
         if (other.CompareTag("Player"))
         {
-            Debug.Log("helpful place");
             if (other.GetComponent<PlayerController>().inventory.AddItem(item))
             {
-                Debug.Log("happy place");
                 DestroySelf();
             }
         }
