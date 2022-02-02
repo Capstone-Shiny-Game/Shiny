@@ -29,8 +29,12 @@ public class StatListEditor : Editor
         {
             types.Add(itemType);
         }
-
+        selectedIndex = types.IndexOf(itemWorld.item.itemType);
         selectedIndex = EditorGUILayout.Popup("ItemType", selectedIndex, types.ToArray());
+        if (selectedIndex < 0)
+        {
+            selectedIndex = 0;
+        }
         itemWorld.item.itemType = types[selectedIndex];
         if (itemWorld.item.amount < 1)
         {
