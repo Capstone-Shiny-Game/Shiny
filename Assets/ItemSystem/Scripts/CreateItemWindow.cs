@@ -101,7 +101,6 @@ public class CreateItemWindow : EditorWindow
         {
             // TODO: Make sure loadedItemType doesn't return a null reference exception
             // Haven't seen one yet, but you never know
-            // TODO: Make sure delete actually deletes the items themselves
             if (EditorUtility.DisplayDialog("Delete Object",
                                     $"Really delete {loadedItemType}?",
                                     "Delete",
@@ -110,6 +109,7 @@ public class CreateItemWindow : EditorWindow
                 selected = 0;
                 changedSelection = true;
                 items.Remove(loadedItemType);
+                DeleteAsset<ItemSO>(itemPath, loadedItemType);
                 SaveAsset(itemDB);
             }
         }
@@ -190,7 +190,7 @@ public class CreateItemWindow : EditorWindow
         EditorUtility.SetDirty(asset);
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
-        EditorUtility.FocusProjectWindow();
+        // EditorUtility.FocusProjectWindow();
     }
 
     private static T CreateAsset<T>(string path, string assetName) where T : ScriptableObject
@@ -207,5 +207,17 @@ public class CreateItemWindow : EditorWindow
         }
 
         return asset;
+    }
+
+    private static void DeleteAsset<T>(string path, string assetName) where T : ScriptableObject
+    {
+        string fullPath = $"{path}/{assetName}.asset";
+
+        T asset = LoadAsset<T>(path, assetName);
+
+        if (!(asset is null))
+        {
+            AssetDatabase.DeleteAsset(fullPath);
+        }
     }
 }
