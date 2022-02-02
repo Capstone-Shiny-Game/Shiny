@@ -12,7 +12,7 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
     public float TurningSpeed = 60;
 
     public bool Splashing = false;
-
+    public bool isIdle = false;
     public event Action WalkedOffEdge;
 
     private GroundDetector groundDetector;
@@ -84,6 +84,19 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
                     transform.position = groundPos;
             }
         }
+        //check of no input from player.
+        //CheckIdle()
+    }
+
+    public void CheckIdle()
+    {
+
+        if (!Input.anyKey)
+        {
+            isIdle = true;
+        }
+        else
+            isIdle = false;
     }
 
     public void OnFlight(InputAction.CallbackContext context)
