@@ -1,5 +1,6 @@
 using UnityEditor;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 
 [CustomEditor(typeof(ItemWorld))]
 public class StatListEditor : Editor
@@ -39,6 +40,12 @@ public class StatListEditor : Editor
         if (itemWorld.item.amount < 1)
         {
             itemWorld.item.amount = 1;
+        }
+
+        if (UnityEngine.GUI.changed)
+        {
+            EditorUtility.SetDirty(itemWorld);
+            EditorSceneManager.MarkSceneDirty(itemWorld.gameObject.scene);
         }
     }
 }
