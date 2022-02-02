@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Collections;
-using System.IO;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,7 +10,7 @@ public class CreateItemWindow : EditorWindow
     private static ItemDB itemDB;
     public static SerializableDictionary<string, ItemSO> items { get; set; }
     int selected = 0;
-    string loadedItemType;
+    string loadedItemType = null;
     string itemType;
     float weight;
     bool stackable;
@@ -31,24 +29,30 @@ public class CreateItemWindow : EditorWindow
         // TODO: Fix corner case of renaming item to overwrite existing key
         // TODO: Add deletion
         string buttonText = "Create Item";
+        // Loads the database, or creates it if necessary
         itemDB = CreateAsset<ItemDB>(path, databaseName);
         items = itemDB.items;
 
-        loadedItemType = null;
+        // The list of options that can be clicked on in the menu
         List<string> options = new List<string>(items.Keys);
+        // The first one is an option to add a new item, and the rest are items
         options.Insert(0, "Add New Item");
         int response = EditorGUILayout.Popup("Label", selected, options.ToArray());
+        // Update things upon changing selection
         if (response != selected)
         {
             changedSelection = true;
         }
         selected = response;
+        // Adding a new item
         if (selected == 0)
         {
-            GUILayout.Label("New Item Creation", EditorStyles.boldLabel);
+            // Only update upon selection being changed so as not to overwrite
+            // changes actively being made
             if (changedSelection)
             {
                 itemType = "item name";
+                loadedItemType = null;
                 stackable = false;
                 weight = 0.0f;
                 buttonText = "Create Item";
@@ -56,10 +60,15 @@ public class CreateItemWindow : EditorWindow
                 sprite = null;
                 prefab = null;
             }
+            GUILayout.Label("New Item Creation", EditorStyles.boldLabel);
+            EditorGUILayout.Separator();
+            EditorGUILayout.Space();
         }
+        // Seleted a previously existing item
         else
         {
-            GUILayout.Label("Editing Item", EditorStyles.boldLabel);
+            // Only update upon selection being changed so as not to overwrite
+            // changes actively being made
             if (changedSelection)
             {
                 itemType = options[selected];
@@ -72,6 +81,9 @@ public class CreateItemWindow : EditorWindow
                 buttonText = "Update Item";
                 changedSelection = false;
             }
+            GUILayout.Label($"Editing Item {loadedItemType}", EditorStyles.boldLabel);
+            EditorGUILayout.Separator();
+            EditorGUILayout.Space();
         }
 
         itemType = EditorGUILayout.TextField("Item Type/Name", itemType);
@@ -81,10 +93,31 @@ public class CreateItemWindow : EditorWindow
         prefab = (GameObject)EditorGUILayout.ObjectField("Item Prefab", prefab, typeof(GameObject), false);
         EditorGUILayout.Separator();
         EditorGUILayout.Space();
-        if (!GUILayout.Button(buttonText))
+        if (GUILayout.Button(buttonText))
         {
-            return;
+            UpdateButtonClick(options);
         }
+        if (selected != 0 && GUILayout.Button($"Delete item"))
+        {
+            // TODO: Make sure loadedItemType doesn't return a null reference exception
+            // Haven't seen one yet, but you never know
+            if (EditorUtility.DisplayDialog("Delete Object",
+                                    $"Really delete {loadedItemType}?",
+                                    "Delete",
+                                    "Cancel"))
+            {
+                selected = 0;
+                changedSelection = true;
+                items.Remove(loadedItemType);
+                SaveAsset(itemDB);
+            }
+        }
+
+
+    }
+
+    private void UpdateButtonClick(List<string> options)
+    {
         if (itemType == options[0] || (weight == 0.0f && sprite is null && prefab is null))
         {
             EditorUtility.DisplayDialog("Unchanged Values",
@@ -123,7 +156,6 @@ public class CreateItemWindow : EditorWindow
         {
             UpdateItems(CreateItem());
         }
-        
     }
 
     private ItemSO CreateItem()
