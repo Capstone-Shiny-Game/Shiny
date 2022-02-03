@@ -20,8 +20,8 @@ public class TimeTrial : MonoBehaviour
             ringOrder.AddLast(ring);
             ring.SetActive(false);
         }
-        ringOrder.First.Value.SetActive(true);
         currRing = ringOrder.First.Value;
+        ringOrder.First.Value.SetActive(true);
     }
 
     private void OnEnable()
@@ -51,12 +51,13 @@ public class TimeTrial : MonoBehaviour
             }
             else
             {
-                // activate next ring
+                // activate next two ring
                 if (startTimePeriod != null)
                 {
                     StopCoroutine(startTimePeriod);
                 }
                 currRing.SetActive(true);
+                ringOrder.Find(currRing).Next?.Value.SetActive(true);
                 startTimePeriod = StartCoroutine(StartTimePeriod());
             }
         }
@@ -69,6 +70,7 @@ public class TimeTrial : MonoBehaviour
         // gets here if player does not make it to the current ring on time,
         // reset the time trial
         currRing.SetActive(false);
+        ringOrder.Find(currRing).Next?.Value.SetActive(false);
         currRing = ringOrder.First.Value;
         currRing.SetActive(true);
     }
