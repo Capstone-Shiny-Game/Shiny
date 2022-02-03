@@ -203,11 +203,14 @@ public class PlayerController : MonoBehaviour, Savable
         transform.rotation = Quaternion.LookRotation(lookPos);
     }
 
+<<<<<<< HEAD
     public void ResetToWalk()
     {
         cameraController.isWalking = true;
     }
 
+=======
+>>>>>>> 4b47d86f45d78a7e4947700772447c9fcf06e7bf
     private Vector3 positionBeforeDialogue;
     private Quaternion rotationBeforeDialogue;
 
