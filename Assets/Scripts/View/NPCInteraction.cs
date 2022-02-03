@@ -61,7 +61,10 @@ public class NPCInteraction : MonoBehaviour
             buttons.Find("Button1").gameObject
         };
         interactionCollider = GetComponentInChildren<BoxCollider>();
-        dialogueContainer = dialogueContainers[0];
+        if (dialogueContainers.Length > 0)
+        {
+            dialogueContainer = dialogueContainers[0];
+        }
     }
 
     private void OnEnable()
