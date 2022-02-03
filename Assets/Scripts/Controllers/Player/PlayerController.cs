@@ -29,8 +29,6 @@ public class PlayerController : MonoBehaviour, Savable
     public GameObject ControllerUI;
 
     private InputAction walkAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/F");
-    //While boosting or going forward during flight
-    //private InputAction flightAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/W");
     [System.NonSerialized]
     public Inventory inventory;
 
@@ -66,7 +64,9 @@ public class PlayerController : MonoBehaviour, Savable
         groundDetector = GetComponent<GroundDetector>();
 
         walkingController.WalkedOffEdge += () => SetState(CrowState.Flying, 0.5f);
+        walkingController.SubstateChanged += s => SetState(s);
         flightController.Landed += AttemptToLand;
+        flightController.FlightTypeChanged += glide => SetState(glide ? CrowState.Gliding : CrowState.Walking);
 
         // inventory initialization
         Item.SetItemDB(itemDB);
@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour, Savable
         birdAnimator.SetBool("isFlying", state == CrowState.Flying);
         birdAnimator.SetBool("isWalking", state == CrowState.Walking);
         birdAnimator.SetBool("isSwim", state == CrowState.Splashing);
-       //To do: once the animation graph and animation for idle and glide, then input the set birdAnimator
+        //TODO (Nic) : once the animation graph and animation for idle and glide, then input the set birdAnimator
         /*birdAnimarot.SetBool */
 
         if ((previous == CrowState.Walking || previous == CrowState.Splashing || previous == CrowState.Idle) && state == CrowState.Flying)
@@ -178,26 +178,12 @@ public class PlayerController : MonoBehaviour, Savable
 
         walkAction.performed += ctx =>
         {
-            if (state == CrowState.Walking || state == CrowState.Splashing)
+            if (state == CrowState.Walking || state == CrowState.Splashing || state == CrowState.Idle)
                 SetState(CrowState.Flying, 2.0f);
             else
                 AttemptToLand();
         };
         walkAction.Enable();
-
-        // check if player is pressing forward or boost button during flight state. If goes over certain limit, stated in Flight controller, then turn state to glide, else set to flying.
-        /*
-        flightAction.performed += ctx =>
-        {
-            if (state == CrowState.Flying)
-                if(FlightController.isGliding == true){
-                SetState(CrowState.Gliding);
-        }
-            else
-                SetState(CrowState.Flying);
-        };
-        flightAction.Enable();
-        */
     }
 
     private void OnDisable()
@@ -209,13 +195,6 @@ public class PlayerController : MonoBehaviour, Savable
     }
 
     private void SetFixedPosition(Vector3 position) => this.transform.position = position;
-
-    public void ResetToWalk()
-    {
-        //StopFlight();
-        //StartWalk();
-        cameraController.isWalking = true;
-    }
 
     private Vector3 positionBeforeDialogue;
     private Quaternion rotationBeforeDialogue;
@@ -234,13 +213,10 @@ public class PlayerController : MonoBehaviour, Savable
     private void ExitNPCDialogue()
     {
         ControllerUI.SetActive(true);
-        // SetFixedPosition(new Vector3(transform.position.x - 5, transform.position.y, transform.position.z - 5));
         transform.position = positionBeforeDialogue;
         transform.rotation = rotationBeforeDialogue;
         SetState(CrowState.Walking);
     }
-
-
 
     private void TryPlaceOnGround()
     {

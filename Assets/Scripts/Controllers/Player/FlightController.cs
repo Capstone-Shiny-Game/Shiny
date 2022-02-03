@@ -43,7 +43,8 @@ public class FlightController : MonoBehaviour
     public TMP_Text test;
 
     public event Action Landed;
-    //public bool isGliding = false;
+    public event Action<bool> FlightTypeChanged;
+    public bool isGliding = false;
 
     public void Start()
     {
@@ -56,7 +57,7 @@ public class FlightController : MonoBehaviour
         Fly();
         TrailScale();
         //checks speed, update boolean of isGlide if over certain limit.
-        /*CheckSpeed()*/
+        CheckSpeed();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -309,18 +310,16 @@ public class FlightController : MonoBehaviour
 
     }
     //15f is max speed, might need to play around with speed. Check with Angelique.
-    /*
-    public IEnumerator CheckSpeed()
+
+    public void CheckSpeed()
     {
-        if (speed > 13f)
+        bool newGlide = speed > 13 && isBoost;
+        if (newGlide != isGliding)
         {
-            isGliding = true;
+            isGliding = newGlide;
+            FlightTypeChanged?.Invoke(isGliding);
         }
-        else
-        {
-            isGLiding = false;
-        }
-    }*/
+    }
 
     private void DampenAngleToZero(bool x, bool y, bool z, float fracComplete)
     {

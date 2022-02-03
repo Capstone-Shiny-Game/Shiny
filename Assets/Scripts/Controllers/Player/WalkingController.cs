@@ -14,6 +14,7 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
     public bool Splashing = false;
     public bool isIdle = false;
     public event Action WalkedOffEdge;
+    public event Action<PlayerController.CrowState> SubstateChanged;
 
     private GroundDetector groundDetector;
     private PlayerControllerInput PlayerInput;
@@ -74,9 +75,13 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
         if (!collided)
         {
             transform.position = newPosition;
-            if (groundDetector.FindGround(out Vector3 groundPos, out Splashing))
+            if (groundDetector.FindGround(out Vector3 groundPos, out bool newSplashing))
             {
-                // TODO : Update the crow's `state` to Walking or Splashing as appropriate walking from ground to water or vice versa
+                if (newSplashing != Splashing)
+                {
+                    Splashing = newSplashing;
+                    SubstateChanged?.Invoke(Splashing ? PlayerController.CrowState.Splashing : PlayerController.CrowState.Walking);
+                }
                 float dY = transform.position.y - groundPos.y;
                 if (dY > transform.localScale.y)
                     WalkedOffEdge?.Invoke();
@@ -84,19 +89,22 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
                     transform.position = groundPos;
             }
         }
-        //check of no input from player.
-        //CheckIdle()
+        //check if no input from player.
+        CheckIdle();
     }
 
     public void CheckIdle()
     {
-
-        if (!Input.anyKey)
+        if (Input.anyKey && isIdle)
+        {
+            isIdle = false;
+            SubstateChanged?.Invoke(Splashing ? PlayerController.CrowState.Splashing : PlayerController.CrowState.Walking);
+        }
+        else if (!Input.anyKey && !isIdle)
         {
             isIdle = true;
+            SubstateChanged?.Invoke(PlayerController.CrowState.Idle);
         }
-        else
-            isIdle = false;
     }
 
     public void OnFlight(InputAction.CallbackContext context)
