@@ -95,12 +95,12 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
 
     public void CheckIdle()
     {
-        if (Input.anyKey && isIdle)
+        if ((moveX != 0 || moveY != 0) && isIdle)
         {
             isIdle = false;
             SubstateChanged?.Invoke(Splashing ? PlayerController.CrowState.Splashing : PlayerController.CrowState.Walking);
         }
-        else if (!Input.anyKey && !isIdle)
+        else if (moveX == 0 && moveY == 0 && !isIdle)
         {
             isIdle = true;
             SubstateChanged?.Invoke(PlayerController.CrowState.Idle);
