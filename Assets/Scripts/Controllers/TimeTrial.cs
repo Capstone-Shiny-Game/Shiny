@@ -70,6 +70,7 @@ public class TimeTrial : MonoBehaviour
         // gets here if player does not make it to the current ring on time,
         // reset the time trial
         currRing.SetActive(false);
+        ringOrder.Find(currRing).Next?.Value.SetActive(false);
         currRing = ringOrder.First.Value;
         currRing.SetActive(true);
     }
