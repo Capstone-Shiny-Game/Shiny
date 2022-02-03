@@ -208,12 +208,17 @@ public class PlayerController : MonoBehaviour, Savable
         walkAction.Disable();
     }
 
-    private void SetFixedPosition(Vector3 position) => this.transform.position = position;
+    private void SetFixedPosition(Vector3 position) => transform.position = position;
+
+    private void SetFixedRotation(Vector3 lookPosition)
+    {
+        Vector3 lookPos = lookPosition - transform.position;
+        lookPos.y = 0;
+        transform.rotation = Quaternion.LookRotation(lookPos);
+    }
 
     public void ResetToWalk()
     {
-        //StopFlight();
-        //StartWalk();
         cameraController.isWalking = true;
     }
 
@@ -223,18 +228,20 @@ public class PlayerController : MonoBehaviour, Savable
     private void EnterNPCDialogue(Transform npcTransform)
     {
         SetState(CrowState.Talking);
-        Vector3 npcFront = npcTransform.position + npcTransform.forward * 4.0f;
         positionBeforeDialogue = transform.position;
         rotationBeforeDialogue = transform.rotation;
-        SetFixedPosition(npcFront);
+        // position player in front of NPC
         TryPlaceOnGround();
+        Vector3 npcFront = npcTransform.position + npcTransform.forward * 4.0f;
+        SetFixedPosition(new Vector3(npcFront.x, transform.position.y, npcFront.z));
+        SetFixedRotation(npcTransform.position);
+
         ControllerUI.SetActive(false);
     }
 
     private void ExitNPCDialogue()
     {
         ControllerUI.SetActive(true);
-        // SetFixedPosition(new Vector3(transform.position.x - 5, transform.position.y, transform.position.z - 5));
         transform.position = positionBeforeDialogue;
         transform.rotation = rotationBeforeDialogue;
         SetState(CrowState.Walking);
