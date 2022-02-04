@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -48,12 +49,14 @@ public class InputController : MonoBehaviour
     public RotateSelectionEvent RotateSelectionHandler;
 
     public FlightTogglePOVEvent flightTogglePOVHandler;
+    public TMP_Text test;
 
     private void Awake()
     {
         //CamController = cam.GetComponent<CameraController>();
         //FlightController = player.GetComponent<FlightController>();
         PlayerInput = new PlayerControllerInput();
+        test.text = "Please use input";
 
     }
 
@@ -81,8 +84,8 @@ public class InputController : MonoBehaviour
         PlayerInput.GUIMap.RotateSelection.performed += OnRotateSelection;
 
         PlayerInput.GUIMap.PickupItem.performed += OnPickup;
-        if (UnityEngine.InputSystem.Accelerometer.current != null)
-            InputSystem.EnableDevice(Accelerometer.current);
+        if (UnityEngine.InputSystem.Gyroscope.current != null)
+            InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
     }
 
     public void OnDisable()
@@ -106,8 +109,24 @@ public class InputController : MonoBehaviour
     }
     private void OnFlight(InputAction.CallbackContext context)
     {
-        Vector2 moveInput = context.ReadValue<Vector2>();
-        flightMoveHandler.Invoke(moveInput.x, moveInput.y);
+        if (UnityEngine.InputSystem.Gyroscope.current != null && UnityEngine.InputSystem.Gyroscope.current.enabled)
+        {
+            //Debug.Log("Gyroscope is enabled");
+            //Debug.Log(Accelerometer.current.acceleration.ReadValue());
+            Vector3 input = context.ReadValue<Vector3>();
+            test.text = "Gyroscope: " + "X: " + input.x + "Y: " + input.y + "Z: " + input.z;
+
+            flightMoveHandler.Invoke(input.y, input.x);
+
+        }
+        else
+        {
+            test.text = "N/A";
+
+            Vector2 moveInput = context.ReadValue<Vector2>();
+            flightMoveHandler.Invoke(moveInput.x, moveInput.y);
+        }
+
     }
     private void OnFlightEnd(InputAction.CallbackContext context)
     {

@@ -40,7 +40,7 @@ public class FlightController : MonoBehaviour
     public GameObject LeftTrail;
     public GameObject RightTrail;
     private Vector3 scaleChange;
-    public TMP_Text test;
+
 
     public event Action Landed;
     public event Action<bool> FlightTypeChanged;
@@ -189,8 +189,12 @@ public class FlightController : MonoBehaviour
     }
     private void GetPlayerControls()
     {
-        //if (UnityEngine.InputSystem.Gyroscope.current.enabled)
-        //    Debug.Log("Gyroscope is enabled");
+      //  if (UnityEngine.InputSystem.Gyroscope.current != null && UnityEngine.InputSystem.Gyroscope.current.enabled)
+       //     test.text = "Gyroscope: " + moveX + " " + moveY;
+       // else
+       // {
+       //     test.text = "No Gyro";
+       // }
 
         // Rotate
         float turn = moveX * tiltSensitivity / 1.5f * Time.deltaTime;
@@ -198,11 +202,7 @@ public class FlightController : MonoBehaviour
         float tilt = -moveX * tiltSensitivity * Time.deltaTime;
         transform.Rotate(new Vector3(pitch, turn, tilt));
 
-        if (UnityEngine.InputSystem.Accelerometer.current != null)
-        {
-            Debug.Log(Accelerometer.current.acceleration.ReadValue());
-            test.text = Accelerometer.current.acceleration.ReadValue().ToString();
-        }
+
         if (tilt != 0)
             hasTilted = true;
         if (pitch != 0)
