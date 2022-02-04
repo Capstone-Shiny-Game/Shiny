@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Balloon_col : MonoBehaviour
+public class Balloon_control : MonoBehaviour
 {
     [SerializeField] private Animator animator;
 
