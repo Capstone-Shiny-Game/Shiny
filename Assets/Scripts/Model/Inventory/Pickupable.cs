@@ -47,6 +47,7 @@ public class Pickupable : MonoBehaviour
             float speed = playerController.state == PlayerController.CrowState.Flying ? flightController.speed : 0;
             rigidbody.velocity = Crow.transform.forward * speed;
             attached = false;
+            //GetComponent<CapsuleCollider>().enabled = false;
             colliders.Select(collider => collider.enabled = true);
         }
         else if (inRange)
