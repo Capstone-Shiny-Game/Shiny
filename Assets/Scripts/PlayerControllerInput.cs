@@ -325,6 +325,14 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""SwipeMenus"",
+                    ""type"": ""Button"",
+                    ""id"": ""948625ea-2e01-4f63-a975-15f19a336f85"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -371,6 +379,17 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
                     ""action"": ""PickupItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dd6fe27d-1be6-472f-9052-29de1b050e59"",
+                    ""path"": ""<Pointer>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwipeMenus"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -391,6 +410,7 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
         m_GUIMap_DropItem = m_GUIMap.FindAction("DropItem", throwIfNotFound: true);
         m_GUIMap_RotateSelection = m_GUIMap.FindAction("RotateSelection", throwIfNotFound: true);
         m_GUIMap_PickupItem = m_GUIMap.FindAction("PickupItem", throwIfNotFound: true);
+        m_GUIMap_SwipeMenus = m_GUIMap.FindAction("SwipeMenus", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -517,6 +537,7 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_GUIMap_DropItem;
     private readonly InputAction m_GUIMap_RotateSelection;
     private readonly InputAction m_GUIMap_PickupItem;
+    private readonly InputAction m_GUIMap_SwipeMenus;
     public struct GUIMapActions
     {
         private @PlayerControllerInput m_Wrapper;
@@ -525,6 +546,7 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
         public InputAction @DropItem => m_Wrapper.m_GUIMap_DropItem;
         public InputAction @RotateSelection => m_Wrapper.m_GUIMap_RotateSelection;
         public InputAction @PickupItem => m_Wrapper.m_GUIMap_PickupItem;
+        public InputAction @SwipeMenus => m_Wrapper.m_GUIMap_SwipeMenus;
         public InputActionMap Get() { return m_Wrapper.m_GUIMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -546,6 +568,9 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
                 @PickupItem.started -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnPickupItem;
                 @PickupItem.performed -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnPickupItem;
                 @PickupItem.canceled -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnPickupItem;
+                @SwipeMenus.started -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnSwipeMenus;
+                @SwipeMenus.performed -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnSwipeMenus;
+                @SwipeMenus.canceled -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnSwipeMenus;
             }
             m_Wrapper.m_GUIMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -562,6 +587,9 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
                 @PickupItem.started += instance.OnPickupItem;
                 @PickupItem.performed += instance.OnPickupItem;
                 @PickupItem.canceled += instance.OnPickupItem;
+                @SwipeMenus.started += instance.OnSwipeMenus;
+                @SwipeMenus.performed += instance.OnSwipeMenus;
+                @SwipeMenus.canceled += instance.OnSwipeMenus;
             }
         }
     }
@@ -581,5 +609,6 @@ public class @PlayerControllerInput : IInputActionCollection, IDisposable
         void OnDropItem(InputAction.CallbackContext context);
         void OnRotateSelection(InputAction.CallbackContext context);
         void OnPickupItem(InputAction.CallbackContext context);
+        void OnSwipeMenus(InputAction.CallbackContext context);
     }
 }

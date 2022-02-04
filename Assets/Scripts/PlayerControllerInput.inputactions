@@ -312,6 +312,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "SwipeMenus",
+                    "type": "Button",
+                    "id": "948625ea-2e01-4f63-a975-15f19a336f85",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -356,6 +364,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "PickupItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd6fe27d-1be6-472f-9052-29de1b050e59",
+                    "path": "<Pointer>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwipeMenus",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
