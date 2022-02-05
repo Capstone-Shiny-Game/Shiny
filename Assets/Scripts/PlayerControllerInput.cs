@@ -31,7 +31,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                     ""name"": ""Flight"",
                     ""type"": ""Value"",
                     ""id"": ""da0c6682-e16b-44fd-b26a-9292cb47ae44"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -150,59 +150,15 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""01b887a6-5714-4708-8b1c-7022adda9e63"",
-                    ""path"": ""2DVector"",
+                    ""name"": """",
+                    ""id"": ""01a6c46e-ed87-4af9-9e83-04c969061f75"",
+                    ""path"": ""<Gyroscope>/angularVelocity"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Flight"",
-                    ""isComposite"": true,
+                    ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""d319a086-c255-4fae-b106-554979dd7949"",
-                    ""path"": ""<Accelerometer>/acceleration/y"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Flight"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""479449c7-145d-428c-9a27-1fd18c7c8536"",
-                    ""path"": ""<Accelerometer>/acceleration/y"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Flight"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""dddd653b-24fe-4663-abaa-fb46838322f8"",
-                    ""path"": ""<Accelerometer>/acceleration/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Flight"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""82d769da-4bbb-497b-8449-df203194ddc9"",
-                    ""path"": ""<Accelerometer>/acceleration/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Flight"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -344,6 +300,15 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwipeMenus"",
+                    ""type"": ""Button"",
+                    ""id"": ""948625ea-2e01-4f63-a975-15f19a336f85"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -390,6 +355,17 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                     ""action"": ""PickupItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dd6fe27d-1be6-472f-9052-29de1b050e59"",
+                    ""path"": ""<Pointer>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwipeMenus"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -410,6 +386,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
         m_GUIMap_DropItem = m_GUIMap.FindAction("DropItem", throwIfNotFound: true);
         m_GUIMap_RotateSelection = m_GUIMap.FindAction("RotateSelection", throwIfNotFound: true);
         m_GUIMap_PickupItem = m_GUIMap.FindAction("PickupItem", throwIfNotFound: true);
+        m_GUIMap_SwipeMenus = m_GUIMap.FindAction("SwipeMenus", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -546,6 +523,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
     private readonly InputAction m_GUIMap_DropItem;
     private readonly InputAction m_GUIMap_RotateSelection;
     private readonly InputAction m_GUIMap_PickupItem;
+    private readonly InputAction m_GUIMap_SwipeMenus;
     public struct GUIMapActions
     {
         private @PlayerControllerInput m_Wrapper;
@@ -554,6 +532,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
         public InputAction @DropItem => m_Wrapper.m_GUIMap_DropItem;
         public InputAction @RotateSelection => m_Wrapper.m_GUIMap_RotateSelection;
         public InputAction @PickupItem => m_Wrapper.m_GUIMap_PickupItem;
+        public InputAction @SwipeMenus => m_Wrapper.m_GUIMap_SwipeMenus;
         public InputActionMap Get() { return m_Wrapper.m_GUIMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -575,6 +554,9 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                 @PickupItem.started -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnPickupItem;
                 @PickupItem.performed -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnPickupItem;
                 @PickupItem.canceled -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnPickupItem;
+                @SwipeMenus.started -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnSwipeMenus;
+                @SwipeMenus.performed -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnSwipeMenus;
+                @SwipeMenus.canceled -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnSwipeMenus;
             }
             m_Wrapper.m_GUIMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -591,6 +573,9 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                 @PickupItem.started += instance.OnPickupItem;
                 @PickupItem.performed += instance.OnPickupItem;
                 @PickupItem.canceled += instance.OnPickupItem;
+                @SwipeMenus.started += instance.OnSwipeMenus;
+                @SwipeMenus.performed += instance.OnSwipeMenus;
+                @SwipeMenus.canceled += instance.OnSwipeMenus;
             }
         }
     }
@@ -610,5 +595,6 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
         void OnDropItem(InputAction.CallbackContext context);
         void OnRotateSelection(InputAction.CallbackContext context);
         void OnPickupItem(InputAction.CallbackContext context);
+        void OnSwipeMenus(InputAction.CallbackContext context);
     }
 }

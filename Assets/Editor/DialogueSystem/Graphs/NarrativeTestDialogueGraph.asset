@@ -1,0 +1,287 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: NarrativeTestDialogueGraph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: NarrativeTestDialogue
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: 3cd7a237-a2f0-489b-9fc7-e992822205b2
+    <Name>k__BackingField: TestDialogue4
+    <Text>k__BackingField: "I think I can see a small house in the forest over there.
+      \nLet\u2019s check it out!!"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 887ac135-9916-4131-ae04-2abeddf1bd6f
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1744, y: 279.2}
+  - <ID>k__BackingField: 887ac135-9916-4131-ae04-2abeddf1bd6f
+    <Name>k__BackingField: TestDialogue5
+    <Text>k__BackingField: "Nox, this is a witch\u2019s hut! Well, it was a witch\u2019s
+      hut a long time ago. \nI think we could fix it up a bit and stay here. \nThe
+      townspeople wouldn\u2019t mind, right??"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 1720bf77-9fbe-4f9c-8b21-facf215b318a
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 2148.8, y: 279.2}
+  - <ID>k__BackingField: 1720bf77-9fbe-4f9c-8b21-facf215b318a
+    <Name>k__BackingField: TestDialogue6
+    <Text>k__BackingField: "We should start by patching up the walls and the roof.
+      \nCan you fly into the forest and find some branches, rocks, and long grass
+      for me??"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 0c7c659c-fe6a-4f4a-94a3-6159120959a2
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 2651.2, y: 277.6}
+  - <ID>k__BackingField: 0c7c659c-fe6a-4f4a-94a3-6159120959a2
+    <Name>k__BackingField: TestDialogue7
+    <Text>k__BackingField: " I could seal up the holes with my magic as long as I
+      have enough materials to work with.\nBring the items back to me once you\u2019ve
+      found them all!\r\n"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: aa27e09b-3924-4192-9010-9e5211f12d06
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 3204.8, y: 276}
+  - <ID>k__BackingField: aa27e09b-3924-4192-9010-9e5211f12d06
+    <Name>k__BackingField: TestDialogue8
+    <Text>k__BackingField: "These should do nicely! \nTake these materials and drop
+      them next to the house.\nI'll use my magic to patch up any holes.."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 59aeba9f-842f-4b94-9623-21d957776b41
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 3835.2, y: 274.40002}
+  - <ID>k__BackingField: 59aeba9f-842f-4b94-9623-21d957776b41
+    <Name>k__BackingField: TestDialogue9
+    <Text>k__BackingField: " It looks much better now. \nIt still needs quite a bit
+      of fixing up, but we can worry about that later. \nAt least we have a place
+      to sleep!!"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: d41d2d4d-4758-4a1d-b532-d88cddcfaef4
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 4269.6, y: 275.2}
+  - <ID>k__BackingField: 4e62ff6d-3880-448f-b44b-ee21d86314b6
+    <Name>k__BackingField: TestDialogue1
+    <Text>k__BackingField: "Nox, look! I think we finally made it! \nThis should
+      be the town called Smallhaven that I\u2019ve heard all about. \nOh, I hope
+      there isn\u2019t already a witch living here. \r\n"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 6308b5b6-6c7d-4800-b685-929893f605a1
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 155.2, y: 277.6}
+  - <ID>k__BackingField: 6308b5b6-6c7d-4800-b685-929893f605a1
+    <Name>k__BackingField: TestDialogue2
+    <Text>k__BackingField: " But what should we do if they already have a local witch?
+      \nWhat if they don\u2019t have one but they don\u2019t like me so we get kicked
+      out?\r\n"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: be5d59f8-157f-4ad9-b101-59c167781093
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 665.6, y: 276}
+  - <ID>k__BackingField: be5d59f8-157f-4ad9-b101-59c167781093
+    <Name>k__BackingField: TestDialogue3
+    <Text>k__BackingField: "There\u2019s just so much that could go wrong when you\u2019re
+      moving to a new place. \nNox, I can\u2019t go into the town just yet. \nWe\u2019ll
+      have to find somewhere to stay in the outskirts of Smallhaven.."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 3cd7a237-a2f0-489b-9fc7-e992822205b2
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1188.8, y: 278.40002}
+  - <ID>k__BackingField: d41d2d4d-4758-4a1d-b532-d88cddcfaef4
+    <Name>k__BackingField: TestDialogue10
+    <Text>k__BackingField: "While you were gone, I was thinking about the best way
+      to approach the town. \nMaybe you could fly in and meet some of the townspeople??"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 82e704a4-6f90-4bbd-a09f-fcbf65f07da9
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 4778.4, y: 277.6}
+  - <ID>k__BackingField: 82e704a4-6f90-4bbd-a09f-fcbf65f07da9
+    <Name>k__BackingField: TestDialogue11
+    <Text>k__BackingField: "If they react well to you, perhaps I\u2019ll feel better
+      about meeting everyone for the first time.."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 94d862eb-149a-4fec-b6c9-4662967627b4
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 5375.2, y: 284}
+  - <ID>k__BackingField: 94d862eb-149a-4fec-b6c9-4662967627b4
+    <Name>k__BackingField: TestDialogue12
+    <Text>k__BackingField: "I\u2019ll work on the house a bit more while you meet
+      some of the townspeople. \nWhen you\u2019re done, fly back to me and tell me
+      how it went!\r\n"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: f3267fbd-6755-41c8-93d1-776093f6f42a
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 5986.4, y: 283.2}
+  - <ID>k__BackingField: f3267fbd-6755-41c8-93d1-776093f6f42a
+    <Name>k__BackingField: TestDialogue13
+    <Text>k__BackingField: ' So, how did it go? Were they friendly? None of them
+      tried to hurt you, right??'
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 261da395-553c-4d58-a015-f7b63e2b326f
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 6540.8, y: 286.40002}
+  - <ID>k__BackingField: 261da395-553c-4d58-a015-f7b63e2b326f
+    <Name>k__BackingField: TestDialogue14
+    <Text>k__BackingField: " Oh no, some of them chased you away? \nWell, I\u2019m
+      glad there were at least a few kind people in the town. \nI\u2019m just worried
+      about the other ones.."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: f6a54b1b-4f8f-474e-86e6-15c61010e273
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 7096, y: 284.80002}
+  - <ID>k__BackingField: f6a54b1b-4f8f-474e-86e6-15c61010e273
+    <Name>k__BackingField: TestDialogue15
+    <Text>k__BackingField: "I definitely can\u2019t go into the town yet and risk
+      being chased out. \nI\u2019ll think of something by tomorrow, don\u2019t worry.\r\n"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 746e1299-8260-4544-a7c8-00e0ff813c63
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 7580.8, y: 283.2}
+  - <ID>k__BackingField: 746e1299-8260-4544-a7c8-00e0ff813c63
+    <Name>k__BackingField: TestDialogue16
+    <Text>k__BackingField: "You\u2019ve done a lot of flying today; you must be tired.
+      \nGo ahead and rest, I\u2019ll go to bed soon as well. \r\n"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 2fb10e1a-3b0f-44a6-af02-49cee75dc559
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 8065.6, y: 284}
+  - <ID>k__BackingField: 2fb10e1a-3b0f-44a6-af02-49cee75dc559
+    <Name>k__BackingField: TestDialogue17
+    <Text>k__BackingField: "Nox, wake up! I have an idea! I\u2019ve come up with
+      a plan to win over the townspeople.."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 6a4d4610-1601-4a25-a76b-d1a17ede7bea
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 8476.8, y: 284}
+  - <ID>k__BackingField: 6a4d4610-1601-4a25-a76b-d1a17ede7bea
+    <Name>k__BackingField: TestDialogue18
+    <Text>k__BackingField: " Every day, you\u2019ll fly into town and help the townspeople
+      with various tasks. \nYou know, just do simple things like help them find lost
+      items or deliver things to other people for them.\r\n"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 93720ed4-56bb-42e4-af51-5db60906b6c7
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 9096.8, y: 284}
+  - <ID>k__BackingField: 93720ed4-56bb-42e4-af51-5db60906b6c7
+    <Name>k__BackingField: TestDialogue19
+    <Text>k__BackingField: "Once they realize that you\u2019re friendly, we can go
+      into town together and I can get the materials I need to set up my potion shop!
+      \nDoesn\u2019t it sound like a great plan??"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: b8de1fb8-6d03-48f5-9c47-7afa9cdfd0d6
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 9772, y: 284}
+  - <ID>k__BackingField: b8de1fb8-6d03-48f5-9c47-7afa9cdfd0d6
+    <Name>k__BackingField: TestDialogue20
+    <Text>k__BackingField: Fine, do you have a better idea??
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: cb6e8405-0998-49df-b737-be5c06a940aa
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 10461.6, y: 285.6}
+  - <ID>k__BackingField: cb6e8405-0998-49df-b737-be5c06a940aa
+    <Name>k__BackingField: TestDialogue21
+    <Text>k__BackingField: "Then we\u2019ll just have to go with my plan. \nWhy don\u2019t
+      you fly into town now and see if there\u2019s anyone that could use a helping
+      hand? \nOr a helping wing, I suppose? No, maybe a helping beak\u2026."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: d6b11d5b-734b-404f-9686-17ffae889b8b
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 10754.4, y: 288}
+  - <ID>k__BackingField: d6b11d5b-734b-404f-9686-17ffae889b8b
+    <Name>k__BackingField: TestDialogue22
+    <Text>k__BackingField: "Oh, there is one other thing I need you to do today.
+      \nHere, take this letter and give it to the mayor. \nI don\u2019t feel comfortable
+      staying in this house for more than a few days if we don\u2019t officially
+      have permission, so I want to ask if it\u2019s okay.."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: cbd63402-ee33-4b99-802f-0a95fd8f27c8
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 11372.8, y: 292}
+  - <ID>k__BackingField: cbd63402-ee33-4b99-802f-0a95fd8f27c8
+    <Name>k__BackingField: TestDialogue23
+    <Text>k__BackingField: "When you\u2019re done for the day, come back and let
+      me know how things went!\r\n"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 12058.4, y: 292}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - TestDialogue4
+  - TestDialogue5
+  - TestDialogue6
+  - TestDialogue7
+  - TestDialogue8
+  - TestDialogue9
+  - TestDialogue1
+  - TestDialogue2
+  - TestDialogue3
+  - TestDialogue10
+  - TestDialogue11
+  - TestDialogue12
+  - TestDialogue13
+  - TestDialogue14
+  - TestDialogue15
+  - TestDialogue16
+  - TestDialogue17
+  - TestDialogue18
+  - TestDialogue19
+  - TestDialogue20
+  - TestDialogue21
+  - TestDialogue22
+  - TestDialogue23
+  <OldGroupedNodeNames>k__BackingField:
+    list: []

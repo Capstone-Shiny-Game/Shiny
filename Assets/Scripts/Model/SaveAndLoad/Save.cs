@@ -19,6 +19,7 @@ public static class Save
     /// struct should be read when Savable.LoadData is called
     /// with each savable object reading the feilds it filled when saving.
     /// </summary>
+    [System.Serializable]
     public struct SaveData
     {
         //TODO : EDIT ME!!!
@@ -48,6 +49,7 @@ public static class Save
     /// struct should be read when Savable.LoadData is called
     /// with each savable object reading the feilds it filled when saving.
     /// </summary>
+    [System.Serializable]
     public struct SaveDescriptorData
     {
         public string saveName;
@@ -114,12 +116,13 @@ public static class Save
             SaveDescriptorData saveDescriptorData = new SaveDescriptorData();
             saveDescriptorData.saveName = filename;
             saveDescriptorData.timestamp = System.DateTime.Now;
+            Debug.Log(saveDescriptorData.timestamp);
             foreach (SaveDescriptor descriptor in saveDescriptors)
             {
                 descriptor.GetSaveDescriptorData(ref saveDescriptorData);
             }
             filepath = ConstructFilePath(filename, ".desc");
-            WriteToFile(filepath, saveDescriptorData);
+            WriteDescriptorToFile(filepath, saveDescriptorData);
         }
 
     }
@@ -188,10 +191,11 @@ public static class Save
     public static List<SaveDescriptorData> GetSaveFileDescriptors(string extentionPattern = "*.desc")
     {
         string[] filePaths = Directory.GetFiles(Path.Combine(Application.persistentDataPath, ""), extentionPattern);
-        Debug.Log(filePaths);
+        //Debug.Log(filePaths);
         List<SaveDescriptorData> fileDescriptors = new List<SaveDescriptorData>();
         foreach (string filePath in filePaths)
         {
+            //Debug.Log("reading descriptor");
             fileDescriptors.Add(ReadDescriptorFromFile(filePath));
         }
         return fileDescriptors;
@@ -222,9 +226,9 @@ public static class Save
     /// </summary>
     /// <param name="filepath">the full path of the file</param>
     /// <param name="saveData">object or struct to be serialized and saved</param>
-    private static void WriteToFile(string filepath, object saveData)
+    private static void WriteToFile(string filepath, SaveData saveData)
     {
-        string saveJSON = JsonUtility.ToJson(saveData);
+        string saveJSON = Serialize<SaveData>(saveData);
         //Debug.Log(saveJSON);
         //Debug.Log(filepath);
         using (StreamWriter sw = new StreamWriter(filepath))
@@ -249,8 +253,24 @@ public static class Save
                 saveJSON += line;
             }
         }
-        SaveData saveData = JsonUtility.FromJson<SaveData>(saveJSON);
+        SaveData saveData = Deserialize<SaveData>(saveJSON);
         return saveData;
+    }
+
+    /// <summary>
+    /// saves data with the Json File Format at the specified filepath
+    /// </summary>
+    /// <param name="filepath">the full path of the file</param>
+    /// <param name="saveData">object or struct to be serialized and saved</param>
+    private static void WriteDescriptorToFile(string filepath, SaveDescriptorData saveData)
+    {
+        string saveJSON = Serialize<SaveDescriptorData>(saveData);
+        Debug.Log(saveJSON);
+        //Debug.Log(filepath);
+        using (StreamWriter sw = new StreamWriter(filepath))
+        {
+            sw.WriteLine(saveJSON);
+        }
     }
 
     /// <summary>
@@ -269,8 +289,16 @@ public static class Save
                 saveJSON += line;
             }
         }
-        SaveDescriptorData saveData = JsonUtility.FromJson<SaveDescriptorData>(saveJSON);
+        SaveDescriptorData saveData = Deserialize<SaveDescriptorData>(saveJSON);
         return saveData;
+    }
+
+    private static string Serialize<T>(T obj) {
+        return JsonUtility.ToJson(obj);
+    }
+    private static T Deserialize<T>(string serialized)
+    {
+        return JsonUtility.FromJson<T>(serialized);
     }
 
 }

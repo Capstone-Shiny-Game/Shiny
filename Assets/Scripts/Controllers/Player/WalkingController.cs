@@ -12,8 +12,9 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
     public float TurningSpeed = 60;
 
     public bool Splashing = false;
-
+    public bool isIdle = false;
     public event Action WalkedOffEdge;
+    public event Action<PlayerController.CrowState> SubstateChanged;
 
     private GroundDetector groundDetector;
     private PlayerControllerInput PlayerInput;
@@ -74,15 +75,35 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
         if (!collided)
         {
             transform.position = newPosition;
-            if (groundDetector.FindGround(out Vector3 groundPos, out Splashing))
+            if (groundDetector.FindGround(out Vector3 groundPos, out bool newSplashing))
             {
-                // TODO : Update the crow's `state` to Walking or Splashing as appropriate walking from ground to water or vice versa
+                if (newSplashing != Splashing)
+                {
+                    Splashing = newSplashing;
+                    SubstateChanged?.Invoke(Splashing ? PlayerController.CrowState.Splashing : PlayerController.CrowState.Walking);
+                }
                 float dY = transform.position.y - groundPos.y;
                 if (dY > transform.localScale.y)
                     WalkedOffEdge?.Invoke();
                 else
                     transform.position = groundPos;
             }
+        }
+        //check if no input from player.
+        CheckIdle();
+    }
+
+    public void CheckIdle()
+    {
+        if ((moveX != 0 || moveY != 0) && isIdle)
+        {
+            isIdle = false;
+            SubstateChanged?.Invoke(Splashing ? PlayerController.CrowState.Splashing : PlayerController.CrowState.Walking);
+        }
+        else if (moveX == 0 && moveY == 0 && !isIdle)
+        {
+            isIdle = true;
+            SubstateChanged?.Invoke(PlayerController.CrowState.Idle);
         }
     }
 

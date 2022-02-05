@@ -15,6 +15,7 @@ public class Dig_controller : MonoBehaviour
         animator.SetTrigger("Dig");
         Destroy(GetComponentInChildren<Canvas>().gameObject);
         var sphere = GetComponentInChildren<MeshRenderer>().gameObject;
+        GetComponentInChildren<ParticleSystem>().Play();
     }
 
     /// <summary>

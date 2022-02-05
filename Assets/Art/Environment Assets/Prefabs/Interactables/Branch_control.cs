@@ -11,7 +11,8 @@ public class Branch_control : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GetComponentInChildren<Rigidbody>().useGravity = true;
-         
+            GetComponentInChildren<ParticleSystem>().Play();
+            GetComponent<Collider>().enabled = false;
         }
 
     }

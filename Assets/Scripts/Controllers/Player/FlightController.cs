@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using static PlayerControllerInput;
 
 public class FlightController : MonoBehaviour
@@ -39,7 +41,10 @@ public class FlightController : MonoBehaviour
     public GameObject RightTrail;
     private Vector3 scaleChange;
 
+
     public event Action Landed;
+    public event Action<bool> FlightTypeChanged;
+    public bool isGliding = false;
 
     public void Start()
     {
@@ -51,6 +56,8 @@ public class FlightController : MonoBehaviour
     {
         Fly();
         TrailScale();
+        //checks speed, update boolean of isGlide if over certain limit.
+        CheckSpeed();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -182,14 +189,19 @@ public class FlightController : MonoBehaviour
     }
     private void GetPlayerControls()
     {
-        //if (UnityEngine.InputSystem.Gyroscope.current.enabled)
-        //    Debug.Log("Gyroscope is enabled");
+      //  if (UnityEngine.InputSystem.Gyroscope.current != null && UnityEngine.InputSystem.Gyroscope.current.enabled)
+       //     test.text = "Gyroscope: " + moveX + " " + moveY;
+       // else
+       // {
+       //     test.text = "No Gyro";
+       // }
 
         // Rotate
         float turn = moveX * tiltSensitivity / 1.5f * Time.deltaTime;
         float pitch = -moveY * pitchSensitivity * Time.deltaTime;
         float tilt = -moveX * tiltSensitivity * Time.deltaTime;
         transform.Rotate(new Vector3(pitch, turn, tilt));
+
 
         if (tilt != 0)
             hasTilted = true;
@@ -296,6 +308,17 @@ public class FlightController : MonoBehaviour
         yield return new WaitForSeconds(.1f);
         isSlowing = false;
 
+    }
+    //15f is max speed, might need to play around with speed. Check with Angelique.
+
+    public void CheckSpeed()
+    {
+        bool newGlide = speed > 13 && isBoost;
+        if (newGlide != isGliding)
+        {
+            isGliding = newGlide;
+            FlightTypeChanged?.Invoke(isGliding);
+        }
     }
 
     private void DampenAngleToZero(bool x, bool y, bool z, float fracComplete)

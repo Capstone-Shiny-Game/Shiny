@@ -19,6 +19,9 @@ public class NPCInteraction : MonoBehaviour
 
     [Header("Objects")]
     public GameObject npcUI;
+    public DSDialogueContainerSO[] dialogueContainers;
+    private int currentDialogueValue = 0;
+    [System.NonSerialized]
     public DSDialogueContainerSO dialogueContainer;
     public GameObject objectToSpawn;
     public GameObject otherNPC;
@@ -58,6 +61,10 @@ public class NPCInteraction : MonoBehaviour
             buttons.Find("Button1").gameObject
         };
         interactionCollider = GetComponentInChildren<BoxCollider>();
+        if (dialogueContainers.Length > 0)
+        {
+            dialogueContainer = dialogueContainers[0];
+        }
     }
 
     private void OnEnable()
@@ -111,6 +118,10 @@ public class NPCInteraction : MonoBehaviour
         {
             if (choice.Text == WAIT)
             {
+                if (HasUnfinishedDialogue())
+                {
+                    break;
+                }
                 //FADE
                 if (objectToSpawn != null)
                 {
@@ -133,7 +144,21 @@ public class NPCInteraction : MonoBehaviour
             {
                 if (choice.NextDialogue == null)
                 {
+                    if (HasUnfinishedDialogue())
+                    {
+                        break;
+                    }
+
                     npcUI.SetActive(false);
+
+                    currentDialogueValue++;
+                    //TEMP: Switch Dialogue if multiple
+                    if (currentDialogueValue < dialogueContainers.Length)
+                    {
+                        dialogueContainer = dialogueContainers[currentDialogueValue];
+                    }
+
+
                     OnNPCInteractEndEvent();
                     if (quest != null)
                     {
@@ -141,19 +166,34 @@ public class NPCInteraction : MonoBehaviour
                     }
                     break;
                 }
-                currentDialogue = choice.NextDialogue;
-                typeBodyText = StartCoroutine(TypeBodyText());
-                EnableButtons();
+                if (!HasUnfinishedDialogue())
+                {
+                    currentDialogue = choice.NextDialogue;
+                    typeBodyText = StartCoroutine(TypeBodyText());
+                    EnableButtons();
+                }
                 break;
             }
         }
+    }
+
+    private bool HasUnfinishedDialogue()
+    {
+        if (bodyText.maxVisibleCharacters < bodyText.text.Length)
+        {
+            StopCoroutine(typeBodyText);
+            bodyText.maxVisibleCharacters = bodyText.text.Length;
+            EnableButtons();
+            return true;
+        }
+        return false;
     }
 
     private IEnumerator TypeBodyText()
     {
         bodyText.maxVisibleCharacters = 0;
         bodyText.text = currentDialogue.Text;
-        for (int i = 1; i < bodyText.text.Length; i++)
+        for (int i = 1; i < bodyText.text.Length + 1; i++)
         {
             bodyText.maxVisibleCharacters = i;
             yield return new WaitForSeconds(0.035f);

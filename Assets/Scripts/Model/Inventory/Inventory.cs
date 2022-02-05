@@ -30,7 +30,7 @@ public class Inventory
     /// <returns> True when the item is successfully added and false otherwise </returns>
     public bool AddItem(Item item)
     {
-        Debug.Log(item.amount);
+        //Debug.Log(item.amount);
         if (item.IsStackable())
         {
             Item inventoryItem = GetItemFromList(item);
@@ -49,13 +49,11 @@ public class Inventory
             {
                 return false;
             }
-            Debug.Log("added item");
             itemList.Add(item);
         }
         weight += item.getStackWeight();
         // Update UI
         onItemListChanged?.Invoke(this, EventArgs.Empty);
-        Debug.Log("true as can be");
         return true;
     }
 
