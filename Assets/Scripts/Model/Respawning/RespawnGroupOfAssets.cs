@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class RespawnGroupOfAssets : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //TODO deal with pop-in issues
+    public float respawnTime;
+    public List<Respawnable> respawnable; //the child objects to respawn
     void Start()
     {
-        
+        //respawnable.RespawnME.AddListener(StartRespawn);
     }
-
-    // Update is called once per frame
-    void Update()
+    void StartRespawn()
     {
-        
+        if (this.gameObject.activeInHierarchy)//prevents exception when game is closed
+        {
+            StartCoroutine("Respawn");
+        }
+    }
+    public IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(respawnTime);
+        if (this.gameObject.activeInHierarchy)//prevents exception when game is closed
+        {
+            //respawnable.gameObject.SetActive(true);
+        }
     }
 }
