@@ -50,7 +50,7 @@ public class InputController : MonoBehaviour
 
     public FlightTogglePOVEvent flightTogglePOVHandler;
     public TMP_Text test;
-
+    public bool useGyro = true;
     private void Awake()
     {
         //CamController = cam.GetComponent<CameraController>();
@@ -116,10 +116,10 @@ public class InputController : MonoBehaviour
             Vector3 input = context.ReadValue<Vector3>();
             test.text = "Gyroscope: " + "X: " + input.x + "Y: " + input.y + "Z: " + input.z;
 
-            flightMoveHandler.Invoke(input.y, input.x);
+            flightMoveHandler.Invoke(input.z, input.x);
 
         }
-        else
+        else if(!useGyro || UnityEngine.InputSystem.Gyroscope.current == null)
         {
             test.text = "N/A";
 
