@@ -126,7 +126,7 @@ public class SaveMenu : MonoBehaviour
         //private delegate void OverwriteOrLoadHandler(string gameSaveName);
         loadButton.onClick.AddListener(delegate { OverwriteOrLoadSaveHander(gameDescriptor); });
         // find and set template text values
-        templateRectTransform.Find("SaveDate").GetComponent<TextMeshProUGUI>().text = gameDescriptor.timestamp.ToString("MM/dd/y h:mm tt");
+        templateRectTransform.Find("SaveDate").GetComponent<TextMeshProUGUI>().text = gameDescriptor.timestamp;
         templateRectTransform.Find("SaveName").GetComponent<TextMeshProUGUI>().text = gameDescriptor.saveName;
         if (gameDescriptor.currentQuestName is null || gameDescriptor.currentQuestName == "")
         {
