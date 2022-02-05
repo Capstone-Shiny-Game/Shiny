@@ -293,7 +293,8 @@ public static class Save
         return saveData;
     }
 
-    private static string Serialize<T>(T obj) {
+    private static string Serialize<T>(T obj)
+    {
         return JsonUtility.ToJson(obj);
     }
     private static T Deserialize<T>(string serialized)
