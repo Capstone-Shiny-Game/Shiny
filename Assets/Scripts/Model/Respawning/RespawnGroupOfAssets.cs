@@ -12,9 +12,9 @@ public class RespawnGroupOfAssets : MonoBehaviour
     [Tooltip("The maximum number of items to spawn. 0 means as many as possible (no more than the number of children).")]
     public int maxAmountToSpawn = 0;
     // the child objects to respawn
-    private List<bool> spawnedPrefabs;
     private List<int> availableToSpawn;
     private List<GameObject> prefabs;
+    
     void Start()
     {
         playerReference = GameObject.FindGameObjectWithTag("Player");
@@ -25,22 +25,22 @@ public class RespawnGroupOfAssets : MonoBehaviour
         }
         for (int i = 0; i < maxAmountToSpawn; i++)
         {
-            spawnedPrefabs[i] = false;
             availableToSpawn[i] = i;
             prefabs[i].SetActive(false);
         }
         for (int i = 0; i < maxAmountToSpawn; i++)
         {
-            int prefabIndex = Random.Range(0, maxAmountToSpawn);
-            int availableIndex = Random.Range(0, availableToSpawn.Count);
+            int prefabIndex = Random.Range(0, maxAmountToSpawn); //get a random prefab from the children of this object
+            //get a random location that doesnt currently have an item in it
+            int availableIndex = Random.Range(0, availableToSpawn.Count); 
             GameObject prefabLocation = prefabs[availableToSpawn[availableIndex]];
             Transform placeToSpawn = prefabLocation.GetComponent<Transform>();
+            //spawn new object
             GameObject newObject = Instantiate(prefabs[prefabIndex], placeToSpawn);
             newObject.SetActive(true);
+            //add the respawnable script to it with a callback to free up it's index if it is destroyed
             Respawnable script = newObject.AddComponent<Respawnable>();
-            script.RespawnME = new UnityEvent();
-            script.RespawnME.AddListener(StartRespawn);
-            script.index = availableIndex;
+            script.onDisableCallbackFunction = delegate() { availableToSpawn[availableIndex] = availableIndex; };
         }
 
         // respawnable.RespawnME.AddListener(StartRespawn);
@@ -54,6 +54,7 @@ public class RespawnGroupOfAssets : MonoBehaviour
             StartCoroutine("Respawn");
         }
     }
+
     public IEnumerator Respawn()
     {
         yield return new WaitForSeconds(respawnTime);

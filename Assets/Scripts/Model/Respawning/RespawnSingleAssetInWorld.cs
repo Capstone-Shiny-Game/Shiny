@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class RespawnChildInWorld : MonoBehaviour
 {
+    [Tooltip("this component is used to reactivate(respawn) an object that is deactivated.")]
     public float respawnTime;
-    public Respawnable respawnable; //the child object to respawn
+    [Tooltip("the object to reactivate after the respawn time completes.")]
+    public Respawnable respawnable;
     void Start()
     {
-        respawnable.RespawnME.AddListener(StartRespawn);
+        respawnable.onDisableCallbackFunction = delegate () { StartRespawn(); };
     }
     void StartRespawn()
     {

@@ -11,23 +11,23 @@ using UnityEngine.Events;
 public class Respawnable : MonoBehaviour
 {
     [field: HideInInspector] public UnityEvent RespawnME;
-    [field: HideInInspector] public int index;
+    [field: HideInInspector] public delegate void OnDisableCallback();
+    [field: HideInInspector] public OnDisableCallback onDisableCallbackFunction;
 
     /// <summary>
     /// when this object is no longer active, let the parent know so that it can handle the reactivation.
     /// this is done because monobehaviors are disabled when the gameobject is deactivated, thus it can't reactivate itself.
+    /// note: this is also called when this object is destroyed
     /// </summary>
     private void OnDisable()
     {
-        RespawnME?.Invoke();
+        if (onDisableCallbackFunction is null)
+        {
+            Debug.LogError("error with assigning callback function to respawnable object");
+            return;
+        }
+        onDisableCallbackFunction();
     }
 
-    /// <summary>
-    /// when this object is destroyed, let the parent know so that it can handle the reactivation.
-    /// this is done because monobehaviors are disabled when the gameobject is deactivated, thus it can't reactivate itself.
-    /// </summary>
-    private void OnDestroy()
-    {
-        RespawnME?.Invoke();
-    }
+    
 }
