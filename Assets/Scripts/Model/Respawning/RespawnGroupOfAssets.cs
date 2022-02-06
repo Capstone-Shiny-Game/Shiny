@@ -29,6 +29,8 @@ public class RespawnGroupOfAssets : MonoBehaviour
     {
         playerReference = GameObject.FindGameObjectWithTag("Player");
         respawnLocations = new List<Transform>(gameObject.GetComponentsInChildren<Transform>());
+        respawnLocations.Remove(this.transform);
+        Debug.Log("respawn locations number : " + respawnLocations.Count);
         totalProbability = 0;
         int maxSpawnable = 0;
         foreach (KeyValuePair<GameObject, SpawnParameters> entry in PrefabsToSpawnToSpawnParameters)
@@ -44,10 +46,13 @@ public class RespawnGroupOfAssets : MonoBehaviour
         for (int i = 0; i < respawnLocations.Count; i++)
         {
             respawnLocations[i].gameObject.SetActive(false);
+            Debug.Log(i);
         }
         for (int i = 0; i < totalMaxAmountToSpawn; i++)
         {
-            //respawnItemWithProbability();
+            Debug.Log(i);
+            respawnItemWithProbability();
+            
         }
     }
 
