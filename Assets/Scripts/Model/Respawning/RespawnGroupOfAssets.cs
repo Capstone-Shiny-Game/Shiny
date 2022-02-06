@@ -9,41 +9,70 @@ public class RespawnGroupOfAssets : MonoBehaviour
     private GameObject playerReference;
     public float respawnTime = 60;
     public float minDistanceToRespawn = 100;
-    [Tooltip("The maximum number of items to spawn. 0 means as many as possible (no more than the number of children).")]
-    public int maxAmountToSpawn = 0;
-    // the child objects to respawn
-    private List<int> availableToSpawn;
-    private List<GameObject> prefabs;
-    
+    [Tooltip("The maximum number of items to spawn. 0 means as many as possible (no more than the number of childen).")]
+    public int totalMaxAmountToSpawn = 0;
+    private List<Transform> respawnLocations;
+    private float TotalProbability;
+
+    public Dictionary<GameObject, SpawnParameters> PrefabsToSpawnToSpawnParameters;
+    [System.Serializable]
+    public struct SpawnParameters
+    {
+        public int maxAmountToSpawn;
+        public float spawnProbability;
+        [HideInInspector] public int currentNumSpawned;
+    }
+
+
     void Start()
     {
         playerReference = GameObject.FindGameObjectWithTag("Player");
-        prefabs = new List<GameObject>(gameObject.GetComponentsInChildren<GameObject>());
-        if (maxAmountToSpawn <= 0)
+        respawnLocations = new List<Transform>(gameObject.GetComponentsInChildren<Transform>());
+        if (totalMaxAmountToSpawn <= 0 || totalMaxAmountToSpawn >= respawnLocations.Count)
         {
-            maxAmountToSpawn = prefabs.Count;
+            totalMaxAmountToSpawn = respawnLocations.Count;
         }
-        for (int i = 0; i < maxAmountToSpawn; i++)
+        TotalProbability = 0;
+        foreach (KeyValuePair<GameObject, SpawnParameters> entry in PrefabsToSpawnToSpawnParameters)
         {
-            availableToSpawn[i] = i;
-            prefabs[i].SetActive(false);
+            TotalProbability += entry.Value.spawnProbability;
         }
-        for (int i = 0; i < maxAmountToSpawn; i++)
+        
+        for (int i = 0; i < respawnLocations.Count; i++)
         {
-            int prefabIndex = Random.Range(0, maxAmountToSpawn); //get a random prefab from the children of this object
-            //get a random location that doesnt currently have an item in it
-            int availableIndex = Random.Range(0, availableToSpawn.Count); 
-            GameObject prefabLocation = prefabs[availableToSpawn[availableIndex]];
-            Transform placeToSpawn = prefabLocation.GetComponent<Transform>();
-            //spawn new object
-            GameObject newObject = Instantiate(prefabs[prefabIndex], placeToSpawn);
-            newObject.SetActive(true);
-            //add the respawnable script to it with a callback to free up it's index if it is destroyed
-            Respawnable script = newObject.AddComponent<Respawnable>();
-            script.onDisableCallbackFunction = delegate() { availableToSpawn[availableIndex] = availableIndex; };
+            respawnLocations[i].gameObject.SetActive(false);
         }
+        for (int i = 0; i < totalMaxAmountToSpawn; i++)
+        {
+            respawnItemWithProbability();
+        }
+    }
 
-        // respawnable.RespawnME.AddListener(StartRespawn);
+    private void respawnItemWithProbability()
+    {
+        int LocationIndex = Random.Range(0, totalMaxAmountToSpawn); //get a random availible spawn location
+        Transform placeToSpawn = respawnLocations[LocationIndex];
+        respawnLocations.RemoveAt(LocationIndex);//mark it no longer availible
+        //spawn new object
+        GameObject newObject = GetPrefabToSpawn();
+        newObject.SetActive(true);
+        //add the respawnable script to it with a callback to free up it's respawn location if it is destroyed
+        Respawnable script = newObject.AddComponent<Respawnable>();
+        script.onDisableCallbackFunction = delegate () { respawnLocations.Add(placeToSpawn); StartRespawn(); };
+    }
+
+    private GameObject GetPrefabToSpawn() {
+        float prefabToSpawn = Random.Range(0, TotalProbability);
+        GameObject result = null;
+        foreach (KeyValuePair<GameObject, SpawnParameters> entry in PrefabsToSpawnToSpawnParameters)
+        {
+            result = entry.Key;
+            if (prefabToSpawn <= entry.Value.spawnProbability) {
+                return result;
+            }
+            prefabToSpawn -= entry.Value.spawnProbability;
+        }
+        return result;
     }
 
     void StartRespawn()
@@ -61,7 +90,7 @@ public class RespawnGroupOfAssets : MonoBehaviour
         // prevents exception when game is closed
         if (this.gameObject.activeInHierarchy)
         {
-            // respawnable.gameObject.SetActive(true);
+            respawnItemWithProbability();
         }
     }
 }
