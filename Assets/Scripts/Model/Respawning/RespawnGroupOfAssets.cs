@@ -31,18 +31,22 @@ public class RespawnGroupOfAssets : MonoBehaviour
         List<Transform> respawnTransforms = new List<Transform>(gameObject.GetComponentsInChildren<Transform>());
         respawnTransforms.Remove(this.transform);
         respawnLocations = new List<Vector3>();
-        foreach (Transform transform in respawnTransforms) {
+        foreach (Transform transform in respawnTransforms)
+        {
             respawnLocations.Add(new Vector3(transform.position.x, transform.position.y, transform.position.z));
             Destroy(transform.gameObject);
         }
-        Debug.Log("respawn locations number : " + respawnLocations.Count);
-        totalProbability = 0;
+        //Debug.Log("respawn locations number : " + respawnLocations.Count);
         int maxSpawnable = 0;
+        prefabToCurrentNumSpawned = new Dictionary<GameObject, int>();
         foreach (KeyValuePair<GameObject, SpawnParameters> entry in PrefabsToSpawnToSpawnParameters)
         {
-            totalProbability += entry.Value.spawnProbability;
+            prefabToCurrentNumSpawned[entry.Key] = 0;
             maxSpawnable += entry.Value.maxAmountToSpawn;
         }
+
+        totalProbability = 0;
+        calculateTotalProbability();
         if (totalMaxAmountToSpawn <= 0 || totalMaxAmountToSpawn >= respawnLocations.Count)
         {
             totalMaxAmountToSpawn = respawnLocations.Count;
@@ -52,7 +56,19 @@ public class RespawnGroupOfAssets : MonoBehaviour
         {
             Debug.Log(i);
             respawnItemWithProbability();
-            
+
+        }
+    }
+
+    private void calculateTotalProbability()
+    {
+        foreach (KeyValuePair<GameObject, SpawnParameters> entry in PrefabsToSpawnToSpawnParameters)
+        {
+            if (entry.Value.maxAmountToSpawn == prefabToCurrentNumSpawned[entry.Key])
+            {
+                continue;
+            }
+            totalProbability += entry.Value.spawnProbability;
         }
     }
 
@@ -71,17 +87,21 @@ public class RespawnGroupOfAssets : MonoBehaviour
     }
 
     private GameObject GetPrefabToSpawn() {
+        calculateTotalProbability();
         float prefabToSpawn = Random.Range(0, totalProbability);
         GameObject result = null;
         foreach (KeyValuePair<GameObject, SpawnParameters> entry in PrefabsToSpawnToSpawnParameters)
         {
             result = entry.Key;
+            if (entry.Value.maxAmountToSpawn == prefabToCurrentNumSpawned[result]) {
+                continue;
+            }
             if (prefabToSpawn <= entry.Value.spawnProbability) {
                 break;
             }
             prefabToSpawn -= entry.Value.spawnProbability;
         }
-        prefabToCurrentNumSpawned[result]++;//TODO: add in check to make sure that we are not at max spawns
+        prefabToCurrentNumSpawned[result]++;
         return result;
     }
 
