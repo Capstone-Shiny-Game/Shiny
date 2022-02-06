@@ -12,9 +12,10 @@ public class RespawnGroupOfAssets : MonoBehaviour
     [Tooltip("The maximum number of items to spawn. 0 means as many as possible (no more than the number of childen).")]
     public int totalMaxAmountToSpawn = 0;
     private List<Transform> respawnLocations;
-    private float TotalProbability;
+    private float totalProbability;
 
-    public Dictionary<GameObject, SpawnParameters> PrefabsToSpawnToSpawnParameters;
+    [Tooltip("Put the prefab to spawn in the game object slot, then set the spawn parameters for that prefab")]
+    [field: SerializeField] public SerializableDictionary<GameObject, SpawnParameters> PrefabsToSpawnToSpawnParameters;
     [System.Serializable]
     public struct SpawnParameters
     {
@@ -28,23 +29,25 @@ public class RespawnGroupOfAssets : MonoBehaviour
     {
         playerReference = GameObject.FindGameObjectWithTag("Player");
         respawnLocations = new List<Transform>(gameObject.GetComponentsInChildren<Transform>());
+        totalProbability = 0;
+        int maxSpawnable = 0;
+        foreach (KeyValuePair<GameObject, SpawnParameters> entry in PrefabsToSpawnToSpawnParameters)
+        {
+            totalProbability += entry.Value.spawnProbability;
+            maxSpawnable += entry.Value.maxAmountToSpawn;
+        }
         if (totalMaxAmountToSpawn <= 0 || totalMaxAmountToSpawn >= respawnLocations.Count)
         {
             totalMaxAmountToSpawn = respawnLocations.Count;
         }
-        TotalProbability = 0;
-        foreach (KeyValuePair<GameObject, SpawnParameters> entry in PrefabsToSpawnToSpawnParameters)
-        {
-            TotalProbability += entry.Value.spawnProbability;
-        }
-        
+        totalMaxAmountToSpawn = Mathf.Min(maxSpawnable, totalMaxAmountToSpawn);
         for (int i = 0; i < respawnLocations.Count; i++)
         {
             respawnLocations[i].gameObject.SetActive(false);
         }
         for (int i = 0; i < totalMaxAmountToSpawn; i++)
         {
-            respawnItemWithProbability();
+            //respawnItemWithProbability();
         }
     }
 
@@ -62,7 +65,7 @@ public class RespawnGroupOfAssets : MonoBehaviour
     }
 
     private GameObject GetPrefabToSpawn() {
-        float prefabToSpawn = Random.Range(0, TotalProbability);
+        float prefabToSpawn = Random.Range(0, totalProbability);
         GameObject result = null;
         foreach (KeyValuePair<GameObject, SpawnParameters> entry in PrefabsToSpawnToSpawnParameters)
         {

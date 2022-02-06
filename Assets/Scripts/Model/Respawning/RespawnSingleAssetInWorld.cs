@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RespawnChildInWorld : MonoBehaviour
+public class RespawnSingleAssetInWorld : MonoBehaviour
 {
     [Tooltip("this component is used to reactivate(respawn) an object that is deactivated.")]
     public float respawnTime;

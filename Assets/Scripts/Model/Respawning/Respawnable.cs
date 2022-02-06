@@ -10,8 +10,7 @@ using UnityEngine.Events;
 /// </summary>
 public class Respawnable : MonoBehaviour
 {
-    [field: HideInInspector] public UnityEvent RespawnME;
-    [field: HideInInspector] public delegate void OnDisableCallback();
+    public delegate void OnDisableCallback();
     [field: HideInInspector] public OnDisableCallback onDisableCallbackFunction;
 
     /// <summary>
