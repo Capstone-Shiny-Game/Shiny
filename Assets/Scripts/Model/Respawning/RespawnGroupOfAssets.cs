@@ -11,25 +11,30 @@ public class RespawnGroupOfAssets : MonoBehaviour
     public float minDistanceToRespawn = 100;
     [Tooltip("The maximum number of items to spawn. 0 means as many as possible (no more than the number of childen).")]
     public int totalMaxAmountToSpawn = 0;
-    private List<Transform> respawnLocations;
+    private List<Vector3> respawnLocations;
     private float totalProbability;
 
     [Tooltip("Put the prefab to spawn in the game object slot, then set the spawn parameters for that prefab")]
     [field: SerializeField] public SerializableDictionary<GameObject, SpawnParameters> PrefabsToSpawnToSpawnParameters;
+    private Dictionary<GameObject,int> prefabToCurrentNumSpawned;
     [System.Serializable]
     public struct SpawnParameters
     {
         public int maxAmountToSpawn;
         public float spawnProbability;
-        [HideInInspector] public int currentNumSpawned;
     }
 
 
     void Start()
     {
         playerReference = GameObject.FindGameObjectWithTag("Player");
-        respawnLocations = new List<Transform>(gameObject.GetComponentsInChildren<Transform>());
-        respawnLocations.Remove(this.transform);
+        List<Transform> respawnTransforms = new List<Transform>(gameObject.GetComponentsInChildren<Transform>());
+        respawnTransforms.Remove(this.transform);
+        respawnLocations = new List<Vector3>();
+        foreach (Transform transform in respawnTransforms) {
+            respawnLocations.Add(new Vector3(transform.position.x, transform.position.y, transform.position.z));
+            Destroy(transform.gameObject);
+        }
         Debug.Log("respawn locations number : " + respawnLocations.Count);
         totalProbability = 0;
         int maxSpawnable = 0;
@@ -43,11 +48,6 @@ public class RespawnGroupOfAssets : MonoBehaviour
             totalMaxAmountToSpawn = respawnLocations.Count;
         }
         totalMaxAmountToSpawn = Mathf.Min(maxSpawnable, totalMaxAmountToSpawn);
-        for (int i = 0; i < respawnLocations.Count; i++)
-        {
-            respawnLocations[i].gameObject.SetActive(false);
-            Debug.Log(i);
-        }
         for (int i = 0; i < totalMaxAmountToSpawn; i++)
         {
             Debug.Log(i);
@@ -59,10 +59,11 @@ public class RespawnGroupOfAssets : MonoBehaviour
     private void respawnItemWithProbability()
     {
         int LocationIndex = Random.Range(0, totalMaxAmountToSpawn); //get a random availible spawn location
-        Transform placeToSpawn = respawnLocations[LocationIndex];
+        Vector3 placeToSpawn = respawnLocations[LocationIndex];
         respawnLocations.RemoveAt(LocationIndex);//mark it no longer availible
+        Debug.Log("spawn location : " + placeToSpawn);
         //spawn new object
-        GameObject newObject = GetPrefabToSpawn();
+        GameObject newObject = Instantiate(GetPrefabToSpawn(), placeToSpawn, Quaternion.identity);
         newObject.SetActive(true);
         //add the respawnable script to it with a callback to free up it's respawn location if it is destroyed
         Respawnable script = newObject.AddComponent<Respawnable>();
@@ -76,10 +77,11 @@ public class RespawnGroupOfAssets : MonoBehaviour
         {
             result = entry.Key;
             if (prefabToSpawn <= entry.Value.spawnProbability) {
-                return result;
+                break;
             }
             prefabToSpawn -= entry.Value.spawnProbability;
         }
+        prefabToCurrentNumSpawned[result]++;//TODO: add in check to make sure that we are not at max spawns
         return result;
     }
 
