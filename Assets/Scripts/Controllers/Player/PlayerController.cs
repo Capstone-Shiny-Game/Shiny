@@ -107,7 +107,9 @@ public class PlayerController : MonoBehaviour, Savable
         birdAnimator.SetBool("isSwim", state == CrowState.Splashing);
         //TODO (Nic) : once the animation graph and animation for idle and glide, then input the set birdAnimator
         /*birdAnimarot.SetBool */
-
+        birdAnimator.SetBool("isIdle", state == CrowState.Idle);
+        birdAnimator.SetBool("isGlide", state == CrowState.Gliding);
+        
         if ((previous == CrowState.Walking || previous == CrowState.Splashing || previous == CrowState.Idle) && state == CrowState.Flying)
         {
             // pitch up on takeoff
