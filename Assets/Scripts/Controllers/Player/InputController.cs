@@ -51,6 +51,8 @@ public class InputController : MonoBehaviour
     public FlightTogglePOVEvent flightTogglePOVHandler;
     public TMP_Text test;
     public bool useGyro = true;
+    float multiplier = 10.0f;
+
     private void Awake()
     {
         //CamController = cam.GetComponent<CameraController>();
@@ -114,12 +116,11 @@ public class InputController : MonoBehaviour
             //Debug.Log("Gyroscope is enabled");
             //Debug.Log(Accelerometer.current.acceleration.ReadValue());
             Vector3 input = context.ReadValue<Vector3>();
-            test.text = "Gyroscope: " + "X: " + input.x + "Y: " + input.y + "Z: " + input.z;
-
-            flightMoveHandler.Invoke(input.z, input.x);
+            //test.text = "Gyroscope: " + "X: " + input.x + "Y: " + input.y + "Z: " + input.z;
+            flightMoveHandler.Invoke(Mathf.Clamp(input.z * multiplier, -1.0f, 1.0f), Mathf.Clamp(input.x * multiplier, -1.0f, 1.0f));
 
         }
-        else if(!useGyro || UnityEngine.InputSystem.Gyroscope.current == null)
+        else if (!useGyro || UnityEngine.InputSystem.Gyroscope.current == null)
         {
             test.text = "N/A";
 
@@ -130,7 +131,8 @@ public class InputController : MonoBehaviour
     }
     private void OnFlightEnd(InputAction.CallbackContext context)
     {
-        flightMoveHandler.Invoke(0.0f, 0.0f);
+        if (UnityEngine.InputSystem.Gyroscope.current == null)
+            flightMoveHandler.Invoke(0.0f, 0.0f);
     }
     private void OnBrake(InputAction.CallbackContext context)
     {
