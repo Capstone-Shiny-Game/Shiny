@@ -40,8 +40,10 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
             PlayerInput = new PlayerControllerInput();
             PlayerInput.FlightMap.SetCallbacks(this);
         }
-
+        isIdle = true;
+        SubstateChanged?.Invoke(PlayerController.CrowState.Idle);
         PlayerInput.FlightMap.Enable();
+       
     }
 
     void OnDisable()

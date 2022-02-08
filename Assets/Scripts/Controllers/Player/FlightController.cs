@@ -313,7 +313,7 @@ public class FlightController : MonoBehaviour
 
     public void CheckSpeed()
     {
-        bool newGlide = speed > 13 && isBoost;
+        bool newGlide = speed > 12 && isBoost;
         if (newGlide != isGliding)
         {
             isGliding = newGlide;
