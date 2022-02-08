@@ -31,7 +31,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7324057266532042072}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1030714427
 MeshFilter:
@@ -222,36 +222,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01a961f3e3305354ca21fa2e28359d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2513769111650297511
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2529584591201865136}
-  m_Layer: 0
-  m_Name: CrowTrailR
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2529584591201865136
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2513769111650297511}
-  m_LocalRotation: {x: 0.0010444308, y: 0.0011764753, z: 0.0013912793, w: 0.9999978}
-  m_LocalPosition: {x: 1.538, y: 0.30000305, z: -0.32499695}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7324057266532042072}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0.119, y: 0.135, z: 0.16}
 --- !u!1 &2546136047665995552
 GameObject:
   m_ObjectHideFlags: 0
@@ -9862,36 +9832,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!1 &6653725517932171460
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4596066366068997632}
-  m_Layer: 0
-  m_Name: CrowTrailL
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4596066366068997632
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6653725517932171460}
-  m_LocalRotation: {x: 0.0010444308, y: 0.0011764753, z: 0.0013912793, w: 0.9999978}
-  m_LocalPosition: {x: -1.538, y: 0.30000305, z: -0.32499695}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7324057266532042072}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0.119, y: 0.135, z: 0.16}
 --- !u!1 &7324057266532042077
 GameObject:
   m_ObjectHideFlags: 0
@@ -9931,8 +9871,6 @@ Transform:
   m_Children:
   - {fileID: 8245471309768777028}
   - {fileID: 140313497592034138}
-  - {fileID: 2529584591201865136}
-  - {fileID: 4596066366068997632}
   - {fileID: 1400363571894820030}
   - {fileID: 1030714424}
   m_Father: {fileID: 0}
@@ -10042,8 +9980,9 @@ MonoBehaviour:
   maxDiveSpeed: 40
   minGlideSpeed: 10
   isBoost: 0
-  LeftTrail: {fileID: 6653725517932171460}
-  RightTrail: {fileID: 2513769111650297511}
+  LeftTrail: {fileID: 2546136047665995552}
+  RightTrail: {fileID: 5105916863276297152}
+  isGliding: 0
 --- !u!114 &7695470114484064583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10060,6 +9999,7 @@ MonoBehaviour:
   ControllerUI: {fileID: 0}
   uiInventory: {fileID: 0}
   uiHotbar: {fileID: 0}
+  itemDB: {fileID: 0}
   walkingOffset:
     forward: 4
     up: 0
@@ -10100,6 +10040,7 @@ MonoBehaviour:
   SplashingSpeed: 4
   TurningSpeed: 60
   Splashing: 0
+  isIdle: 0
 --- !u!114 &5036188381387300824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10165,6 +10106,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 88a677ad-d817-4b1e-8df5-76b5fddc7bb9
     m_ActionName: GUIMap/PickupItem[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 948625ea-2e01-4f63-a975-15f19a336f85
+    m_ActionName: GUIMap/SwipeMenus[/Mouse/delta,/Pen/delta]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: FlightMap
@@ -10314,7 +10259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8309375004648114810, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8309375004648114810, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: m_LocalPosition.x
