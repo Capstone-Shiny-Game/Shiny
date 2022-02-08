@@ -88,18 +88,10 @@ public class PlayerController : MonoBehaviour, Savable
             pos.y += addYForTakeoff;
             transform.position = pos;
         }
-        if (state == CrowState.Flying|| state == CrowState.Gliding)
-        {
-            flightCam.SetActive(true);
-            walkCam.SetActive(false);
-        }
-        else
-        {
-            flightCam.SetActive(false);
-            walkCam.SetActive(true);
-        }
         flightController.enabled = state == CrowState.Flying ||  state == CrowState.Gliding;
-        walkingController.enabled = state == CrowState.Walking || state == CrowState.Splashing|| state == CrowState.Idle;
+        flightCam.SetActive(flightController.enabled);
+        walkCam.SetActive(!flightController.enabled);
+        walkingController.enabled = state == CrowState.Walking || state == CrowState.Splashing || state == CrowState.Idle;
         cameraController.isWalking = walkingController.enabled;
 
         birdAnimator.SetBool("isFlying", state == CrowState.Flying);
