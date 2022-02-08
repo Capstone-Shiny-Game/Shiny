@@ -54,6 +54,8 @@ public class PlayerController : MonoBehaviour, Savable
 
     private void Start()
     {
+        Camera.main.useOcclusionCulling = false;
+
         flightCam = GameObject.Find("CM Flying");
         walkCam = GameObject.Find("CM Walking");
 
