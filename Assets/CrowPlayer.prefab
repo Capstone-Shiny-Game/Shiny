@@ -9799,6 +9799,7 @@ GameObject:
   - component: {fileID: 8245471309187584260}
   - component: {fileID: 442309360877959849}
   - component: {fileID: 5036188381387300824}
+  - component: {fileID: 2276840026215801480}
   m_Layer: 0
   m_Name: CrowPlayer
   m_TagString: Player
@@ -10063,6 +10064,18 @@ MonoBehaviour:
   m_DefaultActionMap: FlightMap
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &2276840026215801480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7324057266532042077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6743aeec08a9434dba5835a2077c353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8245471309768777031
 GameObject:
   m_ObjectHideFlags: 0
@@ -10162,14 +10175,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
---- !u!4 &5286368483914656080 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5702739361890221537, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
-  m_PrefabInstance: {fileID: 466341486847792305}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &140313497592034138 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
+  m_PrefabInstance: {fileID: 466341486847792305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5286368483914656080 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5702739361890221537, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
   m_PrefabInstance: {fileID: 466341486847792305}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &772841008434653664 stripped
