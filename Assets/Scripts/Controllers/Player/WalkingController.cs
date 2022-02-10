@@ -63,7 +63,7 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
             displacement *= BackwardsSpeed;
         Vector3 newPosition = transform.position + (transform.forward * displacement);
         Collider[] colliders = Physics.OverlapSphere(newPosition, transform.localScale.magnitude);
-        bool collided = colliders.Any(collider => !collider.isTrigger && !collider.CompareTag("Player") && !collider.CompareTag("Terrain")); // TODO : water, landable, terrain type not tag
+        bool collided = colliders.Any(collider => !collider.isTrigger && !collider.CompareTag("Player") && !collider.CompareTag("Terrain") && !collider.CompareTag("Water"));
         if (!collided)
         {
             transform.position = newPosition;
