@@ -114,14 +114,25 @@ public class PlayerController : MonoBehaviour, Savable
         }
     }
 
-    private void AttemptToLand()
+    private void AttemptToLand(bool needsRaycast)
     {
         if (state == CrowState.Flying || state == CrowState.Gliding)
         {
             flightController.speed = 10.0f;
             SetState(CrowState.Walking);
-            transform.position = transform.FindGround(transform.localScale.y / 2);
-            // SetState(isWater ? CrowState.Splashing : CrowState.Walking);
+            Vector3 ground = transform.FindGround(transform.localScale.y / 2);
+
+            if (needsRaycast
+                && Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, transform.localScale.magnitude * 2)
+                && hit.transform.CompareTag("Terrain"))
+            {
+                Vector3 candidateGround = hit.transform.position;
+                candidateGround.y += transform.localScale.y / 2;
+                if (candidateGround.y > ground.y)
+                    ground = candidateGround;
+            }
+
+            transform.position = ground;
         }
     }
 
