@@ -16,7 +16,6 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
     public event Action WalkedOffEdge;
     public event Action<PlayerController.CrowState> SubstateChanged;
 
-    private GroundDetector groundDetector;
     private PlayerControllerInput PlayerInput;
 
     private float moveX = 0;
@@ -28,8 +27,6 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
         v.x = 0;
         v.z = 0;
         transform.eulerAngles = v;
-
-        groundDetector = GetComponent<GroundDetector>();
     }
 
     void OnEnable()
@@ -77,19 +74,17 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
         if (!collided)
         {
             transform.position = newPosition;
-            if (groundDetector.FindGround(out Vector3 groundPos, out bool newSplashing))
-            {
-                if (newSplashing != Splashing)
-                {
-                    Splashing = newSplashing;
-                    SubstateChanged?.Invoke(Splashing ? PlayerController.CrowState.Splashing : PlayerController.CrowState.Walking);
-                }
-                float dY = transform.position.y - groundPos.y;
-                if (dY > transform.localScale.y)
-                    WalkedOffEdge?.Invoke();
-                else
-                    transform.position = groundPos;
-            }
+            Vector3 ground = transform.FindGround(transform.localScale.y / 2);
+            //if (newSplashing != Splashing)
+            //{
+            //    Splashing = newSplashing;
+            //    SubstateChanged?.Invoke(Splashing ? PlayerController.CrowState.Splashing : PlayerController.CrowState.Walking);
+            //}
+            float dY = transform.position.y - ground.y;
+            if (dY > transform.localScale.y)
+                WalkedOffEdge?.Invoke();
+            else
+                transform.position = ground;
         }
         //check if no input from player.
         CheckIdle();

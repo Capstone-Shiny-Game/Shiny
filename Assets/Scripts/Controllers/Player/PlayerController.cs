@@ -48,8 +48,6 @@ public class PlayerController : MonoBehaviour, Savable
     public Offset flyingOffset = new Offset { forward = 0, up = 0 };
     public double maxCarryWeight = 0;
 
-    private GroundDetector groundDetector;
-
     public static event Action AttemptedGrabOrRelease;
 
     private void Start()
@@ -62,8 +60,6 @@ public class PlayerController : MonoBehaviour, Savable
         flightController = GetComponent<FlightController>();
         walkingController = GetComponent<WalkingController>();
         cameraController = GetComponent<CameraController>();
-
-        groundDetector = GetComponent<GroundDetector>();
 
         walkingController.WalkedOffEdge += () => SetState(CrowState.Flying, 0.5f);
         walkingController.SubstateChanged += s => SetState(s);
@@ -120,11 +116,12 @@ public class PlayerController : MonoBehaviour, Savable
 
     private void AttemptToLand()
     {
-        if ((state == CrowState.Flying || state == CrowState.Gliding) && groundDetector.FindGround(out Vector3 groundPos, out bool isWater))
+        if (state == CrowState.Flying || state == CrowState.Gliding)
         {
             flightController.speed = 10.0f;
-            SetState(isWater ? CrowState.Splashing : CrowState.Walking);
-            SetFixedPosition(groundPos);
+            SetState(CrowState.Walking);
+            transform.position = transform.FindGround(transform.localScale.y / 2);
+            // SetState(isWater ? CrowState.Splashing : CrowState.Walking);
         }
     }
 
@@ -190,18 +187,11 @@ public class PlayerController : MonoBehaviour, Savable
         walkAction.Disable();
     }
 
-    private void SetFixedPosition(Vector3 position) => transform.position = position;
-
     private void SetFixedRotation(Vector3 lookPosition)
     {
         Vector3 lookPos = lookPosition - transform.position;
         lookPos.y = 0;
         transform.rotation = Quaternion.LookRotation(lookPos);
-    }
-
-    public void ResetToWalk()
-    {
-        cameraController.isWalking = true;
     }
 
     private Vector3 positionBeforeDialogue;
@@ -213,9 +203,9 @@ public class PlayerController : MonoBehaviour, Savable
         positionBeforeDialogue = transform.position;
         rotationBeforeDialogue = transform.rotation;
         // position player in front of NPC
-        TryPlaceOnGround();
+        transform.position = transform.FindGround(transform.localScale.y / 2);
         Vector3 npcFront = npcTransform.position + npcTransform.forward * 4.0f;
-        SetFixedPosition(new Vector3(npcFront.x, transform.position.y, npcFront.z));
+        transform.position = new Vector3(npcFront.x, transform.position.y, npcFront.z);
         SetFixedRotation(npcTransform.position);
 
         ControllerUI.SetActive(false);
@@ -227,12 +217,6 @@ public class PlayerController : MonoBehaviour, Savable
         transform.position = positionBeforeDialogue;
         transform.rotation = rotationBeforeDialogue;
         SetState(CrowState.Walking);
-    }
-
-    private void TryPlaceOnGround()
-    {
-        if (groundDetector.FindGround(out Vector3 groundPos, out _))
-            SetFixedPosition(groundPos);
     }
 
     public void AddSelfToSavablesList()
