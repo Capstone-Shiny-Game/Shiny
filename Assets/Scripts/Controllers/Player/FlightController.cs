@@ -85,17 +85,7 @@ public class FlightController : MonoBehaviour
         {
             Vector3 bouncedUp = transform.position + (transform.up * 5);
             Collider[] colliders = Physics.OverlapSphere(bouncedUp, transform.localScale.magnitude);
-            bool collided = colliders.Any(collider =>
-            {
-                if (collider.isTrigger)
-                    return false;
-
-                string tag = collider.transform.tag;
-                if (tag == "Player" || tag == "Terrain" || tag == "Water")
-                    return false;
-
-                return true;
-            });
+            bool collided = colliders.Any(collider => !collider.isTrigger && !collider.CompareTag("Player") && !collider.CompareTag("Terrain")); // TODO : water, landable, terrain type not tag
 
             if (!collided)
                 transform.position = bouncedUp;
