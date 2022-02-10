@@ -8,7 +8,7 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
 {
     public float ForwardSpeed = 8;
     public float BackwardsSpeed = 4;
-    public float SplashingSpeed = 4; // TODO (Ella) : Only allow crow to slowly walk in shallow water
+    public float SplashingSpeed = 0.1f;
     public float TurningSpeed = 60;
 
     public bool Splashing = false;
@@ -40,7 +40,6 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
         isIdle = true;
         SubstateChanged?.Invoke(PlayerController.CrowState.Idle);
         PlayerInput.FlightMap.Enable();
-       
     }
 
     void OnDisable()
@@ -60,16 +59,43 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
             displacement *= BackwardsSpeed;
         Vector3 newPosition = transform.position + (transform.forward * displacement);
         Collider[] colliders = Physics.OverlapSphere(newPosition, transform.localScale.magnitude);
-        bool collided = colliders.Any(collider => !collider.isTrigger && !collider.CompareTag("Player") && !collider.CompareTag("Terrain")); // TODO : water, landable, terrain type not tag
+        bool prevSplashing = Splashing;
+        bool collided = false;
+        bool needsRaycast = false;
+        foreach (Collider collider in colliders)
+        {
+            if (collider.isTrigger || collider is TerrainCollider || collider.CompareTag("Player"))
+                continue;
+            else if (collider.CompareTag("Terrain") || collider.CompareTag("Water"))
+                needsRaycast = true;
+            else
+            {
+                collided = true;
+                break;
+            }
+        }
         if (!collided)
         {
             transform.position = newPosition;
             Vector3 ground = transform.FindGround(transform.localScale.y / 2);
-            //if (newSplashing != Splashing)
-            //{
-            //    Splashing = newSplashing;
-            //    SubstateChanged?.Invoke(Splashing ? PlayerController.CrowState.Splashing : PlayerController.CrowState.Walking);
-            //}
+            if (needsRaycast
+                && Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, transform.localScale.magnitude * 2)
+                && (hit.transform.CompareTag("Terrain") || hit.transform.CompareTag("Water")))
+            {
+                Vector3 candidateGround = hit.transform.position;
+                candidateGround.y += transform.localScale.y / 2;
+                if (candidateGround.y > ground.y)
+                {
+                    ground = candidateGround;
+                    Splashing = hit.transform.CompareTag("Water");
+                }
+                else
+                    Splashing = false;
+            }
+            else
+                Splashing = false;
+            if (Splashing != prevSplashing)
+                SubstateChanged?.Invoke(Splashing ? PlayerController.CrowState.Splashing : PlayerController.CrowState.Walking);
             float dY = transform.position.y - ground.y;
             if (dY > transform.localScale.y)
                 WalkedOffEdge?.Invoke();
