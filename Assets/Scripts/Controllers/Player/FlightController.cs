@@ -42,7 +42,7 @@ public class FlightController : MonoBehaviour
     private Vector3 scaleChange;
 
 
-    public event Action<bool> Landed;
+    public event Action Landed;
     public event Action<bool> FlightTypeChanged;
     public bool isGliding = false;
 
@@ -76,21 +76,16 @@ public class FlightController : MonoBehaviour
             other.gameObject.SetActive(false);
             StartCoroutine(Boost());
         }
-        else if (other is TerrainCollider)
+        else if ((other.CompareTag("Terrain") || other.CompareTag("Water")))
         {
             speed = 10.0f;
-            Landed?.Invoke(false);
-        }
-        else if (other.CompareTag("Terrain"))
-        {
-            speed = 10.0f;
-            Landed?.Invoke(true);
+            Landed?.Invoke();
         }
         else if (!other.isTrigger)
         {
             Vector3 bouncedUp = transform.position + (transform.up * 5);
             Collider[] colliders = Physics.OverlapSphere(bouncedUp, transform.localScale.magnitude);
-            bool collided = colliders.Any(collider => !collider.isTrigger && !(collider is TerrainCollider) && !collider.CompareTag("Player") && !collider.CompareTag("Terrain"));
+            bool collided = colliders.Any(collider => !collider.isTrigger && !collider.CompareTag("Player") && !collider.CompareTag("Terrain")); // TODO : water, landable, terrain type not tag
 
             if (!collided)
                 transform.position = bouncedUp;
