@@ -173,8 +173,8 @@ public class PlayerController : MonoBehaviour, Savable
         {
             if (state == CrowState.Walking || state == CrowState.Splashing || state == CrowState.Idle)
                 SetState(CrowState.Flying, 2.0f);
-            else
-                AttemptToLand();
+            //else
+            //    AttemptToLand();
         };
         walkAction.Enable();
     }
