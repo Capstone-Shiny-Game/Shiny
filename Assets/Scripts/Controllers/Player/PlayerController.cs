@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour, Savable
         walkingController.WalkedOffEdge += () => SetState(CrowState.Flying, 0.5f);
         walkingController.SubstateChanged += s => SetState(s);
         flightController.Landed += AttemptToLand;
-        flightController.FlightTypeChanged += glide => SetState(glide ? CrowState.Gliding : CrowState.Walking);
+        flightController.FlightTypeChanged += glide => SetState(glide ? CrowState.Gliding : CrowState.Flying);
 
         // inventory initialization
         Item.SetItemDB(itemDB);
