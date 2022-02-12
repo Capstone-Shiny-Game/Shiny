@@ -36,7 +36,6 @@ public class FlightController : MonoBehaviour
     private Vector3 endBounce;
     private float bounce;
     private Transform targetRing;
-    private CameraController CamController;
     public GameObject LeftTrail;
     public GameObject RightTrail;
     private Vector3 scaleChange;
@@ -49,7 +48,6 @@ public class FlightController : MonoBehaviour
     public void Start()
     {
         //InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
-        CamController = GetComponent<CameraController>();
     }
 
     void Update()
@@ -172,10 +170,10 @@ public class FlightController : MonoBehaviour
             StartCoroutine(MoveToPosition(endBounce, bounce / 18f));
 
         }
-        if (!CamController.toggleFirstPersonCam)
-        {
+      //  if (!CamController.toggleFirstPersonCam) first person
+      //  {
             GetPlayerControls();
-        }
+       // }
     }
     private void GetPlayerControls()
     {

@@ -4,7 +4,7 @@ using static PlayerControllerInput;
 using System;
 using System.Linq;
 
-public class WalkingController : MonoBehaviour, IFlightMapActions
+public class WalkingController : MonoBehaviour
 {
     public float ForwardSpeed = 8;
     public float BackwardsSpeed = 4;
@@ -38,7 +38,6 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
         if (PlayerInput == null)
         {
             PlayerInput = new PlayerControllerInput();
-            PlayerInput.FlightMap.SetCallbacks(this);
         }
         isIdle = true;
         SubstateChanged?.Invoke(PlayerController.CrowState.Idle);
@@ -98,35 +97,10 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
             SubstateChanged?.Invoke(PlayerController.CrowState.Idle);
         }
     }
-
-    public void OnFlight(InputAction.CallbackContext context)
+    public void SetWalkXY(float x, float y)
     {
-        moveX = context.ReadValue<Vector2>().x;
-        moveY = context.ReadValue<Vector2>().y;
+        moveX = x;
+        moveY = y;
     }
 
-    public void OnLook(InputAction.CallbackContext context)
-    {
-        // UNUSED
-    }
-
-    public void OnToggleFirstPerson(InputAction.CallbackContext context)
-    {
-        // UNUSED
-    }
-
-    public void OnBoost(InputAction.CallbackContext context)
-    {
-        // UNUSED
-    }
-
-    public void OnBrake(InputAction.CallbackContext context)
-    {
-        // UNUSED
-    }
-
-    public void OnLockCursor(InputAction.CallbackContext context)
-    {
-        // UNUSED
-    }
 }

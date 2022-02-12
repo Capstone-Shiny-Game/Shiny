@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour, Savable
     public Animator birdAnimator;
     private FlightController flightController;
     private WalkingController walkingController;
-    private CameraController cameraController;
     private GameObject flightCam;
     private GameObject walkCam;
 
@@ -61,8 +60,6 @@ public class PlayerController : MonoBehaviour, Savable
 
         flightController = GetComponent<FlightController>();
         walkingController = GetComponent<WalkingController>();
-        cameraController = GetComponent<CameraController>();
-
         groundDetector = GetComponent<GroundDetector>();
 
         walkingController.WalkedOffEdge += () => SetState(CrowState.Flying, 0.5f);
@@ -94,7 +91,6 @@ public class PlayerController : MonoBehaviour, Savable
         flightCam.SetActive(flightController.enabled);
         walkCam.SetActive(!flightController.enabled);
         walkingController.enabled = state == CrowState.Walking || state == CrowState.Splashing || state == CrowState.Idle;
-        cameraController.isWalking = walkingController.enabled;
 
         birdAnimator.SetBool("isFlying", state == CrowState.Flying);
         birdAnimator.SetBool("isWalking", state == CrowState.Walking);
@@ -197,11 +193,6 @@ public class PlayerController : MonoBehaviour, Savable
         Vector3 lookPos = lookPosition - transform.position;
         lookPos.y = 0;
         transform.rotation = Quaternion.LookRotation(lookPos);
-    }
-
-    public void ResetToWalk()
-    {
-        cameraController.isWalking = true;
     }
 
     private Vector3 positionBeforeDialogue;

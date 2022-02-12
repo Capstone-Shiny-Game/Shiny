@@ -12,6 +12,7 @@ public class GroundDetector : MonoBehaviour
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, RaycastDistance)
             && (hit.transform.tag == "Terrain" || hit.transform.tag == "Water"))
         {
+            Debug.Log("HIT: " + hit.transform.tag);
             groundPos = hit.point + new Vector3(0, transform.localScale.y / 2, 0);
             isWater = hit.transform.tag == "Water";
             return true;
