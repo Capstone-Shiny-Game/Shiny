@@ -9793,7 +9793,6 @@ GameObject:
   - component: {fileID: 7324057266532042073}
   - component: {fileID: 7324057266532042078}
   - component: {fileID: 7324057266532042079}
-  - component: {fileID: 7261759843059480626}
   - component: {fileID: 7324057266532042076}
   - component: {fileID: 7695470114484064583}
   - component: {fileID: 8245471309187584260}
@@ -9888,28 +9887,6 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 2
   m_Center: {x: 0, y: 0.3, z: 0}
---- !u!114 &7261759843059480626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7324057266532042077}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76b00d522dbdc864b9d6fc1f80379880, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camPlacement: {fileID: 8245471309768777031}
-  crow: {fileID: 772841008434653664}
-  crowMesh: {fileID: 0}
-  cam: {fileID: 0}
-  toggleFirstPersonCam: 0
-  isWalking: 0
-  WalkingViewAngle: 30
-  WalkingViewDistance: 15
-  sensitivity: 0.5
-  birdAnimator: {fileID: 1789890149}
 --- !u!114 &7324057266532042076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9926,8 +9903,8 @@ MonoBehaviour:
   brake: 0
   glideAngleThreshold: 0.7
   acceleration: 10
-  maxDiveSpeed: 40
-  minGlideSpeed: 10
+  maxDiveSpeed: 60
+  minGlideSpeed: 20
   isBoost: 0
   LeftTrail: {fileID: 2546136047665995552}
   RightTrail: {fileID: 5105916863276297152}
@@ -9948,7 +9925,7 @@ MonoBehaviour:
   ControllerUI: {fileID: 0}
   uiInventory: {fileID: 0}
   uiHotbar: {fileID: 0}
-  itemDB: {fileID: 0}
+  itemDB: {fileID: 11400000, guid: 6cee74a9b3ff09e48b9976e881fdd3ff, type: 2}
   walkingOffset:
     forward: 4
     up: 0
@@ -10175,14 +10152,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
---- !u!4 &140313497592034138 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
-  m_PrefabInstance: {fileID: 466341486847792305}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5286368483914656080 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5702739361890221537, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
+  m_PrefabInstance: {fileID: 466341486847792305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &140313497592034138 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
   m_PrefabInstance: {fileID: 466341486847792305}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &772841008434653664 stripped
@@ -10309,7 +10286,7 @@ PrefabInstance:
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: flightLookHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7261759843059480626}
+      objectReference: {fileID: 0}
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: flightMoveHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -10345,7 +10322,7 @@ PrefabInstance:
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: flightTogglePOVHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7261759843059480626}
+      objectReference: {fileID: 0}
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: ItemHander.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PlayerController, Assembly-CSharp

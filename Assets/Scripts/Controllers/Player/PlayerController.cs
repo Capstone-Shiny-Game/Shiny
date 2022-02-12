@@ -91,8 +91,8 @@ public class PlayerController : MonoBehaviour, Savable
         flightCam.SetActive(flightController.enabled);
         walkCam.SetActive(!flightController.enabled);
         walkingController.enabled = state == CrowState.Walking || state == CrowState.Splashing || state == CrowState.Idle;
-        //Debug.Log(state);
-        //Debug.Log(flightController.enabled);
+        Debug.Log(state);
+        Debug.Log("Walk " + walkingController.enabled);
         birdAnimator.SetBool("isFlying", state == CrowState.Flying);
         birdAnimator.SetBool("isWalking", state == CrowState.Walking);
         birdAnimator.SetBool("isSwim", state == CrowState.Splashing);
