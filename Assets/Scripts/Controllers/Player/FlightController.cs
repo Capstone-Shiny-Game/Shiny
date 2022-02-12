@@ -36,20 +36,18 @@ public class FlightController : MonoBehaviour
     private Vector3 endBounce;
     private float bounce;
     private Transform targetRing;
-    private CameraController CamController;
     public GameObject LeftTrail;
     public GameObject RightTrail;
     private Vector3 scaleChange;
 
 
-    public event Action<bool> Landed;
+    public event Action Landed;
     public event Action<bool> FlightTypeChanged;
     public bool isGliding = false;
 
     public void Start()
     {
         //InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
-        CamController = GetComponent<CameraController>();
     }
 
     void Update()
@@ -62,9 +60,11 @@ public class FlightController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Debug.Log("Trigger: " + other.tag + " " + other.name);
+
         if (other.CompareTag("Ring") && !isBoost)
         {
-            Debug.Log("RING2");
+            //Debug.Log("RING2");
             Transform targetRing = other.gameObject.transform;
             SetTargetRing(targetRing);
             //transform.LookAt(targetRing);
@@ -76,21 +76,17 @@ public class FlightController : MonoBehaviour
             other.gameObject.SetActive(false);
             StartCoroutine(Boost());
         }
-        else if (other is TerrainCollider)
+        else if ((other.CompareTag("Terrain") || other.CompareTag("Water")))
         {
+            //Debug.Log("Entered " + other.tag + " " + other.name);
             speed = 10.0f;
-            Landed?.Invoke(false);
-        }
-        else if (other.CompareTag("Terrain"))
-        {
-            speed = 10.0f;
-            Landed?.Invoke(true);
+            Landed?.Invoke();
         }
         else if (!other.isTrigger)
         {
             Vector3 bouncedUp = transform.position + (transform.up * 5);
             Collider[] colliders = Physics.OverlapSphere(bouncedUp, transform.localScale.magnitude);
-            bool collided = colliders.Any(collider => !collider.isTrigger && !(collider is TerrainCollider) && !collider.CompareTag("Player") && !collider.CompareTag("Terrain"));
+            bool collided = colliders.Any(collider => !collider.isTrigger && !collider.CompareTag("Player") && !collider.CompareTag("Terrain")); // TODO : water, landable, terrain type not tag
 
             if (!collided)
                 transform.position = bouncedUp;
@@ -177,19 +173,13 @@ public class FlightController : MonoBehaviour
             StartCoroutine(MoveToPosition(endBounce, bounce / 18f));
 
         }
-        if (!CamController.toggleFirstPersonCam)
-        {
+      //  if (!CamController.toggleFirstPersonCam) first person
+      //  {
             GetPlayerControls();
-        }
+       // }
     }
     private void GetPlayerControls()
     {
-      //  if (UnityEngine.InputSystem.Gyroscope.current != null && UnityEngine.InputSystem.Gyroscope.current.enabled)
-       //     test.text = "Gyroscope: " + moveX + " " + moveY;
-       // else
-       // {
-       //     test.text = "No Gyro";
-       // }
 
         // Rotate
         float turn = moveX * tiltSensitivity / 1.5f * Time.deltaTime;
@@ -292,7 +282,7 @@ public class FlightController : MonoBehaviour
         targetRing = null;
         yield return new WaitForSeconds(.35f);
         if (speed > 15f)
-            speed -= 10f;
+            speed -= 5f;
         yield return new WaitForSeconds(2f);
         isBoost = false;
 

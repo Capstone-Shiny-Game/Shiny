@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour, Savable
     public Animator birdAnimator;
     private FlightController flightController;
     private WalkingController walkingController;
-    private CameraController cameraController;
     private GameObject flightCam;
     private GameObject walkCam;
 
@@ -48,6 +47,8 @@ public class PlayerController : MonoBehaviour, Savable
     public Offset flyingOffset = new Offset { forward = 0, up = 0 };
     public double maxCarryWeight = 0;
 
+    private GroundDetector groundDetector;
+
     public static event Action AttemptedGrabOrRelease;
 
     private void Start()
@@ -59,12 +60,12 @@ public class PlayerController : MonoBehaviour, Savable
 
         flightController = GetComponent<FlightController>();
         walkingController = GetComponent<WalkingController>();
-        cameraController = GetComponent<CameraController>();
+        groundDetector = GetComponent<GroundDetector>();
 
         walkingController.WalkedOffEdge += () => SetState(CrowState.Flying, 0.5f);
         walkingController.SubstateChanged += s => SetState(s);
         flightController.Landed += AttemptToLand;
-        flightController.FlightTypeChanged += glide => SetState(glide ? CrowState.Gliding : CrowState.Walking);
+        flightController.FlightTypeChanged += glide => SetState(glide ? CrowState.Gliding : CrowState.Flying);
 
         // inventory initialization
         Item.SetItemDB(itemDB);
@@ -90,8 +91,8 @@ public class PlayerController : MonoBehaviour, Savable
         flightCam.SetActive(flightController.enabled);
         walkCam.SetActive(!flightController.enabled);
         walkingController.enabled = state == CrowState.Walking || state == CrowState.Splashing || state == CrowState.Idle;
-        cameraController.isWalking = walkingController.enabled;
-
+        Debug.Log(state);
+        Debug.Log("Walk " + walkingController.enabled);
         birdAnimator.SetBool("isFlying", state == CrowState.Flying);
         birdAnimator.SetBool("isWalking", state == CrowState.Walking);
         birdAnimator.SetBool("isSwim", state == CrowState.Splashing);
@@ -114,25 +115,13 @@ public class PlayerController : MonoBehaviour, Savable
         }
     }
 
-    private void AttemptToLand(bool needsRaycast)
+    private void AttemptToLand()
     {
-        if (state == CrowState.Flying || state == CrowState.Gliding)
+        if ((state == CrowState.Flying || state == CrowState.Gliding) && groundDetector.FindGround(out Vector3 groundPos, out bool isWater))
         {
             flightController.speed = 10.0f;
-            SetState(CrowState.Walking);
-            Vector3 ground = transform.FindGround(transform.localScale.y / 2);
-
-            if (needsRaycast
-                && Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, transform.localScale.magnitude * 2)
-                && hit.transform.CompareTag("Terrain"))
-            {
-                Vector3 candidateGround = hit.transform.position;
-                candidateGround.y += transform.localScale.y / 2;
-                if (candidateGround.y > ground.y)
-                    ground = candidateGround;
-            }
-
-            transform.position = ground;
+            SetState(isWater ? CrowState.Splashing : CrowState.Walking);
+            SetFixedPosition(groundPos);
         }
     }
 
@@ -184,8 +173,8 @@ public class PlayerController : MonoBehaviour, Savable
         {
             if (state == CrowState.Walking || state == CrowState.Splashing || state == CrowState.Idle)
                 SetState(CrowState.Flying, 2.0f);
-            //else
-            //    AttemptToLand();
+            else
+                AttemptToLand();
         };
         walkAction.Enable();
     }
@@ -197,6 +186,8 @@ public class PlayerController : MonoBehaviour, Savable
 
         walkAction.Disable();
     }
+
+    private void SetFixedPosition(Vector3 position) => transform.position = position;
 
     private void SetFixedRotation(Vector3 lookPosition)
     {
@@ -214,9 +205,9 @@ public class PlayerController : MonoBehaviour, Savable
         positionBeforeDialogue = transform.position;
         rotationBeforeDialogue = transform.rotation;
         // position player in front of NPC
-        transform.position = transform.FindGround(transform.localScale.y / 2);
+        TryPlaceOnGround();
         Vector3 npcFront = npcTransform.position + npcTransform.forward * 4.0f;
-        transform.position = new Vector3(npcFront.x, transform.position.y, npcFront.z);
+        SetFixedPosition(new Vector3(npcFront.x, transform.position.y, npcFront.z));
         SetFixedRotation(npcTransform.position);
 
         ControllerUI.SetActive(false);
@@ -228,6 +219,12 @@ public class PlayerController : MonoBehaviour, Savable
         transform.position = positionBeforeDialogue;
         transform.rotation = rotationBeforeDialogue;
         SetState(CrowState.Walking);
+    }
+
+    private void TryPlaceOnGround()
+    {
+        if (groundDetector.FindGround(out Vector3 groundPos, out _))
+            SetFixedPosition(groundPos);
     }
 
     public void AddSelfToSavablesList()

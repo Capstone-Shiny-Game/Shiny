@@ -4,11 +4,11 @@ using static PlayerControllerInput;
 using System;
 using System.Linq;
 
-public class WalkingController : MonoBehaviour, IFlightMapActions
+public class WalkingController : MonoBehaviour
 {
     public float ForwardSpeed = 8;
     public float BackwardsSpeed = 4;
-    public float SplashingSpeed = 0.1f;
+    public float SplashingSpeed = 4; // TODO (Ella) : Only allow crow to slowly walk in shallow water
     public float TurningSpeed = 60;
 
     public bool Splashing = false;
@@ -16,6 +16,7 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
     public event Action WalkedOffEdge;
     public event Action<PlayerController.CrowState> SubstateChanged;
 
+    private GroundDetector groundDetector;
     private PlayerControllerInput PlayerInput;
 
     private float moveX = 0;
@@ -27,6 +28,8 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
         v.x = 0;
         v.z = 0;
         transform.eulerAngles = v;
+
+        groundDetector = GetComponent<GroundDetector>();
     }
 
     void OnEnable()
@@ -35,11 +38,11 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
         if (PlayerInput == null)
         {
             PlayerInput = new PlayerControllerInput();
-            PlayerInput.FlightMap.SetCallbacks(this);
         }
         isIdle = true;
         SubstateChanged?.Invoke(PlayerController.CrowState.Idle);
         PlayerInput.FlightMap.Enable();
+       
     }
 
     void OnDisable()
@@ -59,48 +62,23 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
             displacement *= BackwardsSpeed;
         Vector3 newPosition = transform.position + (transform.forward * displacement);
         Collider[] colliders = Physics.OverlapSphere(newPosition, transform.localScale.magnitude);
-        bool prevSplashing = Splashing;
-        bool collided = false;
-        bool needsRaycast = false;
-        foreach (Collider collider in colliders)
-        {
-            if (collider.isTrigger || collider is TerrainCollider || collider.CompareTag("Player"))
-                continue;
-            else if (collider.CompareTag("Terrain") || collider.CompareTag("Water"))
-                needsRaycast = true;
-            else
-            {
-                collided = true;
-                break;
-            }
-        }
+        bool collided = colliders.Any(collider => !collider.isTrigger && !collider.CompareTag("Player") && !collider.CompareTag("Terrain") && !collider.CompareTag("Water"));
         if (!collided)
         {
             transform.position = newPosition;
-            Vector3 ground = transform.FindGround(transform.localScale.y / 2);
-            if (needsRaycast
-                && Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, transform.localScale.magnitude * 2)
-                && (hit.transform.CompareTag("Terrain") || hit.transform.CompareTag("Water")))
+            if (groundDetector.FindGround(out Vector3 groundPos, out bool newSplashing))
             {
-                Vector3 candidateGround = hit.transform.position;
-                candidateGround.y += transform.localScale.y / 2;
-                if (candidateGround.y > ground.y)
+                if (newSplashing != Splashing)
                 {
-                    ground = candidateGround;
-                    Splashing = hit.transform.CompareTag("Water");
+                    Splashing = newSplashing;
+                    SubstateChanged?.Invoke(Splashing ? PlayerController.CrowState.Splashing : PlayerController.CrowState.Walking);
                 }
+                float dY = transform.position.y - groundPos.y;
+                if (dY > transform.localScale.y)
+                    WalkedOffEdge?.Invoke();
                 else
-                    Splashing = false;
+                    transform.position = groundPos;
             }
-            else
-                Splashing = false;
-            if (Splashing != prevSplashing)
-                SubstateChanged?.Invoke(Splashing ? PlayerController.CrowState.Splashing : PlayerController.CrowState.Walking);
-            float dY = transform.position.y - ground.y;
-            if (dY > transform.localScale.y)
-                WalkedOffEdge?.Invoke();
-            else
-                transform.position = ground;
         }
         //check if no input from player.
         CheckIdle();
@@ -119,35 +97,10 @@ public class WalkingController : MonoBehaviour, IFlightMapActions
             SubstateChanged?.Invoke(PlayerController.CrowState.Idle);
         }
     }
-
-    public void OnFlight(InputAction.CallbackContext context)
+    public void SetWalkXY(float x, float y)
     {
-        moveX = context.ReadValue<Vector2>().x;
-        moveY = context.ReadValue<Vector2>().y;
+        moveX = x;
+        moveY = y;
     }
 
-    public void OnLook(InputAction.CallbackContext context)
-    {
-        // UNUSED
-    }
-
-    public void OnToggleFirstPerson(InputAction.CallbackContext context)
-    {
-        // UNUSED
-    }
-
-    public void OnBoost(InputAction.CallbackContext context)
-    {
-        // UNUSED
-    }
-
-    public void OnBrake(InputAction.CallbackContext context)
-    {
-        // UNUSED
-    }
-
-    public void OnLockCursor(InputAction.CallbackContext context)
-    {
-        // UNUSED
-    }
 }
