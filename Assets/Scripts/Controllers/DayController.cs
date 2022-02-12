@@ -5,10 +5,13 @@ using UnityEngine;
 [ExecuteAlways]
 public class DayController : MonoBehaviour
 {
+    [Range(0, 24)] public float TimeOfDay;
+    public string CurrentDay;
     [SerializeField] private Light sun;
     [SerializeField] private LightingPreset Preset;
     [SerializeField] private float LengthOfDay;
-    [Range(0, 24)] public float TimeOfDay;
+    private string[] DaysOfWeek = {"Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+    private int DayIndex = 0;
 
 
     private void Start()
@@ -16,6 +19,7 @@ public class DayController : MonoBehaviour
         if(Application.isPlaying)
         {
             LengthOfDay *= 60;
+            CurrentDay = DaysOfWeek[DayIndex];
             StartCoroutine(Lerp());
         }
     }
@@ -40,7 +44,12 @@ public class DayController : MonoBehaviour
             UpdateLighting(TimeOfDay/24f);
             yield return null;
         }
-
+        DayIndex++;
+        if(DayIndex > 6)
+        {
+            DayIndex = 0;
+        }
+        CurrentDay = DaysOfWeek[DayIndex];
         StartCoroutine(Lerp());
     }
 
