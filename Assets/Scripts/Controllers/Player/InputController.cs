@@ -117,7 +117,7 @@ public class InputController : MonoBehaviour
             //Debug.Log(Accelerometer.current.acceleration.ReadValue());
             Vector3 input = context.ReadValue<Vector3>();
             //test.text = "Gyroscope: " + "X: " + input.x + "Y: " + input.y + "Z: " + input.z;
-            flightMoveHandler.Invoke(Mathf.Clamp(input.z * multiplier, -1.0f, 1.0f), Mathf.Clamp(input.x * multiplier, -1.0f, 1.0f));
+            flightMoveHandler.Invoke(Mathf.Clamp(-input.z * multiplier, -1.0f, 1.0f), Mathf.Clamp(input.x * multiplier, -1.0f, 1.0f));
 
         }
         else if (!useGyro || UnityEngine.InputSystem.Gyroscope.current == null)

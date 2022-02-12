@@ -60,9 +60,11 @@ public class FlightController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Debug.Log("Trigger: " + other.tag + " " + other.name);
+
         if (other.CompareTag("Ring") && !isBoost)
         {
-            Debug.Log("RING2");
+            //Debug.Log("RING2");
             Transform targetRing = other.gameObject.transform;
             SetTargetRing(targetRing);
             //transform.LookAt(targetRing);
@@ -76,6 +78,7 @@ public class FlightController : MonoBehaviour
         }
         else if ((other.CompareTag("Terrain") || other.CompareTag("Water")))
         {
+            //Debug.Log("Entered " + other.tag + " " + other.name);
             speed = 10.0f;
             Landed?.Invoke();
         }
@@ -177,12 +180,6 @@ public class FlightController : MonoBehaviour
     }
     private void GetPlayerControls()
     {
-      //  if (UnityEngine.InputSystem.Gyroscope.current != null && UnityEngine.InputSystem.Gyroscope.current.enabled)
-       //     test.text = "Gyroscope: " + moveX + " " + moveY;
-       // else
-       // {
-       //     test.text = "No Gyro";
-       // }
 
         // Rotate
         float turn = moveX * tiltSensitivity / 1.5f * Time.deltaTime;
@@ -285,7 +282,7 @@ public class FlightController : MonoBehaviour
         targetRing = null;
         yield return new WaitForSeconds(.35f);
         if (speed > 15f)
-            speed -= 10f;
+            speed -= 5f;
         yield return new WaitForSeconds(2f);
         isBoost = false;
 
