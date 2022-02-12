@@ -7,27 +7,48 @@ public class DayController : MonoBehaviour
 {
     [SerializeField] private Light sun;
     [SerializeField] private LightingPreset Preset;
+    [SerializeField] private float LengthOfDay;
     [Range(0, 24)] public float TimeOfDay;
+
+
+    private void Start()
+    {
+        if(Application.isPlaying)
+        {
+            LengthOfDay *= 60;
+            StartCoroutine(Lerp());
+        }
+    }
 
     private void Update()
     {
-        if(Preset == null)
-            return;
-
-        if(Application.isPlaying)
-        {
-            TimeOfDay += Time.deltaTime;
-            TimeOfDay %= 24;
-            UpdateLighting(TimeOfDay/24f);
-        }
-        else
+        if(!Application.isPlaying)
         {
             UpdateLighting(TimeOfDay/24f);
         }
     }
 
+    private IEnumerator Lerp()
+    {
+
+        float timeElapsed = 0;
+        while (timeElapsed < LengthOfDay)
+        {
+            TimeOfDay = Mathf.Lerp(0, 24, timeElapsed/LengthOfDay);
+            timeElapsed += Time.deltaTime;
+            TimeOfDay %= 24;
+            UpdateLighting(TimeOfDay/24f);
+            yield return null;
+        }
+
+        StartCoroutine(Lerp());
+    }
+
     private void UpdateLighting(float timePercent)
     {
+        if(Preset == null)
+            return;
+
         RenderSettings.ambientLight = Preset.AmbientColor.Evaluate(timePercent);
         RenderSettings.fogColor = Preset.FogColor.Evaluate(timePercent);
         RenderSettings.fogDensity = Preset.FogIntensity.Evaluate(timePercent);
