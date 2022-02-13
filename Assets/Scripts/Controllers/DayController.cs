@@ -65,7 +65,7 @@ public class DayController : MonoBehaviour
         if(sun != null)
         {
             sun.color = Preset.DirectionalColor.Evaluate(timePercent);
-            sun.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, 170f, 0));
+            sun.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, 190f, 0));
         }
     }
 
