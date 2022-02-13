@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Break_log : MonoBehaviour
+public class Breakable_control : MonoBehaviour
 {
     [SerializeField] GameObject break1;
     [SerializeField] GameObject break2;

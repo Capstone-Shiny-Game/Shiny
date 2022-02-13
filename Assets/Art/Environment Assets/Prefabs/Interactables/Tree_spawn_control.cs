@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Branch_control : MonoBehaviour
+public class Tree_spawn_control : MonoBehaviour
 {
  
 
