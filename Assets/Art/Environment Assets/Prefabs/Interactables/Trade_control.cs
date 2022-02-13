@@ -10,23 +10,44 @@ public class Trade_control : MonoBehaviour
     [SerializeField] GameObject forSale;
     [SerializeField] int cost;
     public GameObject[] acceptedPaymentPrefabs; 
+    public Transform objectLocation;
+    public string[] daysOpen;
 
 
-
+    private DayController dateAndTime;
     private bool trading;
-    private Collider tradeArea;
+    private BoxCollider tradeArea;
     private GameObject[] traded;
     private int acceptedPay = 0;
 
     private void Start()
     {
-        //
+        tradeArea = GetComponent<BoxCollider>();
+        dateAndTime = GameObject.Find("GameController").GetComponent<DayController>();
+    }
 
-        tradeArea = GetComponent<Collider>();
+    void Update()
+    {
+        foreach(string str in daysOpen)
+        {
+            //How to get time \/
+            //dateAndTime.TimeOfDay
+            
+            if(dateAndTime.CurrentDay.ToLower() == str.ToLower())
+            {
+                tradeArea.enabled = true;
+                break;
+            }
+            else
+            {
+                tradeArea.enabled = false;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.CompareTag("Player"))
         {
             trading = true;
@@ -36,46 +57,43 @@ public class Trade_control : MonoBehaviour
             // display trade ui
 
         }
-    }
 
-    private void Update()
-    {
-        if (trading)
+        List<GameObject> acceptableItems = new List<GameObject>();
+        foreach(Collider col in Physics.OverlapBox(tradeArea.center, tradeArea.size, Quaternion.identity))
         {
-            //check the dropped items
-
-            while (acceptedPay < cost)
+            if(col.gameObject.CompareTag("Tradeable") && checkAcceptedPayment(col.gameObject))
             {
-                //if it fits payment
-               // if (tradeArea.bounds.Contains ("gameObject with "Tradeable" tag" ))
-                //save in "traded"
-                
-                //destroy obj
-                //fill in trade ui
+                acceptableItems.Add(col.gameObject);
 
-                //else spit out
-                //display "unnacetpable trade item" ui until ok button pressed 
+                //Fill in UI
+
+                //Might require 1 extra, not sure. Change to cost-1 if it does
+                if(acceptableItems.Count == cost)
+                {
+                    foreach(GameObject obj in acceptableItems)
+                    {
+                        Destroy(obj);
+                    }
+                    acceptableItems.Clear();
+                    Instantiate(forSale, objectLocation.position, Quaternion.identity);
+                }
             }
-
-            trading = false;
-            //spawn forSale item
-            //display "trade another?"
-
-
-
+            else
+            {
+                //UI Flash or somethin idk
+            }
         }
     }
-    public void onCancelButton()
+    private bool checkAcceptedPayment(GameObject depositedObject)
     {
-        trading = false;
-
-        
-        if (acceptedPay < cost)
+        foreach(GameObject obj in acceptedPaymentPrefabs)
         {
-            //respawn traded items if transaction wasnt complete
+            if(depositedObject.name.Contains(obj.name))
+            {
+                return true;
+            }
         }
-        //crow takeoff
-
+        return false;
     }
 
 
