@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemWorld : MonoBehaviour
@@ -14,18 +12,11 @@ public class ItemWorld : MonoBehaviour
 
     public static void PutItemOnGround(Transform transform, Vector3 position)
     {
-
-        transform.GetComponent<GroundDetector>().FindGround(out Vector3 groundPos, out bool isWater);
-        if (groundPos != null)
-        {
-            Debug.Log("GroundPos: " + groundPos);
-            transform.position = groundPos - new Vector3(0, transform.localScale.y / 2, 0);
-            transform.position = transform.position + new Vector3(0, 1, 0);
-        }
-        Destroy(transform.GetComponent<GroundDetector>());
-
+        transform.position = transform.FindGround(1);
     }
+    
     //TODO REMOVE this it is depreciated
+    [Obsolete("Wyatt says this is deprecated")]
     public static ItemWorld SpawnItemWorld(GameObject prefab, Vector3 position, bool SpawnOnGround = true)
     {
         Transform transform = Instantiate(prefab, position, Quaternion.identity).transform;
