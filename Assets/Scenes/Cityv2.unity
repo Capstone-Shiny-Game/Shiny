@@ -15,12 +15,12 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0, g: 0, b: 0, a: 1}
+  m_FogColor: {r: 0.898996, g: 0.79901385, b: 0.6665688, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.002996387
+  m_FogDensity: 0.0007884541
   m_LinearFogStart: 0
   m_LinearFogEnd: 400
-  m_AmbientSkyColor: {r: 0, g: 0.020182133, b: 0.5882353, a: 1}
+  m_AmbientSkyColor: {r: 0.9363588, g: 0.69187677, b: 0.49644583, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 0.75
@@ -6457,7 +6457,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh108462
+  m_Name: pb_Mesh132230
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7062,7 +7062,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh108342
+  m_Name: pb_Mesh132102
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7621,7 +7621,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.7100109, g: 0.6269635, b: 0.47892243, a: 1}
   m_Intensity: 1.3
   m_Range: 10
   m_SpotAngle: 30
@@ -7679,13 +7679,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 822165472}
-  m_LocalRotation: {x: -0.061628457, y: 0.70441604, z: 0.70441604, w: 0.061628457}
+  m_LocalRotation: {x: -0.08245679, y: 0.3226849, z: -0.9424852, w: -0.028231278}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 43, y: 75.9, z: 0}
+  m_LocalEulerAnglesHint: {x: 152.25, y: 190, z: 0}
 --- !u!114 &823380673 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 823380673, guid: 75b1bd4d28156e04c9cc923d4d88f873, type: 3}
@@ -12129,11 +12129,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9261f56ce9def4cb0ad4835440379e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeOfDay: 0
+  TimeOfDay: 15.48
   CurrentDay: 
   sun: {fileID: 822165473}
   Preset: {fileID: 11400000, guid: f04c7c59a3aed604db4cd4292f6d2ed1, type: 2}
-  LengthOfDay: 2
+  LengthOfDay: 1
 --- !u!4 &1062129123
 Transform:
   m_ObjectHideFlags: 0
@@ -12800,7 +12800,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1173386591}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
@@ -13255,7 +13255,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1256193455}
-  m_LocalRotation: {x: 0.58437955, y: -0.36722976, z: 0.33441395, w: 0.6417244}
+  m_LocalRotation: {x: 0.58437985, y: -0.36722928, z: 0.33441344, w: 0.6417247}
   m_LocalPosition: {x: 615.7884, y: 225, z: -1507.056}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -19032,7 +19032,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960509321}
-  m_LocalRotation: {x: 0.58437955, y: -0.36722976, z: 0.33441395, w: 0.6417244}
+  m_LocalRotation: {x: 0.58437985, y: -0.36722928, z: 0.33441344, w: 0.6417247}
   m_LocalPosition: {x: 615.7884, y: 225, z: -1507.056}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -19220,7 +19220,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh108024
+  m_Name: pb_Mesh131784
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
