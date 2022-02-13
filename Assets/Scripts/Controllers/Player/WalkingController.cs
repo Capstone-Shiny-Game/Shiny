@@ -16,7 +16,6 @@ public class WalkingController : MonoBehaviour
     public event Action WalkedOffEdge;
     public event Action<PlayerController.CrowState> SubstateChanged;
 
-    private GroundDetector groundDetector;
     private PlayerControllerInput PlayerInput;
 
     private float moveX = 0;
@@ -28,8 +27,6 @@ public class WalkingController : MonoBehaviour
         v.x = 0;
         v.z = 0;
         transform.eulerAngles = v;
-
-        groundDetector = GetComponent<GroundDetector>();
     }
 
     void OnEnable()
@@ -53,6 +50,11 @@ public class WalkingController : MonoBehaviour
     void Update()
     {
         transform.Rotate(0, moveX * Time.deltaTime * TurningSpeed, 0, Space.World);
+        if (moveY == 0)
+        {
+            CheckIdle();
+            return;
+        }
         float displacement = moveY * Time.deltaTime;
         if (Splashing)
             displacement *= SplashingSpeed;
@@ -61,24 +63,29 @@ public class WalkingController : MonoBehaviour
         else
             displacement *= BackwardsSpeed;
         Vector3 newPosition = transform.position + (transform.forward * displacement);
-        Collider[] colliders = Physics.OverlapSphere(newPosition, transform.localScale.magnitude);
-        bool collided = colliders.Any(collider => !collider.isTrigger && !collider.CompareTag("Player") && !collider.CompareTag("Terrain") && !collider.CompareTag("Water"));
+        transform.TestCollision(newPosition, out bool collided, out bool raycastNeeded);
         if (!collided)
         {
+            bool oldSplashing = Splashing;
             transform.position = newPosition;
-            if (groundDetector.FindGround(out Vector3 groundPos, out bool newSplashing))
+
+            Vector3 ground = transform.position;
+            Debug.Log(raycastNeeded);
+            if (raycastNeeded)
+                transform.CastGround(out ground, out Splashing, transform.localScale.y / 2);
+            else
             {
-                if (newSplashing != Splashing)
-                {
-                    Splashing = newSplashing;
-                    SubstateChanged?.Invoke(Splashing ? PlayerController.CrowState.Splashing : PlayerController.CrowState.Walking);
-                }
-                float dY = transform.position.y - groundPos.y;
-                if (dY > transform.localScale.y)
-                    WalkedOffEdge?.Invoke();
-                else
-                    transform.position = groundPos;
+                ground = transform.FindGround(transform.localScale.y / 2);
+                Splashing = false;
             }
+
+            if (Splashing != oldSplashing)
+                SubstateChanged?.Invoke(Splashing ? PlayerController.CrowState.Splashing : PlayerController.CrowState.Walking);
+            float dY = transform.position.y - ground.y;
+            if (dY > transform.localScale.y)
+                WalkedOffEdge?.Invoke();
+            else
+                transform.position = ground;
         }
         //check if no input from player.
         CheckIdle();

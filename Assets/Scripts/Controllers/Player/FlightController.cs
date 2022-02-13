@@ -41,7 +41,7 @@ public class FlightController : MonoBehaviour
     private Vector3 scaleChange;
 
 
-    public event Action Landed;
+    public event Action<bool> Landed;
     public event Action<bool> FlightTypeChanged;
     public bool isGliding = false;
 
@@ -60,9 +60,15 @@ public class FlightController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("Trigger: " + other.tag + " " + other.name);
-
-        if (other.CompareTag("Ring") && !isBoost)
+        if (other is TerrainCollider)
+        {
+            Landed?.Invoke(false);
+        }
+        else if (other.CompareTag("Terrain") || other.CompareTag("Water"))
+        {
+            Landed?.Invoke(true);
+        }
+        else if (other.CompareTag("Ring") && !isBoost)
         {
             //Debug.Log("RING2");
             Transform targetRing = other.gameObject.transform;
@@ -76,24 +82,16 @@ public class FlightController : MonoBehaviour
             other.gameObject.SetActive(false);
             StartCoroutine(Boost());
         }
-        else if ((other.CompareTag("Terrain") || other.CompareTag("Water")))
-        {
-            //Debug.Log("Entered " + other.tag + " " + other.name);
-            speed = 10.0f;
-            Landed?.Invoke();
-        }
+
         else if (!other.isTrigger)
         {
             Vector3 bouncedUp = transform.position + (transform.up * 5);
-            Collider[] colliders = Physics.OverlapSphere(bouncedUp, transform.localScale.magnitude);
-            bool collided = colliders.Any(collider => !collider.isTrigger && !collider.CompareTag("Player") && !collider.CompareTag("Terrain")); // TODO : water, landable, terrain type not tag
-
+            transform.TestCollision(bouncedUp, out bool collided, out _);
             if (!collided)
                 transform.position = bouncedUp;
             else
             {
                 transform.position -= transform.forward * 2;
-                // TODO (Ella) : make less cursed
                 if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 50))
                 {
                     float turn = 45 * Mathf.Sign(Vector3.SignedAngle(

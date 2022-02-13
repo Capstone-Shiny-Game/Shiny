@@ -47,8 +47,6 @@ public class PlayerController : MonoBehaviour, Savable
     public Offset flyingOffset = new Offset { forward = 0, up = 0 };
     public double maxCarryWeight = 0;
 
-    private GroundDetector groundDetector;
-
     public static event Action AttemptedGrabOrRelease;
 
     private void Start()
@@ -60,7 +58,6 @@ public class PlayerController : MonoBehaviour, Savable
 
         flightController = GetComponent<FlightController>();
         walkingController = GetComponent<WalkingController>();
-        groundDetector = GetComponent<GroundDetector>();
 
         walkingController.WalkedOffEdge += () => SetState(CrowState.Flying, 0.5f);
         walkingController.SubstateChanged += s => SetState(s);
@@ -91,13 +88,9 @@ public class PlayerController : MonoBehaviour, Savable
         flightCam.SetActive(flightController.enabled);
         walkCam.SetActive(!flightController.enabled);
         walkingController.enabled = state == CrowState.Walking || state == CrowState.Splashing || state == CrowState.Idle;
-        Debug.Log(state);
-        Debug.Log("Walk " + walkingController.enabled);
         birdAnimator.SetBool("isFlying", state == CrowState.Flying);
         birdAnimator.SetBool("isWalking", state == CrowState.Walking);
         birdAnimator.SetBool("isSwim", state == CrowState.Splashing);
-        //TODO (Nic) : once the animation graph and animation for idle and glide, then input the set birdAnimator
-        /*birdAnimarot.SetBool */
         birdAnimator.SetBool("isIdle", state == CrowState.Idle);
         birdAnimator.SetBool("isGliding", state == CrowState.Gliding);
         
@@ -108,20 +101,27 @@ public class PlayerController : MonoBehaviour, Savable
             birdAnimator.SetBool("WalktoFly", true);
         }
 
-        if ((previous == CrowState.Flying || previous == CrowState.Gliding) && walkingController.enabled)
+        if ((previous == CrowState.Flying || previous == CrowState.Gliding))
         {
             flightController.speed = 10.0f;
             birdAnimator.SetBool("WalktoFly", false);
         }
     }
 
-    private void AttemptToLand()
+    private void AttemptToLand(bool raycastNeeded)
     {
-        if ((state == CrowState.Flying || state == CrowState.Gliding) && groundDetector.FindGround(out Vector3 groundPos, out bool isWater))
+        if (raycastNeeded)
         {
-            flightController.speed = 10.0f;
-            SetState(isWater ? CrowState.Splashing : CrowState.Walking);
-            SetFixedPosition(groundPos);
+            if (transform.CastGround(out Vector3 ground, out bool water, transform.localScale.y / 2))
+            {
+                SetFixedPosition(ground);
+                SetState(water ? CrowState.Splashing : CrowState.Walking);
+            }
+        }
+        else
+        {
+            SetFixedPosition(transform.FindGround(transform.localScale.y / 2));
+            SetState(CrowState.Walking);
         }
     }
 
@@ -173,8 +173,8 @@ public class PlayerController : MonoBehaviour, Savable
         {
             if (state == CrowState.Walking || state == CrowState.Splashing || state == CrowState.Idle)
                 SetState(CrowState.Flying, 2.0f);
-            else
-                AttemptToLand();
+            else if (state == CrowState.Flying || state == CrowState.Gliding)
+                AttemptToLand(true);
         };
         walkAction.Enable();
     }
@@ -205,9 +205,9 @@ public class PlayerController : MonoBehaviour, Savable
         positionBeforeDialogue = transform.position;
         rotationBeforeDialogue = transform.rotation;
         // position player in front of NPC
-        TryPlaceOnGround();
+        Vector3 ground = transform.FindGround(transform.localScale.y / 2);
         Vector3 npcFront = npcTransform.position + npcTransform.forward * 4.0f;
-        SetFixedPosition(new Vector3(npcFront.x, transform.position.y, npcFront.z));
+        SetFixedPosition(new Vector3(npcFront.x, ground.y, npcFront.z));
         SetFixedRotation(npcTransform.position);
 
         ControllerUI.SetActive(false);
@@ -219,12 +219,6 @@ public class PlayerController : MonoBehaviour, Savable
         transform.position = positionBeforeDialogue;
         transform.rotation = rotationBeforeDialogue;
         SetState(CrowState.Walking);
-    }
-
-    private void TryPlaceOnGround()
-    {
-        if (groundDetector.FindGround(out Vector3 groundPos, out _))
-            SetFixedPosition(groundPos);
     }
 
     public void AddSelfToSavablesList()
