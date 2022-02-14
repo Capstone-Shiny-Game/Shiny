@@ -120,6 +120,7 @@ public class NPCInteraction : MonoBehaviour
             {
                 if (HasUnfinishedDialogue())
                 {
+                    FinishCurrentDialogue();
                     break;
                 }
                 //FADE
@@ -146,6 +147,7 @@ public class NPCInteraction : MonoBehaviour
                 {
                     if (HasUnfinishedDialogue())
                     {
+                        FinishCurrentDialogue();
                         break;
                     }
 
@@ -168,25 +170,22 @@ public class NPCInteraction : MonoBehaviour
                 }
                 if (!HasUnfinishedDialogue())
                 {
+                    FinishCurrentDialogue();
                     currentDialogue = choice.NextDialogue;
                     typeBodyText = StartCoroutine(TypeBodyText());
-                    EnableButtons();
                 }
                 break;
             }
         }
     }
 
-    private bool HasUnfinishedDialogue()
+    private bool HasUnfinishedDialogue() => bodyText.maxVisibleCharacters < bodyText.text.Length;
+
+    private void FinishCurrentDialogue()
     {
-        if (bodyText.maxVisibleCharacters < bodyText.text.Length)
-        {
-            StopCoroutine(typeBodyText);
-            bodyText.maxVisibleCharacters = bodyText.text.Length;
-            EnableButtons();
-            return true;
-        }
-        return false;
+        StopCoroutine(typeBodyText);
+        bodyText.maxVisibleCharacters = bodyText.text.Length;
+        EnableButtons();
     }
 
     private IEnumerator TypeBodyText()
