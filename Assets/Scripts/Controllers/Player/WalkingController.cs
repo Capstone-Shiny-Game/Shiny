@@ -1,17 +1,12 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using static PlayerControllerInput;
 using System;
-using System.Linq;
 
 public class WalkingController : MonoBehaviour
 {
     public float ForwardSpeed = 8;
     public float BackwardsSpeed = 4;
-    public float SplashingSpeed = 4; // TODO (Ella) : Only allow crow to slowly walk in shallow water
     public float TurningSpeed = 60;
 
-    public bool Splashing = false;
     public bool isIdle = false;
     public event Action WalkedOffEdge;
     public event Action<PlayerController.CrowState> SubstateChanged;
@@ -56,31 +51,18 @@ public class WalkingController : MonoBehaviour
             return;
         }
         float displacement = moveY * Time.deltaTime;
-        if (Splashing)
-            displacement *= SplashingSpeed;
-        else if (displacement >= 0)
-            displacement *= ForwardSpeed;
-        else
-            displacement *= BackwardsSpeed;
+        displacement *= (displacement > 0 ? ForwardSpeed : BackwardsSpeed);
         Vector3 newPosition = transform.position + (transform.forward * displacement);
         transform.TestCollision(newPosition, out bool collided, out bool raycastNeeded);
         if (!collided)
         {
-            bool oldSplashing = Splashing;
             transform.position = newPosition;
 
             Vector3 ground = transform.position;
-            Debug.Log(raycastNeeded);
             if (raycastNeeded)
-                transform.CastGround(out ground, out Splashing, transform.localScale.y / 2);
+                transform.CastGround(out ground, transform.localScale.y / 2);
             else
-            {
                 ground = transform.FindGround(transform.localScale.y / 2);
-                Splashing = false;
-            }
-
-            if (Splashing != oldSplashing)
-                SubstateChanged?.Invoke(Splashing ? PlayerController.CrowState.Splashing : PlayerController.CrowState.Walking);
             float dY = transform.position.y - ground.y;
             if (dY > transform.localScale.y)
                 WalkedOffEdge?.Invoke();
@@ -96,7 +78,7 @@ public class WalkingController : MonoBehaviour
         if ((moveX != 0 || moveY != 0) && isIdle)
         {
             isIdle = false;
-            SubstateChanged?.Invoke(Splashing ? PlayerController.CrowState.Splashing : PlayerController.CrowState.Walking);
+            SubstateChanged?.Invoke(PlayerController.CrowState.Walking);
         }
         else if (moveX == 0 && moveY == 0 && !isIdle)
         {
