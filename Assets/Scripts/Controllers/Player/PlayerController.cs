@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System;
 
 public class PlayerController : MonoBehaviour, Savable
 {
-    public enum CrowState { Flying, Gliding, Walking, Idle, Splashing, Talking };
+    public enum CrowState { Flying, Gliding, Walking, Idle, Talking };
 
     public CrowState state { get; private set; }
 
@@ -87,14 +84,13 @@ public class PlayerController : MonoBehaviour, Savable
         flightController.enabled = state == CrowState.Flying ||  state == CrowState.Gliding;
         flightCam.SetActive(flightController.enabled);
         walkCam.SetActive(!flightController.enabled);
-        walkingController.enabled = state == CrowState.Walking || state == CrowState.Splashing || state == CrowState.Idle;
+        walkingController.enabled = state == CrowState.Walking  || state == CrowState.Idle;
         birdAnimator.SetBool("isFlying", state == CrowState.Flying);
         birdAnimator.SetBool("isWalking", state == CrowState.Walking);
-        birdAnimator.SetBool("isSwim", state == CrowState.Splashing);
         birdAnimator.SetBool("isIdle", state == CrowState.Idle);
         birdAnimator.SetBool("isGliding", state == CrowState.Gliding);
         
-        if ((previous == CrowState.Walking || previous == CrowState.Splashing || previous == CrowState.Idle) && state == CrowState.Flying)
+        if ((previous == CrowState.Walking || previous == CrowState.Idle) && state == CrowState.Flying)
         {
             // pitch up on takeoff
             transform.RotateAround(transform.position, transform.right, -30);
@@ -112,10 +108,10 @@ public class PlayerController : MonoBehaviour, Savable
     {
         if (raycastNeeded)
         {
-            if (transform.CastGround(out Vector3 ground, out bool water, transform.localScale.y / 2))
+            if (transform.CastGround(out Vector3 ground, transform.localScale.y / 2))
             {
                 SetFixedPosition(ground);
-                SetState(water ? CrowState.Splashing : CrowState.Walking);
+                SetState(CrowState.Walking);
             }
         }
         else
@@ -171,7 +167,7 @@ public class PlayerController : MonoBehaviour, Savable
 
         walkAction.performed += ctx =>
         {
-            if (state == CrowState.Walking || state == CrowState.Splashing || state == CrowState.Idle)
+            if (state == CrowState.Walking || state == CrowState.Idle)
                 SetState(CrowState.Flying, 2.0f);
             else if (state == CrowState.Flying || state == CrowState.Gliding)
                 AttemptToLand(true);

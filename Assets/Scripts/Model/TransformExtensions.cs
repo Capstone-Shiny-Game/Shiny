@@ -26,21 +26,13 @@ public static class TransformExtensions
         return ground;
     }
 
-    public static bool CastGround(this Transform transform, out Vector3 ground, out bool water, float offset)
+    public static bool CastGround(this Transform transform, out Vector3 ground, float offset)
     {
         ground = Vector3.zero;
-        water = false;
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, transform.position.y + 200))
         {
             if (hit.collider is TerrainCollider || hit.collider.CompareTag("Terrain"))
             {
-                ground = hit.point;
-                ground.y += offset;
-                return true;
-            }
-            else if (hit.collider.CompareTag("Water"))
-            {
-                water = true;
                 ground = hit.point;
                 ground.y += offset;
                 return true;

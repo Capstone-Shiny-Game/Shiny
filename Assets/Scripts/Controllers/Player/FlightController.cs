@@ -1,12 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.UI;
-using static PlayerControllerInput;
 
 public class FlightController : MonoBehaviour
 {
@@ -64,7 +58,7 @@ public class FlightController : MonoBehaviour
         {
             Landed?.Invoke(false);
         }
-        else if (other.CompareTag("Terrain") || other.CompareTag("Water"))
+        else if (other.CompareTag("Terrain"))
         {
             Landed?.Invoke(true);
         }
