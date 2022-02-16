@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class SwipeBetweenMenus : MonoBehaviour
 {
+
     [SerializeField]
-    private GameObject trail;
+    [Tooltip("A particle effect trail where the player taps")]
+    private GameObject particleTrail;
     [SerializeField, Range(0f, 1f)]
     private float directionLeeway = .9f;
 
-    public GameObject upMenu;
-    public GameObject downMenu;
-    [SerializeField]
-    public GameObject[] MenusInOrder;
+    // How swipe menu will work:
+    // 1 - enumerate the menus
+    // private enum menus {
+    //     PauseMenu, // NOTE: This will need to be the *instance* from parent
+    //     ConfirmMenu,
+    //     SaveMenu,
+    //     SettingsMenu
+    // }
+    // 2 - keep a copy of the current "active" menu
+    // private GameObject currentMenu;
+    // 3 - define transitions between menus, for example from the default pause
+    // menu, swiping left takes you to the quest menu, swiping down from there
+    // takes you to completed quest menu, etc
+    // 4 - enable/disable menus based on current state
+    // 5 - on swipe, do transition
 
     public InitializeMenuVariables initializeMenuVariables;
     private InputController inputController;
@@ -20,13 +33,24 @@ public class SwipeBetweenMenus : MonoBehaviour
 
     private void OnEnable()
     {
+        if (inputController is null)
+        {
+            return;
+        }
         inputController = initializeMenuVariables.inputController;
         inputController.OnStartTouch.AddListener(SwipeStart);
         inputController.OnEndTouch.AddListener(SwipeEnd);
-        initializeMenuVariables.swipeDetection.broadcastSwipe += DetectDirection;
+        if (!(initializeMenuVariables.swipeDetection is null))
+        {
+            initializeMenuVariables.swipeDetection.broadcastSwipe += DetectDirection;
+        }
     }
     private void OnDisable()
     {
+        if (inputController is null)
+        {
+            return;
+        }
         inputController.OnStartTouch.RemoveListener(SwipeStart);
         inputController.OnEndTouch.RemoveListener(SwipeEnd);
     }
@@ -42,34 +66,36 @@ public class SwipeBetweenMenus : MonoBehaviour
     //listens to the inputController for touch start and activates trail
     public void SwipeStart(Vector2 position, float time)
     {
-        if (trail is null) {
+        if (particleTrail is null)
+        {
             return;
         }
-        trail.SetActive(true);
+        particleTrail.SetActive(true);
         coroutine = StartCoroutine(TrailPosition());
     }
     //listens to the inputController for touch end and deactivates trail
     public void SwipeEnd(Vector2 position, float time)
     {
-        if (trail is null)
+        if (particleTrail is null)
         {
             return;
         }
         StopCoroutine(coroutine);
-        trail.SetActive(false);
+        particleTrail.SetActive(false);
     }
     //coroutine for updating trail position
     private IEnumerator TrailPosition()
     {
-        while (trail.activeInHierarchy)
+        while (particleTrail.activeInHierarchy)
         { //every frame update trail position
-            trail.transform.position = inputController.PrimaryPosition();
+            particleTrail.transform.position = inputController.PrimaryPosition();
             yield return null;
         }
         yield return null;
     }
 
-    private void ChangeMenus(Direction direction) { 
+    private void ChangeMenus(Direction direction)
+    {
         switch (direction)
         {
             case Direction.right:
@@ -99,7 +125,8 @@ public class SwipeBetweenMenus : MonoBehaviour
         {
             ChangeMenus(Direction.right);
         }
-        else if (Vector2.Dot(Vector2.up, direction) > directionLeeway) {
+        else if (Vector2.Dot(Vector2.up, direction) > directionLeeway)
+        {
             ChangeMenus(Direction.up);
         }
         else if (Vector2.Dot(Vector2.down, direction) > directionLeeway)

@@ -8,6 +8,7 @@ using UnityEngine;
 public class InitializeMenuVariables : MonoBehaviour
 {
     public SettingsMenu settingsMenu;
+    [HideInInspector]
     public SwipeDetection swipeDetection;
     [HideInInspector]
     public InputController inputController;
@@ -15,10 +16,7 @@ public class InitializeMenuVariables : MonoBehaviour
     private void Start()
     {
         inputController = GameObject.FindWithTag("Player").GetComponentInChildren<InputController>();
-        if (swipeDetection is null) 
-        { 
-            return;
-        }
+        swipeDetection = GetComponent<SwipeDetection>();
         inputController.OnStartTouch.AddListener(swipeDetection.SwipeStart);
         inputController.OnEndTouch.AddListener(swipeDetection.SwipeEnd);
     }

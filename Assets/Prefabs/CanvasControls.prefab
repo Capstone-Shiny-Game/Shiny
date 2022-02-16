@@ -1587,6 +1587,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5182301858541664194}
   - component: {fileID: 4870333138976349349}
+  - component: {fileID: 3342665898056440404}
   m_Layer: 5
   m_Name: PauseMenu
   m_TagString: Untagged
@@ -1627,6 +1628,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca5c4fc8da5e214cb03970ef2c29774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3342665898056440404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021753355436380455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01c23c7fe951af44e9ba332d9dadacde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleTrail: {fileID: 0}
+  directionLeeway: 0.9
+  menuOnSwipeUp: {fileID: 0}
+  menuOnSwipeDown: {fileID: 0}
+  MenusInOrder: []
+  initializeMenuVariables: {fileID: 1399711007753353300}
 --- !u!1 &1114626559386373000
 GameObject:
   m_ObjectHideFlags: 0
@@ -9258,6 +9277,7 @@ GameObject:
   - component: {fileID: 8778734579908224437}
   - component: {fileID: 8778734579908224438}
   - component: {fileID: 1399711007753353300}
+  - component: {fileID: 5410592038423511765}
   m_Layer: 5
   m_Name: CanvasControls
   m_TagString: Untagged
@@ -9365,6 +9385,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsMenu: {fileID: 4807009333177840058}
+  swipeDetection: {fileID: 0}
+  inputController: {fileID: 0}
+--- !u!114 &5410592038423511765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8778734579908224439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f03a57b6e23fd004680a7521422be871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDistanceForSwipe: 0.4
+  minTimeForSwipe: 1
 --- !u!1 &8778734579950366244
 GameObject:
   m_ObjectHideFlags: 0
