@@ -12,7 +12,7 @@ public class FlightMoveEvent : UnityEvent<float, float> { }
 [Serializable]
 public class FlightLookEvent : UnityEvent<float, float> { }
 [Serializable]
-public class StartTouchEvent : UnityEvent < Vector2, float>{ }
+public class StartTouchEvent : UnityEvent<Vector2, float> { }
 [Serializable]
 public class EndTouchEvent : UnityEvent<Vector2, float> { }
 [Serializable]
@@ -49,7 +49,7 @@ public class InputController : MonoBehaviour
 
     public PauseEvent PauseHandler;
     public DropEvent DropHandler;
-    public PickupItemEvent ItemHander;
+    public PickupItemEvent ItemHandler;
     public RotateSelectionEvent RotateSelectionHandler;
     public StartTouchEvent OnStartTouch;
     public EndTouchEvent OnEndTouch;
@@ -93,7 +93,7 @@ public class InputController : MonoBehaviour
         PlayerInput.GUIMap.PrimaryTouch.started += StartTouchPrimary;
         PlayerInput.GUIMap.PrimaryTouch.canceled += EndTouchPrimary;
 
-         PlayerInput.GUIMap.PickupItem.performed += OnPickup;
+        PlayerInput.GUIMap.PickupItem.performed += OnPickup;
         if (UnityEngine.InputSystem.Gyroscope.current != null)
             InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
     }
@@ -187,7 +187,7 @@ public class InputController : MonoBehaviour
 
     private void OnPickup(InputAction.CallbackContext obj)
     {
-        ItemHander.Invoke();
+        ItemHandler.Invoke();
     }
 
     private void OnRotateSelection(InputAction.CallbackContext context)
