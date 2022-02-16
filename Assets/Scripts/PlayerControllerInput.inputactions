@@ -11,7 +11,8 @@
                     "id": "da0c6682-e16b-44fd-b26a-9292cb47ae44",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Look",
@@ -19,7 +20,8 @@
                     "id": "25c75b4b-4825-4c58-ac84-ccc63dd9d17e",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "ToggleFirstPerson",
@@ -27,7 +29,8 @@
                     "id": "834ae251-2bbc-4d76-b69e-470d984b5fcc",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Boost",
@@ -35,7 +38,8 @@
                     "id": "6bc89b0c-aa8c-4094-9be1-f208d2cdb9b5",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Brake",
@@ -43,7 +47,8 @@
                     "id": "2f3d5767-b19f-4b17-86f0-c3fec64b982b",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "LockCursor",
@@ -51,7 +56,8 @@
                     "id": "44d4a4da-759a-4383-89f0-d27fcdc2900d",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -243,7 +249,8 @@
                     "id": "088ffe75-0272-42d9-b31e-2a1b7117d700",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "DropItem",
@@ -251,7 +258,8 @@
                     "id": "04d33bb1-4b2d-481b-b5eb-0c71faa42ac9",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "RotateSelection",
@@ -259,7 +267,8 @@
                     "id": "7113ddf8-b1df-495e-a333-de949a7be5cc",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "PickupItem",
@@ -267,15 +276,26 @@
                     "id": "88a677ad-d817-4b1e-8df5-76b5fddc7bb9",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
-                    "name": "SwipeMenus",
+                    "name": "PrimaryTouch",
                     "type": "Button",
-                    "id": "948625ea-2e01-4f63-a975-15f19a336f85",
+                    "id": "e8edaf48-d4e3-415f-a78c-c7d4c352236d",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PrimaryPosition",
+                    "type": "PassThrough",
+                    "id": "ea63a437-bb2a-4abc-9948-b12773f7e975",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -325,12 +345,23 @@
                 },
                 {
                     "name": "",
-                    "id": "dd6fe27d-1be6-472f-9052-29de1b050e59",
-                    "path": "<Pointer>/delta",
+                    "id": "979887c6-cbdc-4e69-9595-93dfdfed170c",
+                    "path": "<Touchscreen>/primaryTouch/press",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SwipeMenus",
+                    "action": "PrimaryTouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "94a35549-376e-4d2e-889e-74b4a8a6f347",
+                    "path": "<Touchscreen>/primaryTouch/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PrimaryPosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

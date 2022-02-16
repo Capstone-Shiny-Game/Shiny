@@ -10033,8 +10033,12 @@ MonoBehaviour:
     m_ActionName: GUIMap/PickupItem[/Keyboard/r]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 948625ea-2e01-4f63-a975-15f19a336f85
-    m_ActionName: GUIMap/SwipeMenus[/Mouse/delta,/Pen/delta]
+    m_ActionId: e8edaf48-d4e3-415f-a78c-c7d4c352236d
+    m_ActionName: GUIMap/PrimaryTouch
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ea63a437-bb2a-4abc-9948-b12773f7e975
+    m_ActionName: GUIMap/PrimaryPosition
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: FlightMap
@@ -10219,6 +10223,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: OnEndTouch.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: OnStartTouch.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: PauseHandler.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -10227,9 +10239,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: OnEndTouch.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: ItemHander.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 7695470114484064583}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: OnStartTouch.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: PauseHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 6
@@ -10247,12 +10267,20 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: OnEndTouch.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: ItemHander.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: AttemptPickup
       objectReference: {fileID: 0}
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: DropHandler.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: DropItLikeItsHot
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: OnStartTouch.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: PauseHandler.m_PersistentCalls.m_Calls.Array.data[1].m_CallState

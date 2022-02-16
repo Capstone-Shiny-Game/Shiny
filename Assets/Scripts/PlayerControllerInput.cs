@@ -302,10 +302,19 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""SwipeMenus"",
+                    ""name"": ""PrimaryTouch"",
                     ""type"": ""Button"",
-                    ""id"": ""948625ea-2e01-4f63-a975-15f19a336f85"",
+                    ""id"": ""e8edaf48-d4e3-415f-a78c-c7d4c352236d"",
                     ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PrimaryPosition"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""ea63a437-bb2a-4abc-9948-b12773f7e975"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -358,12 +367,23 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
-                    ""id"": ""dd6fe27d-1be6-472f-9052-29de1b050e59"",
-                    ""path"": ""<Pointer>/delta"",
+                    ""id"": ""979887c6-cbdc-4e69-9595-93dfdfed170c"",
+                    ""path"": ""<Touchscreen>/primaryTouch/press"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SwipeMenus"",
+                    ""action"": ""PrimaryTouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94a35549-376e-4d2e-889e-74b4a8a6f347"",
+                    ""path"": ""<Touchscreen>/primaryTouch/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PrimaryPosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -386,7 +406,8 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
         m_GUIMap_DropItem = m_GUIMap.FindAction("DropItem", throwIfNotFound: true);
         m_GUIMap_RotateSelection = m_GUIMap.FindAction("RotateSelection", throwIfNotFound: true);
         m_GUIMap_PickupItem = m_GUIMap.FindAction("PickupItem", throwIfNotFound: true);
-        m_GUIMap_SwipeMenus = m_GUIMap.FindAction("SwipeMenus", throwIfNotFound: true);
+        m_GUIMap_PrimaryTouch = m_GUIMap.FindAction("PrimaryTouch", throwIfNotFound: true);
+        m_GUIMap_PrimaryPosition = m_GUIMap.FindAction("PrimaryPosition", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -523,7 +544,8 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
     private readonly InputAction m_GUIMap_DropItem;
     private readonly InputAction m_GUIMap_RotateSelection;
     private readonly InputAction m_GUIMap_PickupItem;
-    private readonly InputAction m_GUIMap_SwipeMenus;
+    private readonly InputAction m_GUIMap_PrimaryTouch;
+    private readonly InputAction m_GUIMap_PrimaryPosition;
     public struct GUIMapActions
     {
         private @PlayerControllerInput m_Wrapper;
@@ -532,7 +554,8 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
         public InputAction @DropItem => m_Wrapper.m_GUIMap_DropItem;
         public InputAction @RotateSelection => m_Wrapper.m_GUIMap_RotateSelection;
         public InputAction @PickupItem => m_Wrapper.m_GUIMap_PickupItem;
-        public InputAction @SwipeMenus => m_Wrapper.m_GUIMap_SwipeMenus;
+        public InputAction @PrimaryTouch => m_Wrapper.m_GUIMap_PrimaryTouch;
+        public InputAction @PrimaryPosition => m_Wrapper.m_GUIMap_PrimaryPosition;
         public InputActionMap Get() { return m_Wrapper.m_GUIMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -554,9 +577,12 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                 @PickupItem.started -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnPickupItem;
                 @PickupItem.performed -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnPickupItem;
                 @PickupItem.canceled -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnPickupItem;
-                @SwipeMenus.started -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnSwipeMenus;
-                @SwipeMenus.performed -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnSwipeMenus;
-                @SwipeMenus.canceled -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnSwipeMenus;
+                @PrimaryTouch.started -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnPrimaryTouch;
+                @PrimaryTouch.performed -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnPrimaryTouch;
+                @PrimaryTouch.canceled -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnPrimaryTouch;
+                @PrimaryPosition.started -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnPrimaryPosition;
+                @PrimaryPosition.performed -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnPrimaryPosition;
+                @PrimaryPosition.canceled -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnPrimaryPosition;
             }
             m_Wrapper.m_GUIMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -573,9 +599,12 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                 @PickupItem.started += instance.OnPickupItem;
                 @PickupItem.performed += instance.OnPickupItem;
                 @PickupItem.canceled += instance.OnPickupItem;
-                @SwipeMenus.started += instance.OnSwipeMenus;
-                @SwipeMenus.performed += instance.OnSwipeMenus;
-                @SwipeMenus.canceled += instance.OnSwipeMenus;
+                @PrimaryTouch.started += instance.OnPrimaryTouch;
+                @PrimaryTouch.performed += instance.OnPrimaryTouch;
+                @PrimaryTouch.canceled += instance.OnPrimaryTouch;
+                @PrimaryPosition.started += instance.OnPrimaryPosition;
+                @PrimaryPosition.performed += instance.OnPrimaryPosition;
+                @PrimaryPosition.canceled += instance.OnPrimaryPosition;
             }
         }
     }
@@ -595,6 +624,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
         void OnDropItem(InputAction.CallbackContext context);
         void OnRotateSelection(InputAction.CallbackContext context);
         void OnPickupItem(InputAction.CallbackContext context);
-        void OnSwipeMenus(InputAction.CallbackContext context);
+        void OnPrimaryTouch(InputAction.CallbackContext context);
+        void OnPrimaryPosition(InputAction.CallbackContext context);
     }
 }

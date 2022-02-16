@@ -12,6 +12,10 @@ public class FlightMoveEvent : UnityEvent<float, float> { }
 [Serializable]
 public class FlightLookEvent : UnityEvent<float, float> { }
 [Serializable]
+public class StartTouchEvent : UnityEvent < Vector2, float>{ }
+[Serializable]
+public class EndTouchEvent : UnityEvent<Vector2, float> { }
+[Serializable]
 public class FlightTogglePOVEvent : UnityEvent { }
 
 [Serializable]
@@ -47,6 +51,8 @@ public class InputController : MonoBehaviour
     public DropEvent DropHandler;
     public PickupItemEvent ItemHander;
     public RotateSelectionEvent RotateSelectionHandler;
+    public StartTouchEvent OnStartTouch;
+    public EndTouchEvent OnEndTouch;
 
     public FlightTogglePOVEvent flightTogglePOVHandler;
     public TMP_Text test;
@@ -84,10 +90,26 @@ public class InputController : MonoBehaviour
         PlayerInput.GUIMap.PauseMenu.performed += OnPause;
         PlayerInput.GUIMap.DropItem.performed += OnDrop;
         PlayerInput.GUIMap.RotateSelection.performed += OnRotateSelection;
+        PlayerInput.GUIMap.PrimaryTouch.started += StartTouchPrimary;
+        PlayerInput.GUIMap.PrimaryTouch.canceled += EndTouchPrimary;
 
-        PlayerInput.GUIMap.PickupItem.performed += OnPickup;
+         PlayerInput.GUIMap.PickupItem.performed += OnPickup;
         if (UnityEngine.InputSystem.Gyroscope.current != null)
             InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
+    }
+
+    private void StartTouchPrimary(InputAction.CallbackContext context)
+    {
+        OnStartTouch?.Invoke(PrimaryPosition(), (float)context.startTime);
+    }
+
+    private void EndTouchPrimary(InputAction.CallbackContext context)
+    {
+        OnEndTouch?.Invoke(PrimaryPosition(), (float)context.time);
+    }
+    public Vector2 PrimaryPosition()
+    {
+        return PlayerInput.GUIMap.PrimaryPosition.ReadValue<Vector2>();
     }
 
     public void OnDisable()
