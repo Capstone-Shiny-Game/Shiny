@@ -11,8 +11,8 @@ public class SwipeBetweenMenus : MonoBehaviour
 
     public GameObject upMenu;
     public GameObject downMenu;
-    public GameObject leftMenu;
-    public GameObject rightMenu;
+    [SerializeField]
+    public GameObject[] MenusInOrder;
 
     public InitializeMenuVariables initializeMenuVariables;
     private InputController inputController;
@@ -21,6 +21,14 @@ public class SwipeBetweenMenus : MonoBehaviour
     private void OnEnable()
     {
         inputController = initializeMenuVariables.inputController;
+        inputController.OnStartTouch.AddListener(SwipeStart);
+        inputController.OnEndTouch.AddListener(SwipeEnd);
+        initializeMenuVariables.swipeDetection.broadcastSwipe += DetectDirection;
+    }
+    private void OnDisable()
+    {
+        inputController.OnStartTouch.RemoveListener(SwipeStart);
+        inputController.OnEndTouch.RemoveListener(SwipeEnd);
     }
 
     private enum Direction
@@ -30,8 +38,8 @@ public class SwipeBetweenMenus : MonoBehaviour
         left,
         right
     }
-    
 
+    //listens to the inputController for touch start and activates trail
     public void SwipeStart(Vector2 position, float time)
     {
         if (trail is null) {
@@ -40,6 +48,7 @@ public class SwipeBetweenMenus : MonoBehaviour
         trail.SetActive(true);
         coroutine = StartCoroutine(TrailPosition());
     }
+    //listens to the inputController for touch end and deactivates trail
     public void SwipeEnd(Vector2 position, float time)
     {
         if (trail is null)
@@ -49,11 +58,12 @@ public class SwipeBetweenMenus : MonoBehaviour
         StopCoroutine(coroutine);
         trail.SetActive(false);
     }
+    //coroutine for updating trail position
     private IEnumerator TrailPosition()
     {
         while (trail.activeInHierarchy)
         { //every frame update trail position
-            trail.transform.position = Vector3.zero;//TODO Get position for trail
+            trail.transform.position = inputController.PrimaryPosition();
             yield return null;
         }
         yield return null;
@@ -76,7 +86,7 @@ public class SwipeBetweenMenus : MonoBehaviour
                 break;
         }
     }
-
+    // listener to on swipe in swipe detection
     public void DetectDirection(Vector2 startPosition, float startTime, Vector2 endPosition, float endTime)
     {
 

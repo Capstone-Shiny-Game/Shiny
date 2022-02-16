@@ -14,7 +14,7 @@ public class SwipeDetection : MonoBehaviour
     private Vector2 endPosition;
     private float endTime;
     public delegate void OnSwipe(Vector2 startPosition,float startTime,Vector2 endPosition, float endTime);
-    private event OnSwipe broadcastSwipe;
+    public event OnSwipe broadcastSwipe;
 
     public void SwipeStart(Vector2 position, float time)
     {
