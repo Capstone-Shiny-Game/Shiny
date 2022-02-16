@@ -120,16 +120,16 @@ public class InputController : MonoBehaviour
 
     private void OnToggleFirstPerson(InputAction.CallbackContext context)
     {
-        flightTogglePOVHandler.Invoke();
+        flightTogglePOVHandler?.Invoke();
     }
     private void OnLook(InputAction.CallbackContext context)
     {
         Vector2 moveInput = context.ReadValue<Vector2>();
-        flightLookHandler.Invoke(moveInput.x, moveInput.y);
+        flightLookHandler?.Invoke(moveInput.x, moveInput.y);
     }
     private void OnLookExit(InputAction.CallbackContext context)
     {
-        flightLookHandler.Invoke(0.0f, 0.0f);
+        flightLookHandler?.Invoke(0.0f, 0.0f);
     }
     private void OnFlight(InputAction.CallbackContext context)
     {
@@ -139,7 +139,7 @@ public class InputController : MonoBehaviour
             //Debug.Log(Accelerometer.current.acceleration.ReadValue());
             Vector3 input = context.ReadValue<Vector3>();
             //test.text = "Gyroscope: " + "X: " + input.x + "Y: " + input.y + "Z: " + input.z;
-            flightMoveHandler.Invoke(Mathf.Clamp(-input.z * multiplier, -1.0f, 1.0f), Mathf.Clamp(input.x * multiplier, -1.0f, 1.0f));
+            flightMoveHandler?.Invoke(Mathf.Clamp(-input.z * multiplier, -1.0f, 1.0f), Mathf.Clamp(input.x * multiplier, -1.0f, 1.0f));
 
         }
         else if (!useGyro || UnityEngine.InputSystem.Gyroscope.current == null)
@@ -147,52 +147,52 @@ public class InputController : MonoBehaviour
             test.text = "N/A";
 
             Vector2 moveInput = context.ReadValue<Vector2>();
-            flightMoveHandler.Invoke(moveInput.x, moveInput.y);
+            flightMoveHandler?.Invoke(moveInput.x, moveInput.y);
         }
 
     }
     private void OnFlightEnd(InputAction.CallbackContext context)
     {
         if (UnityEngine.InputSystem.Gyroscope.current == null)
-            flightMoveHandler.Invoke(0.0f, 0.0f);
+            flightMoveHandler?.Invoke(0.0f, 0.0f);
     }
     private void OnBrake(InputAction.CallbackContext context)
     {
-        flightBrakeHandler.Invoke(true);
+        flightBrakeHandler?.Invoke(true);
     }
     private void OnBrakeExit(InputAction.CallbackContext context)
     {
-        flightBrakeHandler.Invoke(false);
+        flightBrakeHandler?.Invoke(false);
     }
     private void OnBoost(InputAction.CallbackContext context)
     {
-        flightBoostHandler.Invoke(true);
+        flightBoostHandler?.Invoke(true);
 
     }
     private void OnBoostExit(InputAction.CallbackContext context)
     {
-        flightBoostHandler.Invoke(false);
+        flightBoostHandler?.Invoke(false);
     }
 
 
     private void OnPause(InputAction.CallbackContext context)
     {
-        PauseHandler.Invoke();
+        PauseHandler?.Invoke();
     }
 
     private void OnDrop(InputAction.CallbackContext context)
     {
-        DropHandler.Invoke();
+        DropHandler?.Invoke();
     }
 
     private void OnPickup(InputAction.CallbackContext obj)
     {
-        ItemHandler.Invoke();
+        ItemHandler?.Invoke();
     }
 
     private void OnRotateSelection(InputAction.CallbackContext context)
     {
-        RotateSelectionHandler.Invoke();
+        RotateSelectionHandler?.Invoke();
     }
 
 
