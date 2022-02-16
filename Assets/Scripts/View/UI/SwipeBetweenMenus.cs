@@ -14,7 +14,15 @@ public class SwipeBetweenMenus : MonoBehaviour
     public GameObject leftMenu;
     public GameObject rightMenu;
 
+    public InitializeMenuVariables initializeMenuVariables;
+    private InputController inputController;
     private Coroutine coroutine;
+
+    private void OnEnable()
+    {
+        inputController = initializeMenuVariables.inputController;
+    }
+
     private enum Direction
     {
         up,
@@ -38,8 +46,8 @@ public class SwipeBetweenMenus : MonoBehaviour
         {
             return;
         }
-        trail.SetActive(false);
         StopCoroutine(coroutine);
+        trail.SetActive(false);
     }
     private IEnumerator TrailPosition()
     {
@@ -55,16 +63,16 @@ public class SwipeBetweenMenus : MonoBehaviour
         switch (direction)
         {
             case Direction.right:
-                // code block
+                // right menu
                 break;
             case Direction.left:
-                // code block
+                // left menu
                 break;
             case Direction.down:
-                // code block
+                // down menu
                 break;
             case Direction.up:
-                // code block
+                // up menu
                 break;
         }
     }
