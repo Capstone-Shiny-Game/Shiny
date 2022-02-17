@@ -32,8 +32,7 @@ public class FlightController : MonoBehaviour
     private Transform targetRing;
     public GameObject LeftTrail;
     public GameObject RightTrail;
-    private Vector3 scaleChange;
-
+    private Crow crow;
 
     public event Action<bool> Landed;
     public event Action<bool> FlightTypeChanged;
@@ -42,6 +41,8 @@ public class FlightController : MonoBehaviour
     public void Start()
     {
         //InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
+        crow = GetComponent<Crow>();
+
     }
 
     void Update()
@@ -114,6 +115,8 @@ public class FlightController : MonoBehaviour
             speed = Mathf.Clamp(speed, 1f, maxDiveSpeed);
         else
             speed = Mathf.Clamp(speed, 5f, maxDiveSpeed);
+        Debug.Log("BREAK " + brake);
+
         speed -= brake; //adjust the speed based on how much you're breaking
     }
     /// <summary>
@@ -123,6 +126,7 @@ public class FlightController : MonoBehaviour
     {
         if (isBoosting && !isBoost)
         {
+            Debug.Log("bboost plz");
             StartCoroutine("Boost");
         }
     }
@@ -148,6 +152,7 @@ public class FlightController : MonoBehaviour
         {
             //if straightened out, set the speed to a set velocity
             speed = Mathf.Clamp(speed, minGlideSpeed, maxDiveSpeed);
+            Debug.Log(speed);
         }
         SlowDown();
 
@@ -177,8 +182,8 @@ public class FlightController : MonoBehaviour
         float turn = moveX * tiltSensitivity / 1.5f * Time.deltaTime;
         float pitch = -moveY * pitchSensitivity * Time.deltaTime;
         float tilt = -moveX * tiltSensitivity * Time.deltaTime;
-        transform.Rotate(new Vector3(pitch, turn, tilt));
-
+        transform.Rotate(new Vector3(pitch, turn, 0.0f));
+        crow.Model.transform.Rotate(new Vector3(0.0f, 0.0f, tilt));
 
         if (tilt != 0)
             hasTilted = true;
@@ -195,28 +200,28 @@ public class FlightController : MonoBehaviour
             if (startZ < 0)
             {
                 startZ = Time.time;
-                smoothTilt = Math.Abs(Math.Min(transform.rotation.z, 360f - transform.rotation.z)) * 15f;
+                smoothTilt = Math.Abs(Math.Min(crow.Model.transform.rotation.z, 360f - crow.Model.transform.rotation.z)) * 15f;
             }
             float fracComplete = (Time.time - startZ) / smoothTilt;
-            DampenAngleToZero(false, false, true, fracComplete);
+            DampenAngleToZero(false, false, true, fracComplete, crow.Model.transform.rotation);
         }
     }
 
     private void ClampRotations(float pitch)
     {
         // Clamp Tilt
-        float angle = transform.rotation.eulerAngles.z;
+        float angle = crow.Model.transform.rotation.eulerAngles.z;
         float angleX = transform.rotation.eulerAngles.x;
         //tilted too far left or right
         if (angle >= 45f && angle < 180f)
         {
             float diff = angle - 45f;
-            transform.Rotate(new Vector3(0, 0, -diff));
+            crow.Model.transform.Rotate(new Vector3(0, 0, -diff));
         }
         else if (angle < 315f && angle >= 180f)
         {
             float diff = angle - 315f;
-            transform.Rotate(new Vector3(0, 0, -diff));
+            crow.Model.transform.Rotate(new Vector3(0, 0, -diff));
         }
         //tilted too far down or up
         if (angleX >= 80f && angleX < 180f)
@@ -236,6 +241,9 @@ public class FlightController : MonoBehaviour
                 Quaternion target = transform.rotation;
                 target = Quaternion.Euler(0, target.eulerAngles.y, target.eulerAngles.z);
                 transform.rotation = Quaternion.Lerp(transform.rotation, target, Time.deltaTime);
+
+             
+
             }
         }
     }
@@ -270,7 +278,7 @@ public class FlightController : MonoBehaviour
     {
         speed += 15f;
         isBoost = true;
-        yield return new WaitForSeconds(.25f);
+        yield return new WaitForSeconds(3f);
         targetRing = null;
         yield return new WaitForSeconds(.35f);
         if (speed > 15f)
@@ -298,9 +306,8 @@ public class FlightController : MonoBehaviour
         }
     }
 
-    private void DampenAngleToZero(bool x, bool y, bool z, float fracComplete)
+    private void DampenAngleToZero(bool x, bool y, bool z, float fracComplete, Quaternion target)
     {
-        Quaternion target = transform.rotation;
 
         if (x)
             target = Quaternion.Euler(0, target.eulerAngles.y, target.eulerAngles.z);
@@ -308,9 +315,9 @@ public class FlightController : MonoBehaviour
             target = Quaternion.Euler(target.eulerAngles.x, 0, target.eulerAngles.z);
         if (z)
             target = Quaternion.Euler(target.eulerAngles.x, target.eulerAngles.y, 0);
-        transform.rotation = Quaternion.Slerp(transform.rotation, target, fracComplete);
+        crow.Model.transform.rotation = Quaternion.Slerp(crow.Model.transform.rotation, target, fracComplete);
 
-        float diff = transform.rotation.eulerAngles.z - target.eulerAngles.z;
+        float diff = crow.Model.transform.rotation.eulerAngles.z - target.eulerAngles.z;
         float degree = 1f;
         if (Mathf.Abs(diff) <= degree) //close enough to straight - reset damping
         {
@@ -320,13 +327,13 @@ public class FlightController : MonoBehaviour
 
 
     }
-
+  
     public void TrailScale()
     {
         float scaleX = (speed - 10) / 30;
         if (scaleX < 0)
             scaleX = 0;
-        scaleChange = new Vector3(scaleX, scaleX, scaleX);
+        Vector3 scaleChange = new Vector3(scaleX, scaleX, scaleX);
         LeftTrail.transform.localScale = scaleChange;
         RightTrail.transform.localScale = scaleChange;
     }
@@ -339,6 +346,7 @@ public class FlightController : MonoBehaviour
     {
         LeftTrail.SetActive(true);
         RightTrail.SetActive(true);
+        speed = 10f;
     }
     public void SetFlightXY(float x, float y)
     {

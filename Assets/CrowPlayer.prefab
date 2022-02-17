@@ -9793,6 +9793,7 @@ GameObject:
   - component: {fileID: 7324057266532042073}
   - component: {fileID: 7324057266532042078}
   - component: {fileID: 7324057266532042079}
+  - component: {fileID: 5828222149743021217}
   - component: {fileID: 7324057266532042076}
   - component: {fileID: 7695470114484064583}
   - component: {fileID: 8245471309187584260}
@@ -9886,6 +9887,18 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 2
   m_Center: {x: 0, y: 0.3, z: 0}
+--- !u!114 &5828222149743021217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7324057266532042077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75416b6c2a485994984095c04fb0ab54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7324057266532042076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9907,6 +9920,7 @@ MonoBehaviour:
   isBoost: 0
   LeftTrail: {fileID: 2546136047665995552}
   RightTrail: {fileID: 5105916863276297152}
+  crowModel: {fileID: 0}
   isGliding: 0
 --- !u!114 &7695470114484064583
 MonoBehaviour:
@@ -9962,9 +9976,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ForwardSpeed: 8
   BackwardsSpeed: 4
-  SplashingSpeed: 4
   TurningSpeed: 60
-  Splashing: 0
   isIdle: 0
 --- !u!114 &5036188381387300824
 MonoBehaviour:
