@@ -5,27 +5,27 @@ using UnityEngine;
 public class QuestMenuContainer : MenuContainer
 {
     public GameObject questMenu;
-    public override void AfterEnableSetup(MenuType currentMenuType, string menuSetting)
+    public MenuType menuType2 = MenuType.uncompletedQuestsMenu;
+    public override void AfterEnableSetup(MenuType currentMenuType)
     {
-        base.AfterEnableSetup(currentMenuType,menuSetting);
+        base.AfterEnableSetup(currentMenuType);
         if (questMenu is null) {
             Debug.Log("quest menu container missing reference to its self");
             return;
         }
-
-        if (menuSetting == "" || menuSetting == "uncompleted")
+        switch (menuType)//Set menu options for showing either completed or uncompleted quests
         {
-            Debug.Log("showing uncompleted quests");
-            //TODO finish this
-        }
-        else if (menuSetting == "completed")
-        {
-            Debug.Log("showing completed quests");
-            //TODO finish this
-        }
-        else
-        {
-            Debug.Log("save menu container was passed incorrect settings");
+            case MenuType.questsMenu:
+                Debug.Log("showing completed quests");
+                //TODO finish this
+                break;
+            case MenuType.uncompletedQuestsMenu:
+                Debug.Log("showing uncompleted quests");
+                //TODO finish this
+                break;
+            default:
+                Debug.Log("Quest menu container was passed incorrect menu type");
+                break;
         }
     }
 }
