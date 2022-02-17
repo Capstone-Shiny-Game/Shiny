@@ -53,7 +53,10 @@ public class MenuManager : MonoBehaviour
         {
             case MenuType.flightui://leaving pause menu and returning to normal time
                 DisablePause();
-                lastOpenedPauseMenu = currentMenu.menuType;
+                if(currentMenu.menuType != MenuType.flightui) //catch edge cases
+                { 
+                    lastOpenedPauseMenu = currentMenu.menuType;
+                }
                 break;
             case MenuType.mainMenu://back to main menu reset to defaults
                 DisablePause();
