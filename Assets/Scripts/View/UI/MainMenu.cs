@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
 
     public void ChangeScene()
     {
-        SceneManager.LoadScene("CityLayoutTest");
+        SceneManager.LoadScene("Cityv2");
     }
 
     public void enterControls()

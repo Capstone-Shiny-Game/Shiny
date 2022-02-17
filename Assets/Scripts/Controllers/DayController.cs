@@ -6,6 +6,7 @@ using UnityEngine;
 public class DayController : MonoBehaviour
 {
     [Range(0, 24)] public float TimeOfDay;
+    public float TEMPDayStartTime;
     public string CurrentDay;
     [SerializeField] private Light sun;
     [SerializeField] private LightingPreset Preset;
@@ -38,7 +39,7 @@ public class DayController : MonoBehaviour
         float timeElapsed = 0;
         while (timeElapsed < LengthOfDay)
         {
-            TimeOfDay = Mathf.Lerp(0, 24, timeElapsed/LengthOfDay);
+            TimeOfDay = Mathf.Lerp(TEMPDayStartTime, 24, timeElapsed/LengthOfDay);
             timeElapsed += Time.deltaTime;
             TimeOfDay %= 24;
             UpdateLighting(TimeOfDay/24f);
@@ -50,6 +51,7 @@ public class DayController : MonoBehaviour
             DayIndex = 0;
         }
         CurrentDay = DaysOfWeek[DayIndex];
+        TEMPDayStartTime = 0;
         StartCoroutine(Lerp());
     }
 

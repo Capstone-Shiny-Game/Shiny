@@ -32,6 +32,7 @@ public class FlightController : MonoBehaviour
     private Transform targetRing;
     public GameObject LeftTrail;
     public GameObject RightTrail;
+    public GameObject crowModel;
     private Vector3 scaleChange;
 
 
@@ -177,8 +178,8 @@ public class FlightController : MonoBehaviour
         float turn = moveX * tiltSensitivity / 1.5f * Time.deltaTime;
         float pitch = -moveY * pitchSensitivity * Time.deltaTime;
         float tilt = -moveX * tiltSensitivity * Time.deltaTime;
-        transform.Rotate(new Vector3(pitch, turn, tilt));
-
+        transform.Rotate(new Vector3(pitch, turn, 0.0f));
+        crowModel.transform.Rotate(new Vector3(0.0f, 0.0f, tilt));
 
         if (tilt != 0)
             hasTilted = true;
@@ -195,28 +196,28 @@ public class FlightController : MonoBehaviour
             if (startZ < 0)
             {
                 startZ = Time.time;
-                smoothTilt = Math.Abs(Math.Min(transform.rotation.z, 360f - transform.rotation.z)) * 15f;
+                smoothTilt = Math.Abs(Math.Min(crowModel.transform.rotation.z, 360f - crowModel.transform.rotation.z)) * 15f;
             }
             float fracComplete = (Time.time - startZ) / smoothTilt;
-            DampenAngleToZero(false, false, true, fracComplete);
+            DampenAngleToZero(false, false, true, fracComplete, crowModel.transform.rotation);
         }
     }
 
     private void ClampRotations(float pitch)
     {
         // Clamp Tilt
-        float angle = transform.rotation.eulerAngles.z;
+        float angle = crowModel.transform.rotation.eulerAngles.z;
         float angleX = transform.rotation.eulerAngles.x;
         //tilted too far left or right
         if (angle >= 45f && angle < 180f)
         {
             float diff = angle - 45f;
-            transform.Rotate(new Vector3(0, 0, -diff));
+            crowModel.transform.Rotate(new Vector3(0, 0, -diff));
         }
         else if (angle < 315f && angle >= 180f)
         {
             float diff = angle - 315f;
-            transform.Rotate(new Vector3(0, 0, -diff));
+            crowModel.transform.Rotate(new Vector3(0, 0, -diff));
         }
         //tilted too far down or up
         if (angleX >= 80f && angleX < 180f)
@@ -236,6 +237,9 @@ public class FlightController : MonoBehaviour
                 Quaternion target = transform.rotation;
                 target = Quaternion.Euler(0, target.eulerAngles.y, target.eulerAngles.z);
                 transform.rotation = Quaternion.Lerp(transform.rotation, target, Time.deltaTime);
+
+             
+
             }
         }
     }
@@ -298,9 +302,8 @@ public class FlightController : MonoBehaviour
         }
     }
 
-    private void DampenAngleToZero(bool x, bool y, bool z, float fracComplete)
+    private void DampenAngleToZero(bool x, bool y, bool z, float fracComplete, Quaternion target)
     {
-        Quaternion target = transform.rotation;
 
         if (x)
             target = Quaternion.Euler(0, target.eulerAngles.y, target.eulerAngles.z);
@@ -308,9 +311,9 @@ public class FlightController : MonoBehaviour
             target = Quaternion.Euler(target.eulerAngles.x, 0, target.eulerAngles.z);
         if (z)
             target = Quaternion.Euler(target.eulerAngles.x, target.eulerAngles.y, 0);
-        transform.rotation = Quaternion.Slerp(transform.rotation, target, fracComplete);
+        crowModel.transform.rotation = Quaternion.Slerp(crowModel.transform.rotation, target, fracComplete);
 
-        float diff = transform.rotation.eulerAngles.z - target.eulerAngles.z;
+        float diff = crowModel.transform.rotation.eulerAngles.z - target.eulerAngles.z;
         float degree = 1f;
         if (Mathf.Abs(diff) <= degree) //close enough to straight - reset damping
         {
