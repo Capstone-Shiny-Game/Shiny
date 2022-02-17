@@ -6202,6 +6202,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7324057266532042076, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: crowModel
+      value: 
+      objectReference: {fileID: 588203120}
     - target: {fileID: 7324057266532042077, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: m_Name
       value: CrowPlayer
@@ -7396,6 +7400,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 588118120}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &588203120 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 772841008434653664, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+  m_PrefabInstance: {fileID: 464356190}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &611953769
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15740,7 +15749,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1256193455}
-  m_LocalRotation: {x: 0.5843798, y: -0.36722943, z: 0.33441362, w: 0.6417246}
+  m_LocalRotation: {x: 0.58437985, y: -0.36722928, z: 0.3344135, w: 0.6417246}
   m_LocalPosition: {x: 615.7884, y: 225, z: -1507.056}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -23452,7 +23461,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960509321}
-  m_LocalRotation: {x: 0.5843798, y: -0.36722943, z: 0.33441362, w: 0.6417246}
+  m_LocalRotation: {x: 0.58437985, y: -0.36722928, z: 0.3344135, w: 0.6417246}
   m_LocalPosition: {x: 615.7884, y: 225, z: -1507.056}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
