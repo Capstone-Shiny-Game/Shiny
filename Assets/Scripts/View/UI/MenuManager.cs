@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,22 +7,21 @@ using UnityEngine.SceneManagement;
 
 
 
-
+[Serializable]
 public enum MenuType
 {
     mainMenu,
-    pausemenu,
+    inventorymenu,
     saveMenu,
-    loadMenu,
-    QuestsCompletedMenu,
-    QuestsUncompletedMenu,
     settingsMenu,
     flightui,
+    questsMenu,
     wait,
 }
 public class MenuManager : MonoBehaviour
 {
     List<MenuContainer> menuContainers;
+    public GameObject onAllPauseMenus;
     private MenuContainer currentMenu;
 
     // Start is called before the first frame update
@@ -31,26 +31,39 @@ public class MenuManager : MonoBehaviour
         currentMenu = menuContainers.Find(x => x.menuType == MenuType.flightui);
     }
 
-    public void SwitchMenu(MenuType menuType) {
+    public void SwitchMenu(MenuType menuType, string MenuSetting = "") {
         switch (menuType)//Set Timescale and Scene
         {
             case MenuType.flightui:
-                Time.timeScale = 1f; // set time back to normal
+                DisablePause();
                 break;
             case MenuType.mainMenu:
-                Time.timeScale = 1f; // set time back to normal
+                DisablePause();
                 SceneManager.LoadScene("MainMenu");
-                break;
+                currentMenu = menuContainers.Find(x => x.menuType == MenuType.flightui);
+                return;
             default:
-               Time.timeScale = 0f; // pause game time doesnt pass
-               break;
+                EnablePause();
+                break;
         }
         //replace current Menu
         currentMenu.DisableSelf();
         currentMenu = menuContainers.Find(x => x.menuType == menuType);
+        currentMenu.gameObject.SetActive(true);
         //call setup on new menu
-        currentMenu.AfterEnableSetup(menuType);
+        currentMenu.AfterEnableSetup(menuType, MenuSetting);
     }
 
+    private void DisablePause()
+    {
+        Time.timeScale = 1f; // set time back to normal
+        onAllPauseMenus.SetActive(false);
+    }
+
+    private void EnablePause()
+    {
+        Time.timeScale = 0f;
+        onAllPauseMenus.SetActive(true);
+    }
 }
 

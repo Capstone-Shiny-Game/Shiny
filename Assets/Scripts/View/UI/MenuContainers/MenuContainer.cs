@@ -5,10 +5,10 @@ using UnityEngine;
 public class MenuContainer : MonoBehaviour
 {
     public MenuType menuType;
-    public void DisableSelf() {
+    public virtual void DisableSelf() {
         this.gameObject.SetActive(false);
     }
-    public void AfterEnableSetup(MenuType previousMenuType) {
+    public virtual void AfterEnableSetup(MenuType currentMenuType, string menuSetting) {
         
     }
 }
