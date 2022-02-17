@@ -17,7 +17,8 @@ public class SwipeBetweenMenus : MonoBehaviour
     //     PauseMenu, // NOTE: This will need to be the *instance* from parent
     //     ConfirmMenu,
     //     SaveMenu,
-    //     SettingsMenu
+    //     SettingsMenu,
+    //     flightUI
     // }
     // 2 - keep a copy of the current "active" menu
     // private GameObject currentMenu;
