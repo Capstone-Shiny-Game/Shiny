@@ -11,8 +11,9 @@ public class MenuContainer : MonoBehaviour
     /// <summary>
     /// called to disable this object
     /// </summary>
-    public virtual void DisableSelf() {
+    public virtual MenuType DisableSelf(MenuType nextMenuType) {
         this.gameObject.SetActive(false);
+        return nextMenuType;
     }
     /// <summary>
     /// called when object is enabled, override to change behavior

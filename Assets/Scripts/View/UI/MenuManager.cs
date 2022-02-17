@@ -27,6 +27,8 @@ public class MenuManager : MonoBehaviour
     List<MenuContainer> menuContainers;
     public GameObject onAllPauseMenus;
     private MenuContainer currentMenu;
+    [HideInInspector]
+    public MenuType lastOpenedPauseMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -34,18 +36,24 @@ public class MenuManager : MonoBehaviour
         if (instance is null) {
             instance = this;
         }
-        menuContainers = GetComponentsInChildren<MenuContainer>().ToList();
+        menuContainers = GetComponentsInChildren<MenuContainer>(true).ToList();
+        foreach (MenuContainer menuContainer in menuContainers) {
+            Debug.Log(menuContainer.menuType);
+        }
         currentMenu = menuContainers.Find(x => x.menuType == MenuType.flightui);
+        lastOpenedPauseMenu = MenuType.loadMenu;
     }
     /// <summary>
     /// called to change the current active menu
     /// </summary>
     /// <param name="menuType">type of the new menu</param>
-    public void SwitchMenu(MenuType menuType) {
+    /// <param name="calledByConfirm">if it is called from the confirm popUP</param>
+    public void SwitchMenu(MenuType menuType,bool calledByConfirm = false) {
         switch (menuType)//Set Timescale and Scene
         {
             case MenuType.flightui://leaving pause menu and returning to normal time
                 DisablePause();
+                lastOpenedPauseMenu = currentMenu.menuType;
                 break;
             case MenuType.mainMenu://back to main menu reset to defaults
                 DisablePause();
@@ -57,13 +65,15 @@ public class MenuManager : MonoBehaviour
                 break;
         }
         //replace current Menu
-        currentMenu.DisableSelf();
+        if (!calledByConfirm && currentMenu.DisableSelf(menuType) == MenuType.wait)
+        { //return value is used to interrupt changing menus if disable self needs to override
+            return;
+        }
         currentMenu = findNextMenu(menuType);
         currentMenu.gameObject.SetActive(true);
         //call setup on new menu
         currentMenu.AfterEnableSetup(menuType);
     }
-
     private MenuContainer findNextMenu(MenuType menuType)
     {
         switch (menuType)

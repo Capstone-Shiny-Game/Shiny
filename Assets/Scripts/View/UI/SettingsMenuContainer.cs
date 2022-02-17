@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SettingsMenu : MonoBehaviour
+public class SettingsMenuContainer : MenuContainer
 {
     [HideInInspector] public Settings settings;
     public Slider musicVolumeSlider;
@@ -11,8 +11,6 @@ public class SettingsMenu : MonoBehaviour
     public SettingsData defaultSettings = new SettingsData { musicVolume = .50f, dialogueVolume = .50f, lefthanded = false };
     private SettingsData prefferedSettings;
     public ConfirmPopup confirmPopup;
-    public UI_inventory UIInventory;
-    public GameObject PauseMenuButtons;
 
     private void OnEnable()
     {
@@ -53,22 +51,25 @@ public class SettingsMenu : MonoBehaviour
         Settings.UpdateSettingData(defaultSettings);//TODO update sliders
         RefreshUI();
     }
-
-    private void OnDisable()
-    {
-        confirmPopup.ShowPopUP("there were unsaved changes to your settings, save these new settings?", confirmNewSettings, "Save", "Discard");
-        this.gameObject.SetActive(false);
-        musicVolumeSlider.onValueChanged.RemoveListener(changeMusicVolume);
-        dialogueVolumeSlider.onValueChanged.RemoveListener(changeDialogueVolume);
-    }
-    private void confirmNewSettings(bool value)
+    private void confirmNewSettings(bool value, MenuType nextMenuType)
     {
         if (value)
         {
             prefferedSettings = Settings.settingsData;
         }
         Settings.UpdateSettingData(prefferedSettings);
-        UIInventory.gameObject.SetActive(true);
-        PauseMenuButtons.SetActive(true);
+        MenuManager.instance.SwitchMenu(nextMenuType,true);
+    }
+
+    public override MenuType DisableSelf(MenuType nextMenuType)
+    {
+        if (prefferedSettings.Equals(Settings.settingsData)) {
+            return base.DisableSelf(nextMenuType);
+        }
+        confirmPopup.ShowPopUP("there were unsaved changes to your settings, save these new settings?", (value) => confirmNewSettings(value,nextMenuType), "Save", "Discard");
+        this.gameObject.SetActive(false);
+        musicVolumeSlider.onValueChanged.RemoveListener(changeMusicVolume);
+        dialogueVolumeSlider.onValueChanged.RemoveListener(changeDialogueVolume);
+        return MenuType.wait;
     }
 }

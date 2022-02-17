@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class InitializeMenuVariables : MonoBehaviour
 {
-    public SettingsMenu settingsMenu;
+    public SettingsMenuContainer settingsMenu;
     [HideInInspector]
     public SwipeDetection swipeDetection;
     [HideInInspector]
