@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour, Savable
     private WalkingController walkingController;
     private GameObject flightCam;
     private GameObject walkCam;
-
+    private Crow crow;
 
     // public GameObject NPCUI;
     public GameObject ControllerUI;
@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour, Savable
 
         flightController = GetComponent<FlightController>();
         walkingController = GetComponent<WalkingController>();
+        crow = GetComponent<Crow>();
 
         walkingController.WalkedOffEdge += () => SetState(CrowState.Flying, 0.5f);
         walkingController.SubstateChanged += s => SetState(s);
@@ -75,6 +76,7 @@ public class PlayerController : MonoBehaviour, Savable
         CrowState previous = state;
         state = next;
 
+
         if ((state == CrowState.Flying || state == CrowState.Gliding) && addYForTakeoff != 0)
         {
             Vector3 pos = transform.position;
@@ -85,6 +87,10 @@ public class PlayerController : MonoBehaviour, Savable
         flightCam.SetActive(flightController.enabled);
         walkCam.SetActive(!flightController.enabled);
         walkingController.enabled = state == CrowState.Walking  || state == CrowState.Idle;
+        if(CrowState.Walking == state)
+        {
+            crow.resetModelRotation();
+        }
         birdAnimator.SetBool("isFlying", state == CrowState.Flying);
         birdAnimator.SetBool("isWalking", state == CrowState.Walking);
         birdAnimator.SetBool("isIdle", state == CrowState.Idle);
@@ -99,7 +105,7 @@ public class PlayerController : MonoBehaviour, Savable
 
         if ((previous == CrowState.Flying || previous == CrowState.Gliding))
         {
-            flightController.speed = 10.0f;
+            //flightController.speed = 10.0f;
             birdAnimator.SetBool("WalktoFly", false);
         }
     }
@@ -110,14 +116,17 @@ public class PlayerController : MonoBehaviour, Savable
         {
             if (transform.CastGround(out Vector3 ground, transform.localScale.y / 2))
             {
+                crow.resetModelRotation();
                 SetFixedPosition(ground);
                 SetState(CrowState.Walking);
             }
         }
         else
         {
+            crow.resetModelRotation();
             SetFixedPosition(transform.FindGround(transform.localScale.y / 2));
             SetState(CrowState.Walking);
+
         }
     }
 
