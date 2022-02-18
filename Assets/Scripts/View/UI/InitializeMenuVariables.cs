@@ -12,16 +12,12 @@ public class InitializeMenuVariables : MonoBehaviour
     public SwipeDetection swipeDetection;
     [HideInInspector]
     public InputController inputController;
-    // Start is called before the first frame update
-    private void Start()
+    void Awake()
     {
+        settingsMenu.settings = new Settings(settingsMenu.defaultSettings); //creates settings with previously saved settings or default if previous not found.
         inputController = GameObject.FindWithTag("Player").GetComponentInChildren<InputController>();
         swipeDetection = GetComponent<SwipeDetection>();
         inputController.OnStartTouch.AddListener(swipeDetection.SwipeStart);
         inputController.OnEndTouch.AddListener(swipeDetection.SwipeEnd);
-    }
-    void Awake()
-    {
-        settingsMenu.settings = new Settings(settingsMenu.defaultSettings); //creates settings with previously saved settings or default if previous not found.
     }
 }

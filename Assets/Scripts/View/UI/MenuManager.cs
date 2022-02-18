@@ -49,6 +49,9 @@ public class MenuManager : MonoBehaviour
     /// <param name="menuType">type of the new menu</param>
     /// <param name="calledByConfirm">if it is called from the confirm popUP</param>
     public void SwitchMenu(MenuType menuType,bool calledByConfirm = false) {
+        if (currentMenu.menuType == menuType) {//do nothing we are in the correct menu
+            return;
+        }
         switch (menuType)//Set Timescale and Scene
         {
             case MenuType.flightui://leaving pause menu and returning to normal time
@@ -100,6 +103,10 @@ public class MenuManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         onAllPauseMenus.SetActive(true);
+    }
+
+    public MenuType GetCurrentMenuType() {
+        return currentMenu.menuType;
     }
 }
 
