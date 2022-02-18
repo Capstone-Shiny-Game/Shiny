@@ -48,7 +48,7 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     /// <param name="menuType">type of the new menu</param>
     /// <param name="calledByConfirm">if it is called from the confirm popUP</param>
-    public void SwitchMenu(MenuType menuType,bool calledByConfirm = false) {
+    public void SwitchMenu(MenuType menuType,bool calledByConfirm = false) { //TODO fix bug with changing from save menu to load menu
         if (currentMenu.menuType == menuType) {//do nothing we are in the correct menu
             return;
         }

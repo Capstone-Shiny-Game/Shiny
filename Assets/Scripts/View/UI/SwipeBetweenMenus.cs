@@ -98,6 +98,7 @@ public class SwipeBetweenMenus : MonoBehaviour
     private void ChangeMenus(Direction direction)
     {
         GetIndex();
+        MenuType menuType = MenuManager.instance.GetCurrentMenuType();
         switch (direction)
         {
             case Direction.right:
@@ -105,7 +106,6 @@ public class SwipeBetweenMenus : MonoBehaviour
                 index++;
                 index = index % LeftAndRightMenus.Count;
                 MenuManager.instance.SwitchMenu(LeftAndRightMenus[index]);
-                // right menu
                 break;
             case Direction.left:
                 //Debug.Log("left");
@@ -115,13 +115,21 @@ public class SwipeBetweenMenus : MonoBehaviour
                 }
                 index--;
                 MenuManager.instance.SwitchMenu(LeftAndRightMenus[index]);
-                // left menu
                 break;
             case Direction.down:
-                // down menu
+                Debug.LogWarning("down" + menuType);
+                if (menuType == MenuType.saveMenu) {
+                    MenuManager.instance.SwitchMenu(MenuType.loadMenu);
+                }
+                // TODO add in quest menus
                 break;
             case Direction.up:
-                // up menu
+                Debug.LogWarning("up "+menuType);
+                if (menuType == MenuType.loadMenu)
+                {
+                    MenuManager.instance.SwitchMenu(MenuType.saveMenu);
+                }
+                // TODO add in quest menus
                 break;
         }
     }
