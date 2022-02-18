@@ -55,7 +55,17 @@ public class FlightController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other is TerrainCollider)
+        if (other.gameObject.CompareTag("Mountain"))
+        {
+            Debug.Log("Mountain");
+            Vector3 v = other.ClosestPoint(transform.position);
+            Vector3 newVector = transform.position - v;
+            StartCoroutine(Slow());
+            transform.LookAt(newVector);
+           // StartCoroutine(BounceOnCollision(other.GetContact(0).normal));
+
+        }
+        else if (other is TerrainCollider)
         {
             Landed?.Invoke(false);
         }
@@ -115,7 +125,6 @@ public class FlightController : MonoBehaviour
             speed = Mathf.Clamp(speed, 1f, maxDiveSpeed);
         else
             speed = Mathf.Clamp(speed, 5f, maxDiveSpeed);
-        Debug.Log("BREAK " + brake);
 
         speed -= brake; //adjust the speed based on how much you're breaking
     }
@@ -126,7 +135,6 @@ public class FlightController : MonoBehaviour
     {
         if (isBoosting && !isBoost)
         {
-            Debug.Log("bboost plz");
             StartCoroutine("Boost");
         }
     }
@@ -152,7 +160,6 @@ public class FlightController : MonoBehaviour
         {
             //if straightened out, set the speed to a set velocity
             speed = Mathf.Clamp(speed, minGlideSpeed, maxDiveSpeed);
-            Debug.Log(speed);
         }
         SlowDown();
 
@@ -167,7 +174,7 @@ public class FlightController : MonoBehaviour
         {
             this.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
             this.GetComponent<Rigidbody>().angularVelocity = new Vector3(0f, 0f, 0f);
-            StartCoroutine(MoveToPosition(endBounce, bounce / 18f));
+            //StartCoroutine(MoveToPosition(endBounce, bounce / 18f));
 
         }
       //  if (!CamController.toggleFirstPersonCam) first person
@@ -269,7 +276,7 @@ public class FlightController : MonoBehaviour
             bounce = 1f;
         endBounce = transform.position + norm * bounce;
         speed -= 5;
-
+        transform.LookAt(norm);
         isBouncing = true;
         yield return new WaitForSeconds(.3f);
         isBouncing = false;
@@ -290,7 +297,7 @@ public class FlightController : MonoBehaviour
     public IEnumerator Slow()
     {
         isSlowing = true;
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(5f);
         isSlowing = false;
 
     }
