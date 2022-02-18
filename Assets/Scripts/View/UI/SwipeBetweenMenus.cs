@@ -117,14 +117,14 @@ public class SwipeBetweenMenus : MonoBehaviour
                 MenuManager.instance.SwitchMenu(LeftAndRightMenus[index]);
                 break;
             case Direction.down:
-                Debug.LogWarning("down" + menuType);
+                //Debug.Log("down" + menuType);
                 if (menuType == MenuType.saveMenu) {
                     MenuManager.instance.SwitchMenu(MenuType.loadMenu);
                 }
                 // TODO add in quest menus
                 break;
             case Direction.up:
-                Debug.LogWarning("up "+menuType);
+                //Debug.Log("up "+menuType);
                 if (menuType == MenuType.loadMenu)
                 {
                     MenuManager.instance.SwitchMenu(MenuType.saveMenu);
