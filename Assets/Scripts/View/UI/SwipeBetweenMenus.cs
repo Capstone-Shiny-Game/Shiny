@@ -35,8 +35,8 @@ public class SwipeBetweenMenus : MonoBehaviour
         {
             return;
         }
-        inputController.OnStartTouch.AddListener(SwipeStart);
-        inputController.OnEndTouch.AddListener(SwipeEnd);
+        /*inputController.OnStartTouch.AddListener(SwipeStart);
+        inputController.OnEndTouch.AddListener(SwipeEnd);*/
         if (!(initializeMenuVariables.swipeDetection is null))
         {
             initializeMenuVariables.swipeDetection.broadcastSwipe += DetectDirection;
@@ -47,19 +47,12 @@ public class SwipeBetweenMenus : MonoBehaviour
         if (inputController is null)
         {
             return;
-        }
+        }/*
         inputController.OnStartTouch.RemoveListener(SwipeStart);
-        inputController.OnEndTouch.RemoveListener(SwipeEnd);
+        inputController.OnEndTouch.RemoveListener(SwipeEnd);*/
     }
 
-    private enum Direction
-    {
-        up,
-        down,
-        left,
-        right
-    }
-
+    /*
     //listens to the inputController for touch start and activates trail
     public void SwipeStart(Vector2 position, float time)
     {
@@ -70,6 +63,7 @@ public class SwipeBetweenMenus : MonoBehaviour
         particleTrail.SetActive(true);
         coroutine = StartCoroutine(TrailPosition());
     }
+
     //listens to the inputController for touch end and deactivates trail
     public void SwipeEnd(Vector2 position, float time)
     {
@@ -80,6 +74,7 @@ public class SwipeBetweenMenus : MonoBehaviour
         StopCoroutine(coroutine);
         particleTrail.SetActive(false);
     }
+
     //coroutine for updating trail position
     private IEnumerator TrailPosition()
     {
@@ -89,6 +84,15 @@ public class SwipeBetweenMenus : MonoBehaviour
             yield return null;
         }
         yield return null;
+    }*/
+
+
+    private enum Direction
+    {
+        up,
+        down,
+        left,
+        right
     }
 
     private void ChangeMenus(Direction direction)
@@ -97,16 +101,20 @@ public class SwipeBetweenMenus : MonoBehaviour
         switch (direction)
         {
             case Direction.right:
+                //Debug.Log("right");
                 index++;
                 index = index % LeftAndRightMenus.Count;
+                MenuManager.instance.SwitchMenu(LeftAndRightMenus[index]);
                 // right menu
                 break;
             case Direction.left:
+                //Debug.Log("left");
                 if (index == 0) 
                 {
                     index = LeftAndRightMenus.Count;
                 }
                 index--;
+                MenuManager.instance.SwitchMenu(LeftAndRightMenus[index]);
                 // left menu
                 break;
             case Direction.down:
@@ -120,7 +128,10 @@ public class SwipeBetweenMenus : MonoBehaviour
     // listener to on swipe in swipe detection
     public void DetectDirection(Vector2 startPosition, float startTime, Vector2 endPosition, float endTime)
     {
-        Debug.Log("Swipe");
+        if (!MenuManager.instance.onAllPauseMenus.activeInHierarchy) {
+            return;
+        }
+        //Debug.Log("Pause Swipe");
         Vector2 direction = (endPosition - startPosition).normalized;
         if (Vector2.Dot(Vector2.left, direction) > directionLeeway)
         {

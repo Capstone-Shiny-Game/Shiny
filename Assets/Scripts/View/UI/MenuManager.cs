@@ -37,9 +37,9 @@ public class MenuManager : MonoBehaviour
             instance = this;
         }
         menuContainers = GetComponentsInChildren<MenuContainer>(true).ToList();
-        foreach (MenuContainer menuContainer in menuContainers) {
+        /*foreach (MenuContainer menuContainer in menuContainers) {
             Debug.Log(menuContainer.menuType);
-        }
+        }*/
         currentMenu = menuContainers.Find(x => x.menuType == MenuType.flightui);
         lastOpenedPauseMenu = MenuType.loadMenu;
     }

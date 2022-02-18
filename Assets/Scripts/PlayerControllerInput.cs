@@ -307,7 +307,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                     ""id"": ""e8edaf48-d4e3-415f-a78c-c7d4c352236d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""initialStateCheck"": false
                 },
                 {

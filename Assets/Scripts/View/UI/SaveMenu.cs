@@ -23,7 +23,7 @@ public class SaveMenu : MonoBehaviour
 
     public void OnEnable()
     {
-        Debug.Log(Application.persistentDataPath);
+        //Debug.Log(Application.persistentDataPath);
         gameNames = Save.GetSaveFileNames();
         if (savingIsEnabled)
         {
