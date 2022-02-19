@@ -522,7 +522,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c95d56969ba2b40b5fd4be0fbbe72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshFileNames: []
+  files:
+    list:
+    - Key: exampleItemName
+      Value:
+      - Weed_ex
+      - Wheat_ex
+      - Tulip_ex
+    - Key: Acorn
+      Value:
+      - Weeds_y
+      - wheat
+      - Tulip_o
 --- !u!1001 &879303080856050749
 PrefabInstance:
   m_ObjectHideFlags: 0

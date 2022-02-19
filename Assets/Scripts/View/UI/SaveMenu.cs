@@ -4,14 +4,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SaveMenu : MonoBehaviour
+public class SaveMenu : MenuContainer
 {
 
-
+    public MenuType menuType2 = MenuType.loadMenu;
     [SerializeField] private RectTransform saveTemplate;
     [SerializeField] private Transform listContent;
     [SerializeField] private GameObject savingOnlyOptions;
-    public Button backButton;
     public int unsavedProgressSafeToLoseSeconds = 45;
     System.DateTime lastSaveTime = System.DateTime.MinValue;
     private List<string> gameNames;
@@ -21,19 +20,23 @@ public class SaveMenu : MonoBehaviour
     public TMPro.TMP_InputField saveNameInput;
     private List<Save.SaveDescriptorData> gamesDescriptors;
 
-    public void OnEnable()
+    public override void AfterEnableSetup(MenuType currentMenuType)
     {
-        Debug.Log(Application.persistentDataPath);
+        base.AfterEnableSetup(currentMenuType);
         gameNames = Save.GetSaveFileNames();
-        if (savingIsEnabled)
-        {
-            savingOnlyOptions.SetActive(true);
-            PopulateSaveGameList("Overwrite");
-        }
-        else
-        {
-            savingOnlyOptions.SetActive(false);
-            PopulateSaveGameList("Load");
+        switch (menuType)//Set Timescale and Scene
+        { //TODO make sure that the save menu is populated correctly
+            case MenuType.saveMenu:
+                savingOnlyOptions.SetActive(true);
+                PopulateSaveGameList("Overwrite");
+                break;
+            case MenuType.loadMenu:
+                savingOnlyOptions.SetActive(false);
+                PopulateSaveGameList("Load");
+                break;
+            default:
+                Debug.Log("save menu container was passed incorrect menu type");
+                break;
         }
     }
 
@@ -202,7 +205,7 @@ public class SaveMenu : MonoBehaviour
             {
                 lastSaveTime = System.DateTime.Now;
                 Save.LoadDataJson(saveName);
-                backButton.onClick.Invoke();
+                //TODO menu change here
             }
         }
         else
@@ -238,7 +241,7 @@ public class SaveMenu : MonoBehaviour
         {
             Save.LoadDataJson(saveName);
             lastSaveTime = System.DateTime.Now;
-            backButton.onClick.Invoke();
+            //TODO Menu change here backButton.onClick.Invoke();
         }
     }
 }

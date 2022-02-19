@@ -13,13 +13,6 @@ public class SwipeBetweenMenus : MonoBehaviour
 
     // How swipe menu will work:
     // 1 - enumerate the menus
-    // private enum menus {
-    //     PauseMenu, // NOTE: This will need to be the *instance* from parent
-    //     ConfirmMenu,
-    //     SaveMenu,
-    //     SettingsMenu,
-    //     flightUI
-    // }
     // 2 - keep a copy of the current "active" menu
     // private GameObject currentMenu;
     // 3 - define transitions between menus, for example from the default pause
@@ -27,20 +20,23 @@ public class SwipeBetweenMenus : MonoBehaviour
     // takes you to completed quest menu, etc
     // 4 - enable/disable menus based on current state
     // 5 - on swipe, do transition
-
+    [SerializeField]    
+    public List<MenuType> LeftAndRightMenus;
     public InitializeMenuVariables initializeMenuVariables;
+    private int index;
     private InputController inputController;
     private Coroutine coroutine;
 
-    private void OnEnable()
+    private void Start()
     {
+        index = 0;
+        inputController = initializeMenuVariables.inputController;
         if (inputController is null)
         {
             return;
         }
-        inputController = initializeMenuVariables.inputController;
-        inputController.OnStartTouch.AddListener(SwipeStart);
-        inputController.OnEndTouch.AddListener(SwipeEnd);
+        /*inputController.OnStartTouch.AddListener(SwipeStart);
+        inputController.OnEndTouch.AddListener(SwipeEnd);*/
         if (!(initializeMenuVariables.swipeDetection is null))
         {
             initializeMenuVariables.swipeDetection.broadcastSwipe += DetectDirection;
@@ -51,19 +47,12 @@ public class SwipeBetweenMenus : MonoBehaviour
         if (inputController is null)
         {
             return;
-        }
+        }/*
         inputController.OnStartTouch.RemoveListener(SwipeStart);
-        inputController.OnEndTouch.RemoveListener(SwipeEnd);
+        inputController.OnEndTouch.RemoveListener(SwipeEnd);*/
     }
 
-    private enum Direction
-    {
-        up,
-        down,
-        left,
-        right
-    }
-
+    /*
     //listens to the inputController for touch start and activates trail
     public void SwipeStart(Vector2 position, float time)
     {
@@ -74,6 +63,7 @@ public class SwipeBetweenMenus : MonoBehaviour
         particleTrail.SetActive(true);
         coroutine = StartCoroutine(TrailPosition());
     }
+
     //listens to the inputController for touch end and deactivates trail
     public void SwipeEnd(Vector2 position, float time)
     {
@@ -84,6 +74,7 @@ public class SwipeBetweenMenus : MonoBehaviour
         StopCoroutine(coroutine);
         particleTrail.SetActive(false);
     }
+
     //coroutine for updating trail position
     private IEnumerator TrailPosition()
     {
@@ -93,30 +84,62 @@ public class SwipeBetweenMenus : MonoBehaviour
             yield return null;
         }
         yield return null;
+    }*/
+
+
+    private enum Direction
+    {
+        up,
+        down,
+        left,
+        right
     }
 
     private void ChangeMenus(Direction direction)
     {
+        GetIndex();
+        MenuType menuType = MenuManager.instance.GetCurrentMenuType();
         switch (direction)
         {
             case Direction.right:
-                // right menu
+                //Debug.Log("right");
+                index++;
+                index = index % LeftAndRightMenus.Count;
+                MenuManager.instance.SwitchMenu(LeftAndRightMenus[index]);
                 break;
             case Direction.left:
-                // left menu
+                //Debug.Log("left");
+                if (index == 0) 
+                {
+                    index = LeftAndRightMenus.Count;
+                }
+                index--;
+                MenuManager.instance.SwitchMenu(LeftAndRightMenus[index]);
                 break;
             case Direction.down:
-                // down menu
+                //Debug.Log("down" + menuType);
+                if (menuType == MenuType.saveMenu) {
+                    MenuManager.instance.SwitchMenu(MenuType.loadMenu);
+                }
+                // TODO add in quest menus
                 break;
             case Direction.up:
-                // up menu
+                //Debug.Log("up "+menuType);
+                if (menuType == MenuType.loadMenu)
+                {
+                    MenuManager.instance.SwitchMenu(MenuType.saveMenu);
+                }
+                // TODO add in quest menus
                 break;
         }
     }
     // listener to on swipe in swipe detection
     public void DetectDirection(Vector2 startPosition, float startTime, Vector2 endPosition, float endTime)
     {
-
+        if (!MenuManager.instance.onAllPauseMenus.activeInHierarchy) {
+            return;
+        }
+        //Debug.Log("Pause Swipe");
         Vector2 direction = (endPosition - startPosition).normalized;
         if (Vector2.Dot(Vector2.left, direction) > directionLeeway)
         {
@@ -133,6 +156,24 @@ public class SwipeBetweenMenus : MonoBehaviour
         else if (Vector2.Dot(Vector2.down, direction) > directionLeeway)
         {
             ChangeMenus(Direction.down);
+        }
+    }
+
+    private void GetIndex() {
+        MenuType menuType = MenuManager.instance.GetCurrentMenuType();
+        switch (menuType)//Set Timescale and Scene
+        {
+            case MenuType.loadMenu:
+            case MenuType.saveMenu:
+                index = Mathf.Max(0, LeftAndRightMenus.IndexOf(MenuType.saveMenu), LeftAndRightMenus.IndexOf(MenuType.loadMenu));
+                return;
+            case MenuType.questsMenu:
+            case MenuType.uncompletedQuestsMenu:
+                index = Mathf.Max(0, LeftAndRightMenus.IndexOf(MenuType.questsMenu), LeftAndRightMenus.IndexOf(MenuType.uncompletedQuestsMenu));
+                return;
+            default:
+                index = Mathf.Max(0, LeftAndRightMenus.IndexOf(menuType));
+                break;
         }
     }
 }

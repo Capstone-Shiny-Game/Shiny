@@ -23,8 +23,8 @@ public class FlightBrakeEvent : UnityEvent<bool> { }
 
 [Serializable]
 public class FlightBoostEvent : UnityEvent<bool> { }
-[Serializable]
-public class PauseEvent : UnityEvent { }
+//[Serializable]
+//public class PauseEvent : UnityEvent { }
 [Serializable]
 public class DropEvent : UnityEvent { }
 [Serializable]
@@ -47,7 +47,7 @@ public class InputController : MonoBehaviour
     public FlightBrakeEvent flightBrakeHandler;
     public FlightBoostEvent flightBoostHandler;
 
-    public PauseEvent PauseHandler;
+    //public PauseEvent PauseHandler;
     public DropEvent DropHandler;
     public PickupItemEvent ItemHandler;
     public RotateSelectionEvent RotateSelectionHandler;
@@ -177,7 +177,8 @@ public class InputController : MonoBehaviour
 
     private void OnPause(InputAction.CallbackContext context)
     {
-        PauseHandler?.Invoke();
+        MenuManager.instance.SwitchMenu(MenuManager.instance.lastOpenedPauseMenu);
+        //PauseHandler?.Invoke();
     }
 
     private void OnDrop(InputAction.CallbackContext context)

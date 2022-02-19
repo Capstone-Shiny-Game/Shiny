@@ -7,7 +7,7 @@ public class SwipeDetection : MonoBehaviour
     [SerializeField]
     private float minDistanceForSwipe = .4f;
     [SerializeField]
-    private float minTimeForSwipe = 1.0f;
+    private float minTimeForSwipe = .4f;
 
     private Vector2 startPosition;
     private float startTime;
@@ -18,6 +18,7 @@ public class SwipeDetection : MonoBehaviour
 
     public void SwipeStart(Vector2 position, float time)
     {
+        //Debug.Log("press");
         startPosition = position;
         startTime = time;
     }
@@ -33,13 +34,15 @@ public class SwipeDetection : MonoBehaviour
     private void DetectSwipe()
     {
 
-        if (Vector2.Distance(startPosition, endPosition) < minDistanceForSwipe) {
+        if (Vector3.Distance(startPosition, endPosition) < minDistanceForSwipe) {
+            Debug.Log("dist");
             return;
         }
         if (endTime - startTime < minTimeForSwipe) {
+            Debug.Log("time");
             return;
         }
-        Debug.DrawLine(startPosition, endPosition, Color.black, 3f);
+        //Debug.Log("line! " + startPosition + " to " + endPosition);
         broadcastSwipe?.Invoke(startPosition,startTime,endPosition, endTime);
     }
 
