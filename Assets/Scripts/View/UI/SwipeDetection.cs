@@ -35,11 +35,11 @@ public class SwipeDetection : MonoBehaviour
     {
 
         if (Vector3.Distance(startPosition, endPosition) < minDistanceForSwipe) {
-            Debug.Log("dist");
+            //Debug.Log("dist");
             return;
         }
         if (endTime - startTime < minTimeForSwipe) {
-            Debug.Log("time");
+            //Debug.Log("time");
             return;
         }
         //Debug.Log("line! " + startPosition + " to " + endPosition);

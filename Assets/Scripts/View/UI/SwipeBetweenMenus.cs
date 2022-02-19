@@ -125,7 +125,7 @@ public class SwipeBetweenMenus : MonoBehaviour
                 break;
             case Direction.up:
                 //Debug.Log("up "+menuType);
-                if (menuType == MenuType.loadMenu)
+                if (menuType == MenuType.saveMenu)//load menu returns save menu
                 {
                     MenuManager.instance.SwitchMenu(MenuType.saveMenu);
                 }

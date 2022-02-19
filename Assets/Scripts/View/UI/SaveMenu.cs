@@ -22,15 +22,16 @@ public class SaveMenu : MenuContainer
 
     public override void AfterEnableSetup(MenuType currentMenuType)
     {
-        base.AfterEnableSetup(currentMenuType);
         gameNames = Save.GetSaveFileNames();
-        switch (menuType)//Set Timescale and Scene
+        switch (currentMenuType)//Set Timescale and Scene
         { //TODO make sure that the save menu is populated correctly
             case MenuType.saveMenu:
+                //Debug.Log("save");
                 savingOnlyOptions.SetActive(true);
                 PopulateSaveGameList("Overwrite");
                 break;
             case MenuType.loadMenu:
+                //Debug.Log("load");
                 savingOnlyOptions.SetActive(false);
                 PopulateSaveGameList("Load");
                 break;
@@ -38,6 +39,7 @@ public class SaveMenu : MenuContainer
                 Debug.Log("save menu container was passed incorrect menu type");
                 break;
         }
+        base.AfterEnableSetup(currentMenuType);
     }
 
     public void NewSaveGame()
