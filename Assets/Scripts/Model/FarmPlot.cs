@@ -8,13 +8,10 @@ public class FarmPlot : MonoBehaviour
     /* Grows different plants (meshes) based on the seed it's given.
      */
 
-    public SerializableDictionary<string, List<string>> files = new SerializableDictionary<string, List<string>>()
-        {
-            { "exampleItemName", new List<string> { "Weed_ex", "Wheat_ex", "Tulip_ex" } }
-        };
-
+    public SerializableDictionary<string, List<string>> itemMeshes;
 
     private GameObject s1, s2, s3;
+
 
     private void Start()
     {
@@ -38,13 +35,13 @@ public class FarmPlot : MonoBehaviour
     {
         List<string> meshNames = new List<string>();
         bool isProperItem = false;
-        foreach (string key in files.Keys)
+        foreach (string key in itemMeshes.Keys)
         {
             // the item given to the plot is registered and
             // has exactly 3 meshes to cycle thru
-            if (objName.StartsWith(key) && files[key].Count == 3)
+            if (objName.StartsWith(key) && itemMeshes[key].Count == 3)
             {
-                meshNames = files[key];
+                meshNames = itemMeshes[key];
                 isProperItem = true;
                 break;
             }
