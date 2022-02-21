@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5082496598668942976}
+  - component: {fileID: 7364496287787581816}
   m_Layer: 0
   m_Name: Clover_prefab
   m_TagString: Untagged
@@ -31,6 +32,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &7364496287787581816
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4618682406001817505}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.22460008, y: 0.37762344, z: -0.36259007}
+  m_Size: 3.7484307
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.3003716
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 4602959482575221370}
+  - screenRelativeHeight: 0.3
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.29605088
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1
 --- !u!1001 &2891709958280965886
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91,5 +117,10 @@ PrefabInstance:
 --- !u!4 &3435071823446182165 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9d757962a2a018e40a30f42b575971bb, type: 3}
+  m_PrefabInstance: {fileID: 2891709958280965886}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &4602959482575221370 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 9d757962a2a018e40a30f42b575971bb, type: 3}
   m_PrefabInstance: {fileID: 2891709958280965886}
   m_PrefabAsset: {fileID: 0}

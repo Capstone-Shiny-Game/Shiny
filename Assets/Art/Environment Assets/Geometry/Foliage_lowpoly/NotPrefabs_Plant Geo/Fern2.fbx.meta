@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3e0b114f249123c44914ed86dc26f595
+guid: c926bbe97dc6ddd4fab11a7b6cb2abce
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -7,12 +7,7 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Tree_0Mat3
-    second: {fileID: 2100000, guid: 1b132d9e1d620ae4181a06558f801444, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: plant1
+      name: plant
     second: {fileID: 2100000, guid: fe773e5edd46e714890bd7e4379cdb56, type: 2}
   materials:
     materialImportMode: 2
@@ -44,7 +39,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1200
+    globalScale: 1000
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -95,7 +90,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1200
+    globalScale: 10
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

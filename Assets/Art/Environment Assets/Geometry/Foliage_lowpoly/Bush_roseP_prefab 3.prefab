@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2183309461806618142}
   - component: {fileID: 8052022387006979571}
   - component: {fileID: 5213603741958916409}
+  - component: {fileID: 5310574675323752097}
   m_Layer: 0
   m_Name: Bush_roseP_prefab 3
   m_TagString: Untagged
@@ -86,6 +87,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!205 &5310574675323752097
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8130286493043177069}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.0000009536743, y: 5.724763, z: 0.0000019073486}
+  m_Size: 12.871084
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.07255743
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 4139907404205315900}
+    - renderer: {fileID: 4129782919026317748}
+    - renderer: {fileID: 8497305461361823624}
+    - renderer: {fileID: 2017026221438575401}
+    - renderer: {fileID: 4706666621986800440}
+  - screenRelativeHeight: 0.01807251
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 4139907404205315900}
+  - screenRelativeHeight: 0.01807251
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1
 --- !u!1001 &928941315118257356
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -160,6 +191,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1267462957164027801, guid: ea21bf0db7ad8c44487bf5ae260acd94, type: 3}
   m_PrefabInstance: {fileID: 928941315118257356}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &8497305461361823624 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8721288297105300292, guid: ea21bf0db7ad8c44487bf5ae260acd94, type: 3}
+  m_PrefabInstance: {fileID: 928941315118257356}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3364877732462218168
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -220,6 +256,11 @@ PrefabInstance:
 --- !u!4 &2970347177571069011 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6c06bb3ef551d4a43aafb9230a563858, type: 3}
+  m_PrefabInstance: {fileID: 3364877732462218168}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &4139907404205315900 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 6c06bb3ef551d4a43aafb9230a563858, type: 3}
   m_PrefabInstance: {fileID: 3364877732462218168}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4060361359203604604
@@ -296,6 +337,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1267462957164027801, guid: ea21bf0db7ad8c44487bf5ae260acd94, type: 3}
   m_PrefabInstance: {fileID: 4060361359203604604}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &4706666621986800440 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8721288297105300292, guid: ea21bf0db7ad8c44487bf5ae260acd94, type: 3}
+  m_PrefabInstance: {fileID: 4060361359203604604}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4631902534795100912
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -358,6 +404,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1267462957164027801, guid: ea21bf0db7ad8c44487bf5ae260acd94, type: 3}
   m_PrefabInstance: {fileID: 4631902534795100912}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &4129782919026317748 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8721288297105300292, guid: ea21bf0db7ad8c44487bf5ae260acd94, type: 3}
+  m_PrefabInstance: {fileID: 4631902534795100912}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7130842902686939245
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -418,5 +469,10 @@ PrefabInstance:
 --- !u!4 &8314552072779294708 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1267462957164027801, guid: ea21bf0db7ad8c44487bf5ae260acd94, type: 3}
+  m_PrefabInstance: {fileID: 7130842902686939245}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &2017026221438575401 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8721288297105300292, guid: ea21bf0db7ad8c44487bf5ae260acd94, type: 3}
   m_PrefabInstance: {fileID: 7130842902686939245}
   m_PrefabAsset: {fileID: 0}

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8088829207179267885}
+  - component: {fileID: 5169158486122167289}
   m_Layer: 0
   m_Name: Fern_prefab
   m_TagString: Untagged
@@ -31,6 +32,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &5169158486122167289
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376222744404736620}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.18585777, y: 1.3296759, z: -0.75919914}
+  m_Size: 18.760223
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.051472142
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 536674309200088846}
+  - screenRelativeHeight: 0.051472142
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.047915764
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1
 --- !u!1001 &1203362498268468106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91,5 +117,10 @@ PrefabInstance:
 --- !u!4 &1673521209962984545 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6113b61a8379c484e96d2896deed15c3, type: 3}
+  m_PrefabInstance: {fileID: 1203362498268468106}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &536674309200088846 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 6113b61a8379c484e96d2896deed15c3, type: 3}
   m_PrefabInstance: {fileID: 1203362498268468106}
   m_PrefabAsset: {fileID: 0}

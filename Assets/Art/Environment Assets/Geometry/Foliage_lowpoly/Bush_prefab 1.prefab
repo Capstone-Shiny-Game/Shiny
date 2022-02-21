@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 2183309461806618142}
   - component: {fileID: 8052022387006979571}
   - component: {fileID: 5213603741958916409}
+  - component: {fileID: 6584214355197440621}
   m_Layer: 0
-  m_Name: Bush_prefab
+  m_Name: Bush_prefab 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,6 +83,31 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!205 &6584214355197440621
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8130286493043177069}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.0000009536743, y: 5.296886, z: 0.0000019073486}
+  m_Size: 12.871084
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.015843833
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 4139907404205315900}
+  - screenRelativeHeight: 0.015843833
+    fadeTransitionWidth: 0
+    renderers: []
+  - screenRelativeHeight: 0.015843833
+    fadeTransitionWidth: 0
+    renderers: []
+  m_Enabled: 1
 --- !u!1001 &3364877732462218168
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -142,5 +168,10 @@ PrefabInstance:
 --- !u!4 &2970347177571069011 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6c06bb3ef551d4a43aafb9230a563858, type: 3}
+  m_PrefabInstance: {fileID: 3364877732462218168}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &4139907404205315900 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 6c06bb3ef551d4a43aafb9230a563858, type: 3}
   m_PrefabInstance: {fileID: 3364877732462218168}
   m_PrefabAsset: {fileID: 0}
