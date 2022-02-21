@@ -13,6 +13,10 @@ public class DayController : MonoBehaviour
     [SerializeField] private float LengthOfDay;
     private string[] DaysOfWeek = {"Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
     private int DayIndex = 0;
+    private readonly float midDay = 12.0f;
+
+    public delegate void MidDay();
+    public static event MidDay OnMidDayEvent;
 
 
     private void Start()
@@ -35,7 +39,7 @@ public class DayController : MonoBehaviour
 
     private IEnumerator Lerp()
     {
-
+        bool hasReachedMidDay = false;
         float timeElapsed = 0;
         while (timeElapsed < LengthOfDay)
         {
@@ -43,6 +47,11 @@ public class DayController : MonoBehaviour
             timeElapsed += Time.deltaTime;
             TimeOfDay %= 24;
             UpdateLighting(TimeOfDay/24f);
+            if (!hasReachedMidDay && Mathf.Approximately(midDay, TimeOfDay))
+            {
+                OnMidDayEvent?.Invoke();
+                hasReachedMidDay = true;
+            }
             yield return null;
         }
         DayIndex++;
