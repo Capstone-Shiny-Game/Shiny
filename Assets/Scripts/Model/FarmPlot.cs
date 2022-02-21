@@ -36,26 +36,32 @@ public class FarmPlot : MonoBehaviour
 
     private void InstantiatePlot(string objName)
     {
-        //switch (objName)
-        //{
-        //    case string name when name.StartsWith("Acorn"):
-        //        if (!hasThreeMeshes("Acorn"))
-        //            break;
+        List<string> meshNames = new List<string>();
+        bool isProperItem = false;
+        foreach (string key in files.Keys)
+        {
+            // the item given to the plot is registered and
+            // has exactly 3 meshes to cycle thru
+            if (objName.StartsWith(key) && files[key].Count == 3)
+            {
+                meshNames = files[key];
+                isProperItem = true;
+                break;
+            }
+        }
 
-        //        s1.GetComponent<MeshFilter>().sharedMesh = Resources.Load<Mesh>("");
-        //        s1.SetActive(true);
-        //        s2.GetComponent<MeshFilter>().sharedMesh = Resources.Load<Mesh>("");
-        //        s2.SetActive(false);
-        //        s3.GetComponent<MeshFilter>().sharedMesh = Resources.Load<Mesh>("");
-        //        s3.SetActive(false);
-
-        //        break;
-        //    default:
-        //        Debug.Log("OnTriggerEnter(): You've tried to plant an unexpected item");
-        //        break;
-        //}
+        if (isProperItem)
+        {
+            s1.GetComponent<MeshFilter>().sharedMesh = Resources.Load<Mesh>(meshNames[0]);
+            s1.SetActive(true);
+            s2.GetComponent<MeshFilter>().sharedMesh = Resources.Load<Mesh>(meshNames[1]);
+            s2.SetActive(false);
+            s3.GetComponent<MeshFilter>().sharedMesh = Resources.Load<Mesh>(meshNames[2]);
+            s3.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("OnTriggerEnter(): You've tried to plant an unexpected item");
+        }
     }
-
-    //private bool hasThreeMeshes(string search) => 
-    //    meshFileNames.Where(name => meshFileNames.Contains(search)).ToArray().Length == 3;
 }
