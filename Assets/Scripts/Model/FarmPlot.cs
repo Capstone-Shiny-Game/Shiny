@@ -1,24 +1,28 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static SeedCropMap;
 
 public class FarmPlot : MonoBehaviour
 {
     /* Grows different plants (meshes) based on the seed it's given.
      */
 
-    public SerializableDictionary<string, List<string>> itemMeshes;
+    public List<SeedCropEntry> seedCropMap;
 
-    private GameObject s1, s2, s3;
-    private int currMesh;
+    private GameObject s1;
+    private GameObject harvestButton;
+
+    private SeedCropEntry currCrop;
+    private List<Mesh> currMeshes;
+    private int meshIndex;
     private bool hasCrop;
 
 
     private void Start()
     {
-        s1 = transform.Find("stage1").GetChild(0).gameObject;
-        s2 = transform.Find("stage2").GetChild(0).gameObject;
-        s3 = transform.Find("stage3").GetChild(0).gameObject;
-        currMesh = -1;
+        s1 = transform.Find("stage").GetChild(0).gameObject;
+        harvestButton = transform.Find("InteractButton").GetChild(0).gameObject;
+        meshIndex = -1;
         hasCrop = false;
 
         // TEST
@@ -50,29 +54,30 @@ public class FarmPlot : MonoBehaviour
 
     private void TryInstantiatePlot(string objName, out bool success)
     {
-        List<string> meshNames = new List<string>();
         bool isProperItem = false;
-        foreach (string key in itemMeshes.Keys)
+        foreach (SeedCropEntry crop in seedCropMap)
         {
             // the item given to the plot is registered and
-            // has exactly 3 meshes to cycle thru
-            if (objName.StartsWith(key) && itemMeshes[key].Count == 3)
+            // has at least 1 mesh to cycle thru
+            if (objName.ToLower().StartsWith(crop.seedName.ToLower()) 
+                && crop.meshNames.Count > 0)
             {
-                meshNames = itemMeshes[key];
                 isProperItem = true;
+                currCrop = crop;
                 break;
             }
         }
 
         if (isProperItem)
         {
-            s1.GetComponent<MeshFilter>().sharedMesh = Resources.Load<Mesh>(meshNames[0]);
-            s1.SetActive(false);
-            s2.GetComponent<MeshFilter>().sharedMesh = Resources.Load<Mesh>(meshNames[1]);
-            s2.SetActive(false);
-            s3.GetComponent<MeshFilter>().sharedMesh = Resources.Load<Mesh>(meshNames[2]);
-            s3.SetActive(false);
+            currMeshes = new List<Mesh>();
+            foreach (string meshName in currCrop.meshNames)
+            {
+                currMeshes.Add(Resources.Load<Mesh>(meshName));
+            }
 
+            s1.SetActive(true);
+            LoadNextMesh();
             success = true;
         }
         else
@@ -84,24 +89,14 @@ public class FarmPlot : MonoBehaviour
 
     private void LoadNextMesh()
     {
-        if (hasCrop && currMesh < 2)
+        if (hasCrop && ++meshIndex < currCrop.meshNames.Count)
         {
-            switch (++currMesh)
-            {
-                case 0:
-                    s1.SetActive(true);
-                    break;
-                case 1:
-                    s1.SetActive(false);
-                    s2.SetActive(true);
-                    break;
-                case 2:
-                    s2.SetActive(false);
-                    s3.SetActive(true);
-                    break;
-                default:
-                    break;
-            }
+            s1.GetComponent<MeshFilter>().sharedMesh = currMeshes[meshIndex];
         }
+    }
+
+    public void HarvestItem()
+    {
+
     }
 }
