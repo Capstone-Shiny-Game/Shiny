@@ -20,7 +20,7 @@ public class FarmPlot : MonoBehaviour
         currMesh = -1;
 
         // TEST
-        InstantiatePlot("Acorn_Prefab");
+        TryInstantiatePlot("Acorn_Prefab");
     }
 
     private void OnEnable()
@@ -37,11 +37,11 @@ public class FarmPlot : MonoBehaviour
     {
         if (other.CompareTag("Tradeable"))
         {
-            InstantiatePlot(other.name);
+            TryInstantiatePlot(other.name);
         }
     }
 
-    private void InstantiatePlot(string objName)
+    private void TryInstantiatePlot(string objName)
     {
         List<string> meshNames = new List<string>();
         bool isProperItem = false;
@@ -61,8 +61,10 @@ public class FarmPlot : MonoBehaviour
         {
             s1.GetComponent<MeshFilter>().sharedMesh = Resources.Load<Mesh>(meshNames[0]);
             s1.SetActive(false);
+
             s2.GetComponent<MeshFilter>().sharedMesh = Resources.Load<Mesh>(meshNames[1]);
             s2.SetActive(false);
+
             s3.GetComponent<MeshFilter>().sharedMesh = Resources.Load<Mesh>(meshNames[2]);
             s3.SetActive(false);
         }
@@ -76,7 +78,22 @@ public class FarmPlot : MonoBehaviour
     {
         if (currMesh < 2)
         {
-
+            switch (++currMesh)
+            {
+                case 0:
+                    s1.SetActive(true);
+                    break;
+                case 1:
+                    s1.SetActive(false);
+                    s2.SetActive(true);
+                    break;
+                case 2:
+                    s2.SetActive(false);
+                    s3.SetActive(true);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

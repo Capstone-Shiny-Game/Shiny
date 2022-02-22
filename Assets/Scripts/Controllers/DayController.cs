@@ -47,7 +47,7 @@ public class DayController : MonoBehaviour
             timeElapsed += Time.deltaTime;
             TimeOfDay %= 24;
             UpdateLighting(TimeOfDay/24f);
-            if (!hasReachedMidDay && Mathf.Approximately(midDay, TimeOfDay))
+            if (!hasReachedMidDay && TimeOfDay > midDay)
             {
                 OnMidDayEvent?.Invoke();
                 hasReachedMidDay = true;
