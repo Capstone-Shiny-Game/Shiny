@@ -21,7 +21,7 @@ public class FarmPlot : MonoBehaviour
     private void Start()
     {
         s1 = transform.Find("stage").GetChild(0).gameObject;
-        harvestButton = transform.Find("InteractButton").GetChild(0).gameObject;
+        harvestButton = transform.Find("InteractButton").gameObject;
         meshIndex = -1;
         hasCrop = false;
 
@@ -89,14 +89,32 @@ public class FarmPlot : MonoBehaviour
 
     private void LoadNextMesh()
     {
-        if (hasCrop && ++meshIndex < currCrop.meshNames.Count)
+        if (hasCrop)
         {
-            s1.GetComponent<MeshFilter>().sharedMesh = currMeshes[meshIndex];
+            if (++meshIndex < currCrop.meshNames.Count)
+            {
+                s1.GetComponent<MeshFilter>().sharedMesh = currMeshes[meshIndex];
+            }
+
+            // last mesh, load the interact button for harvesting
+            if (meshIndex == currCrop.meshNames.Count - 1)
+            {
+                harvestButton.SetActive(true);
+            }
         }
     }
 
     public void HarvestItem()
     {
+        Instantiate(currCrop.cropObj, transform.position + new Vector3(2f, 1f, 0), transform.rotation);
+        ResetFarmPlot();
+    }
 
+    private void ResetFarmPlot()
+    {
+        hasCrop = false;
+        meshIndex = -1;
+        harvestButton.SetActive(false);
+        s1.GetComponent<MeshFilter>().sharedMesh.Clear();
     }
 }
