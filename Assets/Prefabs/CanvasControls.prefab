@@ -2905,7 +2905,6 @@ GameObject:
   m_Component:
   - component: {fileID: 816933006277010256}
   - component: {fileID: 5695601469215867666}
-  - component: {fileID: 9055637135047519477}
   m_Layer: 5
   m_Name: SaveMenu
   m_TagString: Untagged
@@ -2947,28 +2946,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89a569927fe88574294357f02647a2f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuType: 2
+  menuType2: 3
   saveTemplate: {fileID: 432026039997854084}
   listContent: {fileID: 6488829453435338207}
   savingOnlyOptions: {fileID: 9066883651993728578}
-  backButton: {fileID: 0}
   unsavedProgressSafeToLoseSeconds: 45
   confirmPopup: {fileID: 1714953117954474983}
   saveNameInput: {fileID: 3794407188616454332}
---- !u!114 &9055637135047519477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2447869856625026297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 911b62b2962ee784289338668e9c884b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menuType: 2
-  saveMenu: {fileID: 5695601469215867666}
-  menuType2: 3
 --- !u!1 &2805468859384808040
 GameObject:
   m_ObjectHideFlags: 0
