@@ -22,5 +22,12 @@ public enum QSItem
     Apple,
 }
 
+/// <summary>
+/// Whether the quest is unlocked
+/// </summary>
 public struct QSUnlock { bool Unlocked; }
+
+/// <summary>
+/// Links an action to a quest if the quest is unlocked
+/// </summary>
 public struct QSLink { bool Active; }
