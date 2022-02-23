@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
+using Cinemachine;
 
 public class PlayerController : MonoBehaviour, Savable
 {
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour, Savable
     private GameObject flightCam;
     private GameObject walkCam;
     private Crow crow;
+
 
     // public GameObject NPCUI;
     public GameObject ControllerUI;
@@ -53,6 +55,7 @@ public class PlayerController : MonoBehaviour, Savable
         flightCam = GameObject.Find("CM Flying");
         walkCam = GameObject.Find("CM Walking");
 
+
         flightController = GetComponent<FlightController>();
         walkingController = GetComponent<WalkingController>();
         crow = GetComponent<Crow>();
@@ -76,18 +79,19 @@ public class PlayerController : MonoBehaviour, Savable
         state = next;
         bool previouslyFlying = flightController.enabled;
 
-        flightController .enabled = state == CrowState.Flying  || state == CrowState.Gliding;
+        flightController.enabled = state == CrowState.Flying || state == CrowState.Gliding;
         walkingController.enabled = state == CrowState.Walking || state == CrowState.Idle;
-        flightCam.SetActive( flightController.enabled);
-        walkCam  .SetActive(!flightController.enabled);
-        if(CrowState.Walking == state)
+
+        flightCam.SetActive(flightController.enabled);
+        walkCam.SetActive(!flightController.enabled);
+        if (CrowState.Walking == state)
         {
             crow.resetModelRotation();
         }
-        birdAnimator.SetBool("isFlying" , state == CrowState.Flying);
+        birdAnimator.SetBool("isFlying", state == CrowState.Flying);
         birdAnimator.SetBool("isGliding", state == CrowState.Gliding);
         birdAnimator.SetBool("isWalking", state == CrowState.Walking);
-        birdAnimator.SetBool("isIdle"   , state == CrowState.Idle);
+        birdAnimator.SetBool("isIdle", state == CrowState.Idle);
 
         if (flightController.enabled && !previouslyFlying && addYForTakeoff != 0)
         {
@@ -101,6 +105,8 @@ public class PlayerController : MonoBehaviour, Savable
             // pitch up on takeoff
             transform.RotateAround(transform.position, transform.right, -30);
             birdAnimator.SetBool("WalktoFly", true);
+            flightCam.GetComponent<ModifyOrbitor>().ResetZero();
+
         }
 
         if (previouslyFlying && !flightController.enabled)
@@ -117,6 +123,7 @@ public class PlayerController : MonoBehaviour, Savable
             {
                 crow.resetModelRotation();
                 SetFixedPosition(ground);
+                walkCam.GetComponent<ModifyOrbitor>().ResetZero();
                 SetState(CrowState.Walking);
             }
         }
@@ -124,6 +131,7 @@ public class PlayerController : MonoBehaviour, Savable
         {
             crow.resetModelRotation();
             SetFixedPosition(transform.FindGround(transform.localScale.y / 2));
+            walkCam.GetComponent<ModifyOrbitor>().ResetZero();
             SetState(CrowState.Walking);
 
         }

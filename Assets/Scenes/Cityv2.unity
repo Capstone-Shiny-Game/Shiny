@@ -15422,8 +15422,8 @@ GameObject:
   m_Component:
   - component: {fileID: 261187583}
   - component: {fileID: 261187586}
-  - component: {fileID: 261187585}
   - component: {fileID: 261187584}
+  - component: {fileID: 261187585}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -15481,19 +15481,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 261187582}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa7155796051b734daa718462081dc5f, type: 3}
+  m_Script: {fileID: 11500000, guid: 9384ab8608cdc3d479fe89cd51eed48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 6, z: -4.73}
+  m_FollowOffset: {x: 0, y: 0, z: -10}
   m_XDamping: 1
-  m_YDamping: 3.2
+  m_YDamping: 1
   m_ZDamping: 1
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
   m_RollDamping: 0
   m_AngularDamping: 0
+  m_Heading:
+    m_Definition: 2
+    m_VelocityFilterStrength: 4
+    m_Bias: 0
+  m_RecenterToTargetHeading:
+    m_enabled: 0
+    m_WaitTime: 0
+    m_RecenteringTime: 0.5
+    m_LegacyHeadingDefinition: -1
+    m_LegacyVelocityFilterStrength: -1
+  m_XAxis:
+    Value: 0
+    m_SpeedMode: 0
+    m_MaxSpeed: 300
+    m_AccelTime: 0.1
+    m_DecelTime: 0.1
+    m_InputAxisName: 
+    m_InputAxisValue: 0
+    m_InvertInput: 1
+    m_MinValue: -180
+    m_MaxValue: 180
+    m_Wrap: 1
+    m_Recentering:
+      m_enabled: 0
+      m_WaitTime: 1
+      m_RecenteringTime: 2
+      m_LegacyHeadingDefinition: -1
+      m_LegacyVelocityFilterStrength: -1
+  m_LegacyRadius: 3.4028235e+38
+  m_LegacyHeightOffset: 3.4028235e+38
+  m_LegacyHeadingBias: 3.4028235e+38
+  m_HeadingIsSlave: 0
 --- !u!114 &261187586
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -20614,7 +20646,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 823380673}
     - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: flightLookHandler.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: flightMoveHandler.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: flightResetLookHandler.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
@@ -20626,35 +20666,115 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 563865757}
     - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: flightLookHandler.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: flightMoveHandler.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: flightLookHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1092977926}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: flightLookHandler.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1256193459}
     - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: flightMoveHandler.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1029421941}
     - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: flightLookHandler.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: flightMoveHandler.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: flightResetLookHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: flightResetLookHandler.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: flightLookHandler.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeAngle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: flightLookHandler.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ChangeAngle
       objectReference: {fileID: 0}
     - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: flightMoveHandler.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: SetWalkXY
       objectReference: {fileID: 0}
     - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: flightResetLookHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1092977926}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: flightResetLookHandler.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1256193459}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: flightTogglePOVHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: flightResetLookHandler.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: flightResetLookHandler.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: flightResetLookHandler.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Reset
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: flightResetLookHandler.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Reset
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: flightLookHandler.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ModifyOrbitor, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: flightLookHandler.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ModifyOrbitor, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: flightMoveHandler.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: WalkingController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: flightResetLookHandler.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ModifyOrbitor, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: flightResetLookHandler.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ModifyOrbitor, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: flightLookHandler.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
       propertyPath: flightMoveHandler.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: flightResetLookHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400363571894820031, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
+      propertyPath: flightResetLookHandler.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4566357708408431920, guid: 151adea1bd1d4a64ead22ad7e1e5ef97, type: 3}
@@ -43951,6 +44071,7 @@ GameObject:
   - component: {fileID: 1092977924}
   - component: {fileID: 1092977923}
   - component: {fileID: 1092977925}
+  - component: {fileID: 1092977926}
   m_Layer: 0
   m_Name: CM Walking
   m_TagString: Untagged
@@ -44000,7 +44121,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1092977922}
-  m_LocalRotation: {x: -0.085524954, y: -0.49424577, z: -0.0489399, w: 0.8637196}
+  m_LocalRotation: {x: -0.08552495, y: -0.49424577, z: -0.048939895, w: 0.8637196}
   m_LocalPosition: {x: 623.5478, y: 219, z: -1511.616}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -44038,6 +44159,22 @@ MonoBehaviour:
   m_Damping: 2.84
   m_DampingWhenOccluded: 0
   m_OptimalTargetDistance: 0
+--- !u!114 &1092977926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092977922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c8f9fcd4bae00f4a82902f9bb3341b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ySens: 0.05
+  xSens: 1
+  minY: 0
+  maxY: 10
 --- !u!1001 &1095524906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49972,6 +50109,7 @@ GameObject:
   - component: {fileID: 1256193457}
   - component: {fileID: 1256193456}
   - component: {fileID: 1256193458}
+  - component: {fileID: 1256193459}
   m_Layer: 0
   m_Name: CM Flying
   m_TagString: Untagged
@@ -50021,8 +50159,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1256193455}
-  m_LocalRotation: {x: 0.40693513, y: -0.4386875, z: 0.23285733, w: 0.76663846}
-  m_LocalPosition: {x: 619.0042, y: 225, z: -1508.9459}
+  m_LocalRotation: {x: 0.01807005, y: -0.49655452, z: 0.010340196, w: 0.86775583}
+  m_LocalPosition: {x: 623.5478, y: 219, z: -1511.616}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 261187583}
@@ -50059,6 +50197,22 @@ MonoBehaviour:
   m_Damping: 2.84
   m_DampingWhenOccluded: 0
   m_OptimalTargetDistance: 0
+--- !u!114 &1256193459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256193455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c8f9fcd4bae00f4a82902f9bb3341b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ySens: 0.05
+  xSens: 0.51
+  minY: -0.44
+  maxY: 10
 --- !u!1001 &1260466421
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82306,8 +82460,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960509321}
-  m_LocalRotation: {x: 0.40693513, y: -0.4386875, z: 0.23285733, w: 0.76663846}
-  m_LocalPosition: {x: 619.0042, y: 225, z: -1508.9459}
+  m_LocalRotation: {x: 0.01807005, y: -0.49655452, z: 0.010340196, w: 0.86775583}
+  m_LocalPosition: {x: 623.5478, y: 219, z: -1511.616}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -87423,9 +87577,9 @@ MonoBehaviour:
     m_VelocityFilterStrength: 4
     m_Bias: 0
   m_RecenterToTargetHeading:
-    m_enabled: 1
-    m_WaitTime: 1
-    m_RecenteringTime: 2
+    m_enabled: 0
+    m_WaitTime: 0
+    m_RecenteringTime: 1
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:

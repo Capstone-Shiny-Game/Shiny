@@ -46,7 +46,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""ToggleFirstPerson"",
+                    ""name"": ""ResetLook"",
                     ""type"": ""Button"",
                     ""id"": ""834ae251-2bbc-4d76-b69e-470d984b5fcc"",
                     ""expectedControlType"": ""Button"",
@@ -189,7 +189,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ToggleFirstPerson"",
+                    ""action"": ""ResetLook"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -200,7 +200,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ToggleFirstPerson"",
+                    ""action"": ""ResetLook"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -396,7 +396,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
         m_FlightMap = asset.FindActionMap("FlightMap", throwIfNotFound: true);
         m_FlightMap_Flight = m_FlightMap.FindAction("Flight", throwIfNotFound: true);
         m_FlightMap_Look = m_FlightMap.FindAction("Look", throwIfNotFound: true);
-        m_FlightMap_ToggleFirstPerson = m_FlightMap.FindAction("ToggleFirstPerson", throwIfNotFound: true);
+        m_FlightMap_ResetLook = m_FlightMap.FindAction("ResetLook", throwIfNotFound: true);
         m_FlightMap_Boost = m_FlightMap.FindAction("Boost", throwIfNotFound: true);
         m_FlightMap_Brake = m_FlightMap.FindAction("Brake", throwIfNotFound: true);
         m_FlightMap_LockCursor = m_FlightMap.FindAction("LockCursor", throwIfNotFound: true);
@@ -469,7 +469,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
     private IFlightMapActions m_FlightMapActionsCallbackInterface;
     private readonly InputAction m_FlightMap_Flight;
     private readonly InputAction m_FlightMap_Look;
-    private readonly InputAction m_FlightMap_ToggleFirstPerson;
+    private readonly InputAction m_FlightMap_ResetLook;
     private readonly InputAction m_FlightMap_Boost;
     private readonly InputAction m_FlightMap_Brake;
     private readonly InputAction m_FlightMap_LockCursor;
@@ -479,7 +479,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
         public FlightMapActions(@PlayerControllerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Flight => m_Wrapper.m_FlightMap_Flight;
         public InputAction @Look => m_Wrapper.m_FlightMap_Look;
-        public InputAction @ToggleFirstPerson => m_Wrapper.m_FlightMap_ToggleFirstPerson;
+        public InputAction @ResetLook => m_Wrapper.m_FlightMap_ResetLook;
         public InputAction @Boost => m_Wrapper.m_FlightMap_Boost;
         public InputAction @Brake => m_Wrapper.m_FlightMap_Brake;
         public InputAction @LockCursor => m_Wrapper.m_FlightMap_LockCursor;
@@ -498,9 +498,9 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                 @Look.started -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnLook;
-                @ToggleFirstPerson.started -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnToggleFirstPerson;
-                @ToggleFirstPerson.performed -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnToggleFirstPerson;
-                @ToggleFirstPerson.canceled -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnToggleFirstPerson;
+                @ResetLook.started -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnResetLook;
+                @ResetLook.performed -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnResetLook;
+                @ResetLook.canceled -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnResetLook;
                 @Boost.started -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnBoost;
                 @Boost.performed -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnBoost;
                 @Boost.canceled -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnBoost;
@@ -520,9 +520,9 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
-                @ToggleFirstPerson.started += instance.OnToggleFirstPerson;
-                @ToggleFirstPerson.performed += instance.OnToggleFirstPerson;
-                @ToggleFirstPerson.canceled += instance.OnToggleFirstPerson;
+                @ResetLook.started += instance.OnResetLook;
+                @ResetLook.performed += instance.OnResetLook;
+                @ResetLook.canceled += instance.OnResetLook;
                 @Boost.started += instance.OnBoost;
                 @Boost.performed += instance.OnBoost;
                 @Boost.canceled += instance.OnBoost;
@@ -613,7 +613,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
     {
         void OnFlight(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
-        void OnToggleFirstPerson(InputAction.CallbackContext context);
+        void OnResetLook(InputAction.CallbackContext context);
         void OnBoost(InputAction.CallbackContext context);
         void OnBrake(InputAction.CallbackContext context);
         void OnLockCursor(InputAction.CallbackContext context);
