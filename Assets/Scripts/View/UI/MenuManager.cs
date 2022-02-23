@@ -26,6 +26,7 @@ public class MenuManager : MonoBehaviour
     public static MenuManager instance;
     List<MenuContainer> menuContainers;
     public GameObject onAllPauseMenus;
+    public GameObject pauseMenuBackground;
     private MenuContainer currentMenu;
     [HideInInspector]
     public MenuType lastOpenedPauseMenu;
@@ -94,12 +95,14 @@ public class MenuManager : MonoBehaviour
     {
         Time.timeScale = 1f; // set time back to normal
         onAllPauseMenus.SetActive(false);
+        pauseMenuBackground.SetActive(false);
     }
 
     private void EnablePause()
     {
         Time.timeScale = 0f;
         onAllPauseMenus.SetActive(true);
+        pauseMenuBackground.SetActive(true);
     }
 
     public MenuType GetCurrentMenuType() {

@@ -16,6 +16,7 @@ public class ChangeMenuButton : MonoBehaviour
     }
 
     public void OnButtonClicked() {
+        Debug.Log("HI");
         MenuManager.instance.SwitchMenu(MenuToGoTo);
     }
 }
