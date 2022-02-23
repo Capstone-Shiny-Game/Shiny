@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//[CreateAssetMenu()]
 public class SeedCropMap : ScriptableObject
 {
     [System.Serializable]
@@ -9,8 +8,6 @@ public class SeedCropMap : ScriptableObject
     {
         public string seedName;
         public List<string> meshNames;
-        public GameObject crop;
+        public GameObject cropObj;
     }
-
-    //public SeedCropEntry[] seedCrops;
 }
