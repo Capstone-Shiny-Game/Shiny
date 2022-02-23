@@ -12,7 +12,8 @@ public class FlightController : MonoBehaviour
     public float acceleration = 15.0f;
     public float maxDiveSpeed = 40f;
     public float minGlideSpeed = 10f;
-
+    public float maxHeight = 100f;
+    public float heightAboveLand = 25f;
     // Time to move back from the tilted position, in seconds.
     private float smoothTilt = 2.0f;
     // The time at which the animation started.
@@ -33,7 +34,7 @@ public class FlightController : MonoBehaviour
     public GameObject LeftTrail;
     public GameObject RightTrail;
     private Crow crow;
-
+    public GameObject ceiling;
     public event Action<bool> Landed;
     public event Action<bool> FlightTypeChanged;
     public bool isGliding = false;
@@ -64,6 +65,16 @@ public class FlightController : MonoBehaviour
             transform.LookAt(newVector);
            // StartCoroutine(BounceOnCollision(other.GetContact(0).normal));
 
+        }
+        else if (other.gameObject.CompareTag("Ceiling"))
+        {
+            Debug.Log("Ceiling");
+            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x,maxHeight, transform.position.z), Time.deltaTime*2f);
+           Quaternion target = transform.rotation;
+            target = Quaternion.Euler(10, target.eulerAngles.y, 0);
+            transform.rotation = target;
+            StartCoroutine(Slow());
+   
         }
         else if (other is TerrainCollider)
         {
@@ -256,6 +267,7 @@ public class FlightController : MonoBehaviour
 
             }
         }
+      
     }
 
 
@@ -354,6 +366,8 @@ public class FlightController : MonoBehaviour
     }
     private void OnEnable()
     {
+        ceiling.transform.position = new Vector3(ceiling.transform.position.x, transform.position.y + heightAboveLand, ceiling.transform.position.z);
+        maxHeight = ceiling.transform.position.y;
         LeftTrail.SetActive(true);
         RightTrail.SetActive(true);
         speed = 10f;
@@ -371,5 +385,38 @@ public class FlightController : MonoBehaviour
     public void SetBrake(bool b)
     {
         isBraking = b;
+    }
+
+    Terrain GetClosestCurrentTerrain(Vector3 playerPos)
+    {
+        //Get all terrain
+        Terrain[] terrains = Terrain.activeTerrains;
+
+        //Make sure that terrains length is ok
+        if (terrains.Length == 0)
+            return null;
+
+        //If just one, return that one terrain
+        if (terrains.Length == 1)
+            return terrains[0];
+
+        //Get the closest one to the player
+        float lowDist = (terrains[0].GetPosition() - playerPos).sqrMagnitude;
+        var terrainIndex = 0;
+
+        for (int i = 1; i < terrains.Length; i++)
+        {
+            Terrain terrain = terrains[i];
+            Vector3 terrainPos = terrain.GetPosition();
+
+            //Find the distance and check if it is lower than the last one then store it
+            var dist = (terrainPos - playerPos).sqrMagnitude;
+            if (dist < lowDist)
+            {
+                lowDist = dist;
+                terrainIndex = i;
+            }
+        }
+        return terrains[terrainIndex];
     }
 }
