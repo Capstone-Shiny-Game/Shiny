@@ -17,11 +17,6 @@ public enum QSNPC
     Witch,
 }
 
-public enum QSItem
-{
-    Apple,
-}
-
 /// <summary>
 /// Whether the quest is unlocked
 /// </summary>
