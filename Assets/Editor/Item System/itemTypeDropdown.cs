@@ -7,11 +7,6 @@ public class StatListEditor : Editor
 {
     private static ItemDB itemDB;
     //other item variables are in itemSO
-    public static void SetItemDB()
-    {
-        //TODO maybe change this to it's own load function
-        itemDB = CreateItemWindow.LoadAsset<ItemDB>(CreateItemWindow.path, CreateItemWindow.databaseName);
-    }
 
     public int selectedIndex = 0;
 
@@ -21,7 +16,7 @@ public class StatListEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        SetItemDB();
+        itemDB = ItemDBUtil.GetItemDB();
         serializedObject.Update();
         ItemWorld itemWorld = (ItemWorld)target;
         EditorGUILayout.PrefixLabel("Item");

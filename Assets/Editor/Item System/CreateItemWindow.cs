@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CreateItemWindow : EditorWindow
 {
-    public static string path = "Assets/ItemSystem/ItemDatabase/";
-    private static string itemPath = "Assets/ItemSystem/ItemSO/";
-    public static string databaseName = "itemDB";
+    public static string path = ItemDBUtil.path;
+    private static string itemPath = ItemDBUtil.itemPath;
+    public static string databaseName = ItemDBUtil.databaseName;
     private static ItemDB itemDB;
     public static SerializableDictionary<string, ItemSO> items { get; set; }
     int selected = 0;
@@ -28,7 +28,7 @@ public class CreateItemWindow : EditorWindow
     void OnGUI()
     {
         // Loads the database, or creates it if necessary
-        itemDB = CreateAsset<ItemDB>(path, databaseName);
+        itemDB = ItemDBUtil.CreateAsset<ItemDB>(path, databaseName);
         items = itemDB.items;
 
         // The list of options that can be clicked on in the menu
@@ -109,12 +109,10 @@ public class CreateItemWindow : EditorWindow
                 selected = 0;
                 changedSelection = true;
                 items.Remove(loadedItemType);
-                DeleteAsset<ItemSO>(itemPath, loadedItemType);
-                SaveAsset(itemDB);
+                ItemDBUtil.DeleteAsset<ItemSO>(itemPath, loadedItemType);
+                ItemDBUtil.SaveAsset(itemDB);
             }
         }
-
-
     }
 
     private void UpdateButtonClick(List<string> options)
@@ -162,7 +160,7 @@ public class CreateItemWindow : EditorWindow
     private ItemSO CreateItem()
     {
         // item type as the name here
-        ItemSO itemToAdd = CreateAsset<ItemSO>(itemPath, itemType);
+        ItemSO itemToAdd = ItemDBUtil.CreateAsset<ItemSO>(itemPath, itemType);
         itemToAdd.itemType = itemType;
         itemToAdd.weight = weight;
         itemToAdd.stackable = stackable;
@@ -176,48 +174,7 @@ public class CreateItemWindow : EditorWindow
     {
         items.Add(itemType, itemToAdd);
         itemDB.items = items;
-        SaveAsset((UnityEngine.Object)itemToAdd);
-        SaveAsset(itemDB);
-    }
-
-    public static T LoadAsset<T>(string path, string assetName) where T : ScriptableObject
-    {
-        return AssetDatabase.LoadAssetAtPath<T>($"{path}/{assetName}.asset");
-    }
-
-    private static void SaveAsset(UnityEngine.Object asset)
-    {
-        EditorUtility.SetDirty(asset);
-        AssetDatabase.SaveAssets();
-        AssetDatabase.Refresh();
-        // EditorUtility.FocusProjectWindow();
-    }
-
-    private static T CreateAsset<T>(string path, string assetName) where T : ScriptableObject
-    {
-        string fullPath = $"{path}/{assetName}.asset";
-
-        T asset = LoadAsset<T>(path, assetName);
-
-        if (asset is null)
-        {
-            asset = ScriptableObject.CreateInstance<T>();
-
-            AssetDatabase.CreateAsset(asset, fullPath);
-        }
-
-        return asset;
-    }
-
-    private static void DeleteAsset<T>(string path, string assetName) where T : ScriptableObject
-    {
-        string fullPath = $"{path}/{assetName}.asset";
-
-        T asset = LoadAsset<T>(path, assetName);
-
-        if (!(asset is null))
-        {
-            AssetDatabase.DeleteAsset(fullPath);
-        }
+        ItemDBUtil.SaveAsset((UnityEngine.Object)itemToAdd);
+        ItemDBUtil.SaveAsset(itemDB);
     }
 }
