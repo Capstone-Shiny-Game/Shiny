@@ -16,7 +16,7 @@ public class StartTouchEvent : UnityEvent<Vector2, float> { }
 [Serializable]
 public class EndTouchEvent : UnityEvent<Vector2, float> { }
 [Serializable]
-public class FlightTogglePOVEvent : UnityEvent { }
+public class FlightLookResetEvent : UnityEvent { }
 
 [Serializable]
 public class FlightBrakeEvent : UnityEvent<bool> { }
@@ -54,7 +54,7 @@ public class InputController : MonoBehaviour
     public StartTouchEvent OnStartTouch;
     public EndTouchEvent OnEndTouch;
 
-    public FlightTogglePOVEvent flightTogglePOVHandler;
+    public FlightLookResetEvent flightResetLookHandler;
     public TMP_Text test;
     public bool useGyro = true;
     float multiplier = 10.0f;
@@ -84,7 +84,7 @@ public class InputController : MonoBehaviour
         PlayerInput.FlightMap.Look.performed += OnLook;
         PlayerInput.FlightMap.Look.canceled += OnLookExit;
 
-        PlayerInput.FlightMap.ToggleFirstPerson.performed += OnToggleFirstPerson;
+        PlayerInput.FlightMap.ResetLook.performed += OnToggleResetLook;
 
         PlayerInput.GUIMap.Enable();
         PlayerInput.GUIMap.PauseMenu.performed += OnPause;
@@ -118,9 +118,9 @@ public class InputController : MonoBehaviour
         PlayerInput.GUIMap.Disable();
     }
 
-    private void OnToggleFirstPerson(InputAction.CallbackContext context)
+    private void OnToggleResetLook(InputAction.CallbackContext context)
     {
-        flightTogglePOVHandler?.Invoke();
+        flightResetLookHandler?.Invoke();
     }
     private void OnLook(InputAction.CallbackContext context)
     {
