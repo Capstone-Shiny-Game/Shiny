@@ -19,7 +19,7 @@ public class QSItemNodeSO : QSNodeSO
         base.InitializeEditor();
         Name += $" #{ID.Substring(ID.Length - 4)}";
         Inputs = Empty;
-        Outputs = new List<QSData>() { new QSData("", typeof(QSItem)) };
+        Outputs = new List<QSData>() { new QSData("", typeof(ItemSO)) };
         Options = Empty;
     }
 }

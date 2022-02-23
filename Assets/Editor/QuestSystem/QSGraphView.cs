@@ -466,7 +466,7 @@ public class QSGraphView : GraphView
             this.AddManipulator(CreateNodeContextualMenu($"Add Node/{pair.Item1}", pair.Item2));
         foreach (QSNPC npc in Enum.GetValues(typeof(QSNPC)))
             this.AddManipulator(CreateNodeContextualMenu($"Add Node/NPC/{npc}", typeof(QSNPCNodeSO), npc.ToString()));
-        foreach (QSItem item in Enum.GetValues(typeof(QSItem)))
+        foreach (ItemSO item in ItemDBUtil.GetItemDBSerializableDict().Values)
             this.AddManipulator(CreateNodeContextualMenu($"Add Node/Item/{item}", typeof(QSItemNodeSO), item.ToString()));
 
         this.AddManipulator(new ContentDragger());

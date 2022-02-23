@@ -9,9 +9,9 @@ public class DeleteThisQSExampleQuestNodeSO : QSNodeSO
         Inputs = new List<QSData>() {
             new QSData("Unlock", typeof(QSUnlock)),
             new QSData("Very important NPC", typeof(QSNPC)),
-            new QSData("NPC wants this item", typeof(QSItem)),
+            new QSData("NPC wants this item", typeof(ItemSO)),
             new QSData("Another NPC?", typeof (QSNPC)),
-            new QSData("Another item???", typeof (QSItem)),
+            new QSData("Another item???", typeof (ItemSO)),
         };
         Outputs = new List<QSData>() {
             new QSData("Complete", typeof(QSUnlock)),
@@ -32,7 +32,7 @@ public class DeleteThisQSExampleActionNodeSO : QSNodeSO
         Name = $"Awesome Quest Helper Action #{ID.Substring(ID.Length - 4)}";
         Inputs = new List<QSData>() {
             new QSData("During this quest", typeof(QSLink)),
-            new QSData("Item to spawn", typeof(QSItem)),
+            new QSData("Item to spawn", typeof(ItemSO)),
         };
         Outputs = Empty;
         Options = new List<QSData>() {

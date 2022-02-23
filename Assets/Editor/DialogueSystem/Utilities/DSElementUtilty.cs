@@ -42,11 +42,11 @@ public static class DSElementUtilty
         port.portName = name;
 
         if (type == typeof(QSUnlock))
-            port.portColor = new Color(253f / 255, 151f / 255,  31f / 255); // orange
+            port.portColor = new Color(253f / 255, 151f / 255, 31f / 255); // orange
         else if (type == typeof(QSLink))
             port.portColor = new Color(171f / 255, 157f / 255, 242f / 255); // purple
-        else if (type == typeof(QSItem))
-            port.portColor = new Color(166f / 256, 226f / 256,  46f / 256); // green
+        else if (type == typeof(ItemSO))
+            port.portColor = new Color(166f / 256, 226f / 256, 46f / 256); // green
         else if (type == typeof(QSNPC))
             port.portColor = new Color(102f / 255, 217f / 255, 239f / 255); // blue
 
