@@ -4954,6 +4954,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5121936279477042626}
     m_Modifications:
+    - target: {fileID: 885158525659647932, guid: e7c9b48395df7604dae1cc9799430fdf, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1240484807856761989, guid: e7c9b48395df7604dae1cc9799430fdf, type: 3}
+      propertyPath: coll
+      value: 
+      objectReference: {fileID: 1947117572036423145}
     - target: {fileID: 1436550605664474916, guid: e7c9b48395df7604dae1cc9799430fdf, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -5016,3 +5024,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7c9b48395df7604dae1cc9799430fdf, type: 3}
+--- !u!135 &1947117572036423145 stripped
+SphereCollider:
+  m_CorrespondingSourceObject: {fileID: 7172478267727534837, guid: e7c9b48395df7604dae1cc9799430fdf, type: 3}
+  m_PrefabInstance: {fileID: 8686405631529006876}
+  m_PrefabAsset: {fileID: 0}
