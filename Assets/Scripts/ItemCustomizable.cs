@@ -12,12 +12,9 @@ public class ItemCustomizable : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("HIT BATH");
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Choose material");
              PatioGUI.ShowMaterials(name);
-            PatioGUI.gameObject.SetActive(true);
 
         }
     }
@@ -25,8 +22,7 @@ public class ItemCustomizable : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PatioGUI.gameObject.SetActive(false);
-           
+            PatioGUI.ExitMenu();
         }
     }
 }

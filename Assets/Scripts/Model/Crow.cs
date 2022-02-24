@@ -6,7 +6,7 @@ public class Crow : MonoBehaviour
 {
 
     public GameObject Model;
-
+    private string item;
     public void resetModelRotation()
     {
         float angle = Model.transform.rotation.eulerAngles.z;
@@ -20,5 +20,8 @@ public class Crow : MonoBehaviour
         Model.transform.Rotate(new Vector3(0, 0, -diff));
 
     }
-
+    public void setPatioItem(string name)
+    {
+        item = name;
+    }
 }

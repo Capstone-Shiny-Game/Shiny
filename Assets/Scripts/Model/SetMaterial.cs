@@ -35,7 +35,7 @@ public class SetMaterial : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      title = GetComponentInChildren<TMP_Text>();
+        title = GetComponentInChildren<TMP_Text>();
         title.text = items[0].name;
         texts = GetComponentsInChildren<Text>(true);
         options = GetComponentsInChildren<Button>(true);
@@ -45,20 +45,32 @@ public class SetMaterial : MonoBehaviour
             patioObjs.Add(i.name.ToLower(), new Tuple<GameObject, MaterialPair[]>(i.obj, i.mats));
 
         }
-        gameObject.SetActive(false);
+        setButtonsActive(false);
+
     }
-
-
+    private void setButtonsActive(bool isActive)
+    {
+        foreach (Button b in options)
+        {
+            title.gameObject.SetActive(isActive);
+            b.gameObject.SetActive(isActive);
+        }
+    }
+    public void ExitMenu()
+    {
+        setButtonsActive(false);
+    }
     public void ShowMaterials(String name)
     {
-        Debug.Log("SHOW: " + name);
+        setButtonsActive(true);
+
         current = patioObjs[name.ToLower()];
         obj = current.Item1;
         //TO DO: add to UI
-        int i = 0; 
-        foreach(MaterialPair p in current.Item2)
+        int i = 0;
+        foreach (MaterialPair p in current.Item2)
         {
-            texts[i].text = p.mName;
+            texts[i].text = p.mName; 
             options[i++].onClick.AddListener(delegate { SetMaterials(p.mName); });
         }
 
@@ -67,7 +79,6 @@ public class SetMaterial : MonoBehaviour
 
     public void SetMaterials(String matName)
     {
-        Debug.Log("BUTTON CLICKED");
         foreach (MaterialPair p in current.Item2)
         {
             if (p.mName.ToLower().Equals(matName.ToLower()))
