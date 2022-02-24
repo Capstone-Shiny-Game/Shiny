@@ -15,13 +15,14 @@ public class WalkingController : MonoBehaviour
 
     private float moveX = 0;
     private float moveY = 0;
-
+    private PlayerController pcontroller;
     void Start()
     {
         Vector3 v = transform.eulerAngles;
         v.x = 0;
         v.z = 0;
         transform.eulerAngles = v;
+        pcontroller = GetComponent<PlayerController>();
     }
 
     void OnEnable()
@@ -34,7 +35,8 @@ public class WalkingController : MonoBehaviour
         isIdle = true;
         SubstateChanged?.Invoke(PlayerController.CrowState.Idle);
         PlayerInput.FlightMap.Enable();
-       
+        //disables all flying animations(takeoff, glide, fly)
+        pcontroller.AnimationWalkingSuite();
     }
 
     void OnDisable()

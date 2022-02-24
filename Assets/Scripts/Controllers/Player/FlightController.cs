@@ -38,11 +38,12 @@ public class FlightController : MonoBehaviour
     public event Action<bool> Landed;
     public event Action<bool> FlightTypeChanged;
     public bool isGliding = false;
-
+    private PlayerController pcontroller;
     public void Start()
     {
         //InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
         crow = GetComponent<Crow>();
+        pcontroller = GetComponent<PlayerController>();
 
     }
 
@@ -390,6 +391,8 @@ public class FlightController : MonoBehaviour
         LeftTrail.SetActive(true);
         RightTrail.SetActive(true);
         speed = 10f;
+        //Disabling all animator not related to flying(walking, idle)
+        pcontroller.AnimationFlyingSuite();
     }
     public void SetFlightXY(float x, float y)
     {
