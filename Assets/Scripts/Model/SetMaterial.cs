@@ -45,6 +45,7 @@ public class SetMaterial : MonoBehaviour
             patioObjs.Add(i.name.ToLower(), new Tuple<GameObject, MaterialPair[]>(i.obj, i.mats));
 
         }
+        gameObject.SetActive(false);
     }
 
 
