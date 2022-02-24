@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "StartLook",
+                    "type": "Button",
+                    "id": "e2a93101-112c-43aa-8778-2399540d6fe9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Boost",
                     "type": "Button",
                     "id": "6bc89b0c-aa8c-4094-9be1-f208d2cdb9b5",
@@ -234,6 +243,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "LockCursor",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0a8710e4-5c2b-47f9-833c-b8cbc86e7e6e",
+                    "path": "<Mouse>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartLook",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3b98e4c5-fc02-4af5-b1ac-f22f8d879295",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartLook",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

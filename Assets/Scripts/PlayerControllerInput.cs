@@ -55,6 +55,15 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""StartLook"",
+                    ""type"": ""Button"",
+                    ""id"": ""e2a93101-112c-43aa-8778-2399540d6fe9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Boost"",
                     ""type"": ""Button"",
                     ""id"": ""6bc89b0c-aa8c-4094-9be1-f208d2cdb9b5"",
@@ -258,6 +267,28 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                     ""action"": ""LockCursor"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0a8710e4-5c2b-47f9-833c-b8cbc86e7e6e"",
+                    ""path"": ""<Mouse>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StartLook"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3b98e4c5-fc02-4af5-b1ac-f22f8d879295"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StartLook"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -397,6 +428,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
         m_FlightMap_Flight = m_FlightMap.FindAction("Flight", throwIfNotFound: true);
         m_FlightMap_Look = m_FlightMap.FindAction("Look", throwIfNotFound: true);
         m_FlightMap_ResetLook = m_FlightMap.FindAction("ResetLook", throwIfNotFound: true);
+        m_FlightMap_StartLook = m_FlightMap.FindAction("StartLook", throwIfNotFound: true);
         m_FlightMap_Boost = m_FlightMap.FindAction("Boost", throwIfNotFound: true);
         m_FlightMap_Brake = m_FlightMap.FindAction("Brake", throwIfNotFound: true);
         m_FlightMap_LockCursor = m_FlightMap.FindAction("LockCursor", throwIfNotFound: true);
@@ -470,6 +502,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
     private readonly InputAction m_FlightMap_Flight;
     private readonly InputAction m_FlightMap_Look;
     private readonly InputAction m_FlightMap_ResetLook;
+    private readonly InputAction m_FlightMap_StartLook;
     private readonly InputAction m_FlightMap_Boost;
     private readonly InputAction m_FlightMap_Brake;
     private readonly InputAction m_FlightMap_LockCursor;
@@ -480,6 +513,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
         public InputAction @Flight => m_Wrapper.m_FlightMap_Flight;
         public InputAction @Look => m_Wrapper.m_FlightMap_Look;
         public InputAction @ResetLook => m_Wrapper.m_FlightMap_ResetLook;
+        public InputAction @StartLook => m_Wrapper.m_FlightMap_StartLook;
         public InputAction @Boost => m_Wrapper.m_FlightMap_Boost;
         public InputAction @Brake => m_Wrapper.m_FlightMap_Brake;
         public InputAction @LockCursor => m_Wrapper.m_FlightMap_LockCursor;
@@ -501,6 +535,9 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                 @ResetLook.started -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnResetLook;
                 @ResetLook.performed -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnResetLook;
                 @ResetLook.canceled -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnResetLook;
+                @StartLook.started -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnStartLook;
+                @StartLook.performed -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnStartLook;
+                @StartLook.canceled -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnStartLook;
                 @Boost.started -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnBoost;
                 @Boost.performed -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnBoost;
                 @Boost.canceled -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnBoost;
@@ -523,6 +560,9 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                 @ResetLook.started += instance.OnResetLook;
                 @ResetLook.performed += instance.OnResetLook;
                 @ResetLook.canceled += instance.OnResetLook;
+                @StartLook.started += instance.OnStartLook;
+                @StartLook.performed += instance.OnStartLook;
+                @StartLook.canceled += instance.OnStartLook;
                 @Boost.started += instance.OnBoost;
                 @Boost.performed += instance.OnBoost;
                 @Boost.canceled += instance.OnBoost;
@@ -614,6 +654,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
         void OnFlight(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnResetLook(InputAction.CallbackContext context);
+        void OnStartLook(InputAction.CallbackContext context);
         void OnBoost(InputAction.CallbackContext context);
         void OnBrake(InputAction.CallbackContext context);
         void OnLockCursor(InputAction.CallbackContext context);

@@ -17,7 +17,8 @@ public class StartTouchEvent : UnityEvent<Vector2, float> { }
 public class EndTouchEvent : UnityEvent<Vector2, float> { }
 [Serializable]
 public class FlightLookResetEvent : UnityEvent { }
-
+[Serializable]
+public class FlightStartLookEvent : UnityEvent { }
 [Serializable]
 public class FlightBrakeEvent : UnityEvent<bool> { }
 
@@ -43,6 +44,7 @@ public class InputController : MonoBehaviour
     //Event Handlers
     public FlightMoveEvent flightMoveHandler;
     public FlightLookEvent flightLookHandler;
+    public FlightStartLookEvent flightStartLookHandler;
 
     public FlightBrakeEvent flightBrakeHandler;
     public FlightBoostEvent flightBoostHandler;
@@ -58,7 +60,7 @@ public class InputController : MonoBehaviour
     public TMP_Text test;
     public bool useGyro = true;
     float multiplier = 10.0f;
-
+    private bool canLook = false;
     private void Awake()
     {
         //CamController = cam.GetComponent<CameraController>();
@@ -83,6 +85,8 @@ public class InputController : MonoBehaviour
 
         PlayerInput.FlightMap.Look.performed += OnLook;
         PlayerInput.FlightMap.Look.canceled += OnLookExit;
+        PlayerInput.FlightMap.StartLook.performed += StartLook;
+        PlayerInput.FlightMap.StartLook.canceled += EndLook;
 
         PlayerInput.FlightMap.ResetLook.performed += OnToggleResetLook;
 
@@ -96,6 +100,17 @@ public class InputController : MonoBehaviour
         PlayerInput.GUIMap.PickupItem.performed += OnPickup;
         if (UnityEngine.InputSystem.Gyroscope.current != null)
             InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
+    }
+
+    private void EndLook(InputAction.CallbackContext context)
+    {
+        canLook = false;
+    }
+
+    private void StartLook(InputAction.CallbackContext context)
+    {
+        canLook = true;
+
     }
 
     private void StartTouchPrimary(InputAction.CallbackContext context)
@@ -124,8 +139,12 @@ public class InputController : MonoBehaviour
     }
     private void OnLook(InputAction.CallbackContext context)
     {
-        Vector2 moveInput = context.ReadValue<Vector2>();
-        flightLookHandler?.Invoke(moveInput.x, moveInput.y);
+        if (canLook)
+        {
+            Vector2 moveInput = context.ReadValue<Vector2>();
+            flightLookHandler?.Invoke(moveInput.x, moveInput.y);
+        }
+      
     }
     private void OnLookExit(InputAction.CallbackContext context)
     {
