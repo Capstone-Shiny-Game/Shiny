@@ -24,7 +24,7 @@ public class ModifyOrbitor : MonoBehaviour
 
     public void ChangeAngle(float x, float y)
     {
-        if (canRotate)
+        if (this.isActiveAndEnabled && canRotate)
         {
             vcam.m_XAxis.Value += (xSens * x);
             vcam.m_FollowOffset.y = Mathf.Clamp(vcam.m_FollowOffset.y + y * ySens, minY, maxY);

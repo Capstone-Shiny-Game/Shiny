@@ -53,29 +53,43 @@ public class FlightController : MonoBehaviour
         //checks speed, update boolean of isGlide if over certain limit.
         CheckSpeed();
     }
+    public IEnumerator Reset(float endTime, float xRot, float height)
+    {
+        float elapsedTime = 0;
+        while (elapsedTime < endTime)
+        {
+        
+            transform.position = Vector3.Slerp(transform.position, new Vector3(transform.position.x, height, transform.position.z), 1f); ;
+            Quaternion target = transform.rotation;
+            target = Quaternion.Euler(xRot, target.eulerAngles.y, 0);
+            transform.rotation = Quaternion.Slerp(transform.rotation, target, endTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
 
+
+
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Mountain"))
         {
-            Debug.Log("Mountain");
+            // Debug.Log("Mountain");
             Vector3 v = other.ClosestPoint(transform.position);
             Vector3 newVector = transform.position - v;
             StartCoroutine(Slow());
             transform.LookAt(newVector);
-           // StartCoroutine(BounceOnCollision(other.GetContact(0).normal));
+            // StartCoroutine(BounceOnCollision(other.GetContact(0).normal));
 
         }
         else if (other.gameObject.CompareTag("Ceiling"))
         {
-            Debug.Log("Ceiling");
-            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x,maxHeight, transform.position.z), Time.deltaTime*2f);
-           Quaternion target = transform.rotation;
-            target = Quaternion.Euler(10, target.eulerAngles.y, 0);
-            transform.rotation = target;
-            StartCoroutine(Slow());
-   
+            // Debug.Log("Ceiling");
+            StartCoroutine(Reset(3f, 10f, maxHeight - 5f));
+           // StartCoroutine(Slow());
+
         }
+
         else if (other is TerrainCollider)
         {
             Landed?.Invoke(false);
@@ -103,8 +117,13 @@ public class FlightController : MonoBehaviour
         {
             Vector3 bouncedUp = transform.position + (transform.up * 5);
             transform.TestCollision(bouncedUp, out bool collided, out _);
+            Debug.Log(collided);
             if (!collided)
+            {
                 transform.position = bouncedUp;
+                //StartCoroutine(Reset(1f, -10f, transform.position.y + 1f));
+
+            }
             else
             {
                 transform.position -= transform.forward * 2;
@@ -118,7 +137,7 @@ public class FlightController : MonoBehaviour
                 }
             }
 
-            StartCoroutine(Slow());
+            //StartCoroutine(Slow());
         }
     }
 
@@ -188,10 +207,10 @@ public class FlightController : MonoBehaviour
             //StartCoroutine(MoveToPosition(endBounce, bounce / 18f));
 
         }
-      //  if (!CamController.toggleFirstPersonCam) first person
-      //  {
-            GetPlayerControls();
-       // }
+        //  if (!CamController.toggleFirstPersonCam) first person
+        //  {
+        GetPlayerControls();
+        // }
     }
     private void GetPlayerControls()
     {
@@ -263,11 +282,11 @@ public class FlightController : MonoBehaviour
                 target = Quaternion.Euler(0, target.eulerAngles.y, target.eulerAngles.z);
                 transform.rotation = Quaternion.Lerp(transform.rotation, target, Time.deltaTime);
 
-             
+
 
             }
         }
-      
+
     }
 
 
@@ -312,7 +331,7 @@ public class FlightController : MonoBehaviour
     public IEnumerator Slow()
     {
         isSlowing = true;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
         isSlowing = false;
 
     }
@@ -349,7 +368,7 @@ public class FlightController : MonoBehaviour
 
 
     }
-  
+
     public void TrailScale()
     {
         float scaleX = (speed - 10) / 30;
