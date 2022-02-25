@@ -149,7 +149,7 @@ public class RespawnGroupOfAssets : MonoBehaviour
     /// <returns></returns>
     public IEnumerator Respawn()
     {
-        yield return new WaitForSeconds(respawnTime);
+        yield return new WaitForSeconds(respawnTimeSeconds);
         // prevents exception when game is closed
         if (this.gameObject.activeInHierarchy)
         {
