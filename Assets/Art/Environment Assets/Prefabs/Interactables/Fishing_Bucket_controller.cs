@@ -19,11 +19,14 @@ public class Fishing_Bucket_controller : MonoBehaviour
     private GameObject crowPos;
     private bool full = false;
     private GameObject fished;
+    private Vector3 spawnLocation;
 
     private void Start()
     {
         crowPlayer = GameObject.FindGameObjectWithTag("Player");
         crowPos = GameObject.Find("L_footCTR");
+        spawnLocation = gameObject.transform.position;
+        
     }
 
    
@@ -60,7 +63,7 @@ public class Fishing_Bucket_controller : MonoBehaviour
                 Debug.Log("cooler");
 
                 //  fished.transform.parent = null;
-                Instantiate<GameObject>(fished, (other.transform.position + new Vector3(2, 2, 2)), Quaternion.identity);
+                Instantiate<GameObject>(fished, (other.transform.position + new Vector3(3, 3, 3)), Quaternion.identity);
                // Debug.Log(other.transform.position);
                // fished.transform.position = other.transform.position + new Vector3(2,2,2);
                 /* fished.GetComponent<CapsuleCollider>().enabled = true;
@@ -133,6 +136,28 @@ public class Fishing_Bucket_controller : MonoBehaviour
 
         GetComponent<BoxCollider>().enabled = false;
         GetComponent<Rigidbody>().useGravity = false;
+    }
+
+   
+    
+    private void OnEnable()
+    {
+        DayController.OnDayStartEvent += returnToSpawn;
+    }
+
+    private void OnDisable()
+    {
+        DayController.OnDayStartEvent -= returnToSpawn;
+    }
+
+    private void returnToSpawn()
+    {
+        if(gameObject.transform.parent == null)
+        {
+            gameObject.transform.position = spawnLocation;
+            gameObject.transform.rotation = Quaternion.identity;
+        }
+        
     }
 
 }
