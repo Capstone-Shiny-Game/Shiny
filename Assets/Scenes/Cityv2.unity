@@ -25693,9 +25693,17 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5866786027334213623, guid: 75b1bd4d28156e04c9cc923d4d88f873, type: 3}
+      propertyPath: currentMats.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866786027334213623, guid: 75b1bd4d28156e04c9cc923d4d88f873, type: 3}
       propertyPath: items.Array.data[0].obj
       value: 
       objectReference: {fileID: 79841552}
+    - target: {fileID: 5866786027334213623, guid: 75b1bd4d28156e04c9cc923d4d88f873, type: 3}
+      propertyPath: currentMats.Array.data[0].matName
+      value: Crow
+      objectReference: {fileID: 0}
     - target: {fileID: 5866786027334213623, guid: 75b1bd4d28156e04c9cc923d4d88f873, type: 3}
       propertyPath: items.Array.data[0].mats.Array.data[0].mName
       value: Crow
@@ -40789,7 +40797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b02d4169ef436541bff1db6fbf68357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: bird bath
+  name: 0
 --- !u!1001 &988974437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47900,7 +47908,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1092977922}
-  m_LocalRotation: {x: -0.085525215, y: -0.4942451, z: -0.04893996, w: 0.86371994}
+  m_LocalRotation: {x: -0.085525215, y: -0.4942451, z: -0.048939966, w: 0.86371994}
   m_LocalPosition: {x: 504.1215, y: 132.9, z: -797.1665}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -54650,7 +54658,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1256193455}
-  m_LocalRotation: {x: 0.018070085, y: -0.4965538, z: 0.010340197, w: 0.8677563}
+  m_LocalRotation: {x: 0.018070126, y: -0.49655387, z: 0.01034022, w: 0.86775625}
   m_LocalPosition: {x: 504.1215, y: 132.9, z: -797.1665}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -89137,7 +89145,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1960509321}
-  m_LocalRotation: {x: 0.018070085, y: -0.4965538, z: 0.010340197, w: 0.8677563}
+  m_LocalRotation: {x: 0.018070126, y: -0.49655387, z: 0.01034022, w: 0.86775625}
   m_LocalPosition: {x: 504.1215, y: 132.9, z: -797.1665}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
