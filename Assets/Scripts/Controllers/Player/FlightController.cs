@@ -117,14 +117,13 @@ public class FlightController : MonoBehaviour
 
         else if (!collision.collider.isTrigger)
         {
-            Vector3 bouncedUp = transform.position + (transform.up * 5);
+            Vector3 bouncedUp = transform.position + (transform.up * 0.5f);
             transform.TestCollision(bouncedUp, out bool collided, out _);
             Debug.Log(collided);
             if (!collided)
             {
-                transform.position = bouncedUp;
-                //StartCoroutine(Reset(1f, -10f, transform.position.y + 1f));
-
+                transform.position -= transform.forward * 2;                
+                transform.eulerAngles = new Vector3(-5, transform.eulerAngles.y, transform.eulerAngles.z);
             }
             else
             {
