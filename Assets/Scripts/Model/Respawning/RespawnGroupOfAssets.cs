@@ -5,10 +5,14 @@ using UnityEngine.Events;
 
 public class RespawnGroupOfAssets : MonoBehaviour
 {
-    // TODO: deal with pop-in issues
+    
     private GameObject playerReference;
-    public float respawnTime = 60;
-    public float minDistanceToRespawn = 100;
+    [Tooltip("time in seconds, max is 5 irl days"), Range(0.0000001f, 432000f)]
+    public float respawnTimeSeconds = 60;
+    // TODO: deal with pop-in issues
+    //public float minDistanceToRespawn = 100;
+    [Tooltip("if this is enabled, you have to add the group respawnable script to children of this object that are acting as respawn points")]
+    public bool useGroupRespawnMarkers = true;
     [Tooltip("The maximum number of items to spawn. 0 means as many as possible (no more than the number of childen).")]
     public int totalMaxAmountToSpawn = 0;
     private List<Vector3> respawnLocations;
@@ -30,9 +34,17 @@ public class RespawnGroupOfAssets : MonoBehaviour
     {
         //get the player
         playerReference = GameObject.FindGameObjectWithTag("Player");
-
+        List<Transform> respawnTransforms = new List<Transform>();
+        if (useGroupRespawnMarkers)
+        {
+            foreach (GroupRespawnPoint respawnPoint in gameObject.GetComponentsInChildren<GroupRespawnPoint>()) {
+                respawnTransforms.Add(respawnPoint.gameObject.transform);
+            }
+        }
+        else {
+            respawnTransforms = new List<Transform>(gameObject.GetComponentsInChildren<Transform>());
+        }
         //unity was being weird about using the transforms of deactivated objects so make a copy.
-        List<Transform> respawnTransforms = new List<Transform>(gameObject.GetComponentsInChildren<Transform>());
         respawnTransforms.Remove(this.transform);
         respawnLocations = new List<Vector3>();
         respawnRotations = new List<Quaternion>();
