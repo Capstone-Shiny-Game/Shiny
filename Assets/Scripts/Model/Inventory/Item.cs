@@ -10,7 +10,7 @@ public class Item
     //other item variables are in itemSO 
     //see itemTypeDropdown.cs for why this is hidden
     [HideInInspector] public string itemType;
-    [Range(1, 6)] public int amount;
+    [Range(1, 6)] public int amount; 
     public static void SetItemDB(ItemDB replacementItemDB) {
         itemDB = replacementItemDB;
     }

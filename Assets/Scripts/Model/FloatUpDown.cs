@@ -7,9 +7,14 @@ public class FloatUpDown : MonoBehaviour
 {
     public float Speed;
     public float movementRange;
+    private float startingHeight;
+    private void Start()
+    {
+        startingHeight = gameObject.transform.localPosition.y;
+    }
     void Update()
     {
-        gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y + UpDown(), gameObject.transform.localPosition.z);
+        gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x, startingHeight + UpDown(), gameObject.transform.localPosition.z);
     }
     /// <summary>
     /// uses the sine function to determine the new hight of the object.
