@@ -71,59 +71,59 @@ public class FlightController : MonoBehaviour
 
 
     }
-    private void OnTriggerEnter(Collider other)
+
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.CompareTag("Mountain"))
+        if (collision.gameObject.CompareTag("Mountain"))
         {
             // Debug.Log("Mountain");
-            Vector3 v = other.ClosestPoint(transform.position);
+            Vector3 v = collision.collider.ClosestPoint(transform.position);
             Vector3 newVector = transform.position - v;
             StartCoroutine(Slow());
             transform.LookAt(newVector);
             // StartCoroutine(BounceOnCollision(other.GetContact(0).normal));
 
         }
-        else if (other.gameObject.CompareTag("Ceiling"))
+        else if (collision.gameObject.CompareTag("Ceiling"))
         {
             // Debug.Log("Ceiling");
             StartCoroutine(Reset(3f, 10f, maxHeight - 5f));
-           // StartCoroutine(Slow());
+            // StartCoroutine(Slow());
 
         }
 
-        else if (other is TerrainCollider)
+        else if (collision.collider is TerrainCollider)
         {
             Landed?.Invoke(false);
         }
-        else if (other.CompareTag("Terrain"))
+        else if (collision.gameObject.CompareTag("Terrain"))
         {
             Landed?.Invoke(true);
         }
-        else if (other.CompareTag("Ring") && !isBoost)
+        else if (collision.gameObject.CompareTag("Ring") && !isBoost)
         {
             //Debug.Log("RING2");
-            Transform targetRing = other.gameObject.transform;
+            Transform targetRing = collision.gameObject.transform;
             SetTargetRing(targetRing);
             //transform.LookAt(targetRing);
             StartCoroutine(Boost());
 
         }
-        else if (other.CompareTag("BoostBug") && !isBoost)
+        else if (collision.gameObject.CompareTag("BoostBug") && !isBoost)
         {
-            other.gameObject.SetActive(false);
+            collision.gameObject.SetActive(false);
             StartCoroutine(Boost());
         }
 
-        else if (!other.isTrigger)
+        else if (!collision.collider.isTrigger)
         {
-            Vector3 bouncedUp = transform.position + (transform.up * 5);
+            Vector3 bouncedUp = transform.position + (transform.up * 0.5f);
             transform.TestCollision(bouncedUp, out bool collided, out _);
             Debug.Log(collided);
             if (!collided)
             {
-                transform.position = bouncedUp;
-                //StartCoroutine(Reset(1f, -10f, transform.position.y + 1f));
-
+                transform.position -= transform.forward * 2;                
+                transform.eulerAngles = new Vector3(-5, transform.eulerAngles.y, transform.eulerAngles.z);
             }
             else
             {
@@ -407,38 +407,5 @@ public class FlightController : MonoBehaviour
     public void SetBrake(bool b)
     {
         isBraking = b;
-    }
-
-    Terrain GetClosestCurrentTerrain(Vector3 playerPos)
-    {
-        //Get all terrain
-        Terrain[] terrains = Terrain.activeTerrains;
-
-        //Make sure that terrains length is ok
-        if (terrains.Length == 0)
-            return null;
-
-        //If just one, return that one terrain
-        if (terrains.Length == 1)
-            return terrains[0];
-
-        //Get the closest one to the player
-        float lowDist = (terrains[0].GetPosition() - playerPos).sqrMagnitude;
-        var terrainIndex = 0;
-
-        for (int i = 1; i < terrains.Length; i++)
-        {
-            Terrain terrain = terrains[i];
-            Vector3 terrainPos = terrain.GetPosition();
-
-            //Find the distance and check if it is lower than the last one then store it
-            var dist = (terrainPos - playerPos).sqrMagnitude;
-            if (dist < lowDist)
-            {
-                lowDist = dist;
-                terrainIndex = i;
-            }
-        }
-        return terrains[terrainIndex];
     }
 }
