@@ -11,7 +11,7 @@ public class ItemCustomizable : MonoBehaviour
     private SetMaterial PatioGUI;
     public void Start()
     {
-        PatioGUI = GameObject.FindGameObjectWithTag("UIPatio").GetComponent<SetMaterial>();
+        PatioGUI = GameObject.Find("CanvasControls").GetComponent<SetMaterial>();
     }
     public void OnTriggerEnter(Collider other)
     {

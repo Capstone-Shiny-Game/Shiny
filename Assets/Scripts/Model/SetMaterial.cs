@@ -31,7 +31,7 @@ public class SetMaterial : MonoBehaviour, Savable
 
     public CurrentSelection[] currentMats;
     public Item[] items;
-
+    public GameObject PatioMenu;
     /// <summary>
     /// KEY: Enum of object name, VALUE: [obj of object, materials for obj]
     /// </summary>
@@ -49,9 +49,9 @@ public class SetMaterial : MonoBehaviour, Savable
     // Start is called before the first frame update
     void Start()
     {
-        title = GetComponentInChildren<TMP_Text>();
-        tOptions = GetComponentsInChildren<Text>(true);
-        bOptions = GetComponentsInChildren<Button>(true);
+        title = PatioMenu.GetComponentInChildren<TMP_Text>();
+        tOptions = PatioMenu.GetComponentsInChildren<Text>(true);
+        bOptions = PatioMenu.GetComponentsInChildren<Button>(true);
 
         patioObjs = new Dictionary<PatioUtility.Furniture, Tuple<GameObject, MaterialPair[]>>();
         foreach (Item i in items)
@@ -109,12 +109,13 @@ public class SetMaterial : MonoBehaviour, Savable
 
     private void setButtonsActive(bool isActive)
     {
-        title.gameObject.SetActive(isActive);
+        PatioMenu.SetActive(isActive);
+        //title.gameObject.SetActive(isActive);
 
-        foreach (Button b in bOptions)
-        {
-            b.gameObject.SetActive(isActive);
-        }
+        //foreach (Button b in bOptions)
+        //{
+        //    b.gameObject.SetActive(isActive);
+        //}
     }
     public void ExitMenu()
     {
