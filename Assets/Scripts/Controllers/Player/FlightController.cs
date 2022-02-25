@@ -71,50 +71,51 @@ public class FlightController : MonoBehaviour
 
 
     }
-    private void OnTriggerEnter(Collider other)
+
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.CompareTag("Mountain"))
+        if (collision.gameObject.CompareTag("Mountain"))
         {
             // Debug.Log("Mountain");
-            Vector3 v = other.ClosestPoint(transform.position);
+            Vector3 v = collision.collider.ClosestPoint(transform.position);
             Vector3 newVector = transform.position - v;
             StartCoroutine(Slow());
             transform.LookAt(newVector);
             // StartCoroutine(BounceOnCollision(other.GetContact(0).normal));
 
         }
-        else if (other.gameObject.CompareTag("Ceiling"))
+        else if (collision.gameObject.CompareTag("Ceiling"))
         {
             // Debug.Log("Ceiling");
             StartCoroutine(Reset(3f, 10f, maxHeight - 5f));
-           // StartCoroutine(Slow());
+            // StartCoroutine(Slow());
 
         }
 
-        else if (other is TerrainCollider)
+        else if (collision.collider is TerrainCollider)
         {
             Landed?.Invoke(false);
         }
-        else if (other.CompareTag("Terrain"))
+        else if (collision.gameObject.CompareTag("Terrain"))
         {
             Landed?.Invoke(true);
         }
-        else if (other.CompareTag("Ring") && !isBoost)
+        else if (collision.gameObject.CompareTag("Ring") && !isBoost)
         {
             //Debug.Log("RING2");
-            Transform targetRing = other.gameObject.transform;
+            Transform targetRing = collision.gameObject.transform;
             SetTargetRing(targetRing);
             //transform.LookAt(targetRing);
             StartCoroutine(Boost());
 
         }
-        else if (other.CompareTag("BoostBug") && !isBoost)
+        else if (collision.gameObject.CompareTag("BoostBug") && !isBoost)
         {
-            other.gameObject.SetActive(false);
+            collision.gameObject.SetActive(false);
             StartCoroutine(Boost());
         }
 
-        else if (!other.isTrigger)
+        else if (!collision.collider.isTrigger)
         {
             Vector3 bouncedUp = transform.position + (transform.up * 5);
             transform.TestCollision(bouncedUp, out bool collided, out _);
