@@ -49,9 +49,7 @@ public class SetMaterial : MonoBehaviour, Savable
     // Start is called before the first frame update
     void Start()
     {
-        title = PatioMenu.GetComponentInChildren<TMP_Text>();
-        tOptions = PatioMenu.GetComponentsInChildren<Text>(true);
-        bOptions = PatioMenu.GetComponentsInChildren<Button>(true);
+       
 
         patioObjs = new Dictionary<PatioUtility.Furniture, Tuple<GameObject, MaterialPair[]>>();
         foreach (Item i in items)
@@ -70,10 +68,12 @@ public class SetMaterial : MonoBehaviour, Savable
     /// <param name="mats"></param>
     private void SetupGUI(string titleText, MaterialPair[] mats)
     {
+
+
         title.text = titleText;
 
         int i = 0;
-        foreach (MaterialPair p in mats)
+       foreach (MaterialPair p in mats)
         {
             tOptions[i].text = p.mName;
             bOptions[i++].onClick.AddListener(delegate { SetMaterials(p.mName); });
@@ -109,13 +109,14 @@ public class SetMaterial : MonoBehaviour, Savable
 
     private void setButtonsActive(bool isActive)
     {
+        if(isActive && title == null)
+        {
+            title = PatioMenu.GetComponentInChildren<TMP_Text>();
+            tOptions = PatioMenu.GetComponentsInChildren<Text>(true);
+            bOptions = PatioMenu.GetComponentsInChildren<Button>(true);
+        }
         PatioMenu.SetActive(isActive);
-        //title.gameObject.SetActive(isActive);
 
-        //foreach (Button b in bOptions)
-        //{
-        //    b.gameObject.SetActive(isActive);
-        //}
     }
     public void ExitMenu()
     {
