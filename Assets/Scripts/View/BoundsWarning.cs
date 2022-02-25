@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BoundsWarning : MonoBehaviour
 {
-    public GameObject canvas;
+    public GameObject FlyTooHighImages;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +16,7 @@ public class BoundsWarning : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            canvas.SetActive(true);
+            FlyTooHighImages.SetActive(true);
         }
         Debug.Log("Trigger");
     }
@@ -24,7 +24,7 @@ public class BoundsWarning : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            canvas.SetActive(false);
+            FlyTooHighImages.SetActive(false);
         }
     }
     private void OnCollisionEnter(Collision collision)
