@@ -13,10 +13,19 @@ public class DayController : MonoBehaviour
     [SerializeField] private float LengthOfDay;
     private string[] DaysOfWeek = {"Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
     private int DayIndex = 0;
-    private readonly float midDay = 12.0f;
+    private const float morning = 6.0f;
+    private const float midDay = 12.0f;
+    private const float evening = 18.0f;
 
+    public delegate void DayStart();
+    public static event DayStart OnDayStartEvent;
+    public delegate void Morning();
+    public static event Morning OnMorningEvent;
     public delegate void MidDay();
     public static event MidDay OnMidDayEvent;
+    public delegate void Evening();
+    public static event Evening OnEveningEvent;
+
 
 
     private void Start()
@@ -39,7 +48,7 @@ public class DayController : MonoBehaviour
 
     private IEnumerator Lerp()
     {
-        bool hasReachedMidDay = false;
+        bool hasInvoked = false;
         float timeElapsed = 0;
         while (timeElapsed < LengthOfDay)
         {
@@ -47,10 +56,35 @@ public class DayController : MonoBehaviour
             timeElapsed += Time.deltaTime;
             TimeOfDay %= 24;
             UpdateLighting(TimeOfDay/24f);
-            if (!hasReachedMidDay && TimeOfDay > midDay)
+            switch(Mathf.Floor(TimeOfDay))
             {
-                OnMidDayEvent?.Invoke();
-                hasReachedMidDay = true;
+                case 0:
+                    if(!hasInvoked)
+                        OnDayStartEvent?.Invoke();
+                        hasInvoked = true;
+                    break;
+
+                case morning:
+                    if(!hasInvoked)
+                        OnMorningEvent?.Invoke();
+                        hasInvoked = true;
+                    break;
+
+                case midDay:
+                    if(!hasInvoked)
+                        OnMidDayEvent?.Invoke();
+                        hasInvoked = true;
+                    break;
+
+                case evening:
+                    if(!hasInvoked)
+                        OnEveningEvent?.Invoke();
+                        hasInvoked = true;
+                    break;
+                
+                default:
+                    hasInvoked = false;
+                    break;
             }
             yield return null;
         }
