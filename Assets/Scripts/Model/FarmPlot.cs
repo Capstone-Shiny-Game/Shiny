@@ -93,6 +93,7 @@ public class FarmPlot : MonoBehaviour
         {
             if (++meshIndex < currCrop.meshNames.Count)
             {
+                // TODO: Add particle effect here
                 s1.GetComponent<MeshFilter>().sharedMesh = currMeshes[meshIndex];
             }
 
@@ -106,6 +107,7 @@ public class FarmPlot : MonoBehaviour
 
     public void HarvestItem()
     {
+        // TODO: Add particle effect here
         Instantiate(currCrop.cropObj, transform.position + new Vector3(2f, 1f, 0), transform.rotation);
         ResetFarmPlot();
     }

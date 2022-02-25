@@ -9899,6 +9899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75416b6c2a485994984095c04fb0ab54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Model: {fileID: 0}
 --- !u!114 &7324057266532042076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9917,10 +9918,12 @@ MonoBehaviour:
   acceleration: 10
   maxDiveSpeed: 60
   minGlideSpeed: 20
+  maxHeight: 100
+  heightAboveLand: 25
   isBoost: 0
   LeftTrail: {fileID: 2546136047665995552}
   RightTrail: {fileID: 5105916863276297152}
-  crowModel: {fileID: 0}
+  ceiling: {fileID: 0}
   isGliding: 0
 --- !u!114 &7695470114484064583
 MonoBehaviour:
@@ -10051,6 +10054,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: ea63a437-bb2a-4abc-9948-b12773f7e975
     m_ActionName: GUIMap/PrimaryPosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e2a93101-112c-43aa-8778-2399540d6fe9
+    m_ActionName: FlightMap/StartLook[/Mouse/press]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: FlightMap
@@ -10084,6 +10091,36 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7324057266532042072}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8790865512622011130
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5239668837070396618}
+  m_Layer: 0
+  m_Name: HatTransforms
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5239668837070396618
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8790865512622011130}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: -0.061, z: -0.01}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
+  m_Children: []
+  m_Father: {fileID: 425255398720402915}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &466341486847792305
@@ -10160,9 +10197,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5702739361890221537, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
   m_PrefabInstance: {fileID: 466341486847792305}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &140313497592034138 stripped
+--- !u!4 &11326406743156570 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
+  m_CorrespondingSourceObject: {fileID: -8768233243975158805, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
+  m_PrefabInstance: {fileID: 466341486847792305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &425255398720402915 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 260655263271149906, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
   m_PrefabInstance: {fileID: 466341486847792305}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &772841008434653664 stripped
@@ -10170,9 +10212,9 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
   m_PrefabInstance: {fileID: 466341486847792305}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &11326406743156570 stripped
+--- !u!4 &140313497592034138 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -8768233243975158805, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
   m_PrefabInstance: {fileID: 466341486847792305}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6935477135389726404

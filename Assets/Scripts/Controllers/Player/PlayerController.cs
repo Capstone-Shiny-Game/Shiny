@@ -73,7 +73,19 @@ public class PlayerController : MonoBehaviour, Savable
 
         SetState(CrowState.Flying);
     }
-
+    //turns off all walking animation
+    public void AnimationFlyingSuite()
+    {
+        birdAnimator.SetBool("isWalking", false);
+        birdAnimator.SetBool("isIdle", false);
+    }
+    //turns off all flying animations
+    public void AnimationWalkingSuite()
+    {
+        birdAnimator.SetBool("isFlying", false);
+        birdAnimator.SetBool("isGliding", false);
+        birdAnimator.SetBool("WalktoFly", false);
+    }
     private void SetState(CrowState next, float addYForTakeoff = 0)
     {
         state = next;

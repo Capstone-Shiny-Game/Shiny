@@ -11,7 +11,7 @@ public static class Save
     /// </summary>
     public static List<Savable> savables { get; private set; }
 
-
+    
     /// <summary>
     /// Struct containing all feilds that need to be saved for the game
     /// struct should be edited when Savable.GetSaveData is called
@@ -24,6 +24,7 @@ public static class Save
     {
         //TODO : EDIT ME!!!
         //player data
+        public Dictionary<PatioUtility.Furniture, string> materials;
         public Inventory playerinventory;
         public SettingsData settingsPackage;
 

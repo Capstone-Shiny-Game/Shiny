@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class ItemCustomizable : MonoBehaviour
 {
-    public string name;
+
+
+    public PatioUtility.Furniture name;
     private SetMaterial PatioGUI;
     public void Start()
     {
