@@ -19,17 +19,14 @@ public class NPCInteraction : MonoBehaviour
 
     [Header("Objects")]
     public GameObject npcUI;
+    [System.NonSerialized]
     public DSDialogueContainerSO[] dialogueContainers;
     private int currentDialogueValue = 0;
-    [System.NonSerialized]
     public DSDialogueContainerSO dialogueContainer;
-    public GameObject objectToSpawn;
-    public GameObject otherNPC;
     public GameObject blackOutSquare;
 
 
     //DELETE AFTER BETA
-    public DSDialogueContainerSO dialogueContainer2;
     private DSDialogueSO currentDialogue;
     private GameObject avatar;
     private Image bgImage;
@@ -45,7 +42,6 @@ public class NPCInteraction : MonoBehaviour
     private InputAction npcInteractAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/T");
 
     private BoxCollider interactionCollider;
-    private Quest quest;
 
     private void Start()
     {
@@ -54,17 +50,16 @@ public class NPCInteraction : MonoBehaviour
         nameText = bgImage.gameObject.transform.Find("NameDisplay").GetComponent<TextMeshProUGUI>();
         bodyText = bgImage.gameObject.transform.Find("TextDisplay").GetComponent<TextMeshProUGUI>();
         Transform buttons = npcUI.transform.Find("Buttons");
-        quest = GetComponent<Quest>();
         buttonList = new GameObject[3] {
             buttons.Find("Button3").gameObject,
             buttons.Find("Button2").gameObject,
             buttons.Find("Button1").gameObject
         };
         interactionCollider = GetComponentInChildren<BoxCollider>();
-        if (dialogueContainers.Length > 0)
-        {
-            dialogueContainer = dialogueContainers[0];
-        }
+        // if (dialogueContainers.Length > 0)
+        // {
+        //     dialogueContainer = dialogueContainers[0];
+        // }
     }
 
     private void OnEnable()
@@ -79,12 +74,9 @@ public class NPCInteraction : MonoBehaviour
 
     private void TryEnterDialogue()
     {
-        if (interactionCollider.bounds.Contains(GameObject.FindGameObjectWithTag("Player").gameObject.transform.position)) // oof
-        {
-            OnNPCInteractEvent?.Invoke(this.transform);
-            EnterDialogue();
-            ApplyTheme();
-        }
+        OnNPCInteractEvent?.Invoke(this.transform);
+        EnterDialogue();
+        ApplyTheme();
     }
 
     private void EnterDialogue()
@@ -124,18 +116,6 @@ public class NPCInteraction : MonoBehaviour
                     break;
                 }
                 //FADE
-                if (objectToSpawn != null)
-                {
-                    if (otherNPC != null)
-                    {
-                        otherNPC.AddComponent<Quest>();
-                        otherNPC.GetComponent<Quest>().questItemsAndPositions = new SerializableDictionary<GameObject, Vector3>();
-                        otherNPC.GetComponent<Quest>().dialogueContainer = dialogueContainer2;
-                        otherNPC.GetComponent<Quest>().interactButton = otherNPC.GetComponentInChildren<BillboardFX>(true).gameObject;
-                        otherNPC.GetComponent<Quest>().resetList(objectToSpawn, transform.position + new Vector3(2, 5, 0));
-                        StartCoroutine(FadeBlackOutSquare());
-                    }
-                }
                 currentDialogue = choice.NextDialogue;
                 bodyText.text = currentDialogue.Text;
                 EnableButtons();
@@ -153,23 +133,21 @@ public class NPCInteraction : MonoBehaviour
 
                     npcUI.SetActive(false);
 
-                    currentDialogueValue++;
-                    //TEMP: Switch Dialogue if multiple
-                    if (currentDialogueValue < dialogueContainers.Length)
-                    {
-                        dialogueContainer = dialogueContainers[currentDialogueValue];
-                    }
+                    // currentDialogueValue++;
+                    // //TEMP: Switch Dialogue if multiple
+                    // if (currentDialogueValue < dialogueContainers.Length)
+                    // {
+                    //     dialogueContainer = dialogueContainers[currentDialogueValue];
+                    // }
 
 
                     OnNPCInteractEndEvent();
-                    if (quest != null)
-                    {
-                        quest.StartQuest();
-                    }
+
                     break;
                 }
                 if (!HasUnfinishedDialogue())
                 {
+                    Debug.Log("TRY NEXT");
                     FinishCurrentDialogue();
                     currentDialogue = choice.NextDialogue;
                     typeBodyText = StartCoroutine(TypeBodyText());
@@ -242,9 +220,6 @@ public class NPCInteraction : MonoBehaviour
             blackOutSquare.GetComponent<Image>().color = new Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
             yield return null;
         }
-
-        otherNPC.GetComponent<Quest>().StartQuest();
-        objectToSpawn = null;
         yield return new WaitForSeconds(0.5f);
 
         while (blackOutSquare.GetComponent<Image>().color.a > 0)
