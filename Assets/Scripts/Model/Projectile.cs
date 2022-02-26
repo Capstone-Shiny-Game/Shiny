@@ -1,18 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile
 {
     private float speed = 0.4f;
     private float launchAngle = 45f;
 
-    public void LaunchProjectile(Rigidbody rb, Quaternion initalRotation, Vector3 target)
-    {
-        StartCoroutine(Launch(rb, initalRotation, target));
-    }
-
-    private IEnumerator Launch(Rigidbody rb, Quaternion initialRotation, Vector3 target)
+    public IEnumerator Launch(Rigidbody rb, Quaternion initialRotation, Vector3 target)
     {
                 // may need to just pass in the GameObject
         while (Vector3.Distance(rb.position, target) > 1f)
@@ -36,7 +30,7 @@ public class Projectile : MonoBehaviour
             //This rotates the projectile correctly on the arc
             rb.transform.rotation = Quaternion.LookRotation(rb.velocity) * initialRotation;
 
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
     }
 }

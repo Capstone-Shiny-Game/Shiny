@@ -55,6 +55,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Acorn_Prefab_I
       objectReference: {fileID: 0}
+    - target: {fileID: 2231722948580463076, guid: 354cad4e1c762af479ffcb76333bb293, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4128413412853655224, guid: 354cad4e1c762af479ffcb76333bb293, type: 3}
+      propertyPath: item.amount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4128413412853655224, guid: 354cad4e1c762af479ffcb76333bb293, type: 3}
       propertyPath: item.itemType
       value: acorn
@@ -75,7 +83,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2402715761059719116, guid: d3febee2590c0a24d93df475f9d2803c, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2402715761059719116, guid: d3febee2590c0a24d93df475f9d2803c, type: 3}
       propertyPath: m_LocalScale.x

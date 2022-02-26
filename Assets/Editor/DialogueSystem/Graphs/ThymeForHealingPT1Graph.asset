@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: ThymeForHealingPT1Graph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: ThymeForHealingPT1
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: 0c620b59-9ca8-41f0-b47e-45ed45a5f6cf
+    <Name>k__BackingField: CharlieTheFarmer4
+    <Text>k__BackingField: "\u201CIf you\u2019d do me the huge favor of gettin\u2019
+      some so I can make that salve, we\u2019d be eternally grateful. You should
+      be able to find some in the forest over yonder.\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1412, y: 251.99998}
+  - <ID>k__BackingField: d9f606ac-6358-4e56-827c-2c703c719902
+    <Name>k__BackingField: CharlieTheFarmer3
+    <Text>k__BackingField: " \u201COl\u2019 Bessie needs some healin\u2019 salve
+      for a cut and I\u2019m fresh out. I can make some more, but I need more thyme.\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 0c620b59-9ca8-41f0-b47e-45ed45a5f6cf
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 761.6, y: 251.99998}
+  - <ID>k__BackingField: b1fff25a-3467-468f-bfae-b6b2709cccb4
+    <Name>k__BackingField: CharlieTheFarmer2
+    <Text>k__BackingField: "\u201CYou don\u2019t happen to have some thyme on ya,
+      do ya?\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: d9f606ac-6358-4e56-827c-2c703c719902
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 370.4, y: 249.59999}
+  - <ID>k__BackingField: f488dc15-e81e-4fbc-96c0-b30370ccdaee
+    <Name>k__BackingField: CharlieTheFarmer1
+    <Text>k__BackingField: "\u201CIf it ain't my favorite feathered friend comin\u2019
+      to say hi.\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: b1fff25a-3467-468f-bfae-b6b2709cccb4
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: -28.8, y: 249.59999}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - CharlieTheFarmer4
+  - CharlieTheFarmer3
+  - CharlieTheFarmer2
+  - CharlieTheFarmer1
+  <OldGroupedNodeNames>k__BackingField:
+    list: []

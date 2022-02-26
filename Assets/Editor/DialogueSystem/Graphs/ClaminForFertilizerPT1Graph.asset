@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: ClaminForFertilizerPT1Graph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: ClaminForFertilizerPT1
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: 69601af7-e843-4c92-9739-1f9da0c0abcd
+    <Name>k__BackingField: HayesTheFarmer1
+    <Text>k__BackingField: "\u201COh\u2026Nox? Hi. Was wonderin\u2019 if you could
+      do me a favor. I\u2019m all outta fertilizer. Can\u2019t have that.\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 299b03ee-de2e-4bad-89ee-0bb90bd78c99
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 67.2, y: 237.59999}
+  - <ID>k__BackingField: 299b03ee-de2e-4bad-89ee-0bb90bd78c99
+    <Name>k__BackingField: HayesTheFarmer2
+    <Text>k__BackingField: "\u201CI like to put clam in mine\u2026heard ya can find
+      those by diggin\u2019.\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 31dcc7db-a151-4887-b24a-0d35bbcd9168
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 706.4, y: 236.8}
+  - <ID>k__BackingField: 31dcc7db-a151-4887-b24a-0d35bbcd9168
+    <Name>k__BackingField: HayesTheFarmer3
+    <Text>k__BackingField: "\u201CSo\u2026could you get me one of those for some
+      more fertilizer?\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 14b3d259-cf64-4bad-86c7-e1f6476603e4
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1159.2, y: 234.4}
+  - <ID>k__BackingField: 14b3d259-cf64-4bad-86c7-e1f6476603e4
+    <Name>k__BackingField: HayesTheFarmer4
+    <Text>k__BackingField: "\u201CThanks, Nox\u2026just bring it back to me when
+      you find it.\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1600, y: 233.59999}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - HayesTheFarmer1
+  - HayesTheFarmer2
+  - HayesTheFarmer3
+  - HayesTheFarmer4
+  <OldGroupedNodeNames>k__BackingField:
+    list: []

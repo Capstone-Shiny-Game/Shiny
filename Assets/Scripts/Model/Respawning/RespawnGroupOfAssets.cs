@@ -18,6 +18,7 @@ public class RespawnGroupOfAssets : MonoBehaviour
     private List<Vector3> respawnLocations;
     private List<Quaternion> respawnRotations;
     private float totalProbability;
+    private List<Coroutine> coroutines;
 
     [Tooltip("Put the prefab to spawn in the game object slot, then set the spawn parameters for that prefab")]
     [field: SerializeField] public SerializableDictionary<GameObject, SpawnParameters> PrefabsToSpawnToSpawnParameters;
@@ -32,6 +33,7 @@ public class RespawnGroupOfAssets : MonoBehaviour
 
     void Start()
     {
+        coroutines = new List<Coroutine>();
         //get the player
         playerReference = GameObject.FindGameObjectWithTag("Player");
         List<Transform> respawnTransforms = new List<Transform>();
@@ -42,10 +44,10 @@ public class RespawnGroupOfAssets : MonoBehaviour
             }
         }
         else {
-            respawnTransforms = new List<Transform>(gameObject.GetComponentsInChildren<Transform>());
+            respawnTransforms = new List<Transform>(gameObject.GetComponentsInChildren<Transform>()); 
+            respawnTransforms.Remove(this.transform); //remove self from list
         }
         //unity was being weird about using the transforms of deactivated objects so make a copy.
-        respawnTransforms.Remove(this.transform);
         respawnLocations = new List<Vector3>();
         respawnRotations = new List<Quaternion>();
         foreach (Transform transform in respawnTransforms)
@@ -67,11 +69,12 @@ public class RespawnGroupOfAssets : MonoBehaviour
         totalProbability = 0;
         calculateTotalProbability();
         //safety check,if total max amt to spawn is negative or higher than max spawn locations
+        //totalMaxAmountToSpawn = Mathf.Min(maxSpawnable, totalMaxAmountToSpawn);
+        //Debug.Log("if " + totalMaxAmountToSpawn +" >= " + respawnLocations.Count);
         if (totalMaxAmountToSpawn <= 0 || totalMaxAmountToSpawn >= respawnLocations.Count)
         {
             totalMaxAmountToSpawn = respawnLocations.Count; //set it to max
         }
-        totalMaxAmountToSpawn = Mathf.Min(maxSpawnable, totalMaxAmountToSpawn);//second saftey check
         //setup done, now spawn the items
         for (int i = 0; i < totalMaxAmountToSpawn; i++)
         {
@@ -98,7 +101,7 @@ public class RespawnGroupOfAssets : MonoBehaviour
 
     private void respawnItemWithProbability()
     {
-        int LocationIndex = Random.Range(0, totalMaxAmountToSpawn); //get a random availible spawn location
+        int LocationIndex = Random.Range(0, respawnLocations.Count); //get a random availible spawn location
         Vector3 placeToSpawn = respawnLocations[LocationIndex];
         Quaternion rotation = respawnRotations[LocationIndex];
         //mark spawn location no longer availible
@@ -110,7 +113,7 @@ public class RespawnGroupOfAssets : MonoBehaviour
         newObject.SetActive(true);
         //add the respawnable script to it with a callback to free up it's respawn location if it is destroyed
         Respawnable script = newObject.AddComponent<Respawnable>();
-        script.onDisableCallbackFunction = delegate () { respawnLocations.Add(placeToSpawn); respawnRotations.Add(rotation); StartRespawn(); };
+        script.onDisableCallbackFunction = delegate () { respawnLocations.Add(placeToSpawn); respawnRotations.Add(rotation);try { StartRespawn(); } catch { return; }; Destroy(newObject);};
     }
 
     private GameObject GetPrefabToSpawn() {
@@ -131,6 +134,15 @@ public class RespawnGroupOfAssets : MonoBehaviour
         prefabToCurrentNumSpawned[result]++;//track spawning this specific prefab
         return result;//return found prefab
     }
+    /// <summary>
+    /// prevent errors on destroy
+    /// </summary>
+    private void OnDestroy()
+    {
+        foreach (Coroutine coroutine in coroutines) {
+            StopCoroutine(coroutine);
+        }
+    }
 
     /// <summary>
     /// calls IEnumerator Respawn()
@@ -140,7 +152,7 @@ public class RespawnGroupOfAssets : MonoBehaviour
         // prevents exception when game is closed
         if (this.gameObject.activeInHierarchy)
         {
-            StartCoroutine("Respawn");
+            coroutines.Add(StartCoroutine("Respawn"));
         }
     }
     /// <summary>
