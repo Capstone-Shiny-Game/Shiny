@@ -89,6 +89,15 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""walkAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""19586962-3660-409e-9606-261e0310c17b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -289,6 +298,17 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                     ""action"": ""StartLook"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""00aa8695-15cb-476c-a14a-3eabc05ff756"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""walkAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -432,6 +452,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
         m_FlightMap_Boost = m_FlightMap.FindAction("Boost", throwIfNotFound: true);
         m_FlightMap_Brake = m_FlightMap.FindAction("Brake", throwIfNotFound: true);
         m_FlightMap_LockCursor = m_FlightMap.FindAction("LockCursor", throwIfNotFound: true);
+        m_FlightMap_walkAction = m_FlightMap.FindAction("walkAction", throwIfNotFound: true);
         // GUIMap
         m_GUIMap = asset.FindActionMap("GUIMap", throwIfNotFound: true);
         m_GUIMap_PauseMenu = m_GUIMap.FindAction("PauseMenu", throwIfNotFound: true);
@@ -506,6 +527,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
     private readonly InputAction m_FlightMap_Boost;
     private readonly InputAction m_FlightMap_Brake;
     private readonly InputAction m_FlightMap_LockCursor;
+    private readonly InputAction m_FlightMap_walkAction;
     public struct FlightMapActions
     {
         private @PlayerControllerInput m_Wrapper;
@@ -517,6 +539,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
         public InputAction @Boost => m_Wrapper.m_FlightMap_Boost;
         public InputAction @Brake => m_Wrapper.m_FlightMap_Brake;
         public InputAction @LockCursor => m_Wrapper.m_FlightMap_LockCursor;
+        public InputAction @walkAction => m_Wrapper.m_FlightMap_walkAction;
         public InputActionMap Get() { return m_Wrapper.m_FlightMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -547,6 +570,9 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                 @LockCursor.started -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnLockCursor;
                 @LockCursor.performed -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnLockCursor;
                 @LockCursor.canceled -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnLockCursor;
+                @walkAction.started -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnWalkAction;
+                @walkAction.performed -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnWalkAction;
+                @walkAction.canceled -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnWalkAction;
             }
             m_Wrapper.m_FlightMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -572,6 +598,9 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                 @LockCursor.started += instance.OnLockCursor;
                 @LockCursor.performed += instance.OnLockCursor;
                 @LockCursor.canceled += instance.OnLockCursor;
+                @walkAction.started += instance.OnWalkAction;
+                @walkAction.performed += instance.OnWalkAction;
+                @walkAction.canceled += instance.OnWalkAction;
             }
         }
     }
@@ -658,6 +687,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
         void OnBoost(InputAction.CallbackContext context);
         void OnBrake(InputAction.CallbackContext context);
         void OnLockCursor(InputAction.CallbackContext context);
+        void OnWalkAction(InputAction.CallbackContext context);
     }
     public interface IGUIMapActions
     {

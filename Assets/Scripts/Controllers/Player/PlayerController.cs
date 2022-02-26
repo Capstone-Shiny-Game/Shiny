@@ -2,9 +2,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
 using Cinemachine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour, Savable
 {
+
+
     public enum CrowState { Flying, Gliding, Walking, Idle, Talking };
 
     public CrowState state { get; private set; }
@@ -26,7 +29,7 @@ public class PlayerController : MonoBehaviour, Savable
     // public GameObject NPCUI;
     public GameObject ControllerUI;
 
-    private InputAction walkAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/F");
+    //private InputAction walkAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/F");
     [System.NonSerialized]
     public Inventory inventory;
 
@@ -193,22 +196,20 @@ public class PlayerController : MonoBehaviour, Savable
         NPCInteraction.OnNPCInteractEvent += EnterNPCDialogue;
         NPCInteraction.OnNPCInteractEndEvent += ExitNPCDialogue;
 
-        walkAction.performed += ctx =>
-        {
-            if (state == CrowState.Walking || state == CrowState.Idle)
-                SetState(CrowState.Flying, 2.0f);
-            else if (state == CrowState.Flying || state == CrowState.Gliding)
-                AttemptToLand(true);
-        };
-        walkAction.Enable();
     }
+    public void SwapWalking()
+    {
 
+        if (state == CrowState.Walking || state == CrowState.Idle)
+            SetState(CrowState.Flying, 2.0f);
+        else if (state == CrowState.Flying || state == CrowState.Gliding)
+            AttemptToLand(true);
+    }
     private void OnDisable()
     {
         NPCInteraction.OnNPCInteractEvent -= EnterNPCDialogue;
         NPCInteraction.OnNPCInteractEndEvent -= ExitNPCDialogue;
 
-        walkAction.Disable();
     }
 
     private void SetFixedPosition(Vector3 position) => transform.position = position;

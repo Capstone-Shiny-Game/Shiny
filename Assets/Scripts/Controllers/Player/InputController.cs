@@ -28,6 +28,10 @@ public class FlightBoostEvent : UnityEvent<bool> { }
 //public class PauseEvent : UnityEvent { }
 [Serializable]
 public class DropEvent : UnityEvent { }
+
+[Serializable]
+public class FlightSwapToWalkEvent : UnityEvent { }
+
 [Serializable]
 public class PickupItemEvent : UnityEvent { }
 [Serializable]
@@ -48,6 +52,7 @@ public class InputController : MonoBehaviour
 
     public FlightBrakeEvent flightBrakeHandler;
     public FlightBoostEvent flightBoostHandler;
+    public FlightSwapToWalkEvent flightSwapHandler;
 
     //public PauseEvent PauseHandler;
     public DropEvent DropHandler;
@@ -74,6 +79,8 @@ public class InputController : MonoBehaviour
     {
         PlayerInput.FlightMap.Enable();
         //subscribe to the events when the following is triggered:
+        PlayerInput.FlightMap.walkAction.performed += OnFlightSwap;
+
         PlayerInput.FlightMap.Flight.performed += OnFlight;
         PlayerInput.FlightMap.Flight.canceled += OnFlightEnd;
 
@@ -100,6 +107,11 @@ public class InputController : MonoBehaviour
         PlayerInput.GUIMap.PickupItem.performed += OnPickup;
         if (UnityEngine.InputSystem.Gyroscope.current != null)
             InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
+    }
+
+    private void OnFlightSwap(InputAction.CallbackContext context)
+    {
+        flightSwapHandler?.Invoke();
     }
 
     private void EndLook(InputAction.CallbackContext context)
