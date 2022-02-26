@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: ClaminForFertilizerPT2Graph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: ClaminForFertilizerPT2
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: 66c41e5c-761c-4a2f-884f-528dd2ee2070
+    <Name>k__BackingField: HayesTheFarmer2
+    <Text>k__BackingField: "\u201CThanks. Yer a good friend.\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 567.2, y: 204}
+  - <ID>k__BackingField: 57cce1db-e897-4cfd-b156-c1524901f4f3
+    <Name>k__BackingField: HayesTheFarmer1
+    <Text>k__BackingField: "\u201CGot somethin\u2019 for me?\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 66c41e5c-761c-4a2f-884f-528dd2ee2070
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 291.2, y: 204.8}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - HayesTheFarmer2
+  - HayesTheFarmer1
+  <OldGroupedNodeNames>k__BackingField:
+    list: []
