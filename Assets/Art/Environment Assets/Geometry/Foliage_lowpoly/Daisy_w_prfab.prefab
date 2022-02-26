@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3764484901780572341}
+  - component: {fileID: 113443124444168683}
   m_Layer: 0
   m_Name: Daisy_w_prfab
   m_TagString: Untagged
@@ -31,6 +32,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &113443124444168683
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8589735565569993925}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.40245938, y: 0.7149683, z: 0.11839008}
+  m_Size: 2.9590082
+  m_FadeMode: 1
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.08099547
+    fadeTransitionWidth: 0.1
+    renderers:
+    - renderer: {fileID: 8474154523071207962}
+  m_Enabled: 1
 --- !u!1001 &7087446480147924638
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91,5 +111,10 @@ PrefabInstance:
 --- !u!4 &7336665577445007733 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 13a191ce700a0324fbe2cd096496e336, type: 3}
+  m_PrefabInstance: {fileID: 7087446480147924638}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &8474154523071207962 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 13a191ce700a0324fbe2cd096496e336, type: 3}
   m_PrefabInstance: {fileID: 7087446480147924638}
   m_PrefabAsset: {fileID: 0}

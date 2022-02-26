@@ -6,7 +6,7 @@ public class Campfire : MonoBehaviour
 {
     public List<RoastedMap> roastedMaps;
 
-    private Projectile projectile;
+    public Projectile projectile;
 
     private void Start()
     {
@@ -18,17 +18,17 @@ public class Campfire : MonoBehaviour
         // *use different tag?
         if (other.CompareTag("Tradeable"))
         {
-            TryRoastingObject(other.gameObject.name);
+            TryRoastingObject(other.gameObject);
         }
     }
 
-    private void TryRoastingObject(string itemName)
+    private void TryRoastingObject(GameObject item)
     {
         bool canRoast = false;
         GameObject roastedObj = null;
         foreach (RoastedMap entry in roastedMaps)
         {
-            if (entry.given.name.Equals(itemName))
+            if (item.name.StartsWith(entry.given.name))
             {
                 canRoast = true;
                 roastedObj = entry.returned;
@@ -41,15 +41,22 @@ public class Campfire : MonoBehaviour
         float zRand = Random.value * 3f;
         Vector3 offset = new Vector3(xRand, ySet, zRand);
 
+        //Debug.Log($"trans.pos: {transform.position}");
+        //Debug.Log($"offset: {offset}");
+
         if (canRoast)
         {
-            // spawn and move to temp location where
+            Destroy(item);
+            // spawn and move to location where
             // TransformExtensions can find projectile target/ground
-            GameObject ro = Instantiate(roastedObj, transform.position + offset, transform.rotation);
-            Vector3 target = ro.transform.FindGround(transform.localScale.y / 2);
+            GameObject emptyObj = new GameObject();
+            GameObject eo = Instantiate(emptyObj, transform.position + offset, Quaternion.identity);
+            Vector3 target = eo.transform.FindGround(transform.localScale.y / 2);
+            Destroy(eo);
 
-            projectile.LaunchProjectile(
-                roastedObj?.GetComponent<Rigidbody>(), roastedObj.transform.rotation, target);
+            GameObject roastedItem = Instantiate(roastedObj, transform.position, transform.rotation);
+            StartCoroutine(projectile.Launch(
+                roastedItem?.GetComponent<Rigidbody>(), roastedItem.transform.rotation, target));
         }
         else
         {

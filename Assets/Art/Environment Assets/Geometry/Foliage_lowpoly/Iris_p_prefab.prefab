@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8237753049228880999}
+  - component: {fileID: 3921169770543970209}
   m_Layer: 0
   m_Name: Iris_p_prefab
   m_TagString: Untagged
@@ -31,6 +32,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &3921169770543970209
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3609966787598189621}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.115581214, y: 1.5978854, z: 0.17127061}
+  m_Size: 3.6253495
+  m_FadeMode: 1
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.048519846
+    fadeTransitionWidth: 0.1
+    renderers:
+    - renderer: {fileID: 5067397908441307736}
+  m_Enabled: 1
 --- !u!1001 &5877925585813047004
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91,5 +111,10 @@ PrefabInstance:
 --- !u!4 &6203760507349655863 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e7084c9dbb96a6f4992e6d2c1e9acc4b, type: 3}
+  m_PrefabInstance: {fileID: 5877925585813047004}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &5067397908441307736 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: e7084c9dbb96a6f4992e6d2c1e9acc4b, type: 3}
   m_PrefabInstance: {fileID: 5877925585813047004}
   m_PrefabAsset: {fileID: 0}
