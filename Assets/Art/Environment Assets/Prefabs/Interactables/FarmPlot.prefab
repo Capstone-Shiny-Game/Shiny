@@ -470,14 +470,26 @@ MonoBehaviour:
     meshNames:
     - Veggie_Sprout
     - Carrot_sprout
-    - Carrot_Flower
+    - Carrot_flower
     cropObj: {fileID: 7766147600880298216, guid: 00eb294e50fb9694b8502657f8afd8e0, type: 3}
-  - seedName: Carrot
+  - seedName: Iris_blue
     meshNames:
-    - Veggie_Sprout
-    - Carrot_sprout
-    - Carrot
-    cropObj: {fileID: 7766147600880298216, guid: 00eb294e50fb9694b8502657f8afd8e0, type: 3}
+    - flower_Sprout
+    - flower_Sprout_mid
+    - Iris_b
+    cropObj: {fileID: 7303444314708368217, guid: 672570e1ebb9abe4d82a500e51cc03dc, type: 3}
+  - seedName: Iris_blue
+    meshNames:
+    - flower_Sprout
+    - flower_Sprout_mid
+    - Iris_p
+    cropObj: {fileID: 3609966787598189621, guid: 56a9e3c4d726d1844978745f464abe14, type: 3}
+  - seedName: lavender
+    meshNames:
+    - flower_Sprout
+    - flower_Sprout_mid
+    - Iris_p
+    cropObj: {fileID: 3609966787598189621, guid: 56a9e3c4d726d1844978745f464abe14, type: 3}
 --- !u!65 &2745875201628222118
 BoxCollider:
   m_ObjectHideFlags: 0
