@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FishingQuest : MonoBehaviour
+public class PotionRequestQuest : MonoBehaviour
 {
     public DSDialogueContainerSO StartDialogue;
+    public DSDialogueContainerSO P2Dialogue;
     public DSDialogueContainerSO CompletionDialogue;
 
-    public GameObject ExpectedDelivery;
+    public GameObject Deliver1;
+    public GameObject Deliver2;
+    public GameObject Deliver3;
     public int ExpectedQuantity;
     public GameObject InteractButton;
 
@@ -18,17 +21,18 @@ public class FishingQuest : MonoBehaviour
         dialogueSystem = GetComponent<NPCInteraction>();
         dialogueSystem.dialogueContainer = StartDialogue;
         NPCInteraction.OnNPCInteractEndEvent += startQuest;
+        DayController.OnEveningEvent += timeSensitive;
         InteractButton.SetActive(true);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag(ExpectedDelivery.tag))
+        if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag(Deliver1.tag) || other.gameObject.CompareTag(Deliver2.tag) || other.gameObject.CompareTag(Deliver3.tag))
         {
             if(CheckDelivery())
             {
                 //if items are there swap current dialogue
-                dialogueSystem.dialogueContainer = CompletionDialogue;
+                dialogueSystem.dialogueContainer = P2Dialogue;
                 InteractButton.SetActive(true);
             }
         }
@@ -44,10 +48,19 @@ public class FishingQuest : MonoBehaviour
             {
                 Destroy(dialogueSystem.npcUI);
                 Destroy(dialogueSystem);
-                Destroy(GetComponent<BoxCollider>());
+                Destroy(GetComponent<SphereCollider>());
                 Destroy(InteractButton);
                 Destroy(this);
             }
+        }
+    }
+
+    private void timeSensitive()
+    {
+        if(dialogueSystem.dialogueContainer == P2Dialogue && InteractButton.activeInHierarchy == false)
+        {
+            dialogueSystem.dialogueContainer = CompletionDialogue;
+            InteractButton.SetActive(true);
         }
     }
 
@@ -57,7 +70,7 @@ public class FishingQuest : MonoBehaviour
 
         foreach(Collider col in Physics.OverlapSphere(transform.position, 50))
         {
-            if(col.gameObject.name.ToLower().Contains(ExpectedDelivery.name.ToLower()))
+            if(col.gameObject.name.ToLower().Contains(Deliver1.name.ToLower()) || col.gameObject.name.ToLower().Contains(Deliver2.name.ToLower()) || col.gameObject.name.ToLower().Contains(Deliver3.name.ToLower()))
             {
                 if(!destroyIfDone.Contains(col.gameObject))
                 {
