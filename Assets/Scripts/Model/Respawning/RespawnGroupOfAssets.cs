@@ -18,6 +18,7 @@ public class RespawnGroupOfAssets : MonoBehaviour
     private List<Vector3> respawnLocations;
     private List<Quaternion> respawnRotations;
     private float totalProbability;
+    private List<Coroutine> coroutines;
 
     [Tooltip("Put the prefab to spawn in the game object slot, then set the spawn parameters for that prefab")]
     [field: SerializeField] public SerializableDictionary<GameObject, SpawnParameters> PrefabsToSpawnToSpawnParameters;
@@ -32,6 +33,7 @@ public class RespawnGroupOfAssets : MonoBehaviour
 
     void Start()
     {
+        coroutines = new List<Coroutine>();
         //get the player
         playerReference = GameObject.FindGameObjectWithTag("Player");
         List<Transform> respawnTransforms = new List<Transform>();
@@ -131,6 +133,15 @@ public class RespawnGroupOfAssets : MonoBehaviour
         prefabToCurrentNumSpawned[result]++;//track spawning this specific prefab
         return result;//return found prefab
     }
+    /// <summary>
+    /// prevent errors on destroy
+    /// </summary>
+    private void OnDestroy()
+    {
+        foreach (Coroutine coroutine in coroutines) {
+            StopCoroutine(coroutine);
+        }
+    }
 
     /// <summary>
     /// calls IEnumerator Respawn()
@@ -140,7 +151,7 @@ public class RespawnGroupOfAssets : MonoBehaviour
         // prevents exception when game is closed
         if (this.gameObject.activeInHierarchy)
         {
-            StartCoroutine("Respawn");
+            coroutines.Add(StartCoroutine("Respawn"));
         }
     }
     /// <summary>
