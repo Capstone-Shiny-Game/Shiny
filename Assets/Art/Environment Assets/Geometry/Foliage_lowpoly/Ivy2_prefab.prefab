@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6378329161840601648}
+  - component: {fileID: 4666117196977948921}
   m_Layer: 0
   m_Name: Ivy2_prefab
   m_TagString: Untagged
@@ -31,6 +32,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &4666117196977948921
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8226894409816078262}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.00000047683716, y: -0.0005578995, z: 0.00046434999}
+  m_Size: 7.734433
+  m_FadeMode: 1
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.039133307
+    fadeTransitionWidth: 0.1
+    renderers:
+    - renderer: {fileID: 472555009941176156}
+  m_Enabled: 1
 --- !u!1001 &1247303475142681560
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91,5 +111,10 @@ PrefabInstance:
 --- !u!4 &1640988787179783219 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 36235d84d394d67429f06467fe165d8a, type: 3}
+  m_PrefabInstance: {fileID: 1247303475142681560}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &472555009941176156 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 36235d84d394d67429f06467fe165d8a, type: 3}
   m_PrefabInstance: {fileID: 1247303475142681560}
   m_PrefabAsset: {fileID: 0}
