@@ -74,9 +74,12 @@ public class NPCInteraction : MonoBehaviour
 
     private void TryEnterDialogue()
     {
-        OnNPCInteractEvent?.Invoke(this.transform);
-        EnterDialogue();
-        ApplyTheme();
+        if(Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 50)
+        {
+            OnNPCInteractEvent?.Invoke(this.transform);
+            EnterDialogue();
+            ApplyTheme();
+        }
     }
 
     private void EnterDialogue()

@@ -5,18 +5,21 @@ using UnityEngine;
 [ExecuteAlways]
 public class DayController : MonoBehaviour
 {
+    //Publicly Accessible Stats
     [Range(0, 24)] public float TimeOfDay;
-    public float TEMPDayStartTime;
     public string CurrentDay;
+
+    //Inspector Variables
+    [SerializeField] private float TEMPDayStartTime;
     [SerializeField] private Light sun;
     [SerializeField] private LightingPreset Preset;
     [SerializeField] private float LengthOfDay;
+    
+    //Day of the week tracking
     private string[] DaysOfWeek = {"Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
     private int DayIndex = 0;
-    private const float morning = 6.0f;
-    private const float midDay = 12.0f;
-    private const float evening = 18.0f;
 
+    //Events that trigger at specific hours
     public delegate void DayStart();
     public static event DayStart OnDayStartEvent;
     public delegate void Morning();
@@ -26,10 +29,16 @@ public class DayController : MonoBehaviour
     public delegate void Evening();
     public static event Evening OnEveningEvent;
 
+    //Time to trigger day events
+    private const float morning = 6.0f;
+    private const float midDay = 12.0f;
+    private const float evening = 18.0f;
+
 
 
     private void Start()
     {
+        //Starts Day Night in Builds and Play Mode
         if(Application.isPlaying)
         {
             LengthOfDay *= 60;
@@ -40,6 +49,7 @@ public class DayController : MonoBehaviour
 
     private void Update()
     {
+        //In Editor Mode Update the Lighting to represent the time on the slider
         if(!Application.isPlaying)
         {
             UpdateLighting(TimeOfDay/24f);
@@ -52,10 +62,14 @@ public class DayController : MonoBehaviour
         float timeElapsed = 0;
         while (timeElapsed < LengthOfDay)
         {
+            //TODO: Replace TEMPDayStartTime
+            //Update Time and lighting
             TimeOfDay = Mathf.Lerp(TEMPDayStartTime, 24, timeElapsed/LengthOfDay);
             timeElapsed += Time.deltaTime;
             TimeOfDay %= 24;
             UpdateLighting(TimeOfDay/24f);
+            
+            //Invoke Events based on the hour
             switch(Mathf.Floor(TimeOfDay))
             {
                 case 0:
@@ -88,16 +102,23 @@ public class DayController : MonoBehaviour
             }
             yield return null;
         }
+
+        //Increase the day, if it's past the last day of the week, start over
         DayIndex++;
         if(DayIndex > 6)
         {
             DayIndex = 0;
         }
         CurrentDay = DaysOfWeek[DayIndex];
+        
+        //TODO: Replace TEMPDayStartTime
         TEMPDayStartTime = 0;
+        
+        //Loop
         StartCoroutine(Lerp());
     }
 
+    //Sets all variables in the render settings and sun
     private void UpdateLighting(float timePercent)
     {
         if(Preset == null)
@@ -114,6 +135,7 @@ public class DayController : MonoBehaviour
         }
     }
 
+    //When validating variables, try to find a directional light if there wasn't one set in the inspector
     private void OnValidate()
     {
         if(sun != null)
