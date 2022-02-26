@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1077383506558897593
+--- !u!114 &-3562967664386048894
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,20 +20,21 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: StylizedWater
-  m_Shader: {fileID: -6465566751694194690, guid: 4a2043697f05d9a40a52bfa885490a13, type: 3}
+  m_Name: tophatmaterial
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_DoubleSidedGI: 1
+  m_CustomRenderQueue: 2000
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 28d0f36978b8b3545b33fcadba4cd136, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -57,7 +58,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 28d0f36978b8b3545b33fcadba4cd136, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -89,21 +90,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_0fa99bb8ccff46fba88d252f11b68b76: 2.1
-    - Vector1_15e62cd144d54d169f5a340a9f023ab7: 200
-    - Vector1_38da1122b03543e48ea1b43a5ab481ab: 1
-    - Vector1_38df0a2a3dd54557bf9a0186fd83cdea: 1
-    - Vector1_39c16d6cace64af7b43e7c9ec2a7bbc0: 1
-    - Vector1_45c819158aad427aba43c8b3b7440b5c: 10
-    - Vector1_7e0bb68773c4442492bb584188f289bc: 90
-    - Vector1_9bf8099a55494e2bb99288a6767614d2: 0.05
-    - Vector1_a1e15edbd3654be69048e8e9fc592195: 1
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _Cull: 2
+    - _Cull: 0
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
@@ -125,10 +117,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_586c6206b7c14fedbdd6da5fda453cc3: {r: 1, g: 1, b: 1, a: 1}
-    - Color_82f2b36b98f34a7fb098efb5ffb624e9: {r: 0.1411765, g: 0.30231, b: 0.47058824, a: 0.94509804}
-    - Color_e8a420916b1e494db2bada7677580c05: {r: 0, g: 0.8125157, b: 1, a: 0.09803922}
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
