@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: UnderTheWeatherPT2Graph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: UnderTheWeatherPT2
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: 224dbc01-6b54-43b4-9ffd-70ca2ceae8ea
+    <Name>k__BackingField: EdgarDialog1
+    <Text>k__BackingField: "\u201CDid ya get anything good?\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 51039ef9-a9e7-41f2-8f8e-695cef30cbeb
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 244, y: 225.59999}
+  - <ID>k__BackingField: 51039ef9-a9e7-41f2-8f8e-695cef30cbeb
+    <Name>k__BackingField: EdgarDialog2
+    <Text>k__BackingField: "\u201CHmph. These\u2019ll do.\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 544, y: 228}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - EdgarDialog1
+  - EdgarDialog2
+  <OldGroupedNodeNames>k__BackingField:
+    list: []

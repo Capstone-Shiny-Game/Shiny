@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: PotionRequestPT1Graph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: PotionRequestPT1
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: a9f5cc49-34d5-4187-979c-50c5bc7ffe5d
+    <Name>k__BackingField: MerlettaDialog2
+    <Text>k__BackingField: "\u201CI\u2019m trying to get the herbs on the patio to
+      grow. I want to make a growth potion, but I need thyme, honey, and a beatle.
+      Think you can get those for me?\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: d76885d2-5f66-46f2-9ef9-a73f2f77d393
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 732.8, y: 166.4}
+  - <ID>k__BackingField: d76885d2-5f66-46f2-9ef9-a73f2f77d393
+    <Name>k__BackingField: MerlettaDialog3
+    <Text>k__BackingField: "\u201CThanks Nox! You should be able to find everything
+      in the forest nearby. Once you have everything, meet me back here.\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1404, y: 160}
+  - <ID>k__BackingField: 2265e7f0-e978-4488-a8e2-17d213f075f7
+    <Name>k__BackingField: MerlettaDialog1
+    <Text>k__BackingField: '"Nox, there you are! I know you are busy helping the
+      townsfolk, but could you spare a few moments and help me with something?"'
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: a9f5cc49-34d5-4187-979c-50c5bc7ffe5d
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 73.6, y: 162.4}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - MerlettaDialog2
+  - MerlettaDialog3
+  - MerlettaDialog1
+  <OldGroupedNodeNames>k__BackingField:
+    list: []
