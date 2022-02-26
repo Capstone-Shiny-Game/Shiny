@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: UnderTheWeatherPT1Graph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: UnderTheWeatherPT1
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: 3d43389c-2974-42f6-accb-21c8a063d244
+    <Name>k__BackingField: EdgarDialog1
+    <Text>k__BackingField: "\u201CUnless ya have fish, go away. I don\u2019 have
+      the energy for ya.\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 622b44c2-8180-4175-8806-113886fbbd47
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 193.6, y: 201.59999}
+  - <ID>k__BackingField: 622b44c2-8180-4175-8806-113886fbbd47
+    <Name>k__BackingField: EdgarDialog2
+    <Text>k__BackingField: "\u201CI ain\u2019t sick. Just under the weather. Nothin\u2019
+      to worry about\u2026\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: edaf6f12-b9ef-4a54-9929-4fb20b2aa354
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 658.4, y: 204}
+  - <ID>k__BackingField: edaf6f12-b9ef-4a54-9929-4fb20b2aa354
+    <Name>k__BackingField: EdgarDialog3
+    <Text>k__BackingField: "\u201CLook, if yer that worried, go catch me some fish.
+      That\u2019ll cure me right up.\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1139.2, y: 206.4}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - EdgarDialog1
+  - EdgarDialog2
+  - EdgarDialog3
+  <OldGroupedNodeNames>k__BackingField:
+    list: []
