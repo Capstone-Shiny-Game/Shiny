@@ -41,7 +41,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3084279118865485613}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 566e49b6df24dd1498877cbc3a1ada91, type: 3}
   m_Name: 
@@ -100,19 +100,15 @@ LODGroup:
   m_LocalReferencePoint: {x: 0.4421606, y: 15.679218, z: -1.1690483}
   m_Size: 35.15191
   m_FadeMode: 1
-  m_AnimateCrossFading: 1
+  m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
   - screenRelativeHeight: 0.15187731
-    fadeTransitionWidth: 0.529
+    fadeTransitionWidth: 0.1
     renderers:
     - renderer: {fileID: 1524513764008307450}
-  - screenRelativeHeight: 0.016025988
-    fadeTransitionWidth: 0.39
-    renderers:
-    - renderer: {fileID: 2986201101584850262}
-  - screenRelativeHeight: 0.0073016863
-    fadeTransitionWidth: 0.39
+  - screenRelativeHeight: 0.039386783
+    fadeTransitionWidth: 0.1
     renderers:
     - renderer: {fileID: 2986201101584850262}
   m_Enabled: 1
@@ -261,6 +257,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1359546269829451594}
     m_Modifications:
+    - target: {fileID: 1243807629362124714, guid: 62a124bf92e7ab448b8731af1a63555f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1840522182096429754, guid: 62a124bf92e7ab448b8731af1a63555f, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -323,6 +323,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1359546269829451594}
     m_Modifications:
+    - target: {fileID: 1243807629362124714, guid: 62a124bf92e7ab448b8731af1a63555f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1840522182096429754, guid: 62a124bf92e7ab448b8731af1a63555f, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -385,6 +389,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1359546269829451594}
     m_Modifications:
+    - target: {fileID: 1243807629362124714, guid: 62a124bf92e7ab448b8731af1a63555f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1840522182096429754, guid: 62a124bf92e7ab448b8731af1a63555f, type: 3}
       propertyPath: m_RootOrder
       value: 0

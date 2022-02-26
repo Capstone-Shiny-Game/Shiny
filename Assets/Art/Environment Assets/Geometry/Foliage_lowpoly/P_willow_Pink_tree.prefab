@@ -46,21 +46,16 @@ LODGroup:
   m_LocalReferencePoint: {x: -0.24877167, y: 13.359411, z: 1.2596092}
   m_Size: 52.480736
   m_FadeMode: 1
-  m_AnimateCrossFading: 1
+  m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.12937868
-    fadeTransitionWidth: 0.529
+  - screenRelativeHeight: 0.15249702
+    fadeTransitionWidth: 0.1
     renderers:
     - renderer: {fileID: 8500959994324011853}
     - renderer: {fileID: 4157427844449555493}
-  - screenRelativeHeight: 0.016025988
-    fadeTransitionWidth: 0.39
-    renderers:
-    - renderer: {fileID: 2842434326789952530}
-    - renderer: {fileID: 2071514647883417724}
-  - screenRelativeHeight: 0.0073016863
-    fadeTransitionWidth: 0.39
+  - screenRelativeHeight: 0.04138755
+    fadeTransitionWidth: 0.1
     renderers:
     - renderer: {fileID: 2842434326789952530}
     - renderer: {fileID: 2071514647883417724}
@@ -186,6 +181,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2992b6eb0cad6314d826a2ea52271354, type: 3}
       propertyPath: m_Name
       value: willow_Trunk1_LOD0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2992b6eb0cad6314d826a2ea52271354, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2992b6eb0cad6314d826a2ea52271354, type: 3}
@@ -320,6 +319,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d1c28c51bbe794647a3611dc822cf643, type: 3}
       propertyPath: m_Name
       value: willow_P_top_LOD0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d1c28c51bbe794647a3611dc822cf643, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1c28c51bbe794647a3611dc822cf643, type: 3}
