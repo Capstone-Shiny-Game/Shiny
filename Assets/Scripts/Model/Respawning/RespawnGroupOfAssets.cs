@@ -44,10 +44,10 @@ public class RespawnGroupOfAssets : MonoBehaviour
             }
         }
         else {
-            respawnTransforms = new List<Transform>(gameObject.GetComponentsInChildren<Transform>());
+            respawnTransforms = new List<Transform>(gameObject.GetComponentsInChildren<Transform>()); 
+            respawnTransforms.Remove(this.transform); //remove self from list
         }
         //unity was being weird about using the transforms of deactivated objects so make a copy.
-        respawnTransforms.Remove(this.transform);
         respawnLocations = new List<Vector3>();
         respawnRotations = new List<Quaternion>();
         foreach (Transform transform in respawnTransforms)
@@ -69,11 +69,12 @@ public class RespawnGroupOfAssets : MonoBehaviour
         totalProbability = 0;
         calculateTotalProbability();
         //safety check,if total max amt to spawn is negative or higher than max spawn locations
+        //totalMaxAmountToSpawn = Mathf.Min(maxSpawnable, totalMaxAmountToSpawn);
+        //Debug.Log("if " + totalMaxAmountToSpawn +" >= " + respawnLocations.Count);
         if (totalMaxAmountToSpawn <= 0 || totalMaxAmountToSpawn >= respawnLocations.Count)
         {
             totalMaxAmountToSpawn = respawnLocations.Count; //set it to max
         }
-        totalMaxAmountToSpawn = Mathf.Min(maxSpawnable, totalMaxAmountToSpawn);//second saftey check
         //setup done, now spawn the items
         for (int i = 0; i < totalMaxAmountToSpawn; i++)
         {
@@ -100,7 +101,7 @@ public class RespawnGroupOfAssets : MonoBehaviour
 
     private void respawnItemWithProbability()
     {
-        int LocationIndex = Random.Range(0, totalMaxAmountToSpawn); //get a random availible spawn location
+        int LocationIndex = Random.Range(0, respawnLocations.Count); //get a random availible spawn location
         Vector3 placeToSpawn = respawnLocations[LocationIndex];
         Quaternion rotation = respawnRotations[LocationIndex];
         //mark spawn location no longer availible
@@ -112,7 +113,7 @@ public class RespawnGroupOfAssets : MonoBehaviour
         newObject.SetActive(true);
         //add the respawnable script to it with a callback to free up it's respawn location if it is destroyed
         Respawnable script = newObject.AddComponent<Respawnable>();
-        script.onDisableCallbackFunction = delegate () { respawnLocations.Add(placeToSpawn); respawnRotations.Add(rotation); StartRespawn(); };
+        script.onDisableCallbackFunction = delegate () { respawnLocations.Add(placeToSpawn); respawnRotations.Add(rotation);try { StartRespawn(); } catch { return; }; Destroy(newObject);};
     }
 
     private GameObject GetPrefabToSpawn() {

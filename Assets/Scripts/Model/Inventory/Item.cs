@@ -55,8 +55,7 @@ public class Item
 
     public bool IsStackable()
     {
-        return false; //TODO add stackability to items in create item window
-        //return itemDB.items[itemType].stackable;
+        return itemDB.items[itemType].stackable;
     }
 
 }
