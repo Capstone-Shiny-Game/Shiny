@@ -104,20 +104,16 @@ public class NPCInteraction : MonoBehaviour
         TextMeshProUGUI btnTmpGUI = button.GetComponentInChildren<TextMeshProUGUI>();
         string text = btnTmpGUI.text;
 
-        if (typeBodyText != null)
+        if (HasUnfinishedDialogue())
         {
-            StopCoroutine(typeBodyText);
+            FinishCurrentDialogue();
+            return;
         }
 
         foreach (DSDialogueChoiceData choice in currentDialogue.Choices)
         {
             if (choice.Text == WAIT)
             {
-                if (HasUnfinishedDialogue())
-                {
-                    FinishCurrentDialogue();
-                    break;
-                }
                 //FADE
                 currentDialogue = choice.NextDialogue;
                 bodyText.text = currentDialogue.Text;
@@ -128,12 +124,6 @@ public class NPCInteraction : MonoBehaviour
             {
                 if (choice.NextDialogue == null)
                 {
-                    if (HasUnfinishedDialogue())
-                    {
-                        FinishCurrentDialogue();
-                        break;
-                    }
-
                     npcUI.SetActive(false);
 
                     // currentDialogueValue++;
@@ -143,18 +133,15 @@ public class NPCInteraction : MonoBehaviour
                     //     dialogueContainer = dialogueContainers[currentDialogueValue];
                     // }
 
-
                     OnNPCInteractEndEvent();
-
-                    break;
                 }
-                if (!HasUnfinishedDialogue())
+                else
                 {
-                    Debug.Log("TRY NEXT");
-                    FinishCurrentDialogue();
                     currentDialogue = choice.NextDialogue;
                     typeBodyText = StartCoroutine(TypeBodyText());
+                    EnableButtons();
                 }
+
                 break;
             }
         }
@@ -164,7 +151,7 @@ public class NPCInteraction : MonoBehaviour
 
     private void FinishCurrentDialogue()
     {
-        StopCoroutine(typeBodyText);
+        StopAllCoroutines();
         bodyText.maxVisibleCharacters = bodyText.text.Length;
         EnableButtons();
     }
