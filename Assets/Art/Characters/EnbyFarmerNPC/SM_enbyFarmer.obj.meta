@@ -3,7 +3,17 @@ guid: 6c4de44cefd36f641bdb2e95ea5cf653
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: enbyFarmer_mainMat
+    second: {fileID: 2100000, guid: 17b5e23d93ce31e43ab22a886378c285, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: enby_Farmer_clothesMat
+    second: {fileID: 2100000, guid: 39a81aa8e48524a43a91a2619cd6a211, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
