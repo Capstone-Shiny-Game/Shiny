@@ -22,16 +22,24 @@ public class SetMaterial : MonoBehaviour, Savable
         public Material material;
     }
     [Serializable]
+    public struct HatPair
+    {
+        public PatioUtility.Hat hName;
+        public GameObject hat;
+    }
+    [Serializable]
     public struct CurrentSelection
     {
         public PatioUtility.Furniture objName;
         public string matName;
     }
 
-
+    public HatPair[] allHats;
     public CurrentSelection[] currentMats;
     public Item[] items;
     public GameObject PatioMenu;
+    public GameObject crowHead;
+
     /// <summary>
     /// KEY: Enum of object name, VALUE: [obj of object, materials for obj]
     /// </summary>
@@ -46,11 +54,10 @@ public class SetMaterial : MonoBehaviour, Savable
     Text[] tOptions;
     Button[] bOptions;
     int i = 0;
+    int j = 0;
     // Start is called before the first frame update
     void Start()
     {
-       
-
         patioObjs = new Dictionary<PatioUtility.Furniture, Tuple<GameObject, MaterialPair[]>>();
         foreach (Item i in items)
         {
@@ -68,15 +75,25 @@ public class SetMaterial : MonoBehaviour, Savable
     /// <param name="mats"></param>
     private void SetupGUI(string titleText, MaterialPair[] mats)
     {
-
-
         title.text = titleText;
 
         int i = 0;
-       foreach (MaterialPair p in mats)
+        foreach (MaterialPair p in mats)
         {
             tOptions[i].text = p.mName;
             bOptions[i++].onClick.AddListener(delegate { SetMaterials(p.mName); });
+        }
+    }
+    private void SetupGUIHats()
+    {
+        title.text = "Wardrobe";
+
+        int i = 0;
+        foreach (HatPair p in allHats)
+        {
+            string name = PatioUtility.GetPrettyName(p.hName);
+            tOptions[i].text = name;
+            bOptions[i++].onClick.AddListener(delegate { SetHat(name); });
         }
     }
     /// <summary>
@@ -109,7 +126,7 @@ public class SetMaterial : MonoBehaviour, Savable
 
     private void setButtonsActive(bool isActive)
     {
-        if(isActive && title == null)
+        if (isActive && title == null)
         {
             title = PatioMenu.GetComponentInChildren<TMP_Text>();
             tOptions = PatioMenu.GetComponentsInChildren<Text>(true);
@@ -154,7 +171,30 @@ public class SetMaterial : MonoBehaviour, Savable
             }
         }
     }
-
+    public void SetHat(String hatName)
+    {
+        //delete current hat
+        foreach (Transform tr in crowHead.transform)
+        {
+            Debug.Log(tr.name);
+            Destroy(tr.gameObject);
+        } 
+        
+        for(int i=0; i<allHats.Length; i++)
+        {
+            if(PatioUtility.GetPrettyName(allHats[i].hName) == hatName)
+            {
+               Instantiate(allHats[i].hat, crowHead.transform);
+                return;
+            }
+        }
+        //set the new hat based on menu
+    }
+    public void ShowHatMenu()
+    {
+        setButtonsActive(true);
+        SetupGUIHats();
+    }
     public void AddSelfToSavablesList()
     {
         Save.AddSelfToSavablesList(this);

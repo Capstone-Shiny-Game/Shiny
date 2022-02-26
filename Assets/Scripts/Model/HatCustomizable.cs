@@ -5,17 +5,19 @@ using UnityEngine;
 public class HatCustomizable : MonoBehaviour
 {
 
-    public PatioUtility.Furniture name;
+    public PatioUtility.Hat hatName;
     private SetMaterial PatioGUI;
     public void Start()
     {
+
         PatioGUI = GameObject.Find("CanvasControls").GetComponent<SetMaterial>();
+
     }
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            PatioGUI.ShowMaterials(name);
+            PatioGUI.ShowHatMenu();
 
         }
     }

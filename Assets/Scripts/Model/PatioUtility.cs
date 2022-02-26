@@ -9,6 +9,18 @@ public static class PatioUtility
         [Description("Bird Bath")]
         BIRDBATH
     }
+
+    public enum Hat
+    {
+        [Description("Witch's Hat")]
+        WITCH,
+        [Description("Top Hat")]
+        FANCY,
+        [Description("Straw Hat")]
+        STRAW,
+        [Description("EAE Cap")]
+        EAE
+    }
     public static string GetPrettyName(System.Enum e)
     {
         var nm = e.ToString();

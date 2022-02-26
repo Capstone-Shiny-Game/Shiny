@@ -5189,7 +5189,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Nox cannot fly any higher. Try taking off from a higher perch.
+  m_text: Nox cannot fly any higher.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5222,7 +5222,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -10622,6 +10622,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1b0325205a8644fa81a9ea8aeefb12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allHats:
+  - hName: 0
+    hat: {fileID: 919132149155446097, guid: 247044ae8ea151046b64f0bd55041dfc, type: 3}
+  - hName: 1
+    hat: {fileID: 919132149155446097, guid: bbdb197d426288f41b08c2507bcfea60, type: 3}
+  - hName: 2
+    hat: {fileID: 919132149155446097, guid: 0b10843daddfc3a448d767ca7b85e988, type: 3}
+  - hName: 3
+    hat: {fileID: 919132149155446097, guid: 3a153eb02ad59b1478561c93ce57853a, type: 3}
   currentMats:
   - objName: 0
     matName: Crow
@@ -10642,6 +10651,7 @@ MonoBehaviour:
     - mName: Stone
       material: {fileID: 2100000, guid: 778802391d0d2f94eb71d98401c731e9, type: 2}
   PatioMenu: {fileID: 3112407895564497397}
+  crowHead: {fileID: 0}
 --- !u!1 &8778734579950366244
 GameObject:
   m_ObjectHideFlags: 0
