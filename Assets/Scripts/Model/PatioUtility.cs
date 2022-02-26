@@ -9,7 +9,11 @@ public static class PatioUtility
         [Description("Bird Bath")]
         BIRDBATH
     }
-
+    public enum Toys
+    {
+        [Description("Toy Blocks")]
+        BLOCKS
+    }
     public enum Hat
     {
         [Description("Witch's Hat")]
