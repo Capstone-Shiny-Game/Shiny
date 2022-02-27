@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour, Savable
 {
 
 
-    public enum CrowState { Flying, Gliding, Walking, Idle, Talking };
+    public enum CrowState { Flying, Gliding, Walking, Idle, Talking, Perching };
 
     public CrowState state { get; private set; }
 
@@ -67,6 +67,8 @@ public class PlayerController : MonoBehaviour, Savable
         walkingController.WalkedOffEdge += () => SetState(CrowState.Flying, 0.5f);
         walkingController.SubstateChanged += s => SetState(s);
         flightController.Landed += AttemptToLand;
+        flightController.LandedPerch += c=> AttemptToLandPerch(c);
+
         flightController.FlightTypeChanged += glide => SetState(glide ? CrowState.Gliding : CrowState.Flying);
 
         // inventory initialization
@@ -96,7 +98,7 @@ public class PlayerController : MonoBehaviour, Savable
         bool previouslyFlying = flightController.enabled;
 
         flightController.enabled = state == CrowState.Flying || state == CrowState.Gliding;
-        walkingController.enabled = state == CrowState.Walking || state == CrowState.Idle;
+        walkingController.enabled = state == CrowState.Walking || state == CrowState.Idle || state == CrowState.Perching;
 
         flightCam.SetActive(flightController.enabled);
         walkCam.SetActive(!flightController.enabled);
@@ -107,7 +109,7 @@ public class PlayerController : MonoBehaviour, Savable
         birdAnimator.SetBool("isFlying", state == CrowState.Flying);
         birdAnimator.SetBool("isGliding", state == CrowState.Gliding);
         birdAnimator.SetBool("isWalking", state == CrowState.Walking);
-        birdAnimator.SetBool("isIdle", state == CrowState.Idle);
+        birdAnimator.SetBool("isIdle", state == CrowState.Idle || state == CrowState.Perching);
 
         if (flightController.enabled && !previouslyFlying && addYForTakeoff != 0)
         {
@@ -152,7 +154,15 @@ public class PlayerController : MonoBehaviour, Savable
 
         }
     }
+    private void AttemptToLandPerch(Transform t)
+    {
+        crow.resetModelRotation();
+        transform.position = t.position;
+        walkCam.GetComponent<ModifyOrbitor>().ResetZero();
+        SetState(CrowState.Perching);
 
+
+    }
     /// <summary>
     /// Drops the first item in the inventory.
     /// </summary>
