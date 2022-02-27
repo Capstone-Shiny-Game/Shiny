@@ -41,22 +41,16 @@ public static class TransformExtensions
         return false;
     }
 
-    public static void TestCollision(this Transform transform, Vector3 position, out bool collided, out bool raycastNeeded)
+    public static bool RaycastNeeded(this Transform transform)
     {
-        Collider[] colliders = Physics.OverlapSphere(position, 1.0f);
-        collided = false;
-        raycastNeeded = false;
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 1f);
         foreach (Collider collider in colliders)
         {
             if (collider.isTrigger || collider is TerrainCollider || collider.CompareTag("Player"))
                 continue;
-            else if (collider.CompareTag("Terrain") || collider.CompareTag("Water"))
-                raycastNeeded = true;
             else
-            {
-                collided = true;
-                break;
-            }
+                return true;
         }
+        return false;
     }
 }
