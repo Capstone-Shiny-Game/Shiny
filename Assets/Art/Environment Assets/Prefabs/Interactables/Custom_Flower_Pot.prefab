@@ -143,6 +143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7336822617489048892}
+  - component: {fileID: 1448295374811501218}
   m_Layer: 0
   m_Name: Custom_Flower_Pot
   m_TagString: Untagged
@@ -166,6 +167,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &1448295374811501218
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2279408792765263814}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.0024740696, y: 1.0061924, z: 0}
+  m_Size: 2.445391
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.035933077
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 3282509292342491720}
+    - renderer: {fileID: 3180659987641545502}
+    - renderer: {fileID: 4096565849865928299}
+  m_Enabled: 1
 --- !u!1 &2583114139294408638
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,5 +839,10 @@ PrefabInstance:
 --- !u!4 &1934046192884431856 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ebaa6154f1fa8dc4ab13fe2a1e6d3fe1, type: 3}
+  m_PrefabInstance: {fileID: 2116029637756705819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &3180659987641545502 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3566390031902043909, guid: ebaa6154f1fa8dc4ab13fe2a1e6d3fe1, type: 3}
   m_PrefabInstance: {fileID: 2116029637756705819}
   m_PrefabAsset: {fileID: 0}
