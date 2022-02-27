@@ -9,7 +9,7 @@ public class Inventory
     [field: NonSerialized] public event EventHandler onItemListChanged;
 
     [field: SerializeField, HideInInspector] public List<Item> itemList { get; private set; }
-    public int maxItemCount = 8;
+    public int maxItemCount = 20;
     [field: SerializeField, HideInInspector] public double weight { get; private set; }
     [field: SerializeField, HideInInspector] public int selectionIndex { get; private set; }
 
