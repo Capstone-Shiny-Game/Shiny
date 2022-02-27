@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8733435291553703640}
   - component: {fileID: 8203978848436936816}
+  - component: {fileID: 333449795872341036}
   m_Layer: 0
   m_Name: P_oak_tree
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,6 +60,19 @@ LODGroup:
     renderers:
     - renderer: {fileID: 6954700139179249367}
   m_Enabled: 1
+--- !u!65 &333449795872341036
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8248542333236903010}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.61, y: 18.81, z: 9.2}
+  m_Center: {x: 0, y: 8.38, z: 0}
 --- !u!1001 &509534557429151279
 PrefabInstance:
   m_ObjectHideFlags: 0
