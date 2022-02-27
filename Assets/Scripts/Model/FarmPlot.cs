@@ -77,6 +77,8 @@ public class FarmPlot : MonoBehaviour
             }
 
             s1.SetActive(true);
+
+
             LoadNextMesh();
             success = true;
         }
