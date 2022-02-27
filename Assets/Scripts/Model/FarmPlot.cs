@@ -107,7 +107,7 @@ public class FarmPlot : MonoBehaviour
     public void HarvestItem()
     {
         // TODO: Add particle effect here
-        Instantiate(currCrop.cropObj, transform.position + new Vector3(2f, 1f, 0), transform.rotation);
+        Instantiate(currCrop.cropObj, transform.position + new Vector3(4f, 4f, 0), transform.rotation);
         ResetFarmPlot();
     }
 
@@ -116,6 +116,7 @@ public class FarmPlot : MonoBehaviour
         hasCrop = false;
         meshIndex = -1;
         harvestButton.SetActive(false);
-        s1.GetComponent<MeshFilter>().sharedMesh.Clear();
+        s1.GetComponent<MeshFilter>().sharedMesh = null;
+
     }
 }
