@@ -116,6 +116,7 @@ public class FarmPlot : MonoBehaviour
         hasCrop = false;
         meshIndex = -1;
         harvestButton.SetActive(false);
-        s1.GetComponent<MeshFilter>().sharedMesh.Clear();
+        s1.GetComponent<MeshFilter>().sharedMesh = null;
+
     }
 }
