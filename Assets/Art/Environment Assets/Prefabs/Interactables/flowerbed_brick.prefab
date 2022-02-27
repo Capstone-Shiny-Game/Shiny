@@ -29,6 +29,7 @@ Transform:
   m_LocalPosition: {x: 0.0002, y: 0.0045, z: 0.0286}
   m_LocalScale: {x: 0.0063641164, y: 0.0063641164, z: 0.0063641164}
   m_Children:
+  - {fileID: 5658801343735204201}
   - {fileID: 2777477848790538770}
   - {fileID: 358634638415907542}
   m_Father: {fileID: 7938226916499453756}
@@ -155,6 +156,7 @@ MonoBehaviour:
     - Flower_Sprout_Mid
     - Tulip_r
     cropObj: {fileID: 3679316783885091095, guid: 1810b3c69bb43944c9d602508b3926cc, type: 3}
+  spawnPoint: {fileID: 5658801343735204201}
 --- !u!65 &6063273818179859480
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -166,7 +168,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.05, y: 1.19, z: 12.64}
+  m_Size: {x: 3.05, y: 1.19, z: 10.18}
   m_Center: {x: 0, y: -0.11, z: -4.5}
 --- !u!1 &2412252155088216101
 GameObject:
@@ -196,16 +198,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2412252155088216101}
   m_LocalRotation: {x: -0, y: 0.70654744, z: -0, w: 0.70766574}
-  m_LocalPosition: {x: 0, y: 0, z: -1.61}
-  m_LocalScale: {x: 0.00125, y: 0.00125, z: 0.00125}
+  m_LocalPosition: {x: 0, y: 0, z: 1.35}
+  m_LocalScale: {x: 0.0019248748, y: 0.0019248748, z: 0.0019248748}
   m_Children:
   - {fileID: 8735062447861169807}
   m_Father: {fileID: 7025975106317385860}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1.01}
+  m_AnchoredPosition: {x: -0, y: 1.01}
   m_SizeDelta: {x: 640, y: 640}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1967748806758494899
@@ -444,7 +446,7 @@ Transform:
   m_Children:
   - {fileID: 6597296277930619676}
   m_Father: {fileID: 7025975106317385860}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5707026975868560189
 GameObject:
@@ -718,6 +720,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 159a02e8698d8fc4c9ccc1ec83fba0f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7087121182911147796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5658801343735204201}
+  m_Layer: 0
+  m_Name: Spawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5658801343735204201
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7087121182911147796}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.1305717, y: 0.93, z: 3.22}
+  m_LocalScale: {x: 1.1524599, y: 1.1524599, z: 1.1524599}
+  m_Children: []
+  m_Father: {fileID: 7025975106317385860}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7305383948712193414
 GameObject:
   m_ObjectHideFlags: 0
