@@ -22,8 +22,10 @@ public static class PatioUtility
         FANCY,
         [Description("Straw Hat")]
         STRAW,
-        [Description("EAE Cap")]
-        EAE
+        [Description("Gamer Cap")]
+        EAE,
+        [Description("No Hat")]
+        NONE
     }
     public static string GetPrettyName(System.Enum e)
     {

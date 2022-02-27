@@ -81,6 +81,7 @@ public class SetMaterial : MonoBehaviour, Savable
         foreach (MaterialPair p in mats)
         {
             tOptions[i].text = p.mName;
+            bOptions[i].onClick.RemoveAllListeners();
             bOptions[i++].onClick.AddListener(delegate { SetMaterials(p.mName); });
         }
     }
@@ -93,6 +94,7 @@ public class SetMaterial : MonoBehaviour, Savable
         {
             string name = PatioUtility.GetPrettyName(p.hName);
             tOptions[i].text = name;
+            bOptions[i].onClick.RemoveAllListeners();
             bOptions[i++].onClick.AddListener(delegate { SetHat(name); });
         }
     }
@@ -178,13 +180,14 @@ public class SetMaterial : MonoBehaviour, Savable
         {
             Debug.Log(tr.name);
             Destroy(tr.gameObject);
-        } 
-        
-        for(int i=0; i<allHats.Length; i++)
+        }
+
+        for (int i = 0; i < allHats.Length; i++)
         {
-            if(PatioUtility.GetPrettyName(allHats[i].hName) == hatName)
+            if (PatioUtility.GetPrettyName(allHats[i].hName) == hatName)
             {
-               Instantiate(allHats[i].hat, crowHead.transform);
+                if (allHats[i].hat != null)
+                    Instantiate(allHats[i].hat, crowHead.transform);
                 return;
             }
         }

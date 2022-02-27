@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2219000186851071935}
-  - component: {fileID: 3834310705239670077}
   m_Layer: 0
   m_Name: Fence Crossed
   m_TagString: Untagged
@@ -32,19 +31,6 @@ Transform:
   m_Father: {fileID: 6683412806667729963}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3834310705239670077
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4064794396901616738}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 6.55, y: 8.04, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6435281396502859631
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,7 +43,7 @@ GameObject:
   - component: {fileID: 2586982711117587483}
   m_Layer: 0
   m_Name: Fence_Patio
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,7 +74,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 7.17, y: 8.61, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &5225882807846364732
 PrefabInstance:
