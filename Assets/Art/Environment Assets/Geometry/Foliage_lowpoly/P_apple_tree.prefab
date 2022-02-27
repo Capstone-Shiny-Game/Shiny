@@ -43,9 +43,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8733435291553703640}
   - component: {fileID: 8203978848436936816}
+  - component: {fileID: 3694732008186035470}
   m_Layer: 0
   m_Name: P_apple_tree
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,6 +91,19 @@ LODGroup:
     renderers:
     - renderer: {fileID: 2986201101584850262}
   m_Enabled: 1
+--- !u!65 &3694732008186035470
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8248542333236903010}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.25, y: 33.81, z: 3.78}
+  m_Center: {x: 0, y: 10.68, z: 0}
 --- !u!1001 &209906189617215102
 PrefabInstance:
   m_ObjectHideFlags: 0

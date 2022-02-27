@@ -49,6 +49,7 @@ public class InputController : MonoBehaviour
     public FlightMoveEvent flightMoveHandler;
     public FlightLookEvent flightLookHandler;
     public FlightStartLookEvent flightStartLookHandler;
+    private Boolean other = false;
 
     public FlightBrakeEvent flightBrakeHandler;
     public FlightBoostEvent flightBoostHandler;
@@ -112,8 +113,16 @@ public class InputController : MonoBehaviour
     private void OnFlightSwap(InputAction.CallbackContext context)
     {
         flightSwapHandler?.Invoke();
-        //disable all controls for 2 seconds
-        StartCoroutine(DisableControlsForCutscene());
+        //disable all controls
+        if (other == true)
+        {
+            StartCoroutine(DisableControlsForCutscene());
+            other = false;
+        }
+        else
+        {
+            other = true;
+        }
     }
     private IEnumerator DisableControlsForCutscene()
     {

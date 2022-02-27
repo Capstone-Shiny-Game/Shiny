@@ -43,7 +43,7 @@ public static class TransformExtensions
 
     public static void TestCollision(this Transform transform, Vector3 position, out bool collided, out bool raycastNeeded)
     {
-        Collider[] colliders = Physics.OverlapSphere(position, transform.localScale.magnitude);
+        Collider[] colliders = Physics.OverlapSphere(position, 1.0f);
         collided = false;
         raycastNeeded = false;
         foreach (Collider collider in colliders)
