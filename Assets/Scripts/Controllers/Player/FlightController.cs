@@ -81,11 +81,21 @@ public class FlightController : MonoBehaviour
         if (collision.gameObject.CompareTag("Mountain"))
         {
             // Debug.Log("Mountain");
-            Vector3 v = collision.collider.ClosestPoint(transform.position);
-            Vector3 newVector = transform.position - v;
+           // Vector3 v = collision.collider.ClosestPoint(transform.position);
+           // Vector3 newVector = transform.position - v;
             StartCoroutine(Slow());
-            transform.LookAt(newVector);
+           // transform.LookAt(newVector);
+            //Debug.DrawRay(transform.position, newVector,Color.red);
             // StartCoroutine(BounceOnCollision(other.GetContact(0).normal));
+
+
+            Vector3 newPosition = transform.position - collision.gameObject.transform.position;
+
+            Quaternion lookRotation = Quaternion.LookRotation(newPosition);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 2.0f);
+
+            transform.position = Vector3.Lerp(transform.position, transform.position + (transform.forward * 1.5f), 2.0f) ;
+
 
         }
         else if (collision.gameObject.CompareTag("Ceiling"))
