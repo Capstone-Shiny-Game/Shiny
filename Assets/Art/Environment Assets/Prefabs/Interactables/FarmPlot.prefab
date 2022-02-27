@@ -562,6 +562,12 @@ MonoBehaviour:
     - Wheat_Sprout
     - Wheat
     cropObj: {fileID: 8320527036890391174, guid: 35bb1a5c291b95645a5d3790c473d779, type: 3}
+  - seedName: Tulip_r
+    meshNames:
+    - Flower_Sprout
+    - Flower_Sprout_Mid
+    - Tulip_r
+    cropObj: {fileID: 3679316783885091095, guid: 1810b3c69bb43944c9d602508b3926cc, type: 3}
 --- !u!65 &2745875201628222118
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -604,7 +610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c8ef9614fef92db4f92b0d95c6b12df9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.347
+      value: 0.272
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c8ef9614fef92db4f92b0d95c6b12df9, type: 3}
       propertyPath: m_LocalPosition.z

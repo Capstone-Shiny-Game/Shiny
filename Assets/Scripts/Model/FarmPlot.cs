@@ -30,12 +30,13 @@ public class FarmPlot : MonoBehaviour
 
     private void OnEnable()
     {
-        DayController.OnMidDayEvent += LoadNextMesh;
+        DayController.OnMorningEvent += LoadNextMesh;
+        
     }
 
     private void OnDisable()
     {
-        DayController.OnMidDayEvent -= LoadNextMesh;
+        DayController.OnMorningEvent -= LoadNextMesh;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -94,6 +95,10 @@ public class FarmPlot : MonoBehaviour
             {
                 // TODO: Add particle effect here
                 s1.GetComponent<MeshFilter>().sharedMesh = currMeshes[meshIndex];
+                foreach(flowerbedScript scr in s1.GetComponentsInChildren<flowerbedScript>())
+                {
+                    scr.updateMesh();
+                }
             }
 
             // last mesh, load the interact button for harvesting
