@@ -77,6 +77,8 @@ public class FarmPlot : MonoBehaviour
             }
 
             s1.SetActive(true);
+
+
             LoadNextMesh();
             success = true;
         }
@@ -95,6 +97,10 @@ public class FarmPlot : MonoBehaviour
             {
                 // TODO: Add particle effect here
                 s1.GetComponent<MeshFilter>().sharedMesh = currMeshes[meshIndex];
+                foreach(flowerbedScript scr in s1.GetComponentsInChildren<flowerbedScript>())
+                {
+                    scr.updateMesh();
+                }
             }
 
             // last mesh, load the interact button for harvesting
@@ -109,6 +115,10 @@ public class FarmPlot : MonoBehaviour
     {
         // TODO: Add particle effect here
         Instantiate(currCrop.cropObj, transform.position + new Vector3(4f, 4f, 0), transform.rotation);
+        if(s1.GetComponentInChildren<flowerbedScript>() != null)
+        {
+            Instantiate(currCrop.cropObj, transform.position + new Vector3(4f, 4f, 0), transform.rotation);
+        }
         ResetFarmPlot();
     }
 
@@ -118,6 +128,10 @@ public class FarmPlot : MonoBehaviour
         meshIndex = -1;
         harvestButton.SetActive(false);
         s1.GetComponent<MeshFilter>().sharedMesh = null;
+        foreach(flowerbedScript scr in s1.GetComponentsInChildren<flowerbedScript>())
+        {
+            scr.updateMesh();
+        }
 
     }
 }

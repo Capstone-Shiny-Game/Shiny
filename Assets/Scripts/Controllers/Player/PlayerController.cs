@@ -4,6 +4,7 @@ using System;
 using Cinemachine;
 using UnityEngine.Events;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour, Savable
 {
@@ -12,7 +13,7 @@ public class PlayerController : MonoBehaviour, Savable
     public enum CrowState { Flying, Gliding, Walking, Idle, Talking, Perching };
 
     public CrowState state { get; private set; }
-
+    private Rigidbody rb;
     [System.Serializable]
     public struct Offset
     {
@@ -55,7 +56,7 @@ public class PlayerController : MonoBehaviour, Savable
     private void Start()
     {
         Camera.main.useOcclusionCulling = false;
-
+        rb = GetComponent<Rigidbody>();
         flightCam = GameObject.Find("CM Flying");
         walkCam = GameObject.Find("CM Walking");
 
@@ -210,9 +211,9 @@ public class PlayerController : MonoBehaviour, Savable
     }
     public void SwapWalking()
     {
-
+        //SetState(CrowState.Flying, 2.0f);
         if (state == CrowState.Walking || state == CrowState.Idle)
-        SetState(CrowState.Flying, 2.0f);
+            takeOffLerp();
         else if (state == CrowState.Flying || state == CrowState.Gliding)
             AttemptToLand(true);
     }
@@ -288,13 +289,38 @@ public class PlayerController : MonoBehaviour, Savable
         //increment the take off upwards
         //to do, figure that out
         //delay 2 seconds too before switching over to flightcontroller since flight mode there is constant moving forward
+        float velocity = 400f;
+        rb.velocity += new Vector3(0, velocity, 0) * Time.deltaTime;
     }
-    public IEnumerator TakeOff()
+    private void takeOffLerp()
     {
-        float velocity = 20f;
-        transform.Translate(new Vector3(0, velocity, 0) * Time.deltaTime);
-        yield return new WaitForSeconds(0.2f);
-        transform.Translate(new Vector3(0, velocity, 0) * Time.deltaTime);
-
+        //increment the take off upwards
+        //to do, figure that out
+        //delay 2 seconds too before switching over to flightcontroller since flight mode there is constant moving forward
+        Vector3 start;
+        Vector3 des;
+        float fraction = 0;
+        float speed = .5f;
+        //SetState(CrowState.Flying, 2.0f);
+        float velocity = 40f;
+        start = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        des = new Vector3(transform.position.x, transform.position.y+200f, transform.position.z);
+            fraction += Time.deltaTime * speed;
+            transform.position = Vector3.Lerp(start, des, fraction);
+        SetState(CrowState.Flying, 2.0f);
+    }
+    IEnumerator WaitAndMove(float delayTime)
+    {
+        Vector3 start;
+        Vector3 des;
+        start = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        des = new Vector3(transform.position.x, transform.position.y + 200f, transform.position.z);
+        yield return new WaitForSeconds(delayTime); // start at time X
+        float startTime = Time.time; // Time.time contains current frame time, so remember starting point
+        while (Time.time - startTime <= 1)
+        { // until one second passed
+            transform.position = Vector3.Lerp(start, des, Time.time - startTime); // lerp from A to B in one second
+            yield return 1; // wait for next frame
+        }
     }
 }
