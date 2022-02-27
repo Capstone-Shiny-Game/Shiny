@@ -309,12 +309,18 @@ public class PlayerController : MonoBehaviour, Savable
             transform.position = Vector3.Lerp(start, des, fraction);
         SetState(CrowState.Flying, 2.0f);
     }
-    public IEnumerator TakeOff()
+    IEnumerator WaitAndMove(float delayTime)
     {
-        float velocity = 400f;
-        rb.velocity += new Vector3(0, velocity, 0) * Time.deltaTime;
-        yield return new WaitForSeconds(1);
-        SetState(CrowState.Flying, 2.0f);
-
+        Vector3 start;
+        Vector3 des;
+        start = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        des = new Vector3(transform.position.x, transform.position.y + 200f, transform.position.z);
+        yield return new WaitForSeconds(delayTime); // start at time X
+        float startTime = Time.time; // Time.time contains current frame time, so remember starting point
+        while (Time.time - startTime <= 1)
+        { // until one second passed
+            transform.position = Vector3.Lerp(start, des, Time.time - startTime); // lerp from A to B in one second
+            yield return 1; // wait for next frame
+        }
     }
 }
