@@ -15,10 +15,11 @@ public class ItemSO : ScriptableObject
 
     public override bool Equals(object other)
     {
-        if (other is null)
-        {
-            return false;
-        }
-        return this.ToString().Equals(other.ToString());
+        return other is ItemSO && ToString().Equals(other.ToString());
+    }
+
+    public override int GetHashCode()
+    {
+        return ToString().GetHashCode();
     }
 }

@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using System;
 using Cinemachine;
 using UnityEngine.Events;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour, Savable
 {
@@ -211,7 +212,7 @@ public class PlayerController : MonoBehaviour, Savable
     {
 
         if (state == CrowState.Walking || state == CrowState.Idle)
-            SetState(CrowState.Flying, 2.0f);
+        SetState(CrowState.Flying, 2.0f);
         else if (state == CrowState.Flying || state == CrowState.Gliding)
             AttemptToLand(true);
     }
@@ -287,5 +288,13 @@ public class PlayerController : MonoBehaviour, Savable
         //increment the take off upwards
         //to do, figure that out
         //delay 2 seconds too before switching over to flightcontroller since flight mode there is constant moving forward
+    }
+    public IEnumerator TakeOff()
+    {
+        float velocity = 20f;
+        transform.Translate(new Vector3(0, velocity, 0) * Time.deltaTime);
+        yield return new WaitForSeconds(0.2f);
+        transform.Translate(new Vector3(0, velocity, 0) * Time.deltaTime);
+
     }
 }

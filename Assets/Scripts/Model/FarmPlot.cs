@@ -30,12 +30,13 @@ public class FarmPlot : MonoBehaviour
 
     private void OnEnable()
     {
-        DayController.OnMidDayEvent += LoadNextMesh;
+        DayController.OnMorningEvent += LoadNextMesh;
+        
     }
 
     private void OnDisable()
     {
-        DayController.OnMidDayEvent -= LoadNextMesh;
+        DayController.OnMorningEvent -= LoadNextMesh;
     }
 
     private void OnTriggerEnter(Collider other)

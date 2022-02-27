@@ -30,6 +30,7 @@ public class Inventory
     /// <returns> True when the item is successfully added and false otherwise </returns>
     public bool AddItem(Item item)
     {
+        //Debug.Log(item.itemType);
         //Debug.Log(item.amount);
         if (item.IsStackable())
         {
@@ -126,23 +127,31 @@ public class Inventory
                            bool dropItem = false,
                            Vector3 dropPosition = new Vector3())
     {
+        //Debug.Log("drop : "+item.amount);
+        Item inventoryItem = GetItemFromList(item);
+        if (inventoryItem is null)
+        {
+            Debug.LogWarning("Tried to drop object that doesn't exist in DropItem within Inventory.cs");
+            return false;
+        }
+        if (removeAmount == 0)
+        {
+            Debug.LogWarning("Tried to remove zero objects from inventory within Inventory.cs");
+            return false;
+        }
+        Item itemToSpawn = new Item(item.itemType, removeAmount);
         if (!item.IsStackable())
         {
             weight -= item.getStackWeight();
             itemList.Remove(item);
             if (dropItem)
             {
-                ItemWorld.SpawnItemWorld(item, dropPosition);
+                
+                ItemWorld.SpawnItemWorld(itemToSpawn, dropPosition);
             }
         }
         else
         {
-            Item inventoryItem = GetItemFromList(item);
-            if (inventoryItem is null)
-            {
-                Debug.LogWarning("Tried to drop object that doesn't exist in DropItem within Inventory.cs");
-                return false;
-            }
             if (inventoryItem.amount < removeAmount)
             {
                 Debug.LogWarning($"Unable to drop {item.amount} items");
@@ -151,12 +160,12 @@ public class Inventory
             weight -= item.getStackWeight();
             if (dropItem)
             {
-                ItemWorld.SpawnItemWorld(item, dropPosition);
+                ItemWorld.SpawnItemWorld(itemToSpawn, dropPosition);
             }
             inventoryItem.amount -= removeAmount;
             if (inventoryItem.amount <= 0)
             {
-                itemList.Remove(item);
+                itemList.Remove(inventoryItem);
             }
         }
         NormalizeSelection();

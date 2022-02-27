@@ -31,13 +31,20 @@ public class ItemWorld : MonoBehaviour
 
     public static ItemWorld SpawnItemWorld(Item itemSpawned, Vector3 position, bool SpawnOnGround = false)
     {
-        Transform transform = Instantiate(itemSpawned.GetPrefab(), position, Quaternion.identity).transform;
+        if (itemSpawned is null) {
+            Debug.Log("tried to drop item that was null");
+            return null;
+        }
+        GameObject spawnedItem = Instantiate(itemSpawned.GetPrefab(), position, Quaternion.identity);
+        spawnedItem.SetActive(false);
+        Transform transform = spawnedItem.transform;
         if (SpawnOnGround)
         {
             PutItemOnGround(transform, position);
         }
         ItemWorld itemWorld = transform.GetComponent<ItemWorld>();
         itemWorld.item = itemSpawned;
+        spawnedItem.SetActive(true);
         return itemWorld;
     }
 
@@ -52,6 +59,11 @@ public class ItemWorld : MonoBehaviour
         //    if (maxCarryWeight >= (inventory.weight + item.getStackWeight()))
         //    {
         //check if picking this up would add to much weight
+        if (item is null) 
+        {
+            Debug.Log("tried to pickup item that was null");
+            return;
+        }
         if (other.CompareTag("Player"))
         {
             if (other.GetComponent<PlayerController>().inventory.AddItem(item))
