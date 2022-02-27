@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1359546269829451594}
-  - component: {fileID: 5726231882338901565}
   m_Layer: 0
   m_Name: RespawnApples
   m_TagString: Untagged
@@ -34,27 +33,6 @@ Transform:
   m_Father: {fileID: 8733435291553703640}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5726231882338901565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3084279118865485613}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 566e49b6df24dd1498877cbc3a1ada91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  respawnTimeSeconds: 5
-  useGroupRespawnMarkers: 1
-  totalMaxAmountToSpawn: 10000000
-  PrefabsToSpawnToSpawnParameters:
-    list:
-    - Key: {fileID: 8666398030798490166, guid: 62a124bf92e7ab448b8731af1a63555f, type: 3}
-      Value:
-        maxAmountToSpawn: 10000
-        spawnProbability: 10
 --- !u!1 &8248542333236903010
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,7 +287,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Branch_Apple (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1243807629362124714, guid: 62a124bf92e7ab448b8731af1a63555f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 62a124bf92e7ab448b8731af1a63555f, type: 3}
 --- !u!4 &5659056888050565962 stripped
 Transform:
@@ -375,7 +354,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Branch_Apple (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1243807629362124714, guid: 62a124bf92e7ab448b8731af1a63555f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 62a124bf92e7ab448b8731af1a63555f, type: 3}
 --- !u!4 &9075436346885946293 stripped
 Transform:
@@ -441,7 +421,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Branch_Apple
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1243807629362124714, guid: 62a124bf92e7ab448b8731af1a63555f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 62a124bf92e7ab448b8731af1a63555f, type: 3}
 --- !u!4 &7492454072907607536 stripped
 Transform:
