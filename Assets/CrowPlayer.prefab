@@ -9884,7 +9884,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 3
+  m_Height: 2.02
   m_Direction: 2
   m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!114 &5828222149743021217
@@ -10058,6 +10058,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: e2a93101-112c-43aa-8778-2399540d6fe9
     m_ActionName: FlightMap/StartLook[/Mouse/press]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 19586962-3660-409e-9606-261e0310c17b
+    m_ActionName: FlightMap/walkAction[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: FlightMap

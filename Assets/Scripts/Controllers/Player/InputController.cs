@@ -112,8 +112,17 @@ public class InputController : MonoBehaviour
     private void OnFlightSwap(InputAction.CallbackContext context)
     {
         flightSwapHandler?.Invoke();
+        //disable all controls for 2 seconds
+        StartCoroutine(DisableControlsForCutscene());
     }
-
+    private IEnumerator DisableControlsForCutscene()
+    {
+        PlayerInput.FlightMap.Disable();
+        PlayerInput.GUIMap.Disable();
+        yield return new WaitForSeconds(2.1f);
+        PlayerInput.FlightMap.Enable();
+        PlayerInput.GUIMap.Enable();
+    }
     private void EndLook(InputAction.CallbackContext context)
     {
         canLook = false;

@@ -93,7 +93,6 @@ public class FlightController : MonoBehaviour
             // StartCoroutine(Slow());
 
         }
-
         else if (collision.collider is TerrainCollider)
         {
             Landed?.Invoke(false);
@@ -109,14 +108,18 @@ public class FlightController : MonoBehaviour
             SetTargetRing(targetRing);
             //transform.LookAt(targetRing);
             StartCoroutine(Boost());
-
         }
         else if (collision.gameObject.CompareTag("BoostBug") && !isBoost)
         {
             collision.gameObject.SetActive(false);
             StartCoroutine(Boost());
         }
+        else if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            transform.position -= transform.forward * 2;
 
+            Landed?.Invoke(true);
+        }
         else if (!collision.collider.isTrigger)
         {
             Vector3 bouncedUp = transform.position + (transform.up * 0.5f);
@@ -142,6 +145,10 @@ public class FlightController : MonoBehaviour
 
             //StartCoroutine(Slow());
         }
+        
+        
+
+        
     }
 
     /// <summary>
