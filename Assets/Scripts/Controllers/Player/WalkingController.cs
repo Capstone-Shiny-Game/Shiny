@@ -52,27 +52,42 @@ public class WalkingController : MonoBehaviour
             CheckIdle();
             return;
         }
+
         float displacement = moveY * Time.deltaTime;
         displacement *= (displacement > 0 ? ForwardSpeed : BackwardsSpeed);
-        Vector3 newPosition = transform.position + (transform.forward * displacement);
-        transform.TestCollision(newPosition, out bool collided, out bool raycastNeeded);
-        if (!collided)
+        Vector3 oldPosition = transform.position;
+        transform.position += transform.forward * displacement;
+        Vector3 ground;
+        if (transform.RaycastNeeded())
         {
-            transform.position = newPosition;
-
-            Vector3 ground = transform.position;
-            if (raycastNeeded)
-                transform.CastGround(out ground, transform.localScale.y / 2);
-            else
-                ground = transform.FindGround(transform.localScale.y / 2);
-            float dY = transform.position.y - ground.y;
-            if (dY > transform.localScale.y)
-                WalkedOffEdge?.Invoke();
-            else
-                transform.position = ground;
+            if (!transform.CastGround(out ground, transform.localScale.y / 2))
+            {
+                transform.position = oldPosition;
+                return;
+            }
         }
+        else
+            ground = transform.FindGround(transform.localScale.y / 2);
+        float dY = transform.position.y - ground.y;
+        if (dY > transform.localScale.y)
+            WalkedOffEdge?.Invoke();
+        else
+            transform.position = ground;
+
         //check if no input from player.
         CheckIdle();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider is TerrainCollider || collision.gameObject.CompareTag("Terrain") || collision.collider.isTrigger)
+            return;
+        else
+        {
+            float displacement = moveY * Time.deltaTime;
+            displacement *= (displacement > 0 ? ForwardSpeed : BackwardsSpeed);
+            transform.position -= transform.forward * displacement;
+        }
     }
 
     public void CheckIdle()
