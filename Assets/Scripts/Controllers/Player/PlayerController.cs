@@ -271,4 +271,11 @@ public class PlayerController : MonoBehaviour, Savable
         uiHotbar.SetInventory(inventory);
         this.inventory = inventory;
     }
+
+    private void takeOff()
+    {
+        //increment the take off upwards
+        //to do, figure that out
+        //delay 2 seconds too before switching over to flightcontroller since flight mode there is constant moving forward
+    }
 }
