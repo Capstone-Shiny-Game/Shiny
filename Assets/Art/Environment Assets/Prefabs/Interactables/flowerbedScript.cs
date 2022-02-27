@@ -13,15 +13,10 @@ public class flowerbedScript : MonoBehaviour
         parentFilter = transform.parent.GetComponent<MeshFilter>();
 
         selfFilter.sharedMesh = parentFilter.sharedMesh;
-
-        DayController.OnMorningEvent += updateMesh;
     }
 
-    private void updateMesh()
+    public void updateMesh()
     {
         selfFilter.sharedMesh = parentFilter.sharedMesh;
     }
-
-
-
 }
