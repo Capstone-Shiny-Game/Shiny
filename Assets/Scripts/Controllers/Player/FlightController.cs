@@ -81,10 +81,10 @@ public class FlightController : MonoBehaviour
         if (collision.gameObject.CompareTag("Mountain"))
         {
             // Debug.Log("Mountain");
-           // Vector3 v = collision.collider.ClosestPoint(transform.position);
-           // Vector3 newVector = transform.position - v;
+            // Vector3 v = collision.collider.ClosestPoint(transform.position);
+            // Vector3 newVector = transform.position - v;
             StartCoroutine(Slow());
-           // transform.LookAt(newVector);
+            // transform.LookAt(newVector);
             //Debug.DrawRay(transform.position, newVector,Color.red);
             // StartCoroutine(BounceOnCollision(other.GetContact(0).normal));
 
@@ -94,7 +94,7 @@ public class FlightController : MonoBehaviour
             Quaternion lookRotation = Quaternion.LookRotation(newPosition);
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 2.0f);
 
-            transform.position = Vector3.Lerp(transform.position, transform.position + (transform.forward * 1.5f), 2.0f) ;
+            transform.position = Vector3.Lerp(transform.position, transform.position + (transform.forward * 1.5f), 2.0f);
 
 
         }
@@ -115,7 +115,7 @@ public class FlightController : MonoBehaviour
         }
         //else if (collision.gameObject.CompareTag("Perch"))
         //{
-           
+
         //    LandedPerch?.Invoke(collision.gameObject.GetComponent<PerchPosition>().crowPerchPos);
         //}
         else if (collision.gameObject.CompareTag("Ring") && !isBoost)
@@ -137,35 +137,27 @@ public class FlightController : MonoBehaviour
 
             Landed?.Invoke(true);
         }
+        else if (collision.gameObject.CompareTag("Water"))
+        {
+            Vector3 delta = transform.forward * speed * Time.deltaTime;
+            delta.y -= 0.5f;
+            transform.position -= delta;
+            speed *= Vector3.ProjectOnPlane(Vector3.up, transform.forward).magnitude;
+            transform.eulerAngles = new Vector3(-5, transform.eulerAngles.y, transform.eulerAngles.z);
+        }
         else if (!collision.collider.isTrigger)
         {
-            Vector3 bouncedUp = transform.position + (transform.up * 0.5f);
-            transform.TestCollision(bouncedUp, out bool collided, out _);
-            Debug.Log(collided);
-            if (!collided)
+            transform.position -= transform.forward * 2;
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 50))
             {
-                transform.position -= transform.forward * 2;                
-                transform.eulerAngles = new Vector3(-5, transform.eulerAngles.y, transform.eulerAngles.z);
+                float turn = 45 * Mathf.Sign(Vector3.SignedAngle(
+                    Vector3.ProjectOnPlane(transform.forward, Vector3.up),
+                    Vector3.ProjectOnPlane(hit.normal, Vector3.up),
+                    transform.up));
+                transform.RotateAround(transform.position, Vector3.up, turn);
             }
-            else
-            {
-                transform.position -= transform.forward * 2;
-                if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 50))
-                {
-                    float turn = 45 * Mathf.Sign(Vector3.SignedAngle(
-                        Vector3.ProjectOnPlane(transform.forward, Vector3.up),
-                        Vector3.ProjectOnPlane(hit.normal, Vector3.up),
-                        transform.up));
-                    transform.RotateAround(transform.position, Vector3.up, turn);
-                }
-            }
-
             //StartCoroutine(Slow());
         }
-        
-        
-
-        
     }
     public void InvokeLandPerch(Transform pos)
     {
