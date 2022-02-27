@@ -36,6 +36,8 @@ public class FlightController : MonoBehaviour
     private Crow crow;
     public GameObject ceiling;
     public event Action<bool> Landed;
+    public event Action<Transform> LandedPerch;
+
     public event Action<bool> FlightTypeChanged;
     public bool isGliding = false;
     private PlayerController pcontroller;
@@ -101,6 +103,11 @@ public class FlightController : MonoBehaviour
         {
             Landed?.Invoke(true);
         }
+        //else if (collision.gameObject.CompareTag("Perch"))
+        //{
+           
+        //    LandedPerch?.Invoke(collision.gameObject.GetComponent<PerchPosition>().crowPerchPos);
+        //}
         else if (collision.gameObject.CompareTag("Ring") && !isBoost)
         {
             //Debug.Log("RING2");
@@ -150,7 +157,11 @@ public class FlightController : MonoBehaviour
 
         
     }
+    public void InvokeLandPerch(Transform pos)
+    {
+            LandedPerch?.Invoke(pos);
 
+    }
     /// <summary>
     /// Slows down the player
     /// </summary>
