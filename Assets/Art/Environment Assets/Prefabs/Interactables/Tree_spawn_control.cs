@@ -5,12 +5,7 @@ using UnityEngine;
 public class Tree_spawn_control : MonoBehaviour
 {
 
-   private void Start()
-    {
-        GetComponentInChildren<Rigidbody>().useGravity = false;
-        
-    }
- 
+
 
     private void OnTriggerEnter(Collider other)
     {
