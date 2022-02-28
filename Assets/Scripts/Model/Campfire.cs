@@ -6,29 +6,22 @@ public class Campfire : MonoBehaviour
 {
     public List<RoastedMap> roastedMaps;
 
-    public Projectile projectile;
-
-    private void Start()
-    {
-        projectile = new Projectile();
-    }
-
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         // *use different tag?
-        if (other.CompareTag("Tradeable"))
+        if (other.gameObject.CompareTag("Tradeable"))
         {
             TryRoastingObject(other.gameObject);
         }
     }
 
-    private void TryRoastingObject(GameObject item)
+    private void TryRoastingObject(GameObject givenItem)
     {
         bool canRoast = false;
         GameObject roastedObj = null;
         foreach (RoastedMap entry in roastedMaps)
         {
-            if (item.name.StartsWith(entry.given.name))
+            if (givenItem.name.StartsWith(entry.given.name))
             {
                 canRoast = true;
                 roastedObj = entry.returned;
@@ -36,31 +29,49 @@ public class Campfire : MonoBehaviour
             }
         }
 
-        float xRand = Random.value * 3f;
-        float ySet = transform.position.y + 10f;
-        float zRand = Random.value * 3f;
-        Vector3 offset = new Vector3(xRand, ySet, zRand);
-
-        //Debug.Log($"trans.pos: {transform.position}");
-        //Debug.Log($"offset: {offset}");
-
+        Vector3 randomVelocity = GetRandomInitialVelocity();
         if (canRoast)
         {
-            Destroy(item);
-            // spawn and move to location where
-            // TransformExtensions can find projectile target/ground
-            GameObject emptyObj = new GameObject();
-            GameObject eo = Instantiate(emptyObj, transform.position + offset, Quaternion.identity);
-            Vector3 target = eo.transform.FindGround(transform.localScale.y / 2);
-            Destroy(eo);
-
-            GameObject roastedItem = Instantiate(roastedObj, transform.position, transform.rotation);
-            StartCoroutine(projectile.Launch(
-                roastedItem?.GetComponent<Rigidbody>(), roastedItem.transform.rotation, target));
+            Destroy(givenItem);
+            StartCoroutine(RoastWithDelay(roastedObj, randomVelocity));
         }
         else
         {
-
+            StartCoroutine(IgnoreCollisions(givenItem));
+            givenItem.GetComponent<Rigidbody>().velocity = randomVelocity;
         }
+    }
+
+    private IEnumerator RoastWithDelay(GameObject roastedObj, Vector3 randomVelocity)
+    {
+        // TODO: start particle effects here
+
+        // *** lower this for testing
+        yield return new WaitForSeconds(2f);
+
+        GameObject roastedItem = Instantiate(roastedObj, transform.position, transform.rotation);
+        StartCoroutine(IgnoreCollisions(roastedItem));
+        roastedItem.GetComponent<Rigidbody>().velocity = randomVelocity;
+
+        // TODO: end particle effects here
+    }
+
+    private IEnumerator IgnoreCollisions(GameObject obj)
+    {
+        obj.GetComponent<Collider>().enabled = false;
+        yield return new WaitForSeconds(0.5f);
+        obj.GetComponent<Collider>().enabled = true;
+    }
+
+    private Vector3 GetRandomInitialVelocity()
+    {
+        float xSign = Random.value > 0.5f ? 1f : -1f;
+        float zSign = Random.value > 0.5f ? 1f : -1f;
+
+        float xRand = xSign * 3f;
+        float ySet = 10f;
+        float zRand = zSign * 3f;
+
+        return new Vector3(xRand, ySet, zRand);
     }
 }
