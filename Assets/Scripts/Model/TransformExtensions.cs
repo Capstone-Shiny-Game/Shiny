@@ -26,10 +26,12 @@ public static class TransformExtensions
         return ground;
     }
 
+    private static readonly int Mask = Physics.AllLayers - LayerMask.GetMask("Crow", "Camera");
+
     public static bool CastGround(this Transform transform, out Vector3 ground, float offset)
     {
         ground = Vector3.zero;
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, transform.position.y + 200))
+        if (Physics.Raycast(transform.position + 2 * Vector3.up, Vector3.down, out RaycastHit hit, transform.position.y + 200, Mask))
         {
             if (hit.collider is TerrainCollider || hit.collider.CompareTag("Terrain"))
             {
