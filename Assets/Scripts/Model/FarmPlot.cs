@@ -7,6 +7,7 @@ public class FarmPlot : MonoBehaviour
      */
 
     public List<SeedCropEntry> seedCropMap;
+    [SerializeField] private Transform spawnPoint;
 
     private GameObject s1;
     private GameObject harvestButton;
@@ -114,10 +115,10 @@ public class FarmPlot : MonoBehaviour
     public void HarvestItem()
     {
         // TODO: Add particle effect here
-        Instantiate(currCrop.cropObj, transform.position + new Vector3(4f, 4f, 0), transform.rotation);
+        Instantiate(currCrop.cropObj, spawnPoint.position, transform.rotation);
         if(s1.GetComponentInChildren<flowerbedScript>() != null)
         {
-            Instantiate(currCrop.cropObj, transform.position + new Vector3(4f, 4f, 0), transform.rotation);
+            Instantiate(currCrop.cropObj, spawnPoint.position, transform.rotation);
         }
         ResetFarmPlot();
     }
