@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4361983338456527891
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4361983338456527895}
+  - component: {fileID: 4361983338456527888}
+  - component: {fileID: 4361983338456527889}
+  - component: {fileID: 4361983338456527890}
+  m_Layer: 0
+  m_Name: Grass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4361983338456527895
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4361983338456527891}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &4361983338456527888
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4361983338456527891}
+  m_Mesh: {fileID: 0}
+--- !u!114 &4361983338456527889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4361983338456527891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f4906c41526f1144a3748e36d946179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mesh: {fileID: 0}
+  grassLimit: 10000
+  toolbarInt: 0
+  toolbarIntEdit: 2
+  positions: []
+  colors: []
+  indicies: 
+  normals: []
+  length: []
+  i: 0
+  hitMask:
+    serializedVersion: 2
+    m_Bits: 8
+  paintMask:
+    serializedVersion: 2
+    m_Bits: 8
+  brushSize: 10
+  brushFalloffSize: 0.01
+  Flow: 0.1
+  density: 0.52
+  normalLimit: 0.079
+  sizeWidth: 0.551
+  sizeLength: 1.159
+  reprojectOffset: 1
+  rangeR: 0
+  rangeG: 0
+  rangeB: 0
+  AdjustedColor: {r: 0.048727296, g: 0.6886792, b: 0.06883733, a: 0}
+  hitPosGizmo: {x: 414.64014, y: 103.952255, z: -864.61035}
+  hitNormal: {x: -0.15607752, y: 0.9248473, z: -0.3468389}
+--- !u!114 &4361983338456527890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4361983338456527891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a54c40e8d952747a7bd2f0c72412ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grassPainter: {fileID: 4361983338456527889}
+  sourceMesh: {fileID: 0}
+  material: {fileID: 2100000, guid: 7a51da2efe38dd545bf82a25b263d104, type: 2}
+  computeShader: {fileID: 7200000, guid: 593c38f4e464e684c9ffd2d82a9de48c, type: 3}
+  allowedBladesPerVertex: 3
+  allowedSegmentsPerBlade: 3
+  grassRandomHeight: 1
+  bladeRadius: 0.583
+  bladeForwardAmount: 0.488
+  bladeCurveAmount: 2
+  bottomWidth: 0.504
+  windSpeed: 10
+  windStrength: 0.05
+  interactor: {fileID: 0}
+  offset: {x: 0, y: 0, z: 0}
+  affectRadius: 1.5
+  affectStrength: 1
+  minFadeDistance: 250
+  maxFadeDistance: 300
+  FadeInEditor: 0
+  topTint: {r: 1, g: 1, b: 1, a: 1}
+  bottomTint: {r: 0.014462439, g: 0.122641504, b: 0.036430817, a: 1}
+  castShadow: 0
+  m_InstantiatedMaterial: {fileID: 0}
