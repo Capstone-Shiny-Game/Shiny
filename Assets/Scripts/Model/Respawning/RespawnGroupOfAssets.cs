@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class RespawnGroupOfAssets : MonoBehaviour
 {
-    
+
     private GameObject playerReference;
     [Tooltip("time in seconds, max is 5 irl days"), Range(0.0000001f, 432000f)]
     public float respawnTimeSeconds = 60;
@@ -22,7 +22,7 @@ public class RespawnGroupOfAssets : MonoBehaviour
 
     [Tooltip("Put the prefab to spawn in the game object slot, then set the spawn parameters for that prefab")]
     [field: SerializeField] public SerializableDictionary<GameObject, SpawnParameters> PrefabsToSpawnToSpawnParameters;
-    private Dictionary<GameObject,int> prefabToCurrentNumSpawned; //tracks the current spawned objects (how many of each game object have been spawned)
+    private Dictionary<GameObject, int> prefabToCurrentNumSpawned; //tracks the current spawned objects (how many of each game object have been spawned)
     [System.Serializable]
     public struct SpawnParameters
     {
@@ -39,12 +39,14 @@ public class RespawnGroupOfAssets : MonoBehaviour
         List<Transform> respawnTransforms = new List<Transform>();
         if (useGroupRespawnMarkers)
         {
-            foreach (GroupRespawnPoint respawnPoint in gameObject.GetComponentsInChildren<GroupRespawnPoint>()) {
+            foreach (GroupRespawnPoint respawnPoint in gameObject.GetComponentsInChildren<GroupRespawnPoint>())
+            {
                 respawnTransforms.Add(respawnPoint.gameObject.transform);
             }
         }
-        else {
-            respawnTransforms = new List<Transform>(gameObject.GetComponentsInChildren<Transform>()); 
+        else
+        {
+            respawnTransforms = new List<Transform>(gameObject.GetComponentsInChildren<Transform>());
             respawnTransforms.Remove(this.transform); //remove self from list
         }
         //unity was being weird about using the transforms of deactivated objects so make a copy.
@@ -54,7 +56,7 @@ public class RespawnGroupOfAssets : MonoBehaviour
         {
             respawnLocations.Add(new Vector3(transform.position.x, transform.position.y, transform.position.z));
             respawnRotations.Add(new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w));
-            Destroy(transform.gameObject);
+            transform.gameObject.SetActive(false);
         }
         //Debug.Log("respawn locations number : " + respawnLocations.Count);
         //setup max number to spawn and dictionary
@@ -113,23 +115,40 @@ public class RespawnGroupOfAssets : MonoBehaviour
         newObject.SetActive(true);
         //add the respawnable script to it with a callback to free up it's respawn location if it is destroyed
         Respawnable script = newObject.AddComponent<Respawnable>();
-        script.onDisableCallbackFunction = delegate () { respawnLocations.Add(placeToSpawn); respawnRotations.Add(rotation);try { StartRespawn(); Destroy(newObject);} catch { return; }; };
+        script.onDisableCallbackFunction = delegate ()
+        {
+            respawnLocations.Add(placeToSpawn);
+            respawnRotations.Add(rotation);
+            try
+            {
+                StartRespawn();
+                Destroy(newObject);
+            }
+            catch (System.Exception e)
+            {
+                Debug.Log(e);
+                return;
+            };
+        };
     }
 
-    private GameObject GetPrefabToSpawn() {
+    private GameObject GetPrefabToSpawn()
+    {
         calculateTotalProbability();
         float prefabToSpawn = Random.Range(0, totalProbability);//pick a random prefab based on probabilities
         GameObject result = null;
         foreach (KeyValuePair<GameObject, SpawnParameters> entry in PrefabsToSpawnToSpawnParameters)
         {
             result = entry.Key;//default
-            if (entry.Value.maxAmountToSpawn == prefabToCurrentNumSpawned[result]) {//skip things already at max count (same as in calc probability)
+            if (entry.Value.maxAmountToSpawn == prefabToCurrentNumSpawned[result])
+            {//skip things already at max count (same as in calc probability)
                 continue;
             }
-            if (prefabToSpawn <= entry.Value.spawnProbability) {//found it
+            if (prefabToSpawn <= entry.Value.spawnProbability)
+            {//found it
                 break;
             }
-            prefabToSpawn -= entry.Value.spawnProbability;//subtract off this item's probability 
+            prefabToSpawn -= entry.Value.spawnProbability;//subtract off this item's probability
         }
         prefabToCurrentNumSpawned[result]++;//track spawning this specific prefab
         return result;//return found prefab
