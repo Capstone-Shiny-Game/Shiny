@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TimeTrial : MonoBehaviour
@@ -7,6 +8,7 @@ public class TimeTrial : MonoBehaviour
     public List<GameObject> rings;
     public float timeInterval;
     public List<string> activeDaysOfWeek;
+    public TextMeshProUGUI timerText;
 
     private LinkedList<GameObject> ringOrder;
     private GameObject currRing;
@@ -23,7 +25,9 @@ public class TimeTrial : MonoBehaviour
         }
         currRing = ringOrder.First.Value;
         //ringOrder.First.Value.SetActive(true);
-        gameObject.SetActive(false);
+
+        // *comment out for testing!
+        //gameObject.SetActive(false);
     }
 
     // added to work with hot air balloons
@@ -42,7 +46,6 @@ public class TimeTrial : MonoBehaviour
     private void OnDisable()
     {
         TimeTrialRing.OnRingCollision -= UpdateTimeTrial;
-        DayController.OnNewDayEvent -= AppearOnCorrectDay;
         StopAllCoroutines();
     }
 
@@ -92,7 +95,22 @@ public class TimeTrial : MonoBehaviour
 
     private IEnumerator StartTimePeriod()
     {
-        yield return new WaitForSeconds(timeInterval);
+        timerText.gameObject.SetActive(true);
+
+        float timeElapsed = 0;
+        while (timeElapsed < timeInterval)
+        {
+            timeElapsed += Time.deltaTime;
+
+            // update the displayed time remaining
+            float remainingTime = timeInterval - timeElapsed;
+            float seconds = Mathf.FloorToInt(remainingTime % 60);
+            float milliSeconds = (remainingTime % 1) * 1000;
+            timerText.text = string.Format("{0:00}:{1:000}", seconds, milliSeconds);
+
+            yield return new WaitForEndOfFrame();
+        }
+        //yield return new WaitForSeconds(timeInterval);
 
         // gets here if player does not make it to the current ring on time,
         // reset the time trial
@@ -101,5 +119,7 @@ public class TimeTrial : MonoBehaviour
         currRing = ringOrder.First.Value;
         //currRing.SetActive(true);
         currRing.SetActive(false);
+
+        timerText.gameObject.SetActive(false);
     }
 }
