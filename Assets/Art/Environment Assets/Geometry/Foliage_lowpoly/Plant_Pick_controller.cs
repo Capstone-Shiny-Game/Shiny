@@ -22,6 +22,8 @@ public class Plant_Pick_controller : MonoBehaviour
         
         
         Destroy(gameObject.GetComponentInChildren<Canvas>().gameObject);
+        gameObject.transform.DetachChildren();
+        Destroy(gameObject);
     }
 
 
