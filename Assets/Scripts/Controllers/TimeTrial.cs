@@ -65,13 +65,13 @@ public class TimeTrial : MonoBehaviour
     {
         if (ring == currRing)
         {
-            currRing.SetActive(false);
+            StartCoroutine(DeactivateDelay(ring));
             currRing = ringOrder.Find(ring).Next?.Value;
             if (currRing == null)
             {
                 // win state
                 StopCoroutine(startTimePeriod);
-                Debug.Log("You beat the time trial!");
+                StartCoroutine(DisplayWinText());
                 // cleanup
                 //Destroy(gameObject);
                 foreach (GameObject r in rings)
@@ -110,7 +110,6 @@ public class TimeTrial : MonoBehaviour
 
             yield return new WaitForEndOfFrame();
         }
-        //yield return new WaitForSeconds(timeInterval);
 
         // gets here if player does not make it to the current ring on time,
         // reset the time trial
@@ -121,5 +120,19 @@ public class TimeTrial : MonoBehaviour
         currRing.SetActive(false);
 
         timerText.gameObject.SetActive(false);
+    }
+
+    private IEnumerator DisplayWinText()
+    {
+        timerText.text = "You beat the time trial!";
+        yield return new WaitForSeconds(5);
+        timerText.text = string.Empty;
+        timerText.gameObject.SetActive(false);
+    }
+
+    private IEnumerator DeactivateDelay(GameObject ring)
+    {
+        yield return new WaitForSeconds(0.5f);
+        ring?.SetActive(false);
     }
 }
