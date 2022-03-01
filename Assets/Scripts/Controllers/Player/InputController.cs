@@ -64,7 +64,7 @@ public class InputController : MonoBehaviour
 
     public FlightLookResetEvent flightResetLookHandler;
     public TMP_Text test;
-    public bool useGyro = true;
+    public bool useGyro = false;
     float multiplier = 10.0f;
     private bool canLook = false;
     private void Awake()
@@ -106,8 +106,8 @@ public class InputController : MonoBehaviour
         PlayerInput.GUIMap.PrimaryTouch.canceled += EndTouchPrimary;
 
         PlayerInput.GUIMap.PickupItem.performed += OnPickup;
-        if (UnityEngine.InputSystem.Gyroscope.current != null)
-            InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
+        // if (UnityEngine.InputSystem.Gyroscope.current != null)
+        //InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
     }
 
     private void OnFlightSwap(InputAction.CallbackContext context)
@@ -174,7 +174,7 @@ public class InputController : MonoBehaviour
             Vector2 moveInput = context.ReadValue<Vector2>();
             flightLookHandler?.Invoke(moveInput.x, moveInput.y);
         }
-      
+
     }
     private void OnLookExit(InputAction.CallbackContext context)
     {
@@ -201,8 +201,8 @@ public class InputController : MonoBehaviour
     }
     private void OnFlightEnd(InputAction.CallbackContext context)
     {
-        if (!useGyro || UnityEngine.InputSystem.Gyroscope.current == null)
-            flightMoveHandler?.Invoke(0.0f, 0.0f);
+        //  if (!useGyro || UnityEngine.InputSystem.Gyroscope.current == null)
+        flightMoveHandler?.Invoke(0.0f, 0.0f);
     }
     private void OnBrake(InputAction.CallbackContext context)
     {
