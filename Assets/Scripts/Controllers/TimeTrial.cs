@@ -13,6 +13,7 @@ public class TimeTrial : MonoBehaviour
     private LinkedList<GameObject> ringOrder;
     private GameObject currRing;
     private Coroutine startTimePeriod;
+    private bool completed;
 
     void Start()
     {
@@ -28,13 +29,18 @@ public class TimeTrial : MonoBehaviour
 
         // *comment out for testing!
         //gameObject.SetActive(false);
+
+        completed = false;
     }
 
     // added to work with hot air balloons
     private void OnTriggerEnter(Collider other)
     {
-        ringOrder.First.Value.SetActive(true);
-        startTimePeriod = StartCoroutine(StartTimePeriod());
+        if (!completed)
+        {
+            ringOrder.First.Value.SetActive(true);
+            startTimePeriod = StartCoroutine(StartTimePeriod());
+        }
     }
 
     private void OnEnable()
@@ -53,6 +59,12 @@ public class TimeTrial : MonoBehaviour
     {
         if (activeDaysOfWeek.Contains(day))
         {
+            // the trial has previously been completed
+            if (currRing == null)
+            {
+                completed = false;
+                currRing = ringOrder.First.Value;
+            }
             gameObject.SetActive(true);
         }
         else
@@ -65,19 +77,21 @@ public class TimeTrial : MonoBehaviour
     {
         if (ring == currRing)
         {
-            StartCoroutine(DeactivateDelay(ring));
+            //StartCoroutine(DeactivateDelay(ring));
             currRing = ringOrder.Find(ring).Next?.Value;
             if (currRing == null)
             {
                 // win state
+                completed = true;
                 StopCoroutine(startTimePeriod);
                 StartCoroutine(DisplayWinText());
                 // cleanup
+                StartCoroutine(DeactivateAllRingsWithDelay());
                 //Destroy(gameObject);
-                foreach (GameObject r in rings)
-                {
-                    Destroy(r);
-                }
+                //foreach (GameObject r in rings)
+                //{
+                //    Destroy(r);
+                //}
             }
             else
             {
@@ -130,9 +144,23 @@ public class TimeTrial : MonoBehaviour
         timerText.gameObject.SetActive(false);
     }
 
-    private IEnumerator DeactivateDelay(GameObject ring)
+    private IEnumerator DeactivateAllRingsWithDelay()
     {
         yield return new WaitForSeconds(0.5f);
-        ring?.SetActive(false);
+
+        LinkedListNode<GameObject> r = ringOrder.Last;
+        while (r != null)
+        {
+            LinkedListNode<GameObject> rPrev = r.Previous;
+            r.Value.SetActive(false);
+            r = rPrev;
+            yield return new WaitForSeconds(0.5f);
+        }
     }
+
+    //private IEnumerator DeactivateDelay(GameObject ring)
+    //{
+    //    yield return new WaitForSeconds(0.5f);
+    //    ring?.SetActive(false);
+    //}
 }
