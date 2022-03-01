@@ -11,7 +11,7 @@ using UnityEngine.Rendering;
 
 public class DynamicResolution : MonoBehaviour
 {
-    static double DesiredFrameRate = 60.0;
+    static double DesiredFrameRate = 30.0;
     static double DesiredFrameTime = 1000.0 / DesiredFrameRate;
 
 
