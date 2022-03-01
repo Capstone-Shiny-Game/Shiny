@@ -113,7 +113,7 @@ public class RespawnGroupOfAssets : MonoBehaviour
         newObject.SetActive(true);
         //add the respawnable script to it with a callback to free up it's respawn location if it is destroyed
         Respawnable script = newObject.AddComponent<Respawnable>();
-        script.onDisableCallbackFunction = delegate () { respawnLocations.Add(placeToSpawn); respawnRotations.Add(rotation);try { StartRespawn(); } catch { return; }; Destroy(newObject);};
+        script.onDisableCallbackFunction = delegate () { respawnLocations.Add(placeToSpawn); respawnRotations.Add(rotation);try { StartRespawn(); Destroy(newObject);} catch { return; }; };
     }
 
     private GameObject GetPrefabToSpawn() {
@@ -133,15 +133,6 @@ public class RespawnGroupOfAssets : MonoBehaviour
         }
         prefabToCurrentNumSpawned[result]++;//track spawning this specific prefab
         return result;//return found prefab
-    }
-    /// <summary>
-    /// prevent errors on destroy
-    /// </summary>
-    private void OnDestroy()
-    {
-        foreach (Coroutine coroutine in coroutines) {
-            StopCoroutine(coroutine);
-        }
     }
 
     /// <summary>
