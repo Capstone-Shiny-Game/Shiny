@@ -29,6 +29,9 @@ public class DayController : MonoBehaviour
     public delegate void Evening();
     public static event Evening OnEveningEvent;
 
+    public delegate void NewDay(string day);
+    public static event NewDay OnNewDayEvent;
+
     //Time to trigger day events
     private const float morning = 6.0f;
     private const float midDay = 12.0f;
@@ -110,6 +113,8 @@ public class DayController : MonoBehaviour
             DayIndex = 0;
         }
         CurrentDay = DaysOfWeek[DayIndex];
+
+        OnNewDayEvent?.Invoke(CurrentDay);
         
         //TODO: Replace TEMPDayStartTime
         TEMPDayStartTime = 0;

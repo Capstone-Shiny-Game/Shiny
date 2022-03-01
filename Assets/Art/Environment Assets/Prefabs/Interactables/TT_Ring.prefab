@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 8849592959843885718}
   - component: {fileID: 5916693563087548490}
   - component: {fileID: 2007800799344640514}
-  - component: {fileID: -3590465190834280157}
+  - component: {fileID: 5576361544937317848}
   m_Layer: 0
   m_Name: TT_Ring
   m_TagString: Untagged
@@ -150,8 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 006aa2f7cf78abf4a9aba910058f26e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &-3590465190834280157
-SphereCollider:
+--- !u!65 &5576361544937317848
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -161,7 +161,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.36
+  m_Size: {x: 0.6, y: 0.66, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7302679254078339593
 GameObject:

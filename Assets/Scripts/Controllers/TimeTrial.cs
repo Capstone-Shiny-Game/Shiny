@@ -6,6 +6,7 @@ public class TimeTrial : MonoBehaviour
 {
     public List<GameObject> rings;
     public float timeInterval;
+    public List<string> activeDaysOfWeek;
 
     private LinkedList<GameObject> ringOrder;
     private GameObject currRing;
@@ -21,18 +22,40 @@ public class TimeTrial : MonoBehaviour
             ring.SetActive(false);
         }
         currRing = ringOrder.First.Value;
+        //ringOrder.First.Value.SetActive(true);
+        gameObject.SetActive(false);
+    }
+
+    // added to work with hot air balloons
+    private void OnTriggerEnter(Collider other)
+    {
         ringOrder.First.Value.SetActive(true);
+        startTimePeriod = StartCoroutine(StartTimePeriod());
     }
 
     private void OnEnable()
     {
         TimeTrialRing.OnRingCollision += UpdateTimeTrial;
+        DayController.OnNewDayEvent += AppearOnCorrectDay;
     }
 
     private void OnDisable()
     {
         TimeTrialRing.OnRingCollision -= UpdateTimeTrial;
+        DayController.OnNewDayEvent -= AppearOnCorrectDay;
         StopAllCoroutines();
+    }
+
+    private void AppearOnCorrectDay(string day)
+    {
+        if (activeDaysOfWeek.Contains(day))
+        {
+            gameObject.SetActive(true);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     private void UpdateTimeTrial(GameObject ring)
@@ -47,11 +70,15 @@ public class TimeTrial : MonoBehaviour
                 StopCoroutine(startTimePeriod);
                 Debug.Log("You beat the time trial!");
                 // cleanup
-                Destroy(gameObject);
+                //Destroy(gameObject);
+                foreach (GameObject r in rings)
+                {
+                    Destroy(r);
+                }
             }
             else
             {
-                // activate next two ring
+                // activate next two rings
                 if (startTimePeriod != null)
                 {
                     StopCoroutine(startTimePeriod);
@@ -72,6 +99,7 @@ public class TimeTrial : MonoBehaviour
         currRing.SetActive(false);
         ringOrder.Find(currRing).Next?.Value.SetActive(false);
         currRing = ringOrder.First.Value;
-        currRing.SetActive(true);
+        //currRing.SetActive(true);
+        currRing.SetActive(false);
     }
 }
