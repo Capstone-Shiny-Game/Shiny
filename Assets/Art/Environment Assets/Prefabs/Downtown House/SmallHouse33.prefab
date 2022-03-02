@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3479887031247470803}
   m_Layer: 0
   m_Name: SmallHouse33
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,13 +126,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8324810647017252188, guid: 96fee49834231b247a56e404991e6a68, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 96fee49834231b247a56e404991e6a68, type: 3}
       propertyPath: m_Name
       value: SmallHouse3_Low
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 96fee49834231b247a56e404991e6a68, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     - target: {fileID: 6604235297730737109, guid: 96fee49834231b247a56e404991e6a68, type: 3}
       propertyPath: m_TagString
-      value: Terrain
+      value: Obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96fee49834231b247a56e404991e6a68, type: 3}

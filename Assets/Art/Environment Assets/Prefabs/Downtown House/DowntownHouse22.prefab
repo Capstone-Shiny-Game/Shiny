@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2122117150187987104}
   m_Layer: 0
   m_Name: DowntownHouse22
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,9 +129,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: DowntownHouse2_Low
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1f44a667a96bfba4493c5b0a1bd29cb4, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1765893834232395168, guid: 1f44a667a96bfba4493c5b0a1bd29cb4, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     - target: {fileID: 4305207569476479301, guid: 1f44a667a96bfba4493c5b0a1bd29cb4, type: 3}
       propertyPath: m_TagString
-      value: Terrain
+      value: Obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f44a667a96bfba4493c5b0a1bd29cb4, type: 3}

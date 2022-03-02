@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 25756950225707750}
   m_Layer: 0
   m_Name: SmallHouse22
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,11 +140,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3905148029289900243, guid: 86208c3a26376f94b9df265655db7950, type: 3}
       propertyPath: m_TagString
-      value: Terrain
+      value: Obstacle
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 86208c3a26376f94b9df265655db7950, type: 3}
       propertyPath: m_Name
       value: SmallHouse2_Low
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 86208c3a26376f94b9df265655db7950, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119802480875359340, guid: 86208c3a26376f94b9df265655db7950, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86208c3a26376f94b9df265655db7950, type: 3}

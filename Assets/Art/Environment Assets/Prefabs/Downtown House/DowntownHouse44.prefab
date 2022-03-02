@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 993570321520175436}
   m_Layer: 0
   m_Name: DowntownHouse44
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,7 +97,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -9046843183608113441, guid: 18a67946a9a30c24e933c3f1b035cd93, type: 3}
       propertyPath: m_TagString
-      value: Terrain
+      value: Obstacle
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 18a67946a9a30c24e933c3f1b035cd93, type: 3}
       propertyPath: m_RootOrder
@@ -145,11 +145,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5930162417153312050, guid: 18a67946a9a30c24e933c3f1b035cd93, type: 3}
       propertyPath: m_TagString
-      value: Terrain
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: -1831181042177979122, guid: 18a67946a9a30c24e933c3f1b035cd93, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 18a67946a9a30c24e933c3f1b035cd93, type: 3}
       propertyPath: m_Name
       value: DowntownHouse4_Low
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 18a67946a9a30c24e933c3f1b035cd93, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18a67946a9a30c24e933c3f1b035cd93, type: 3}

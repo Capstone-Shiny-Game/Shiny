@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5554204300248074820}
   m_Layer: 0
   m_Name: barn2
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,11 +127,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8485746131218568070, guid: e5fa1e5d6d7eee04ab70ec9f302d9dd0, type: 3}
       propertyPath: m_TagString
-      value: Terrain
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: -7258660459300517198, guid: e5fa1e5d6d7eee04ab70ec9f302d9dd0, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e5fa1e5d6d7eee04ab70ec9f302d9dd0, type: 3}
       propertyPath: m_Name
       value: FarmHouse_Low
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e5fa1e5d6d7eee04ab70ec9f302d9dd0, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5fa1e5d6d7eee04ab70ec9f302d9dd0, type: 3}

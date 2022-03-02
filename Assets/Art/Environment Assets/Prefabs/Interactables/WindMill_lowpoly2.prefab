@@ -1,86 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2232280511560072886
-GameObject:
+--- !u!136 &2499573767690850369
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2685284977514673755}
-  - component: {fileID: 8303323663506119514}
-  - component: {fileID: 5404753910054929109}
-  m_Layer: 0
-  m_Name: polySurface127
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &2685284977514673755
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2232280511560072886}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 921061961695102642}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8303323663506119514
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2232280511560072886}
-  m_Mesh: {fileID: -3885248408432238867, guid: 7de37af7eec3c7145a41bbea17e61ffa, type: 3}
---- !u!23 &5404753910054929109
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2232280511560072886}
+  m_GameObject: {fileID: 498673286806291338}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 5561349426305759274, guid: 7de37af7eec3c7145a41bbea17e61ffa, type: 3}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
+  m_Radius: 10.59
+  m_Height: 55.3
+  m_Direction: 1
+  m_Center: {x: 0, y: 13.9, z: -0.22}
 --- !u!1 &4111693261981372107
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +106,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 921061961695102642}
-  - component: {fileID: 2354561324340979084}
   m_Layer: 0
   m_Name: Windmill
   m_TagString: Untagged
@@ -193,25 +125,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8485914319707362718}
-  - {fileID: 2685284977514673755}
   - {fileID: 5738774121622564653}
   m_Father: {fileID: 6621965481279747278}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &2354561324340979084
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6102469603353651193}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 4.4
-  m_Height: 14
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: -0.22}
 --- !u!1 &6710795440217285645
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +160,7 @@ Transform:
   m_LocalScale: {x: 17.94294, y: 16.090801, z: 8.2756605}
   m_Children: []
   m_Father: {fileID: 921061961695102642}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &6067397460917021023
 BoxCollider:
@@ -356,8 +273,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: windmill_body
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c91b50c11d1a54645a0407480155c156, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c91b50c11d1a54645a0407480155c156, type: 3}
+--- !u!1 &498673286806291338 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c91b50c11d1a54645a0407480155c156, type: 3}
+  m_PrefabInstance: {fileID: 732623734671539931}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &981912377234594096 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c91b50c11d1a54645a0407480155c156, type: 3}
