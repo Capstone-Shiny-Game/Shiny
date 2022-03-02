@@ -23,6 +23,11 @@ public class FishingQuest : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if(InteractButton.activeInHierarchy)
+        {
+            return;
+        }
+
         if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag(ExpectedDelivery.tag))
         {
             if(CheckDelivery())
