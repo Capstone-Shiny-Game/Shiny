@@ -35,7 +35,7 @@ public class DynamicResolution : MonoBehaviour
     // If your pipeline utilizes the DRH then the min and max scale factors should be defined by a separate config asset.
     // If not, then these values provide you that configuration.
 #if !PIPELINE_IMPLEMENTS_DRH
-    const float MinScaleFactor = 0.6f;
+    const float MinScaleFactor = 0.5f;
     const float MaxScaleFactor = 1.0f;
 #endif
     // END TWEAKABLES BLOCK
