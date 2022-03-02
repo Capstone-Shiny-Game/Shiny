@@ -4,7 +4,7 @@
 //#define PIPELINE_IMPLEMENTS_DRH
 
 // Uncomment this for debugging tools.
-#define ENABLE_DYNAMIC_RESOLUTION_DEBUG
+//#define ENABLE_DYNAMIC_RESOLUTION_DEBUG
 
 using UnityEngine;
 using UnityEngine.Rendering;
