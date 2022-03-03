@@ -33,7 +33,7 @@ public class ModifyOrbitor : MonoBehaviour
     public void ResetZero()
     {
         if (this.isActiveAndEnabled && canRotate)
-            StartCoroutine(Recenter(1f, 0f, 0f));
+            StartCoroutine(Recenter(.5f, 0f, 0f));
     }
     public void Reset()
     {
@@ -48,6 +48,8 @@ public class ModifyOrbitor : MonoBehaviour
         bool canEnd = false;
         while (elapsedTime < endTime && !canEnd)
         {
+            if (vcam == null)
+                break;
             vcam.m_FollowOffset.y = Mathf.SmoothStep(vcam.m_FollowOffset.y, destY, (elapsedTime / endTime));
             vcam.m_XAxis.Value = Mathf.SmoothStep(vcam.m_XAxis.Value, destX, (elapsedTime / endTime));
             canEnd = Mathf.Abs(vcam.m_XAxis.Value - destX) <= 4f && Mathf.Abs(vcam.m_FollowOffset.y - destY) <= 0.5f;
