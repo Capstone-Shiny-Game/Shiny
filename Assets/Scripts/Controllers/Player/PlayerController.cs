@@ -246,8 +246,8 @@ public class PlayerController : MonoBehaviour, Savable
         // position player in front of NPC
         Vector3 ground = transform.FindGround(transform.localScale.y / 2);
         Vector3 npcFront = npcTransform.position + npcTransform.forward * 4.0f;
-        SetFixedPosition(new Vector3(npcFront.x, ground.y, npcFront.z));
-        SetFixedRotation(npcTransform.position);
+        //SetFixedPosition(new Vector3(npcFront.x, ground.y, npcFront.z));
+        //SetFixedRotation(npcTransform.position);
 
         ControllerUI.SetActive(false);
     }
@@ -255,8 +255,8 @@ public class PlayerController : MonoBehaviour, Savable
     private void ExitNPCDialogue()
     {
         ControllerUI.SetActive(true);
-        transform.position = positionBeforeDialogue;
-        transform.rotation = rotationBeforeDialogue;
+        //transform.position = positionBeforeDialogue;
+        //transform.rotation = rotationBeforeDialogue;
         SetState(CrowState.Walking);
     }
 
