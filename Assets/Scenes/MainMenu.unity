@@ -3673,6 +3673,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1705037318}
     m_Modifications:
+    - target: {fileID: 354814141631173081, guid: 0f30097fc800b4a4aab00b886cd119af, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 354814141631173081, guid: 0f30097fc800b4a4aab00b886cd119af, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 354814141631173081, guid: 0f30097fc800b4a4aab00b886cd119af, type: 3}
+      propertyPath: MaxDistance
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 354814141631173081, guid: 0f30097fc800b4a4aab00b886cd119af, type: 3}
+      propertyPath: DopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 354814141631173081, guid: 0f30097fc800b4a4aab00b886cd119af, type: 3}
+      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
+      value: 0.06944445
+      objectReference: {fileID: 0}
     - target: {fileID: 423228429931469612, guid: 0f30097fc800b4a4aab00b886cd119af, type: 3}
       propertyPath: m_RootOrder
       value: 6
