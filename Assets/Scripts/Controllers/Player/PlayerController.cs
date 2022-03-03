@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour, Savable
         walkingController.WalkedOffEdge += () => SetState(CrowState.Flying, 0.5f);
         walkingController.SubstateChanged += s => SetState(s);
         flightController.Landed += AttemptToLand;
-        flightController.LandedPerch += c=> AttemptToLandPerch(c);
+        flightController.LandedPerch += (c, c2)=> AttemptToLandPerch(c, c2);
 
         flightController.FlightTypeChanged += glide => SetState(glide ? CrowState.Gliding : CrowState.Flying);
 
@@ -155,9 +155,11 @@ public class PlayerController : MonoBehaviour, Savable
 
         }
     }
-    private void AttemptToLandPerch(Transform t)
+    private void AttemptToLandPerch(Transform t, Transform lookAt)
     {
         crow.resetModelRotation();
+        Quaternion rotation = transform.rotation;
+        transform.LookAt(lookAt);
         transform.position = t.position;
         walkCam.GetComponent<ModifyOrbitor>().ResetZero();
         SetState(CrowState.Perching);

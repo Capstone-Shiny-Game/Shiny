@@ -36,7 +36,7 @@ public class FlightController : MonoBehaviour
     private Crow crow;
     public GameObject ceiling;
     public event Action<bool> Landed;
-    public event Action<Transform> LandedPerch;
+    public event Action<Transform, Transform> LandedPerch;
 
     public event Action<bool> FlightTypeChanged;
     public bool isGliding = false;
@@ -159,9 +159,10 @@ public class FlightController : MonoBehaviour
             //StartCoroutine(Slow());
         }
     }
-    public void InvokeLandPerch(Transform pos)
+    public void InvokeLandPerch(Transform pos, Transform lookAt)
     {
-            LandedPerch?.Invoke(pos);
+
+            LandedPerch?.Invoke(pos, lookAt);
 
     }
     /// <summary>

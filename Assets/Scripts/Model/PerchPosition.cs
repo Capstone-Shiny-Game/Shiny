@@ -5,13 +5,20 @@ using UnityEngine;
 public class PerchPosition : MonoBehaviour
 {
     public Transform crowPerchPos;
+    public Transform lookAt;
+    public GameObject vCam;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             FlightController controller = other.GetComponent<FlightController>();
-            controller.InvokeLandPerch(crowPerchPos);
-            
+            controller.InvokeLandPerch(crowPerchPos, lookAt);
+            vCam.SetActive(true);
         }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+            vCam.SetActive(false);
     }
 }
