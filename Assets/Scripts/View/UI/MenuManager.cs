@@ -30,6 +30,7 @@ public class MenuManager : MonoBehaviour
     private MenuContainer currentMenu;
     [HideInInspector]
     public MenuType lastOpenedPauseMenu;
+    public LevelLoader loader;
 
     // Start is called before the first frame update
     void Start()
@@ -61,7 +62,7 @@ public class MenuManager : MonoBehaviour
                 break;
             case MenuType.mainMenu://back to main menu reset to defaults
                 DisablePause();
-                SceneManager.LoadScene("MainMenu");
+                StartCoroutine(loader.LoadLevel("MainMenu"));
                 currentMenu = menuContainers.Find(x => x.menuType == MenuType.flightui);
                 return;
             default:
