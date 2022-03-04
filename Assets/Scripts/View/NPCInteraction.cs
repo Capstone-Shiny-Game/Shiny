@@ -33,7 +33,7 @@ public class NPCInteraction : MonoBehaviour
     private TextMeshProUGUI nameText;
     private TextMeshProUGUI bodyText;
     private GameObject[] buttonList;
-
+    public Transform nearestPerch;
     private Coroutine typeBodyText;
 
     private readonly string CONTINUE = "Continue";
@@ -45,9 +45,10 @@ public class NPCInteraction : MonoBehaviour
 
     private void Start()
     {
-        avatar = npcUI.transform.Find("Avatars").Find(avatarName).gameObject;
+        Transform avatarMain = npcUI.transform.Find("Avatars");
+        avatar = avatarMain.Find(avatarName).gameObject;
         bgImage = npcUI.transform.Find("TextBg").GetComponent<Image>();
-        nameText = bgImage.gameObject.transform.Find("NameDisplay").GetComponent<TextMeshProUGUI>();
+        nameText = avatarMain.gameObject.transform.Find("NameDisplay").GetComponent<TextMeshProUGUI>();
         bodyText = bgImage.gameObject.transform.Find("TextDisplay").GetComponent<TextMeshProUGUI>();
         Transform buttons = npcUI.transform.Find("Buttons");
         buttonList = new GameObject[3] {
@@ -76,7 +77,9 @@ public class NPCInteraction : MonoBehaviour
     {
         if(Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 50)
         {
-            OnNPCInteractEvent?.Invoke(this.transform);
+            OnNPCInteractEvent?.Invoke(nearestPerch);
+
+            //OnNPCInteractEvent?.Invoke(this.transform);
             EnterDialogue();
             ApplyTheme();
         }

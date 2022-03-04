@@ -244,8 +244,10 @@ public class PlayerController : MonoBehaviour, Savable
         positionBeforeDialogue = transform.position;
         rotationBeforeDialogue = transform.rotation;
         // position player in front of NPC
-        Vector3 ground = transform.FindGround(transform.localScale.y / 2);
-        Vector3 npcFront = npcTransform.position + npcTransform.forward * 4.0f;
+        //Vector3 ground = transform.FindGround(transform.localScale.y / 2);
+        //Vector3 npcFront = npcTransform.position + npcTransform.forward * 4.0f;
+        SetFixedPosition(npcTransform.position);
+
         //SetFixedPosition(new Vector3(npcFront.x, ground.y, npcFront.z));
         //SetFixedRotation(npcTransform.position);
 
