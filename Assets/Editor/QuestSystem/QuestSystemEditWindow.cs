@@ -73,9 +73,8 @@ public class QuestSystemEditWindow : EditorWindow
             EditorUtility.DisplayDialog("Invalid File Name", "Please enter a file name", "Continue");
             return;
         }
-        // TODO (Ella) : save
-        //DSIOUtility.Initialize(fileNameTextField.value, graphView);
-        //DSIOUtility.Save();
+        QSIOUtility.Initialize(fileNameTextField.value, graphView);
+        QSIOUtility.Save();
     }
 
     private void Load()
@@ -89,9 +88,8 @@ public class QuestSystemEditWindow : EditorWindow
 
         Clear();
 
-        // TODO (Ella) : load
-        //DSIOUtility.Initialize(Path.GetFileNameWithoutExtension(filePath), graphView);
-        //DSIOUtility.Load();
+        QSIOUtility.Initialize(Path.GetFileNameWithoutExtension(filePath), graphView);
+        QSIOUtility.Load();
     }
 
     private void Clear()
