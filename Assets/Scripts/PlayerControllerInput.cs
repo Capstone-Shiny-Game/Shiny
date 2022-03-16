@@ -47,7 +47,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": ""ResetLook"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""834ae251-2bbc-4d76-b69e-470d984b5fcc"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -280,7 +280,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                 {
                     ""name"": """",
                     ""id"": ""0a8710e4-5c2b-47f9-833c-b8cbc86e7e6e"",
-                    ""path"": ""<Mouse>/press"",
+                    ""path"": ""<Pointer>/press"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

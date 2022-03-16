@@ -25,7 +25,6 @@ public class TimeTrial : MonoBehaviour
             ring.SetActive(false);
         }
         currRing = ringOrder.First.Value;
-        //ringOrder.First.Value.SetActive(true);
 
         // *comment out for testing!
         //gameObject.SetActive(false);
@@ -38,7 +37,7 @@ public class TimeTrial : MonoBehaviour
     {
         if (!completed)
         {
-            ringOrder.First.Value.SetActive(true);
+            ActivateRing(ringOrder.First.Value);
             startTimePeriod = StartCoroutine(StartTimePeriod());
         }
     }
@@ -77,7 +76,6 @@ public class TimeTrial : MonoBehaviour
     {
         if (ring == currRing)
         {
-            //StartCoroutine(DeactivateDelay(ring));
             currRing = ringOrder.Find(ring).Next?.Value;
             if (currRing == null)
             {
@@ -86,12 +84,7 @@ public class TimeTrial : MonoBehaviour
                 StopCoroutine(startTimePeriod);
                 StartCoroutine(DisplayWinText());
                 // cleanup
-                StartCoroutine(DeactivateAllRingsWithDelay());
-                //Destroy(gameObject);
-                //foreach (GameObject r in rings)
-                //{
-                //    Destroy(r);
-                //}
+                StartCoroutine(DeactivateRingsWithDelay());
             }
             else
             {
@@ -100,16 +93,28 @@ public class TimeTrial : MonoBehaviour
                 {
                     StopCoroutine(startTimePeriod);
                 }
-                currRing.SetActive(true);
-                ringOrder.Find(currRing).Next?.Value.SetActive(true);
+                ActivateRing(currRing);
+                ActivateRing(ringOrder.Find(currRing).Next?.Value);
                 startTimePeriod = StartCoroutine(StartTimePeriod());
             }
         }
     }
 
+    private void ActivateRing(GameObject ring)
+    {
+        if (ring != null && !ring.activeSelf)
+        {
+            ring.SetActive(true);
+            StartCoroutine(PopInRing(ring));
+        }
+    }
+
     private IEnumerator StartTimePeriod()
     {
-        timerText.gameObject.SetActive(true);
+        if (!timerText.gameObject.activeSelf)
+        {
+            timerText.gameObject.SetActive(true);
+        }
 
         float timeElapsed = 0;
         while (timeElapsed < timeInterval)
@@ -127,11 +132,8 @@ public class TimeTrial : MonoBehaviour
 
         // gets here if player does not make it to the current ring on time,
         // reset the time trial
-        currRing.SetActive(false);
-        ringOrder.Find(currRing).Next?.Value.SetActive(false);
+        StartCoroutine(DeactivateRingsWithDelay(currRing));
         currRing = ringOrder.First.Value;
-        //currRing.SetActive(true);
-        currRing.SetActive(false);
 
         timerText.gameObject.SetActive(false);
     }
@@ -144,11 +146,12 @@ public class TimeTrial : MonoBehaviour
         timerText.gameObject.SetActive(false);
     }
 
-    private IEnumerator DeactivateAllRingsWithDelay()
+    private IEnumerator DeactivateRingsWithDelay(GameObject endRing = null)
     {
         yield return new WaitForSeconds(0.5f);
 
-        LinkedListNode<GameObject> r = ringOrder.Last;
+        LinkedListNode<GameObject> r = endRing == null ? 
+            ringOrder.Last : ringOrder.Find(endRing);
         while (r != null)
         {
             LinkedListNode<GameObject> rPrev = r.Previous;
@@ -158,9 +161,15 @@ public class TimeTrial : MonoBehaviour
         }
     }
 
-    //private IEnumerator DeactivateDelay(GameObject ring)
-    //{
-    //    yield return new WaitForSeconds(0.5f);
-    //    ring?.SetActive(false);
-    //}
+    private IEnumerator PopInRing(GameObject ring)
+    {
+        Vector3 endScale = ring.transform.localScale;
+        ring.transform.localScale *= 0.1f;
+
+        while (ring.transform.localScale.x < endScale.x)
+        {
+            ring.transform.localScale += new Vector3(0.05f, 0.05f, 0.05f);
+            yield return new WaitForEndOfFrame();
+        }
+    }
 }
