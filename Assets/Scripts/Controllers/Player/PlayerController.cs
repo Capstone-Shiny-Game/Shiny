@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour, Savable
     private WalkingController walkingController;
     private GameObject flightCam;
     private GameObject walkCam;
+    private GameObject povCam;
+
     private Crow crow;
     public GameObject bFlapBoost;
     public GameObject bFlapTakeOff;
@@ -63,7 +65,8 @@ public class PlayerController : MonoBehaviour, Savable
         rb = GetComponent<Rigidbody>();
         flightCam = GameObject.Find("CM Flying");
         walkCam = GameObject.Find("CM Walking");
-
+        povCam = GameObject.Find("CM POV");
+        povCam.SetActive(false);
 
         flightController = GetComponent<FlightController>();
         walkingController = GetComponent<WalkingController>();
@@ -124,6 +127,8 @@ public class PlayerController : MonoBehaviour, Savable
 
         flightCam.SetActive(flightController.enabled);
         walkCam.SetActive(!flightController.enabled);
+        SetPOVCam(walkCam.activeSelf && povCam.activeSelf);
+
         if (CrowState.Walking == state)
         {
             crow.resetModelRotation();
@@ -145,7 +150,7 @@ public class PlayerController : MonoBehaviour, Savable
             // pitch up on takeoff
             transform.RotateAround(transform.position, transform.right, -30);
             birdAnimator.SetBool("WalktoFly", true);
-            flightCam.GetComponent<ModifyOrbitor>().ResetZero();
+            flightCam.GetComponent<ModifyOrbitor>().Reset();
 
         }
 
@@ -154,7 +159,22 @@ public class PlayerController : MonoBehaviour, Savable
             birdAnimator.SetBool("WalktoFly", false);
         }
     }
+    public void SwapWalkingCam()
+    {
+        if(state == CrowState.Walking || state == CrowState.Idle || state == CrowState.Perching)
+        {
+            walkCam.GetComponent<ModifyOrbitor>().Reset();
 
+            bool isActive = !povCam.activeSelf;
+            SetPOVCam(isActive);
+
+        }
+    }
+    public void SetPOVCam(bool active)
+    {
+        povCam.SetActive(active);
+        crow.Model.SetActive(!active);
+    }
     private void AttemptToLand(bool raycastNeeded)
     {
         if (raycastNeeded)
