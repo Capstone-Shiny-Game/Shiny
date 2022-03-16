@@ -1,23 +1,25 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FishingQuest : MonoBehaviour
+public class FetchQuest : MonoBehaviour
 {
-    public DSDialogueContainerSO StartDialogue;
-    public DSDialogueContainerSO CompletionDialogue;
+    public simpleQuest[] quests;
 
-    public GameObject ExpectedDelivery;
-    public int ExpectedQuantity;
     public GameObject InteractButton;
+    public bool randomQuest;
 
+    private DSDialogueContainerSO StartDialogue;
+    private DSDialogueContainerSO CompletionDialogue;
+    private GameObject ExpectedDelivery;
+    private int ExpectedQuantity;
     private NPCInteraction dialogueSystem;
+    private int currentQuest = -1;
 
     void Start()
     {
         dialogueSystem = GetComponent<NPCInteraction>();
-        dialogueSystem.dialogueContainer = StartDialogue;
         NPCInteraction.OnNPCInteractEndEvent += startQuest;
+        swapQuest();
         InteractButton.SetActive(true);
     }
 
@@ -39,6 +41,29 @@ public class FishingQuest : MonoBehaviour
         }
     }
 
+    private void swapQuest()
+    {
+        if(randomQuest)
+        {
+            updateQuest(Random.Range(0, quests.Length-1));
+        }
+        else
+        {
+            updateQuest(currentQuest + 1);
+            currentQuest++;
+        }
+    }
+
+    private void updateQuest(int index)
+    {
+        StartDialogue = quests[index].StartDialogue;
+        CompletionDialogue = quests[index].CompletionDialogue;
+        ExpectedDelivery = quests[index].ExpectedDelivery;
+        ExpectedQuantity = quests[index].ExpectedQuantity;
+        dialogueSystem.dialogueContainer = StartDialogue;
+        InteractButton.SetActive(true);
+    }
+
     private void startQuest()
     {
         //Check if this dialogue end is what would have triggered this event
@@ -47,11 +72,17 @@ public class FishingQuest : MonoBehaviour
             InteractButton.SetActive(false);
             if(dialogueSystem.dialogueContainer == CompletionDialogue)
             {
-                Destroy(dialogueSystem.npcUI);
-                Destroy(dialogueSystem);
-                Destroy(GetComponent<SphereCollider>());
-                Destroy(InteractButton);
-                Destroy(this);
+                if(currentQuest == quests.Length-1)
+                {
+                    Destroy(dialogueSystem.npcUI);
+                    Destroy(dialogueSystem);
+                    Destroy(GetComponent<SphereCollider>());
+                    Destroy(InteractButton);
+                    Destroy(this);
+                    return;
+                }
+
+                swapQuest();
             }
         }
     }
@@ -82,5 +113,17 @@ public class FishingQuest : MonoBehaviour
         {
             return false;
         }
+    }
+
+    [System.Serializable]
+    public class simpleQuest
+    {
+        public string name;
+
+        public DSDialogueContainerSO StartDialogue;
+        public DSDialogueContainerSO CompletionDialogue;
+
+        public GameObject ExpectedDelivery;
+        public int ExpectedQuantity = 1;
     }
 }

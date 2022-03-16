@@ -204,6 +204,7 @@ MonoBehaviour:
   npcUI: {fileID: 4896112876595263201}
   dialogueContainer: {fileID: 0}
   blackOutSquare: {fileID: 0}
+  nearestPerch: {fileID: 0}
 --- !u!114 &7678910086319842698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,11 +217,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2946240b4cdf68e4abff5eacce0fc7f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartDialogue: {fileID: 11400000, guid: 65d2aacd52dcfa841a31b498abdad402, type: 2}
-  CompletionDialogue: {fileID: 11400000, guid: d50a8145717955340b4c5df4a8656ca6, type: 2}
-  ExpectedDelivery: {fileID: 8320527036890391174, guid: 35bb1a5c291b95645a5d3790c473d779, type: 3}
-  ExpectedQuantity: 1
+  quests:
+  - name: WheatQuest
+    StartDialogue: {fileID: 11400000, guid: 65d2aacd52dcfa841a31b498abdad402, type: 2}
+    CompletionDialogue: {fileID: 11400000, guid: d50a8145717955340b4c5df4a8656ca6, type: 2}
+    ExpectedDelivery: {fileID: 8320527036890391174, guid: 35bb1a5c291b95645a5d3790c473d779, type: 3}
+    ExpectedQuantity: 1
   InteractButton: {fileID: 6563778449525004035}
+  randomQuest: 0
 --- !u!135 &4591753570813972270
 SphereCollider:
   m_ObjectHideFlags: 0
