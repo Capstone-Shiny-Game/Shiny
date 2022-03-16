@@ -104,17 +104,14 @@ public static class QSIOUtility
 
     private static void LoadNodes(List<QSNodeSO> _nodes)
     {
-        /*
         foreach (QSNodeSO node in _nodes)
         {
-            // List<DSChoiceSaveData> choices = CloneNodeChoices(node.Choices);
-            // DSNode newNode = graphView.CreateNode(node.Name, node.DialogueType, node.Position, false);
-            QSNode newNode = graphView.CreateNode(node.GetType(), node.Position, null, false);
-            newNode.Initialize(node, graphView, node.Position);
+            // TODO : add position to SO
+            QSNode newNode = graphView.CreateNode(node.GetType(), Vector2.zero); //node.Position, null, false);
+            // newNode.Initialize(node, graphView, Vector2.zero);// node.Position);
+            newNode.SO = node;
 
-            // newNode.ID = node.ID;
-            // newNode.Choices = choices;
-            // newNode.Text = node.Text;
+            newNode.Draw();
 
             newNode.Draw();
 
@@ -122,31 +119,32 @@ public static class QSIOUtility
 
             loadedNodes.Add(node.ID, newNode);
 
-            if (string.IsNullOrEmpty(node.Group))
-            {
-                continue;
-            }
-            QSGroup group = loadedGroups[node.Group];
-            newNode.Group = group;
-            group.AddElement(newNode);
+            // TODO : add group to SO
+            //if (string.IsNullOrEmpty(node.Group))
+            //{
+            //    continue;
+            //}
+            //QSGroup group = loadedGroups[node.Group];
+            //newNode.Group = group;
+            //group.AddElement(newNode);
         }
-        */
     }
 
     private static void LoadNodesConnections()
     {
+        // TODO : actually set user data in graph editor
         foreach (KeyValuePair<string, QSNode> loadedNode in loadedNodes)
         {
             foreach (Port choicePort in loadedNode.Value.outputContainer.Children())
             {
-                QSNodeSO saveData = choicePort.userData as QSNodeSO;
+                string saveData = choicePort.userData as string;
 
-                if (string.IsNullOrEmpty(saveData.ID))
+                if (saveData is null || string.IsNullOrEmpty(saveData))
                 {
                     continue;
                 }
 
-                QSNode nextNode = loadedNodes[saveData.ID];
+                QSNode nextNode = loadedNodes[saveData];
 
                 Port nextNodeInputPort = (Port)nextNode.inputContainer.Children().First();
 
