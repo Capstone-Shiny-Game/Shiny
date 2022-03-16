@@ -7,11 +7,16 @@ public struct QSData
 {
     [field: SerializeField] public string Name;
     [field: SerializeField] public Type Type;
+    [field: SerializeField] public string ConnectedToNode;
+    [field: SerializeField] public string ConnectedToPort;
 
     public QSData(string Name, Type Type)
     {
         this.Name = Name;
         this.Type = Type;
+        ConnectedToNode = "";
+        ConnectedToPort = "";
+        // OptionValue
     }
 }
 

@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -24,24 +23,6 @@ public class QSNodeGroupSO : ScriptableObject
     }
 }
 
-public class QSGraphSaveDataSO : ScriptableObject
-{
-    [field: SerializeField] public string FileName { get; set; }
-    [field: SerializeField] public List<QSGroupSaveData> Groups { get; set; }
-    [field: SerializeField] public List<QSNodeSO> Nodes { get; set; }
-    [field: SerializeField] public List<string> OldGroupNames { get; set; }
-    [field: SerializeField] public List<string> OldUngroupedNodeNames { get; set; }
-    [field: SerializeField] public SerializableDictionary<string, List<string>> OldGroupedNodeNames { get; set; }
-
-    public void Initialize(string fileName)
-    {
-        FileName = fileName;
-
-        Groups = new List<QSGroupSaveData>();
-        Nodes = new List<QSNodeSO>();
-    }
-}
-
 public static class QSIOUtility
 {
     private static QSGraphView graphView;
@@ -57,7 +38,7 @@ public static class QSIOUtility
     public static void Initialize(string graphName, QSGraphView _graphView)
     {
         graphFileName = graphName;
-        containerFolderPath = $"Assets/DialogueSystem/Dialogues/{graphFileName}";
+        containerFolderPath = $"Assets/QuestSystem/Quests/{graphFileName}";
         graphView = _graphView;
         createdGroups = new Dictionary<string, QSNodeGroupSO>();
         createdNodes = new Dictionary<string, QSNodeSO>();
@@ -106,20 +87,16 @@ public static class QSIOUtility
     {
         foreach (QSNodeSO node in _nodes)
         {
-            // TODO : add position to SO
-            QSNode newNode = graphView.CreateNode(node.GetType(), Vector2.zero); //node.Position, null, false);
-            // newNode.Initialize(node, graphView, Vector2.zero);// node.Position);
+            // TODO : move position to SO
+            QSNode newNode = graphView.CreateNode(node, Vector2.zero);
+
             newNode.SO = node;
-
-            newNode.Draw();
-
-            newNode.Draw();
 
             graphView.AddElement(newNode);
 
             loadedNodes.Add(node.ID, newNode);
 
-            // TODO : add group to SO
+            // TODO : move group to SO
             //if (string.IsNullOrEmpty(node.Group))
             //{
             //    continue;
@@ -132,28 +109,44 @@ public static class QSIOUtility
 
     private static void LoadNodesConnections()
     {
-        // TODO : actually set user data in graph editor
-        foreach (KeyValuePair<string, QSNode> loadedNode in loadedNodes)
+        foreach(QSNode prevNode in loadedNodes.Values)
         {
-            foreach (Port choicePort in loadedNode.Value.outputContainer.Children())
+            foreach (QSData output in prevNode.SO.Outputs)
             {
-                string saveData = choicePort.userData as string;
-
-                if (saveData is null || string.IsNullOrEmpty(saveData))
+                string nextID   = output.ConnectedToNode;
+                string nextPort = output.ConnectedToPort;
+                if (!string.IsNullOrEmpty(nextID))
                 {
-                    continue;
+                    QSNode nextNode = loadedNodes[nextID];
+                    Port o = (Port)prevNode.outputContainer.Children().First(v => v is Port p && p.portName == output.Name);
+                    Port i = (Port)nextNode. inputContainer.Children().First(v => v is Port p && p.portName == nextPort);
+                    Edge edge = o.ConnectTo(i);
+                    graphView.AddElement(edge);
+                    prevNode.RefreshPorts();
+                    nextNode.RefreshPorts();
                 }
-
-                QSNode nextNode = loadedNodes[saveData];
-
-                Port nextNodeInputPort = (Port)nextNode.inputContainer.Children().First();
-
-                Edge edge = choicePort.ConnectTo(nextNodeInputPort);
-
-                graphView.AddElement(edge);
-
-                loadedNode.Value.RefreshPorts();
             }
+
+
+            //foreach (Port port in loadedNode.Value.outputContainer.Children())
+            //{
+            //    string saveData = port.userData as string;
+
+            //    if (string.IsNullOrEmpty(saveData))
+            //    {
+            //        continue;
+            //    }
+
+            //    QSNode nextNode = loadedNodes[saveData];
+
+            //    Port nextNodeInputPort = (Port)nextNode.inputContainer.Children().First();
+
+            //    Edge edge = port.ConnectTo(nextNodeInputPort);
+
+            //    graphView.AddElement(edge);
+
+            //    loadedNode.Value.RefreshPorts();
+            //}
         }
     }
 
@@ -215,22 +208,6 @@ public static class QSIOUtility
         SaveAsset(node.SO);
     }
 
-    private static List<DSDialogueChoiceData> ConvertNodeChoicesToDialogueChoices(List<DSChoiceSaveData> nodeChoices)
-    {
-        List<DSDialogueChoiceData> dialogueChoices = new List<DSDialogueChoiceData>();
-
-        foreach (DSChoiceSaveData choice in nodeChoices)
-        {
-            DSDialogueChoiceData dialogueChoice = new DSDialogueChoiceData()
-            {
-                Text = choice.Text
-            };
-            dialogueChoices.Add(dialogueChoice);
-        }
-
-        return dialogueChoices;
-    }
-
     private static void UpdateOldGroupedNodes(SerializableDictionary<string, List<string>> currentGroupedNodeNames, QSGraphSaveDataSO graphData)
     {
         if (graphData.OldGroupedNodeNames != null && graphData.OldGroupedNodeNames.Count != 0)
@@ -246,7 +223,7 @@ public static class QSIOUtility
 
                 foreach (string nodeToRemove in nodesToRemove)
                 {
-                    RemoveAsset($"{containerFolderPath}/Groups/{oldGroupNode.Key}/Dialogues", nodeToRemove);
+                    RemoveAsset($"{containerFolderPath}/Groups/{oldGroupNode.Key}/Quests", nodeToRemove);
                 }
             }
         }
@@ -262,7 +239,7 @@ public static class QSIOUtility
 
             foreach (string nodeName in nodesToRemove)
             {
-                RemoveAsset($"{containerFolderPath}/Global/Dialogues", nodeName);
+                RemoveAsset($"{containerFolderPath}/Global/Quests", nodeName);
             }
         }
 
