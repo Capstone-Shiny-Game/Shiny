@@ -7,6 +7,10 @@ public class FetchQuest : MonoBehaviour
 
     public GameObject InteractButton;
     public bool randomQuest;
+    public delegate void Complete();
+    public static event Complete OnQuestCompleteEvent;
+
+
 
     private DSDialogueContainerSO StartDialogue;
     private DSDialogueContainerSO CompletionDialogue;
@@ -72,6 +76,8 @@ public class FetchQuest : MonoBehaviour
             InteractButton.SetActive(false);
             if(dialogueSystem.dialogueContainer == CompletionDialogue)
             {
+                OnQuestCompleteEvent?.Invoke();
+
                 if(currentQuest == quests.Length-1)
                 {
                     Destroy(dialogueSystem.npcUI);
@@ -81,7 +87,6 @@ public class FetchQuest : MonoBehaviour
                     Destroy(this);
                     return;
                 }
-
                 swapQuest();
             }
         }
