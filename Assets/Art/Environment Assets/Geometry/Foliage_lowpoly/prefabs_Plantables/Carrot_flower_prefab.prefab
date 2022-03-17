@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8633739496645995234}
   - component: {fileID: 2201353530772074584}
-  - component: {fileID: 1829289319124793715}
   - component: {fileID: 5484499979320201651}
   - component: {fileID: 2412428485400393742}
   - component: {fileID: -504923857918520443}
+  - component: {fileID: 3387359218560795411}
   m_Layer: 0
   m_Name: Carrot_flower_prefab
   m_TagString: Tradeable
@@ -47,22 +47,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 1.83, z: 0}
---- !u!136 &1829289319124793715
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6615792099859424631}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.73, z: 0}
+  m_Radius: 1.05
+  m_Center: {x: 0, y: 1.53, z: 0}
 --- !u!205 &5484499979320201651
 LODGroup:
   m_ObjectHideFlags: 0
@@ -77,7 +63,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.024189679
+  - screenRelativeHeight: 0.0038469816
     fadeTransitionWidth: 0.1
     renderers:
     - renderer: {fileID: 230405316502399877}
@@ -113,6 +99,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &3387359218560795411
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6615792099859424631}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.25, z: 1}
+  m_Center: {x: 0, y: 1.51, z: 0}
 --- !u!1001 &1509556673677506305
 PrefabInstance:
   m_ObjectHideFlags: 0

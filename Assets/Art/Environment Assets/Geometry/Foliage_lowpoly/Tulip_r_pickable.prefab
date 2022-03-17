@@ -12,63 +12,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 565a8e680a036fb40a445647e8754227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &6569596241633228616
+--- !u!1001 &3546174222702325364
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 2081206062132266338}
     m_Modifications:
-    - target: {fileID: 1678615187621317787, guid: 1810b3c69bb43944c9d602508b3926cc, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 002ec005b7f27024a8e567a76b93a6de, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1678615187621317787, guid: 1810b3c69bb43944c9d602508b3926cc, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 002ec005b7f27024a8e567a76b93a6de, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1678615187621317787, guid: 1810b3c69bb43944c9d602508b3926cc, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 002ec005b7f27024a8e567a76b93a6de, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1678615187621317787, guid: 1810b3c69bb43944c9d602508b3926cc, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 002ec005b7f27024a8e567a76b93a6de, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1678615187621317787, guid: 1810b3c69bb43944c9d602508b3926cc, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 002ec005b7f27024a8e567a76b93a6de, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1678615187621317787, guid: 1810b3c69bb43944c9d602508b3926cc, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 002ec005b7f27024a8e567a76b93a6de, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 1678615187621317787, guid: 1810b3c69bb43944c9d602508b3926cc, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 002ec005b7f27024a8e567a76b93a6de, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 1678615187621317787, guid: 1810b3c69bb43944c9d602508b3926cc, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 002ec005b7f27024a8e567a76b93a6de, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 1678615187621317787, guid: 1810b3c69bb43944c9d602508b3926cc, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 002ec005b7f27024a8e567a76b93a6de, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1678615187621317787, guid: 1810b3c69bb43944c9d602508b3926cc, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 002ec005b7f27024a8e567a76b93a6de, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1678615187621317787, guid: 1810b3c69bb43944c9d602508b3926cc, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 002ec005b7f27024a8e567a76b93a6de, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3679316783885091095, guid: 1810b3c69bb43944c9d602508b3926cc, type: 3}
+    - target: {fileID: 919132149155446097, guid: 002ec005b7f27024a8e567a76b93a6de, type: 3}
       propertyPath: m_Name
-      value: Tulip_r_prefab
+      value: Tulip_r
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1810b3c69bb43944c9d602508b3926cc, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 002ec005b7f27024a8e567a76b93a6de, type: 3}
 --- !u!1001 &8018655896302343713
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -80,6 +80,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tulip_r_pickable
       objectReference: {fileID: 0}
+    - target: {fileID: 3316546547101828653, guid: c6b4578440cc8784f8eccc006ed84bca, type: 3}
+      propertyPath: objectToSpawn
+      value: 
+      objectReference: {fileID: 3679316783885091095, guid: 1810b3c69bb43944c9d602508b3926cc, type: 3}
     - target: {fileID: 5144994371337438313, guid: c6b4578440cc8784f8eccc006ed84bca, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 2.4

@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6543415851026396503}
   - component: {fileID: 7438172605735815441}
-  - component: {fileID: 5206980209581108665}
   - component: {fileID: 1836397383079278230}
   - component: {fileID: 357169081371491510}
   - component: {fileID: 5403732313870052143}
+  - component: {fileID: 6479235243012969265}
   m_Layer: 0
   m_Name: Rosemary_prefab
   m_TagString: Tradeable
@@ -48,21 +48,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1.5
-  m_Center: {x: 0, y: 2.77, z: 0}
---- !u!136 &5206980209581108665
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2984608545844598259}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 2.66, z: 0}
+  m_Center: {x: 0, y: 1.71, z: 0}
 --- !u!205 &1836397383079278230
 LODGroup:
   m_ObjectHideFlags: 0
@@ -77,7 +63,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.023316618
+  - screenRelativeHeight: 0.0025859936
     fadeTransitionWidth: 0.1
     renderers:
     - renderer: {fileID: 6305722182669695520}
@@ -113,6 +99,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &6479235243012969265
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2984608545844598259}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.49, z: 1}
+  m_Center: {x: 0, y: 1.78, z: 0}
 --- !u!1001 &4630818945286366884
 PrefabInstance:
   m_ObjectHideFlags: 0

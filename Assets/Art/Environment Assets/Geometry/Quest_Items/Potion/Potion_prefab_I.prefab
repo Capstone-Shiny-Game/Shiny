@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!136 &1304291356348361448
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3398802432069250807}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2014090914553554987
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -140,12 +154,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Potion_prefab_I
       objectReference: {fileID: 0}
+    - target: {fileID: 2790565020000143696, guid: 354cad4e1c762af479ffcb76333bb293, type: 3}
+      propertyPath: m_Size.y
+      value: 0.62
+      objectReference: {fileID: 0}
     - target: {fileID: 4128413412853655224, guid: 354cad4e1c762af479ffcb76333bb293, type: 3}
       propertyPath: item.itemType
       value: potion
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2790565020000143696, guid: 354cad4e1c762af479ffcb76333bb293, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 354cad4e1c762af479ffcb76333bb293, type: 3}
+--- !u!1 &3398802432069250807 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1775675573489667486, guid: 354cad4e1c762af479ffcb76333bb293, type: 3}
+  m_PrefabInstance: {fileID: 4003294672591528809}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2621420857121633357 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1436550605664474916, guid: 354cad4e1c762af479ffcb76333bb293, type: 3}

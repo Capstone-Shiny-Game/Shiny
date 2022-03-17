@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7659400322386590815}
   - component: {fileID: 7348710065465339721}
-  - component: {fileID: 5156592104649411737}
   - component: {fileID: 7409705069616371033}
   - component: {fileID: 4018569217423645519}
   - component: {fileID: -6659699560322847135}
+  - component: {fileID: 7804972220340198479}
   m_Layer: 0
   m_Name: Basil_prefab
   m_TagString: Tradeable
@@ -47,22 +47,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 1.02
   m_Center: {x: 0, y: 1.22, z: 0}
---- !u!136 &5156592104649411737
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6947671990099270597}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.98, z: 0}
 --- !u!205 &7409705069616371033
 LODGroup:
   m_ObjectHideFlags: 0
@@ -77,7 +63,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.024189679
+  - screenRelativeHeight: 0.004191857
     fadeTransitionWidth: 0.1
     renderers:
     - renderer: {fileID: 4807424536909108146}
@@ -113,6 +99,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &7804972220340198479
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6947671990099270597}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.82, y: 1.83, z: 0.72}
+  m_Center: {x: 0, y: 1.18, z: 0}
 --- !u!1001 &6158376193190285110
 PrefabInstance:
   m_ObjectHideFlags: 0

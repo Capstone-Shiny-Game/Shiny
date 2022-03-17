@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1846584063611966035}
   - component: {fileID: 8016086664152650339}
-  - component: {fileID: 1839148090580012205}
   - component: {fileID: 1104208391377573946}
   - component: {fileID: 7455405339385487651}
   - component: {fileID: -927942825073029065}
+  - component: {fileID: 3971138817253014508}
   m_Layer: 0
   m_Name: lavender_p_prefab
   m_TagString: Tradeable
@@ -47,22 +47,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 1.18
   m_Center: {x: 0, y: 2.03, z: 0}
---- !u!136 &1839148090580012205
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5355569132266118054}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.85
-  m_Height: 2.34
-  m_Direction: 1
-  m_Center: {x: 0, y: 2.23, z: 0}
 --- !u!205 &1104208391377573946
 LODGroup:
   m_ObjectHideFlags: 0
@@ -77,7 +63,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.051020455
+  - screenRelativeHeight: 0.0025859936
     fadeTransitionWidth: 0.1
     renderers:
     - renderer: {fileID: 2609511629787584626}
@@ -113,6 +99,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &3971138817253014508
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5355569132266118054}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 2.85, z: 0.5}
+  m_Center: {x: 0, y: 2.33, z: 0}
 --- !u!1001 &3744545872510174454
 PrefabInstance:
   m_ObjectHideFlags: 0

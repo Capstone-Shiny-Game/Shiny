@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6833646126506243569}
   - component: {fileID: 3265530488594996632}
-  - component: {fileID: 2450189935618584479}
   - component: {fileID: 1765583838315652532}
   - component: {fileID: 283115726723863102}
   - component: {fileID: 4256933028141405456}
+  - component: {fileID: 6109189003727122246}
   m_Layer: 0
   m_Name: Thyme_prefab
   m_TagString: Tradeable
@@ -48,21 +48,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1.5
-  m_Center: {x: 0, y: 3.5, z: 0}
---- !u!136 &2450189935618584479
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3026651620921128447}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 3.61, z: 0}
+  m_Center: {x: 0, y: 2.05, z: 0}
 --- !u!205 &1765583838315652532
 LODGroup:
   m_ObjectHideFlags: 0
@@ -77,7 +63,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.021616695
+  - screenRelativeHeight: 0.0038469816
     fadeTransitionWidth: 0.1
     renderers:
     - renderer: {fileID: 2148923805030233658}
@@ -113,6 +99,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &6109189003727122246
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3026651620921128447}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.43, z: 1}
+  m_Center: {x: 0, y: 2.1, z: 0}
 --- !u!1001 &725949740689631934
 PrefabInstance:
   m_ObjectHideFlags: 0

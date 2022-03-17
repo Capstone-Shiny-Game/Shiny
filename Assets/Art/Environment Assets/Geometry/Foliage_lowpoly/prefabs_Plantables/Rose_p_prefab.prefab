@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1267462957164027801}
   - component: {fileID: 6280385697475246110}
-  - component: {fileID: 2242260723106438484}
   - component: {fileID: 6256699669639268600}
   - component: {fileID: 6514820968174124836}
   - component: {fileID: 1446915756285997600}
+  - component: {fileID: 4503210367699735066}
   m_Layer: 0
   m_Name: Rose_p_prefab
   m_TagString: Tradeable
@@ -47,22 +47,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 2, z: 0}
---- !u!136 &2242260723106438484
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 952413772196329455}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.98, z: 0}
+  m_Radius: 1.03
+  m_Center: {x: 0, y: 0.76, z: 0}
 --- !u!205 &6256699669639268600
 LODGroup:
   m_ObjectHideFlags: 0
@@ -77,7 +63,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.08099547
+  - screenRelativeHeight: 0.004191857
     fadeTransitionWidth: 0.1
     renderers:
     - renderer: {fileID: 8721288297105300292}
@@ -113,6 +99,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &4503210367699735066
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952413772196329455}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1.14, z: 0.5}
+  m_Center: {x: 0, y: 0.79, z: 0}
 --- !u!1001 &7983097487640037312
 PrefabInstance:
   m_ObjectHideFlags: 0

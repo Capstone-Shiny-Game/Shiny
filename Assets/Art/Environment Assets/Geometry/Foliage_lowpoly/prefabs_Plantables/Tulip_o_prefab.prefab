@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4530026759738976666}
   - component: {fileID: 5207473551369890187}
-  - component: {fileID: 3797115478112928164}
   - component: {fileID: 7977801100168369571}
   - component: {fileID: -3909793105914627166}
   - component: {fileID: -8314893724868148433}
+  - component: {fileID: 4262273206620316474}
   m_Layer: 0
   m_Name: Tulip_o_prefab
   m_TagString: Tradeable
@@ -47,22 +47,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 1.4, z: 0}
---- !u!136 &3797115478112928164
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4727776989065903520}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.48, z: 0}
+  m_Radius: 1.04
+  m_Center: {x: 0, y: 0.86, z: 0}
 --- !u!205 &7977801100168369571
 LODGroup:
   m_ObjectHideFlags: 0
@@ -77,7 +63,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.04869776
+  - screenRelativeHeight: 0.004191857
     fadeTransitionWidth: 0.1
     renderers:
     - renderer: {fileID: 6245533200519666669}
@@ -113,6 +99,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &4262273206620316474
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4727776989065903520}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1.31, z: 0.5}
+  m_Center: {x: 0, y: 0.86, z: 0}
 --- !u!1001 &4714427661370296169
 PrefabInstance:
   m_ObjectHideFlags: 0
