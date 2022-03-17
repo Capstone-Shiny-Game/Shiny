@@ -9,14 +9,14 @@ public class Plant_Pick_controller : MonoBehaviour
     {
         gameObject.GetComponentInChildren<Rigidbody>().useGravity = false;
         gameObject.GetComponentInChildren<SphereCollider>().enabled = false;
-        gameObject.GetComponentInChildren<CapsuleCollider>().enabled = false;
+        gameObject.GetComponentInChildren<BoxCollider>().enabled = false;
 
     }
     public void OnPick()
     {
         
         gameObject.GetComponentInChildren<SphereCollider>().enabled = true;
-        gameObject.GetComponentInChildren<CapsuleCollider>().enabled = true;
+        gameObject.GetComponentInChildren<BoxCollider>().enabled = true;
         gameObject.GetComponentInChildren<Rigidbody>().AddForce(0,15,0);
         gameObject.GetComponentInChildren<Rigidbody>().useGravity = true;
         
