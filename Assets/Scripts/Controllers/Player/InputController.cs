@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
 
 //Events
 [Serializable]
@@ -67,6 +68,8 @@ public class InputController : MonoBehaviour
     public bool useGyro = false;
     float multiplier = 10.0f;
     private bool canLook = false;
+    private bool isMoving = false;
+
     private void Awake()
     {
         //CamController = cam.GetComponent<CameraController>();
@@ -78,6 +81,8 @@ public class InputController : MonoBehaviour
 
     public void OnEnable()
     {
+        TouchSimulation.Enable();
+
         PlayerInput.FlightMap.Enable();
         //subscribe to the events when the following is triggered:
         PlayerInput.FlightMap.walkAction.performed += OnFlightSwap;
@@ -169,9 +174,15 @@ public class InputController : MonoBehaviour
     }
     private void OnLook(InputAction.CallbackContext context)
     {
-        if (canLook)
+
+        if (canLook && !isMoving)
         {
+           // Touchscreen t = TouchSimulation.instance.simulatedTouchscreen;
             Vector2 moveInput = context.ReadValue<Vector2>();
+            //Vector2 moveInputTouch = t.primaryTouch.delta.ReadValue();
+            //Debug.Log(moveInput);
+           // Debug.Log(moveInputTouch);
+
             flightLookHandler?.Invoke(moveInput.x, moveInput.y);
         }
 
@@ -180,8 +191,10 @@ public class InputController : MonoBehaviour
     {
         flightLookHandler?.Invoke(0.0f, 0.0f);
     }
+    
     private void OnFlight(InputAction.CallbackContext context)
     {
+        isMoving = true;
         if (!useGyro || UnityEngine.InputSystem.Gyroscope.current == null)
         {
             test.text = "N/A";
@@ -203,6 +216,7 @@ public class InputController : MonoBehaviour
     {
         //  if (!useGyro || UnityEngine.InputSystem.Gyroscope.current == null)
         flightMoveHandler?.Invoke(0.0f, 0.0f);
+        isMoving = false;
     }
     private void OnBrake(InputAction.CallbackContext context)
     {

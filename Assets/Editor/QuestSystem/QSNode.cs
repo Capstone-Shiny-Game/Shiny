@@ -7,7 +7,7 @@ public class QSNode : Node
 {
     public QSGroup Group { get; set; }
     private QSGraphView graphView;
-    private QSNodeSO SO;
+    public QSNodeSO SO { get; set; }
     private List<Port> Inputs;
     private List<Port> Outputs;
     private List<VisualElement> Options;

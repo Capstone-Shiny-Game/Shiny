@@ -25,7 +25,13 @@ public class PlayerController : MonoBehaviour, Savable
     private WalkingController walkingController;
     private GameObject flightCam;
     private GameObject walkCam;
+    private GameObject povCam;
+
     private Crow crow;
+    public GameObject bFlapBoost;
+    public GameObject bFlapTakeOff;
+    public GameObject bLand;
+    public GameObject bPov;
 
 
     // public GameObject NPCUI;
@@ -59,7 +65,8 @@ public class PlayerController : MonoBehaviour, Savable
         rb = GetComponent<Rigidbody>();
         flightCam = GameObject.Find("CM Flying");
         walkCam = GameObject.Find("CM Walking");
-
+        povCam = GameObject.Find("CM POV");
+        povCam.SetActive(false);
 
         flightController = GetComponent<FlightController>();
         walkingController = GetComponent<WalkingController>();
@@ -68,7 +75,7 @@ public class PlayerController : MonoBehaviour, Savable
         walkingController.WalkedOffEdge += () => SetState(CrowState.Flying, 0.5f);
         walkingController.SubstateChanged += s => SetState(s);
         flightController.Landed += AttemptToLand;
-        flightController.LandedPerch += (c, c2)=> AttemptToLandPerch(c, c2);
+        flightController.LandedPerch += (c, c2) => AttemptToLandPerch(c, c2);
 
         flightController.FlightTypeChanged += glide => SetState(glide ? CrowState.Gliding : CrowState.Flying);
 
@@ -79,6 +86,23 @@ public class PlayerController : MonoBehaviour, Savable
         AddSelfToSavablesList();
 
         SetState(CrowState.Flying);
+    }
+    private void setCurrentUI()
+    {
+        if (state == CrowState.Walking || state == CrowState.Idle)
+        {
+            bFlapBoost.SetActive(false);
+            bFlapTakeOff.SetActive(true);
+            bLand.SetActive(false);
+            bPov.SetActive(true);
+        }
+        else if (state == CrowState.Flying || state == CrowState.Gliding)
+        {
+            bFlapBoost.SetActive(true);
+            bFlapTakeOff.SetActive(false);
+            bLand.SetActive(true);
+            bPov.SetActive(false);
+        }
     }
     //turns off all walking animation
     public void AnimationFlyingSuite()
@@ -103,6 +127,8 @@ public class PlayerController : MonoBehaviour, Savable
 
         flightCam.SetActive(flightController.enabled);
         walkCam.SetActive(!flightController.enabled);
+        SetPOVCam(walkCam.activeSelf && povCam.activeSelf);
+
         if (CrowState.Walking == state)
         {
             crow.resetModelRotation();
@@ -111,7 +137,7 @@ public class PlayerController : MonoBehaviour, Savable
         birdAnimator.SetBool("isGliding", state == CrowState.Gliding);
         birdAnimator.SetBool("isWalking", state == CrowState.Walking);
         birdAnimator.SetBool("isIdle", state == CrowState.Idle || state == CrowState.Perching);
-
+        setCurrentUI();
         if (flightController.enabled && !previouslyFlying && addYForTakeoff != 0)
         {
             Vector3 pos = transform.position;
@@ -124,7 +150,7 @@ public class PlayerController : MonoBehaviour, Savable
             // pitch up on takeoff
             transform.RotateAround(transform.position, transform.right, -30);
             birdAnimator.SetBool("WalktoFly", true);
-            flightCam.GetComponent<ModifyOrbitor>().ResetZero();
+            flightCam.GetComponent<ModifyOrbitor>().Reset();
 
         }
 
@@ -133,7 +159,22 @@ public class PlayerController : MonoBehaviour, Savable
             birdAnimator.SetBool("WalktoFly", false);
         }
     }
+    public void SwapWalkingCam()
+    {
+        if(state == CrowState.Walking || state == CrowState.Idle || state == CrowState.Perching)
+        {
+            walkCam.GetComponent<ModifyOrbitor>().Reset();
 
+            bool isActive = !povCam.activeSelf;
+            SetPOVCam(isActive);
+
+        }
+    }
+    public void SetPOVCam(bool active)
+    {
+        povCam.SetActive(active);
+        crow.Model.SetActive(!active);
+    }
     private void AttemptToLand(bool raycastNeeded)
     {
         if (raycastNeeded)
@@ -246,8 +287,8 @@ public class PlayerController : MonoBehaviour, Savable
         // position player in front of NPC
         //Vector3 ground = transform.FindGround(transform.localScale.y / 2);
         //Vector3 npcFront = npcTransform.position + npcTransform.forward * 4.0f;
-       if(npcTransform !=null)
-        SetFixedPosition(npcTransform.position);
+        if (npcTransform != null)
+            SetFixedPosition(npcTransform.position);
 
         //SetFixedPosition(new Vector3(npcFront.x, ground.y, npcFront.z));
         //SetFixedRotation(npcTransform.position);
@@ -309,9 +350,9 @@ public class PlayerController : MonoBehaviour, Savable
         //SetState(CrowState.Flying, 2.0f);
         float velocity = 40f;
         start = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        des = new Vector3(transform.position.x, transform.position.y+200f, transform.position.z);
-            fraction += Time.deltaTime * speed;
-            transform.position = Vector3.Lerp(start, des, fraction);
+        des = new Vector3(transform.position.x, transform.position.y + 200f, transform.position.z);
+        fraction += Time.deltaTime * speed;
+        transform.position = Vector3.Lerp(start, des, fraction);
         SetState(CrowState.Flying, 2.0f);
     }
     IEnumerator WaitAndMove(float delayTime)
