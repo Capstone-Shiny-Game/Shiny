@@ -81,7 +81,7 @@ public class FlightController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Mountain"))
         {
-            // Debug.Log("Mountain");
+
             // Vector3 v = collision.collider.ClosestPoint(transform.position);
             // Vector3 newVector = transform.position - v;
             StartCoroutine(Slow());
@@ -101,7 +101,6 @@ public class FlightController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Ceiling"))
         {
-            // Debug.Log("Ceiling");
             StartCoroutine(Reset(3f, 10f, maxHeight - 5f));
             // StartCoroutine(Slow());
 
@@ -121,7 +120,6 @@ public class FlightController : MonoBehaviour
         //}
         else if (collision.gameObject.CompareTag("Ring") && !isBoost)
         {
-            //Debug.Log("RING2");
             Transform targetRing = collision.gameObject.transform;
             SetTargetRing(targetRing);
             //transform.LookAt(targetRing);

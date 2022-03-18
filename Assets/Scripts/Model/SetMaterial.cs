@@ -178,7 +178,6 @@ public class SetMaterial : MonoBehaviour, Savable
         //delete current hat
         foreach (Transform tr in crowHead.transform)
         {
-            Debug.Log(tr.name);
             Destroy(tr.gameObject);
         }
 
