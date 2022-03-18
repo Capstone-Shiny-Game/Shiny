@@ -65,7 +65,7 @@ public class InputController : MonoBehaviour
 
     public FlightLookResetEvent flightResetLookHandler;
     public TMP_Text test;
-    public bool useGyro = false;
+    public bool useGyro;
     float multiplier = 10.0f;
     private bool canLook = false;
     private bool isMoving = false;
@@ -111,8 +111,8 @@ public class InputController : MonoBehaviour
         PlayerInput.GUIMap.PrimaryTouch.canceled += EndTouchPrimary;
 
         PlayerInput.GUIMap.PickupItem.performed += OnPickup;
-        // if (UnityEngine.InputSystem.Gyroscope.current != null)
-        //InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
+        if (UnityEngine.InputSystem.Gyroscope.current != null)
+            InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
     }
 
     private void OnFlightSwap(InputAction.CallbackContext context)
@@ -177,11 +177,11 @@ public class InputController : MonoBehaviour
 
         if (canLook && !isMoving)
         {
-           // Touchscreen t = TouchSimulation.instance.simulatedTouchscreen;
+            // Touchscreen t = TouchSimulation.instance.simulatedTouchscreen;
             Vector2 moveInput = context.ReadValue<Vector2>();
             //Vector2 moveInputTouch = t.primaryTouch.delta.ReadValue();
             //Debug.Log(moveInput);
-           // Debug.Log(moveInputTouch);
+            // Debug.Log(moveInputTouch);
 
             flightLookHandler?.Invoke(moveInput.x, moveInput.y);
         }
@@ -191,31 +191,31 @@ public class InputController : MonoBehaviour
     {
         flightLookHandler?.Invoke(0.0f, 0.0f);
     }
-    
+
     private void OnFlight(InputAction.CallbackContext context)
     {
         isMoving = true;
-        if (!useGyro || UnityEngine.InputSystem.Gyroscope.current == null)
+        if (!useGyro)
         {
             test.text = "N/A";
 
             Vector2 moveInput = context.ReadValue<Vector2>();
             flightMoveHandler?.Invoke(moveInput.x, moveInput.y);
         }
-        else if (UnityEngine.InputSystem.Gyroscope.current != null && UnityEngine.InputSystem.Gyroscope.current.enabled)
+        else if (useGyro && UnityEngine.InputSystem.Gyroscope.current != null && UnityEngine.InputSystem.Gyroscope.current.enabled)
         {
             //Debug.Log("Gyroscope is enabled");
             //Debug.Log(Accelerometer.current.acceleration.ReadValue());
             Vector3 input = context.ReadValue<Vector3>();
-            //test.text = "Gyroscope: " + "X: " + input.x + "Y: " + input.y + "Z: " + input.z;
+            test.text = "Gyroscope: " + "Z: " + input.z + "X: " + input.x;
             flightMoveHandler?.Invoke(Mathf.Clamp(-input.z * multiplier, -1.0f, 1.0f), Mathf.Clamp(input.x * multiplier, -1.0f, 1.0f));
 
         }
     }
     private void OnFlightEnd(InputAction.CallbackContext context)
     {
-        //  if (!useGyro || UnityEngine.InputSystem.Gyroscope.current == null)
-        flightMoveHandler?.Invoke(0.0f, 0.0f);
+        if (!useGyro || UnityEngine.InputSystem.Gyroscope.current == null)
+            flightMoveHandler?.Invoke(0.0f, 0.0f);
         isMoving = false;
     }
     private void OnBrake(InputAction.CallbackContext context)
