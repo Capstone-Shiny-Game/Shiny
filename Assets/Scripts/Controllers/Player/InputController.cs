@@ -92,8 +92,11 @@ public class InputController : MonoBehaviour
         PlayerInput.FlightMap.walkAction.performed += OnFlightSwap;
 
         PlayerInput.FlightMap.Flight.performed += OnFlight;
-
         PlayerInput.FlightMap.Flight.canceled += OnFlightEnd;
+
+        PlayerInput.FlightMap.Walk.performed += OnWalk;
+        PlayerInput.FlightMap.Walk.canceled += OnWalkEnd;
+
 
         PlayerInput.FlightMap.Boost.performed += OnBoost;
         PlayerInput.FlightMap.Boost.canceled += OnBoostExit;
@@ -121,6 +124,20 @@ public class InputController : MonoBehaviour
 
         if (UnityEngine.InputSystem.Accelerometer.current != null)
             InputSystem.EnableDevice(UnityEngine.InputSystem.Accelerometer.current);
+    }
+
+    private void OnWalk(InputAction.CallbackContext obj)
+    {
+        isMoving = true;
+        Vector2 moveInput = obj.ReadValue<Vector2>();
+        flightWalkHandler?.Invoke(moveInput.x, moveInput.y);
+    }
+
+    private void OnWalkEnd(InputAction.CallbackContext obj)
+    {
+        flightWalkHandler?.Invoke(0.0f, 0.0f);
+
+        isMoving = false;
     }
 
     private void OnFlightSwap(InputAction.CallbackContext context)
@@ -203,12 +220,10 @@ public class InputController : MonoBehaviour
     private void OnFlight(InputAction.CallbackContext context)
     {
         isMoving = true;
-        Vector2 moveInput = context.ReadValue<Vector2>();
-        flightWalkHandler?.Invoke(moveInput.x, moveInput.y);
-
         if (!useGyro || UnityEngine.InputSystem.Accelerometer.current == null)
         {
             test.text = "N/A";
+            Vector2 moveInput = context.ReadValue<Vector2>();
 
             flightMoveHandler?.Invoke(moveInput.x, moveInput.y);
         }
@@ -231,7 +246,6 @@ public class InputController : MonoBehaviour
     {
         if (!useGyro || UnityEngine.InputSystem.Accelerometer.current == null)
             flightMoveHandler?.Invoke(0.0f, 0.0f);
-        flightWalkHandler?.Invoke(0.0f, 0.0f);
 
         isMoving = false;
     }

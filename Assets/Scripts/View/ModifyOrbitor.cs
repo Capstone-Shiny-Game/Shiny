@@ -7,8 +7,8 @@ public class ModifyOrbitor : MonoBehaviour
 {
     // Start is called before the first frame update
     private CinemachineOrbitalTransposer vcam;
-    public float ySens = 0.05f;
-    public float xSens = 1.0f;
+    public float ySens =5f;
+    public float xSens = 5f;
     public float minY = 0.0f;
     public float maxY = 10.0f;
     private float startX;
