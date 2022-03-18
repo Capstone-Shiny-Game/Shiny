@@ -116,11 +116,11 @@ public class InputController : MonoBehaviour
         PlayerInput.GUIMap.PrimaryTouch.canceled += EndTouchPrimary;
 
         PlayerInput.GUIMap.PickupItem.performed += OnPickup;
-        if (UnityEngine.InputSystem.Gyroscope.current != null)
-            InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
+       // if (UnityEngine.InputSystem.Gyroscope.current != null)
+        //    InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
 
         if (UnityEngine.InputSystem.Accelerometer.current != null)
-            InputSystem.EnableDevice(Accelerometer.current);
+            InputSystem.EnableDevice(UnityEngine.InputSystem.Accelerometer.current);
     }
 
     private void OnFlightSwap(InputAction.CallbackContext context)
@@ -212,7 +212,7 @@ public class InputController : MonoBehaviour
 
             flightMoveHandler?.Invoke(moveInput.x, moveInput.y);
         }
-        else if (useGyro && UnityEngine.InputSystem.Accelerometer.current != null && UnityEngine.InputSystem.Accelerometer.current.enabled)
+        else if (useGyro)
         {
             //Debug.Log("Gyroscope is enabled");
             //Debug.Log(Accelerometer.current.acceleration.ReadValue());
