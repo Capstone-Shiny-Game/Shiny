@@ -234,9 +234,6 @@ public class PlayerController : MonoBehaviour, Savable
         }
     }
 
-    /// <summary>
-    /// TODO (Ella) : Consider simplification as part of #110
-    /// </summary>
     public void AttemptPickup()
     {
         AttemptedGrabOrRelease?.Invoke();

@@ -232,12 +232,12 @@ public class InputController : MonoBehaviour
             //Debug.Log("Gyroscope is enabled");
             //Debug.Log(Accelerometer.current.acceleration.ReadValue());
             Vector3 input = context.ReadValue<Vector3>();
-            test.text = "Gyroscope: " + "Z: " + input.z + "X: " + input.x;
+            test.text = $"Accelerometer: X: {input.x}, Z: {input.z}";
             //float inputZ = input.z;
             //float inputX = input.x;
+            float inputX = Math.Abs(input.x) < 0.05f ? 0f : input.x;
             float inputZ = Math.Abs(input.z) < 0.05f ? 0f : input.z;
-             float inputX = Math.Abs(input.x) < 0.05f ? 0f : input.x;
-            flightMoveHandler?.Invoke(Mathf.Clamp(-inputZ * multiplier, -1.0f, 1.0f), Mathf.Clamp(inputX * multiplier, -1.0f, 1.0f));
+            flightMoveHandler?.Invoke(Mathf.Clamp(inputX * multiplier, -1.0f, 1.0f), Mathf.Clamp(inputZ * multiplier, -1.0f, 1.0f));
 
         }
     }
