@@ -15,6 +15,9 @@ public class TimeTrial : MonoBehaviour
     private Coroutine startTimePeriod;
     private bool completed;
 
+    public delegate void Complete();
+    public static event Complete OnTimeTrialCompleteEvent;
+
     void Start()
     {
         ringOrder = new LinkedList<GameObject>();
@@ -140,6 +143,7 @@ public class TimeTrial : MonoBehaviour
 
     private IEnumerator DisplayWinText()
     {
+        OnTimeTrialCompleteEvent?.Invoke();
         timerText.text = "You beat the time trial!";
         yield return new WaitForSeconds(5);
         timerText.text = string.Empty;
