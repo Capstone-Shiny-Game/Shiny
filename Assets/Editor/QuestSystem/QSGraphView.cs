@@ -281,13 +281,15 @@ public class QSGraphView : GraphView
                 foreach (Edge edge in changes.edgesToCreate)
                 {
                     QSNode prevNode = (QSNode)edge.output.node;
-                    QSNode nextNode = (QSNode)edge.input .node;
+                    QSNode nextNode = (QSNode)edge.input.node;
                     string prevPort = edge.output.portName;
-                    string nextPort = edge. input.portName;
-                    QSData data = prevNode.SO.Outputs.Find(d => d.Name == prevPort);
-                    data.ConnectedToNode = nextNode.SO.ID;
-                    data.ConnectedToPort = nextPort;
-                    // edge.output.userData = nextNode.Name;
+                    string nextPort = edge.input.portName;
+                    QSData data = nextNode.SO.Inputs.Find(d => d.Name == nextPort);
+                    data.PrevNode = prevNode.SO.Name;
+                    data.PrevPort = prevPort;
+                    data = nextNode.SO.Inputs.Find(d => d.Name == nextPort);
+                    Debug.Log($"previous node set to {data.PrevNode}");
+                    Debug.Log($"previous port set to {data.PrevPort}");
                 }
             }
             if (changes.elementsToRemove != null)
@@ -296,18 +298,14 @@ public class QSGraphView : GraphView
 
                 foreach (GraphElement element in changes.elementsToRemove)
                 {
-                    if (element.GetType() != edgeType)
+                    if (element is Edge edge)
                     {
-                        continue;
+                        QSNode nextNode = (QSNode)edge.input.node;
+                        string nextPort = edge.input.portName;
+                        QSData data = nextNode.SO.Inputs.Find(d => d.Name == nextPort);
+                        data.PrevNode = "";
+                        data.PrevPort = "";
                     }
-
-                    Edge edge = (Edge)element;
-                    QSNode prevNode = (QSNode)edge.output.node;
-                    string prevPort = edge.output.portName;
-                    QSData data = prevNode.SO.Outputs.Find(d => d.Name == prevPort);
-                    data.ConnectedToNode = "";
-                    data.ConnectedToPort = "";
-                    // edge.output.userData = "";
                 }
             }
 

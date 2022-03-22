@@ -109,44 +109,30 @@ public static class QSIOUtility
 
     private static void LoadNodesConnections()
     {
-        foreach(QSNode prevNode in loadedNodes.Values)
+        Debug.Log("LodeNodesConnections called");
+        foreach(QSNode nextNode in loadedNodes.Values)
         {
-            foreach (QSData output in prevNode.SO.Outputs)
+            Debug.Log($"Processing next node {nextNode.SO.Name} == {nextNode.Name}");
+            foreach (QSData data in nextNode.SO.Inputs)
             {
-                string nextID   = output.ConnectedToNode;
-                string nextPort = output.ConnectedToPort;
-                if (!string.IsNullOrEmpty(nextID))
+                Debug.Log($"Processing input {data.Name}");
+                string prevNodeName = data.PrevNode;
+                Debug.Log($"Previous node name is {prevNodeName}");
+                if (!string.IsNullOrEmpty(prevNodeName))
                 {
-                    QSNode nextNode = loadedNodes[nextID];
-                    Port o = (Port)prevNode.outputContainer.Children().First(v => v is Port p && p.portName == output.Name);
-                    Port i = (Port)nextNode. inputContainer.Children().First(v => v is Port p && p.portName == nextPort);
-                    Edge edge = o.ConnectTo(i);
+                    string prevPortName = data.PrevPort;
+                    Debug.Log($"Previous port name is {prevPortName}");
+                    string nextPortName = data.Name;
+                    Debug.Log($"Next port name is {nextPortName}");
+                    QSNode prevNode = loadedNodes[prevNodeName];
+                    Port prevPort = (Port)prevNode.outputContainer.Children().First(v => v is Port p && p.portName == prevPortName);
+                    Port nextPort = (Port)nextNode.inputContainer.Children().First(v => v is Port p && p.portName == nextPortName);
+                    Edge edge = prevPort.ConnectTo(nextPort);
                     graphView.AddElement(edge);
-                    prevNode.RefreshPorts();
                     nextNode.RefreshPorts();
+                    prevNode.RefreshPorts();
                 }
             }
-
-
-            //foreach (Port port in loadedNode.Value.outputContainer.Children())
-            //{
-            //    string saveData = port.userData as string;
-
-            //    if (string.IsNullOrEmpty(saveData))
-            //    {
-            //        continue;
-            //    }
-
-            //    QSNode nextNode = loadedNodes[saveData];
-
-            //    Port nextNodeInputPort = (Port)nextNode.inputContainer.Children().First();
-
-            //    Edge edge = port.ConnectTo(nextNodeInputPort);
-
-            //    graphView.AddElement(edge);
-
-            //    loadedNode.Value.RefreshPorts();
-            //}
         }
     }
 
