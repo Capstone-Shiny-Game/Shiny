@@ -7,17 +7,17 @@ public class FetchQuest : MonoBehaviour
 
     public GameObject InteractButton;
     public bool randomQuest;
+    public FetchQuest randomQuests;
     public delegate void Complete();
     public static event Complete OnQuestCompleteEvent;
-
-
-
-    private DSDialogueContainerSO StartDialogue;
     private DSDialogueContainerSO CompletionDialogue;
-    private GameObject ExpectedDelivery;
+    private DSDialogueContainerSO[] Dialogues;
+    private GameObject[] ExpectedDeliveries;
     private int ExpectedQuantity;
     private NPCInteraction dialogueSystem;
     private int currentQuest = -1;
+    private int currentDialogue = 0;
+    private bool questComplete = true;
 
     void Start()
     {
@@ -25,28 +25,49 @@ public class FetchQuest : MonoBehaviour
         NPCInteraction.OnNPCInteractEndEvent += startQuest;
         swapQuest();
         InteractButton.SetActive(true);
+        DayController.OnDayStartEvent += dailyQuest;
+    }
+
+    void OnDestroy()
+    {
+        NPCInteraction.OnNPCInteractEndEvent -= startQuest;
+        DayController.OnDayStartEvent -= dailyQuest;
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if(InteractButton.activeInHierarchy)
+        if(InteractButton.activeInHierarchy || !this.enabled)
         {
             return;
         }
 
-        if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag(ExpectedDelivery.tag))
+        if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag(ExpectedDeliveries[0].tag))
         {
             if(CheckDelivery())
             {
                 //if items are there swap current dialogue
-                dialogueSystem.dialogueContainer = CompletionDialogue;
+                dialogueSystem.dialogueContainer = Dialogues[currentDialogue + 1];
+                currentDialogue++;
                 InteractButton.SetActive(true);
             }
         }
     }
 
+    private void dailyQuest()
+    {
+        if(randomQuest)
+            swapQuest();
+    }
+
     private void swapQuest()
     {
+        if(questComplete == false)
+        {
+            return;
+        }
+
+        questComplete = false;
+
         if(randomQuest)
         {
             updateQuest(Random.Range(0, quests.Length-1));
@@ -60,11 +81,15 @@ public class FetchQuest : MonoBehaviour
 
     private void updateQuest(int index)
     {
-        StartDialogue = quests[index].StartDialogue;
-        CompletionDialogue = quests[index].CompletionDialogue;
-        ExpectedDelivery = quests[index].ExpectedDelivery;
-        ExpectedQuantity = quests[index].ExpectedQuantity;
-        dialogueSystem.dialogueContainer = StartDialogue;
+        ExpectedDeliveries = quests[index].ExpectedDeliveries;
+        ExpectedQuantity = quests[index].ExpectedTotalQuantity;
+        Dialogues = quests[index].Dialogues;
+
+        //TODO: Implement multidialogue
+        dialogueSystem.dialogueContainer = Dialogues[0];
+        CompletionDialogue = Dialogues[Dialogues.Length - 1];
+        currentDialogue = 0;
+
         InteractButton.SetActive(true);
     }
 
@@ -77,17 +102,28 @@ public class FetchQuest : MonoBehaviour
             if(dialogueSystem.dialogueContainer == CompletionDialogue)
             {
                 OnQuestCompleteEvent?.Invoke();
+                questComplete = true;
 
-                if(currentQuest == quests.Length-1)
+                if(!randomQuest && currentQuest == quests.Length-1)
                 {
-                    Destroy(dialogueSystem.npcUI);
-                    Destroy(dialogueSystem);
-                    Destroy(GetComponent<SphereCollider>());
-                    Destroy(InteractButton);
-                    Destroy(this);
+
+                    if(randomQuests != null)
+                    {
+                        randomQuests.enabled = true;
+                        Destroy(this);
+                    }
+                    else
+                    {
+                        Destroy(dialogueSystem.npcUI);
+                        Destroy(dialogueSystem);
+                        Destroy(GetComponent<SphereCollider>());
+                        Destroy(InteractButton);
+                        Destroy(this);
+                    }                     
                     return;
                 }
-                swapQuest();
+                if(!randomQuest)
+                    swapQuest();
             }
         }
     }
@@ -98,11 +134,14 @@ public class FetchQuest : MonoBehaviour
 
         foreach(Collider col in Physics.OverlapSphere(transform.position, 50))
         {
-            if(col.gameObject.name.ToLower().Contains(ExpectedDelivery.name.ToLower()))
+            foreach(GameObject obj in ExpectedDeliveries)
             {
-                if(!destroyIfDone.Contains(col.gameObject))
+                if(col.gameObject.name.ToLower().Contains(obj.name.ToLower()))
                 {
-                    destroyIfDone.Add(col.gameObject);
+                    if(!destroyIfDone.Contains(col.gameObject))
+                    {
+                        destroyIfDone.Add(col.gameObject);
+                    }
                 }
             }
         }
@@ -124,11 +163,8 @@ public class FetchQuest : MonoBehaviour
     public class simpleQuest
     {
         public string name;
-
-        public DSDialogueContainerSO StartDialogue;
-        public DSDialogueContainerSO CompletionDialogue;
-
-        public GameObject ExpectedDelivery;
-        public int ExpectedQuantity = 1;
+        public DSDialogueContainerSO[] Dialogues;
+        public GameObject[] ExpectedDeliveries;
+        public int ExpectedTotalQuantity = 1;
     }
 }

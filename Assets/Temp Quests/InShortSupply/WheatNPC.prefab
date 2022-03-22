@@ -219,10 +219,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quests:
   - name: WheatQuest
-    StartDialogue: {fileID: 11400000, guid: 65d2aacd52dcfa841a31b498abdad402, type: 2}
-    CompletionDialogue: {fileID: 11400000, guid: d50a8145717955340b4c5df4a8656ca6, type: 2}
-    ExpectedDelivery: {fileID: 8320527036890391174, guid: 35bb1a5c291b95645a5d3790c473d779, type: 3}
-    ExpectedQuantity: 1
+    Dialogues:
+    - {fileID: 11400000, guid: 65d2aacd52dcfa841a31b498abdad402, type: 2}
+    - {fileID: 11400000, guid: d50a8145717955340b4c5df4a8656ca6, type: 2}
+    ExpectedDeliveries:
+    - {fileID: 8320527036890391174, guid: 35bb1a5c291b95645a5d3790c473d779, type: 3}
+    ExpectedTotalQuantity: 1
   InteractButton: {fileID: 6563778449525004035}
   randomQuest: 0
 --- !u!135 &4591753570813972270

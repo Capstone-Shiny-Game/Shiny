@@ -203,12 +203,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quests:
   - name: UnderTheWeather
-    StartDialogue: {fileID: 11400000, guid: c1367be32f6eb84449785bf8e3919187, type: 2}
-    CompletionDialogue: {fileID: 11400000, guid: 81959fcfbadce31478f07fb19fc18b6c, type: 2}
-    ExpectedDelivery: {fileID: 2186629695382064638, guid: d891b1ed3e7e9cb4dba0297e2938bc0f, type: 3}
-    ExpectedQuantity: 1
+    Dialogues:
+    - {fileID: 11400000, guid: c1367be32f6eb84449785bf8e3919187, type: 2}
+    - {fileID: 11400000, guid: 81959fcfbadce31478f07fb19fc18b6c, type: 2}
+    ExpectedDeliveries:
+    - {fileID: 2186629695382064638, guid: d891b1ed3e7e9cb4dba0297e2938bc0f, type: 3}
+    ExpectedTotalQuantity: 1
   InteractButton: {fileID: 6563778449525004035}
   randomQuest: 0
+  randomQuests: {fileID: 0}
 --- !u!135 &4591753570813972270
 SphereCollider:
   m_ObjectHideFlags: 0

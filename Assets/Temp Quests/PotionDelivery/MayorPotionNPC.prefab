@@ -219,10 +219,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quests:
   - name: PotionQuest
-    StartDialogue: {fileID: 11400000, guid: 35cf080bb79cb4b4b9c93c25a3d52ecb, type: 2}
-    CompletionDialogue: {fileID: 11400000, guid: f8547494d8a4a004293640118b32c726, type: 2}
-    ExpectedDelivery: {fileID: 3398802432069250807, guid: 8da5a0aa308ca8c42ace40f8bc8936c0, type: 3}
-    ExpectedQuantity: 1
+    Dialogues:
+    - {fileID: 11400000, guid: 35cf080bb79cb4b4b9c93c25a3d52ecb, type: 2}
+    - {fileID: 11400000, guid: f8547494d8a4a004293640118b32c726, type: 2}
+    ExpectedDeliveries:
+    - {fileID: 3398802432069250807, guid: 8da5a0aa308ca8c42ace40f8bc8936c0, type: 3}
+    ExpectedTotalQuantity: 1
   InteractButton: {fileID: 6563778449525004035}
   randomQuest: 0
 --- !u!135 &4591753570813972270
