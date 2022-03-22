@@ -57,6 +57,7 @@ public class FlightController : MonoBehaviour
         TrailScale();
         //checks speed, update boolean of isGlide if over certain limit.
         CheckSpeed();
+        
     }
     public IEnumerator Reset(float endTime, float xRot, float height)
     {
@@ -80,7 +81,7 @@ public class FlightController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Mountain"))
         {
-            // Debug.Log("Mountain");
+
             // Vector3 v = collision.collider.ClosestPoint(transform.position);
             // Vector3 newVector = transform.position - v;
             StartCoroutine(Slow());
@@ -100,7 +101,6 @@ public class FlightController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Ceiling"))
         {
-            // Debug.Log("Ceiling");
             StartCoroutine(Reset(3f, 10f, maxHeight - 5f));
             // StartCoroutine(Slow());
 
@@ -120,7 +120,6 @@ public class FlightController : MonoBehaviour
         //}
         else if (collision.gameObject.CompareTag("Ring") && !isBoost)
         {
-            //Debug.Log("RING2");
             Transform targetRing = collision.gameObject.transform;
             SetTargetRing(targetRing);
             //transform.LookAt(targetRing);
@@ -246,7 +245,7 @@ public class FlightController : MonoBehaviour
         //transform.Rotate(new Vector3(pitch, turn, 0.0f));
         transform.Rotate(0f, turn, 0f, Space.World);
         transform.Rotate(pitch, 0f, 0f, Space.Self);
-
+      
         crow.Model.transform.Rotate(new Vector3(0.0f, 0.0f, tilt));
 
         if (tilt != 0)
@@ -361,14 +360,16 @@ public class FlightController : MonoBehaviour
     }
     //15f is max speed, might need to play around with speed. Check with Angelique.
 
-    public void CheckSpeed()
+    public bool CheckSpeed()
     {
-        bool newGlide = speed > 12 && isBoost;
+        bool newGlide = (speed > 12 && isBoost) || Math.Abs(moveX) >= .25;
+
         if (newGlide != isGliding)
         {
             isGliding = newGlide;
             FlightTypeChanged?.Invoke(isGliding);
         }
+        return newGlide;
     }
 
     private void DampenAngleToZero(bool x, bool y, bool z, float fracComplete, Quaternion target)

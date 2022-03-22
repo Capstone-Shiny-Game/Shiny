@@ -28,6 +28,8 @@ public static class PatioUtility
         STRAW,
         [Description("Gamer Cap")]
         EAE,
+        [Description("Cowboy Hat")]
+        COWBOY,
         [Description("No Hat")]
         NONE
     }

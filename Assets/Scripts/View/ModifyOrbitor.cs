@@ -7,13 +7,15 @@ public class ModifyOrbitor : MonoBehaviour
 {
     // Start is called before the first frame update
     private CinemachineOrbitalTransposer vcam;
-    public float ySens = 0.05f;
-    public float xSens = 1.0f;
+    public float ySens =2f;
+    public float xSens = 2f;
     public float minY = 0.0f;
     public float maxY = 10.0f;
     private float startX;
     private float startY;
     private bool canRotate = true;
+    private float moveX =0.0f;
+    private float moveY =0.0f;
     void Start()
     {
         vcam = GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineOrbitalTransposer>();
@@ -21,15 +23,21 @@ public class ModifyOrbitor : MonoBehaviour
         startY = vcam.m_FollowOffset.y;
 
     }
-
-    public void ChangeAngle(float x, float y)
+    void Update()
     {
         if (this.isActiveAndEnabled && canRotate)
         {
-            vcam.m_XAxis.Value += (xSens * x);
-            vcam.m_FollowOffset.y = Mathf.Clamp(vcam.m_FollowOffset.y + y * ySens, minY, maxY);
+            vcam.m_XAxis.Value += (xSens * moveX);
+            vcam.m_FollowOffset.y = Mathf.Clamp(vcam.m_FollowOffset.y + moveY * ySens, minY, maxY);
         }
     }
+    public void ChangeAngle(float x, float y)
+    {
+        moveX = x;
+        moveY = y;
+    }
+
+    
     public void ResetZero()
     {
         if (this.isActiveAndEnabled && canRotate)

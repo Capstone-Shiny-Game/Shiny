@@ -9,7 +9,7 @@ using System.Collections.Generic;
 public class PlayerController : MonoBehaviour, Savable
 {
 
-
+    public ParticleSystem takeOffWind;
     public enum CrowState { Flying, Gliding, Walking, Idle, Talking, Perching };
 
     public CrowState state { get; private set; }
@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour, Savable
         walkCam = GameObject.Find("CM Walking");
         povCam = GameObject.Find("CM POV");
         povCam.SetActive(false);
-
+       // takeOffWind.gameObject.SetActive(false);
         flightController = GetComponent<FlightController>();
         walkingController = GetComponent<WalkingController>();
         crow = GetComponent<Crow>();
@@ -150,12 +150,16 @@ public class PlayerController : MonoBehaviour, Savable
             // pitch up on takeoff
             transform.RotateAround(transform.position, transform.right, -30);
             birdAnimator.SetBool("WalktoFly", true);
+           // takeOffWind.gameObject.SetActive(true);
+           // takeOffWind.Play();
             flightCam.GetComponent<ModifyOrbitor>().Reset();
 
         }
 
         if (previouslyFlying && !flightController.enabled)
         {
+           // takeOffWind.gameObject.SetActive(false);
+
             birdAnimator.SetBool("WalktoFly", false);
         }
     }
@@ -230,9 +234,6 @@ public class PlayerController : MonoBehaviour, Savable
         }
     }
 
-    /// <summary>
-    /// TODO (Ella) : Consider simplification as part of #110
-    /// </summary>
     public void AttemptPickup()
     {
         AttemptedGrabOrRelease?.Invoke();

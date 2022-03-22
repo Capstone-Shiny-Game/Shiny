@@ -98,6 +98,15 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Walk"",
+                    ""type"": ""Value"",
+                    ""id"": ""12ae123d-8c6d-43bf-8ea8-95532d84fff3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -169,8 +178,8 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
-                    ""id"": ""01a6c46e-ed87-4af9-9e83-04c969061f75"",
-                    ""path"": ""<Gyroscope>/angularVelocity"",
+                    ""id"": ""56ce34ff-21b7-423e-9701-d78880551348"",
+                    ""path"": ""<Accelerometer>/acceleration"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -193,6 +202,17 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                     ""name"": """",
                     ""id"": ""1f1fe46f-e246-46ec-ae36-26eb35840f8e"",
                     ""path"": ""<Pointer>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cfa9be6e-e6b2-4e50-972e-009cb9b35b09"",
+                    ""path"": ""<Touchscreen>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -301,12 +321,89 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
+                    ""id"": ""7918514a-aeec-413f-b821-04e518a265f5"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StartLook"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""00aa8695-15cb-476c-a14a-3eabc05ff756"",
                     ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""walkAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""7ae3b0a8-6ee2-4dc3-8925-6702a72c93fc"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""e3def78e-b841-4030-8ba9-cac4e290bc0d"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""73634f53-03cf-4e9d-bc32-e47d54a041b7"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""61ccb89f-55f3-479a-8834-3979a6ca8d14"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""0f07518a-ab15-46af-bad9-7810a4bffd4a"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""54d6da84-7de3-4bd8-bd9e-23be124f0275"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -453,6 +550,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
         m_FlightMap_Brake = m_FlightMap.FindAction("Brake", throwIfNotFound: true);
         m_FlightMap_LockCursor = m_FlightMap.FindAction("LockCursor", throwIfNotFound: true);
         m_FlightMap_walkAction = m_FlightMap.FindAction("walkAction", throwIfNotFound: true);
+        m_FlightMap_Walk = m_FlightMap.FindAction("Walk", throwIfNotFound: true);
         // GUIMap
         m_GUIMap = asset.FindActionMap("GUIMap", throwIfNotFound: true);
         m_GUIMap_PauseMenu = m_GUIMap.FindAction("PauseMenu", throwIfNotFound: true);
@@ -528,6 +626,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
     private readonly InputAction m_FlightMap_Brake;
     private readonly InputAction m_FlightMap_LockCursor;
     private readonly InputAction m_FlightMap_walkAction;
+    private readonly InputAction m_FlightMap_Walk;
     public struct FlightMapActions
     {
         private @PlayerControllerInput m_Wrapper;
@@ -540,6 +639,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
         public InputAction @Brake => m_Wrapper.m_FlightMap_Brake;
         public InputAction @LockCursor => m_Wrapper.m_FlightMap_LockCursor;
         public InputAction @walkAction => m_Wrapper.m_FlightMap_walkAction;
+        public InputAction @Walk => m_Wrapper.m_FlightMap_Walk;
         public InputActionMap Get() { return m_Wrapper.m_FlightMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -573,6 +673,9 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                 @walkAction.started -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnWalkAction;
                 @walkAction.performed -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnWalkAction;
                 @walkAction.canceled -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnWalkAction;
+                @Walk.started -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnWalk;
+                @Walk.performed -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnWalk;
+                @Walk.canceled -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnWalk;
             }
             m_Wrapper.m_FlightMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -601,6 +704,9 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                 @walkAction.started += instance.OnWalkAction;
                 @walkAction.performed += instance.OnWalkAction;
                 @walkAction.canceled += instance.OnWalkAction;
+                @Walk.started += instance.OnWalk;
+                @Walk.performed += instance.OnWalk;
+                @Walk.canceled += instance.OnWalk;
             }
         }
     }
@@ -688,6 +794,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
         void OnBrake(InputAction.CallbackContext context);
         void OnLockCursor(InputAction.CallbackContext context);
         void OnWalkAction(InputAction.CallbackContext context);
+        void OnWalk(InputAction.CallbackContext context);
     }
     public interface IGUIMapActions
     {
