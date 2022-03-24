@@ -163,11 +163,10 @@ public class TimeTrial : MonoBehaviour
         {
             LinkedListNode<GameObject> rPrev = r.Previous;
             // don't wait on rings that were never active
-            if (r.Value.activeInHierarchy)
+            if (completed || r.Value.activeInHierarchy)
             {
                 r.Value.SetActive(false);
                 r = rPrev;
-                yield return new WaitForSeconds(0.25f);
             }
         }
     }
