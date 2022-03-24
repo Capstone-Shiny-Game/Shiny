@@ -181,7 +181,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                     ""id"": ""56ce34ff-21b7-423e-9701-d78880551348"",
                     ""path"": ""<Accelerometer>/acceleration"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""ScaleVector3(x=10,z=20),AxisDeadzone"",
                     ""groups"": """",
                     ""action"": ""Flight"",
                     ""isComposite"": false,
