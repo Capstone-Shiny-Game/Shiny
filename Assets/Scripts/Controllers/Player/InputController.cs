@@ -70,7 +70,6 @@ public class InputController : MonoBehaviour
     public FlightLookResetEvent flightResetLookHandler;
     public TMP_Text test;
     public bool useGyro;
-    float multiplier = 10.0f;
     private bool canLook = false;
     private bool isMoving = false;
 
@@ -233,11 +232,7 @@ public class InputController : MonoBehaviour
             //Debug.Log(Accelerometer.current.acceleration.ReadValue());
             Vector3 input = context.ReadValue<Vector3>();
             test.text = $"Accelerometer: X: {input.x}, Z: {input.z}";
-            //float inputZ = input.z;
-            //float inputX = input.x;
-            float inputX = Math.Abs(input.x) < 0.05f ? 0f : input.x;
-            float inputZ = Math.Abs(input.z) < 0.05f ? 0f : input.z;
-            flightMoveHandler?.Invoke(Mathf.Clamp(inputX * multiplier, -1.0f, 1.0f), Mathf.Clamp(inputZ * multiplier, -1.0f, 1.0f));
+            flightMoveHandler?.Invoke(Mathf.Clamp(input.x, -1.0f, 1.0f), Mathf.Clamp(input.z, -1.0f, 1.0f));
 
         }
     }
