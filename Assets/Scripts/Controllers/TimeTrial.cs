@@ -138,6 +138,11 @@ public class TimeTrial : MonoBehaviour
         StartCoroutine(DeactivateRingsWithDelay(currRing));
         currRing = ringOrder.First.Value;
 
+        foreach(GameObject ring in rings)
+        {
+            ring.SetActive(false);
+        }
+
         timerText.gameObject.SetActive(false);
     }
 
@@ -161,7 +166,7 @@ public class TimeTrial : MonoBehaviour
             LinkedListNode<GameObject> rPrev = r.Previous;
             r.Value.SetActive(false);
             r = rPrev;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.25f);
         }
     }
 
