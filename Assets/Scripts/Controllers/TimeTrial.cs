@@ -21,7 +21,7 @@ public class TimeTrial : MonoBehaviour
     void Start()
     {
         ringOrder = new LinkedList<GameObject>();
-        // add each ring to the linked list and only show the first one
+        // add each ring to the linked list
         foreach (GameObject ring in rings)
         {
             ringOrder.AddLast(ring);
@@ -29,8 +29,6 @@ public class TimeTrial : MonoBehaviour
         }
         currRing = ringOrder.First.Value;
 
-        // *comment out for testing!
-        gameObject.SetActive(false);
         AppearOnCorrectDay("Sunday");
         completed = false;
     }
@@ -135,13 +133,13 @@ public class TimeTrial : MonoBehaviour
 
         // gets here if player does not make it to the current ring on time,
         // reset the time trial
-        StartCoroutine(DeactivateRingsWithDelay(currRing));
+        StartCoroutine(DeactivateRingsWithDelay());
         currRing = ringOrder.First.Value;
 
-        foreach(GameObject ring in rings)
-        {
-            ring.SetActive(false);
-        }
+        //foreach(GameObject ring in rings)
+        //{
+        //    ring.SetActive(false);
+        //}
 
         timerText.gameObject.SetActive(false);
     }
@@ -155,18 +153,22 @@ public class TimeTrial : MonoBehaviour
         timerText.gameObject.SetActive(false);
     }
 
-    private IEnumerator DeactivateRingsWithDelay(GameObject endRing = null)
+    private IEnumerator DeactivateRingsWithDelay()
     {
-        yield return new WaitForSeconds(0.5f);
+        if (completed)
+            yield return new WaitForSeconds(0.5f);
 
-        LinkedListNode<GameObject> r = endRing == null ? 
-            ringOrder.Last : ringOrder.Find(endRing);
+        LinkedListNode<GameObject> r = ringOrder.Last;
         while (r != null)
         {
             LinkedListNode<GameObject> rPrev = r.Previous;
-            r.Value.SetActive(false);
-            r = rPrev;
-            yield return new WaitForSeconds(0.25f);
+            // don't wait on rings that were never active
+            if (r.Value.activeInHierarchy)
+            {
+                r.Value.SetActive(false);
+                r = rPrev;
+                yield return new WaitForSeconds(0.25f);
+            }
         }
     }
 
