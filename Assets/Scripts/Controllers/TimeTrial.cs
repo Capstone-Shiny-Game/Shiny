@@ -30,8 +30,8 @@ public class TimeTrial : MonoBehaviour
         currRing = ringOrder.First.Value;
 
         // *comment out for testing!
-        //gameObject.SetActive(false);
-
+        gameObject.SetActive(false);
+        AppearOnCorrectDay("Sunday");
         completed = false;
     }
 
