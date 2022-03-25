@@ -35,7 +35,8 @@ public class MenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (instance is null) {
+        if (instance is null)
+        {
             instance = this;
         }
         menuContainers = GetComponentsInChildren<MenuContainer>(true).ToList();
@@ -50,13 +51,14 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     /// <param name="menuType">type of the new menu</param>
     /// <param name="calledByConfirm">if it is called from the confirm popUP</param>
-    public void SwitchMenu(MenuType menuType,bool calledByConfirm = false) { //TODO fix bug with changing from save menu to load menu
+    public void SwitchMenu(MenuType menuType, bool calledByConfirm = false)
+    { //TODO fix bug with changing from save menu to load menu
         switch (menuType)//Set Timescale and Scene
         {
             case MenuType.flightui://leaving pause menu and returning to normal time
                 DisablePause();
-                if(currentMenu.menuType != MenuType.flightui) //catch edge cases
-                { 
+                if (currentMenu.menuType != MenuType.flightui) //catch edge cases
+                {
                     lastOpenedPauseMenu = currentMenu.menuType;
                 }
                 break;
@@ -94,20 +96,30 @@ public class MenuManager : MonoBehaviour
 
     private void DisablePause()
     {
+
         Time.timeScale = 1f; // set time back to normal
         onAllPauseMenus.SetActive(false);
         pauseMenuBackground.SetActive(false);
+        // Enable camera controls when pause is disabled
+        GameObject crow = GameObject.FindGameObjectWithTag("Player");
+        // Should only have the one crow, and crow should only have the one
+        // inputcontroller cs script attached
+        crow.GetComponentInChildren<InputController>().menuOpen = false;
     }
 
     private void EnablePause()
     {
+
         Time.timeScale = 0f;
         onAllPauseMenus.SetActive(true);
         pauseMenuBackground.SetActive(true);
+        // Disable camera controls when pause is enabled
+        GameObject crow = GameObject.FindGameObjectWithTag("Player");
+        crow.GetComponentInChildren<InputController>().menuOpen = true;
     }
 
-    public MenuType GetCurrentMenuType() {
+    public MenuType GetCurrentMenuType()
+    {
         return currentMenu.menuType;
     }
 }
-
