@@ -82,7 +82,6 @@ public class InputController : MonoBehaviour
         //FlightController = player.GetComponent<FlightController>();
         PlayerInput = new PlayerControllerInput();
         test.text = "Please use input";
-
     }
 
     public void OnEnable()
@@ -121,7 +120,7 @@ public class InputController : MonoBehaviour
         PlayerInput.GUIMap.PrimaryTouch.canceled += EndTouchPrimary;
 
         PlayerInput.GUIMap.PickupItem.performed += OnPickup;
-       // if (UnityEngine.InputSystem.Gyroscope.current != null)
+        // if (UnityEngine.InputSystem.Gyroscope.current != null)
         //    InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
 
         if (UnityEngine.InputSystem.Accelerometer.current != null)
@@ -209,7 +208,7 @@ public class InputController : MonoBehaviour
             //Vector2 moveInputTouch = t.primaryTouch.delta.ReadValue();
             //Debug.Log(moveInput);
             // Debug.Log(moveInputTouch);
-           // test.text += "\n" + moveInput.x + moveInput.y;
+            // test.text += "\n" + moveInput.x + moveInput.y;
             flightLookHandler?.Invoke(moveInput.x, moveInput.y);
         }
 
