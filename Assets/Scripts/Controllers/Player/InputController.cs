@@ -70,7 +70,7 @@ public class InputController : MonoBehaviour
     public FlightLookResetEvent flightResetLookHandler;
     public TMP_Text test;
     public bool useGyro;
-    private bool canLook = false;
+    public bool canLook = false;
     private bool isMoving = false;
 
     private const float deadZone = 0.5f;
@@ -269,7 +269,6 @@ public class InputController : MonoBehaviour
 
     public void ResetZBias()
     {
-        Debug.Log("FUCK IT ALL!");
         ZBias = float.NaN;
     }
 
