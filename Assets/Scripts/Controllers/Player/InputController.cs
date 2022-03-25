@@ -70,7 +70,8 @@ public class InputController : MonoBehaviour
     public FlightLookResetEvent flightResetLookHandler;
     public TMP_Text test;
     public bool useGyro;
-    public bool canLook = false;
+    private bool canLook = false;
+    public bool menuOpen = false;
     private bool isMoving = false;
     private const float deadZone = 0.5f;
     private float ZBias = float.NaN;
@@ -208,7 +209,7 @@ public class InputController : MonoBehaviour
     private void OnLook(InputAction.CallbackContext context)
     {
 
-        if (canLook && !isMoving)
+        if (canLook && !isMoving && !menuOpen)
         {
             // Touchscreen t = TouchSimulation.instance.simulatedTouchscreen;
             Vector2 moveInput = context.ReadValue<Vector2>();
