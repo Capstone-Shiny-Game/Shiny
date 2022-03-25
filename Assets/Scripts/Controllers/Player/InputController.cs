@@ -74,7 +74,7 @@ public class InputController : MonoBehaviour
     private bool isMoving = false;
 
     private const float deadZone = 0.5f;
-    private float biasZ = float.NaN;
+    private float ZBias = float.NaN;
 
     private void Awake()
     {
@@ -234,14 +234,13 @@ public class InputController : MonoBehaviour
             //Debug.Log("Gyroscope is enabled");
             //Debug.Log(Accelerometer.current.acceleration.ReadValue());
             Vector3 input = context.ReadValue<Vector3>();
-            if (float.IsNaN(biasZ))
-                biasZ = input.z;
+            if (float.IsNaN(ZBias))
+                ZBias = input.z;
 
             float x = input.x;
-            float z = input.z - biasZ;
-            biasZ += z * Time.deltaTime / 200;
+            float z = input.z - ZBias;
 
-            test.text = $"Accelerometer: X: {x},\nZ: {input.z} - {biasZ} = {z}";
+            test.text = $"Accelerometer: X: {x},\nZ: {input.z} - {ZBias} = {z}";
 
             if (x < 0)
             {
@@ -267,6 +266,12 @@ public class InputController : MonoBehaviour
             flightMoveHandler?.Invoke(x, z);
 
         }
+    }
+
+    public void ResetZBias()
+    {
+        Debug.Log("FUCK IT ALL!");
+        ZBias = float.NaN;
     }
 
     private void OnFlightEnd(InputAction.CallbackContext context)

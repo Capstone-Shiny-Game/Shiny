@@ -41,14 +41,15 @@ public class FlightController : MonoBehaviour
     public event Action<bool> FlightTypeChanged;
     public bool isGliding = false;
     private PlayerController pcontroller;
+    private InputController inputController;
 
     public void Start()
     {
         //InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
         crow = GetComponent<Crow>();
         pcontroller = GetComponent<PlayerController>();
+        inputController = GetComponentInChildren<InputController>();
         maxHeight = ceiling.transform.position.y;
-
     }
 
     void Update()
@@ -396,8 +397,6 @@ public class FlightController : MonoBehaviour
             startZ = -1;
             hasTilted = false;
         }
-
-
     }
 
     public void TrailScale()
@@ -416,6 +415,7 @@ public class FlightController : MonoBehaviour
     }
     private void OnEnable()
     {
+        inputController.ResetZBias();
         // ceiling.transform.position = new Vector3(ceiling.transform.position.x, transform.position.y + heightAboveLand, ceiling.transform.position.z);
         LeftTrail.SetActive(true);
         RightTrail.SetActive(true);
