@@ -73,6 +73,9 @@ public class InputController : MonoBehaviour
     private bool canLook = false;
     private bool isMoving = false;
 
+    private const float deadZone = 0.5f;
+    private float biasZ = float.NaN;
+
     private void Awake()
     {
         //CamController = cam.GetComponent<CameraController>();
@@ -231,8 +234,37 @@ public class InputController : MonoBehaviour
             //Debug.Log("Gyroscope is enabled");
             //Debug.Log(Accelerometer.current.acceleration.ReadValue());
             Vector3 input = context.ReadValue<Vector3>();
-            test.text = $"Accelerometer: X: {input.x}, Z: {input.z}";
-            flightMoveHandler?.Invoke(Mathf.Clamp(input.x, -1.0f, 1.0f), Mathf.Clamp(input.z, -1.0f, 1.0f));
+            if (float.IsNaN(biasZ))
+                biasZ = input.z;
+
+            float x = input.x;
+            float z = input.z - biasZ;
+            biasZ += z * Time.deltaTime / 200;
+
+            test.text = $"Accelerometer: X: {x},\nZ: {input.z} - {biasZ} = {z}";
+
+            if (x < 0)
+            {
+                x += deadZone;
+                x = Mathf.Clamp(x, -1, 0);
+            }
+            else
+            {
+                x -= deadZone;
+                x = Mathf.Clamp(x, 0, 1);
+            }
+
+            if (z < 0)
+            {
+                z += deadZone;
+                z = Mathf.Clamp(z, -1, 0);
+            }
+            else
+            {
+                z -= deadZone;
+                z = Mathf.Clamp(z, 0, 1);
+            }
+            flightMoveHandler?.Invoke(x, z);
 
         }
     }
