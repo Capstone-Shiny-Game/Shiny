@@ -57,14 +57,14 @@ public class FlightController : MonoBehaviour
         TrailScale();
         //checks speed, update boolean of isGlide if over certain limit.
         CheckSpeed();
-        
+
     }
     public IEnumerator Reset(float endTime, float xRot, float height)
     {
         float elapsedTime = 0;
         while (elapsedTime < endTime)
         {
-        
+
             transform.position = Vector3.Slerp(transform.position, new Vector3(transform.position.x, height, transform.position.z), 1f); ;
             Quaternion target = transform.rotation;
             target = Quaternion.Euler(xRot, target.eulerAngles.y, 0);
@@ -161,7 +161,7 @@ public class FlightController : MonoBehaviour
     public void InvokeLandPerch(Transform pos, Transform lookAt)
     {
 
-            LandedPerch?.Invoke(pos, lookAt);
+        LandedPerch?.Invoke(pos, lookAt);
 
     }
     /// <summary>
@@ -209,11 +209,10 @@ public class FlightController : MonoBehaviour
         BoostByFlappingWings();
         if (Math.Abs(transform.forward.y) > glideAngleThreshold)
             speed -= transform.forward.y * Time.deltaTime * acceleration;
-        else
-        {
-            //if straightened out, set the speed to a set velocity
-            speed = Mathf.Clamp(speed, minGlideSpeed, maxDiveSpeed);
-        }
+
+        //if straightened out, set the speed to a set velocity
+        speed = Mathf.Clamp(speed, minGlideSpeed, maxDiveSpeed);
+
         SlowDown();
 
         //magnetize the player towards boost rings
@@ -237,16 +236,23 @@ public class FlightController : MonoBehaviour
     }
     private void GetPlayerControls()
     {
+        if (moveX > 0.05f)
+        {
 
+        }
         // Rotate
         float turn = moveX * tiltSensitivity / 1.5f * Time.deltaTime;
         float pitch = -moveY * pitchSensitivity * Time.deltaTime;
-        float tilt = -moveX * tiltSensitivity * Time.deltaTime;
+        float tilt = -moveX * tiltSensitivity * .25f * Time.deltaTime;
+
         //transform.Rotate(new Vector3(pitch, turn, 0.0f));
+        transform.Rotate(0f, 0f, tilt, Space.Self);
+
         transform.Rotate(0f, turn, 0f, Space.World);
+
         transform.Rotate(pitch, 0f, 0f, Space.Self);
-      
-        crow.Model.transform.Rotate(new Vector3(0.0f, 0.0f, tilt));
+
+        //crow.Model.transform.Rotate(new Vector3(0.0f, 0.0f, tilt));
 
         if (tilt != 0)
             hasTilted = true;
@@ -410,12 +416,12 @@ public class FlightController : MonoBehaviour
     }
     private void OnEnable()
     {
-       // ceiling.transform.position = new Vector3(ceiling.transform.position.x, transform.position.y + heightAboveLand, ceiling.transform.position.z);
+        // ceiling.transform.position = new Vector3(ceiling.transform.position.x, transform.position.y + heightAboveLand, ceiling.transform.position.z);
         LeftTrail.SetActive(true);
         RightTrail.SetActive(true);
         speed = 10f;
         //Disabling all animator not related to flying(walking, idle)
-        
+
     }
     public void SetFlightXY(float x, float y)
     {
