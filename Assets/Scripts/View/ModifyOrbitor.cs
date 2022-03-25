@@ -7,15 +7,15 @@ public class ModifyOrbitor : MonoBehaviour
 {
     // Start is called before the first frame update
     private CinemachineOrbitalTransposer vcam;
-    public float ySens =2f;
+    public float ySens = 2f;
     public float xSens = 2f;
     public float minY = 0.0f;
     public float maxY = 10.0f;
     private float startX;
     private float startY;
     private bool canRotate = true;
-    private float moveX =0.0f;
-    private float moveY =0.0f;
+    private float moveX = 0.0f;
+    private float moveY = 0.0f;
     void Start()
     {
         vcam = GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineOrbitalTransposer>();
@@ -37,7 +37,7 @@ public class ModifyOrbitor : MonoBehaviour
         moveY = y;
     }
 
-    
+
     public void ResetZero()
     {
         if (this.isActiveAndEnabled && canRotate)
@@ -46,7 +46,7 @@ public class ModifyOrbitor : MonoBehaviour
     public void Reset()
     {
         if (this.isActiveAndEnabled && canRotate)
-            StartCoroutine(Recenter(5f,startX,startY));
+            StartCoroutine(Recenter(5f, startX, startY));
     }
     public IEnumerator Recenter(float endTime, float destX, float destY)
     {
@@ -64,7 +64,7 @@ public class ModifyOrbitor : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-       
+
         canRotate = true;
 
 
