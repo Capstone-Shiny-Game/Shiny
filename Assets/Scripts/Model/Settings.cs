@@ -44,4 +44,6 @@ public struct SettingsData
     public float musicVolume;
     public float dialogueVolume;
     public bool lefthanded;
+    public bool invertYAxis;
+    public bool disableAccelerometer;
 }

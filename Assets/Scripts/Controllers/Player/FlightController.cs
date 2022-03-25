@@ -42,6 +42,7 @@ public class FlightController : MonoBehaviour
     public bool isGliding = false;
     private PlayerController pcontroller;
     private InputController inputController;
+    private bool invertY;
 
     public void Start()
     {
@@ -50,7 +51,20 @@ public class FlightController : MonoBehaviour
         pcontroller = GetComponent<PlayerController>();
         inputController = GetComponentInChildren<InputController>();
         maxHeight = ceiling.transform.position.y;
+        Settings.OnSettingsChanged += OnSettingsChanged;
+        OnSettingsChanged(null, null);
     }
+
+    private void OnSettingsChanged(object sender, EventArgs e)
+    {
+        invertY = Settings.settingsData.invertYAxis;
+    }
+
+    /*
+     * 
+    Settings.OnSettingsChanged += SettingsChanged;
+        SettingsChanged(null, null);
+     */
 
     void Update()
     {
@@ -427,6 +441,8 @@ public class FlightController : MonoBehaviour
     {
         moveX = x;
         moveY = y;
+        if (invertY)
+            moveY = -moveY;
     }
     public void SetBoost(bool b)
     {

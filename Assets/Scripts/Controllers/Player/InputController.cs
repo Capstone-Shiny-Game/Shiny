@@ -72,7 +72,6 @@ public class InputController : MonoBehaviour
     public bool useGyro;
     public bool canLook = false;
     private bool isMoving = false;
-
     private const float deadZone = 0.5f;
     private float ZBias = float.NaN;
 
@@ -125,6 +124,14 @@ public class InputController : MonoBehaviour
 
         if (UnityEngine.InputSystem.Accelerometer.current != null)
             InputSystem.EnableDevice(UnityEngine.InputSystem.Accelerometer.current);
+
+        Settings.OnSettingsChanged += SettingsChanged;
+        SettingsChanged(null, null);
+    }
+
+    private void SettingsChanged(object sender, EventArgs e)
+    {
+        useGyro = !Settings.settingsData.disableAccelerometer;
     }
 
     private void OnWalk(InputAction.CallbackContext obj)

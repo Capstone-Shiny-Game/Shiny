@@ -8,18 +8,22 @@ public class SettingsMenuContainer : MenuContainer
     [HideInInspector] public Settings settings;
     public Slider musicVolumeSlider;
     public Slider dialogueVolumeSlider;
+    public Toggle invertYToggle;
+    public Toggle disableAccelerometerToggle;
     public SettingsData defaultSettings = new SettingsData { musicVolume = .50f, dialogueVolume = .50f, lefthanded = false };
-    private SettingsData prefferedSettings;
+    private SettingsData preferredSettings;
     public ConfirmPopup confirmPopup;
 
     private void OnEnable()
     {
-        prefferedSettings = Settings.settingsData;//save old settings
+        preferredSettings = Settings.settingsData;//save old settings
         //Debug.Log("music vol : " + Settings.settingsData.musicVolume);
         //Debug.Log("dialogue vol : " + Settings.settingsData.dialogueVolume);
         RefreshUI();
         musicVolumeSlider.onValueChanged.AddListener(changeMusicVolume);
         dialogueVolumeSlider.onValueChanged.AddListener(changeDialogueVolume);
+        invertYToggle.onValueChanged.AddListener(changeInvertY);
+        disableAccelerometerToggle.onValueChanged.AddListener(changeDisableAccelerometer);
     }
 
     private void RefreshUI()
@@ -41,9 +45,23 @@ public class SettingsMenuContainer : MenuContainer
         Settings.UpdateSettingData(updatedSettingsData);
     }
 
+    private void changeInvertY(bool invert)
+    {
+        SettingsData updatedSettingsData = Settings.settingsData;
+        updatedSettingsData.invertYAxis = invert;
+        Settings.UpdateSettingData(updatedSettingsData);
+    }
+
+    private void changeDisableAccelerometer(bool disable)
+    {
+        SettingsData updatedSettingsData = Settings.settingsData;
+        updatedSettingsData.disableAccelerometer = disable;
+        Settings.UpdateSettingData(updatedSettingsData);
+    }
+
     public void SaveSettings()
     {
-        prefferedSettings = Settings.settingsData;
+        preferredSettings = Settings.settingsData;
     }
 
     public void DefaultSettings()
@@ -55,15 +73,15 @@ public class SettingsMenuContainer : MenuContainer
     {
         if (value)
         {
-            prefferedSettings = Settings.settingsData;
+            preferredSettings = Settings.settingsData;
         }
-        Settings.UpdateSettingData(prefferedSettings);
+        Settings.UpdateSettingData(preferredSettings);
         MenuManager.instance.SwitchMenu(nextMenuType,true);
     }
 
     public override MenuType DisableSelf(MenuType nextMenuType)
     {
-        if (prefferedSettings.Equals(Settings.settingsData)) {
+        if (preferredSettings.Equals(Settings.settingsData)) {
             return base.DisableSelf(nextMenuType);
         }
         confirmPopup.ShowPopUP("there were unsaved changes to your settings, save these new settings?", (value) => confirmNewSettings(value,nextMenuType), "Save", "Discard");
