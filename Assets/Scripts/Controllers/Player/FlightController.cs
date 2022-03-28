@@ -261,7 +261,7 @@ public class FlightController : MonoBehaviour
         float tilt = -moveX * tiltSensitivity * .25f * Time.deltaTime;
 
         //transform.Rotate(new Vector3(pitch, turn, 0.0f));
-        transform.Rotate(0f, 0f, tilt, Space.Self);
+        crow.Model.transform.Rotate(0f, 0f, tilt, Space.Self);
 
         transform.Rotate(0f, turn, 0f, Space.World);
 
