@@ -266,6 +266,17 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
+                    ""id"": ""05bbb2c5-6729-44f3-a434-a15a8c5f1e14"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Boost"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""3e32f2bb-5c36-4ea3-a990-629cf1d42768"",
                     ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
@@ -334,6 +345,17 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                     ""name"": """",
                     ""id"": ""00aa8695-15cb-476c-a14a-3eabc05ff756"",
                     ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""walkAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5e2fa250-c6bf-4529-93fc-9bd54254d23d"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -484,6 +506,17 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                     ""name"": """",
                     ""id"": ""90e035dc-8f42-498e-a73a-bcf1246da425"",
                     ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DropItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""84741867-48b2-42e1-85a6-b0d128b57115"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
