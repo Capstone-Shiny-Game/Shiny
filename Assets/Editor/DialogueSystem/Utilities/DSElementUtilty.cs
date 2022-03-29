@@ -36,23 +36,6 @@ public static class DSElementUtilty
         return port;
     }
 
-    public static Port CreatePort(this QSNode node, string name, Type type, Direction direction, Port.Capacity capacity)
-    {
-        Port port = node.InstantiatePort(Orientation.Horizontal, direction, capacity, type);
-        port.portName = name;
-
-        if (type == typeof(QSUnlock))
-            port.portColor = new Color(253f / 255, 151f / 255, 31f / 255); // orange
-        else if (type == typeof(QSLink))
-            port.portColor = new Color(171f / 255, 157f / 255, 242f / 255); // purple
-        else if (type == typeof(ItemSO))
-            port.portColor = new Color(166f / 256, 226f / 256, 46f / 256); // green
-        else if (type == typeof(QSNPC))
-            port.portColor = new Color(102f / 255, 217f / 255, 239f / 255); // blue
-
-        return port;
-    }
-
     public static Toggle CreateCheckBox(bool value = false, string label = null, EventCallback<ChangeEvent<bool>> onValueChanged = null)
     {
         Toggle toggle = new Toggle()

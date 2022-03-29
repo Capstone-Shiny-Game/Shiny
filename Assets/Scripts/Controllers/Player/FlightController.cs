@@ -261,7 +261,7 @@ public class FlightController : MonoBehaviour
         float tilt = -moveX * tiltSensitivity * .25f * Time.deltaTime;
 
         //transform.Rotate(new Vector3(pitch, turn, 0.0f));
-        transform.Rotate(0f, 0f, tilt, Space.Self);
+        crow.Model.transform.parent.Rotate(0f, 0f, tilt, Space.Self);
 
         transform.Rotate(0f, turn, 0f, Space.World);
 
@@ -426,6 +426,8 @@ public class FlightController : MonoBehaviour
     {
         LeftTrail.SetActive(false);
         RightTrail.SetActive(false);
+        crow.Model.transform.localPosition = new Vector3(0.0f, 0.1f, 0.0f);
+
     }
     private void OnEnable()
     {
@@ -435,7 +437,7 @@ public class FlightController : MonoBehaviour
         RightTrail.SetActive(true);
         speed = 10f;
         //Disabling all animator not related to flying(walking, idle)
-
+        crow.Model.transform.localPosition = new Vector3(0.0f, -1.05f, 0.0f);
     }
     public void SetFlightXY(float x, float y)
     {
