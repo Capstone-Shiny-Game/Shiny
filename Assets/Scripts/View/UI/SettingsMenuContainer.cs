@@ -26,6 +26,14 @@ public class SettingsMenuContainer : MenuContainer
         disableAccelerometerToggle.onValueChanged.AddListener(changeDisableAccelerometer);
     }
 
+    private void Start()
+    {
+        if (!InputController.AccelerometerAvailable)
+        {
+            disableAccelerometerToggle.gameObject.SetActive(false);
+        }
+    }
+
     private void RefreshUI()
     {
         musicVolumeSlider.value = Settings.settingsData.musicVolume;
