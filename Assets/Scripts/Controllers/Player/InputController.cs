@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -54,7 +53,7 @@ public class InputController : MonoBehaviour
 
     public FlightLookEvent flightLookHandler;
     public FlightStartLookEvent flightStartLookHandler;
-    private Boolean other = false;
+    private bool other = false;
 
     public FlightBrakeEvent flightBrakeHandler;
     public FlightBoostEvent flightBoostHandler;
@@ -69,7 +68,8 @@ public class InputController : MonoBehaviour
 
     public FlightLookResetEvent flightResetLookHandler;
     public TMP_Text test;
-    public bool useGyro;
+    public static bool AccelerometerAvailable { get; private set; } = false;
+    public bool UseAccelerometer { get; private set; }
     private bool canLook = false;
     public bool menuOpen = false;
     private bool isMoving = false;
@@ -120,11 +120,12 @@ public class InputController : MonoBehaviour
         PlayerInput.GUIMap.PrimaryTouch.canceled += EndTouchPrimary;
 
         PlayerInput.GUIMap.PickupItem.performed += OnPickup;
-        // if (UnityEngine.InputSystem.Gyroscope.current != null)
-        //    InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
 
-        if (UnityEngine.InputSystem.Accelerometer.current != null)
-            InputSystem.EnableDevice(UnityEngine.InputSystem.Accelerometer.current);
+        if (Accelerometer.current != null)
+        {
+            AccelerometerAvailable = true;
+            InputSystem.EnableDevice(Accelerometer.current);
+        }
 
         Settings.OnSettingsChanged += SettingsChanged;
         SettingsChanged(null, null);
@@ -132,7 +133,7 @@ public class InputController : MonoBehaviour
 
     private void SettingsChanged(object sender, EventArgs e)
     {
-        useGyro = !Settings.settingsData.disableAccelerometer;
+        UseAccelerometer = !Settings.settingsData.disableAccelerometer;
     }
 
     private void OnWalk(InputAction.CallbackContext obj)
@@ -229,17 +230,9 @@ public class InputController : MonoBehaviour
     private void OnFlight(InputAction.CallbackContext context)
     {
         isMoving = true;
-        if (!useGyro || UnityEngine.InputSystem.Accelerometer.current == null)
-        {
-            test.text = "N/A";
-            Vector2 moveInput = context.ReadValue<Vector2>();
 
-            flightMoveHandler?.Invoke(moveInput.x, moveInput.y);
-        }
-        else if (useGyro)
+        if (UseAccelerometer && AccelerometerAvailable)
         {
-            //Debug.Log("Gyroscope is enabled");
-            //Debug.Log(Accelerometer.current.acceleration.ReadValue());
             Vector3 input = context.ReadValue<Vector3>();
             if (float.IsNaN(ZBias))
                 ZBias = input.z;
@@ -271,7 +264,13 @@ public class InputController : MonoBehaviour
                 z = Mathf.Clamp(z, 0, 1);
             }
             flightMoveHandler?.Invoke(x, z);
+        }
+        else
+        {
+            test.text = "N/A";
+            Vector2 moveInput = context.ReadValue<Vector2>();
 
+            flightMoveHandler?.Invoke(moveInput.x, moveInput.y);
         }
     }
 
@@ -282,7 +281,7 @@ public class InputController : MonoBehaviour
 
     private void OnFlightEnd(InputAction.CallbackContext context)
     {
-        if (!useGyro || UnityEngine.InputSystem.Accelerometer.current == null)
+        if (!AccelerometerAvailable || !UseAccelerometer)
             flightMoveHandler?.Invoke(0.0f, 0.0f);
 
         isMoving = false;
