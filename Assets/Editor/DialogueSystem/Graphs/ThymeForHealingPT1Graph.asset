@@ -15,31 +15,10 @@ MonoBehaviour:
   <FileName>k__BackingField: ThymeForHealingPT1
   <Groups>k__BackingField: []
   <Nodes>k__BackingField:
-  - <ID>k__BackingField: 0c620b59-9ca8-41f0-b47e-45ed45a5f6cf
-    <Name>k__BackingField: CharlieTheFarmer4
-    <Text>k__BackingField: "\u201CIf you\u2019d do me the huge favor of gettin\u2019
-      some so I can make that salve, we\u2019d be eternally grateful. You should
-      be able to find some in the forest over yonder.\u201D"
-    <Choices>k__BackingField:
-    - <Text>k__BackingField: Next Dialogue
-      <NodeID>k__BackingField: 
-    <GroupID>k__BackingField: 
-    <DialogueType>k__BackingField: 0
-    <Position>k__BackingField: {x: 1412, y: 251.99998}
-  - <ID>k__BackingField: d9f606ac-6358-4e56-827c-2c703c719902
-    <Name>k__BackingField: CharlieTheFarmer3
-    <Text>k__BackingField: " \u201COl\u2019 Bessie needs some healin\u2019 salve
-      for a cut and I\u2019m fresh out. I can make some more, but I need more thyme.\u201D"
-    <Choices>k__BackingField:
-    - <Text>k__BackingField: Next Dialogue
-      <NodeID>k__BackingField: 0c620b59-9ca8-41f0-b47e-45ed45a5f6cf
-    <GroupID>k__BackingField: 
-    <DialogueType>k__BackingField: 0
-    <Position>k__BackingField: {x: 761.6, y: 251.99998}
   - <ID>k__BackingField: b1fff25a-3467-468f-bfae-b6b2709cccb4
     <Name>k__BackingField: CharlieTheFarmer2
-    <Text>k__BackingField: "\u201CYou don\u2019t happen to have some thyme on ya,
-      do ya?\u201D"
+    <Text>k__BackingField: "\u201CYou don\u2019t happen to have some thyme on you,
+      do you?\u201D"
     <Choices>k__BackingField:
     - <Text>k__BackingField: Next Dialogue
       <NodeID>k__BackingField: d9f606ac-6358-4e56-827c-2c703c719902
@@ -56,11 +35,42 @@ MonoBehaviour:
     <GroupID>k__BackingField: 
     <DialogueType>k__BackingField: 0
     <Position>k__BackingField: {x: -28.8, y: 249.59999}
+  - <ID>k__BackingField: d9f606ac-6358-4e56-827c-2c703c719902
+    <Name>k__BackingField: CharlieTheFarmer3
+    <Text>k__BackingField: "\u201CMy rooster needs some healin\u2019 salve for a
+      cut and I\u2019m fresh out. I can make more, but I\u2019m short on thyme.\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 0c620b59-9ca8-41f0-b47e-45ed45a5f6cf
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 784, y: 249.59999}
+  - <ID>k__BackingField: 0c620b59-9ca8-41f0-b47e-45ed45a5f6cf
+    <Name>k__BackingField: CharlieTheFarmer4
+    <Text>k__BackingField: "\u201CIf you\u2019re not busy right now, would you mind
+      collectin\u2019 some for me? I\u2019d be mighty grateful.\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1442.4, y: 249.59999}
+  - <ID>k__BackingField: 2dfc90c6-eff1-48b8-862c-1670048af446
+    <Name>k__BackingField: CharlieTheFarmer5
+    <Text>k__BackingField: "\u201CI only need 3 thyme to make the salve, so hurry
+      back once you\u2019ve collected enough.\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 2062.4, y: 253.59999}
   <OldGroupNames>k__BackingField: []
   <OldUngroupedNodeNames>k__BackingField:
-  - CharlieTheFarmer4
-  - CharlieTheFarmer3
   - CharlieTheFarmer2
   - CharlieTheFarmer1
+  - CharlieTheFarmer3
+  - CharlieTheFarmer4
+  - CharlieTheFarmer5
   <OldGroupedNodeNames>k__BackingField:
     list: []

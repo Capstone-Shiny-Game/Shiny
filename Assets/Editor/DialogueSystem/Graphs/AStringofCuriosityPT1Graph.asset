@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: AStringofCuriosityPT1Graph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: AStringofCuriosityPT1
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: a7a6e4d4-fa24-4bc4-b3e5-f044816ff758
+    <Name>k__BackingField: EdgarTheOldMan1
+    <Text>k__BackingField: "\u201CYa must be the new bird everyone\u2019s talkin\u2019
+      about. Well I ain\u2019 got nothin\u2019 for ya, so shoo.\u201D "
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 045d2606-660d-4b64-bf49-403eecae59a1
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 25.6, y: 222.4}
+  - <ID>k__BackingField: 045d2606-660d-4b64-bf49-403eecae59a1
+    <Name>k__BackingField: EdgarTheOldMan2
+    <Text>k__BackingField: "\u201CStill here? Hmph, nothin\u2019 special \u2018boutcha.
+      I bet ya don\u2019 even understand what I\u2019m sayin\u2019.\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 9f4c5d2e-01cf-43b3-ab75-313a39e7c204
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 626.4, y: 222.4}
+  - <ID>k__BackingField: 9f4c5d2e-01cf-43b3-ab75-313a39e7c204
+    <Name>k__BackingField: EdgarTheOldMan3
+    <Text>k__BackingField: "\u201CYa know what? If ya really understand me then bring
+      me a string. I might believe ya then.\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1230.4, y: 224.8}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - EdgarTheOldMan1
+  - EdgarTheOldMan2
+  - EdgarTheOldMan3
+  <OldGroupedNodeNames>k__BackingField:
+    list: []

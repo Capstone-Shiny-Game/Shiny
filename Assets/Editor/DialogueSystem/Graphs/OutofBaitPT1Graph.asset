@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: OutofBaitPT1Graph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: OutofBaitPT1
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: aa0ed01f-d319-4790-beac-ee5ef751b591
+    <Name>k__BackingField: EdgarTheOldMan1
+    <Text>k__BackingField: "\u201CWatcha lookin\u2019 at bird? I ain\u2019 got no
+      fish for ya.\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 81dc817e-dcde-4d07-bc40-f7fcb54e8d4a
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 23.2, y: 207.2}
+  - <ID>k__BackingField: 81dc817e-dcde-4d07-bc40-f7fcb54e8d4a
+    <Name>k__BackingField: EdgarTheOldMan2
+    <Text>k__BackingField: "\u201CAin\u2019 got no fish at all till I get more bait.\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 9811f085-b50c-448e-a6d4-4de1267bc97d
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 388, y: 208.8}
+  - <ID>k__BackingField: 9811f085-b50c-448e-a6d4-4de1267bc97d
+    <Name>k__BackingField: EdgarTheOldMan3
+    <Text>k__BackingField: "\u201CLook, if ya got so much time on yer hands, how
+      \u2018bout ya get me some bait?\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 37faf530-326c-423f-86fe-ec894b92da7e
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 716, y: 211.2}
+  - <ID>k__BackingField: 37faf530-326c-423f-86fe-ec894b92da7e
+    <Name>k__BackingField: EdgarTheOldMan4
+    <Text>k__BackingField: "\u201CWorms work best for fishin\u2019. Don\u2019 squish
+      them, though. Won\u2019 catch nothin\u2019 with slop.\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1255.2, y: 212.8}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - EdgarTheOldMan1
+  - EdgarTheOldMan2
+  - EdgarTheOldMan3
+  - EdgarTheOldMan4
+  <OldGroupedNodeNames>k__BackingField:
+    list: []

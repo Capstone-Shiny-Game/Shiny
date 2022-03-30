@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: ShoppingListPT1Graph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: ShoppingListPT1
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: d8244eb5-dfcf-4d82-b73b-8b6547b99a76
+    <Name>k__BackingField: EdgarTheOldMan1
+    <Text>k__BackingField: "\u201CWhaddya want bird? I\u2019m busy.\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 606fc06b-276e-4229-913e-ae8fd0b220ae
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 2.4, y: 200}
+  - <ID>k__BackingField: 606fc06b-276e-4229-913e-ae8fd0b220ae
+    <Name>k__BackingField: EdgarTheOldMan2
+    <Text>k__BackingField: "\u201CGotta head into town for some supplies\u2026not
+      that I really wanna go. Always too many people makin\u2019 too much noise...\u201D "
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: c6d7cc5a-6499-4395-be95-ad8c70a98110
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 282.4, y: 203.2}
+  - <ID>k__BackingField: c6d7cc5a-6499-4395-be95-ad8c70a98110
+    <Name>k__BackingField: EdgarTheOldMan3
+    <Text>k__BackingField: "\u201CYa know, ya don\u2019 look too busy. How \u2018bout
+      gettin\u2019 those supplies for me?\u201D"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: c77f5081-6617-406d-90e6-5ab68f39aefd
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 944.8, y: 202.4}
+  - <ID>k__BackingField: c77f5081-6617-406d-90e6-5ab68f39aefd
+    <Name>k__BackingField: EdgarTheOldMan4
+    <Text>k__BackingField: "\u201CAin\u2019 need much. Just 3 loaves of bread, 3
+      eggs, and 3 pears. Should be simple for a bird like ya.\u201D "
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1467.2, y: 200}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - EdgarTheOldMan1
+  - EdgarTheOldMan2
+  - EdgarTheOldMan3
+  - EdgarTheOldMan4
+  <OldGroupedNodeNames>k__BackingField:
+    list: []
