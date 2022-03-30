@@ -13,12 +13,12 @@ public class PerchPosition : MonoBehaviour
         {
             FlightController controller = other.GetComponent<FlightController>();
             controller.InvokeLandPerch(crowPerchPos, lookAt);
-            vCam.SetActive(true);
+            vCam?.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
-            vCam.SetActive(false);
+            vCam?.SetActive(false);
     }
 }
