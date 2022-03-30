@@ -66,8 +66,22 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 89de7d1c5d26aa4f9bc67c6e12510450
     GuidInternal: 
-    m_lastTime: -8585543667989644512
-    List: []
+    m_lastTime: -8585529843062355441
+    List:
+    - name: TempBank
+      guid: 0343e4c87739fa40950eb1ffae0303d9
+      id: 3633468881
+      PathAndIcons:
+      - ElementName: SoundBanks
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 89de7d1c5d26aa4f9bc67c6e12510450
+      - ElementName: TempBank
+        ObjectType: 7
+        guid: 0343e4c87739fa40950eb1ffae0303d9
+      Path: SoundBanks\Default Work Unit\TempBank
   EventWwu:
   - PhysicalPath: Events\Default Work Unit.wwu
     PathAndIcons:
@@ -80,8 +94,127 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 368d617cf8f4be4b9a7671dae4b5f947
     GuidInternal: 
-    m_lastTime: -8585543732138360070
-    List: []
+    m_lastTime: -8585529832564190773
+    List:
+    - name: campfire
+      guid: f110cd4a35816848b4aec79d54edefbb
+      id: 1931646578
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 368d617cf8f4be4b9a7671dae4b5f947
+      - ElementName: campfire
+        ObjectType: 3
+        guid: f110cd4a35816848b4aec79d54edefbb
+      Path: Events\Default Work Unit\campfire
+      maxAttenuation: 60
+      maxDuration: -1
+      minDuration: -1
+    - name: dayStart
+      guid: 883978cb2086314490e3efe76e90b2b9
+      id: 3232797379
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 368d617cf8f4be4b9a7671dae4b5f947
+      - ElementName: dayStart
+        ObjectType: 3
+        guid: 883978cb2086314490e3efe76e90b2b9
+      Path: Events\Default Work Unit\dayStart
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: digDirtPile
+      guid: 8857e7cf56e1574583031f2076eadbfe
+      id: 3965959576
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 368d617cf8f4be4b9a7671dae4b5f947
+      - ElementName: digDirtPile
+        ObjectType: 3
+        guid: 8857e7cf56e1574583031f2076eadbfe
+      Path: Events\Default Work Unit\digDirtPile
+      maxAttenuation: 0
+      maxDuration: 1
+      minDuration: 1
+    - name: flyThroughTree
+      guid: c69bd2eca64cce4d91fccf0dc95aa55e
+      id: 1561107991
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 368d617cf8f4be4b9a7671dae4b5f947
+      - ElementName: flyThroughTree
+        ObjectType: 3
+        guid: c69bd2eca64cce4d91fccf0dc95aa55e
+      Path: Events\Default Work Unit\flyThroughTree
+      maxAttenuation: 0
+      maxDuration: 1.5
+      minDuration: 1.5
+    - name: levelStart
+      guid: 7d62a97ebb079d4896631fdd39aa135c
+      id: 3372421815
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 368d617cf8f4be4b9a7671dae4b5f947
+      - ElementName: levelStart
+        ObjectType: 3
+        guid: 7d62a97ebb079d4896631fdd39aa135c
+      Path: Events\Default Work Unit\levelStart
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: menuStart
+      guid: b28a25fd94c3574292a8ee92aeef2ed0
+      id: 1447920996
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 368d617cf8f4be4b9a7671dae4b5f947
+      - ElementName: menuStart
+        ObjectType: 3
+        guid: b28a25fd94c3574292a8ee92aeef2ed0
+      Path: Events\Default Work Unit\menuStart
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: nightStart
+      guid: d5f275de97a591489500fcd3cca9ce9e
+      id: 2986941311
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 368d617cf8f4be4b9a7671dae4b5f947
+      - ElementName: nightStart
+        ObjectType: 3
+        guid: d5f275de97a591489500fcd3cca9ce9e
+      Path: Events\Default Work Unit\nightStart
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     PathAndIcons:
@@ -122,8 +255,58 @@ MonoBehaviour:
     ParentPath: Switches\Default Work Unit
     guid: eb9f93a972034447a8b1f59f0ebba0f1
     GuidInternal: 
-    m_lastTime: -8585543732139200032
-    List: []
+    m_lastTime: -8585530193123256592
+    List:
+    - name: TimeOfDay
+      guid: 9645d72017d8d14db283668d8cfe3f21
+      id: 3729505769
+      PathAndIcons:
+      - ElementName: Switches
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: eb9f93a972034447a8b1f59f0ebba0f1
+      - ElementName: TimeOfDay
+        ObjectType: 11
+        guid: 9645d72017d8d14db283668d8cfe3f21
+      Path: Switches\Default Work Unit\TimeOfDay
+      values:
+      - name: Day
+        guid: d7685a91e9432f4cada8d7ac9bc29950
+        id: 311764537
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: eb9f93a972034447a8b1f59f0ebba0f1
+        - ElementName: TimeOfDay
+          ObjectType: 11
+          guid: 9645d72017d8d14db283668d8cfe3f21
+        - ElementName: Day
+          ObjectType: 10
+          guid: d7685a91e9432f4cada8d7ac9bc29950
+      - name: Night
+        guid: 645af36e13b3c0478b12bdd02c17f10c
+        id: 1011622525
+        PathAndIcons:
+        - ElementName: Switches
+          ObjectType: 5
+          guid: 00000000000000000000000000000000
+        - ElementName: Default Work Unit
+          ObjectType: 12
+          guid: eb9f93a972034447a8b1f59f0ebba0f1
+        - ElementName: TimeOfDay
+          ObjectType: 11
+          guid: 9645d72017d8d14db283668d8cfe3f21
+        - ElementName: Night
+          ObjectType: 10
+          guid: 645af36e13b3c0478b12bdd02c17f10c
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu
     PathAndIcons:
@@ -139,7 +322,7 @@ MonoBehaviour:
     m_lastTime: -8585543732138240037
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 
+  ExpandedWaapiItemIds: 01000000050000000600000007000000090000000d0000000e0000000f000000120000001300000014000000420000004300000080000000810000008a0000008b000000cb000000cc000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0

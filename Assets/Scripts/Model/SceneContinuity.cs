@@ -5,72 +5,38 @@ using UnityEngine.SceneManagement;
 
 public class SceneContinuity : MonoBehaviour
 {
-    public AudioSource source;
-    public AudioClip menuBGM;
-    public AudioClip gameBGM;
-    public float fadeTime;
-    private bool startGame = true;
-
-    private void Awake()
+    private void Start()
     {
         if(GameObject.Find("Audio Player") != null && GameObject.Find("Audio Player") != gameObject)
         {
             Destroy(gameObject);
         }
         DontDestroyOnLoad(transform.gameObject);
-        SceneManager.activeSceneChanged += triggerFade;
+        SceneManager.activeSceneChanged += triggerAudio;
+        AkSoundEngine.PostEvent("menuStart", gameObject);
+        DayController.OnMorningEvent += dayStart;
+        DayController.OnEveningEvent += dayEnd;
     }
 
-    private void triggerFade(Scene current, Scene next)
+    private void dayStart()
     {
-        if(!startGame)
+        AkSoundEngine.PostEvent("dayStart", gameObject);
+    }
+
+    private void dayEnd()
+    {
+        AkSoundEngine.PostEvent("nightStart", gameObject);
+    }
+
+    private void triggerAudio(Scene current, Scene next)
+    {
+        if(current.buildIndex == 0)
         {
-            StartCoroutine(fade(0.5f, 0.01f, next.name));
+            AkSoundEngine.PostEvent("menuStart", gameObject);
         }
         else
         {
-            startGame = false;
+            AkSoundEngine.PostEvent("levelStart", gameObject);
         }
-    }
-
-    private IEnumerator fade(float start, float end, string sceneName)
-    {
-        float timeElapsed = 0;
-        while(timeElapsed < fadeTime)
-        {
-            source.volume = Mathf.Lerp(start, end, timeElapsed/fadeTime);
-            timeElapsed += Time.deltaTime;
-        }
-
-        for(var timePassed = 0f; timePassed < fadeTime; timePassed += Time.deltaTime)
-        {
-            source.volume = Mathf.Lerp(start, end, timePassed / fadeTime);
-
-            yield return null;
-        }
-
-        switch(sceneName)
-        {
-            case "MainMenu":
-                source.clip = menuBGM;
-                break;
-
-            case "Cityv2":
-                source.clip = gameBGM;
-                break;
-        }
-
-        yield return new WaitForSeconds(0.1f);
-
-        source.Play();
-        
-        for(var timePassed = 0f; timePassed < fadeTime; timePassed += Time.deltaTime)
-        {
-            source.volume = Mathf.Lerp(end, start, timePassed / fadeTime);
-
-            yield return null;
-        }
-    }
-
-    
+    }    
 }
