@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Android" BasePlatform="Android" SchemaVersion="12" SoundbankVersion="140">
+	<RootPaths>
+		<ProjectRoot>C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Android\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\Matt\Documents\GitHub\Shiny\Assets\StreamingAssets\Audio\GeneratedSoundBanks\Android\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\GeneratedSoundBanks\Android</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Language="SFX" Hash="2901137828">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="3633468881" Language="SFX" Hash="931020064">
+			<ObjectPath>\SoundBanks\Default Work Unit\TempBank</ObjectPath>
+			<ShortName>TempBank</ShortName>
+			<Path>TempBank.bnk</Path>
+			<IncludedEvents>
+				<Event Id="1931646578" Name="campfire" ObjectPath="\Events\Default Work Unit\campfire" MaxAttenuation="60." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="723798623" Language="SFX">
+							<ShortName>sfx_campFire.wav</ShortName>
+							<Path>SFX\sfx_campFire_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3232797379" Name="dayStart" ObjectPath="\Events\Default Work Unit\dayStart" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="899691234" Language="SFX">
+							<ShortName>sfx_birdsChirping.wav</ShortName>
+							<Path>SFX\sfx_birdsChirping_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3965959576" Name="digDirtPile" ObjectPath="\Events\Default Work Unit\digDirtPile" DurationType="OneShot" DurationMin="1." DurationMax="1.">
+					<IncludedMemoryFiles>
+						<File Id="846985261" Language="SFX">
+							<ShortName>sfx_digNoise.wav</ShortName>
+							<Path>SFX\sfx_digNoise_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1561107991" Name="flyThroughTree" ObjectPath="\Events\Default Work Unit\flyThroughTree" DurationType="OneShot" DurationMin="1.5" DurationMax="1.5">
+					<IncludedMemoryFiles>
+						<File Id="864831190" Language="SFX">
+							<ShortName>sfx_leafRustle.wav</ShortName>
+							<Path>SFX\sfx_leafRustle_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3372421815" Name="levelStart" ObjectPath="\Events\Default Work Unit\levelStart" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="38375652" Language="SFX">
+							<ShortName>mx_flight.wav</ShortName>
+							<Path>SFX\mx_flight_D79FB2B7.wem</Path>
+						</File>
+						<File Id="154855309" Language="SFX">
+							<ShortName>sfx_constantAmbience.wav</ShortName>
+							<Path>SFX\sfx_constantAmbience_D79FB2B7.wem</Path>
+						</File>
+						<File Id="899691234" Language="SFX">
+							<ShortName>sfx_birdsChirping.wav</ShortName>
+							<Path>SFX\sfx_birdsChirping_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1447920996" Name="menuStart" ObjectPath="\Events\Default Work Unit\menuStart" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="154855309" Language="SFX">
+							<ShortName>sfx_constantAmbience.wav</ShortName>
+							<Path>SFX\sfx_constantAmbience_D79FB2B7.wem</Path>
+						</File>
+						<File Id="950279761" Language="SFX">
+							<ShortName>mx_mainMenu.wav</ShortName>
+							<Path>SFX\mx_mainMenu_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2986941311" Name="nightStart" ObjectPath="\Events\Default Work Unit\nightStart" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="675192118" Language="SFX">
+							<ShortName>sfx_crickets.wav</ShortName>
+							<Path>SFX\sfx_crickets_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>
