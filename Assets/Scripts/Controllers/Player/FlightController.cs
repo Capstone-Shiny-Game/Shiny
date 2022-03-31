@@ -44,12 +44,15 @@ public class FlightController : MonoBehaviour
     private InputController inputController;
     private bool invertY;
 
+    private void Awake()
+    {
+        crow = GetComponent<Crow>();
+        inputController = GetComponentInChildren<InputController>();
+    }
+
     public void Start()
     {
-        //InputSystem.EnableDevice(UnityEngine.InputSystem.Gyroscope.current);
-        crow = GetComponent<Crow>();
         pcontroller = GetComponent<PlayerController>();
-        inputController = GetComponentInChildren<InputController>();
         maxHeight = ceiling.transform.position.y;
         Settings.OnSettingsChanged += OnSettingsChanged;
         OnSettingsChanged(null, null);
