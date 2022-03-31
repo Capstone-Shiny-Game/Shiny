@@ -281,7 +281,7 @@ public class InputController : MonoBehaviour
 
     private void OnFlightEnd(InputAction.CallbackContext context)
     {
-        if (!AccelerometerAvailable || !UseAccelerometer)
+        //if (!AccelerometerAvailable || !UseAccelerometer)
             flightMoveHandler?.Invoke(0.0f, 0.0f);
 
         isMoving = false;
