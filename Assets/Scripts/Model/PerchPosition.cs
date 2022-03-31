@@ -19,8 +19,7 @@ public class PerchPosition : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
-        if (vCam)
+        if (other.CompareTag("Player") && vCam)
             vCam.SetActive(false);
     }
 }
