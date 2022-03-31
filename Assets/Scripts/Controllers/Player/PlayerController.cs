@@ -203,14 +203,11 @@ public class PlayerController : MonoBehaviour, Savable
     private void AttemptToLandPerch(Transform t, Transform lookAt)
     {
         crow.resetModelRotation();
-        Quaternion rotation = transform.rotation;
-        if (lookAt != null)
+        if (lookAt)
             transform.LookAt(lookAt);
         transform.position = t.position;
         walkCam.GetComponent<ModifyOrbitor>().ResetZero();
         SetState(CrowState.Perching);
-
-
     }
     /// <summary>
     /// Drops the first item in the inventory.
