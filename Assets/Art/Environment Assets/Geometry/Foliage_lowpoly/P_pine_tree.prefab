@@ -48,7 +48,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.020049011
+  - screenRelativeHeight: 0.121626385
     fadeTransitionWidth: 0.1
     renderers:
     - renderer: {fileID: 7589969555315862862}
@@ -125,6 +125,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: pine_tree_LOD1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 092a9e7cd74eac64fb71d4b31268ff5d, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 092a9e7cd74eac64fb71d4b31268ff5d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 092a9e7cd74eac64fb71d4b31268ff5d, type: 3}
 --- !u!4 &2112164309202590018 stripped
@@ -188,9 +196,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3e0b114f249123c44914ed86dc26f595, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9a953eb876350e0438a46f2ea5adba9d, type: 2}
     - target: {fileID: 919132149155446097, guid: 3e0b114f249123c44914ed86dc26f595, type: 3}
       propertyPath: m_Name
       value: pine_tree_LOD0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3e0b114f249123c44914ed86dc26f595, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3e0b114f249123c44914ed86dc26f595, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e0b114f249123c44914ed86dc26f595, type: 3}
