@@ -21,14 +21,13 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_witchNPC_twoSidedCloth
-  m_Shader: {fileID: 4800000, guid: 8d2bb70cbf9db8d4da26e15b26e74248, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 8a4b88363af691e4fa63b1b097aa0577, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
-  m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -100,7 +99,7 @@ Material:
     m_Floats:
     - Vector1_51f2e0e02b2a47f48a527934ac8575fd: 0
     - Vector1_bfb4dc00b57945b1a8e9ea8b09ccd7a5: 1
-    - Vector1_d0a99bc407ae4c8397b699f77554b7c0: 0
+    - Vector1_d0a99bc407ae4c8397b699f77554b7c0: 0.59
     - Vector1_e86f06428ef54f1cb1c9035dcfd8c23d: 0.1
     - Vector1_f19e42ddfba24ef79a94237866cd548b: 5
     - _AlphaClip: 0
@@ -135,7 +134,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_8e82145d400249cc8090889f4e474074: {r: 1, g: 1, b: 1, a: 1}
+    - Color_8e82145d400249cc8090889f4e474074: {r: 0.9339623, g: 0.9339623, b: 0.9339623, a: 1}
     - _BaseColor: {r: 0.8627451, g: 0.8627451, b: 0.8627451, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
