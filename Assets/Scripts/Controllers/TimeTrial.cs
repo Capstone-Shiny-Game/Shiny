@@ -136,11 +136,6 @@ public class TimeTrial : MonoBehaviour
         StartCoroutine(DeactivateRingsWithDelay());
         currRing = ringOrder.First.Value;
 
-        //foreach(GameObject ring in rings)
-        //{
-        //    ring.SetActive(false);
-        //}
-
         timerText.gameObject.SetActive(false);
     }
 
@@ -166,8 +161,8 @@ public class TimeTrial : MonoBehaviour
             if (completed || r.Value.activeInHierarchy)
             {
                 r.Value.SetActive(false);
-                r = rPrev;
             }
+            r = rPrev;
         }
     }
 
