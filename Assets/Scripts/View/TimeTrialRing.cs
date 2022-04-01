@@ -16,7 +16,8 @@ public class TimeTrialRing : MonoBehaviour
 
     private void OnEnable()
     {
-        popinParticles.Play();
+        // TODO: figure out why some prefabs aren't able to locate popinParticles
+        //popinParticles.Play();
     }
 
     private void OnTriggerEnter(Collider other)
