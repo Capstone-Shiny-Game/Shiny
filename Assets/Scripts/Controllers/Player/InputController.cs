@@ -121,11 +121,11 @@ public class InputController : MonoBehaviour
 
         PlayerInput.GUIMap.PickupItem.performed += OnPickup;
 
-        if (Accelerometer.current != null)
-        {
-            AccelerometerAvailable = true;
-            InputSystem.EnableDevice(Accelerometer.current);
-        }
+        //if (Accelerometer.current != null)
+        //{
+        //    AccelerometerAvailable = true;
+        //    InputSystem.EnableDevice(Accelerometer.current);
+        //}
 
         Settings.OnSettingsChanged += SettingsChanged;
         SettingsChanged(null, null);
