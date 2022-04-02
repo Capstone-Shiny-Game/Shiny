@@ -121,7 +121,10 @@ public class SwipeBetweenMenus : MonoBehaviour
                 if (menuType == MenuType.saveMenu) {
                     MenuManager.instance.SwitchMenu(MenuType.loadMenu);
                 }
-                // TODO add in quest menus
+                if (menuType == MenuType.questsMenu)//quest menu 
+                {
+                    MenuManager.instance.SwitchMenu(MenuType.questsMenu);
+                }
                 break;
             case Direction.up:
                 //Debug.Log("up "+menuType);
@@ -130,6 +133,14 @@ public class SwipeBetweenMenus : MonoBehaviour
                     MenuManager.instance.SwitchMenu(MenuType.saveMenu);
                 }
                 // TODO add in quest menus
+                if (menuType == MenuType.saveMenu)//load menu returns save menu
+                {
+                    MenuManager.instance.SwitchMenu(MenuType.saveMenu);
+                }
+                if (menuType == MenuType.questsMenu)//quest menu 
+                {
+                    MenuManager.instance.SwitchMenu(MenuType.uncompletedQuestsMenu);
+                }
                 break;
         }
     }
