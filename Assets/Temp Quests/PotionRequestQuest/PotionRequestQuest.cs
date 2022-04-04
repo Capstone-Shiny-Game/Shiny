@@ -16,6 +16,9 @@ public class PotionRequestQuest : MonoBehaviour
     public int ExpectedQuantity;
     public GameObject InteractButton;
 
+    public delegate void Complete();
+    public static event Complete OnQuestCompleteEvent;
+
     private NPCInteraction dialogueSystem;
 
     void Start()
@@ -50,6 +53,7 @@ public class PotionRequestQuest : MonoBehaviour
             if(dialogueSystem.dialogueContainer == CompletionDialogue)
             {
                 QuestManager.CompleteQuest(QuestName);
+                OnQuestCompleteEvent?.Invoke();
                 Destroy(dialogueSystem.npcUI);
                 Destroy(dialogueSystem);
                 Destroy(GetComponent<SphereCollider>());
