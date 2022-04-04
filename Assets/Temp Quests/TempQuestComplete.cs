@@ -9,6 +9,7 @@ public class TempQuestComplete : MonoBehaviour
     void Start()
     {
         FetchQuest.OnQuestCompleteEvent += particles.Play;
+        PotionRequestQuest.OnQuestCompleteEvent += particles.Play;
         TimeTrial.OnTimeTrialCompleteEvent += particles.Play;
     }
 }
