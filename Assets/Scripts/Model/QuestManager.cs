@@ -1,5 +1,5 @@
 // TODO (Ella) : cleanup
-#define VERBOSE
+// #define VERBOSE
 
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
