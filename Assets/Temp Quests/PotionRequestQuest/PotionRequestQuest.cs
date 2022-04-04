@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PotionRequestQuest : MonoBehaviour
 {
+    public string QuestName;
+
     public DSDialogueContainerSO StartDialogue;
     public DSDialogueContainerSO P2Dialogue;
     public DSDialogueContainerSO CompletionDialogue;
@@ -40,12 +42,14 @@ public class PotionRequestQuest : MonoBehaviour
 
     private void startQuest()
     {
+        QuestManager.StartQuest(QuestName);
         //Check if this dialogue end is what would have triggered this event
         if(Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 50)
         {
             InteractButton.SetActive(false);
             if(dialogueSystem.dialogueContainer == CompletionDialogue)
             {
+                QuestManager.CompleteQuest(QuestName);
                 Destroy(dialogueSystem.npcUI);
                 Destroy(dialogueSystem);
                 Destroy(GetComponent<SphereCollider>());
