@@ -5,8 +5,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-// [Flags]
 [Serializable]
 public enum MenuType
 {
@@ -89,10 +87,10 @@ public class MenuManager : MonoBehaviour
             case MenuType.loadMenu:
                 return menuContainers.Find(x => x.menuType == MenuType.saveMenu);
             case MenuType.activeQuestsMenu:
-                // return menuContainers.Find(x => x.menuType.HasFlag(MenuType.activeQuestsMenu));
             case MenuType.completedQuestsMenu:
-                // return menuContainers.Find(x => x.menuType.HasFlag(MenuType.completedQuestsMenu));
-                return menuContainers.Find(x => x.menuType == MenuType.activeQuestsMenu);
+                QuestMenuContainer container = menuContainers.Find(x => x.menuType == MenuType.activeQuestsMenu) as QuestMenuContainer;
+                container.subMenuType = menuType;
+                return container;
             default:
                 return menuContainers.Find(x => x.menuType == menuType);
         }
