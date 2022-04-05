@@ -48,7 +48,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.022221368
+  - screenRelativeHeight: 0.2437918
     fadeTransitionWidth: 0.1
     renderers:
     - renderer: {fileID: 9128676197197876529}
@@ -188,6 +188,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 84aec019cb0094047b47a1007b458e78, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9a953eb876350e0438a46f2ea5adba9d, type: 2}
     - target: {fileID: 919132149155446097, guid: 84aec019cb0094047b47a1007b458e78, type: 3}
       propertyPath: m_Name
       value: maple_tree_LOD0
