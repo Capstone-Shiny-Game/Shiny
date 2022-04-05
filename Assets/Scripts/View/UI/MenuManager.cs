@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-
+// [Flags]
 [Serializable]
 public enum MenuType
 {
@@ -16,8 +16,8 @@ public enum MenuType
     loadMenu,
     settingsMenu,
     flightui,
-    questsMenu,
-    uncompletedQuestsMenu,
+    completedQuestsMenu,
+    activeQuestsMenu,
     wait,
 }
 public class MenuManager : MonoBehaviour
@@ -85,10 +85,14 @@ public class MenuManager : MonoBehaviour
     {
         switch (menuType)
         {
-            case MenuType.uncompletedQuestsMenu:
-                return menuContainers.Find(x => x.menuType == MenuType.questsMenu);
+            case MenuType.saveMenu:
             case MenuType.loadMenu:
                 return menuContainers.Find(x => x.menuType == MenuType.saveMenu);
+            case MenuType.activeQuestsMenu:
+                // return menuContainers.Find(x => x.menuType.HasFlag(MenuType.activeQuestsMenu));
+            case MenuType.completedQuestsMenu:
+                // return menuContainers.Find(x => x.menuType.HasFlag(MenuType.completedQuestsMenu));
+                return menuContainers.Find(x => x.menuType == MenuType.activeQuestsMenu);
             default:
                 return menuContainers.Find(x => x.menuType == menuType);
         }
