@@ -24,13 +24,13 @@ public class QuestMenuContainer : MenuContainer
                 questMenu.SetActive(true);
                 activeQuestMenu.SetActive(false);
                 completedQuestMenu.SetActive(true);
-                completedQuestText.text = "Active\n" + string.Join("\n", QuestManager.CompletedQuests.Select(quest => $"[ ] {quest}"));
+                completedQuestText.text = "Completed\n" + string.Join("\n", QuestManager.CompletedQuests.Select(quest => $"[x] {quest}"));
                 break;
             case MenuType.activeQuestsMenu:
                 questMenu.SetActive(true);
                 activeQuestMenu.SetActive(true);
                 completedQuestMenu.SetActive(false);
-                activeQuestText.text = "Completed\n" + string.Join("\n", QuestManager.ActiveQuests.Select(quest => $"[ ] {quest}"));
+                activeQuestText.text = "Active\n" + string.Join("\n", QuestManager.ActiveQuests.Select(quest => $"[ ] {quest}"));
                 break;
             default:
                 Debug.Log("Quest menu container was passed incorrect menu type");
