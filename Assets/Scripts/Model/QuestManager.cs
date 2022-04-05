@@ -47,7 +47,7 @@ public static class QuestManager
 
     }
 
-    private static string ExpandName(string quest) => Regex.Replace(quest, "([a-z])([A-Z])", "$1 $2");
+    private static string ExpandName(string quest) => Regex.Replace(quest, "([a-z])([A-Z0-9])", "$1 $2");
 
 #if VERBOSE
     private static void PrintDebugInfo()
