@@ -3,7 +3,22 @@ guid: 6d2b027e336b3d940a257baddf635a8c
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_BaseWood
+    second: {fileID: 2100000, guid: 187af3cef41a941458830dc721b37766, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_DarkWood
+    second: {fileID: 2100000, guid: 1b132d9e1d620ae4181a06558f801444, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_OldManStall_Top
+    second: {fileID: 2100000, guid: 48413b54f58960047bef60b8feb98529, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -85,7 +100,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.35
+    globalScale: 35
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
