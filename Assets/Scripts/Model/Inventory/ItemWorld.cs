@@ -14,20 +14,6 @@ public class ItemWorld : MonoBehaviour
     {
         transform.position = transform.FindGround(1);
     }
-    
-    //TODO REMOVE this it is depreciated
-    [Obsolete("Wyatt says this is deprecated")]
-    public static ItemWorld SpawnItemWorld(GameObject prefab, Vector3 position, bool SpawnOnGround = true)
-    {
-        Transform transform = Instantiate(prefab, position, Quaternion.identity).transform;
-        if (SpawnOnGround)
-        {
-            PutItemOnGround(transform, position);
-        }
-        ItemWorld itemWorld = transform.GetComponent<ItemWorld>();
-        itemWorld.item = new Item(itemWorld.item.itemType, itemWorld.item.amount);
-        return itemWorld;
-    }
 
     public static ItemWorld SpawnItemWorld(Item itemSpawned, Vector3 position, bool SpawnOnGround = false)
     {

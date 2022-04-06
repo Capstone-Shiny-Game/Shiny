@@ -121,7 +121,10 @@ public class SwipeBetweenMenus : MonoBehaviour
                 if (menuType == MenuType.saveMenu) {
                     MenuManager.instance.SwitchMenu(MenuType.loadMenu);
                 }
-                // TODO add in quest menus
+                if (menuType == MenuType.completedQuestsMenu)//quest menu 
+                {
+                    MenuManager.instance.SwitchMenu(MenuType.completedQuestsMenu);
+                }
                 break;
             case Direction.up:
                 //Debug.Log("up "+menuType);
@@ -130,6 +133,14 @@ public class SwipeBetweenMenus : MonoBehaviour
                     MenuManager.instance.SwitchMenu(MenuType.saveMenu);
                 }
                 // TODO add in quest menus
+                if (menuType == MenuType.saveMenu)//load menu returns save menu
+                {
+                    MenuManager.instance.SwitchMenu(MenuType.saveMenu);
+                }
+                if (menuType == MenuType.completedQuestsMenu)//quest menu 
+                {
+                    MenuManager.instance.SwitchMenu(MenuType.activeQuestsMenu);
+                }
                 break;
         }
     }
@@ -167,9 +178,9 @@ public class SwipeBetweenMenus : MonoBehaviour
             case MenuType.saveMenu:
                 index = Mathf.Max(0, LeftAndRightMenus.IndexOf(MenuType.saveMenu), LeftAndRightMenus.IndexOf(MenuType.loadMenu));
                 return;
-            case MenuType.questsMenu:
-            case MenuType.uncompletedQuestsMenu:
-                index = Mathf.Max(0, LeftAndRightMenus.IndexOf(MenuType.questsMenu), LeftAndRightMenus.IndexOf(MenuType.uncompletedQuestsMenu));
+            case MenuType.completedQuestsMenu:
+            case MenuType.activeQuestsMenu:
+                index = Mathf.Max(0, LeftAndRightMenus.IndexOf(MenuType.completedQuestsMenu), LeftAndRightMenus.IndexOf(MenuType.activeQuestsMenu));
                 return;
             default:
                 index = Mathf.Max(0, LeftAndRightMenus.IndexOf(menuType));

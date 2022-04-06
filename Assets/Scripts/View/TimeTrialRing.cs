@@ -9,7 +9,7 @@ public class TimeTrialRing : MonoBehaviour
 
     private ParticleSystem popinParticles;
 
-    private void Start()
+    private void Awake()
     {
         popinParticles = GetComponentInChildren<ParticleSystem>();
     }
@@ -17,7 +17,7 @@ public class TimeTrialRing : MonoBehaviour
     private void OnEnable()
     {
         // TODO: figure out why some prefabs aren't able to locate popinParticles
-        //popinParticles.Play();
+        popinParticles.Play();
     }
 
     private void OnTriggerEnter(Collider other)

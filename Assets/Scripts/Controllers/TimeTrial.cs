@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class TimeTrial : MonoBehaviour
 {
+    public string Name;
+
     public List<GameObject> rings;
     public float timeInterval;
     public List<string> activeDaysOfWeek;
@@ -38,6 +40,7 @@ public class TimeTrial : MonoBehaviour
     {
         if (!completed)
         {
+            QuestManager.StartQuest(Name);
             ActivateRing(ringOrder.First.Value);
             startTimePeriod = StartCoroutine(StartTimePeriod());
         }
@@ -82,6 +85,7 @@ public class TimeTrial : MonoBehaviour
             {
                 // win state
                 completed = true;
+                QuestManager.CompleteQuest(Name);
                 StopCoroutine(startTimePeriod);
                 StartCoroutine(DisplayWinText());
                 // cleanup

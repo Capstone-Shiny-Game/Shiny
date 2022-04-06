@@ -50,7 +50,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.023728866
+  - screenRelativeHeight: 0.249
     fadeTransitionWidth: 0.1
     renderers:
     - renderer: {fileID: 4157427844449555493}
@@ -137,6 +137,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: willow_Trunk1_LOD1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7d7e0665696d07b408bddaab7fcefb3f, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7d7e0665696d07b408bddaab7fcefb3f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d7e0665696d07b408bddaab7fcefb3f, type: 3}
 --- !u!4 &933462575939842835 stripped
@@ -211,6 +219,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 2992b6eb0cad6314d826a2ea52271354, type: 3}
       propertyPath: m_Name
       value: willow_Trunk1_LOD0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2992b6eb0cad6314d826a2ea52271354, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2992b6eb0cad6314d826a2ea52271354, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2992b6eb0cad6314d826a2ea52271354, type: 3}
@@ -287,6 +303,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: willow_G_top_LOD1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 20af0698b68ae7349907b48aee792416, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20af0698b68ae7349907b48aee792416, type: 3}
 --- !u!4 &4525584497098620247 stripped
@@ -350,9 +370,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0a3a3f5cd35c7944ba1e2da682efad54, type: 3}
+      propertyPath: m_ReceiveGI
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0a3a3f5cd35c7944ba1e2da682efad54, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9a953eb876350e0438a46f2ea5adba9d, type: 2}
     - target: {fileID: 919132149155446097, guid: 0a3a3f5cd35c7944ba1e2da682efad54, type: 3}
       propertyPath: m_Name
       value: willow_G_top_LOD0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0a3a3f5cd35c7944ba1e2da682efad54, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a3a3f5cd35c7944ba1e2da682efad54, type: 3}

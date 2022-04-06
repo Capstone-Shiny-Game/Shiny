@@ -50,7 +50,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.017318454
+  - screenRelativeHeight: 0.2335399
     fadeTransitionWidth: 0.1
     renderers:
     - renderer: {fileID: 8500959994324011853}
@@ -330,6 +330,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: d1c28c51bbe794647a3611dc822cf643, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9a953eb876350e0438a46f2ea5adba9d, type: 2}
     - target: {fileID: 919132149155446097, guid: d1c28c51bbe794647a3611dc822cf643, type: 3}
       propertyPath: m_Name
       value: willow_P_top_LOD0

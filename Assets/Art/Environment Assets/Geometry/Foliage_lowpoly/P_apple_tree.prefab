@@ -112,7 +112,7 @@ LODGroup:
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
   m_LODs:
-  - screenRelativeHeight: 0.005378737
+  - screenRelativeHeight: 0.2758633
     fadeTransitionWidth: 0.1
     renderers:
     - renderer: {fileID: 1524513764008307450}
@@ -185,9 +185,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 6d8318bc3d1e0e8498f984e7b9a473d8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9a953eb876350e0438a46f2ea5adba9d, type: 2}
     - target: {fileID: 919132149155446097, guid: 6d8318bc3d1e0e8498f984e7b9a473d8, type: 3}
       propertyPath: m_Name
       value: apple_treelod0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6d8318bc3d1e0e8498f984e7b9a473d8, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6d8318bc3d1e0e8498f984e7b9a473d8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d8318bc3d1e0e8498f984e7b9a473d8, type: 3}
@@ -259,6 +271,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3fd809a53b855e44eb7fbe03f710ea87, type: 3}
       propertyPath: m_Name
       value: apple_treelod1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3fd809a53b855e44eb7fbe03f710ea87, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3fd809a53b855e44eb7fbe03f710ea87, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fd809a53b855e44eb7fbe03f710ea87, type: 3}

@@ -188,6 +188,7 @@ MonoBehaviour:
   npcUI: {fileID: 4896112876595263201}
   dialogueContainer: {fileID: 0}
   blackOutSquare: {fileID: 0}
+  nearestPerch: {fileID: 0}
 --- !u!114 &163416950075787874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,6 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f52781fe73026b44aeaf51210ee5c65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  QuestName: PotionRequest
   StartDialogue: {fileID: 11400000, guid: 8e46a24c32737154880b5abf47ff7710, type: 2}
   P2Dialogue: {fileID: 11400000, guid: 76a1ea505a910d14ebb3fd079bf55812, type: 2}
   CompletionDialogue: {fileID: 11400000, guid: c7800c2020c8cc24fab3d70d512cd9e8, type: 2}

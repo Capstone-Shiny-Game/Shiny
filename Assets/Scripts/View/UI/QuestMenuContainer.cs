@@ -1,11 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using System.Linq;
 
 public class QuestMenuContainer : MenuContainer
 {
     public GameObject questMenu;
-    public MenuType menuType2 = MenuType.uncompletedQuestsMenu;
+    public GameObject activeQuestMenu;
+    public GameObject completedQuestMenu;
+    public TextMeshProUGUI activeQuestText;
+    public TextMeshProUGUI completedQuestText;
+
+    public MenuType subMenuType = MenuType.activeQuestsMenu;
     public override void AfterEnableSetup(MenuType currentMenuType)
     {
         base.AfterEnableSetup(currentMenuType);
@@ -13,15 +18,19 @@ public class QuestMenuContainer : MenuContainer
             Debug.Log("quest menu container missing reference to its self");
             return;
         }
-        switch (menuType)//Set menu options for showing either completed or uncompleted quests
+        switch (subMenuType)//Set menu options for showing either completed or uncompleted quests
         {
-            case MenuType.questsMenu:
-                Debug.Log("showing completed quests");
-                //TODO finish this
+            case MenuType.completedQuestsMenu:
+                questMenu.SetActive(true);
+                activeQuestMenu.SetActive(false);
+                completedQuestMenu.SetActive(true);
+                completedQuestText.text = "Completed\n" + string.Join("\n", QuestManager.CompletedQuests.Select(quest => $"[x] {quest}"));
                 break;
-            case MenuType.uncompletedQuestsMenu:
-                Debug.Log("showing uncompleted quests");
-                //TODO finish this
+            case MenuType.activeQuestsMenu:
+                questMenu.SetActive(true);
+                activeQuestMenu.SetActive(true);
+                completedQuestMenu.SetActive(false);
+                activeQuestText.text = "Active\n" + string.Join("\n", QuestManager.ActiveQuests.Select(quest => $"[ ] {quest}"));
                 break;
             default:
                 Debug.Log("Quest menu container was passed incorrect menu type");
