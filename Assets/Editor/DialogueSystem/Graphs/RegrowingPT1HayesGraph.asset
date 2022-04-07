@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: RegrowingPT1HayesGraph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: RegrowingPT1Hayes
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: 11686dd2-3093-4d17-bc12-c8511ddce036
+    <Name>k__BackingField: Hayes1
+    <Text>k__BackingField: "Nox? That you? Could really use your help\u2026. Some
+      of my land went bad. Real bad. Nothin\u2019ll grow there."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 40b5ff57-e8ad-419b-a77e-d3b60f497d86
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 896.8, y: 154.4}
+  - <ID>k__BackingField: 40b5ff57-e8ad-419b-a77e-d3b60f497d86
+    <Name>k__BackingField: Hayes2
+    <Text>k__BackingField: "Gonna need some growth serum. To treat the land. Uh\u2026
+      any chance you could\u2026 get some for me? Please?"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 6fded2ce-8114-48be-a91a-94c926273fec
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1574.4, y: 154.4}
+  - <ID>k__BackingField: 6fded2ce-8114-48be-a91a-94c926273fec
+    <Name>k__BackingField: Hayes3
+    <Text>k__BackingField: "Thank you\u2026 I don\u2019t wanna rush you\u2026 but
+      if you could bring it quickly, I\u2019d really \u2018ppreciate it. I think
+      the potion needs mint\u2026 and honey."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 2247.2, y: 154.4}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - Hayes1
+  - Hayes2
+  - Hayes3
+  <OldGroupedNodeNames>k__BackingField:
+    list: []

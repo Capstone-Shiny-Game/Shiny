@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: ASpecialPresentPT1HayesGraph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: ASpecialPresentPT1Hayes
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: 83546ee6-9977-4192-b21f-8ca8b54c6495
+    <Name>k__BackingField: Hayes1
+    <Text>k__BackingField: "Nox\u2026 have a big favor to ask of you\u2026. Was thinkin\u2019
+      of given\u2019... someone\u2026 a present. Makin\u2019 trail mix\u2026 for
+      them\u2026"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: aa427c2e-ae85-4bd7-b345-064c58fee7bb
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1257.6, y: 11.200001}
+  - <ID>k__BackingField: aa427c2e-ae85-4bd7-b345-064c58fee7bb
+    <Name>k__BackingField: Hayes2
+    <Text>k__BackingField: " I\u2019ve got everything but grapes. Was gonna\u2026
+      make my own raisins with \u2018em. Think you could get some? Some grapes, I
+      mean?"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 5ae02545-2552-4b90-9f91-3ecc89e121af
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1942.4, y: 10.400002}
+  - <ID>k__BackingField: 5ae02545-2552-4b90-9f91-3ecc89e121af
+    <Name>k__BackingField: Hayes3
+    <Text>k__BackingField: "Thank you, Nox. Bring \u2018em to me as soon as you get
+      \u2018em. Takes a while to make good raisins."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 2620.8, y: 9.6}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - Hayes1
+  - Hayes2
+  - Hayes3
+  <OldGroupedNodeNames>k__BackingField:
+    list: []

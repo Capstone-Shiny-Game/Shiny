@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: MoreMushroomsPT1HayesGraph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: MoreMushroomsPT1Hayes
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: 42eac701-3ee5-45d1-8076-edaa30b06a33
+    <Name>k__BackingField: Hayes1
+    <Text>k__BackingField: "Hey, Nox\u2026. Well, y\u2019know how I grow lotsa plants?
+      I was thinkin\u2019... maybe I should grow some mushrooms too. Adds more variety\u2026folks
+      \u2018round here love \u2018em."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 595db0f6-de4a-4616-a1c1-654f04fabf80
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1576.8, y: -104}
+  - <ID>k__BackingField: 595db0f6-de4a-4616-a1c1-654f04fabf80
+    <Name>k__BackingField: Hayes2
+    <Text>k__BackingField: Think you could find a mushroom for me? All I need is
+      one. Then I can grow more.
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 4878e644-9034-4969-a04e-c07464d1a322
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 2254.4, y: -103.2}
+  - <ID>k__BackingField: 4878e644-9034-4969-a04e-c07464d1a322
+    <Name>k__BackingField: Hayes3
+    <Text>k__BackingField: "You\u2019re a real nice bird, Nox. Fly it to me when
+      you have it."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 2836.8, y: -103.2}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - Hayes1
+  - Hayes2
+  - Hayes3
+  <OldGroupedNodeNames>k__BackingField:
+    list: []

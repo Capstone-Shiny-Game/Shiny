@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: WineAndDinePT1HazelGraph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: WineAndDinePT1Hazel
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: f4c751e4-6768-4eca-b715-133f1cb0c9b5
+    <Name>k__BackingField: Hazel1
+    <Text>k__BackingField: "I really need your help, Nox! I\u2019ve got quite the
+      emergency on my hands. I\u2019ve been organizing a dinner date for Hayes and
+      Charlie and I just realized that I\u2019m out of wine."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 1b0e02d9-e1ed-4cde-b0d2-137982e99c46
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 2335.2, y: -340.8}
+  - <ID>k__BackingField: 1b0e02d9-e1ed-4cde-b0d2-137982e99c46
+    <Name>k__BackingField: Hazel2
+    <Text>k__BackingField: "They can\u2019t have a proper dinner date without any
+      good wine! Could you please find a bottle for me? It would mean a lot to me
+      and Hayes and Charlie would appreciate it too."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 7bb3a92c-03b0-434a-84da-73ecad32def0
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 3017.6, y: -341.59998}
+  - <ID>k__BackingField: 7bb3a92c-03b0-434a-84da-73ecad32def0
+    <Name>k__BackingField: Hazel3
+    <Text>k__BackingField: "Thank you, Nox. Please be quick about it! I can\u2019t
+      postpone their date!\r"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 3713.6, y: -339.19998}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - Hazel1
+  - Hazel2
+  - Hazel3
+  <OldGroupedNodeNames>k__BackingField:
+    list: []

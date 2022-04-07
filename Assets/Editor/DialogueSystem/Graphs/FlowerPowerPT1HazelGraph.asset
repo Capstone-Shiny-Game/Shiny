@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: FlowerPowerPT1HazelGraph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: FlowerPowerPT1Hazel
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: 93592480-ce19-4532-a0d9-af7d8ceabfe5
+    <Name>k__BackingField: Hazel1
+    <Text>k__BackingField: 'Nox, perfect timing! I was just thinking that the bakery
+      looks a bit drab. I wanted to spruce things up a bit with some fresh flowers. '
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: dde1264a-90ac-464a-88cc-c074e2c0b546
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1552, y: -188}
+  - <ID>k__BackingField: dde1264a-90ac-464a-88cc-c074e2c0b546
+    <Name>k__BackingField: Hazel2
+    <Text>k__BackingField: Could you fly around and collect some for me?
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: fd6d9b08-8e46-4eba-83e6-0427708d653b
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 2240, y: -188.8}
+  - <ID>k__BackingField: fd6d9b08-8e46-4eba-83e6-0427708d653b
+    <Name>k__BackingField: Hazel3
+    <Text>k__BackingField: "You\u2019re a real treasure, Nox. There\u2019s a bunch
+      of flowers growing around Smallhaven. Any of \t\tthem will do!"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 2630.4, y: -189.6}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - Hazel1
+  - Hazel2
+  - Hazel3
+  <OldGroupedNodeNames>k__BackingField:
+    list: []

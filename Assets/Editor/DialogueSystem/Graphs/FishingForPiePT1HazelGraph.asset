@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: FishingForPiePT1HazelGraph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: FishingForPiePT1Hazel
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: a34e983b-59d6-47bf-872b-05eef3a6ba2a
+    <Name>k__BackingField: Hazel1
+    <Text>k__BackingField: "Nox, I have a job for you! I need to make a fish pie,
+      but I don\u2019t keep any fish in stock."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: e65ea744-21ea-4c44-bf56-6fc4da823ab1
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1392, y: -98.399994}
+  - <ID>k__BackingField: e65ea744-21ea-4c44-bf56-6fc4da823ab1
+    <Name>k__BackingField: Hazel2
+    <Text>k__BackingField: Could you fly down to the river and get a fish for me?
+      Just one will be enough.
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 3d66e8e5-4d13-4cf3-8e9f-131846d43829
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 2088.8, y: -98.399994}
+  - <ID>k__BackingField: 3d66e8e5-4d13-4cf3-8e9f-131846d43829
+    <Name>k__BackingField: Hazel3
+    <Text>k__BackingField: "Bring the fish to me once you\u2019ve got one. I\u2019ll
+      be here!"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 2667.2, y: -96.8}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - Hazel1
+  - Hazel2
+  - Hazel3
+  <OldGroupedNodeNames>k__BackingField:
+    list: []
