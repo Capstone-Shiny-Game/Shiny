@@ -106,6 +106,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crowPerchPos: {fileID: 7709015853343804469}
+  lookAt: {fileID: 0}
+  vCam: {fileID: 0}
 --- !u!65 &71948904
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -212,6 +214,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 035b4dca5a9854a4b94667070d66f3dd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1b132d9e1d620ae4181a06558f801444, type: 2}
     - target: {fileID: 919132149155446097, guid: 035b4dca5a9854a4b94667070d66f3dd, type: 3}
       propertyPath: m_Name
       value: perch
