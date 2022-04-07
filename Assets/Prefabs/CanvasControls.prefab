@@ -1765,8 +1765,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 72
+  m_fontSizeBase: 72
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3979,7 +3979,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuType: 6
   questMenu: {fileID: 0}
-  menuType2: 7
+  activeQuestMenu: {fileID: 0}
+  completedQuestMenu: {fileID: 0}
+  activeQuestText: {fileID: 0}
+  completedQuestText: {fileID: 0}
+  subMenuType: 7
 --- !u!114 &8412629687743921775
 MonoBehaviour:
   m_ObjectHideFlags: 0

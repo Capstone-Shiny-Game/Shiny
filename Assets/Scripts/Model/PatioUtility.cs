@@ -16,7 +16,9 @@ public static class PatioUtility
         [Description("Toy Blocks")]
         BLOCKS,
         [Description("Toy Bucket")]
-        BUCKET
+        BUCKET,
+        [Description("Bird Bath")]
+        FOUNTAIN
     }
     public enum Hat
     {
