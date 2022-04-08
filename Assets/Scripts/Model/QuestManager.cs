@@ -45,7 +45,7 @@ public static class QuestManager
             descriptions[quest] = ExpandName(quest);
             if (!string.IsNullOrEmpty(npc))
             {
-                descriptions[quest] += $"\n  ({npc} needs {string.Join(", ", items.Select(item => ExpandName(TrimName(item))))}";
+                descriptions[quest] += $"\n  ({npc} needs {string.Join(", ", items.Select(item => ExpandName(TrimName(item))))})";
             }
         }
     }
