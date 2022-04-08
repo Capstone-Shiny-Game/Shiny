@@ -200,17 +200,6 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                 },
                 {
                     ""name"": """",
-                    ""id"": ""cf950a29-0cb3-42d7-84e9-64b798516eca"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ResetLook"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""3d9d728c-17db-499f-ba46-8257e67848d4"",
                     ""path"": ""<Gamepad>/rightStickPress"",
                     ""interactions"": """",
