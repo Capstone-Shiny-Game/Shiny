@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 public static class QuestManager
@@ -45,7 +44,7 @@ public static class QuestManager
             descriptions[quest] = ExpandName(quest);
             if (!string.IsNullOrEmpty(npc))
             {
-                descriptions[quest] += $"\n  ({npc} needs {string.Join(", ", items.Select(item => ExpandName(TrimName(item))))})";
+                descriptions[quest] += $"\n  ({npc} needs {string.Join(", ", items.Select(ExpandAndTrimName))})";
             }
         }
     }
@@ -61,5 +60,5 @@ public static class QuestManager
 
     private static string ExpandName(string name) => Regex.Replace(name, "([a-z])([A-Z0-9])", "$1 $2");
 
-    private static string TrimName(string name) => name.Substring(0, name.IndexOf('_'));
+    private static string ExpandAndTrimName(string name) => ExpandName(name.Substring(0, name.IndexOf('_')));
 }
