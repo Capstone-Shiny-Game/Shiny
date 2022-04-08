@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class FetchQuest : MonoBehaviour
@@ -99,7 +100,7 @@ public class FetchQuest : MonoBehaviour
         if(Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 50)
         {
             InteractButton.SetActive(false);
-            QuestManager.StartQuest(quests[currentQuest].name);
+            QuestManager.StartQuest(quests[currentQuest].name, dialogueSystem.characterName, quests[currentQuest].ExpectedDeliveries.Select(x => x.name));
             if(dialogueSystem.dialogueContainer == CompletionDialogue)
             {
                 QuestManager.CompleteQuest(quests[currentQuest].name);

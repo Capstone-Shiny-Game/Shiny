@@ -1,21 +1,17 @@
-// TODO (Ella) : cleanup
-// #define VERBOSE
-
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
-
-#if VERBOSE
-using UnityEngine;
-#endif
 
 public static class QuestManager
 {
     private static readonly List<string> active = new List<string>();
     private static readonly List<string> completed = new List<string>();
+    private static readonly Dictionary<string, string> descriptions = new Dictionary<string, string>();
 
-    public static IEnumerable<string> ActiveQuests => active;
+    public static IEnumerable<string> ActiveQuests => active.Select(quest => descriptions[quest]);
 
-    public static IEnumerable<string> CompletedQuests => completed;
+    public static IEnumerable<string> CompletedQuests => completed.Select(quest => descriptions[quest]);
 
     public static string OldestActiveQuest
     {
@@ -23,7 +19,7 @@ public static class QuestManager
         {
             if (active.Count > 0)
             {
-                return active[0];
+                return ExpandName(active[0]);
             }
             else if (completed.Count > 0)
             {
@@ -38,54 +34,32 @@ public static class QuestManager
 
     public static void StartQuest(string quest)
     {
-        quest = ExpandName(quest);
+        StartQuest(quest, null, null);
+    }
+
+    public static void StartQuest(string quest, string npc, IEnumerable<string> items)
+    {
         if (!completed.Contains(quest) && !active.Contains(quest))
         {
             active.Add(quest);
+            descriptions[quest] = ExpandName(quest);
+            if (!string.IsNullOrEmpty(npc))
+            {
+                descriptions[quest] += $"\n  ({npc} needs {string.Join(", ", items.Select(item => ExpandName(TrimName(item))))}";
+            }
         }
-
-#if VERBOSE
-        Debug.Log($"Started Quest: {quest}");
-        PrintDebugInfo();
-#endif
-
     }
 
     public static void CompleteQuest(string quest)
     {
-        quest = ExpandName(quest);
         active.Remove(quest);
         if (!completed.Contains(quest))
         {
             completed.Add(quest);
         }
-
-#if VERBOSE
-        Debug.Log($"Completed Quest: {quest}");
-        PrintDebugInfo();
-#endif
-
     }
 
-    private static string ExpandName(string quest) => Regex.Replace(quest, "([a-z])([A-Z0-9])", "$1 $2");
+    private static string ExpandName(string name) => Regex.Replace(name, "([a-z])([A-Z0-9])", "$1 $2");
 
-#if VERBOSE
-    private static void PrintDebugInfo()
-    {
-        Debug.Log("Oldest active quest (for game save):");
-        Debug.Log($"-- [ ] {OldestActiveQuest}");
-        Debug.Log("====");
-
-        Debug.Log($"{active.Count} active quests:");
-        foreach (string quest in active)
-            Debug.Log($"-- [ ] {quest}");
-        Debug.Log("====");
-
-        Debug.Log($"{completed.Count} completed quests:");
-        foreach (string quest in completed)
-            Debug.Log($"-- [X] {quest}");
-        Debug.Log("====");
-    }
-#endif
-
+    private static string TrimName(string name) => name.Substring(0, name.IndexOf('_'));
 }
