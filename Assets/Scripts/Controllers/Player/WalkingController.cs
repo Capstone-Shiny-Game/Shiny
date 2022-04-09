@@ -36,7 +36,7 @@ public class WalkingController : MonoBehaviour
         SubstateChanged?.Invoke(PlayerController.CrowState.Idle);
         PlayerInput.FlightMap.Enable();
         //disables all flying animations(takeoff, glide, fly)
-        
+
     }
 
     void OnDisable()

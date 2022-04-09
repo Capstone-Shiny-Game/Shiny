@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class FlightController : MonoBehaviour
 {
+    float rotateSensitivity = 1.20f;
     float pitchSensitivity = 50f;
-    float tiltSensitivity = 80f;
+    float tiltSensitivity = 100f;
     public float speed = 10.0f;
     public float brake = 0.0f;
     public float glideAngleThreshold = 0.7f;
@@ -43,7 +44,9 @@ public class FlightController : MonoBehaviour
     private InputController inputController;
     private bool invertY;
     // Total time defined by actions in public IEnumerator Boost()
+    [HideInInspector]
     public float boostDuration = 5.35f;
+    [HideInInspector]
     public float boostStartTime = -1;
 
 
@@ -125,7 +128,7 @@ public class FlightController : MonoBehaviour
         }
         //else if (collision.gameObject.CompareTag("Perch"))
         //{
-        //    LandedPerch?.Invoke(collision.gameObject.GetComponent<PerchPosition>().crowPerchPos);
+        //      Perch?.Invoke(collision.gameObject.GetComponent<PerchPosition>().crowPerchPos);
         //}
         else if (collision.gameObject.CompareTag("Ring") && !isBoost)
         {
@@ -253,11 +256,13 @@ public class FlightController : MonoBehaviour
         float turn = moveX * tiltSensitivity / 1.5f * Time.deltaTime;
         float pitch = -moveY * pitchSensitivity * Time.deltaTime;
         float tilt = -moveX * tiltSensitivity * .25f * Time.deltaTime;
+        // TODO: Maybe come back and fix this to have reset-like speeds when turning in the opposite direction
+        // For example, right now if you hold left and then switch to right, the right turn is very slow
 
         //transform.Rotate(new Vector3(pitch, turn, 0.0f));
         crow.Model.transform.parent.Rotate(0f, 0f, tilt, Space.Self);
 
-        transform.Rotate(0f, turn, 0f, Space.World);
+        transform.Rotate(0f, turn * rotateSensitivity, 0f, Space.World);
 
         transform.Rotate(pitch, 0f, 0f, Space.Self);
 
@@ -278,7 +283,7 @@ public class FlightController : MonoBehaviour
             if (startZ < 0)
             {
                 startZ = Time.time;
-                smoothTilt = Math.Abs(Math.Min(crow.Model.transform.rotation.z, 360f - crow.Model.transform.rotation.z)) * 15f;
+                smoothTilt = Math.Abs(Math.Min(crow.Model.transform.rotation.z, 360f - crow.Model.transform.rotation.z)) * 25f;
             }
             float fracComplete = (Time.time - startZ) / smoothTilt;
             DampenAngleToZero(false, false, true, fracComplete, crow.Model.transform.rotation);
@@ -414,7 +419,7 @@ public class FlightController : MonoBehaviour
     {
         LeftTrail.SetActive(false);
         RightTrail.SetActive(false);
-        crow.Model.transform.localPosition = new Vector3(0.0f,-.51f, 0.0f);
+        crow.Model.transform.localPosition = new Vector3(0.0f, -.51f, 0.0f);
     }
     private void OnEnable()
     {
