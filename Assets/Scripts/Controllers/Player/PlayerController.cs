@@ -28,10 +28,11 @@ public class PlayerController : MonoBehaviour, Savable
     private GameObject povCam;
 
     private Crow crow;
-    public GameObject bFlapBoost;
-    public GameObject bFlapTakeOff;
-    public GameObject bLand;
-    public GameObject bPov;
+    public GameObject buttonFlapBoost;
+    public GameObject buttonFlapTakeOff;
+    public GameObject buttonLand;
+    public GameObject buttonPov;
+    public GameObject buttonBrake;
 
 
     // public GameObject NPCUI;
@@ -91,17 +92,19 @@ public class PlayerController : MonoBehaviour, Savable
     {
         if (state == CrowState.Walking || state == CrowState.Idle)
         {
-            bFlapBoost.SetActive(false);
-            bFlapTakeOff.SetActive(true);
-            bLand.SetActive(false);
-            bPov.SetActive(true);
+            buttonFlapBoost.SetActive(false);
+            buttonFlapTakeOff.SetActive(true);
+            buttonLand.SetActive(false);
+            // buttonBrake.SetActive(false);
+            buttonPov.SetActive(true);
         }
         else if (state == CrowState.Flying || state == CrowState.Gliding)
         {
-            bFlapBoost.SetActive(true);
-            bFlapTakeOff.SetActive(false);
-            bLand.SetActive(true);
-            bPov.SetActive(false);
+            buttonFlapBoost.SetActive(true);
+            buttonFlapTakeOff.SetActive(false);
+            buttonLand.SetActive(true);
+            // buttonBrake.SetActive(true);
+            buttonPov.SetActive(false);
         }
     }
     //turns off all walking animation
@@ -255,7 +258,7 @@ public class PlayerController : MonoBehaviour, Savable
     {
         //SetState(CrowState.Flying, 2.0f);
         if (state == CrowState.Walking || state == CrowState.Idle)
-            takeOffLerp();
+            TakeOffLerp();
         else if (state == CrowState.Flying || state == CrowState.Gliding)
             AttemptToLand(true);
     }
@@ -329,7 +332,7 @@ public class PlayerController : MonoBehaviour, Savable
         this.inventory = inventory;
     }
 
-    private void takeOff()
+    private void TakeOff()
     {
         //increment the take off upwards
         //to do, figure that out
@@ -337,7 +340,7 @@ public class PlayerController : MonoBehaviour, Savable
         float velocity = 400f;
         rb.velocity += new Vector3(0, velocity, 0) * Time.deltaTime;
     }
-    private void takeOffLerp()
+    private void TakeOffLerp()
     {
         //increment the take off upwards
         //to do, figure that out

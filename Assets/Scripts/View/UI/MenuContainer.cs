@@ -20,6 +20,6 @@ public class MenuContainer : MonoBehaviour
     /// </summary>
     /// <param name="currentMenuType"></param>
     public virtual void AfterEnableSetup(MenuType currentMenuType) {
-        
+
     }
 }

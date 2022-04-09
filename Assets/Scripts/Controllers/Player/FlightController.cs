@@ -20,7 +20,6 @@ public class FlightController : MonoBehaviour
     private float startZ = -1;
     private bool hasTilted = false;
     private bool hasPitch = false;
-
     private bool isBouncing = false;
     public bool isBoost = false;
     private bool isSlowing = false;
@@ -79,14 +78,12 @@ public class FlightController : MonoBehaviour
         TrailScale();
         //checks speed, update boolean of isGlide if over certain limit.
         CheckSpeed();
-
     }
     public IEnumerator Reset(float endTime, float xRot, float height)
     {
         float elapsedTime = 0;
         while (elapsedTime < endTime)
         {
-
             transform.position = Vector3.Slerp(transform.position, new Vector3(transform.position.x, height, transform.position.z), 1f); ;
             Quaternion target = transform.rotation;
             target = Quaternion.Euler(xRot, target.eulerAngles.y, 0);
@@ -94,38 +91,29 @@ public class FlightController : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-
-
-
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Mountain"))
         {
-
             // Vector3 v = collision.collider.ClosestPoint(transform.position);
             // Vector3 newVector = transform.position - v;
             StartCoroutine(Slow());
             // transform.LookAt(newVector);
             //Debug.DrawRay(transform.position, newVector,Color.red);
             // StartCoroutine(BounceOnCollision(other.GetContact(0).normal));
-
-
             Vector3 newPosition = transform.position - collision.gameObject.transform.position;
 
             Quaternion lookRotation = Quaternion.LookRotation(newPosition);
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 2.0f);
 
             transform.position = Vector3.Lerp(transform.position, transform.position + (transform.forward * 1.5f), 2.0f);
-
-
         }
         else if (collision.gameObject.CompareTag("Ceiling"))
         {
             StartCoroutine(Reset(3f, 10f, maxHeight - 5f));
             // StartCoroutine(Slow());
-
         }
         else if (collision.collider is TerrainCollider)
         {
@@ -137,7 +125,6 @@ public class FlightController : MonoBehaviour
         }
         //else if (collision.gameObject.CompareTag("Perch"))
         //{
-
         //    LandedPerch?.Invoke(collision.gameObject.GetComponent<PerchPosition>().crowPerchPos);
         //}
         else if (collision.gameObject.CompareTag("Ring") && !isBoost)
@@ -180,12 +167,12 @@ public class FlightController : MonoBehaviour
             //StartCoroutine(Slow());
         }
     }
+
     public void InvokeLandPerch(Transform pos, Transform lookAt)
     {
-
         LandedPerch?.Invoke(pos, lookAt);
-
     }
+
     /// <summary>
     /// Slows down the player
     /// </summary>
@@ -334,7 +321,6 @@ public class FlightController : MonoBehaviour
                 transform.rotation = Quaternion.Lerp(transform.rotation, target, Time.deltaTime);
             }
         }
-
     }
 
 
@@ -348,7 +334,6 @@ public class FlightController : MonoBehaviour
         // Move our position a step closer to the target.
         float step = speed * Time.deltaTime; // calculate distance to move
         transform.position = Vector3.MoveTowards(transform.position, target.position, step);
-
     }
 
     public IEnumerator BounceOnCollision(Vector3 norm)
@@ -376,21 +361,18 @@ public class FlightController : MonoBehaviour
         yield return new WaitForSeconds(2f);
         isBoost = false;
         boostStartTime = -1;
-
     }
     public IEnumerator Slow()
     {
         isSlowing = true;
         yield return new WaitForSeconds(2f);
         isSlowing = false;
-
     }
     //15f is max speed, might need to play around with speed. Check with Angelique.
 
     public bool CheckSpeed()
     {
         bool newGlide = (speed > 12 && isBoost) || Math.Abs(moveX) >= .25;
-
         if (newGlide != isGliding)
         {
             isGliding = newGlide;
@@ -433,7 +415,6 @@ public class FlightController : MonoBehaviour
         LeftTrail.SetActive(false);
         RightTrail.SetActive(false);
         crow.Model.transform.localPosition = new Vector3(0.0f,-.51f, 0.0f);
-
     }
     private void OnEnable()
     {

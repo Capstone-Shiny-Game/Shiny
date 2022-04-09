@@ -27,6 +27,5 @@ public class FillOnBoostRefill : MonoBehaviour
         float elapsedTime = Time.time - flightController.boostStartTime;
         float fillAmount = elapsedTime / flightController.boostDuration;
         this.gameObject.GetComponent<Image>().fillAmount = fillAmount;
-
     }
 }
