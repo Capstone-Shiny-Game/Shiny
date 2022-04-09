@@ -43,6 +43,10 @@ public class FlightController : MonoBehaviour
     private PlayerController pcontroller;
     private InputController inputController;
     private bool invertY;
+    // Total time defined by actions in public IEnumerator Boost()
+    public float boostDuration = 5.35f;
+    public float boostStartTime = -1;
+
 
     private void Awake()
     {
@@ -64,7 +68,7 @@ public class FlightController : MonoBehaviour
     }
 
     /*
-     * 
+     *
     Settings.OnSettingsChanged += SettingsChanged;
         SettingsChanged(null, null);
      */
@@ -328,9 +332,6 @@ public class FlightController : MonoBehaviour
                 Quaternion target = transform.rotation;
                 target = Quaternion.Euler(0, target.eulerAngles.y, target.eulerAngles.z);
                 transform.rotation = Quaternion.Lerp(transform.rotation, target, Time.deltaTime);
-
-
-
             }
         }
 
@@ -366,6 +367,7 @@ public class FlightController : MonoBehaviour
     {
         speed += 15f;
         isBoost = true;
+        boostStartTime = Time.time;
         yield return new WaitForSeconds(3f);
         targetRing = null;
         yield return new WaitForSeconds(.35f);
@@ -373,6 +375,7 @@ public class FlightController : MonoBehaviour
             speed -= 5f;
         yield return new WaitForSeconds(2f);
         isBoost = false;
+        boostStartTime = -1;
 
     }
     public IEnumerator Slow()
