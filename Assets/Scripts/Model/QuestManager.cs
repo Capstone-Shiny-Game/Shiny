@@ -31,20 +31,19 @@ public static class QuestManager
         }
     }
 
-    public static void StartQuest(string quest)
-    {
-        StartQuest(quest, null, null);
-    }
-
-    public static void StartQuest(string quest, string npc, IEnumerable<string> items)
+    public static void StartQuest(string quest, string npc = null, IEnumerable<string> items = null, string supplement = null)
     {
         if (!completed.Contains(quest) && !active.Contains(quest))
         {
             active.Add(quest);
             descriptions[quest] = ExpandName(quest);
-            if (!string.IsNullOrEmpty(npc))
+            if (!string.IsNullOrEmpty(npc) && items != null)
             {
                 descriptions[quest] += $"\n  ({npc} needs {string.Join(", ", items.Select(ExpandAndTrimName))})";
+            }
+            if (!string.IsNullOrEmpty(supplement))
+            {
+                descriptions[quest] += '\n' + supplement;
             }
         }
     }
@@ -58,7 +57,7 @@ public static class QuestManager
         }
     }
 
-    private static string ExpandName(string name) => Regex.Replace(name, "([a-z])([A-Z0-9])", "$1 $2");
+    public static string ExpandName(string name) => Regex.Replace(name, "([a-z])([A-Z0-9\\(])", "$1 $2");
 
     private static string ExpandAndTrimName(string name) => ExpandName(name.Substring(0, name.IndexOf('_')));
 }

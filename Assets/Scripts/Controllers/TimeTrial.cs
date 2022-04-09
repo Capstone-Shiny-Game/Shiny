@@ -40,7 +40,7 @@ public class TimeTrial : MonoBehaviour
     {
         if (!completed)
         {
-            QuestManager.StartQuest(Name);
+            QuestManager.StartQuest(Name, null, null, "(Time Trial)");
             ActivateRing(ringOrder.First.Value);
             startTimePeriod = StartCoroutine(StartTimePeriod());
         }
@@ -146,7 +146,7 @@ public class TimeTrial : MonoBehaviour
     private IEnumerator DisplayWinText()
     {
         OnTimeTrialCompleteEvent?.Invoke();
-        timerText.text = "You beat the time trial!";
+        timerText.text = $"You beat {QuestManager.ExpandName(Name)}!";
         yield return new WaitForSeconds(5);
         timerText.text = string.Empty;
         timerText.gameObject.SetActive(false);
