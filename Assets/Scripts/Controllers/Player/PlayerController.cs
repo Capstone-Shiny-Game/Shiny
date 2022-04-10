@@ -298,7 +298,7 @@ public class PlayerController : MonoBehaviour, Savable
         ControllerUI.SetActive(false);
     }
 
-    private void ExitNPCDialogue()
+    private void ExitNPCDialogue(string dialogue)
     {
         ControllerUI.SetActive(true);
         //transform.position = positionBeforeDialogue;

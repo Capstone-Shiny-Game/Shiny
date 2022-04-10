@@ -95,7 +95,7 @@ public static class QuestManager
         }
         else
         {
-            return "(Time Trial)";
+            return "Hot Air Balloon Time Trial";
         }
     }
 

@@ -94,13 +94,14 @@ public class FetchQuest : MonoBehaviour
         InteractButton.SetActive(true);
     }
 
-    private void startQuest()
+    private void startQuest(string dialgoue)
     {
         //Check if this dialogue end is what would have triggered this event
         if(Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 50)
         {
             InteractButton.SetActive(false);
             QuestManager.StartQuest(quests[currentQuest].name, dialogueSystem.characterName, quests[currentQuest].ExpectedDeliveries.Select(x => x.name));
+            QuestManager.RecordDialogue(quests[currentQuest].name, dialogueSystem.characterName, dialgoue);
             if(dialogueSystem.dialogueContainer == CompletionDialogue)
             {
                 QuestManager.CompleteQuest(quests[currentQuest].name);

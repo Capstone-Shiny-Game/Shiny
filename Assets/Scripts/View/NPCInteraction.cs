@@ -9,7 +9,7 @@ public class NPCInteraction : MonoBehaviour
 {
     public delegate void NPCInteract(Transform trans);
     public static event NPCInteract OnNPCInteractEvent;
-    public delegate void NPCInteractEnd();
+    public delegate void NPCInteractEnd(string dialogue);
     public static event NPCInteractEnd OnNPCInteractEndEvent;
 
     [Header("Character Info")]
@@ -136,7 +136,7 @@ public class NPCInteraction : MonoBehaviour
                     //     dialogueContainer = dialogueContainers[currentDialogueValue];
                     // }
 
-                    OnNPCInteractEndEvent();
+                    OnNPCInteractEndEvent(currentDialogue.Text);
                 }
                 else
                 {

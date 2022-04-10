@@ -43,9 +43,10 @@ public class PotionRequestQuest : MonoBehaviour
         }
     }
 
-    private void startQuest()
+    private void startQuest(string dialogue)
     {
         QuestManager.StartQuest(QuestName, dialogueSystem.characterName, new string[] {Deliver1.name, Deliver2.name, Deliver3.name});
+        QuestManager.RecordDialogue(QuestName, dialogueSystem.characterName, dialogue);
         //Check if this dialogue end is what would have triggered this event
         if(Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 50)
         {
