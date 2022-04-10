@@ -1,7 +1,6 @@
-using UnityEngine;
-using TMPro;
 using System.Linq;
-using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
 
 public class QuestMenuContainer : MenuContainer
 {
@@ -12,10 +11,12 @@ public class QuestMenuContainer : MenuContainer
     public TextMeshProUGUI completedQuestText;
 
     public MenuType subMenuType = MenuType.activeQuestsMenu;
+
     public override void AfterEnableSetup(MenuType currentMenuType)
     {
         base.AfterEnableSetup(currentMenuType);
-        if (questMenu is null) {
+        if (questMenu is null)
+        {
             Debug.Log("quest menu container missing reference to its self");
             return;
         }
@@ -28,6 +29,7 @@ public class QuestMenuContainer : MenuContainer
                 completedQuestText.text = "<u>Completed:</u>\n" + string.Join("\n", QuestManager.CompletedQuests.Select(quest => $"<s>[x] {quest}</s>\n    {QuestManager.DescribeQuest(quest)}"));
                 Debug.Log(completedQuestText.text);
                 break;
+
             case MenuType.activeQuestsMenu:
                 questMenu.SetActive(true);
                 activeQuestMenu.SetActive(true);
@@ -35,6 +37,7 @@ public class QuestMenuContainer : MenuContainer
                 activeQuestText.text = "<u>Active:</u>\n" + string.Join("\n", QuestManager.ActiveQuests.Select(quest => $"[ ] {quest}\n    {QuestManager.DescribeQuest(quest)}"));
                 Debug.Log(activeQuestText.text);
                 break;
+
             default:
                 Debug.Log("Quest menu container was passed incorrect menu type");
                 break;
