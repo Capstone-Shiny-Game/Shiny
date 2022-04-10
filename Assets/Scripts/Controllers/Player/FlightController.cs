@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class FlightController : MonoBehaviour
 {
+    float rotateSensitivity = 1.20f;
     float pitchSensitivity = 50f;
-    float tiltSensitivity = 80f;
+    float tiltSensitivity = 100f;
     public float speed = 10.0f;
     public float brake = 0.0f;
     public float glideAngleThreshold = 0.7f;
@@ -20,7 +21,6 @@ public class FlightController : MonoBehaviour
     private float startZ = -1;
     private bool hasTilted = false;
     private bool hasPitch = false;
-
     private bool isBouncing = false;
     public bool isBoost = false;
     private bool isSlowing = false;
@@ -43,6 +43,12 @@ public class FlightController : MonoBehaviour
     private PlayerController pcontroller;
     private InputController inputController;
     private bool invertY;
+    // Total time defined by actions in public IEnumerator Boost()
+    [HideInInspector]
+    public float boostDuration = 5.35f;
+    [HideInInspector]
+    public float boostStartTime = -1;
+
 
     private void Awake()
     {
@@ -64,7 +70,7 @@ public class FlightController : MonoBehaviour
     }
 
     /*
-     * 
+     *
     Settings.OnSettingsChanged += SettingsChanged;
         SettingsChanged(null, null);
      */
@@ -75,14 +81,12 @@ public class FlightController : MonoBehaviour
         TrailScale();
         //checks speed, update boolean of isGlide if over certain limit.
         CheckSpeed();
-
     }
     public IEnumerator Reset(float endTime, float xRot, float height)
     {
         float elapsedTime = 0;
         while (elapsedTime < endTime)
         {
-
             transform.position = Vector3.Slerp(transform.position, new Vector3(transform.position.x, height, transform.position.z), 1f); ;
             Quaternion target = transform.rotation;
             target = Quaternion.Euler(xRot, target.eulerAngles.y, 0);
@@ -90,38 +94,29 @@ public class FlightController : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-
-
-
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Mountain"))
         {
-
             // Vector3 v = collision.collider.ClosestPoint(transform.position);
             // Vector3 newVector = transform.position - v;
             StartCoroutine(Slow());
             // transform.LookAt(newVector);
             //Debug.DrawRay(transform.position, newVector,Color.red);
             // StartCoroutine(BounceOnCollision(other.GetContact(0).normal));
-
-
             Vector3 newPosition = transform.position - collision.gameObject.transform.position;
 
             Quaternion lookRotation = Quaternion.LookRotation(newPosition);
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, 2.0f);
 
             transform.position = Vector3.Lerp(transform.position, transform.position + (transform.forward * 1.5f), 2.0f);
-
-
         }
         else if (collision.gameObject.CompareTag("Ceiling"))
         {
             StartCoroutine(Reset(3f, 10f, maxHeight - 5f));
             // StartCoroutine(Slow());
-
         }
         else if (collision.collider is TerrainCollider)
         {
@@ -133,8 +128,7 @@ public class FlightController : MonoBehaviour
         }
         //else if (collision.gameObject.CompareTag("Perch"))
         //{
-
-        //    LandedPerch?.Invoke(collision.gameObject.GetComponent<PerchPosition>().crowPerchPos);
+        //      Perch?.Invoke(collision.gameObject.GetComponent<PerchPosition>().crowPerchPos);
         //}
         else if (collision.gameObject.CompareTag("Ring") && !isBoost)
         {
@@ -176,12 +170,12 @@ public class FlightController : MonoBehaviour
             //StartCoroutine(Slow());
         }
     }
+
     public void InvokeLandPerch(Transform pos, Transform lookAt)
     {
-
         LandedPerch?.Invoke(pos, lookAt);
-
     }
+
     /// <summary>
     /// Slows down the player
     /// </summary>
@@ -262,11 +256,13 @@ public class FlightController : MonoBehaviour
         float turn = moveX * tiltSensitivity / 1.5f * Time.deltaTime;
         float pitch = -moveY * pitchSensitivity * Time.deltaTime;
         float tilt = -moveX * tiltSensitivity * .25f * Time.deltaTime;
+        // TODO: Maybe come back and fix this to have reset-like speeds when turning in the opposite direction
+        // For example, right now if you hold left and then switch to right, the right turn is very slow
 
         //transform.Rotate(new Vector3(pitch, turn, 0.0f));
         crow.Model.transform.parent.Rotate(0f, 0f, tilt, Space.Self);
 
-        transform.Rotate(0f, turn, 0f, Space.World);
+        transform.Rotate(0f, turn * rotateSensitivity, 0f, Space.World);
 
         transform.Rotate(pitch, 0f, 0f, Space.Self);
 
@@ -287,7 +283,7 @@ public class FlightController : MonoBehaviour
             if (startZ < 0)
             {
                 startZ = Time.time;
-                smoothTilt = Math.Abs(Math.Min(crow.Model.transform.rotation.z, 360f - crow.Model.transform.rotation.z)) * 15f;
+                smoothTilt = Math.Abs(Math.Min(crow.Model.transform.rotation.z, 360f - crow.Model.transform.rotation.z)) * 25f;
             }
             float fracComplete = (Time.time - startZ) / smoothTilt;
             DampenAngleToZero(false, false, true, fracComplete, crow.Model.transform.rotation);
@@ -328,12 +324,8 @@ public class FlightController : MonoBehaviour
                 Quaternion target = transform.rotation;
                 target = Quaternion.Euler(0, target.eulerAngles.y, target.eulerAngles.z);
                 transform.rotation = Quaternion.Lerp(transform.rotation, target, Time.deltaTime);
-
-
-
             }
         }
-
     }
 
 
@@ -347,7 +339,6 @@ public class FlightController : MonoBehaviour
         // Move our position a step closer to the target.
         float step = speed * Time.deltaTime; // calculate distance to move
         transform.position = Vector3.MoveTowards(transform.position, target.position, step);
-
     }
 
     public IEnumerator BounceOnCollision(Vector3 norm)
@@ -366,6 +357,7 @@ public class FlightController : MonoBehaviour
     {
         speed += 15f;
         isBoost = true;
+        boostStartTime = Time.time;
         yield return new WaitForSeconds(3f);
         targetRing = null;
         yield return new WaitForSeconds(.35f);
@@ -373,21 +365,19 @@ public class FlightController : MonoBehaviour
             speed -= 5f;
         yield return new WaitForSeconds(2f);
         isBoost = false;
-
+        boostStartTime = -1;
     }
     public IEnumerator Slow()
     {
         isSlowing = true;
         yield return new WaitForSeconds(2f);
         isSlowing = false;
-
     }
     //15f is max speed, might need to play around with speed. Check with Angelique.
 
     public bool CheckSpeed()
     {
         bool newGlide = (speed > 12 && isBoost) || Math.Abs(moveX) >= .25;
-
         if (newGlide != isGliding)
         {
             isGliding = newGlide;
@@ -429,8 +419,7 @@ public class FlightController : MonoBehaviour
     {
         LeftTrail.SetActive(false);
         RightTrail.SetActive(false);
-        crow.Model.transform.localPosition = new Vector3(0.0f,-.51f, 0.0f);
-
+        crow.Model.transform.localPosition = new Vector3(0.0f, -.51f, 0.0f);
     }
     private void OnEnable()
     {

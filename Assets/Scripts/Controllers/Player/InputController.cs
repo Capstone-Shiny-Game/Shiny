@@ -89,7 +89,7 @@ public class InputController : MonoBehaviour
         TouchSimulation.Enable();
 
         PlayerInput.FlightMap.Enable();
-        //subscribe to the events when the following is triggered:
+        // Subscribe to the events when the following is triggered:
         PlayerInput.FlightMap.walkAction.performed += OnFlightSwap;
 
         PlayerInput.FlightMap.Flight.performed += OnFlight;
@@ -97,7 +97,6 @@ public class InputController : MonoBehaviour
 
         PlayerInput.FlightMap.Walk.performed += OnWalk;
         PlayerInput.FlightMap.Walk.canceled += OnWalkEnd;
-
 
         PlayerInput.FlightMap.Boost.performed += OnBoost;
         PlayerInput.FlightMap.Boost.canceled += OnBoostExit;
@@ -138,6 +137,7 @@ public class InputController : MonoBehaviour
 
     private void OnWalk(InputAction.CallbackContext obj)
     {
+        
         isMoving = true;
         Vector2 moveInput = obj.ReadValue<Vector2>();
         flightWalkHandler?.Invoke(moveInput.x, moveInput.y);
@@ -146,7 +146,6 @@ public class InputController : MonoBehaviour
     private void OnWalkEnd(InputAction.CallbackContext obj)
     {
         flightWalkHandler?.Invoke(0.0f, 0.0f);
-
         isMoving = false;
     }
 
@@ -209,7 +208,6 @@ public class InputController : MonoBehaviour
     }
     private void OnLook(InputAction.CallbackContext context)
     {
-
         if (canLook && !isMoving && !menuOpen)
         {
             // Touchscreen t = TouchSimulation.instance.simulatedTouchscreen;
