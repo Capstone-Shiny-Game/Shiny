@@ -419,7 +419,7 @@ public class FlightController : MonoBehaviour
     {
         LeftTrail.SetActive(false);
         RightTrail.SetActive(false);
-        crow.Model.transform.localPosition = new Vector3(0.0f, -.51f, 0.0f);
+        crow.Model.transform.localPosition = new Vector3(0.0f, -.65f, 0.0f);
     }
     private void OnEnable()
     {
