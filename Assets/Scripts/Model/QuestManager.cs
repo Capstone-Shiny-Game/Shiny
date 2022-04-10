@@ -92,11 +92,11 @@ public static class QuestManager
         bool isActive = active.Contains(quest);
         if (questNPCs.ContainsKey(quest))
         {
-            return questNPCs[quest] + (isActive ? " needs " : " neeeded ") + string.Join(" ,", questItems[quest]);
+            return questNPCs[quest] + (isActive ? " needs " : " neeeded ") + HumanizeArray(questItems[quest]);
         }
         else
         {
-            return "Hot Air Balloon Time Trial";
+            return "Hot air balloon time trial";
         }
     }
 
@@ -108,4 +108,20 @@ public static class QuestManager
     public static string ExpandName(string name) => Regex.Replace(name, "([a-z])([A-Z0-9\\(])", "$1 $2");
 
     private static string ExpandAndTrimName(string name) => ExpandName(name.Substring(0, name.IndexOf('_')));
+
+    private static string HumanizeArray(string[] arr)
+    {
+        if (arr.Length > 2)
+        {
+            return string.Join(", ", arr.ToArray(), 0, arr.Length - 1) + ", and " + arr[arr.Length - 1];
+        }
+        else if (arr.Length == 2)
+        {
+            return arr[0] + " and " + arr[1];
+        }
+        else
+        {
+            return arr.FirstOrDefault();
+        }
+    }
 }

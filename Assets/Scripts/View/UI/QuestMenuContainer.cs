@@ -25,14 +25,14 @@ public class QuestMenuContainer : MenuContainer
                 questMenu.SetActive(true);
                 activeQuestMenu.SetActive(false);
                 completedQuestMenu.SetActive(true);
-                completedQuestText.text = "Completed:\n" + string.Join("\n", QuestManager.CompletedQuests.Select(quest => $"<s>[x] {quest}</s>\n    {QuestManager.DescribeQuest(quest)}"));
+                completedQuestText.text = "<u>Completed:</u>\n" + string.Join("\n", QuestManager.CompletedQuests.Select(quest => $"<s>[x] {quest}</s>\n    {QuestManager.DescribeQuest(quest)}"));
                 Debug.Log(completedQuestText.text);
                 break;
             case MenuType.activeQuestsMenu:
                 questMenu.SetActive(true);
                 activeQuestMenu.SetActive(true);
                 completedQuestMenu.SetActive(false);
-                activeQuestText.text = "Active:\n" + string.Join("\n", QuestManager.ActiveQuests.Select(quest => $"[ ] {quest}\n    {QuestManager.DescribeQuest(quest)}"));
+                activeQuestText.text = "<u>Active:</u>\n" + string.Join("\n", QuestManager.ActiveQuests.Select(quest => $"[ ] {quest}\n    {QuestManager.DescribeQuest(quest)}"));
                 Debug.Log(activeQuestText.text);
                 break;
             default:
