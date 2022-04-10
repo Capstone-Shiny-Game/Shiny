@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -6,11 +7,13 @@ public static class QuestManager
 {
     private static readonly List<string> active = new List<string>();
     private static readonly List<string> completed = new List<string>();
-    private static readonly Dictionary<string, string> descriptions = new Dictionary<string, string>();
 
-    public static IEnumerable<string> ActiveQuests => active.Select(quest => descriptions[quest]);
+    private static readonly Dictionary<string, string[]> questItems;
+    private static readonly Dictionary<string, string> questNPCs;
+    private static readonly Dictionary<string, string> questRecordedDialgoues;
 
-    public static IEnumerable<string> CompletedQuests => completed.Select(quest => descriptions[quest]);
+    public static IEnumerable<string> ActiveQuests => active;
+    public static IEnumerable<string> CompletedQuests => completed;
 
     public static string OldestActiveQuest
     {
@@ -18,7 +21,7 @@ public static class QuestManager
         {
             if (active.Count > 0)
             {
-                return ExpandName(active[0]);
+                return active[0];
             }
             else if (completed.Count > 0)
             {
@@ -31,30 +34,74 @@ public static class QuestManager
         }
     }
 
-    public static void StartQuest(string quest, string npc = null, IEnumerable<string> items = null, string supplement = null)
+    public static void StartQuest(string quest, string npc = null, IEnumerable<string> items = null)
     {
+        quest = ExpandName(quest);
         if (!completed.Contains(quest) && !active.Contains(quest))
         {
             active.Add(quest);
-            descriptions[quest] = ExpandName(quest);
-            if (!string.IsNullOrEmpty(npc) && items != null)
+            if (!string.IsNullOrEmpty(npc))
             {
-                descriptions[quest] += $"\n  ({npc} needs {string.Join(", ", items.Select(ExpandAndTrimName))})";
+                questNPCs[quest] = npc;
             }
-            if (!string.IsNullOrEmpty(supplement))
+            if (items != null)
             {
-                descriptions[quest] += '\n' + supplement;
+                questItems[quest] = items.Select(ExpandAndTrimName).ToArray();
             }
+            questRecordedDialgoues[quest] = "";
+        }
+    }
+
+    public static void StrikeItem(string quest, string item)
+    {
+        quest = ExpandName(quest);
+        item = ExpandAndTrimName(item);
+        if (questItems.ContainsKey(quest))
+        {
+            string[] items = questItems[quest];
+            int i = Array.IndexOf(items, item);
+            if (i > -1)
+            {
+                items[i] = $"<s>{item}</s>";
+            }
+        }
+    }
+
+    public static void RecordDialogue(string quest, string NPC, string dialogue)
+    {
+        quest = ExpandName(quest);
+        if (questRecordedDialgoues.ContainsKey(quest))
+        {
+            questRecordedDialgoues[quest] += $"{NPC}: {dialogue}";
         }
     }
 
     public static void CompleteQuest(string quest)
     {
+        quest = ExpandName(quest);
         active.Remove(quest);
         if (!completed.Contains(quest))
         {
             completed.Add(quest);
         }
+    }
+
+    public static string DescribeQuest(string quest)
+    {
+        bool isActive = active.Contains(quest);
+        if (questNPCs.ContainsKey(quest))
+        {
+            return questNPCs[quest] + (isActive ? " needs " : " neeeded ") + string.Join(" ,", questItems[quest]);
+        }
+        else
+        {
+            return "(Time Trial)";
+        }
+    }
+
+    public static string GetQuestRecoredDialogue(string quest)
+    {
+        return questRecordedDialgoues[quest];
     }
 
     public static string ExpandName(string name) => Regex.Replace(name, "([a-z])([A-Z0-9\\(])", "$1 $2");
