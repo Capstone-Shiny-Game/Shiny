@@ -9,7 +9,7 @@ public class NPCInteraction : MonoBehaviour
 {
     public delegate void NPCInteract(Transform trans);
     public static event NPCInteract OnNPCInteractEvent;
-    public delegate void NPCInteractEnd();
+    public delegate void NPCInteractEnd(string dialogue);
     public static event NPCInteractEnd OnNPCInteractEndEvent;
 
     [Header("Character Info")]
@@ -42,6 +42,8 @@ public class NPCInteraction : MonoBehaviour
     private InputAction npcInteractAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/T");
 
     private BoxCollider interactionCollider;
+
+    private string accumulatedDialogue = "";
 
     private void Start()
     {
@@ -136,7 +138,8 @@ public class NPCInteraction : MonoBehaviour
                     //     dialogueContainer = dialogueContainers[currentDialogueValue];
                     // }
 
-                    OnNPCInteractEndEvent();
+                    OnNPCInteractEndEvent(accumulatedDialogue);
+                    accumulatedDialogue = "";
                 }
                 else
                 {
@@ -161,6 +164,7 @@ public class NPCInteraction : MonoBehaviour
 
     private IEnumerator TypeBodyText()
     {
+        accumulatedDialogue += $"{characterName}: {currentDialogue.Text}\n";
         bodyText.maxVisibleCharacters = 0;
         bodyText.text = currentDialogue.Text;
         for (int i = 1; i < bodyText.text.Length + 1; i++)

@@ -2,15 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using UnityEngine;
 
 public static class QuestManager
 {
     private static readonly List<string> active = new List<string>();
     private static readonly List<string> completed = new List<string>();
 
-    private static readonly Dictionary<string, string[]> questItems;
-    private static readonly Dictionary<string, string> questNPCs;
-    private static readonly Dictionary<string, string> questRecordedDialgoues;
+    private static readonly Dictionary<string, string[]> questItems = new Dictionary<string, string[]>();
+    private static readonly Dictionary<string, string> questNPCs = new Dictionary<string, string>();
+    private static readonly Dictionary<string, string> questRecordedDialgoues = new Dictionary<string, string>();
 
     public static IEnumerable<string> ActiveQuests => active;
     public static IEnumerable<string> CompletedQuests => completed;
@@ -67,12 +68,12 @@ public static class QuestManager
         }
     }
 
-    public static void RecordDialogue(string quest, string NPC, string dialogue)
+    public static void RecordDialogue(string quest, string dialogue)
     {
         quest = ExpandName(quest);
         if (questRecordedDialgoues.ContainsKey(quest))
         {
-            questRecordedDialgoues[quest] += $"{NPC}: {dialogue}";
+            questRecordedDialgoues[quest] += dialogue;
         }
     }
 
@@ -91,11 +92,11 @@ public static class QuestManager
         bool isActive = active.Contains(quest);
         if (questNPCs.ContainsKey(quest))
         {
-            return questNPCs[quest] + (isActive ? " needs " : " neeeded ") + string.Join(" ,", questItems[quest]);
+            return questNPCs[quest] + (isActive ? " needs " : " neeeded ") + HumanizeArray(questItems[quest]);
         }
         else
         {
-            return "(Time Trial)";
+            return "Hot air balloon time trial";
         }
     }
 
@@ -107,4 +108,20 @@ public static class QuestManager
     public static string ExpandName(string name) => Regex.Replace(name, "([a-z])([A-Z0-9\\(])", "$1 $2");
 
     private static string ExpandAndTrimName(string name) => ExpandName(name.Substring(0, name.IndexOf('_')));
+
+    private static string HumanizeArray(string[] arr)
+    {
+        if (arr.Length > 2)
+        {
+            return string.Join(", ", arr.ToArray(), 0, arr.Length - 1) + ", and " + arr[arr.Length - 1];
+        }
+        else if (arr.Length == 2)
+        {
+            return arr[0] + " and " + arr[1];
+        }
+        else
+        {
+            return arr.FirstOrDefault();
+        }
+    }
 }
