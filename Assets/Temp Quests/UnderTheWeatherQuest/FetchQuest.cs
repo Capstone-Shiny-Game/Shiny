@@ -141,6 +141,7 @@ public class FetchQuest : MonoBehaviour
             {
                 if(col.gameObject.name.ToLower().Contains(obj.name.ToLower()))
                 {
+                    QuestManager.StrikeItem(name, obj.name);
                     if(!destroyIfDone.Contains(col.gameObject))
                     {
                         destroyIfDone.Add(col.gameObject);

@@ -80,6 +80,7 @@ public class PotionRequestQuest : MonoBehaviour
         {
             if(col.gameObject.name.ToLower().Contains(Deliver1.name.ToLower()) || col.gameObject.name.ToLower().Contains(Deliver2.name.ToLower()) || col.gameObject.name.ToLower().Contains(Deliver3.name.ToLower()))
             {
+                QuestManager.StrikeItem(QuestName, col.gameObject.name);
                 if(!destroyIfDone.Contains(col.gameObject))
                 {
                     destroyIfDone.Add(col.gameObject);
