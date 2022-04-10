@@ -2,15 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using UnityEngine;
 
 public static class QuestManager
 {
     private static readonly List<string> active = new List<string>();
     private static readonly List<string> completed = new List<string>();
 
-    private static readonly Dictionary<string, string[]> questItems;
-    private static readonly Dictionary<string, string> questNPCs;
-    private static readonly Dictionary<string, string> questRecordedDialgoues;
+    private static readonly Dictionary<string, string[]> questItems = new Dictionary<string, string[]>();
+    private static readonly Dictionary<string, string> questNPCs = new Dictionary<string, string>();
+    private static readonly Dictionary<string, string> questRecordedDialgoues = new Dictionary<string, string>();
 
     public static IEnumerable<string> ActiveQuests => active;
     public static IEnumerable<string> CompletedQuests => completed;
@@ -67,13 +68,15 @@ public static class QuestManager
         }
     }
 
-    public static void RecordDialogue(string quest, string NPC, string dialogue)
+    public static void RecordDialogue(string quest, string dialogue)
     {
         quest = ExpandName(quest);
         if (questRecordedDialgoues.ContainsKey(quest))
         {
-            questRecordedDialgoues[quest] += $"{NPC}: {dialogue}";
+            questRecordedDialgoues[quest] += dialogue;
         }
+        /// 
+        Debug.Log(questRecordedDialgoues[quest]);
     }
 
     public static void CompleteQuest(string quest)

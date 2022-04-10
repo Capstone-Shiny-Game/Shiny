@@ -101,7 +101,7 @@ public class FetchQuest : MonoBehaviour
         {
             InteractButton.SetActive(false);
             QuestManager.StartQuest(quests[currentQuest].name, dialogueSystem.characterName, quests[currentQuest].ExpectedDeliveries.Select(x => x.name));
-            QuestManager.RecordDialogue(quests[currentQuest].name, dialogueSystem.characterName, dialgoue);
+            QuestManager.RecordDialogue(quests[currentQuest].name, dialgoue);
             if(dialogueSystem.dialogueContainer == CompletionDialogue)
             {
                 QuestManager.CompleteQuest(quests[currentQuest].name);

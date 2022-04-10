@@ -43,6 +43,8 @@ public class NPCInteraction : MonoBehaviour
 
     private BoxCollider interactionCollider;
 
+    private string accumulatedDialogue = "";
+
     private void Start()
     {
         Transform avatarMain = npcUI.transform.Find("Avatars");
@@ -136,7 +138,8 @@ public class NPCInteraction : MonoBehaviour
                     //     dialogueContainer = dialogueContainers[currentDialogueValue];
                     // }
 
-                    OnNPCInteractEndEvent(currentDialogue.Text);
+                    OnNPCInteractEndEvent(accumulatedDialogue);
+                    accumulatedDialogue = "";
                 }
                 else
                 {
@@ -161,6 +164,7 @@ public class NPCInteraction : MonoBehaviour
 
     private IEnumerator TypeBodyText()
     {
+        accumulatedDialogue += $"{characterName}: {currentDialogue.Text}\n";
         bodyText.maxVisibleCharacters = 0;
         bodyText.text = currentDialogue.Text;
         for (int i = 1; i < bodyText.text.Length + 1; i++)
