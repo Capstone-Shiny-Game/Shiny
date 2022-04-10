@@ -1,0 +1,71 @@
+﻿#pragma kernel CSMain
+// This has to do with the buffer size in the GPU
+static const int threadGroupSize = 1;
+
+// A struct containing some basic info about boids
+struct Boid
+{
+    float3 position;
+    float3 direction;
+
+    float3 flockHeading;
+    float3 flockcenter;
+    float3 separationHeading;
+    int numFlockmates;
+};
+
+// A read-write buffer that should allow the boid scripts in C# to communicate
+// with this compute shader
+RWStructuredBuffer<Boid> boids;
+int numBoids;
+float viewRadius;
+float avoidRadius;
+
+// Some precursory research tells me this has something to do with a 3D thread
+// group, which is honestly super confusing. I'll try to explain as best as I
+// can below as to what my current understanding is.
+// Basically, my best guess is that `threadGroupSize` different instances of this
+// method are made all at once, so all the boids simultaneously calculate their
+// distances/heading/center at the same time
+[numthreads(threadGroupSize,1,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    // For each boid in the collection of all boids
+    for (uint boidIndex = 0; boidIndex < numBoids; boidIndex++)
+    {
+        // If the boid index is different from the thread index (I think this is
+        // for making sure not to compare the boid to itself)
+        if (id.x != boidIndex)
+        {
+            // Set the current boid equal to the boid in the buffer at the
+            // current index
+            Boid otherBoid = boids[boidIndex];
+
+            // Get the offset from the current boid to the other boid.
+            // Keep in mind the number of threads is a 3D Vector, so `id.x`
+            // should end up being some value less than `threadGroupSize`
+            float3 offset = otherBoid.position - boids[id.x].position;
+            // Get the squared distance from the 3D pythagorean theorem
+            float sqrDst = offset.x * offset.x + offset.y * offset.y + offset.z * offset.z;
+
+            // If the squared distance is less than `viewRadius`
+            if (sqrDst < viewRadius * viewRadius)
+            {
+                // Increment the number of flockmates this boid can see
+                boids[id.x].numFlockmates += 1;
+                // Add the other boid's direction to the perceived flock heading
+                boids[id.x].flockHeading += otherBoid.direction;
+                // Do the same for the flock center
+                boids[id.x].flockcenter += otherBoid.position;
+
+                // If the squared distance is less than (closer than)
+                // `avoidRadius` squared
+                if (sqrDst < avoidRadius * avoidRadius)
+                {
+                    // Then we want to try to avoid crashing into the other boid
+                    boids[id.x].separationHeading -= offset / sqrDst;
+                }
+            }
+        }
+    }
+}

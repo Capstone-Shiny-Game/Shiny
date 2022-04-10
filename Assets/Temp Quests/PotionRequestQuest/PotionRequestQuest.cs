@@ -43,9 +43,10 @@ public class PotionRequestQuest : MonoBehaviour
         }
     }
 
-    private void startQuest()
+    private void startQuest(string dialogue)
     {
         QuestManager.StartQuest(QuestName, dialogueSystem.characterName, new string[] {Deliver1.name, Deliver2.name, Deliver3.name});
+        QuestManager.RecordDialogue(QuestName, dialogue);
         //Check if this dialogue end is what would have triggered this event
         if(Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 50)
         {
@@ -80,6 +81,7 @@ public class PotionRequestQuest : MonoBehaviour
         {
             if(col.gameObject.name.ToLower().Contains(Deliver1.name.ToLower()) || col.gameObject.name.ToLower().Contains(Deliver2.name.ToLower()) || col.gameObject.name.ToLower().Contains(Deliver3.name.ToLower()))
             {
+                QuestManager.StrikeItem(QuestName, col.gameObject.name);
                 if(!destroyIfDone.Contains(col.gameObject))
                 {
                     destroyIfDone.Add(col.gameObject);

@@ -40,7 +40,7 @@ public class TimeTrial : MonoBehaviour
     {
         if (!completed)
         {
-            QuestManager.StartQuest(Name, null, null, "(Time Trial)");
+            QuestManager.StartQuest(Name, null, null);
             ActivateRing(ringOrder.First.Value);
             startTimePeriod = StartCoroutine(StartTimePeriod());
         }
