@@ -75,8 +75,6 @@ public static class QuestManager
         {
             questRecordedDialgoues[quest] += dialogue;
         }
-        /// 
-        Debug.Log(questRecordedDialgoues[quest]);
     }
 
     public static void CompleteQuest(string quest)
