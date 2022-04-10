@@ -24,6 +24,11 @@ public class SettingsMenuContainer : MenuContainer
         dialogueVolumeSlider.onValueChanged.AddListener(changeDialogueVolume);
         invertYToggle.onValueChanged.AddListener(changeInvertY);
         disableAccelerometerToggle.onValueChanged.AddListener(changeDisableAccelerometer);
+
+        musicVolumeSlider.value = preferredSettings.musicVolume;
+        dialogueVolumeSlider.value = preferredSettings.dialogueVolume;
+        invertYToggle.isOn = preferredSettings.invertYAxis;
+        disableAccelerometerToggle.isOn = preferredSettings.disableAccelerometer;
     }
 
     private void Start()
