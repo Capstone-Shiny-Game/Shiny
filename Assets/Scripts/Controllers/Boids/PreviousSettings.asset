@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6194ee95dedb4d71a8fe738abba0f47, type: 3}
+  m_Name: StarSettings
+  m_EditorClassIdentifier: 
+  minSpeed: 0.55
+  maxSpeed: 20
+  perceptionRadius: 50
+  avoidanceRadius: 50
+  maxSteerForce: 8
+  alignWeight: 1.93
+  cohesionWeight: 1.39
+  separateWeight: 2.08
+  targetWeight: 5
+  distanceEpsilon: 100
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  boundsRadius: 1
+  avoidCollisionWeight: 20
+  collisionAvoidDst: 10
+  showEpsilonSphere: 1
