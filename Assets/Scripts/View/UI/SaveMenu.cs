@@ -117,12 +117,6 @@ public class SaveMenu : MenuContainer
         }
         templateRectTransform.gameObject.SetActive(true);
         //Debug.Log(gameDescriptor.SaveName);
-        // find and set saveScreenshot image
-        if (!(gameDescriptor.saveScreenshot is null))
-        {
-            Image image = templateRectTransform.Find("SaveImage").GetComponent<Image>();
-            image.sprite = gameDescriptor.saveScreenshot;
-        }
         Button deleteButton = templateRectTransform.Find("DeleteButton").GetComponent<Button>();
         deleteButton.onClick.AddListener(delegate { DeleteSaveHandler(gameDescriptor); });
         // find and set template button text and onclick
