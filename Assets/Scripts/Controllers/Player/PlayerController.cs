@@ -189,6 +189,8 @@ public class PlayerController : MonoBehaviour, Savable
             if (transform.CastGround(out Vector3 ground, transform.localScale.y / 2))
             {
                 crow.resetModelRotation();
+                crow.Model.transform.localPosition = new Vector3(0.0f, -0.52f, 0.0f);
+
                 SetFixedPosition(ground);
                 walkCam.GetComponent<ModifyOrbitor>().ResetZero();
                 SetState(CrowState.Walking);
@@ -197,6 +199,7 @@ public class PlayerController : MonoBehaviour, Savable
         else
         {
             crow.resetModelRotation();
+            crow.Model.transform.localPosition = new Vector3(0.0f, -0.52f, 0.0f);
             SetFixedPosition(transform.FindGround(transform.localScale.y / 2));
             walkCam.GetComponent<ModifyOrbitor>().ResetZero();
             SetState(CrowState.Walking);

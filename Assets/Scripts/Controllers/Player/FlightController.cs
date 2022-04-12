@@ -129,6 +129,8 @@ public class FlightController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Terrain"))
         {
+            crow.Model.transform.localPosition = new Vector3(0.0f, -0.52f, 0.0f);
+
             Landed?.Invoke(true);
         }
         else if (collision.gameObject.CompareTag("Ring") && !isBoost)
