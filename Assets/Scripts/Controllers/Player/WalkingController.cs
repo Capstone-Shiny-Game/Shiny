@@ -80,13 +80,15 @@ public class WalkingController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider is TerrainCollider || collision.gameObject.CompareTag("Terrain") || collision.collider.isTrigger)
+        if (!this.enabled || collision.collider is TerrainCollider || collision.gameObject.CompareTag("Terrain") || collision.collider.isTrigger)
             return;
         else
         {
-            float displacement = moveY * Time.deltaTime;
-            displacement *= (displacement > 0 ? ForwardSpeed : BackwardsSpeed);
-            transform.position -= transform.forward * displacement;
+            float displacement = 1.8f;
+            if (moveY <= 0)
+                transform.position += transform.forward * displacement;
+            else
+                transform.position -= transform.forward * displacement;
         }
     }
 

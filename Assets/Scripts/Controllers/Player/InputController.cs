@@ -167,7 +167,7 @@ public class InputController : MonoBehaviour
     {
         PlayerInput.FlightMap.Disable();
         PlayerInput.GUIMap.Disable();
-        yield return new WaitForSeconds(2.1f);
+        yield return new WaitForSeconds(1.1f);
         PlayerInput.FlightMap.Enable();
         PlayerInput.GUIMap.Enable();
     }

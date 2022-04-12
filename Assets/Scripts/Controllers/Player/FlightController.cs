@@ -98,6 +98,12 @@ public class FlightController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (!this.enabled)
+        {
+            Debug.Log("DISABLED");
+            return;
+        }
+
         if (collision.gameObject.CompareTag("Mountain"))
         {
             // Vector3 v = collision.collider.ClosestPoint(transform.position);
@@ -144,6 +150,7 @@ public class FlightController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
+            Debug.Log("COL FLIGHT");
             transform.position -= transform.forward * 2;
 
             Landed?.Invoke(true);
@@ -419,7 +426,7 @@ public class FlightController : MonoBehaviour
     {
         LeftTrail.SetActive(false);
         RightTrail.SetActive(false);
-        crow.Model.transform.localPosition = new Vector3(0.0f, -.65f, 0.0f);
+        crow.Model.transform.localPosition = new Vector3(0.0f, -0.52f, 0.0f);
     }
     private void OnEnable()
     {
