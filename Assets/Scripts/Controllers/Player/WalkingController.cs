@@ -15,9 +15,18 @@ public class WalkingController : MonoBehaviour
 
     private float moveX = 0;
     private float moveY = 0;
+    private Crow crow;
+    private bool hasReset;
     private PlayerController pcontroller;
+    private void Awake()
+    {
+        crow = GetComponent<Crow>();
+
+    }
     void Start()
     {
+        hasReset = false;
+
         Vector3 v = transform.eulerAngles;
         v.x = 0;
         v.z = 0;
@@ -36,16 +45,23 @@ public class WalkingController : MonoBehaviour
         SubstateChanged?.Invoke(PlayerController.CrowState.Idle);
         PlayerInput.FlightMap.Enable();
         //disables all flying animations(takeoff, glide, fly)
-
+        crow.Model.transform.localPosition = new Vector3(0.0f, -0.52f, 0.0f);
+        hasReset = true;
     }
 
     void OnDisable()
     {
         PlayerInput.FlightMap.Disable();
+        hasReset = false;
     }
 
     void Update()
     {
+        if (!hasReset)
+        {
+            crow.Model.transform.localPosition = new Vector3(0.0f, -0.52f, 0.0f);
+            hasReset = true;
+        }
         transform.Rotate(0, moveX * Time.deltaTime * TurningSpeed, 0, Space.World);
         if (moveY == 0)
         {
