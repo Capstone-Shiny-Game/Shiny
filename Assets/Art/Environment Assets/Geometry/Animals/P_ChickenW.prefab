@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &91950251511323100
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3765511350138561115}
+  m_Layer: 0
+  m_Name: CrowPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &3765511350138561115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91950251511323100}
+  m_LocalRotation: {x: -0, y: -0.5871552, z: -0, w: 0.80947435}
+  m_LocalPosition: {x: 0, y: 2.77, z: 0}
+  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_Children: []
+  m_Father: {fileID: 6545276573283524004}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1397811193431220255
 GameObject:
   m_ObjectHideFlags: 0
@@ -28,10 +58,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4352241791035818448}
+  - {fileID: 1963719978782746872}
+  - {fileID: 3765511350138561115}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 20.98, z: 0}
---- !u!65 &4318105027003093583
+--- !u!65 &1275201821365298637
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,21 +74,82 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.8293447, y: 3.6506844, z: 1.9001492}
-  m_Center: {x: 0, y: 1.8177981, z: -0.000000059604645}
---- !u!65 &4318105027003093580
+  m_Size: {x: 3.0397782, y: 2.2795181, z: 1.9001497}
+  m_Center: {x: -0.05182433, y: 1.132215, z: -0.000000059604645}
+--- !u!1 &6156311470834525204
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1963719978782746872}
+  - component: {fileID: 3786890856018796074}
+  - component: {fileID: 7724816429999440683}
+  - component: {fileID: 6343974025978780262}
+  m_Layer: 0
+  m_Name: PerchCollider
+  m_TagString: Perch
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &1963719978782746872
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6156311470834525204}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 4.03, z: 0}
+  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_Children: []
+  m_Father: {fileID: 6545276573283524004}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3786890856018796074
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3975997276571868010}
+  m_GameObject: {fileID: 6156311470834525204}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3132505, y: 0.19310234, z: 0.18774633}
+  m_Center: {x: -0.008535278, y: 0.000016081334, z: -0.0044505}
+--- !u!65 &7724816429999440683
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6156311470834525204}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.8293447, y: 3.6506844, z: 1.9001492}
-  m_Center: {x: -0.000061035156, y: 1.8177981, z: 0.00012201071}
+  m_Size: {x: 0.16073011, y: 0.04358668, z: 0.06949728}
+  m_Center: {x: 0.018009681, y: -0.073984325, z: 0.006805256}
+--- !u!114 &6343974025978780262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6156311470834525204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97c42d402ae7d7144b2c23552ce3aee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crowPerchPos: {fileID: 3765511350138561115}
+  lookAt: {fileID: 0}
+  vCam: {fileID: 0}
 --- !u!1001 &4318105027684181563
 PrefabInstance:
   m_ObjectHideFlags: 0
