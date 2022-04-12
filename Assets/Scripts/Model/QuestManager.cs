@@ -10,7 +10,7 @@ public static class QuestManager
 
     private static readonly Dictionary<string, string[]> questItems = new Dictionary<string, string[]>();
     private static readonly Dictionary<string, string> questNPCs = new Dictionary<string, string>();
-    private static readonly Dictionary<string, string> questRecordedDialgoues = new Dictionary<string, string>();
+    // private static readonly Dictionary<string, string> questRecordedDialgoues = new Dictionary<string, string>();
 
     public static IEnumerable<string> ActiveQuests => active;
     public static IEnumerable<string> CompletedQuests => completed;
@@ -48,7 +48,7 @@ public static class QuestManager
             {
                 questItems[quest] = items.Select(TrimAndExpandName).ToArray();
             }
-            questRecordedDialgoues[quest] = "";
+            // questRecordedDialgoues[quest] = "";
         }
     }
 
@@ -67,14 +67,14 @@ public static class QuestManager
         }
     }
 
-    public static void RecordDialogue(string quest, string dialogue)
-    {
-        quest = ExpandName(quest);
-        if (questRecordedDialgoues.ContainsKey(quest))
-        {
-            questRecordedDialgoues[quest] += dialogue;
-        }
-    }
+    // public static void RecordDialogue(string quest, string dialogue)
+    // {
+    //     quest = ExpandName(quest);
+    //     if (questRecordedDialgoues.ContainsKey(quest))
+    //     {
+    //         questRecordedDialgoues[quest] += dialogue;
+    //     }
+    // }
 
     public static void CompleteQuest(string quest)
     {
@@ -99,7 +99,7 @@ public static class QuestManager
         }
     }
 
-    public static string GetQuestRecoredDialogue(string quest) => questRecordedDialgoues[quest];
+    // public static string GetQuestRecoredDialogue(string quest) => questRecordedDialgoues[quest];
 
     public static string ExpandName(string name) => Regex.Replace(name, "([a-z])([A-Z0-9\\(])", "$1 $2");
 
