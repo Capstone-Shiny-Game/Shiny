@@ -2,38 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Campfire : MonoBehaviour
+public class Trade : MonoBehaviour
 {
-    public List<RoastedMap> roastedMaps;
+    public List<TradeEntry> tradeMap;
 
     private void OnCollisionEnter(Collision other)
     {
         // *use different tag?
         if (other.gameObject.CompareTag("Tradeable"))
         {
-            TryRoastingObject(other.gameObject);
+            TryTrade(other.gameObject);
         }
     }
 
-    private void TryRoastingObject(GameObject givenItem)
+    private void TryTrade(GameObject givenItem)
     {
-        bool canRoast = false;
-        GameObject roastedObj = null;
-        foreach (RoastedMap entry in roastedMaps)
+        bool canTrade = false;
+        GameObject returned = null;
+        foreach (TradeEntry entry in tradeMap)
         {
             if (givenItem.name.StartsWith(entry.given.name))
             {
-                canRoast = true;
-                roastedObj = entry.returned;
+                canTrade = true;
+                returned = entry.returned;
                 break;
             }
         }
 
         Vector3 randomVelocity = GetRandomInitialVelocity();
-        if (canRoast)
+        if (canTrade)
         {
             Destroy(givenItem);
-            StartCoroutine(RoastWithDelay(roastedObj, randomVelocity));
+            StartCoroutine(RoastWithDelay(returned, randomVelocity));
         }
         else
         {
@@ -42,14 +42,14 @@ public class Campfire : MonoBehaviour
         }
     }
 
-    private IEnumerator RoastWithDelay(GameObject roastedObj, Vector3 randomVelocity)
+    private IEnumerator RoastWithDelay(GameObject returned, Vector3 randomVelocity)
     {
         // TODO: start particle effects here
 
         // *** lower this for testing
         yield return new WaitForSeconds(2f);
 
-        GameObject roastedItem = Instantiate(roastedObj, transform.position, transform.rotation);
+        GameObject roastedItem = Instantiate(returned, transform.position, transform.rotation);
         StartCoroutine(IgnoreCollisions(roastedItem));
         roastedItem.GetComponent<Rigidbody>().velocity = randomVelocity;
 
