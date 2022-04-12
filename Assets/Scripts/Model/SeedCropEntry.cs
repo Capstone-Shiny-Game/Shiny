@@ -7,4 +7,5 @@ public class SeedCropEntry
     public string seedName;
     public List<string> meshNames;
     public GameObject cropObj;
+    public bool isFlower;
 }

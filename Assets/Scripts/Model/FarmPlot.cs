@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class FarmPlot : MonoBehaviour
 {
@@ -12,10 +13,14 @@ public class FarmPlot : MonoBehaviour
     private GameObject s1;
     private GameObject harvestButton;
 
+    private List<SeedCropEntry> flowerCrops;
+    private List<SeedCropEntry> veggieCrops;
     private SeedCropEntry currCrop;
     private List<Mesh> currMeshes;
     private int meshIndex;
     private bool hasCrop;
+    private readonly string FLOWER = "seedflower";
+    private readonly string VEGGIE = "seedveg";
 
 
     private void Start()
@@ -25,8 +30,8 @@ public class FarmPlot : MonoBehaviour
         meshIndex = -1;
         hasCrop = false;
 
-        // TEST
-        //TryInstantiatePlot("Acorn_Prefab");
+        flowerCrops = seedCropMap.FindAll(s => s.isFlower);
+        veggieCrops = seedCropMap.FindAll(s => !s.isFlower);
     }
 
     private void OnEnable()
@@ -42,7 +47,7 @@ public class FarmPlot : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Tradeable"))
+        if (other.CompareTag("Tradeable") && !hasCrop)
         {
             TryInstantiatePlot(other.name, out bool plantedCrop);
             if (plantedCrop)
@@ -56,21 +61,45 @@ public class FarmPlot : MonoBehaviour
     private void TryInstantiatePlot(string objName, out bool success)
     {
         bool isProperItem = false;
+        bool isFlower = false;
         foreach (SeedCropEntry crop in seedCropMap)
         {
-            // the item given to the plot is registered and
-            // has at least 1 mesh to cycle thru
-            if (objName.ToLower().StartsWith(crop.seedName.ToLower()) 
+            // the item given to the plot is either a flower or 
+            // veggie seed and has at least 1 mesh to cycle thru
+            if (objName.ToLower().StartsWith(FLOWER) 
                 && crop.meshNames.Count > 0)
             {
                 isProperItem = true;
-                currCrop = crop;
+                isFlower = true;
                 break;
             }
+            else if (objName.ToLower().StartsWith(VEGGIE)
+                && crop.meshNames.Count > 0) 
+            {
+                isProperItem = true;
+                isFlower = false;
+                break;
+            } 
         }
 
         if (isProperItem)
         {
+            if (isFlower)
+            {
+                currCrop = flowerCrops[Random.Range(0, flowerCrops.Count)];
+            }
+            else 
+            {
+                currCrop = veggieCrops[Random.Range(0, veggieCrops.Count)];
+            }
+
+            if (currCrop == null) 
+            {
+                Debug.Log("OnTriggerEnter(): Unexpected error");
+                success = false;
+                return;
+            }
+
             currMeshes = new List<Mesh>();
             foreach (string meshName in currCrop.meshNames)
             {
@@ -78,7 +107,6 @@ public class FarmPlot : MonoBehaviour
             }
 
             s1.SetActive(true);
-
 
             LoadNextMesh();
             success = true;
@@ -125,6 +153,7 @@ public class FarmPlot : MonoBehaviour
 
     private void ResetFarmPlot()
     {
+        currCrop = null;
         hasCrop = false;
         meshIndex = -1;
         harvestButton.SetActive(false);
@@ -133,6 +162,5 @@ public class FarmPlot : MonoBehaviour
         {
             scr.updateMesh();
         }
-
     }
 }
