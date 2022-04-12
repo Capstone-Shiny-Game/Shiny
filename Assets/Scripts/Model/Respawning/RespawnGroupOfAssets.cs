@@ -17,6 +17,7 @@ public class RespawnGroupOfAssets : MonoBehaviour
     public int totalMaxAmountToSpawn = 0;
     private List<Vector3> respawnLocations;
     private List<Quaternion> respawnRotations;
+    private List<Vector3> respawnScales;
     private float totalProbability;
     private List<Coroutine> coroutines;
 
@@ -52,10 +53,12 @@ public class RespawnGroupOfAssets : MonoBehaviour
         //unity was being weird about using the transforms of deactivated objects so make a copy.
         respawnLocations = new List<Vector3>();
         respawnRotations = new List<Quaternion>();
+        respawnScales = new List<Vector3>();
         foreach (Transform transform in respawnTransforms)
         {
             respawnLocations.Add(new Vector3(transform.position.x, transform.position.y, transform.position.z));
             respawnRotations.Add(new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w));
+            respawnScales.Add(new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z));
             transform.gameObject.SetActive(false);
         }
         //Debug.Log("respawn locations number : " + respawnLocations.Count);
@@ -106,12 +109,15 @@ public class RespawnGroupOfAssets : MonoBehaviour
         int LocationIndex = Random.Range(0, respawnLocations.Count); //get a random availible spawn location
         Vector3 placeToSpawn = respawnLocations[LocationIndex];
         Quaternion rotation = respawnRotations[LocationIndex];
+        Vector3 scale = respawnScales[LocationIndex];
         //mark spawn location no longer availible
         respawnLocations.RemoveAt(LocationIndex);
         respawnRotations.RemoveAt(LocationIndex);
+        respawnScales.RemoveAt(LocationIndex);
         //Debug.Log("spawn location : " + placeToSpawn);
         //spawn new object
         GameObject newObject = Instantiate(GetPrefabToSpawn(), placeToSpawn, rotation);
+        newObject.transform.localScale = scale;
         newObject.SetActive(true);
         //add the respawnable script to it with a callback to free up it's respawn location if it is destroyed
         Respawnable script = newObject.AddComponent<Respawnable>();
@@ -119,6 +125,7 @@ public class RespawnGroupOfAssets : MonoBehaviour
         {
             respawnLocations.Add(placeToSpawn);
             respawnRotations.Add(rotation);
+            respawnScales.Add(scale);
             try
             {
                 StartRespawn();
