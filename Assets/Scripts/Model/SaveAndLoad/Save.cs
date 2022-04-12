@@ -55,7 +55,6 @@ public static class Save
     {
         public string saveName;
         public string timestamp;
-        public Sprite saveScreenshot;
         public string currentQuestName;
 
     }
