@@ -100,7 +100,6 @@ public class FlightController : MonoBehaviour
     {
         if (!this.enabled)
         {
-            Debug.Log("DISABLED");
             return;
         }
 
@@ -130,12 +129,10 @@ public class FlightController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Terrain"))
         {
+            crow.Model.transform.localPosition = new Vector3(0.0f, -0.52f, 0.0f);
+
             Landed?.Invoke(true);
         }
-        //else if (collision.gameObject.CompareTag("Perch"))
-        //{
-        //      Perch?.Invoke(collision.gameObject.GetComponent<PerchPosition>().crowPerchPos);
-        //}
         else if (collision.gameObject.CompareTag("Ring") && !isBoost)
         {
             Transform targetRing = collision.gameObject.transform;
@@ -150,7 +147,6 @@ public class FlightController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
-            Debug.Log("COL FLIGHT");
             transform.position -= transform.forward * 2;
 
             Landed?.Invoke(true);
@@ -426,7 +422,6 @@ public class FlightController : MonoBehaviour
     {
         LeftTrail.SetActive(false);
         RightTrail.SetActive(false);
-        crow.Model.transform.localPosition = new Vector3(0.0f, -0.52f, 0.0f);
     }
     private void OnEnable()
     {

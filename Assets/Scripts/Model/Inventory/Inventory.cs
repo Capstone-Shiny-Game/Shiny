@@ -37,11 +37,14 @@ public class Inventory
             Item inventoryItem = GetItemFromList(item);
             if (inventoryItem is null)
             {
-                itemList.Add(item);
+                //itemList.Add(item);
+                itemList.Insert(0, item);
             }
             else
             {
+                itemList.Remove(inventoryItem);
                 inventoryItem.amount += item.amount;
+                itemList.Insert(0, inventoryItem);
             }
         }
         else
@@ -50,7 +53,9 @@ public class Inventory
             {
                 return false;
             }
-            itemList.Add(item);
+            //itemList.Add(item);
+            itemList.Insert(0, item);
+
         }
         weight += item.getStackWeight();
         // Update UI

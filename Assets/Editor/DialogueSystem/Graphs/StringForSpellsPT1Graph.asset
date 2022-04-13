@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: StringForSpellsPT1Graph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: StringForSpellsPT1
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: 1009e4a8-f7f7-42e4-9857-e912ea005a4e
+    <Name>k__BackingField: Merletta1
+    <Text>k__BackingField: "Hi Nox! I was preparing a spell and I realized that I\u2019m
+      fresh out of string. Could you fly over to the string stand and trade for some?"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 393c4cae-4cc2-40b7-8957-42b4c290f879
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 56, y: 200.8}
+  - <ID>k__BackingField: 393c4cae-4cc2-40b7-8957-42b4c290f879
+    <Name>k__BackingField: Merletta2
+    <Text>k__BackingField: "There\u2019s a sign next to the stand explaining how
+      to trade if you don\u2019t know how. Bring the string back to me when you have
+      some!"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 714.4, y: 202.4}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - Merletta1
+  - Merletta2
+  <OldGroupedNodeNames>k__BackingField:
+    list: []

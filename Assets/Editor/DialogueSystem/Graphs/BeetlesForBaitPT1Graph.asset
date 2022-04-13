@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: BeetlesForBaitPT1Graph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: BeetlesForBaitPT1
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: af0f0412-31b1-4a27-8d4e-2e98ca169038
+    <Name>k__BackingField: Roger1
+    <Text>k__BackingField: "Nox, I\u2019ve got a new mission for you! I\u2019ve been
+      trying to spot this rare bird recently but I\u2019m having some trouble attracting
+      one to Smallhaven."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 0c917ab2-92dc-4d72-9f5a-12e3b3b77b20
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: -160.8, y: 258.40002}
+  - <ID>k__BackingField: 0c917ab2-92dc-4d72-9f5a-12e3b3b77b20
+    <Name>k__BackingField: Roger2
+    <Text>k__BackingField: "I\u2019ve heard they really like to eat a certain type
+      of beetle that likes to hide in rocks. Could you get one of those beetles for
+      me?"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: f9c88474-d132-47a0-9b69-85a3c348565f
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 499.2, y: 260.80002}
+  - <ID>k__BackingField: f9c88474-d132-47a0-9b69-85a3c348565f
+    <Name>k__BackingField: Roger3
+    <Text>k__BackingField: Much appreciated, Nox! Bring the beetle to me as soon
+      as you have one.
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1163.2, y: 267.2}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - Roger1
+  - Roger2
+  - Roger3
+  <OldGroupedNodeNames>k__BackingField:
+    list: []

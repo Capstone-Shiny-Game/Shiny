@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: WantsAPearPT1Graph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: WantsAPearPT1
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: 6fc11172-bed2-4f9e-b0dc-7b4a4d65f3d9
+    <Name>k__BackingField: Roger1
+    <Text>k__BackingField: "Hey, Nox! You know, I\u2019ve really been craving pears
+      recently. Do you think you could get me a pear?"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 0016c7d9-756d-410c-8d6a-c26a2aec1e6f
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 55.2, y: 213.59999}
+  - <ID>k__BackingField: 0016c7d9-756d-410c-8d6a-c26a2aec1e6f
+    <Name>k__BackingField: Roger2
+    <Text>k__BackingField: "I\u2019m looking forward to it! Try and get a really
+      juicy one for me."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 721.6, y: 215.2}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - Roger1
+  - Roger2
+  <OldGroupedNodeNames>k__BackingField:
+    list: []

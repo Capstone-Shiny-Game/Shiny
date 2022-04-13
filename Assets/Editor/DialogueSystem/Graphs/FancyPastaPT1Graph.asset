@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: FancyPastaPT1Graph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: FancyPastaPT1
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: 299ed631-207a-4d98-803f-84ae2bc29752
+    <Name>k__BackingField: Roger1
+    <Text>k__BackingField: "Nox, hello! I\u2019ve got quite the problem on my hands.
+      I was making my signature dish that I have aptly named Mega Pasta. Unfortunately,
+      I completely forgot to get a few key ingredients!"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 61d86f4a-fdc4-4065-9d43-3b192bb834ca
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 44.8, y: 200.8}
+  - <ID>k__BackingField: 61d86f4a-fdc4-4065-9d43-3b192bb834ca
+    <Name>k__BackingField: Roger2
+    <Text>k__BackingField: "I need mushrooms and clams to finish the dish. Could
+      you get some for me? I\u2019ll give you a little pasta as a reward!"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 5f34b421-5de6-419c-ad6a-9e57e327db0f
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 707.2, y: 201.59999}
+  - <ID>k__BackingField: 5f34b421-5de6-419c-ad6a-9e57e327db0f
+    <Name>k__BackingField: Roger3
+    <Text>k__BackingField: Excellent! Bring me the ingredients as fast as you can.
+      Time is of the essence!
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1368.8, y: 202.4}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - Roger1
+  - Roger2
+  - Roger3
+  <OldGroupedNodeNames>k__BackingField:
+    list: []

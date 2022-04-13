@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: TutorialQuestPT2Graph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: TutorialQuestPT2
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: e4da5ed2-2707-4a22-aace-211c6cb8c095
+    <Name>k__BackingField: Merletta1
+    <Text>k__BackingField: This honey looks delicious! Thank you for getting it,
+      Nox. I was thinking about what else to add to the potion while you were gone.
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: db023e96-87e9-4b82-ba2f-ae03d32db68b
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 127.2, y: 269.6}
+  - <ID>k__BackingField: db023e96-87e9-4b82-ba2f-ae03d32db68b
+    <Name>k__BackingField: Merletta2
+    <Text>k__BackingField: The next ingredient I need is an acorn. You should be
+      able to get one by flying into trees and knocking them off of the branches.
+      Try it with the trees in the forest right here.
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 805.6, y: 271.2}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - Merletta1
+  - Merletta2
+  <OldGroupedNodeNames>k__BackingField:
+    list: []

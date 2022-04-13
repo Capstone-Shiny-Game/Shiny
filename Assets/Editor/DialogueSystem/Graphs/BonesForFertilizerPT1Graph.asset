@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: BonesForFertilizerPT1Graph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: BonesForFertilizerPT1
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: 1a664bc6-80a3-4b03-9c59-3a3b0e55588e
+    <Name>k__BackingField: Roger1
+    <Text>k__BackingField: "Ah, Nox! I was hoping you\u2019d stop by. You see, I\u2019m
+      in a bit of a pickle. I just planted some flower seeds but I realized I\u2019m
+      out of fertilizer!"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: bbc9c9e7-d334-4ed8-ad13-68e288503865
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 33.6, y: 226.4}
+  - <ID>k__BackingField: bbc9c9e7-d334-4ed8-ad13-68e288503865
+    <Name>k__BackingField: Roger2
+    <Text>k__BackingField: If you could get me some bones, I could make bone meal
+      which I could use as fertilizer. If you can find some, bring them to me please!
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 688, y: 227.2}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - Roger1
+  - Roger2
+  <OldGroupedNodeNames>k__BackingField:
+    list: []

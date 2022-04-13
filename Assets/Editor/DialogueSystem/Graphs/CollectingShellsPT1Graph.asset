@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: CollectingShellsPT1Graph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: CollectingShellsPT1
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: 4fe9e7e4-df8f-4324-a464-c45570cfa7be
+    <Name>k__BackingField: Roger1
+    <Text>k__BackingField: "Nox, there you are! I was hoping you\u2019d fly by today.
+      I\u2019ve recently started collecting shells and I needed some help."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 73b86215-5572-485a-aa89-887a56b98453
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 48.8, y: 230.4}
+  - <ID>k__BackingField: 73b86215-5572-485a-aa89-887a56b98453
+    <Name>k__BackingField: Roger2
+    <Text>k__BackingField: "There\u2019s this one kind of shell that\u2019s usually
+      buried pretty deep in the ground. I haven\u2019t been able to dig one up."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: b66d7e1e-7091-4fba-b027-1753ecc5e291
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 712, y: 232.8}
+  - <ID>k__BackingField: b66d7e1e-7091-4fba-b027-1753ecc5e291
+    <Name>k__BackingField: Roger3
+    <Text>k__BackingField: Do you think you could find one for me? You could? Thanks!
+      Just bring it to me when you find one.
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1374.4, y: 238.40001}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - Roger1
+  - Roger2
+  - Roger3
+  <OldGroupedNodeNames>k__BackingField:
+    list: []
