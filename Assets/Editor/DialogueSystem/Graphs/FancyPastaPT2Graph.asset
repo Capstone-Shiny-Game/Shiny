@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: FancyPastaPT2Graph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: FancyPastaPT2
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: 00bb3f35-22a9-4b46-bfe8-37ddfdce4e2f
+    <Name>k__BackingField: Roger1
+    <Text>k__BackingField: I can tell these are fresh ingredients. Wait here while
+      I finish up the Mega Pasta.
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 216a67ed-9946-4953-96bf-9963954c6ba0
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 178.4, y: 238.40001}
+  - <ID>k__BackingField: 216a67ed-9946-4953-96bf-9963954c6ba0
+    <Name>k__BackingField: Roger2
+    <Text>k__BackingField: "Voila! Here is your serving of Mega Pasta! And here\u2019s
+      a little extra treat for your trouble. Thanks, Nox!"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 724, y: 239.99998}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - Roger1
+  - Roger2
+  <OldGroupedNodeNames>k__BackingField:
+    list: []

@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: OutOfHoneyPT1Graph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: OutOfHoneyPT1
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: ca6e3018-366f-4ef7-9a42-1b243177f495
+    <Name>k__BackingField: Merletta1
+    <Text>k__BackingField: "Oh, Nox, could you do a favor for me? I was about to
+      make myself a cup of tea but it looks like I\u2019m completely out of honey."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 1bd31294-257f-4056-88b0-9d21dee1ed59
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 132.8, y: 215.2}
+  - <ID>k__BackingField: 1bd31294-257f-4056-88b0-9d21dee1ed59
+    <Name>k__BackingField: Merletta2
+    <Text>k__BackingField: Would you be a dear and get me some more? Charlie usually
+      has a few jars or you could find some in the wild.
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: ab63c5ab-4a14-466b-9567-3233b9abc115
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 792, y: 217.59999}
+  - <ID>k__BackingField: ab63c5ab-4a14-466b-9567-3233b9abc115
+    <Name>k__BackingField: Merletta3
+    <Text>k__BackingField: Thank you Nox! Bring the honey to me once you have it.
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1456, y: 220.8}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - Merletta1
+  - Merletta2
+  - Merletta3
+  <OldGroupedNodeNames>k__BackingField:
+    list: []

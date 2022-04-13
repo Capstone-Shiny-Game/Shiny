@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529e1fda608dd8343af93e5d7d5159f7, type: 3}
+  m_Name: TutorialQuestPT1Graph
+  m_EditorClassIdentifier: 
+  <FileName>k__BackingField: TutorialQuestPT1
+  <Groups>k__BackingField: []
+  <Nodes>k__BackingField:
+  - <ID>k__BackingField: 02c80257-a9f3-4104-b200-6470e9c0432f
+    <Name>k__BackingField: Merletta1
+    <Text>k__BackingField: "Oh, hello Nox. What\u2019s that? No, I\u2019m doing just
+      fine\u2026"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 2ca39155-ba0d-4692-9dcf-c74479ea15b8
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 23.2, y: 200.8}
+  - <ID>k__BackingField: 2ca39155-ba0d-4692-9dcf-c74479ea15b8
+    <Name>k__BackingField: Merletta2
+    <Text>k__BackingField: "Well, I\u2019m maybe not completely fine. The thing is\u2026
+      everyone in Smallhaven has been so kind to me since we moved here."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 51c841cc-67f5-424d-847a-22bfca4e3f0c
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 400, y: 204}
+  - <ID>k__BackingField: 51c841cc-67f5-424d-847a-22bfca4e3f0c
+    <Name>k__BackingField: Merletta3
+    <Text>k__BackingField: "I just can\u2019t help but feel so nervous around all
+      of them. I\u2019ve been avoiding them because I feel so anxious around new
+      people, but I\u2019m scared they\u2019ll start to think that I hate them."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 3dd36d6f-70aa-48b2-aa28-5835e2b46303
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1053.6, y: 208}
+  - <ID>k__BackingField: 3dd36d6f-70aa-48b2-aa28-5835e2b46303
+    <Name>k__BackingField: Merletta4
+    <Text>k__BackingField: You understand that kind of feeling, right Nox? I can
+      always count on you to comfort me.
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 5294bcf6-fa96-45c0-97dd-7484b6987da8
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 1713.6, y: 208.8}
+  - <ID>k__BackingField: 5294bcf6-fa96-45c0-97dd-7484b6987da8
+    <Name>k__BackingField: Merletta5
+    <Text>k__BackingField: "Wait, I have an idea! Why don\u2019t I make myself a
+      potion to give me some courage? I am a witch, after all. I might as well put
+      my talents to good use!"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 29b9f372-04e4-41c9-b605-b1a9b4a96999
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 2319.2, y: 210.4}
+  - <ID>k__BackingField: 29b9f372-04e4-41c9-b605-b1a9b4a96999
+    <Name>k__BackingField: Merletta6
+    <Text>k__BackingField: "I\u2019ll have to think for a bit about what to add to
+      this potion. I know that I\u2019ll definitely need some honey for it, though.
+      Could you find some honey for me?"
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 76856d3f-b935-452a-80a0-3e378a44e64c
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 2980, y: 216}
+  - <ID>k__BackingField: 76856d3f-b935-452a-80a0-3e378a44e64c
+    <Name>k__BackingField: Merletta7
+    <Text>k__BackingField: "I think I saw some in those logs in the forest around
+      our house. I\u2019ve added a magical marker over the logs. If you tap on it,
+      you should be able to easily get some honey."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 8c407fd7-2879-457e-82b0-e8e686380f3f
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 3640, y: 216}
+  - <ID>k__BackingField: 8c407fd7-2879-457e-82b0-e8e686380f3f
+    <Name>k__BackingField: Merletta8
+    <Text>k__BackingField: "Once you\u2019ve collected the honey, come back to me.
+      Tap the honey icon to drop it in front of me and I\u2019ll pick it up."
+    <Choices>k__BackingField:
+    - <Text>k__BackingField: Next Dialogue
+      <NodeID>k__BackingField: 
+    <GroupID>k__BackingField: 
+    <DialogueType>k__BackingField: 0
+    <Position>k__BackingField: {x: 4308, y: 218.4}
+  <OldGroupNames>k__BackingField: []
+  <OldUngroupedNodeNames>k__BackingField:
+  - Merletta1
+  - Merletta2
+  - Merletta3
+  - Merletta4
+  - Merletta5
+  - Merletta6
+  - Merletta7
+  - Merletta8
+  <OldGroupedNodeNames>k__BackingField:
+    list: []
