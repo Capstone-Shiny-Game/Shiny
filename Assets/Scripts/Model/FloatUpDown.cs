@@ -38,6 +38,8 @@ public class FloatUpDown : MonoBehaviour
             return movementRange * Mathf.Sin(Speed * (Time.time));
     }
 
+
+
     IEnumerator UpDownWaitCoroutine()
     {
         float upDown = Mathf.Sin(Speed * (mytime));
