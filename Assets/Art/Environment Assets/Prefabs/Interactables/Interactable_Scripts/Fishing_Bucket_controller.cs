@@ -42,7 +42,7 @@ public class Fishing_Bucket_controller : MonoBehaviour
         if (other.CompareTag("FishingSpot"))
         {
 
-            if (other.transform.parent.name.ToLower().Contains("splash") && !full) {
+            if (other.transform.parent.name.ToLower().Contains("fish") && !full) {
 
                 fishMesh.SetActive(true);
                 //fished = Instantiate<GameObject>(, (Bucket.transform.position + spawnPosition), Quaternion.identity, Bucket.transform);
