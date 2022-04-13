@@ -5,10 +5,27 @@ using UnityEngine;
 public class Trade : MonoBehaviour
 {
     public List<TradeEntry> tradeMap;
+    private GameObject player;
+    private ParticleSystem particles;
 
+    private void Start() 
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        particles = GetComponentInChildren<ParticleSystem>();
+    }
+
+    // some use collisions..
     private void OnCollisionEnter(Collision other)
     {
-        // *use different tag?
+        if (other.gameObject.CompareTag("Tradeable"))
+        {
+            TryTrade(other.gameObject);
+        }
+    }
+
+    // ..and others use triggers
+    private void OnTriggerEnter(Collider other) 
+    {
         if (other.gameObject.CompareTag("Tradeable"))
         {
             TryTrade(other.gameObject);
@@ -29,49 +46,60 @@ public class Trade : MonoBehaviour
             }
         }
 
-        Vector3 randomVelocity = GetRandomInitialVelocity();
+        Vector3 randomVelocity = GetInitialVelocity();
+         
         if (canTrade)
         {
+            StartCoroutine(TradeItemWithDelay(returned, randomVelocity));
             Destroy(givenItem);
-            StartCoroutine(RoastWithDelay(returned, randomVelocity));
         }
         else
         {
-            StartCoroutine(IgnoreCollisions(givenItem));
-            givenItem.GetComponent<Rigidbody>().velocity = randomVelocity;
+            StartCoroutine(ReturnItemWithDelay(givenItem, randomVelocity));
         }
     }
 
-    private IEnumerator RoastWithDelay(GameObject returned, Vector3 randomVelocity)
+    private IEnumerator TradeItemWithDelay(GameObject item, Vector3 randomVelocity)
     {
-        // TODO: start particle effects here
+        if (particles) 
+        {
+            var main = particles.main;
+            main.simulationSpeed = main.simulationSpeed * 4f;
+        }
 
-        // *** lower this for testing
         yield return new WaitForSeconds(2f);
 
-        GameObject roastedItem = Instantiate(returned, transform.position, transform.rotation);
-        StartCoroutine(IgnoreCollisions(roastedItem));
-        roastedItem.GetComponent<Rigidbody>().velocity = randomVelocity;
+        GameObject returnedItem = Instantiate(item, transform.position, transform.rotation);
+        Physics.IgnoreCollision(returnedItem.GetComponent<Collider>(), GetComponent<Collider>());
+        returnedItem.GetComponent<Rigidbody>().velocity = randomVelocity;
 
-        // TODO: end particle effects here
+        if (particles) 
+        {
+            var main = particles.main;
+            main.simulationSpeed = main.simulationSpeed / 4f;
+        }
     }
 
-    private IEnumerator IgnoreCollisions(GameObject obj)
+    private IEnumerator ReturnItemWithDelay(GameObject item, Vector3 randomVelocity) 
     {
-        obj.GetComponent<Collider>().enabled = false;
+        Physics.IgnoreCollision(item.GetComponent<Collider>(), GetComponent<Collider>());
+        item.transform.position = transform.position;
+        item.transform.rotation = transform.rotation;
+
+        item.SetActive(false);
         yield return new WaitForSeconds(0.5f);
-        obj.GetComponent<Collider>().enabled = true;
+        item.SetActive(true);
+
+        item.GetComponent<Rigidbody>().velocity = randomVelocity;
     }
 
-    private Vector3 GetRandomInitialVelocity()
+    private Vector3 GetInitialVelocity()
     {
-        float xSign = Random.value > 0.5f ? 1f : -1f;
-        float zSign = Random.value > 0.5f ? 1f : -1f;
-
-        float xRand = xSign * 3f;
         float ySet = 10f;
-        float zRand = zSign * 3f;
 
-        return new Vector3(xRand, ySet, zRand);
+        Vector3 velocity = ((player.transform.position - transform.position) / 2)
+            + new Vector3(0, ySet, 0);
+
+        return velocity;
     }
 }
