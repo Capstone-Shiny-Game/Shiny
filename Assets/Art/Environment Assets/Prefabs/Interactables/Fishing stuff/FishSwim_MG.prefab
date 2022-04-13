@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3762709763357630014}
   - component: {fileID: 6476095196764417777}
   m_Layer: 0
-  m_Name: FishSwim1 2
+  m_Name: FishSwim_MG
   m_TagString: FishingSpot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +73,7 @@ Transform:
   m_GameObject: {fileID: 6427682697961486759}
   m_LocalRotation: {x: -0, y: 0.710197, z: -0, w: -0.70400304}
   m_LocalPosition: {x: 0.17440888, y: 0, z: 0.16798674}
-  m_LocalScale: {x: 250, y: 250, z: 250}
+  m_LocalScale: {x: 235, y: 235, z: 235}
   m_Children: []
   m_Father: {fileID: 3762709763357630014}
   m_RootOrder: 0
@@ -105,7 +105,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a916da22c79f00a47858a71db783bac2, type: 2}
+  - {fileID: 2100000, guid: bc36bb728a8cea94d80dda72685147b2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -139,10 +139,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4190a6ade5b0b8945be692dee5f3ed2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 40
+  distance: 80
   speed: 2
-  waitTime: 20
-  sideMoveRange: 0.2
+  waitTime: 15
+  sideMoveRange: 0.5
   sideMoveSpeed: 0.01
   isfish: 1
 --- !u!65 &6869656875339584795
