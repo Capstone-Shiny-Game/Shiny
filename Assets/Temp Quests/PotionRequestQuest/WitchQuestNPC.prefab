@@ -144,7 +144,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8597911739414737619}
   - component: {fileID: 7766471127186985373}
-  - component: {fileID: 163416950075787874}
+  - component: {fileID: 7863068032590551184}
+  - component: {fileID: 1758665837961562377}
   - component: {fileID: 4591753570813972270}
   m_Layer: 0
   m_Name: WitchQuestNPC
@@ -189,7 +190,7 @@ MonoBehaviour:
   dialogueContainer: {fileID: 0}
   blackOutSquare: {fileID: 0}
   nearestPerch: {fileID: 0}
---- !u!114 &163416950075787874
+--- !u!114 &7863068032590551184
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -198,18 +199,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 2616859497311711755}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f52781fe73026b44aeaf51210ee5c65, type: 3}
+  m_Script: {fileID: 11500000, guid: 2946240b4cdf68e4abff5eacce0fc7f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QuestName: PotionRequest
-  StartDialogue: {fileID: 11400000, guid: 8e46a24c32737154880b5abf47ff7710, type: 2}
-  P2Dialogue: {fileID: 11400000, guid: 76a1ea505a910d14ebb3fd079bf55812, type: 2}
-  CompletionDialogue: {fileID: 11400000, guid: c7800c2020c8cc24fab3d70d512cd9e8, type: 2}
-  Deliver1: {fileID: 3733200113200723114, guid: 38c19cb3368f3344cb90b22f1369fe0a, type: 3}
-  Deliver2: {fileID: 3635389608909536374, guid: 6786563c285dc97469e0262b2dada59d, type: 3}
-  Deliver3: {fileID: 3031985073890378399, guid: 1c05957756d21e84f8803d56874545af, type: 3}
-  ExpectedQuantity: 3
+  quests:
+  - name: Tutorial
+    Dialogues:
+    - {fileID: 11400000, guid: 328e0477557327f4994d48b56d479117, type: 2}
+    - {fileID: 11400000, guid: 147aacf03b4881b43aedb25de1303c28, type: 2}
+    - {fileID: 11400000, guid: dc6144827181fc94f82fc0349bc2e559, type: 2}
+    - {fileID: 11400000, guid: 25cd2bb2e91b2a346b5c799e407fd4c8, type: 2}
+    ExpectedDeliveries:
+    - {fileID: 3733200113200723114, guid: 38c19cb3368f3344cb90b22f1369fe0a, type: 3}
+    - {fileID: 2975472764787950592, guid: d851519736960aa48bb2eaa72ce060d4, type: 3}
+    - {fileID: 2984608545844598259, guid: 8bc248d31bdbfc74a8b7400d446494de, type: 3}
+    ExpectedTotalQuantity: 1
   InteractButton: {fileID: 6563778449525004035}
+  randomQuest: 0
+  randomQuests: {fileID: 1758665837961562377}
+--- !u!114 &1758665837961562377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2616859497311711755}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2946240b4cdf68e4abff5eacce0fc7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quests: []
+  InteractButton: {fileID: 6563778449525004035}
+  randomQuest: 1
+  randomQuests: {fileID: 0}
 --- !u!135 &4591753570813972270
 SphereCollider:
   m_ObjectHideFlags: 0
