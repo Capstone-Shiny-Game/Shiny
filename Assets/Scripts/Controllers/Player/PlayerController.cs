@@ -211,6 +211,7 @@ public class PlayerController : MonoBehaviour, Savable
         crow.resetModelRotation();
         if (lookAt)
             transform.LookAt(lookAt);
+        crow.Model.transform.localPosition = new Vector3(0.0f, -0.52f, 0.0f);
         transform.position = t.position;
         walkCam.GetComponent<ModifyOrbitor>().ResetZero();
         SetState(CrowState.Perching);

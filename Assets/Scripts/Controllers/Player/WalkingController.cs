@@ -46,7 +46,6 @@ public class WalkingController : MonoBehaviour
         PlayerInput.FlightMap.Enable();
         //disables all flying animations(takeoff, glide, fly)
         crow.Model.transform.localPosition = new Vector3(0.0f, -0.52f, 0.0f);
-        hasReset = true;
     }
 
     void OnDisable()
