@@ -100,11 +100,11 @@ public class FetchQuest : MonoBehaviour
         if(Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 50)
         {
             InteractButton.SetActive(false);
-            QuestManager.StartQuest(quests[currentQuest].name, dialogueSystem.characterName, quests[currentQuest].ExpectedDeliveries.Select(x => x.name));
+            //QuestManager.StartQuest(quests[currentQuest].name, dialogueSystem.characterName, quests[currentQuest].ExpectedDeliveries.Select(x => x.name));
             // QuestManager.RecordDialogue(quests[currentQuest].name, dialgoue);
             if(dialogueSystem.dialogueContainer == CompletionDialogue)
             {
-                QuestManager.CompleteQuest(quests[currentQuest].name);
+                //QuestManager.CompleteQuest(quests[currentQuest].name);
                 OnQuestCompleteEvent?.Invoke();
                 questComplete = true;
 

@@ -530,7 +530,6 @@ GameObject:
   m_Component:
   - component: {fileID: 920856456257318111}
   - component: {fileID: 9117110219089530003}
-  - component: {fileID: 5768488036090579579}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -565,23 +564,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5768488036090579579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8442437221105980137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc06a3fbdaf22ee4099edfc8d8acb573, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roastedMaps:
-  - given: {fileID: 4435756837375655444, guid: f10af2f5db2e83046b10f2180b45d336, type: 3}
-    returned: {fileID: 2794926240289982373, guid: 6d38a3f1c7624d044b4d2c53f327c2a4, type: 3}
-  - given: {fileID: 7766147600880298216, guid: 00eb294e50fb9694b8502657f8afd8e0, type: 3}
-    returned: {fileID: 2794926240289982373, guid: 6d38a3f1c7624d044b4d2c53f327c2a4, type: 3}
 --- !u!1 &9125385498741496069
 GameObject:
   m_ObjectHideFlags: 0
