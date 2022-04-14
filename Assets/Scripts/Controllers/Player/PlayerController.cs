@@ -251,6 +251,12 @@ public class PlayerController : MonoBehaviour, Savable
         inventory.RotateItems();
     }
 
+    public void Caw()
+    {
+        Debug.Log("Caw");
+        // TODO (Matt) : fire Wwise event here
+    }
+
     private void OnEnable()
     {
         NPCInteraction.OnNPCInteractEvent += EnterNPCDialogue;

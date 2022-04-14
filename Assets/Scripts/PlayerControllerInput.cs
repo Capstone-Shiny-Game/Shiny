@@ -455,6 +455,15 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Caw"",
+                    ""type"": ""Button"",
+                    ""id"": ""4a54799e-fa77-4426-baf7-a05e72e289d9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -534,6 +543,50 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                     ""action"": ""PrimaryPosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d0966af9-2e10-403c-8577-86cd872a367e"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Caw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""892ad2a4-e9d4-419d-ac06-618d0d21f59a"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Caw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""befc0e3e-eeab-4854-9076-060832cb79a4"",
+                    ""path"": ""<Keyboard>/numpadEnter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Caw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7525c6ac-d0de-426a-8ff9-92115b434dad"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Caw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -559,6 +612,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
         m_GUIMap_PickupItem = m_GUIMap.FindAction("PickupItem", throwIfNotFound: true);
         m_GUIMap_PrimaryTouch = m_GUIMap.FindAction("PrimaryTouch", throwIfNotFound: true);
         m_GUIMap_PrimaryPosition = m_GUIMap.FindAction("PrimaryPosition", throwIfNotFound: true);
+        m_GUIMap_Caw = m_GUIMap.FindAction("Caw", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -721,6 +775,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
     private readonly InputAction m_GUIMap_PickupItem;
     private readonly InputAction m_GUIMap_PrimaryTouch;
     private readonly InputAction m_GUIMap_PrimaryPosition;
+    private readonly InputAction m_GUIMap_Caw;
     public struct GUIMapActions
     {
         private @PlayerControllerInput m_Wrapper;
@@ -731,6 +786,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
         public InputAction @PickupItem => m_Wrapper.m_GUIMap_PickupItem;
         public InputAction @PrimaryTouch => m_Wrapper.m_GUIMap_PrimaryTouch;
         public InputAction @PrimaryPosition => m_Wrapper.m_GUIMap_PrimaryPosition;
+        public InputAction @Caw => m_Wrapper.m_GUIMap_Caw;
         public InputActionMap Get() { return m_Wrapper.m_GUIMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -758,6 +814,9 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                 @PrimaryPosition.started -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnPrimaryPosition;
                 @PrimaryPosition.performed -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnPrimaryPosition;
                 @PrimaryPosition.canceled -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnPrimaryPosition;
+                @Caw.started -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnCaw;
+                @Caw.performed -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnCaw;
+                @Caw.canceled -= m_Wrapper.m_GUIMapActionsCallbackInterface.OnCaw;
             }
             m_Wrapper.m_GUIMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -780,6 +839,9 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                 @PrimaryPosition.started += instance.OnPrimaryPosition;
                 @PrimaryPosition.performed += instance.OnPrimaryPosition;
                 @PrimaryPosition.canceled += instance.OnPrimaryPosition;
+                @Caw.started += instance.OnCaw;
+                @Caw.performed += instance.OnCaw;
+                @Caw.canceled += instance.OnCaw;
             }
         }
     }
@@ -804,5 +866,6 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
         void OnPickupItem(InputAction.CallbackContext context);
         void OnPrimaryTouch(InputAction.CallbackContext context);
         void OnPrimaryPosition(InputAction.CallbackContext context);
+        void OnCaw(InputAction.CallbackContext context);
     }
 }

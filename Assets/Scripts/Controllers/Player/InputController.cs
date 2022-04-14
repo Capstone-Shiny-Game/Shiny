@@ -36,8 +36,13 @@ public class FlightSwapToWalkEvent : UnityEvent { }
 
 [Serializable]
 public class PickupItemEvent : UnityEvent { }
+
 [Serializable]
 public class RotateSelectionEvent : UnityEvent { }
+
+[Serializable]
+public class CawEvent : UnityEvent { }
+
 public class InputController : MonoBehaviour
 {
     //public GameObject cam;
@@ -67,6 +72,9 @@ public class InputController : MonoBehaviour
     public EndTouchEvent OnEndTouch;
 
     public FlightLookResetEvent flightResetLookHandler;
+
+    public CawEvent CawEventHandler;
+
     public TMP_Text test;
     public static bool AccelerometerAvailable { get; private set; } = false;
     public bool UseAccelerometer { get; private set; }
@@ -117,8 +125,8 @@ public class InputController : MonoBehaviour
         PlayerInput.GUIMap.RotateSelection.performed += OnRotateSelection;
         PlayerInput.GUIMap.PrimaryTouch.started += StartTouchPrimary;
         PlayerInput.GUIMap.PrimaryTouch.canceled += EndTouchPrimary;
-
         PlayerInput.GUIMap.PickupItem.performed += OnPickup;
+        PlayerInput.GUIMap.Caw.performed += OnCaw;
 
         //if (Accelerometer.current != null)
         //{
@@ -324,7 +332,9 @@ public class InputController : MonoBehaviour
         RotateSelectionHandler?.Invoke();
     }
 
-
-
+    private void OnCaw(InputAction.CallbackContext context)
+    {
+        CawEventHandler?.Invoke();
+    }
 
 }
