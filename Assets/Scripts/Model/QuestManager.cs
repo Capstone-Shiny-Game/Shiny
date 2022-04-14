@@ -34,7 +34,7 @@ public static class QuestManager
         }
     }
 
-    public static void StartQuest(string quest, string npc = null, IEnumerable<string> items = null)
+    public static void StartQuest(string quest, string npc = null, IEnumerable<string> items = null, int expected = 0)
     {
         quest = ExpandName(quest);
         if (!completed.Contains(quest) && !active.Contains(quest))
@@ -46,7 +46,24 @@ public static class QuestManager
             }
             if (items != null)
             {
-                questItems[quest] = items.Select(TrimAndExpandName).ToArray();
+                if (expected == 1 && items.Count() > 1)
+                {
+                    // special case: the quest specifies a bunch of items and wants the player to deliver any one of them
+                    // for the sake of the menu, we just pick the name of one
+                    questItems[quest] = new string[] { TrimAndExpandName(items.First()) };
+                }
+                else if (expected > 1 && items.Count() == 1)
+                {
+                    // special case: the quest wants a bunch of the same item to be delivered
+                    // we do not want to strike the item off the first time we get one
+                    // so we include a count instead
+                    questItems[quest] = new string[] { $"{TrimAndExpandName(items.First())} (x{expected})"};
+                }
+                else
+                {
+                    // general case: the quest wants the player to bring one each of a list of items
+                    questItems[quest] = items.Select(TrimAndExpandName).ToArray();
+                }
             }
             // questRecordedDialgoues[quest] = "";
         }
