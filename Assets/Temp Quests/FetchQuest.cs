@@ -71,7 +71,8 @@ public class FetchQuest : MonoBehaviour
 
         if(randomQuest)
         {
-            updateQuest(Random.Range(0, quests.Length-1));
+            currentQuest = Random.Range(0, quests.Length);
+            updateQuest(currentQuest);
         }
         else
         {
@@ -86,7 +87,6 @@ public class FetchQuest : MonoBehaviour
         ExpectedQuantity = quests[index].ExpectedTotalQuantity;
         Dialogues = quests[index].Dialogues;
 
-        //TODO: Implement multidialogue
         dialogueSystem.dialogueContainer = Dialogues[0];
         CompletionDialogue = Dialogues[Dialogues.Length - 1];
         currentDialogue = 0;
@@ -100,11 +100,16 @@ public class FetchQuest : MonoBehaviour
         if(Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 50)
         {
             InteractButton.SetActive(false);
-            //QuestManager.StartQuest(quests[currentQuest].name, dialogueSystem.characterName, quests[currentQuest].ExpectedDeliveries.Select(x => x.name));
+            QuestManager.StartQuest(
+                quests[currentQuest].name,
+                dialogueSystem.characterName,
+                quests[currentQuest].ExpectedDeliveries.Select(x => x.name),
+                quests[currentQuest].ExpectedTotalQuantity
+            );
             // QuestManager.RecordDialogue(quests[currentQuest].name, dialgoue);
             if(dialogueSystem.dialogueContainer == CompletionDialogue)
             {
-                //QuestManager.CompleteQuest(quests[currentQuest].name);
+                QuestManager.CompleteQuest(quests[currentQuest].name);
                 OnQuestCompleteEvent?.Invoke();
                 questComplete = true;
 
