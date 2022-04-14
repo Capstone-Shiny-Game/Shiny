@@ -52,7 +52,7 @@ public class FloatUpDown : MonoBehaviour
         mytime += Time.deltaTime;
         upDown = Mathf.Sin(Speed * (mytime));
         upDown = movementRange * upDown;
-        Debug.Log("" + mytime + " , " + upDown);
+        //Debug.Log("" + mytime + " , " + upDown);
         gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x, startingHeight + upDown, gameObject.transform.localPosition.z);
     }
 }
