@@ -42,7 +42,7 @@ public class MenuManager : MonoBehaviour
             Debug.Log(menuContainer.menuType);
         }*/
         currentMenu = menuContainers.Find(x => x.menuType == MenuType.flightui);
-        lastOpenedPauseMenu = MenuType.loadMenu;
+        lastOpenedPauseMenu = MenuType.activeQuestsMenu;
     }
     /// <summary>
     /// called to change the current active menu
