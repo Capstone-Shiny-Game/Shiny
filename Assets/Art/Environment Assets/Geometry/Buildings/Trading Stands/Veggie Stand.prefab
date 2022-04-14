@@ -29,6 +29,8 @@ Transform:
   m_Children:
   - {fileID: 6413433680431573289}
   - {fileID: 920856456257318111}
+  - {fileID: 2647941463910208912}
+  - {fileID: 3367152167282881911}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -114,6 +116,64 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!64 &8816292713124102278
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5228683332227209569}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4953117157904679799, guid: 603f1abff94abbd42831b522dfc9a57b, type: 3}
+--- !u!1 &5716253862247860983
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3367152167282881911}
+  - component: {fileID: 980447134619858575}
+  m_Layer: 0
+  m_Name: GameObject (2)
+  m_TagString: Terrain
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3367152167282881911
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5716253862247860983}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.02, y: 4.52, z: 0.38}
+  m_LocalScale: {x: 9.413484, y: 3.015882, z: 6.8983865}
+  m_Children: []
+  m_Father: {fileID: 6480632863210530525}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &980447134619858575
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5716253862247860983}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 0.38461155}
+  m_Center: {x: 0, y: 0, z: -0.4368539}
 --- !u!1 &7150343306399478581
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,6 +256,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &8212033842391196684
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2647941463910208912}
+  - component: {fileID: 5920237273600405035}
+  m_Layer: 0
+  m_Name: GameObject (1)
+  m_TagString: Terrain
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2647941463910208912
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8212033842391196684}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.02, y: 1.47, z: 0.38}
+  m_LocalScale: {x: 9.413484, y: 3.015882, z: 6.8983865}
+  m_Children: []
+  m_Father: {fileID: 6480632863210530525}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5920237273600405035
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8212033842391196684}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1.1291597}
+  m_Center: {x: 0, y: 0, z: -0.06457989}
 --- !u!1 &8442437221105980137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1329,6 +1433,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7630314622885324893, guid: 603f1abff94abbd42831b522dfc9a57b, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 603f1abff94abbd42831b522dfc9a57b, type: 3}
       propertyPath: m_Name
       value: DairyStall
@@ -1343,6 +1451,11 @@ Transform:
 --- !u!4 &5059507211822332935 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1782675096237339333, guid: 603f1abff94abbd42831b522dfc9a57b, type: 3}
+  m_PrefabInstance: {fileID: 6812730789023387330}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5228683332227209569 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7630314622885324893, guid: 603f1abff94abbd42831b522dfc9a57b, type: 3}
   m_PrefabInstance: {fileID: 6812730789023387330}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7021357936445881358

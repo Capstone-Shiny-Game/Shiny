@@ -1,5 +1,62 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &6384848714019291578
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612391026527973533}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.6000013, y: 5.8659244, z: 2.800001}
+  m_Center: {x: 0, y: -0.22775523, z: 0}
+--- !u!1 &748722152278783420
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8295915808560860711}
+  - component: {fileID: 8273544997337507236}
+  m_Layer: 0
+  m_Name: colliders (1)
+  m_TagString: Terrain
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8295915808560860711
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748722152278783420}
+  m_LocalRotation: {x: 0, y: -0.8057655, z: -0, w: -0.5922348}
+  m_LocalPosition: {x: 11.97, y: -9.939997, z: 11.65}
+  m_LocalScale: {x: 13.373083, y: 3.2182353, z: 4.8938003}
+  m_Children: []
+  m_Father: {fileID: 4910517209265021931}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 107.368, z: 0}
+--- !u!65 &8273544997337507236
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748722152278783420}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4467615283987755197
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,6 +88,50 @@ Transform:
   m_Father: {fileID: 4910517209265021931}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5543990946004008421
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7051099905139078843}
+  - component: {fileID: 9097315503039200635}
+  m_Layer: 0
+  m_Name: colliders
+  m_TagString: Terrain
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7051099905139078843
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5543990946004008421}
+  m_LocalRotation: {x: -0, y: -0.99999905, z: -0, w: 0.0014088767}
+  m_LocalPosition: {x: 0.020001687, y: -9.939997, z: 4.509992}
+  m_LocalScale: {x: 13.373083, y: 3.2182353, z: 4.8352933}
+  m_Children: []
+  m_Father: {fileID: 4910517209265021931}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 180.161, z: 0}
+--- !u!65 &9097315503039200635
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5543990946004008421}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5723646102559750481
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,6 +163,8 @@ Transform:
   - {fileID: 6298817473027677564}
   - {fileID: 7703655819677847313}
   - {fileID: 230940083432614439}
+  - {fileID: 7051099905139078843}
+  - {fileID: 8295915808560860711}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 181.125, z: 0}
@@ -76,6 +179,7 @@ GameObject:
   - component: {fileID: 6298817473027677564}
   - component: {fileID: 6387826847326134358}
   - component: {fileID: 8864551546340005872}
+  - component: {fileID: 5648052606556241205}
   m_Layer: 0
   m_Name: VeggieStall
   m_TagString: Untagged
@@ -148,6 +252,33 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5648052606556241205
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282171647538397553}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 13.300008, y: 5.619244, z: 4.754243}
+  m_Center: {x: 0.000030514906, y: -3.632349, z: -2.3478227}
+--- !u!64 &2611414279007041269
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6737042370158526109}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -33157134183960625, guid: 147ceaf873fe51f40953f286814bf261, type: 3}
 --- !u!1 &8337151453431206503
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,9 +290,10 @@ GameObject:
   - component: {fileID: 2510611445333857534}
   - component: {fileID: 830786781889694993}
   - component: {fileID: 895215147041797457}
+  - component: {fileID: 7725769544771382259}
   m_Layer: 0
   m_Name: VeggieStall_Top
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -229,6 +361,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7725769544771382259
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8337151453431206503}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -33157134183960625, guid: 147ceaf873fe51f40953f286814bf261, type: 3}
 --- !u!1001 &341938999026978252
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -298,6 +444,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18b6b5ca4c2e2e044b72b518a1e5c39c, type: 3}
+--- !u!1 &612391026527973533 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 18b6b5ca4c2e2e044b72b518a1e5c39c, type: 3}
+  m_PrefabInstance: {fileID: 341938999026978252}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &230940083432614439 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 18b6b5ca4c2e2e044b72b518a1e5c39c, type: 3}
@@ -354,14 +505,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5756564540255611289, guid: 147ceaf873fe51f40953f286814bf261, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 147ceaf873fe51f40953f286814bf261, type: 3}
       propertyPath: m_Name
       value: VeggieStall (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 147ceaf873fe51f40953f286814bf261, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 147ceaf873fe51f40953f286814bf261, type: 3}
 --- !u!4 &7703655819677847313 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 147ceaf873fe51f40953f286814bf261, type: 3}
+  m_PrefabInstance: {fileID: 7881962746491283706}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6737042370158526109 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5756564540255611289, guid: 147ceaf873fe51f40953f286814bf261, type: 3}
   m_PrefabInstance: {fileID: 7881962746491283706}
   m_PrefabAsset: {fileID: 0}

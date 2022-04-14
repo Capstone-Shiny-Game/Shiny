@@ -46,6 +46,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6208051012852677721
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206945553640930576}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.134287, y: 6.039463, z: 0.81}
+  m_Center: {x: -0.00000011920929, y: -1.4210855e-14, z: 0}
 --- !u!1 &1447962105276998134
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,13 +83,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447962105276998134}
-  m_LocalRotation: {x: -0, y: -0.2634765, z: -0, w: 0.96466583}
-  m_LocalPosition: {x: 5.5206, y: 2.091, z: 4.6856}
+  m_LocalRotation: {x: -0, y: -0.4843426, z: -0, w: 0.8748784}
+  m_LocalPosition: {x: 4.82, y: 2.0909998, z: 3.46}
   m_LocalScale: {x: 2.206814, y: 1.509355, z: 1.8532199}
   m_Children: []
   m_Father: {fileID: 6480632863210530525}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: -30.553, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -57.939, z: 0}
 --- !u!65 &1873256344671218400
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -438,6 +451,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &2595178716066112310
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7712733166179470398}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.7468555, y: 0.25957146, z: 2.0965362}
+  m_Center: {x: 0.01845084, y: 0.89375573, z: 1.017874}
 --- !u!1 &7803379819081821865
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,7 +571,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8442437221105980137}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.23, y: 1.92, z: 5.02}
+  m_LocalPosition: {x: -7.23, y: 1.66, z: 5.02}
   m_LocalScale: {x: 4.2610817, y: 2.9143753, z: 3.5783353}
   m_Children: []
   m_Father: {fileID: 6480632863210530525}
@@ -869,8 +895,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: WoolSpinner
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ddcee59ea2538a04b893b383dafed869, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddcee59ea2538a04b893b383dafed869, type: 3}
+--- !u!1 &1206945553640930576 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ddcee59ea2538a04b893b383dafed869, type: 3}
+  m_PrefabInstance: {fileID: 2053227223301488705}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2014303354430252970 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ddcee59ea2538a04b893b383dafed869, type: 3}
@@ -1579,8 +1614,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chair
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5aaaa94ca0db1784fa0dec82ae2b86a3, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5aaaa94ca0db1784fa0dec82ae2b86a3, type: 3}
+--- !u!1 &7712733166179470398 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5aaaa94ca0db1784fa0dec82ae2b86a3, type: 3}
+  m_PrefabInstance: {fileID: 7478306494489653615}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6936371770508187268 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5aaaa94ca0db1784fa0dec82ae2b86a3, type: 3}

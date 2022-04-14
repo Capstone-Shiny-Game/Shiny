@@ -132,9 +132,10 @@ GameObject:
   - component: {fileID: 5043749829446817732}
   - component: {fileID: 2777857281836920381}
   - component: {fileID: 4317952999547645187}
+  - component: {fileID: 7020617295658901141}
   m_Layer: 0
   m_Name: WitchStall
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -203,6 +204,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &7020617295658901141
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315042758678828756}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.624999, y: 5.147586, z: 4.8999996}
+  m_Center: {x: -0.0014106017, y: -2.8512075, z: -0.00018992313}
 --- !u!1 &2376696773547297966
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,9 +228,10 @@ GameObject:
   - component: {fileID: 8187334950712445495}
   - component: {fileID: 6399533850528879576}
   - component: {fileID: 6855687418360966040}
+  - component: {fileID: 4928475418471562644}
   m_Layer: 0
   m_Name: VeggieStall_Top
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -284,6 +299,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4928475418471562644
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2376696773547297966}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -33157134183960625, guid: 147ceaf873fe51f40953f286814bf261, type: 3}
 --- !u!1 &7150343306399478581
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,13 +455,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8442437221105980137}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.23, y: 1.92, z: 5.02}
+  m_LocalRotation: {x: -1.16415294e-10, y: -0.20594163, z: -1.6734698e-10, w: 0.97856426}
+  m_LocalPosition: {x: 6.72, y: 1.6, z: 3.83}
   m_LocalScale: {x: 4.2610817, y: 2.9143753, z: 3.5783353}
   m_Children: []
   m_Father: {fileID: 6480632863210530525}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -23.769, z: 0}
 --- !u!65 &9117110219089530003
 BoxCollider:
   m_ObjectHideFlags: 0
