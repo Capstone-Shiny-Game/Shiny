@@ -71,7 +71,8 @@ public class FetchQuest : MonoBehaviour
 
         if(randomQuest)
         {
-            updateQuest(Random.Range(0, quests.Length-1));
+            currentQuest = Random.Range(0, quests.Length);
+            updateQuest(currentQuest);
         }
         else
         {
@@ -86,7 +87,6 @@ public class FetchQuest : MonoBehaviour
         ExpectedQuantity = quests[index].ExpectedTotalQuantity;
         Dialogues = quests[index].Dialogues;
 
-        //TODO: Implement multidialogue
         dialogueSystem.dialogueContainer = Dialogues[0];
         CompletionDialogue = Dialogues[Dialogues.Length - 1];
         currentDialogue = 0;
