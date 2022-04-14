@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 7678910086319842698}
   - component: {fileID: 4591753570813972270}
   m_Layer: 0
-  m_Name: MayorPotionNPC
+  m_Name: MayorRoger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -218,15 +218,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quests:
-  - name: PotionQuest
+  - name: Fancy Pasta
     Dialogues:
-    - {fileID: 11400000, guid: 35cf080bb79cb4b4b9c93c25a3d52ecb, type: 2}
-    - {fileID: 11400000, guid: f8547494d8a4a004293640118b32c726, type: 2}
+    - {fileID: 11400000, guid: fc45cfe2b3c5c4949bd37c946b4bda70, type: 2}
+    - {fileID: 11400000, guid: e04a8bbcd7a9f8a4985ab461155fec7a, type: 2}
     ExpectedDeliveries:
-    - {fileID: 3398802432069250807, guid: 8da5a0aa308ca8c42ace40f8bc8936c0, type: 3}
+    - {fileID: 3287823856929704210, guid: c18d2c6e0a924774bb6af2c72fbfe928, type: 3}
+    - {fileID: 573740606800415451, guid: f92bf7a91e279484ca715135c958d7b2, type: 3}
+    ExpectedTotalQuantity: 2
+  - name: Bones for Fertilizer
+    Dialogues:
+    - {fileID: 11400000, guid: 065b145d9ee05c44691a767d46721e2b, type: 2}
+    - {fileID: 11400000, guid: 6c57e97ca944ad241ba7adbd6c2f8c0c, type: 2}
+    ExpectedDeliveries:
+    - {fileID: 267196741121641878, guid: 074f08986454a7945b90e44f01090f12, type: 3}
+    ExpectedTotalQuantity: 1
+  - name: Beetle as Bait
+    Dialogues:
+    - {fileID: 11400000, guid: b1abcd5bd7ea1bd46a009359066493bb, type: 2}
+    - {fileID: 11400000, guid: 744a099ad45f76f499eebfecc5330f5c, type: 2}
+    ExpectedDeliveries:
+    - {fileID: 3635389608909536374, guid: 6786563c285dc97469e0262b2dada59d, type: 3}
+    ExpectedTotalQuantity: 1
+  - name: Wants a Pear
+    Dialogues:
+    - {fileID: 11400000, guid: 7afb9c8f2eebaa245813baa69e27bb4e, type: 2}
+    - {fileID: 11400000, guid: f6af150752245a546ad7147bf255d39b, type: 2}
+    ExpectedDeliveries:
+    - {fileID: 7899212938688865074, guid: 2fc0cb087fb1af04690a85a0dd7f94f4, type: 3}
+    ExpectedTotalQuantity: 1
+  - name: Collecting Shells
+    Dialogues:
+    - {fileID: 11400000, guid: 119a7847688fe54488a84f0a180e4fd1, type: 2}
+    - {fileID: 11400000, guid: 220a3a3a261d22949972b5aa94266c8b, type: 2}
+    ExpectedDeliveries:
+    - {fileID: 919132149155446097, guid: 47704678bb99c2e47865578c160a9c37, type: 3}
     ExpectedTotalQuantity: 1
   InteractButton: {fileID: 6563778449525004035}
-  randomQuest: 0
+  randomQuest: 1
+  randomQuests: {fileID: 0}
 --- !u!135 &4591753570813972270
 SphereCollider:
   m_ObjectHideFlags: 0

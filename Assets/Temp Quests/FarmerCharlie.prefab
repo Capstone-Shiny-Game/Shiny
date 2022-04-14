@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 7678910086319842698}
   - component: {fileID: 4591753570813972270}
   m_Layer: 0
-  m_Name: FishermanNPC
+  m_Name: FarmerCharlie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,9 +164,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4527586448698349411}
   - {fileID: 4896112876595263205}
   - {fileID: 2940944178925103350}
+  - {fileID: 8978909270384204831}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -182,9 +182,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6331b61d419c4ca44baf1bba22aa367c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: Edgar
+  characterName: Charlie
   avatarName: BlondAvatar
-  bgColor: {r: 0.19401923, g: 0.3773585, b: 0.35609287, a: 1}
+  bgColor: {r: 0.74392176, g: 0.56590426, b: 0.764151, a: 1}
   npcUI: {fileID: 4896112876595263201}
   dialogueContainer: {fileID: 0}
   blackOutSquare: {fileID: 0}
@@ -202,37 +202,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quests:
-  - name: Under the Weather
+  - name: Thyme for Healing
     Dialogues:
-    - {fileID: 11400000, guid: c1367be32f6eb84449785bf8e3919187, type: 2}
-    - {fileID: 11400000, guid: 81959fcfbadce31478f07fb19fc18b6c, type: 2}
+    - {fileID: 11400000, guid: 0b806d1770cb41440a198342a270976b, type: 2}
+    - {fileID: 11400000, guid: 9263cf92c724c9f4e8ae9d4693dd91a9, type: 2}
     ExpectedDeliveries:
-    - {fileID: 2186629695382064638, guid: d891b1ed3e7e9cb4dba0297e2938bc0f, type: 3}
-    ExpectedTotalQuantity: 2
-  - name: Shopping List
+    - {fileID: 3026651620921128447, guid: e5dcd77519667b74a9d531e4f1d8fb31, type: 3}
+    ExpectedTotalQuantity: 3
+  - name: Picky Eater
     Dialogues:
-    - {fileID: 11400000, guid: 3167b517dd8bdd14eb72dbf80f9d2730, type: 2}
-    - {fileID: 11400000, guid: 9e568346222f3594da61cd4429320fdd, type: 2}
+    - {fileID: 11400000, guid: 8f7645a06126af1428c62b9cbf775b5d, type: 2}
+    - {fileID: 11400000, guid: 49ad308e30227034c8a1106a4347f656, type: 2}
     ExpectedDeliveries:
-    - {fileID: 7899212938688865074, guid: 2fc0cb087fb1af04690a85a0dd7f94f4, type: 3}
-    - {fileID: 7950466286413938199, guid: 4016557fa3fa2ef46850d1ba1122a498, type: 3}
-    - {fileID: 1975847247849946001, guid: 83c27779074df994a88d25bbf9c557c1, type: 3}
+    - {fileID: 7766147600880298216, guid: 00eb294e50fb9694b8502657f8afd8e0, type: 3}
+    ExpectedTotalQuantity: 5
+  - name: Sweet Surprise
+    Dialogues:
+    - {fileID: 11400000, guid: c90e4e6acf3caf24a834b8047211d3da, type: 2}
+    - {fileID: 11400000, guid: 5373e5252c71b134a91585546d86287f, type: 2}
+    ExpectedDeliveries:
     - {fileID: 919132149155446097, guid: a1a303aab70209043a39f978e87e43dd, type: 3}
-    ExpectedTotalQuantity: 9
-  - name: Out of Bait
+    - {fileID: 3031985073890378399, guid: 1c05957756d21e84f8803d56874545af, type: 3}
+    - {fileID: 4751365420178820554, guid: be415d51562dea04ca24e19b36f99fb2, type: 3}
+    ExpectedTotalQuantity: 3
+  - name: Eggsasperated
     Dialogues:
-    - {fileID: 11400000, guid: ae7ee3242d191e649a44125f1ebd7e46, type: 2}
-    - {fileID: 11400000, guid: 49c54a5ec75bf994abd250e7d9c170e9, type: 2}
+    - {fileID: 11400000, guid: 8fcdf65d049f94f46a703a055b01ce25, type: 2}
+    - {fileID: 11400000, guid: aef192ed58fbf884fb602102485710d5, type: 2}
     ExpectedDeliveries:
-    - {fileID: 7306868733982995167, guid: 70b29b9c49dcb9947a45e4d79aa40651, type: 3}
-    ExpectedTotalQuantity: 1
-  - name: A Place to Grow
-    Dialogues:
-    - {fileID: 11400000, guid: b9c5bca426b8fe2469f6038edec7497d, type: 2}
-    - {fileID: 11400000, guid: e423bcf646d5b7d4c9de48ccb2bdcdf1, type: 2}
-    ExpectedDeliveries:
-    - {fileID: 2153347810465551460, guid: 010f8d1076154f94b9b9ae0a863df92b, type: 3}
-    ExpectedTotalQuantity: 2
+    - {fileID: 919132149155446097, guid: a1a303aab70209043a39f978e87e43dd, type: 3}
+    ExpectedTotalQuantity: 5
   InteractButton: {fileID: 6563778449525004035}
   randomQuest: 1
   randomQuests: {fileID: 0}
@@ -309,7 +308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19215687, g: 0.3764706, b: 0.35686275, a: 1}
+  m_Color: {r: 0.74509805, g: 0.5647059, b: 0.7647059, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -372,7 +371,7 @@ RectTransform:
   m_Children:
   - {fileID: 2944336820178910688}
   m_Father: {fileID: 8597911739414737619}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -486,7 +485,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8634655693421832514, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_Name
-      value: FishermanDialogueUI
+      value: ThymeFarmerDialogueUI
       objectReference: {fileID: 0}
     - target: {fileID: 8634655693421832514, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_IsActive
@@ -502,7 +501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8634655693421832518, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8634655693421832518, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_AnchorMax.x
@@ -841,77 +840,77 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &4134179794121453704
+--- !u!1001 &8868088037583305716
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 8597911739414737619}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 6ec41a33cc854804193170d5434ad897, type: 3}
+    - target: {fileID: -8679921383154817045, guid: d4a91dbf673562347ae6deb6b728120b, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6ec41a33cc854804193170d5434ad897, type: 3}
+    - target: {fileID: -8679921383154817045, guid: d4a91dbf673562347ae6deb6b728120b, type: 3}
       propertyPath: m_LocalScale.x
       value: 35
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6ec41a33cc854804193170d5434ad897, type: 3}
+    - target: {fileID: -8679921383154817045, guid: d4a91dbf673562347ae6deb6b728120b, type: 3}
       propertyPath: m_LocalScale.y
       value: 35
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6ec41a33cc854804193170d5434ad897, type: 3}
+    - target: {fileID: -8679921383154817045, guid: d4a91dbf673562347ae6deb6b728120b, type: 3}
       propertyPath: m_LocalScale.z
       value: 35
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6ec41a33cc854804193170d5434ad897, type: 3}
+    - target: {fileID: -8679921383154817045, guid: d4a91dbf673562347ae6deb6b728120b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6ec41a33cc854804193170d5434ad897, type: 3}
+    - target: {fileID: -8679921383154817045, guid: d4a91dbf673562347ae6deb6b728120b, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6ec41a33cc854804193170d5434ad897, type: 3}
+    - target: {fileID: -8679921383154817045, guid: d4a91dbf673562347ae6deb6b728120b, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6ec41a33cc854804193170d5434ad897, type: 3}
+    - target: {fileID: -8679921383154817045, guid: d4a91dbf673562347ae6deb6b728120b, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6ec41a33cc854804193170d5434ad897, type: 3}
+    - target: {fileID: -8679921383154817045, guid: d4a91dbf673562347ae6deb6b728120b, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6ec41a33cc854804193170d5434ad897, type: 3}
+    - target: {fileID: -8679921383154817045, guid: d4a91dbf673562347ae6deb6b728120b, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6ec41a33cc854804193170d5434ad897, type: 3}
+    - target: {fileID: -8679921383154817045, guid: d4a91dbf673562347ae6deb6b728120b, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6ec41a33cc854804193170d5434ad897, type: 3}
+    - target: {fileID: -8679921383154817045, guid: d4a91dbf673562347ae6deb6b728120b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6ec41a33cc854804193170d5434ad897, type: 3}
+    - target: {fileID: -8679921383154817045, guid: d4a91dbf673562347ae6deb6b728120b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 6ec41a33cc854804193170d5434ad897, type: 3}
+    - target: {fileID: -8679921383154817045, guid: d4a91dbf673562347ae6deb6b728120b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 6ec41a33cc854804193170d5434ad897, type: 3}
+    - target: {fileID: 919132149155446097, guid: d4a91dbf673562347ae6deb6b728120b, type: 3}
       propertyPath: m_Name
-      value: A_oldFisher_idle
+      value: A_enbyFarmer_idle1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6ec41a33cc854804193170d5434ad897, type: 3}
---- !u!4 &4527586448698349411 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: d4a91dbf673562347ae6deb6b728120b, type: 3}
+--- !u!4 &8978909270384204831 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6ec41a33cc854804193170d5434ad897, type: 3}
-  m_PrefabInstance: {fileID: 4134179794121453704}
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d4a91dbf673562347ae6deb6b728120b, type: 3}
+  m_PrefabInstance: {fileID: 8868088037583305716}
   m_PrefabAsset: {fileID: 0}

@@ -144,10 +144,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8597911739414737619}
   - component: {fileID: 7766471127186985373}
-  - component: {fileID: 7678910086319842698}
+  - component: {fileID: 7863068032590551184}
+  - component: {fileID: 1758665837961562377}
   - component: {fileID: 4591753570813972270}
   m_Layer: 0
-  m_Name: FertilizerNPC
+  m_Name: WitchQuestNPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,9 +165,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1325451212360998704}
   - {fileID: 4896112876595263205}
   - {fileID: 2940944178925103350}
-  - {fileID: 2811531367824628927}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -182,14 +183,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6331b61d419c4ca44baf1bba22aa367c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterName: Hayes
-  avatarName: BlondAvatar
-  bgColor: {r: 0.3764706, g: 0.20833302, b: 0.19215687, a: 1}
+  characterName: Merletta
+  avatarName: WitchAvatar
+  bgColor: {r: 0.3966532, g: 0.20198469, b: 0.4811321, a: 1}
   npcUI: {fileID: 4896112876595263201}
   dialogueContainer: {fileID: 0}
   blackOutSquare: {fileID: 0}
   nearestPerch: {fileID: 0}
---- !u!114 &7678910086319842698
+--- !u!114 &7863068032590551184
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,41 +203,67 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quests:
-  - name: ClamQuest
+  - name: Tutorial
     Dialogues:
-    - {fileID: 11400000, guid: 6fdaf0fc3b369c542a04d406086cc5d1, type: 2}
-    - {fileID: 11400000, guid: 600f5648c776b7a4897362b0ef56e8b2, type: 2}
+    - {fileID: 11400000, guid: 328e0477557327f4994d48b56d479117, type: 2}
+    - {fileID: 11400000, guid: 147aacf03b4881b43aedb25de1303c28, type: 2}
+    - {fileID: 11400000, guid: dc6144827181fc94f82fc0349bc2e559, type: 2}
+    - {fileID: 11400000, guid: 25cd2bb2e91b2a346b5c799e407fd4c8, type: 2}
     ExpectedDeliveries:
-    - {fileID: 573740606800415451, guid: f92bf7a91e279484ca715135c958d7b2, type: 3}
-    ExpectedTotalQuantity: 1
-  - name: A Special Present
-    Dialogues:
-    - {fileID: 11400000, guid: 87c7afcd8bfb9594fa9413d99df141a5, type: 2}
-    - {fileID: 11400000, guid: a6da3e9994653d14db55499c135e1b72, type: 2}
-    ExpectedDeliveries:
-    - {fileID: 5179504098457364868, guid: e6263c92c0a4ece47ac63dfbcddefb6e, type: 3}
-    ExpectedTotalQuantity: 1
-  - name: More Mushrooms
-    Dialogues:
-    - {fileID: 11400000, guid: 4b80e495c719e0d449b270a621580e55, type: 2}
-    - {fileID: 11400000, guid: 210654c0c6c76e549ad3c3c560f71ce4, type: 2}
-    ExpectedDeliveries:
-    - {fileID: 3287823856929704210, guid: c18d2c6e0a924774bb6af2c72fbfe928, type: 3}
-    ExpectedTotalQuantity: 1
-  - name: Regrowing
-    Dialogues:
-    - {fileID: 11400000, guid: e333db996ccc5fa46aebd5e0a0662317, type: 2}
-    - {fileID: 11400000, guid: fa58ec9a8b72e1b49a870567b93b0a61, type: 2}
-    ExpectedDeliveries:
-    - {fileID: 7973309512787198793, guid: f6231f1f996d5e14182831bf16be7e0f, type: 3}
     - {fileID: 3733200113200723114, guid: 38c19cb3368f3344cb90b22f1369fe0a, type: 3}
-    ExpectedTotalQuantity: 2
-  - name: Variety of Veggies
+    - {fileID: 2975472764787950592, guid: d851519736960aa48bb2eaa72ce060d4, type: 3}
+    - {fileID: 2984608545844598259, guid: 8bc248d31bdbfc74a8b7400d446494de, type: 3}
+    ExpectedTotalQuantity: 1
+  InteractButton: {fileID: 6563778449525004035}
+  randomQuest: 0
+  randomQuests: {fileID: 1758665837961562377}
+--- !u!114 &1758665837961562377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2616859497311711755}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2946240b4cdf68e4abff5eacce0fc7f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quests:
+  - name: String for Spells
     Dialogues:
-    - {fileID: 11400000, guid: d6edf456952488b4fa27e72dcb1817d4, type: 2}
-    - {fileID: 11400000, guid: 89ffa8e50f0fb864786f1d0283b11ae4, type: 2}
+    - {fileID: 11400000, guid: a1a40bc6072cc9f44ad66e663f7f508f, type: 2}
+    - {fileID: 11400000, guid: b8c95b69e17c257438a0c628c84d8083, type: 2}
     ExpectedDeliveries:
-    - {fileID: 2794926240289982373, guid: 6d38a3f1c7624d044b4d2c53f327c2a4, type: 3}
+    - {fileID: 6457601567948293833, guid: 0c3af47ad6445f64f83dbfb172b3fb76, type: 3}
+    ExpectedTotalQuantity: 1
+  - name: Thyme for Spell
+    Dialogues:
+    - {fileID: 11400000, guid: d6f2408ec9180a147af53feeeb11c5c5, type: 2}
+    - {fileID: 11400000, guid: fd7f13dda9238194cb8f089bbd617bb4, type: 2}
+    ExpectedDeliveries:
+    - {fileID: 3026651620921128447, guid: e5dcd77519667b74a9d531e4f1d8fb31, type: 3}
+    ExpectedTotalQuantity: 1
+  - name: Replenish Sage
+    Dialogues:
+    - {fileID: 11400000, guid: 822d8a84bc729f54e9d463ff0389db19, type: 2}
+    - {fileID: 11400000, guid: 72418b52873f16a4f934d19b4f613eb7, type: 2}
+    ExpectedDeliveries:
+    - {fileID: 101152589440661105, guid: d2cde66b078694f49ad99f38a7fd4abc, type: 3}
+    ExpectedTotalQuantity: 1
+  - name: Honey for Tea
+    Dialogues:
+    - {fileID: 11400000, guid: 061c1653877fc6044afa196392d149fe, type: 2}
+    - {fileID: 11400000, guid: 522ca627519876e47b6e6b240fb7c6ba, type: 2}
+    ExpectedDeliveries:
+    - {fileID: 3733200113200723114, guid: 38c19cb3368f3344cb90b22f1369fe0a, type: 3}
+    ExpectedTotalQuantity: 1
+  - name: Wine for Altar
+    Dialogues:
+    - {fileID: 11400000, guid: 622f3e6c27fda5d4d8ca4d12faba8506, type: 2}
+    - {fileID: 11400000, guid: 1b8fef850ab3a594f80ef5e8f00c8b80, type: 2}
+    ExpectedDeliveries:
+    - {fileID: 649389401895046195, guid: c17a0a5c6bfb8f145b6b3158197da3ac, type: 3}
     ExpectedTotalQuantity: 1
   InteractButton: {fileID: 6563778449525004035}
   randomQuest: 1
@@ -314,7 +341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3764706, g: 0.20784314, b: 0.19215687, a: 1}
+  m_Color: {r: 0.39607844, g: 0.20392157, b: 0.48235294, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -377,7 +404,7 @@ RectTransform:
   m_Children:
   - {fileID: 2944336820178910688}
   m_Father: {fileID: 8597911739414737619}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -458,79 +485,83 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VanishDistance: 50
---- !u!1001 &2345858220808174420
+--- !u!1001 &1580283702458333403
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 8597911739414737619}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: e8cdf2cdaf4bf834ab0435057bb66289, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 8a49502dde68bed4db86e87bff792067, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e8cdf2cdaf4bf834ab0435057bb66289, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 8a49502dde68bed4db86e87bff792067, type: 3}
       propertyPath: m_LocalScale.x
       value: 35
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e8cdf2cdaf4bf834ab0435057bb66289, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 8a49502dde68bed4db86e87bff792067, type: 3}
       propertyPath: m_LocalScale.y
       value: 35
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e8cdf2cdaf4bf834ab0435057bb66289, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 8a49502dde68bed4db86e87bff792067, type: 3}
       propertyPath: m_LocalScale.z
       value: 35
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e8cdf2cdaf4bf834ab0435057bb66289, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 8a49502dde68bed4db86e87bff792067, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e8cdf2cdaf4bf834ab0435057bb66289, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 8a49502dde68bed4db86e87bff792067, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e8cdf2cdaf4bf834ab0435057bb66289, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 8a49502dde68bed4db86e87bff792067, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e8cdf2cdaf4bf834ab0435057bb66289, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 8a49502dde68bed4db86e87bff792067, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e8cdf2cdaf4bf834ab0435057bb66289, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 8a49502dde68bed4db86e87bff792067, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e8cdf2cdaf4bf834ab0435057bb66289, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 8a49502dde68bed4db86e87bff792067, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e8cdf2cdaf4bf834ab0435057bb66289, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 8a49502dde68bed4db86e87bff792067, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e8cdf2cdaf4bf834ab0435057bb66289, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 8a49502dde68bed4db86e87bff792067, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e8cdf2cdaf4bf834ab0435057bb66289, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 8a49502dde68bed4db86e87bff792067, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: e8cdf2cdaf4bf834ab0435057bb66289, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 8a49502dde68bed4db86e87bff792067, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: e8cdf2cdaf4bf834ab0435057bb66289, type: 3}
+    - target: {fileID: 919132149155446097, guid: 8a49502dde68bed4db86e87bff792067, type: 3}
       propertyPath: m_Name
-      value: A_farmerManIdle
+      value: A_witchNPC_idle (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2223639932434330405, guid: 8a49502dde68bed4db86e87bff792067, type: 3}
+      propertyPath: m_WrapMode
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e8cdf2cdaf4bf834ab0435057bb66289, type: 3}
---- !u!4 &2811531367824628927 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: 8a49502dde68bed4db86e87bff792067, type: 3}
+--- !u!4 &1325451212360998704 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e8cdf2cdaf4bf834ab0435057bb66289, type: 3}
-  m_PrefabInstance: {fileID: 2345858220808174420}
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8a49502dde68bed4db86e87bff792067, type: 3}
+  m_PrefabInstance: {fileID: 1580283702458333403}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3757700983432109987
 PrefabInstance:
@@ -545,11 +576,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8634655692504470119, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8634655693063399215, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8634655693086099879, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_IsActive
@@ -565,7 +596,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8634655693421832514, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_Name
-      value: FishermanDialogueUI
+      value: WitchDialogueUI
       objectReference: {fileID: 0}
     - target: {fileID: 8634655693421832514, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_IsActive
@@ -581,7 +612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8634655693421832518, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8634655693421832518, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_AnchorMax.x
@@ -714,14 +745,6 @@ PrefabInstance:
     - target: {fileID: 8634655693768758709, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.UI.Button, UnityEngine.UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 8634655693768758711, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8634655693848225861, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8634655693848229819, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -870,10 +893,6 @@ PrefabInstance:
     - target: {fileID: 8634655694034600904, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8634655694034600906, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
