@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -7,8 +8,8 @@ public class QuestMenuContainer : MenuContainer
     public GameObject questMenu;
     public GameObject activeQuestMenu;
     public GameObject completedQuestMenu;
-    public TextMeshProUGUI activeQuestText;
-    public TextMeshProUGUI completedQuestText;
+    public GameObject activeContainer;
+    public GameObject completedContainer;
 
     public MenuType subMenuType = MenuType.activeQuestsMenu;
 
@@ -23,24 +24,52 @@ public class QuestMenuContainer : MenuContainer
         switch (subMenuType)//Set menu options for showing either completed or uncompleted quests
         {
             case MenuType.completedQuestsMenu:
+                DestoryAllChildren(completedContainer);
                 questMenu.SetActive(true);
                 activeQuestMenu.SetActive(false);
                 completedQuestMenu.SetActive(true);
-                completedQuestText.text = string.Join("\n", QuestManager.CompletedQuests.Select(quest => $"<s>[x] {quest}</s>\n    {QuestManager.DescribeQuest(quest)}"));
-                Debug.Log(completedQuestText.text);
+                foreach (string description in FormattedCompletedQuests)
+                {
+                    AddQuestEntry(description, completedContainer);
+                }
                 break;
 
             case MenuType.activeQuestsMenu:
+                DestoryAllChildren(activeContainer);
                 questMenu.SetActive(true);
                 activeQuestMenu.SetActive(true);
                 completedQuestMenu.SetActive(false);
-                activeQuestText.text = string.Join("\n", QuestManager.ActiveQuests.Select(quest => $"[ ] {quest}\n    {QuestManager.DescribeQuest(quest)}"));
-                Debug.Log(activeQuestText.text);
+                foreach (string description in FormattedActiveQuests)
+                {
+                    AddQuestEntry(description, activeContainer);
+                }
                 break;
 
             default:
                 Debug.Log("Quest menu container was passed incorrect menu type");
                 break;
         }
+    }
+
+    private void DestoryAllChildren(GameObject container)
+    {
+        foreach (Transform child in container.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+    private IEnumerable<string> FormattedActiveQuests =>
+        QuestManager.ActiveQuests.Select(quest => $"[ ] {quest}\n    {QuestManager.DescribeQuest(quest)}");
+
+    private IEnumerable<string> FormattedCompletedQuests =>
+        QuestManager.CompletedQuests.Select(quest => $"[x] <s>{quest}</s>\n    <s>{QuestManager.DescribeQuest(quest)}</s>");
+
+    private void AddQuestEntry(string description, GameObject container)
+    {
+        GameObject entry = new GameObject();
+        TextMeshProUGUI tmp = entry.AddComponent<TextMeshProUGUI>();
+        tmp.text = description;
+        entry.transform.parent = container.transform;
     }
 }
