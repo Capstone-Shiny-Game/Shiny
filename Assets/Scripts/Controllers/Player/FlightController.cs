@@ -286,28 +286,28 @@ public class FlightController : MonoBehaviour
             if (startZ < 0)
             {
                 startZ = Time.time;
-                smoothTilt = Math.Abs(Math.Min(crow.Model.transform.rotation.z, 360f - crow.Model.transform.rotation.z)) * 25f;
+                smoothTilt = Math.Abs(Math.Min(crow.Model.transform.parent.rotation.z, 360f - crow.Model.transform.parent.rotation.z)) * 25f;
             }
             float fracComplete = (Time.time - startZ) / smoothTilt;
-            DampenAngleToZero(false, false, true, fracComplete, crow.Model.transform.rotation);
+            DampenAngleToZero(false, false, true, fracComplete, crow.Model.transform.parent.rotation);
         }
     }
 
     private void ClampRotations(float pitch)
     {
         // Clamp Tilt
-        float angle = crow.Model.transform.rotation.eulerAngles.z;
+        float angle = crow.Model.transform.parent.rotation.eulerAngles.z;
         float angleX = transform.rotation.eulerAngles.x;
         //tilted too far left or right
         if (angle >= 45f && angle < 180f)
         {
             float diff = angle - 45f;
-            crow.Model.transform.Rotate(new Vector3(0, 0, -diff));
+            crow.Model.transform.parent.Rotate(new Vector3(0, 0, -diff));
         }
         else if (angle < 315f && angle >= 180f)
         {
             float diff = angle - 315f;
-            crow.Model.transform.Rotate(new Vector3(0, 0, -diff));
+            crow.Model.transform.parent.Rotate(new Vector3(0, 0, -diff));
         }
         //tilted too far down or up
         if (angleX >= 80f && angleX < 180f)
@@ -398,9 +398,9 @@ public class FlightController : MonoBehaviour
             target = Quaternion.Euler(target.eulerAngles.x, 0, target.eulerAngles.z);
         if (z)
             target = Quaternion.Euler(target.eulerAngles.x, target.eulerAngles.y, 0);
-        crow.Model.transform.rotation = Quaternion.Slerp(crow.Model.transform.rotation, target, fracComplete);
+        crow.Model.transform.parent.rotation = Quaternion.Slerp(crow.Model.transform.parent.rotation, target, fracComplete);
 
-        float diff = crow.Model.transform.rotation.eulerAngles.z - target.eulerAngles.z;
+        float diff = crow.Model.transform.parent.rotation.eulerAngles.z - target.eulerAngles.z;
         float degree = 1f;
         if (Mathf.Abs(diff) <= degree) //close enough to straight - reset damping
         {

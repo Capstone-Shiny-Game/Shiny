@@ -16,7 +16,6 @@ public class WalkingController : MonoBehaviour
     private float moveX = 0;
     private float moveY = 0;
     private Crow crow;
-    private bool hasReset;
     private PlayerController pcontroller;
     private void Awake()
     {
@@ -25,7 +24,6 @@ public class WalkingController : MonoBehaviour
     }
     void Start()
     {
-        hasReset = false;
 
         Vector3 v = transform.eulerAngles;
         v.x = 0;
@@ -56,11 +54,7 @@ public class WalkingController : MonoBehaviour
 
     void Update()
     {
-        if (!hasReset)
-        {
-            crow.Model.transform.localPosition = new Vector3(0.0f, -0.52f, 0.0f);
-            hasReset = true;
-        }
+
         transform.Rotate(0, moveX * Time.deltaTime * TurningSpeed, 0, Space.World);
         if (moveY == 0)
         {
