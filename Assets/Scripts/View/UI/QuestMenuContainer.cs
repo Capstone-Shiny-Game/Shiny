@@ -60,16 +60,18 @@ public class QuestMenuContainer : MenuContainer
     }
 
     private IEnumerable<string> FormattedActiveQuests =>
-        QuestManager.ActiveQuests.Select(quest => $"[ ] {quest}\n    {QuestManager.DescribeQuest(quest)}");
+        QuestManager.ActiveQuests.Select(quest => $"[ ] {quest}:\n        {QuestManager.DescribeQuest(quest)}");
 
     private IEnumerable<string> FormattedCompletedQuests =>
-        QuestManager.CompletedQuests.Select(quest => $"[x] <s>{quest}</s>\n    <s>{QuestManager.DescribeQuest(quest)}</s>");
+        QuestManager.CompletedQuests.Select(quest => $"[x] <s>{quest}:</s>\n        <s>{QuestManager.DescribeQuest(quest)}</s>");
 
     private void AddQuestEntry(string description, GameObject container)
     {
         GameObject entry = new GameObject();
         TextMeshProUGUI tmp = entry.AddComponent<TextMeshProUGUI>();
         tmp.text = description;
+        tmp.fontSize = 18;
+        tmp.color = Color.black;
         entry.transform.parent = container.transform;
     }
 }
