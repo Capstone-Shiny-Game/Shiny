@@ -10,6 +10,7 @@ public class QuestMenuContainer : MenuContainer
     public GameObject completedQuestMenu;
     public GameObject activeContainer;
     public GameObject completedContainer;
+    public RectTransform questTemplate;
 
     public MenuType subMenuType = MenuType.activeQuestsMenu;
 
@@ -55,7 +56,10 @@ public class QuestMenuContainer : MenuContainer
     {
         foreach (Transform child in container.transform)
         {
-            Destroy(child.gameObject);
+            if (child != questTemplate)
+            {
+                Destroy(child.gameObject);
+            }
         }
     }
 
@@ -67,11 +71,8 @@ public class QuestMenuContainer : MenuContainer
 
     private void AddQuestEntry(string description, GameObject container)
     {
-        GameObject entry = new GameObject();
-        TextMeshProUGUI tmp = entry.AddComponent<TextMeshProUGUI>();
-        tmp.text = description;
-        tmp.fontSize = 18;
-        tmp.color = Color.black;
-        entry.transform.parent = container.transform;
+        RectTransform entry = Instantiate(questTemplate, container.transform);
+        entry.GetComponent<TextMeshProUGUI>().text = description;
+        entry.gameObject.SetActive(true);
     }
 }
