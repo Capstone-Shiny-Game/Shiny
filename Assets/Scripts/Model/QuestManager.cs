@@ -108,11 +108,11 @@ public static class QuestManager
         if (questNPCs.ContainsKey(quest))
         {
             bool isActive = active.Contains(quest);
-            return questNPCs[quest] + (isActive ? " needs " : " neeeded ") + HumanizeArray(questItems[quest]);
+            return "* " + questNPCs[quest] + (isActive ? " needs " : " neeeded ") + HumanizeArray(questItems[quest]);
         }
         else
         {
-            return "Hot air balloon time trial";
+            return "* Hot air balloon time trial";
         }
     }
 

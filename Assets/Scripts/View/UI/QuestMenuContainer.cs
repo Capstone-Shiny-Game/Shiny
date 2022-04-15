@@ -8,8 +8,8 @@ public class QuestMenuContainer : MenuContainer
     public GameObject questMenu;
     public GameObject activeQuestMenu;
     public GameObject completedQuestMenu;
-    public GameObject activeContainer;
-    public GameObject completedContainer;
+    public RectTransform activeContainer;
+    public RectTransform completedContainer;
     public RectTransform questTemplate;
 
     public MenuType subMenuType = MenuType.activeQuestsMenu;
@@ -29,9 +29,9 @@ public class QuestMenuContainer : MenuContainer
                 questMenu.SetActive(true);
                 activeQuestMenu.SetActive(false);
                 completedQuestMenu.SetActive(true);
-                foreach (string description in FormattedCompletedQuests)
+                foreach (string quest in QuestManager.ActiveQuests)
                 {
-                    AddQuestEntry(description, completedContainer);
+                    AddQuestEntry(quest, true);
                 }
                 break;
 
@@ -40,9 +40,9 @@ public class QuestMenuContainer : MenuContainer
                 questMenu.SetActive(true);
                 activeQuestMenu.SetActive(true);
                 completedQuestMenu.SetActive(false);
-                foreach (string description in FormattedActiveQuests)
+                foreach (string quest in QuestManager.CompletedQuests)
                 {
-                    AddQuestEntry(description, activeContainer);
+                    AddQuestEntry(quest, false);
                 }
                 break;
 
@@ -52,9 +52,9 @@ public class QuestMenuContainer : MenuContainer
         }
     }
 
-    private void DestoryAllChildren(GameObject container)
+    private void DestoryAllChildren(RectTransform container)
     {
-        foreach (Transform child in container.transform)
+        foreach (Transform child in container)
         {
             if (child != questTemplate)
             {
@@ -63,16 +63,14 @@ public class QuestMenuContainer : MenuContainer
         }
     }
 
-    private IEnumerable<string> FormattedActiveQuests =>
-        QuestManager.ActiveQuests.Select(quest => $"[ ] {quest}:\n        {QuestManager.DescribeQuest(quest)}");
-
-    private IEnumerable<string> FormattedCompletedQuests =>
-        QuestManager.CompletedQuests.Select(quest => $"[x] <s>{quest}:</s>\n        <s>{QuestManager.DescribeQuest(quest)}</s>");
-
-    private void AddQuestEntry(string description, GameObject container)
+    private void AddQuestEntry(string quest, bool completed)
     {
-        RectTransform entry = Instantiate(questTemplate, container.transform);
-        entry.GetComponent<TextMeshProUGUI>().text = description;
+        RectTransform container = completed ? completedContainer : activeContainer;
+        RectTransform entry = Instantiate(questTemplate, container);
+        entry.Find("Header").GetComponent<TextMeshProUGUI>().text = quest;
+        entry.Find("Body").GetComponent<TextMeshProUGUI>().text = QuestManager.DescribeQuest(quest);
+        entry.Find("Checked").gameObject.SetActive(completed);
+        entry.Find("Unchecked").gameObject.SetActive(!completed);
         entry.gameObject.SetActive(true);
     }
 }
