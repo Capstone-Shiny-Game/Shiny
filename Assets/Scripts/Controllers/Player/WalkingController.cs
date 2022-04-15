@@ -49,7 +49,6 @@ public class WalkingController : MonoBehaviour
     void OnDisable()
     {
         PlayerInput.FlightMap.Disable();
-        hasReset = false;
     }
 
     void Update()
