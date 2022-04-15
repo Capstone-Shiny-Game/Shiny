@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
 
     public void ChangeScene()
     {
+        AkSoundEngine.PostEvent("none", gameObject);
         StartCoroutine(levelLoader.LoadLevel("Cityv2"));
     }
 }

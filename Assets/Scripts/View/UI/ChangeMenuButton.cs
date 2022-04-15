@@ -25,6 +25,7 @@ public class ChangeMenuButton : MonoBehaviour
 
             case MenuType.flightui:
                 AkSoundEngine.PostEvent("menuExit", gameObject);
+                AkSoundEngine.PostEvent("none", gameObject);
                 break;
 
             default:
