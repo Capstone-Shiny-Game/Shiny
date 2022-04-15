@@ -111,7 +111,6 @@ public class MenuManager : MonoBehaviour
 
     private void EnablePause()
     {
-        AkSoundEngine.PostEvent("buttonClick", gameObject);
         Time.timeScale = 0f;
         onAllPauseMenus.SetActive(true);
         pauseMenuBackground.SetActive(true);
