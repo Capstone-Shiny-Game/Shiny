@@ -25,7 +25,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	1967986072	softBreeze			\Default Work Unit\Ambience\softBreeze	
 	2139035606	logBreak			\Default Work Unit\Triggers\logBreak	
 	2201105581	credits			\Default Work Unit\Music\credits	
-	2336580520	ambientShine			\Default Work Unit\Ambience\ambientShine	
+	2336580520	ambientShine			\Default Work Unit\Triggers\ambientShine	
 	2589493456	singleCaw			\Default Work Unit\Triggers\singleCaw	
 	2682153188	movingWater			\Default Work Unit\Ambience\movingWater	
 	2850054754	strongWind			\Default Work Unit\Ambience\strongWind	
@@ -34,8 +34,9 @@ Event	ID	Name			Wwise Object Path	Notes
 	3181406844	home			\Default Work Unit\Music\home	
 	3232797379	dayStart			\Default Work Unit\Ambience\dayStart	
 	3257436042	sizzleNoise			\Default Work Unit\Triggers\sizzleNoise	
-	3372421815	levelStart			\Default Work Unit\Music\levelStart	
+	3372421815	levelStart			\Default Work Unit\Ambience\levelStart	
 	3473009269	trainWhistle			\Default Work Unit\Triggers\trainWhistle	
+	3486728154	strongWindStop			\Default Work Unit\Ambience\strongWindStop	
 	3671660722	iconSwitch			\Default Work Unit\Triggers\iconSwitch	
 	3680753837	plantGrow			\Default Work Unit\Triggers\plantGrow	
 	3701771245	constantAmbience			\Default Work Unit\Ambience\constantAmbience	
@@ -101,7 +102,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	737530878	sfx_humanFootstepgrass_04	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_humanFootstepgrass_04_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepGrass4\sfx_humanFootstepgrass_04		2638
 	776790275	sfx_softBreeze	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_softBreeze_0E425443.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\SoftBreeze\sfx_softBreeze		407423
 	794497883	sfx_rockscrubmle	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_rockscrubmle_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\RockCrumble\sfx_rockscrubmle		9887
-	805232387	sfx_ambientshine	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_ambientshine_0E425443.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\AmbientShine\sfx_ambientshine		31171
+	805232387	sfx_ambientshine	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_ambientshine_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\AmbientShine\sfx_ambientshine		31171
 	844085563	sfx_humanFootstepgrass_05	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_humanFootstepgrass_05_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepGrass5\sfx_humanFootstepgrass_05		2863
 	846985261	sfx_digNoise	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_digNoise_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\DigNoise\sfx_digNoise		5166
 	860073807	sfx_droppingWhistle	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_droppingWhistle_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\DroppingWhistle\sfx_droppingWhistle		2690

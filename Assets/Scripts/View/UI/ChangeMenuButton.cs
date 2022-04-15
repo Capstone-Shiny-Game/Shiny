@@ -12,6 +12,7 @@ public class ChangeMenuButton : MonoBehaviour
     private void OnEnable()
     {
         MenuButton = GetComponent<Button>();
+        MenuButton.onClick.RemoveAllListeners();
         MenuButton.onClick.AddListener(OnButtonClicked);
     }
 
@@ -24,6 +25,7 @@ public class ChangeMenuButton : MonoBehaviour
 
             case MenuType.flightui:
                 AkSoundEngine.PostEvent("menuExit", gameObject);
+                AkSoundEngine.PostEvent("none", gameObject);
                 break;
 
             default:

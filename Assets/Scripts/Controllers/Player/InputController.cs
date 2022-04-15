@@ -313,6 +313,8 @@ public class InputController : MonoBehaviour
 
     private void OnPause(InputAction.CallbackContext context)
     {
+        AkSoundEngine.PostEvent("buttonClick", gameObject);
+        AkSoundEngine.PostEvent("pause", gameObject);
         MenuManager.instance.SwitchMenu(MenuManager.instance.lastOpenedPauseMenu);
         //PauseHandler?.Invoke();
     }
