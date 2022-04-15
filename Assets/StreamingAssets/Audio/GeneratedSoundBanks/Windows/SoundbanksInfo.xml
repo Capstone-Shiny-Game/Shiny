@@ -16,16 +16,16 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3633468881" Language="SFX" Hash="2280340823">
+		<SoundBank Id="3633468881" Language="SFX" Hash="3888157519">
 			<ObjectPath>\SoundBanks\Default Work Unit\TempBank</ObjectPath>
 			<ShortName>TempBank</ShortName>
 			<Path>TempBank.bnk</Path>
 			<IncludedEvents>
-				<Event Id="2336580520" Name="ambientShine" ObjectPath="\Events\Default Work Unit\Ambience\ambientShine" MaxAttenuation="100." DurationType="Infinite">
+				<Event Id="2336580520" Name="ambientShine" ObjectPath="\Events\Default Work Unit\Triggers\ambientShine" MaxAttenuation="100." DurationType="OneShot" DurationMin="5.944308" DurationMax="5.944308">
 					<IncludedMemoryFiles>
 						<File Id="805232387" Language="SFX">
 							<ShortName>sfx_ambientshine.wav</ShortName>
-							<Path>SFX\sfx_ambientshine_0E425443.wem</Path>
+							<Path>SFX\sfx_ambientshine_19FD3865.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -98,7 +98,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="772754173" Name="farmAmbience" ObjectPath="\Events\Default Work Unit\Ambience\farmAmbience" DurationType="Infinite">
+				<Event Id="772754173" Name="farmAmbience" ObjectPath="\Events\Default Work Unit\Ambience\farmAmbience" MaxAttenuation="150." DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="1071210574" Language="SFX">
 							<ShortName>sfx_farm.wav</ShortName>
@@ -244,7 +244,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3372421815" Name="levelStart" ObjectPath="\Events\Default Work Unit\Music\levelStart" DurationType="Infinite">
+				<Event Id="3372421815" Name="levelStart" ObjectPath="\Events\Default Work Unit\Ambience\levelStart" DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="154855309" Language="SFX">
 							<ShortName>sfx_constantAmbience.wav</ShortName>
@@ -350,7 +350,7 @@
 					</ActionSetState>
 				</Event>
 				<Event Id="3008471213" Name="metalThud" ObjectPath="\Events\Default Work Unit\Triggers\metalThud" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="2682153188" Name="movingWater" ObjectPath="\Events\Default Work Unit\Ambience\movingWater" MaxAttenuation="100." DurationType="OneShot" DurationMin="67.5" DurationMax="67.5">
+				<Event Id="2682153188" Name="movingWater" ObjectPath="\Events\Default Work Unit\Ambience\movingWater" MaxAttenuation="150." DurationType="OneShot" DurationMin="67.5" DurationMax="67.5">
 					<IncludedMemoryFiles>
 						<File Id="558202217" Language="SFX">
 							<ShortName>sfx_movingWater.wav</ShortName>
@@ -424,7 +424,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="4277065966" Name="stillWater" ObjectPath="\Events\Default Work Unit\Ambience\stillWater" DurationType="Infinite">
+				<Event Id="4277065966" Name="stillWater" ObjectPath="\Events\Default Work Unit\Ambience\stillWater" MaxAttenuation="250." DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="200178821" Language="SFX">
 							<ShortName>sfx_stillWater.wav</ShortName>
@@ -448,7 +448,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1359857501" Name="townAmbience" ObjectPath="\Events\Default Work Unit\Ambience\townAmbience" DurationType="Infinite">
+				<Event Id="1359857501" Name="townAmbience" ObjectPath="\Events\Default Work Unit\Ambience\townAmbience" MaxAttenuation="250." DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="939687021" Language="SFX">
 							<ShortName>sfx_townAmbience.wav</ShortName>

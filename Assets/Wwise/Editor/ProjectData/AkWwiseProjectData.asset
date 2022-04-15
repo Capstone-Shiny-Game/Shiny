@@ -66,7 +66,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 89de7d1c5d26aa4f9bc67c6e12510450
     GuidInternal: 
-    m_lastTime: -8585515534865947855
+    m_lastTime: -8585515461644959064
     List:
     - name: TempBank
       guid: 0343e4c87739fa40950eb1ffae0303d9
@@ -94,7 +94,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 368d617cf8f4be4b9a7671dae4b5f947
     GuidInternal: 
-    m_lastTime: -8585515534865817858
+    m_lastTime: -8585515461644549064
     List:
     - name: Ambience
       guid: 9e3eb1c19f532d41bf03abd915e6e477
@@ -123,16 +123,16 @@ MonoBehaviour:
       - ElementName: Default Work Unit
         ObjectType: 12
         guid: 368d617cf8f4be4b9a7671dae4b5f947
-      - ElementName: Ambience
+      - ElementName: Triggers
         ObjectType: 4
-        guid: 9e3eb1c19f532d41bf03abd915e6e477
+        guid: a05feb6eb5b6be46b1bdeb2cfd1dc570
       - ElementName: ambientShine
         ObjectType: 3
         guid: cc179cc59428a348a0b750a231f639ef
-      Path: Events\Default Work Unit\Ambience\ambientShine
+      Path: Events\Default Work Unit\Triggers\ambientShine
       maxAttenuation: 100
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 5.944308
+      minDuration: 5.944308
     - name: buttonClick
       guid: 82ae4539e4b37a49babf55400536f9ac
       id: 4051332235
@@ -330,7 +330,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: 1b95211e4740394d8d199dbb299f63d9
       Path: Events\Default Work Unit\Ambience\farmAmbience
-      maxAttenuation: 0
+      maxAttenuation: 150
       maxDuration: -1
       minDuration: -1
     - name: fishSplash
@@ -810,7 +810,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: 352ff3699206b348b97133984f785ffe
       Path: Events\Default Work Unit\Ambience\movingWater
-      maxAttenuation: 100
+      maxAttenuation: 150
       maxDuration: 67.5
       minDuration: 67.5
     - name: Music
@@ -1027,7 +1027,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: 8a965aefc2fee345b03da3a7701bdb84
       Path: Events\Default Work Unit\Ambience\stillWater
-      maxAttenuation: 0
+      maxAttenuation: 250
       maxDuration: -1
       minDuration: -1
     - name: strongWind
@@ -1087,7 +1087,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: 5ab751eb71ae6041a53b7c893894a131
       Path: Events\Default Work Unit\Ambience\townAmbience
-      maxAttenuation: 0
+      maxAttenuation: 250
       maxDuration: -1
       minDuration: -1
     - name: townFarm
@@ -1400,7 +1400,7 @@ MonoBehaviour:
     m_lastTime: -8585543732138240037
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 010000000500000006000000070000000800000009000000
+  ExpandedWaapiItemIds: 01000000050000000600000007000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0
