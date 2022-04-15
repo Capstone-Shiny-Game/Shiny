@@ -36,6 +36,7 @@ public class ConfirmPopup : MonoBehaviour
 
     public void ConfirmClicked(bool value)
     {
+        AkSoundEngine.PostEvent("buttonClick", gameObject);
         broadcastConfirm?.Invoke(value);
     }
 

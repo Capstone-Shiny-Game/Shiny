@@ -25,7 +25,7 @@ public class SceneContinuity : MonoBehaviour
 
     private void dayEnd()
     {
-        AkSoundEngine.PostEvent("nightStart", gameObject);
+        AkSoundEngine.PostEvent("night", gameObject);
     }
 
     private void triggerAudio(Scene current, Scene next)
