@@ -29,7 +29,7 @@ public class QuestMenuContainer : MenuContainer
                 questMenu.SetActive(true);
                 activeQuestMenu.SetActive(false);
                 completedQuestMenu.SetActive(true);
-                foreach (string quest in QuestManager.ActiveQuests)
+                foreach (string quest in QuestManager.CompletedQuests)
                 {
                     AddQuestEntry(quest, true);
                 }
@@ -40,7 +40,7 @@ public class QuestMenuContainer : MenuContainer
                 questMenu.SetActive(true);
                 activeQuestMenu.SetActive(true);
                 completedQuestMenu.SetActive(false);
-                foreach (string quest in QuestManager.CompletedQuests)
+                foreach (string quest in QuestManager.ActiveQuests)
                 {
                     AddQuestEntry(quest, false);
                 }
