@@ -57,7 +57,7 @@ public static class QuestManager
                     // special case: the quest wants a bunch of the same item to be delivered
                     // we do not want to strike the item off the first time we get one
                     // so we include a count instead
-                    questItems[quest] = new string[] { $"{TrimAndExpandName(items.First())} (x{expected})"};
+                    questItems[quest] = new string[] { $"{TrimAndExpandName(items.First())} (x{expected})" };
                 }
                 else
                 {
