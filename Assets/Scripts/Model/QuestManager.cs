@@ -100,6 +100,18 @@ public static class QuestManager
         if (!completed.Contains(quest))
         {
             completed.Add(quest);
+            if (questItems.ContainsKey(quest))
+            {
+                string[] items = questItems[quest];
+                for (int i = 0; i < items.Length; i++)
+                {
+                    string item = items[i];
+                    if (!item.StartsWith("<s>"))
+                    {
+                        items[i] = $"<s>{item}</s>";
+                    }
+                }
+            }
         }
     }
 
@@ -107,8 +119,7 @@ public static class QuestManager
     {
         if (questNPCs.ContainsKey(quest))
         {
-            bool isActive = active.Contains(quest);
-            return "* " + questNPCs[quest] + (isActive ? " needs " : " neeeded ") + HumanizeArray(questItems[quest]);
+            return $"* {questNPCs[quest]} needs {HumanizeArray(questItems[quest])}";
         }
         else
         {
