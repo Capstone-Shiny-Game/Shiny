@@ -12,6 +12,7 @@ public class ChangeMenuButton : MonoBehaviour
     private void OnEnable()
     {
         MenuButton = GetComponent<Button>();
+        MenuButton.onClick.RemoveAllListeners();
         MenuButton.onClick.AddListener(OnButtonClicked);
     }
 
