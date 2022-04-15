@@ -59,6 +59,7 @@ namespace AK
         static const AkUniqueID SOFTBREEZE = 1967986072U;
         static const AkUniqueID STILLWATER = 4277065966U;
         static const AkUniqueID STRONGWIND = 2850054754U;
+        static const AkUniqueID STRONGWINDSTOP = 3486728154U;
         static const AkUniqueID SWITCHTABS = 4263048837U;
         static const AkUniqueID TOWNAMBIENCE = 1359857501U;
         static const AkUniqueID TOWNFARM = 899868173U;

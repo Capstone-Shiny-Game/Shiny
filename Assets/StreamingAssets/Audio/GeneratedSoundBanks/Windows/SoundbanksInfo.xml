@@ -16,7 +16,7 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3633468881" Language="SFX" Hash="3888157519">
+		<SoundBank Id="3633468881" Language="SFX" Hash="196053610">
 			<ObjectPath>\SoundBanks\Default Work Unit\TempBank</ObjectPath>
 			<ShortName>TempBank</ShortName>
 			<Path>TempBank.bnk</Path>
@@ -440,6 +440,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="3486728154" Name="strongWindStop" ObjectPath="\Events\Default Work Unit\Ambience\strongWindStop" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
 				<Event Id="4263048837" Name="switchTabs" ObjectPath="\Events\Default Work Unit\Triggers\switchTabs" DurationType="OneShot" DurationMin="0.260417" DurationMax="0.260417">
 					<IncludedMemoryFiles>
 						<File Id="554047390" Language="SFX">
