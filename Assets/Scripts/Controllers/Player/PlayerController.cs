@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour, Savable
         walkCam = GameObject.Find("CM Walking");
         povCam = GameObject.Find("CM POV");
         povCam.SetActive(false);
-       // takeOffWind.gameObject.SetActive(false);
+        // takeOffWind.gameObject.SetActive(false);
         flightController = GetComponent<FlightController>();
         walkingController = GetComponent<WalkingController>();
         crow = GetComponent<Crow>();
@@ -153,22 +153,22 @@ public class PlayerController : MonoBehaviour, Savable
             // pitch up on takeoff
             transform.RotateAround(transform.position, transform.right, -30);
             birdAnimator.SetBool("WalktoFly", true);
-           // takeOffWind.gameObject.SetActive(true);
-           // takeOffWind.Play();
+            // takeOffWind.gameObject.SetActive(true);
+            // takeOffWind.Play();
             flightCam.GetComponent<ModifyOrbitor>().Reset();
 
         }
 
         if (previouslyFlying && !flightController.enabled)
         {
-           // takeOffWind.gameObject.SetActive(false);
+            // takeOffWind.gameObject.SetActive(false);
 
             birdAnimator.SetBool("WalktoFly", false);
         }
     }
     public void SwapWalkingCam()
     {
-        if(state == CrowState.Walking || state == CrowState.Idle || state == CrowState.Perching)
+        if (state == CrowState.Walking || state == CrowState.Idle || state == CrowState.Perching)
         {
             walkCam.GetComponent<ModifyOrbitor>().Reset();
 
@@ -189,8 +189,6 @@ public class PlayerController : MonoBehaviour, Savable
             if (transform.CastGround(out Vector3 ground, transform.localScale.y / 2))
             {
                 crow.resetModelRotation();
-                crow.Model.transform.localPosition = new Vector3(0.0f, -0.52f, 0.0f);
-
                 SetFixedPosition(ground);
                 walkCam.GetComponent<ModifyOrbitor>().ResetZero();
                 SetState(CrowState.Walking);
@@ -199,7 +197,6 @@ public class PlayerController : MonoBehaviour, Savable
         else
         {
             crow.resetModelRotation();
-            crow.Model.transform.localPosition = new Vector3(0.0f, -0.52f, 0.0f);
             SetFixedPosition(transform.FindGround(transform.localScale.y / 2));
             walkCam.GetComponent<ModifyOrbitor>().ResetZero();
             SetState(CrowState.Walking);
@@ -228,14 +225,20 @@ public class PlayerController : MonoBehaviour, Savable
         if (walkingController.enabled)
         {
             Vector3 offset = this.transform.forward * walkingOffset.forward;
-            offset.y = walkingOffset.up;
-            inventory.DropItem(this.transform.position + offset, inventory.itemList[0]);
+            //offset.y = walkingOffset.up;//y offset is the height of the ground in front
+
+            Vector3 ground = transform.position + offset;
+            ground.y = Math.Max(walkingOffset.up, transform.NearestTerrain().SampleHeight(ground));         
+            inventory.DropItem(ground, inventory.itemList[0]);
         }
         else if (flightController.enabled)
         {
             Vector3 offset = this.transform.forward * flyingOffset.forward;
-            offset.y = flyingOffset.up;
-            inventory.DropItem(this.transform.position + offset, inventory.itemList[0]);
+            //offset.y = flyingOffset.up;
+            Vector3 ground = transform.position + offset;
+            ground.y = Math.Max(ground.y-5f, transform.NearestTerrain().SampleHeight(ground));
+
+            inventory.DropItem(ground, inventory.itemList[0]);
         }
     }
 
@@ -268,9 +271,15 @@ public class PlayerController : MonoBehaviour, Savable
     {
         //SetState(CrowState.Flying, 2.0f);
         if (state == CrowState.Walking || state == CrowState.Idle)
+        {
+            crow.Model.transform.localPosition = new Vector3(0.0f, -1.05f, 0.0f);
             TakeOffLerp();
+        }
         else if (state == CrowState.Flying || state == CrowState.Gliding)
+        {
+            crow.Model.transform.localPosition = new Vector3(0.0f, -0.52f, 0.0f);
             AttemptToLand(true);
+        }
     }
     private void OnDisable()
     {

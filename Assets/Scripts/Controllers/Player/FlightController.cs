@@ -431,7 +431,6 @@ public class FlightController : MonoBehaviour
         RightTrail.SetActive(true);
         speed = 10f;
         //Disabling all animator not related to flying(walking, idle)
-        crow.Model.transform.localPosition = new Vector3(0.0f, -1.05f, 0.0f);
     }
     public void SetFlightXY(float x, float y)
     {
