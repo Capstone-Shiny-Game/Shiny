@@ -3239,7 +3239,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29.9
+  m_fontSize: 29.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4711,7 +4711,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.3
+  m_fontSize: 36.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5004,6 +5004,7 @@ GameObject:
   - component: {fileID: 9034685481873845928}
   - component: {fileID: 4663348465797874340}
   - component: {fileID: 3371163543854479434}
+  - component: {fileID: 1946373695173171712}
   m_Layer: 5
   m_Name: UI Book Base Image
   m_TagString: Untagged
@@ -5088,6 +5089,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 2
   m_AspectRatio: 1.7808
+--- !u!95 &1946373695173171712
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742736559686031232}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4ae793ebc2c0b1c4291aafdfa3bb9cdb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1753406538710330681
 GameObject:
   m_ObjectHideFlags: 0
@@ -5448,7 +5468,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28.2
+  m_fontSize: 35.3
   m_fontSizeBase: 45.9
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6077,7 +6097,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -472.51013, y: -353.44995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1307523908872076059
 MonoBehaviour:
@@ -9229,7 +9249,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6261657936811647038
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9932,7 +9952,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 46.11548, y: -170.13757}
+  m_SizeDelta: {x: -52.355713, y: -262.67197}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8338222316115718959
 MonoBehaviour:
@@ -12437,7 +12457,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.55
+  m_fontSize: 30.55
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
