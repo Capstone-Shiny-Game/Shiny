@@ -60,6 +60,7 @@ public class SettingsMenuContainer : MenuContainer
 
     private void changeInvertY(bool invert)
     {
+        AkSoundEngine.PostEvent("buttonClick", gameObject);
         SettingsData updatedSettingsData = Settings.settingsData;
         updatedSettingsData.invertYAxis = invert;
         Settings.UpdateSettingData(updatedSettingsData);
@@ -67,6 +68,7 @@ public class SettingsMenuContainer : MenuContainer
 
     private void changeDisableAccelerometer(bool disable)
     {
+        AkSoundEngine.PostEvent("buttonClick", gameObject);
         SettingsData updatedSettingsData = Settings.settingsData;
         updatedSettingsData.disableAccelerometer = disable;
         Settings.UpdateSettingData(updatedSettingsData);
@@ -74,11 +76,13 @@ public class SettingsMenuContainer : MenuContainer
 
     public void SaveSettings()
     {
+        AkSoundEngine.PostEvent("buttonClick", gameObject);
         preferredSettings = Settings.settingsData;
     }
 
     public void DefaultSettings()
     {
+        AkSoundEngine.PostEvent("buttonClick", gameObject);
         Settings.UpdateSettingData(defaultSettings);//TODO update sliders
         RefreshUI();
     }

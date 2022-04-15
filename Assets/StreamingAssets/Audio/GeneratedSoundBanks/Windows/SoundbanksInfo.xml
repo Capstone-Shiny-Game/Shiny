@@ -11,17 +11,33 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Language="SFX" Hash="3690994985">
+		<SoundBank Id="1355168291" Language="SFX" Hash="3172811694">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3633468881" Language="SFX" Hash="2912285145">
+		<SoundBank Id="3633468881" Language="SFX" Hash="2280340823">
 			<ObjectPath>\SoundBanks\Default Work Unit\TempBank</ObjectPath>
 			<ShortName>TempBank</ShortName>
 			<Path>TempBank.bnk</Path>
 			<IncludedEvents>
-				<Event Id="1931646578" Name="campfire" ObjectPath="\Events\Default Work Unit\campfire" MaxAttenuation="60." DurationType="Infinite">
+				<Event Id="2336580520" Name="ambientShine" ObjectPath="\Events\Default Work Unit\Ambience\ambientShine" MaxAttenuation="100." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="805232387" Language="SFX">
+							<ShortName>sfx_ambientshine.wav</ShortName>
+							<Path>SFX\sfx_ambientshine_0E425443.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4051332235" Name="buttonClick" ObjectPath="\Events\Default Work Unit\Triggers\buttonClick" DurationType="OneShot" DurationMin="0.125" DurationMax="0.125">
+					<IncludedMemoryFiles>
+						<File Id="696442619" Language="SFX">
+							<ShortName>sfx_buttonClick.wav</ShortName>
+							<Path>SFX\sfx_buttonClick_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1931646578" Name="campfire" ObjectPath="\Events\Default Work Unit\Ambience\campfire" MaxAttenuation="100." DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="723798623" Language="SFX">
 							<ShortName>sfx_campFire.wav</ShortName>
@@ -29,7 +45,36 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3232797379" Name="dayStart" ObjectPath="\Events\Default Work Unit\dayStart" DurationType="Infinite">
+				<Event Id="161342454" Name="cardboardThud" ObjectPath="\Events\Default Work Unit\Triggers\cardboardThud" MaxAttenuation="100." DurationType="OneShot" DurationMin="1.486077" DurationMax="1.486077">
+					<IncludedMemoryFiles>
+						<File Id="111058496" Language="SFX">
+							<ShortName>sfx_cardboardthud.wav</ShortName>
+							<Path>SFX\sfx_cardboardthud_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3892718319" Name="cashRegister" ObjectPath="\Events\Default Work Unit\Triggers\cashRegister" DurationType="OneShot" DurationMin="1.451604" DurationMax="1.451604">
+					<IncludedMemoryFiles>
+						<File Id="231712720" Language="SFX">
+							<ShortName>sfx_cashRegister.wav</ShortName>
+							<Path>SFX\sfx_cashRegister_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3701771245" Name="constantAmbience" ObjectPath="\Events\Default Work Unit\Ambience\constantAmbience" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="154855309" Language="SFX">
+							<ShortName>sfx_constantAmbience.wav</ShortName>
+							<Path>SFX\sfx_constantAmbience_0E425443.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2201105581" Name="credits" ObjectPath="\Events\Default Work Unit\Music\credits" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionSetState>
+						<ActionSetStateEntry Id="2201105581" Name="credits" ObjectPath="\States\Default Work Unit\masterMusicSwitch\credits"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="3232797379" Name="dayStart" ObjectPath="\Events\Default Work Unit\Ambience\dayStart" DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="899691234" Language="SFX">
 							<ShortName>sfx_birdsChirping.wav</ShortName>
@@ -37,7 +82,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3965959576" Name="digDirtPile" ObjectPath="\Events\Default Work Unit\digDirtPile" DurationType="OneShot" DurationMin="1." DurationMax="1.">
+				<Event Id="3965959576" Name="digDirtPile" ObjectPath="\Events\Default Work Unit\Triggers\digDirtPile" MaxAttenuation="100." DurationType="OneShot" DurationMin="1." DurationMax="1.">
 					<IncludedMemoryFiles>
 						<File Id="846985261" Language="SFX">
 							<ShortName>sfx_digNoise.wav</ShortName>
@@ -45,7 +90,31 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1561107991" Name="flyThroughTree" ObjectPath="\Events\Default Work Unit\flyThroughTree" DurationType="OneShot" DurationMin="1.5" DurationMax="1.5">
+				<Event Id="730116132" Name="droppingWhistle" ObjectPath="\Events\Default Work Unit\Triggers\droppingWhistle" MaxAttenuation="100." DurationType="OneShot" DurationMin="1." DurationMax="1.">
+					<IncludedMemoryFiles>
+						<File Id="860073807" Language="SFX">
+							<ShortName>sfx_droppingWhistle.wav</ShortName>
+							<Path>SFX\sfx_droppingWhistle_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="772754173" Name="farmAmbience" ObjectPath="\Events\Default Work Unit\Ambience\farmAmbience" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="1071210574" Language="SFX">
+							<ShortName>sfx_farm.wav</ShortName>
+							<Path>SFX\sfx_farm_0E425443.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1128916466" Name="fishSplash" ObjectPath="\Events\Default Work Unit\Triggers\fishSplash" MaxAttenuation="100." DurationType="OneShot" DurationMin="1." DurationMax="1.">
+					<IncludedMemoryFiles>
+						<File Id="944777211" Language="SFX">
+							<ShortName>sfx_fishJump.wav</ShortName>
+							<Path>SFX\sfx_fishJump_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1561107991" Name="flyThroughTree" ObjectPath="\Events\Default Work Unit\Triggers\flyThroughTree" MaxAttenuation="100." DurationType="OneShot" DurationMin="1.5" DurationMax="1.5">
 					<IncludedMemoryFiles>
 						<File Id="864831190" Language="SFX">
 							<ShortName>sfx_leafRustle.wav</ShortName>
@@ -53,12 +122,130 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3372421815" Name="levelStart" ObjectPath="\Events\Default Work Unit\levelStart" DurationType="Infinite">
+				<Event Id="3807505693" Name="footstepCobble1" ObjectPath="\Events\Default Work Unit\Triggers\footstepCobble1" MaxAttenuation="100." DurationType="OneShot" DurationMin="0.25" DurationMax="0.25">
 					<IncludedMemoryFiles>
-						<File Id="38375652" Language="SFX">
-							<ShortName>mx_flight.wav</ShortName>
-							<Path>SFX\mx_flight_0E425443.wem</Path>
+						<File Id="921491046" Language="SFX">
+							<ShortName>sfx_humanFootstepcobble_01.wav</ShortName>
+							<Path>SFX\sfx_humanFootstepcobble_01_19FD3865.wem</Path>
 						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3807505694" Name="footstepCobble2" ObjectPath="\Events\Default Work Unit\Triggers\footstepCobble2" DurationType="OneShot" DurationMin="0.25" DurationMax="0.25">
+					<IncludedMemoryFiles>
+						<File Id="155913458" Language="SFX">
+							<ShortName>sfx_humanFootstepcobble_02.wav</ShortName>
+							<Path>SFX\sfx_humanFootstepcobble_02_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3807505695" Name="footstepCobble3" ObjectPath="\Events\Default Work Unit\Triggers\footstepCobble3" MaxAttenuation="100." DurationType="OneShot" DurationMin="0.25" DurationMax="0.25">
+					<IncludedMemoryFiles>
+						<File Id="722528295" Language="SFX">
+							<ShortName>sfx_humanFootstepcobble_03.wav</ShortName>
+							<Path>SFX\sfx_humanFootstepcobble_03_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3807505688" Name="footstepCobble4" ObjectPath="\Events\Default Work Unit\Triggers\footstepCobble4" DurationType="OneShot" DurationMin="0.25" DurationMax="0.25">
+					<IncludedMemoryFiles>
+						<File Id="992206762" Language="SFX">
+							<ShortName>sfx_humanFootstepcobble_04.wav</ShortName>
+							<Path>SFX\sfx_humanFootstepcobble_04_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3807505690" Name="footstepCobble6" ObjectPath="\Events\Default Work Unit\Triggers\footstepCobble6" MaxAttenuation="100." DurationType="OneShot" DurationMin="0.25" DurationMax="0.25">
+					<IncludedMemoryFiles>
+						<File Id="170367537" Language="SFX">
+							<ShortName>sfx_humanFootstepcobble_06.wav</ShortName>
+							<Path>SFX\sfx_humanFootstepcobble_06_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1505895164" Name="footstepGrass1" ObjectPath="\Events\Default Work Unit\Triggers\footstepGrass1" MaxAttenuation="100." DurationType="OneShot" DurationMin="0.25" DurationMax="0.25">
+					<IncludedMemoryFiles>
+						<File Id="330008014" Language="SFX">
+							<ShortName>sfx_humanFootstepgrass_01.wav</ShortName>
+							<Path>SFX\sfx_humanFootstepgrass_01_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1505895167" Name="footstepGrass2" ObjectPath="\Events\Default Work Unit\Triggers\footstepGrass2" MaxAttenuation="100." DurationType="OneShot" DurationMin="0.25" DurationMax="0.25">
+					<IncludedMemoryFiles>
+						<File Id="521433620" Language="SFX">
+							<ShortName>sfx_humanFootstepgrass_02.wav</ShortName>
+							<Path>SFX\sfx_humanFootstepgrass_02_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1505895166" Name="FootstepGrass3" ObjectPath="\Events\Default Work Unit\Triggers\FootstepGrass3" MaxAttenuation="100." DurationType="OneShot" DurationMin="0.25" DurationMax="0.25">
+					<IncludedMemoryFiles>
+						<File Id="127478898" Language="SFX">
+							<ShortName>sfx_humanFootstepgrass_03.wav</ShortName>
+							<Path>SFX\sfx_humanFootstepgrass_03_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1505895161" Name="footstepGrass4" ObjectPath="\Events\Default Work Unit\Triggers\footstepGrass4" MaxAttenuation="100." DurationType="OneShot" DurationMin="0.3125" DurationMax="0.3125">
+					<IncludedMemoryFiles>
+						<File Id="737530878" Language="SFX">
+							<ShortName>sfx_humanFootstepgrass_04.wav</ShortName>
+							<Path>SFX\sfx_humanFootstepgrass_04_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1505895160" Name="footstepGrass5" ObjectPath="\Events\Default Work Unit\Triggers\footstepGrass5" DurationType="OneShot" DurationMin="0.375" DurationMax="0.375">
+					<IncludedMemoryFiles>
+						<File Id="844085563" Language="SFX">
+							<ShortName>sfx_humanFootstepgrass_05.wav</ShortName>
+							<Path>SFX\sfx_humanFootstepgrass_05_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1505895163" Name="footstepGrass6" ObjectPath="\Events\Default Work Unit\Triggers\footstepGrass6" MaxAttenuation="100." DurationType="OneShot" DurationMin="0.375" DurationMax="0.375">
+					<IncludedMemoryFiles>
+						<File Id="302055252" Language="SFX">
+							<ShortName>sfx_humanFootstepgrass_06.wav</ShortName>
+							<Path>SFX\sfx_humanFootstepgrass_06_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1505895162" Name="footstepGrass7" ObjectPath="\Events\Default Work Unit\Triggers\footstepGrass7" MaxAttenuation="100." DurationType="OneShot" DurationMin="0.25" DurationMax="0.25">
+					<IncludedMemoryFiles>
+						<File Id="300759699" Language="SFX">
+							<ShortName>sfx_humanFootstepcobble_07.wav</ShortName>
+							<Path>SFX\sfx_humanFootstepcobble_07_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="491961918" Name="forest" ObjectPath="\Events\Default Work Unit\Music\forest" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionSetState>
+						<ActionSetStateEntry Id="491961918" Name="forest" ObjectPath="\States\Default Work Unit\masterMusicSwitch\forest"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="1362338037" Name="fountain" ObjectPath="\Events\Default Work Unit\Ambience\fountain" MaxAttenuation="100." DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="971525768" Language="SFX">
+							<ShortName>sfx_fountain.wav</ShortName>
+							<Path>SFX\sfx_fountain_0E425443.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3181406844" Name="home" ObjectPath="\Events\Default Work Unit\Music\home" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionSetState>
+						<ActionSetStateEntry Id="3181406844" Name="home" ObjectPath="\States\Default Work Unit\masterMusicSwitch\home"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="3671660722" Name="iconSwitch" ObjectPath="\Events\Default Work Unit\Triggers\iconSwitch" DurationType="OneShot" DurationMin="0.310542" DurationMax="0.310542">
+					<IncludedMemoryFiles>
+						<File Id="278557597" Language="SFX">
+							<ShortName>sfx_iconSwitch.wav</ShortName>
+							<Path>SFX\sfx_iconSwitch_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3372421815" Name="levelStart" ObjectPath="\Events\Default Work Unit\Music\levelStart" DurationType="Infinite">
+					<IncludedMemoryFiles>
 						<File Id="154855309" Language="SFX">
 							<ShortName>sfx_constantAmbience.wav</ShortName>
 							<Path>SFX\sfx_constantAmbience_0E425443.wem</Path>
@@ -69,27 +256,273 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1447920996" Name="menuStart" ObjectPath="\Events\Default Work Unit\menuStart" DurationType="Infinite">
+				<Event Id="2139035606" Name="logBreak" ObjectPath="\Events\Default Work Unit\Triggers\logBreak" MaxAttenuation="100." DurationType="OneShot" DurationMin="1.486077" DurationMax="1.486077">
 					<IncludedMemoryFiles>
-						<File Id="154855309" Language="SFX">
-							<ShortName>sfx_constantAmbience.wav</ShortName>
-							<Path>SFX\sfx_constantAmbience_0E425443.wem</Path>
-						</File>
-						<File Id="950279761" Language="SFX">
-							<ShortName>mx_mainMenu.wav</ShortName>
-							<Path>SFX\mx_mainMenu_0E425443.wem</Path>
+						<File Id="205552706" Language="SFX">
+							<ShortName>sfx_logbreak.wav</ShortName>
+							<Path>SFX\sfx_logbreak_19FD3865.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2986941311" Name="nightStart" ObjectPath="\Events\Default Work Unit\nightStart" DurationType="Infinite">
+				<Event Id="3902133536" Name="menuExit" ObjectPath="\Events\Default Work Unit\Triggers\menuExit" DurationType="OneShot" DurationMin="1.486077" DurationMax="1.486077">
+					<IncludedMemoryFiles>
+						<File Id="334618236" Language="SFX">
+							<ShortName>sfx_menuexit.wav</ShortName>
+							<Path>SFX\sfx_menuexit_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1447920996" Name="menuStart" ObjectPath="\Events\Default Work Unit\Music\menuStart" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="39379612" Language="SFX">
+							<ShortName>home_final_loop.wav</ShortName>
+							<Path>SFX\home_final_loop_0E425443.wem</Path>
+						</File>
+						<File Id="318675150" Language="SFX">
+							<ShortName>farm_final_loop.wav</ShortName>
+							<Path>SFX\farm_final_loop_0E425443.wem</Path>
+						</File>
+						<File Id="371295247" Language="SFX">
+							<ShortName>town_final_loop.wav</ShortName>
+							<Path>SFX\town_final_loop_0E425443.wem</Path>
+						</File>
+						<File Id="419254750" Language="SFX">
+							<ShortName>forest_final_loop.wav</ShortName>
+							<Path>SFX\forest_final_loop_0E425443.wem</Path>
+						</File>
+						<File Id="863537773" Language="SFX">
+							<ShortName>maintheme_final_loop.wav</ShortName>
+							<Path>SFX\maintheme_final_loop_0E425443.wem</Path>
+						</File>
+						<File Id="870059447" Language="SFX">
+							<ShortName>night_final_loop.wav</ShortName>
+							<Path>SFX\night_final_loop_0E425443.wem</Path>
+						</File>
+						<File Id="947346431" Language="SFX">
+							<ShortName>flight_final_loop.wav</ShortName>
+							<Path>SFX\flight_final_loop_0E425443.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+					<SwitchContainers>
+						<SwitchContainer SwitchValue="{BF7F1E5A-F0EC-470E-A46E-5DC93DD385AA}">
+							<Media>
+								<File Id="419254750"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{BEB3D632-E50E-494B-8416-156129795B9B}">
+							<Media>
+								<File Id="39379612"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{8E9472ED-672F-41B7-9E86-B52FEDD6B50C}">
+							<Media>
+								<File Id="863537773"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{C1A7516D-D350-4FC3-9107-92D5DDBF8369}">
+							<Media>
+								<File Id="870059447"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{03580D60-3372-47A0-BA57-AC07B481EA8B}">
+							<Media>
+								<File Id="318675150"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{75253632-533B-465F-BF82-B8B6A7B598CD}">
+							<Media>
+								<File Id="947346431"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{8EA6546D-BA17-4709-8F0A-ADAB433D1444}">
+							<Media>
+								<File Id="371295247"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{E56E6C6D-DC26-4352-821A-CBBE5DA7AC9C}">
+							<Media>
+								<File Id="371295247"/>
+							</Media>
+						</SwitchContainer>
+					</SwitchContainers>
+					<ActionSetState>
+						<ActionSetStateEntry Id="3604647259" Name="mainMenu" ObjectPath="\States\Default Work Unit\masterMusicSwitch\mainMenu"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="3008471213" Name="metalThud" ObjectPath="\Events\Default Work Unit\Triggers\metalThud" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
+				<Event Id="2682153188" Name="movingWater" ObjectPath="\Events\Default Work Unit\Ambience\movingWater" MaxAttenuation="100." DurationType="OneShot" DurationMin="67.5" DurationMax="67.5">
+					<IncludedMemoryFiles>
+						<File Id="558202217" Language="SFX">
+							<ShortName>sfx_movingWater.wav</ShortName>
+							<Path>SFX\sfx_movingWater_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1011622525" Name="night" ObjectPath="\Events\Default Work Unit\Music\night" DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="675192118" Language="SFX">
 							<ShortName>sfx_crickets.wav</ShortName>
 							<Path>SFX\sfx_crickets_0E425443.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
+					<ActionSetState>
+						<ActionSetStateEntry Id="1011622525" Name="night" ObjectPath="\States\Default Work Unit\masterMusicSwitch\night"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="748895195" Name="none" ObjectPath="\Events\Default Work Unit\Music\none" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionSetState>
+						<ActionSetStateEntry Id="748895195" Name="None" ObjectPath="\States\Default Work Unit\masterMusicSwitch\None"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="790879025" Name="optionalTown" ObjectPath="\Events\Default Work Unit\Music\optionalTown" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionSetState>
+						<ActionSetStateEntry Id="790879025" Name="optionalTown" ObjectPath="\States\Default Work Unit\masterMusicSwitch\optionalTown"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="3092587493" Name="pause" ObjectPath="\Events\Default Work Unit\Music\pause" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionSetState>
+						<ActionSetStateEntry Id="3092587493" Name="pause" ObjectPath="\States\Default Work Unit\masterMusicSwitch\pause"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="3680753837" Name="plantGrow" ObjectPath="\Events\Default Work Unit\Triggers\plantGrow" MaxAttenuation="100." DurationType="OneShot" DurationMin="0.625" DurationMax="0.625">
+					<IncludedMemoryFiles>
+						<File Id="501780942" Language="SFX">
+							<ShortName>sfx_plantGrow.wav</ShortName>
+							<Path>SFX\sfx_plantGrow_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1690685538" Name="rockCrumble" ObjectPath="\Events\Default Work Unit\Triggers\rockCrumble" MaxAttenuation="100." DurationType="OneShot" DurationMin="1.486077" DurationMax="1.486077">
+					<IncludedMemoryFiles>
+						<File Id="794497883" Language="SFX">
+							<ShortName>sfx_rockscrubmle.wav</ShortName>
+							<Path>SFX\sfx_rockscrubmle_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2589493456" Name="singleCaw" ObjectPath="\Events\Default Work Unit\Triggers\singleCaw" DurationType="OneShot" DurationMin="0.624989" DurationMax="0.624989">
+					<IncludedMemoryFiles>
+						<File Id="329984790" Language="SFX">
+							<ShortName>sfx_singleCaw.wav</ShortName>
+							<Path>SFX\sfx_singleCaw_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3257436042" Name="sizzleNoise" ObjectPath="\Events\Default Work Unit\Triggers\sizzleNoise" MaxAttenuation="100." DurationType="OneShot" DurationMin="1.5" DurationMax="1.5">
+					<IncludedMemoryFiles>
+						<File Id="665123277" Language="SFX">
+							<ShortName>sfx_sizzleNoise.wav</ShortName>
+							<Path>SFX\sfx_sizzleNoise_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1967986072" Name="softBreeze" ObjectPath="\Events\Default Work Unit\Ambience\softBreeze" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="776790275" Language="SFX">
+							<ShortName>sfx_softBreeze.wav</ShortName>
+							<Path>SFX\sfx_softBreeze_0E425443.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4277065966" Name="stillWater" ObjectPath="\Events\Default Work Unit\Ambience\stillWater" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="200178821" Language="SFX">
+							<ShortName>sfx_stillWater.wav</ShortName>
+							<Path>SFX\sfx_stillWater_0E425443.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2850054754" Name="strongWind" ObjectPath="\Events\Default Work Unit\Ambience\strongWind" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="60478455" Language="SFX">
+							<ShortName>sfx_strongWind.wav</ShortName>
+							<Path>SFX\sfx_strongWind_0E425443.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4263048837" Name="switchTabs" ObjectPath="\Events\Default Work Unit\Triggers\switchTabs" DurationType="OneShot" DurationMin="0.260417" DurationMax="0.260417">
+					<IncludedMemoryFiles>
+						<File Id="554047390" Language="SFX">
+							<ShortName>sfx_switchTabs.wav</ShortName>
+							<Path>SFX\sfx_switchTabs_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1359857501" Name="townAmbience" ObjectPath="\Events\Default Work Unit\Ambience\townAmbience" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="939687021" Language="SFX">
+							<ShortName>sfx_townAmbience.wav</ShortName>
+							<Path>SFX\sfx_townAmbience_0E425443.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="899868173" Name="townFarm" ObjectPath="\Events\Default Work Unit\Music\townFarm" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionSetState>
+						<ActionSetStateEntry Id="775484768" Name="town_farm" ObjectPath="\States\Default Work Unit\masterMusicSwitch\town_farm"/>
+					</ActionSetState>
+				</Event>
+				<Event Id="3473009269" Name="trainWhistle" ObjectPath="\Events\Default Work Unit\Triggers\trainWhistle" MaxAttenuation="100." DurationType="OneShot" DurationMin="3.5" DurationMax="3.5">
+					<IncludedMemoryFiles>
+						<File Id="250543627" Language="SFX">
+							<ShortName>sfx_trainWhistle.wav</ShortName>
+							<Path>SFX\sfx_trainWhistle_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="498866005" Name="windWhoosh" ObjectPath="\Events\Default Work Unit\Triggers\windWhoosh" DurationType="OneShot" DurationMin="8.874989" DurationMax="8.874989">
+					<IncludedMemoryFiles>
+						<File Id="995605244" Language="SFX">
+							<ShortName>sfx_windWhoosh.wav</ShortName>
+							<Path>SFX\sfx_windWhoosh_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
 				</Event>
 			</IncludedEvents>
+			<GameParameters>
+				<GameParameter Id="1240670792" Name="Distance" ObjectPath="\Game Parameters\Default Work Unit\Distance"/>
+			</GameParameters>
+			<StateGroups>
+				<StateGroup Id="491961918" Name="forest" ObjectPath="\States\Default Work Unit\masterMusicSwitch\forest" GUID="{BF7F1E5A-F0EC-470E-A46E-5DC93DD385AA}">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="748895195" Name="None" ObjectPath="\States\Default Work Unit\masterMusicSwitch\None" GUID="{0BC8DAC5-4CBC-434A-A65C-449172FE144E}">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="775484768" Name="town_farm" ObjectPath="\States\Default Work Unit\masterMusicSwitch\town_farm" GUID="{03580D60-3372-47A0-BA57-AC07B481EA8B}">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="790879025" Name="optionalTown" ObjectPath="\States\Default Work Unit\masterMusicSwitch\optionalTown" GUID="{E56E6C6D-DC26-4352-821A-CBBE5DA7AC9C}">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="1011622525" Name="night" ObjectPath="\States\Default Work Unit\masterMusicSwitch\night" GUID="{C1A7516D-D350-4FC3-9107-92D5DDBF8369}">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="2201105581" Name="credits" ObjectPath="\States\Default Work Unit\masterMusicSwitch\credits" GUID="{8EA6546D-BA17-4709-8F0A-ADAB433D1444}">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="3092587493" Name="pause" ObjectPath="\States\Default Work Unit\masterMusicSwitch\pause" GUID="{75253632-533B-465F-BF82-B8B6A7B598CD}">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="3181406844" Name="home" ObjectPath="\States\Default Work Unit\masterMusicSwitch\home" GUID="{BEB3D632-E50E-494B-8416-156129795B9B}">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="3604647259" Name="mainMenu" ObjectPath="\States\Default Work Unit\masterMusicSwitch\mainMenu" GUID="{8E9472ED-672F-41B7-9E86-B52FEDD6B50C}">
+					<States/>
+				</StateGroup>
+				<StateGroup Id="3993070400" Name="masterMusicSwitch" ObjectPath="\States\Default Work Unit\masterMusicSwitch" GUID="{D0DD5577-A565-4CCC-B527-1863AFAF70FF}">
+					<States>
+						<State Id="748895195" Name="None" ObjectPath="\States\Default Work Unit\masterMusicSwitch\None" GUID="{0BC8DAC5-4CBC-434A-A65C-449172FE144E}"/>
+						<State Id="491961918" Name="forest" ObjectPath="\States\Default Work Unit\masterMusicSwitch\forest" GUID="{BF7F1E5A-F0EC-470E-A46E-5DC93DD385AA}"/>
+						<State Id="775484768" Name="town_farm" ObjectPath="\States\Default Work Unit\masterMusicSwitch\town_farm" GUID="{03580D60-3372-47A0-BA57-AC07B481EA8B}"/>
+						<State Id="3181406844" Name="home" ObjectPath="\States\Default Work Unit\masterMusicSwitch\home" GUID="{BEB3D632-E50E-494B-8416-156129795B9B}"/>
+						<State Id="3604647259" Name="mainMenu" ObjectPath="\States\Default Work Unit\masterMusicSwitch\mainMenu" GUID="{8E9472ED-672F-41B7-9E86-B52FEDD6B50C}"/>
+						<State Id="1011622525" Name="night" ObjectPath="\States\Default Work Unit\masterMusicSwitch\night" GUID="{C1A7516D-D350-4FC3-9107-92D5DDBF8369}"/>
+						<State Id="3092587493" Name="pause" ObjectPath="\States\Default Work Unit\masterMusicSwitch\pause" GUID="{75253632-533B-465F-BF82-B8B6A7B598CD}"/>
+						<State Id="2201105581" Name="credits" ObjectPath="\States\Default Work Unit\masterMusicSwitch\credits" GUID="{8EA6546D-BA17-4709-8F0A-ADAB433D1444}"/>
+						<State Id="790879025" Name="optionalTown" ObjectPath="\States\Default Work Unit\masterMusicSwitch\optionalTown" GUID="{E56E6C6D-DC26-4352-821A-CBBE5DA7AC9C}"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
 		</SoundBank>
 	</SoundBanks>
 </SoundBanksInfo>

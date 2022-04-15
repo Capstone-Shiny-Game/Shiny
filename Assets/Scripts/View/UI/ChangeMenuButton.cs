@@ -16,6 +16,21 @@ public class ChangeMenuButton : MonoBehaviour
     }
 
     public void OnButtonClicked() {
+        switch(MenuToGoTo)
+        {
+            case MenuType.mainMenu:
+                AkSoundEngine.PostEvent("buttonClick", gameObject);
+                break;
+
+            case MenuType.flightui:
+                AkSoundEngine.PostEvent("menuExit", gameObject);
+                break;
+
+            default:
+                AkSoundEngine.PostEvent("switchTabs", gameObject);
+                break;
+        }
+
         MenuManager.instance.SwitchMenu(MenuToGoTo);
     }
 }

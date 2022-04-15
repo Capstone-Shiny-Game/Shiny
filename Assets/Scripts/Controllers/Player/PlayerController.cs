@@ -230,6 +230,7 @@ public class PlayerController : MonoBehaviour, Savable
             Vector3 ground = transform.position + offset;
             ground.y = Math.Max(walkingOffset.up, transform.NearestTerrain().SampleHeight(ground));         
             inventory.DropItem(ground, inventory.itemList[0]);
+            AkSoundEngine.PostEvent("buttonClick", gameObject);
         }
         else if (flightController.enabled)
         {
@@ -239,6 +240,7 @@ public class PlayerController : MonoBehaviour, Savable
             ground.y = Math.Max(ground.y-5f, transform.NearestTerrain().SampleHeight(ground));
 
             inventory.DropItem(ground, inventory.itemList[0]);
+            AkSoundEngine.PostEvent("buttonClick", gameObject);
         }
     }
 
@@ -252,13 +254,13 @@ public class PlayerController : MonoBehaviour, Savable
     /// </summary>
     public void RotateInventory()
     {
+        AkSoundEngine.PostEvent("buttonClick", gameObject);
         inventory.RotateItems();
     }
 
     public void Caw()
     {
-        Debug.Log("Caw");
-        // TODO (Matt) : fire Wwise event here
+        AkSoundEngine.PostEvent("singleCaw", gameObject);
     }
 
     private void OnEnable()
@@ -315,6 +317,7 @@ public class PlayerController : MonoBehaviour, Savable
         //SetFixedRotation(npcTransform.position);
 
         ControllerUI.SetActive(false);
+        AkSoundEngine.PostEvent("singleCaw", gameObject);
     }
 
     private void ExitNPCDialogue(string dialogue)

@@ -1,19 +1,120 @@
 Event	ID	Name			Wwise Object Path	Notes
-	1447920996	menuStart			\Default Work Unit\menuStart	
-	1561107991	flyThroughTree			\Default Work Unit\flyThroughTree	
-	1931646578	campfire			\Default Work Unit\campfire	
-	2986941311	nightStart			\Default Work Unit\nightStart	
-	3232797379	dayStart			\Default Work Unit\dayStart	
-	3372421815	levelStart			\Default Work Unit\levelStart	
-	3965959576	digDirtPile			\Default Work Unit\digDirtPile	
+	161342454	cardboardThud			\Default Work Unit\Triggers\cardboardThud	
+	491961918	forest			\Default Work Unit\Music\forest	
+	498866005	windWhoosh			\Default Work Unit\Triggers\windWhoosh	
+	730116132	droppingWhistle			\Default Work Unit\Triggers\droppingWhistle	
+	748895195	none			\Default Work Unit\Music\none	
+	772754173	farmAmbience			\Default Work Unit\Ambience\farmAmbience	
+	790879025	optionalTown			\Default Work Unit\Music\optionalTown	
+	899868173	townFarm			\Default Work Unit\Music\townFarm	
+	1011622525	night			\Default Work Unit\Music\night	
+	1128916466	fishSplash			\Default Work Unit\Triggers\fishSplash	
+	1359857501	townAmbience			\Default Work Unit\Ambience\townAmbience	
+	1362338037	fountain			\Default Work Unit\Ambience\fountain	
+	1447920996	menuStart			\Default Work Unit\Music\menuStart	
+	1505895160	footstepGrass5			\Default Work Unit\Triggers\footstepGrass5	
+	1505895161	footstepGrass4			\Default Work Unit\Triggers\footstepGrass4	
+	1505895162	footstepGrass7			\Default Work Unit\Triggers\footstepGrass7	
+	1505895163	footstepGrass6			\Default Work Unit\Triggers\footstepGrass6	
+	1505895164	footstepGrass1			\Default Work Unit\Triggers\footstepGrass1	
+	1505895166	FootstepGrass3			\Default Work Unit\Triggers\FootstepGrass3	
+	1505895167	footstepGrass2			\Default Work Unit\Triggers\footstepGrass2	
+	1561107991	flyThroughTree			\Default Work Unit\Triggers\flyThroughTree	
+	1690685538	rockCrumble			\Default Work Unit\Triggers\rockCrumble	
+	1931646578	campfire			\Default Work Unit\Ambience\campfire	
+	1967986072	softBreeze			\Default Work Unit\Ambience\softBreeze	
+	2139035606	logBreak			\Default Work Unit\Triggers\logBreak	
+	2201105581	credits			\Default Work Unit\Music\credits	
+	2336580520	ambientShine			\Default Work Unit\Ambience\ambientShine	
+	2589493456	singleCaw			\Default Work Unit\Triggers\singleCaw	
+	2682153188	movingWater			\Default Work Unit\Ambience\movingWater	
+	2850054754	strongWind			\Default Work Unit\Ambience\strongWind	
+	3008471213	metalThud			\Default Work Unit\Triggers\metalThud	
+	3092587493	pause			\Default Work Unit\Music\pause	
+	3181406844	home			\Default Work Unit\Music\home	
+	3232797379	dayStart			\Default Work Unit\Ambience\dayStart	
+	3257436042	sizzleNoise			\Default Work Unit\Triggers\sizzleNoise	
+	3372421815	levelStart			\Default Work Unit\Music\levelStart	
+	3473009269	trainWhistle			\Default Work Unit\Triggers\trainWhistle	
+	3671660722	iconSwitch			\Default Work Unit\Triggers\iconSwitch	
+	3680753837	plantGrow			\Default Work Unit\Triggers\plantGrow	
+	3701771245	constantAmbience			\Default Work Unit\Ambience\constantAmbience	
+	3807505688	footstepCobble4			\Default Work Unit\Triggers\footstepCobble4	
+	3807505690	footstepCobble6			\Default Work Unit\Triggers\footstepCobble6	
+	3807505693	footstepCobble1			\Default Work Unit\Triggers\footstepCobble1	
+	3807505694	footstepCobble2			\Default Work Unit\Triggers\footstepCobble2	
+	3807505695	footstepCobble3			\Default Work Unit\Triggers\footstepCobble3	
+	3892718319	cashRegister			\Default Work Unit\Triggers\cashRegister	
+	3902133536	menuExit			\Default Work Unit\Triggers\menuExit	
+	3965959576	digDirtPile			\Default Work Unit\Triggers\digDirtPile	
+	4051332235	buttonClick			\Default Work Unit\Triggers\buttonClick	
+	4263048837	switchTabs			\Default Work Unit\Triggers\switchTabs	
+	4277065966	stillWater			\Default Work Unit\Ambience\stillWater	
+
+State Group	ID	Name			Wwise Object Path	Notes
+	3993070400	masterMusicSwitch			\Default Work Unit\masterMusicSwitch	
+
+State	ID	Name	State Group			Notes
+	491961918	forest	masterMusicSwitch			
+	748895195	None	masterMusicSwitch			
+	775484768	town_farm	masterMusicSwitch			
+	790879025	optionalTown	masterMusicSwitch			
+	1011622525	night	masterMusicSwitch			
+	2201105581	credits	masterMusicSwitch			
+	3092587493	pause	masterMusicSwitch			
+	3181406844	home	masterMusicSwitch			
+	3604647259	mainMenu	masterMusicSwitch			
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	1240670792	Distance			\Default Work Unit\Distance	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	38375652	TEMPGameplayMusic	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\mx_flight_0E425443.wem		\Actor-Mixer Hierarchy\Default Work Unit\TEMPGameplayMusic		271126
-	154855309	sfx_constantAmbience	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_constantAmbience_0E425443.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\sfx_constantAmbience		727523
-	675192118	sfx_crickets	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_crickets_0E425443.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\sfx_crickets		155337
-	723798623	sfx_campFire	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_campFire_0E425443.wem		\Actor-Mixer Hierarchy\Default Work Unit\sfx_campFire		287290
-	846985261	sfx_digNoise	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_digNoise_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\sfx_digNoise		5166
-	864831190	sfx_leafRustle	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_leafRustle_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\sfx_leafRustle		9865
-	899691234	sfx_birdsChirping	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_birdsChirping_0E425443.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\sfx_birdsChirping		94144
-	950279761	TEMPMenuMusic	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\mx_mainMenu_0E425443.wem		\Actor-Mixer Hierarchy\Default Work Unit\TEMPMenuMusic		300265
+	39379612	home_final_loop	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\home_final_loop_0E425443.wem		\Interactive Music Hierarchy\Default Work Unit\masterSwitch\home\home_final_loop\home_final_loop		696821
+	60478455	sfx_strongWind	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_strongWind_0E425443.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\StrongWind\sfx_strongWind		119677
+	111058496	sfx_cardboardthud	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_cardboardthud_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\CardboardThud\sfx_cardboardthud		7922
+	127478898	sfx_humanFootstepgrass_03	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_humanFootstepgrass_03_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepGrass3\sfx_humanFootstepgrass_03		2259
+	154855309	sfx_constantAmbience	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_constantAmbience_0E425443.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\ConstantAmbience\sfx_constantAmbience		727523
+	155913458	sfx_humanFootstepcobble_02	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_humanFootstepcobble_02_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepCobble2\sfx_humanFootstepcobble_02		2208
+	170367537	sfx_humanFootstepcobble_06	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_humanFootstepcobble_06_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepCobble6\sfx_humanFootstepcobble_06		2368
+	200178821	sfx_stillWater	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_stillWater_0E425443.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\StillWater\sfx_stillWater		379453
+	205552706	sfx_logbreak	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_logbreak_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\LogBreak\sfx_logbreak		6796
+	231712720	sfx_cashRegister	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_cashRegister_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\CashRegister\sfx_cashRegister		7802
+	250543627	sfx_trainWhistle	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_trainWhistle_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\TrainWhistle\sfx_trainWhistle		19494
+	278557597	sfx_iconSwitch	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_iconSwitch_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\IconSwitch\sfx_iconSwitch		2294
+	300759699	sfx_humanFootstepcobble_07	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_humanFootstepcobble_07_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepGrass7\sfx_humanFootstepcobble_07		419
+	302055252	sfx_humanFootstepgrass_06	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_humanFootstepgrass_06_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepGrass6\sfx_humanFootstepgrass_06		2994
+	318675150	farm_final_loop	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\farm_final_loop_0E425443.wem		\Interactive Music Hierarchy\Default Work Unit\masterSwitch\town_farm\town_final_loop\farm_final_loop		783682
+	329984790	sfx_singleCaw	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_singleCaw_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\SingCaw\sfx_singleCaw		4082
+	330008014	sfx_humanFootstepgrass_01	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_humanFootstepgrass_01_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepGrass1\sfx_humanFootstepgrass_01		2134
+	334618236	sfx_menuexit	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_menuexit_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\MenuExit\sfx_menuexit		6740
+	371295247	town_final_loop	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\town_final_loop_0E425443.wem		\Interactive Music Hierarchy\Default Work Unit\masterSwitch\credits\credits_final_loop\town_final_loop		681292
+	419254750	forest_final_loop	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\forest_final_loop_0E425443.wem		\Interactive Music Hierarchy\Default Work Unit\masterSwitch\forest\forest_final_loop\forest_final_loop		640010
+	501780942	sfx_plantGrow	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_plantGrow_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\PlanGrow\sfx_plantGrow		4677
+	521433620	sfx_humanFootstepgrass_02	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_humanFootstepgrass_02_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepGrass2\sfx_humanFootstepgrass_02		2295
+	554047390	sfx_switchTabs	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_switchTabs_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\SwitchTab\sfx_switchTabs		2110
+	558202217	sfx_movingWater	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_movingWater_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\MovingWater\sfx_movingWater		382121
+	665123277	sfx_sizzleNoise	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_sizzleNoise_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\SizzleNoise\sfx_sizzleNoise		8796
+	675192118	sfx_crickets	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_crickets_0E425443.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Crickets\sfx_crickets		155337
+	696442619	sfx_buttonClick	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_buttonClick_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\ButtonClick\sfx_buttonClick		1465
+	722528295	sfx_humanFootstepcobble_03	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_humanFootstepcobble_03_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepCobble3\sfx_humanFootstepcobble_03		2350
+	723798623	sfx_campFire	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_campFire_0E425443.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Campfire\sfx_campFire		287290
+	737530878	sfx_humanFootstepgrass_04	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_humanFootstepgrass_04_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepGrass4\sfx_humanFootstepgrass_04		2638
+	776790275	sfx_softBreeze	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_softBreeze_0E425443.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\SoftBreeze\sfx_softBreeze		407423
+	794497883	sfx_rockscrubmle	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_rockscrubmle_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\RockCrumble\sfx_rockscrubmle		9887
+	805232387	sfx_ambientshine	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_ambientshine_0E425443.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\AmbientShine\sfx_ambientshine		31171
+	844085563	sfx_humanFootstepgrass_05	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_humanFootstepgrass_05_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepGrass5\sfx_humanFootstepgrass_05		2863
+	846985261	sfx_digNoise	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_digNoise_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\DigNoise\sfx_digNoise		5166
+	860073807	sfx_droppingWhistle	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_droppingWhistle_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\DroppingWhistle\sfx_droppingWhistle		2690
+	863537773	maintheme_final_loop	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\maintheme_final_loop_0E425443.wem		\Interactive Music Hierarchy\Default Work Unit\masterSwitch\mainmenu\maintheme_final_loop\maintheme_final_loop		271126
+	864831190	sfx_leafRustle	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_leafRustle_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\LeafRustle\sfx_leafRustle		9865
+	870059447	night_final_loop	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\night_final_loop_0E425443.wem		\Interactive Music Hierarchy\Default Work Unit\masterSwitch\night\night_final_loop\night_final_loop		537464
+	899691234	sfx_birdsChirping	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_birdsChirping_0E425443.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Birds\sfx_birdsChirping		94144
+	921491046	sfx_humanFootstepcobble_01	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_humanFootstepcobble_01_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepCobble1\sfx_humanFootstepcobble_01		2478
+	939687021	sfx_townAmbience	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_townAmbience_0E425443.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\TownAmbience\sfx_townAmbience		594580
+	944777211	sfx_fishJump	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_fishJump_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FishSplash\sfx_fishJump		8402
+	947346431	pause_loop_final	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\flight_final_loop_0E425443.wem		\Interactive Music Hierarchy\Default Work Unit\masterSwitch\musicPause\pause\pause_loop_final		321668
+	971525768	sfx_fountain	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_fountain_0E425443.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\FountainAmbience\sfx_fountain		180472
+	992206762	sfx_humanFootstepcobble_04	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_humanFootstepcobble_04_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepCobble4\sfx_humanFootstepcobble_04		419
+	995605244	sfx_windWhoosh	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_windWhoosh_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\WindWhoosh\sfx_windWhoosh		34324
+	1071210574	sfx_farm	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Windows\SFX\sfx_farm_0E425443.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\FarmAmbience\sfx_farm		686571
 
