@@ -66,7 +66,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 89de7d1c5d26aa4f9bc67c6e12510450
     GuidInternal: 
-    m_lastTime: -8585515457276856174
+    m_lastTime: -8585515367378939629
     List:
     - name: TempBank
       guid: 0343e4c87739fa40950eb1ffae0303d9
@@ -94,7 +94,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 368d617cf8f4be4b9a7671dae4b5f947
     GuidInternal: 
-    m_lastTime: -8585515457373020349
+    m_lastTime: -8585515368603711592
     List:
     - name: Ambience
       guid: 9e3eb1c19f532d41bf03abd915e6e477
@@ -1130,6 +1130,26 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - name: train
+      guid: d16eaff8e18bf848b7e632b555d124d6
+      id: 3412057565
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 368d617cf8f4be4b9a7671dae4b5f947
+      - ElementName: Ambience
+        ObjectType: 4
+        guid: 9e3eb1c19f532d41bf03abd915e6e477
+      - ElementName: train
+        ObjectType: 3
+        guid: d16eaff8e18bf848b7e632b555d124d6
+      Path: Events\Default Work Unit\Ambience\train
+      maxAttenuation: 250
+      maxDuration: -1
+      minDuration: -1
     - name: trainWhistle
       guid: da3523fe9520dd468bac4f860a7a5558
       id: 3473009269
@@ -1147,7 +1167,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: da3523fe9520dd468bac4f860a7a5558
       Path: Events\Default Work Unit\Triggers\trainWhistle
-      maxAttenuation: 100
+      maxAttenuation: 300
       maxDuration: 3.5
       minDuration: 3.5
     - name: Triggers
@@ -1420,7 +1440,7 @@ MonoBehaviour:
     m_lastTime: -8585543732138240037
     List: []
   ExpandedFileSystemItemIds: 
-  ExpandedWaapiItemIds: 01000000050000000600000007000000
+  ExpandedWaapiItemIds: 01000000050000000600000007000000080000000a000000
   AutoSyncSelection: 0
   autoPopulateEnabled: 1
   currentDataSource: 0

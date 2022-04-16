@@ -74,6 +74,9 @@ GameObject:
   - component: {fileID: 8733435291553703640}
   - component: {fileID: 8203978848436936816}
   - component: {fileID: 3694732008186035470}
+  - component: {fileID: 5110854651281070591}
+  - component: {fileID: 5304051214638404991}
+  - component: {fileID: -749464283005307723}
   m_Layer: 0
   m_Name: P_apple_tree
   m_TagString: Obstacle
@@ -134,6 +137,61 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.25, y: 33.81, z: 3.78}
   m_Center: {x: 0, y: 10.68, z: 0}
+--- !u!65 &5110854651281070591
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8248542333236903010}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.617004, y: 12.9444275, z: 15.965088}
+  m_Center: {x: 1.8908386, y: 22.174618, z: 2.4934387}
+--- !u!114 &5304051214638404991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8248542333236903010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac22065d0ca9c34c93e76aebd42d428, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_listeners:
+    initialListenerList: []
+    useDefaultListeners: 1
+  isEnvironmentAware: 0
+  isStaticObject: 0
+  m_positionOffsetData:
+    KeepMe: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
+--- !u!114 &-749464283005307723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8248542333236903010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 796b98d5a366b504180da04de999d6d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnterEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: d61fb2a27b8897d4e8e4b847b7b24aa5, type: 2}
+  ExitEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
 --- !u!1001 &209906189617215102
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -254,7 +254,7 @@ public class PlayerController : MonoBehaviour, Savable
     /// </summary>
     public void RotateInventory()
     {
-        AkSoundEngine.PostEvent("buttonClick", gameObject);
+        AkSoundEngine.PostEvent("iconSwitch", gameObject);
         inventory.RotateItems();
     }
 

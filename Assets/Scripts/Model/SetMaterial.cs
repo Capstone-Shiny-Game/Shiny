@@ -160,6 +160,7 @@ public class SetMaterial : MonoBehaviour, Savable
     /// <param name="matName"></param>
     public void SetMaterials(String matName)
     {
+        AkSoundEngine.PostEvent("buttonClick", Camera.main.transform.gameObject);
         SetMaterials(matName, current);
     }
     private void SetMaterials(String matName, Tuple<GameObject, MaterialPair[]> selection)
@@ -175,6 +176,7 @@ public class SetMaterial : MonoBehaviour, Savable
     }
     public void SetHat(String hatName)
     {
+        AkSoundEngine.PostEvent("buttonClick", Camera.main.transform.gameObject);
         //delete current hat
         foreach (Transform tr in crowHead.transform)
         {

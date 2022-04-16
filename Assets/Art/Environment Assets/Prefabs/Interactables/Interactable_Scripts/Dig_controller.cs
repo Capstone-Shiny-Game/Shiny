@@ -16,6 +16,7 @@ public class Dig_controller : MonoBehaviour
         Destroy(GetComponentInChildren<Canvas>().gameObject);
         var sphere = GetComponentInChildren<MeshRenderer>().gameObject;
         GetComponentInChildren<ParticleSystem>().Play();
+        AkSoundEngine.PostEvent("digDirtPile", gameObject);
     }
 
     /// <summary>

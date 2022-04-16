@@ -79,6 +79,7 @@ public class NPCInteraction : MonoBehaviour
     {
         if(Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 50)
         {
+            AkSoundEngine.PostEvent("buttonClick", gameObject);
             OnNPCInteractEvent?.Invoke(nearestPerch);
 
             //OnNPCInteractEvent?.Invoke(this.transform);
@@ -105,7 +106,7 @@ public class NPCInteraction : MonoBehaviour
     public void ContinueDialogue(Button button)
     {
         DisableButtons();
-
+        AkSoundEngine.PostEvent("buttonClick", gameObject);
         TextMeshProUGUI btnTmpGUI = button.GetComponentInChildren<TextMeshProUGUI>();
         string text = btnTmpGUI.text;
 

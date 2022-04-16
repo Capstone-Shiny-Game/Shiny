@@ -63,6 +63,7 @@ namespace AK
         static const AkUniqueID SWITCHTABS = 4263048837U;
         static const AkUniqueID TOWNAMBIENCE = 1359857501U;
         static const AkUniqueID TOWNFARM = 899868173U;
+        static const AkUniqueID TRAIN = 3412057565U;
         static const AkUniqueID TRAINWHISTLE = 3473009269U;
         static const AkUniqueID WINDWHOOSH = 498866005U;
     } // namespace EVENTS

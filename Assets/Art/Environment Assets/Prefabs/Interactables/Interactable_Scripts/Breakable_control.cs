@@ -9,8 +9,18 @@ public class Breakable_control : MonoBehaviour
     [SerializeField] private GameObject objectToSpawn;
     [SerializeField] private Vector3 spawnLocation = Vector3.zero;
 
+    [SerializeField] private bool isLog;
+
     public void OnButtonInteraction()
     {
+        if(isLog)
+        {
+            AkSoundEngine.PostEvent("logBreak", gameObject);
+        }
+        else
+        {
+            AkSoundEngine.PostEvent("rockCrumble", gameObject);
+        }
         Destroy(GetComponentInChildren<Canvas>().gameObject);
         GetComponentInChildren<ParticleSystem>().Play();
         break1.GetComponent<Rigidbody>().AddForce(Vector3.up);

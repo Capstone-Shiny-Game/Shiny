@@ -148,6 +148,7 @@ public class FarmPlot : MonoBehaviour
         {
             Instantiate(currCrop.cropObj, spawnPoint.position, transform.rotation);
         }
+        AkSoundEngine.PostEvent("plantGrow", gameObject);
         ResetFarmPlot();
     }
 

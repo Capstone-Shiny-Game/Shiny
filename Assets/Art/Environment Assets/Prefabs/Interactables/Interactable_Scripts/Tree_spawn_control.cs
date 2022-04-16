@@ -17,6 +17,8 @@ public class Tree_spawn_control : MonoBehaviour
             /* GetComponent<SphereCollider>().enabled = false;
              //*/
             //
+            AkSoundEngine.PostEvent("droppingWhistle", gameObject);
+
             Destroy(gameObject.GetComponentInChildren<MeshRenderer>().gameObject);
 
             Instantiate(objectToSpawn, transform.position, transform.rotation);

@@ -56,6 +56,7 @@ public class Fishing_Bucket_controller : MonoBehaviour
                 fished.GetComponent<SphereCollider>().enabled = false;*/
                 Destroy(other.gameObject.transform.parent.gameObject);
                 full = true;
+                AkSoundEngine.PostEvent("fishSplash", gameObject);
             }
 
            if ((other.transform.parent.name.ToLower().Contains("cooler")) && full)

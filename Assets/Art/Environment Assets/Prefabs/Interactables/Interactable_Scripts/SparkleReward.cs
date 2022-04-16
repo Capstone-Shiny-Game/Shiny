@@ -12,6 +12,7 @@ public class SparkleReward : MonoBehaviour
         if (other.CompareTag("Player") && !wait)
         {
             GetComponentInChildren<ParticleSystem>().Play();
+            AkSoundEngine.PostEvent("ambientShine", gameObject);
             wait = true;
             StartCoroutine(Wait());
         }

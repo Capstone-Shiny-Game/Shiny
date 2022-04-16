@@ -27,6 +27,7 @@ public class ShowSplashArt : MonoBehaviour
     }
     public void SetImage(PatioUtility.Toys type)
     {
+        AkSoundEngine.PostEvent("buttonClick", gameObject);
         panel.SetActive(true);
         foreach (SpritePair i in images)
         {
@@ -41,6 +42,7 @@ public class ShowSplashArt : MonoBehaviour
 
     public void SetImage(string type)
     {
+        AkSoundEngine.PostEvent("buttonClick", gameObject);
         panel.SetActive(true);
         foreach (SpritePair i in images)
         {

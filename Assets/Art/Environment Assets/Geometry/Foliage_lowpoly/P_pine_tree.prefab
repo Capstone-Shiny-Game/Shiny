@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 8733435291553703640}
   - component: {fileID: 8203978848436936816}
   - component: {fileID: 6484581210310778673}
+  - component: {fileID: -3411662248756080287}
+  - component: {fileID: -2094261650725882009}
+  - component: {fileID: 6363435407024633555}
   m_Layer: 0
   m_Name: P_pine_tree
   m_TagString: Obstacle
@@ -70,6 +73,61 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.66, y: 34.1, z: 2.3}
   m_Center: {x: 0, y: 14.95, z: 0}
+--- !u!65 &-3411662248756080287
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8248542333236903010}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.794128, y: 34.1, z: 9.486176}
+  m_Center: {x: -0.052947998, y: 33.8, z: -0.862381}
+--- !u!114 &-2094261650725882009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8248542333236903010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac22065d0ca9c34c93e76aebd42d428, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_listeners:
+    initialListenerList: []
+    useDefaultListeners: 1
+  isEnvironmentAware: 0
+  isStaticObject: 0
+  m_positionOffsetData:
+    KeepMe: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
+--- !u!114 &6363435407024633555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8248542333236903010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 796b98d5a366b504180da04de999d6d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnterEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: d61fb2a27b8897d4e8e4b847b7b24aa5, type: 2}
+  ExitEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
 --- !u!1001 &1929039562155900585
 PrefabInstance:
   m_ObjectHideFlags: 0

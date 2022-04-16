@@ -13,6 +13,11 @@ public class SplineWalker : MonoBehaviour {
 	private float progress;
 	private bool goingForward = true;
 
+	void Start()
+	{
+		AkSoundEngine.PostEvent("trainWhistle", gameObject);
+	}
+
 	private void Update () {
 		if (goingForward) {
 			progress += (Time.deltaTime / duration);
@@ -21,6 +26,7 @@ public class SplineWalker : MonoBehaviour {
 					progress = 1f;
 				}
 				else if (mode == SplineWalkerMode.Loop) {
+					AkSoundEngine.PostEvent("trainWhistle", gameObject);
 					progress -= 1f;
 				}
 				else {
