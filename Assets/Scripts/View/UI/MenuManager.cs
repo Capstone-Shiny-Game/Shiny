@@ -50,10 +50,13 @@ public class MenuManager : MonoBehaviour
     /// <param name="menuType">type of the new menu</param>
     /// <param name="calledByConfirm">if it is called from the confirm popUP</param>
     public void SwitchMenu(MenuType menuType, bool calledByConfirm = false)
-    { //TODO fix bug with changing from save menu to load menu
-        switch (menuType)//Set Timescale and Scene
+    {
+        //TODO fix bug with changing from save menu to load menu
+        // Set Timescale and Scene
+        switch (menuType)
         {
-            case MenuType.flightui://leaving pause menu and returning to normal time
+            // leaving pause menu and returning to normal time
+            case MenuType.flightui:
                 DisablePause();
                 if (currentMenu.menuType != MenuType.flightui) //catch edge cases
                 {
@@ -74,12 +77,12 @@ public class MenuManager : MonoBehaviour
         { //return value is used to interrupt changing menus if disable self needs to override
             return;
         }
-        currentMenu = findNextMenu(menuType);
+        currentMenu = FindNextMenu(menuType);
         currentMenu.gameObject.SetActive(true);
         //call setup on new menu
         currentMenu.AfterEnableSetup(menuType);
     }
-    private MenuContainer findNextMenu(MenuType menuType)
+    private MenuContainer FindNextMenu(MenuType menuType)
     {
         switch (menuType)
         {
@@ -114,6 +117,9 @@ public class MenuManager : MonoBehaviour
         Time.timeScale = 0f;
         onAllPauseMenus.SetActive(true);
         pauseMenuBackground.SetActive(true);
+        Animator bookAnimator = pauseMenuBackground.GetComponentInChildren<Animator>();
+        bookAnimator.SetTrigger("Open");
+
         // Disable camera controls when pause is enabled
         GameObject crow = GameObject.FindGameObjectWithTag("Player");
         crow.GetComponentInChildren<InputController>().menuOpen = true;
