@@ -32,11 +32,15 @@ public class SceneContinuity : MonoBehaviour
     {
         if(current.buildIndex == 0)
         {
-            AkSoundEngine.PostEvent("menuStart", gameObject);
+            AkSoundEngine.PostEvent("menu", gameObject);
+        }
+        else if(current.buildIndex == 1)
+        {
+            AkSoundEngine.PostEvent("levelStart", gameObject);
         }
         else
         {
-            AkSoundEngine.PostEvent("levelStart", gameObject);
+            AkSoundEngine.PostEvent("credits", gameObject);
         }
     }    
 }

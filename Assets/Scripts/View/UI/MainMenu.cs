@@ -13,4 +13,18 @@ public class MainMenu : MonoBehaviour
         AkSoundEngine.PostEvent("none", gameObject);
         StartCoroutine(levelLoader.LoadLevel("Cityv2"));
     }
+
+    public void credits()
+    {   
+        AkSoundEngine.PostEvent("buttonClick", gameObject);
+        AkSoundEngine.PostEvent("none", gameObject);
+        StartCoroutine(levelLoader.LoadLevel("credits"));
+    }
+
+    public void returnToMenu()
+    {   
+        AkSoundEngine.PostEvent("buttonClick", gameObject);
+        AkSoundEngine.PostEvent("none", gameObject);
+        StartCoroutine(levelLoader.LoadLevel("MainMenu"));
+    }
 }
