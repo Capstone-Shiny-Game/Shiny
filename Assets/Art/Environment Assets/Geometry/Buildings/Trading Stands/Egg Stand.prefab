@@ -29,13 +29,13 @@ Transform:
   m_Children:
   - {fileID: 6126297274766555937}
   - {fileID: 7420356219933858789}
-  - {fileID: 920856456257318111}
   - {fileID: 8036702556473673068}
   - {fileID: 4432321442055804738}
   - {fileID: 4813786338281550354}
   - {fileID: 1175114337633914985}
   - {fileID: 3975609300181832998}
   - {fileID: 5491723656868823290}
+  - {fileID: 920856456257318111}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0.021, y: -0.042, z: -0.157}
@@ -428,7 +428,7 @@ Transform:
   - {fileID: 2952167226459983483}
   - {fileID: 8223426455204806632}
   m_Father: {fileID: 6480632863210530525}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8442437221105980137
 GameObject:
@@ -440,9 +440,9 @@ GameObject:
   m_Component:
   - component: {fileID: 920856456257318111}
   - component: {fileID: 9117110219089530003}
-  - component: {fileID: 5768488036090579579}
+  - component: {fileID: 7977048838852914607}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: TradeVol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -460,7 +460,7 @@ Transform:
   m_LocalScale: {x: 4.2610817, y: 2.9143753, z: 3.5783353}
   m_Children: []
   m_Father: {fileID: 6480632863210530525}
-  m_RootOrder: 2
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: -23.769, z: 0}
 --- !u!65 &9117110219089530003
 BoxCollider:
@@ -475,7 +475,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5768488036090579579
+--- !u!114 &7977048838852914607
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -484,10 +484,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8442437221105980137}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19d989c25e2355847943320c6c4190b1, type: 3}
+  m_Script: {fileID: 11500000, guid: de9a8e6ab433a624cab6936b4ff2ab68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tradeMap: []
+  acceptedPaymentPrefabs:
+  - {fileID: 7306868733982995167, guid: 70b29b9c49dcb9947a45e4d79aa40651, type: 3}
+  - {fileID: 8320527036890391174, guid: 35bb1a5c291b95645a5d3790c473d779, type: 3}
+  forSale: {fileID: 7171648181118810941, guid: 2545050f552712d4ca9bae94aa0e017b, type: 3}
+  spawnVector: {x: -4, y: 4, z: 4}
+  potion: 0
 --- !u!1 &8881839917617483652
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,7 +722,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2d7304fa64608d94881f67db0c64b730, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2d7304fa64608d94881f67db0c64b730, type: 3}
       propertyPath: m_LocalScale.x
@@ -795,7 +800,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7353344937460180812, guid: 9b635162c8c218d4dbca2e07dc60c366, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7353344937460180812, guid: 9b635162c8c218d4dbca2e07dc60c366, type: 3}
       propertyPath: m_LocalScale.x
@@ -935,7 +940,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 460f2fb9092e29245add2fbdf3d96878, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 460f2fb9092e29245add2fbdf3d96878, type: 3}
       propertyPath: m_LocalScale.x
@@ -1151,7 +1156,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2d7304fa64608d94881f67db0c64b730, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2d7304fa64608d94881f67db0c64b730, type: 3}
       propertyPath: m_LocalScale.x
@@ -1294,7 +1299,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: e1f2a33e025bcac48bbd05ae3e9ba07d, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1f2a33e025bcac48bbd05ae3e9ba07d, type: 3}
       propertyPath: m_LocalScale.x

@@ -29,11 +29,11 @@ Transform:
   m_Children:
   - {fileID: 6126297274766555937}
   - {fileID: 7420356219933858789}
-  - {fileID: 920856456257318111}
   - {fileID: 3352522636721485365}
   - {fileID: 5391105634284834835}
   - {fileID: 5295289374076594722}
   - {fileID: 412797320225229002}
+  - {fileID: 920856456257318111}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -66,7 +66,7 @@ Transform:
   m_LocalScale: {x: 2.206814, y: 1.509355, z: 1.8532199}
   m_Children: []
   m_Father: {fileID: 6480632863210530525}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -30.553, z: 0}
 --- !u!65 &1873256344671218400
 BoxCollider:
@@ -110,7 +110,7 @@ Transform:
   m_LocalScale: {x: 4.2610817, y: 2.9143753, z: 3.5783353}
   m_Children: []
   m_Father: {fileID: 6480632863210530525}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &7622597999286765101
 BoxCollider:
@@ -250,7 +250,7 @@ Transform:
   m_LocalScale: {x: 4.864451, y: 0.28256035, z: 3.4673355}
   m_Children: []
   m_Father: {fileID: 6480632863210530525}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &3218391268500838502
 BoxCollider:
@@ -521,9 +521,9 @@ GameObject:
   m_Component:
   - component: {fileID: 920856456257318111}
   - component: {fileID: 9117110219089530003}
-  - component: {fileID: 5768488036090579579}
+  - component: {fileID: 7489233598720833732}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: TradeVol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -541,7 +541,7 @@ Transform:
   m_LocalScale: {x: 4.2610817, y: 2.9143753, z: 3.5783353}
   m_Children: []
   m_Father: {fileID: 6480632863210530525}
-  m_RootOrder: 2
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &9117110219089530003
 BoxCollider:
@@ -556,7 +556,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5768488036090579579
+--- !u!114 &7489233598720833732
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -565,10 +565,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 8442437221105980137}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19d989c25e2355847943320c6c4190b1, type: 3}
+  m_Script: {fileID: 11500000, guid: de9a8e6ab433a624cab6936b4ff2ab68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tradeMap: []
+  acceptedPaymentPrefabs:
+  - {fileID: 3679316783885091095, guid: 1810b3c69bb43944c9d602508b3926cc, type: 3}
+  - {fileID: 7303444314708368217, guid: 672570e1ebb9abe4d82a500e51cc03dc, type: 3}
+  - {fileID: 3609966787598189621, guid: 56a9e3c4d726d1844978745f464abe14, type: 3}
+  - {fileID: 5355569132266118054, guid: 1b8eb67864b8c2e439396966c7efadc6, type: 3}
+  - {fileID: 5355569132266118054, guid: 6e710081d0285a24b9d5e6fdb21f65e9, type: 3}
+  - {fileID: 952413772196329455, guid: ea21bf0db7ad8c44487bf5ae260acd94, type: 3}
+  - {fileID: 5606858631849365029, guid: afe81c62de4767a4e9c8afb7385d3eeb, type: 3}
+  - {fileID: 7308912326832685106, guid: c009fb3c5112d8e468c693a72d553c3f, type: 3}
+  - {fileID: 4727776989065903520, guid: d89a73013b601714b8f033b2251a59a7, type: 3}
+  - {fileID: 5054606632641106029, guid: 27212125e8307a9488150c2dadf90217, type: 3}
+  - {fileID: 3666375651041929211, guid: f15944e34d8efd94dbf9cd8aa4066486, type: 3}
+  forSale: {fileID: 2794926240289982373, guid: 43d448221aebe774aac5bcd7f8fc14a2, type: 3}
+  spawnVector: {x: 4, y: 4, z: 4}
+  potion: 0
 --- !u!1 &8881839917617483652
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,7 +930,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 961469d2b7ba32a47aa112f3dffb017f, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 961469d2b7ba32a47aa112f3dffb017f, type: 3}
       propertyPath: m_LocalPosition.x

@@ -239,9 +239,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4679053718759691180}
   - component: {fileID: 1565815838463547933}
-  - component: {fileID: 4120036351556014721}
+  - component: {fileID: 3041567699989329651}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: TradeVol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -274,7 +274,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4120036351556014721
+--- !u!114 &3041567699989329651
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -283,10 +283,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7394490949504228690}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19d989c25e2355847943320c6c4190b1, type: 3}
+  m_Script: {fileID: 11500000, guid: de9a8e6ab433a624cab6936b4ff2ab68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tradeMap: []
+  acceptedPaymentPrefabs:
+  - {fileID: 5179504098457364868, guid: e6263c92c0a4ece47ac63dfbcddefb6e, type: 3}
+  forSale: {fileID: 649389401895046195, guid: c17a0a5c6bfb8f145b6b3158197da3ac, type: 3}
+  spawnVector: {x: 4, y: 4, z: 4}
+  potion: 0
 --- !u!1 &7803379819081821865
 GameObject:
   m_ObjectHideFlags: 0

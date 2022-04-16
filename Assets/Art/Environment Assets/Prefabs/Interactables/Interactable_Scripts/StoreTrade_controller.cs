@@ -6,9 +6,12 @@ public class StoreTrade_controller : MonoBehaviour
 {
     public GameObject[] acceptedPaymentPrefabs;
     [SerializeField] private GameObject forSale;
-    [SerializeField] private GameObject spawnLocation;
+    [SerializeField] Vector3 spawnVector;
+    
+    [SerializeField] private bool potion;
 
     private bool wait = false;
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -18,14 +21,14 @@ public class StoreTrade_controller : MonoBehaviour
             
                 wait = true;
 
-                Instantiate(forSale, (gameObject.transform.position + new Vector3(4, 4 , 4)), Quaternion.identity);
+                Instantiate(forSale, (gameObject.transform.position + spawnVector), Quaternion.identity);
                 Destroy(other.gameObject);
                 StartCoroutine(WaitTrade());
             
         }
         else
         {
-            other.transform.position = gameObject.transform.position + new Vector3(4, 4, 4);
+            other.transform.position = gameObject.transform.position + spawnVector;
         }
 
     }
