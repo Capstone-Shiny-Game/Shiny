@@ -11,12 +11,12 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Language="SFX" Hash="1385792491">
+		<SoundBank Id="1355168291" Language="SFX" Hash="3266630106">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3633468881" Language="SFX" Hash="2377548965">
+		<SoundBank Id="3633468881" Language="SFX" Hash="3107726080">
 			<ObjectPath>\SoundBanks\Default Work Unit\TempBank</ObjectPath>
 			<ShortName>TempBank</ShortName>
 			<Path>TempBank.bnk</Path>
@@ -350,11 +350,11 @@
 					</ActionSetState>
 				</Event>
 				<Event Id="3008471213" Name="metalThud" ObjectPath="\Events\Default Work Unit\Triggers\metalThud" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0."/>
-				<Event Id="2682153188" Name="movingWater" ObjectPath="\Events\Default Work Unit\Ambience\movingWater" MaxAttenuation="150." DurationType="OneShot" DurationMin="67.5" DurationMax="67.5">
+				<Event Id="2682153188" Name="movingWater" ObjectPath="\Events\Default Work Unit\Ambience\movingWater" MaxAttenuation="150." DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="558202217" Language="SFX">
 							<ShortName>sfx_movingWater.wav</ShortName>
-							<Path>SFX\sfx_movingWater_049E8FBE.wem</Path>
+							<Path>SFX\sfx_movingWater_2F0E7CC8.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
