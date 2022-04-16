@@ -5,6 +5,7 @@ using UnityEngine;
 public class StoreTrade_controller : MonoBehaviour
 {
     public GameObject[] acceptedPaymentPrefabs;
+    public bool isCampfire;
     [SerializeField] private GameObject forSale;
     [SerializeField] Vector3 spawnVector;
     
@@ -17,14 +18,18 @@ public class StoreTrade_controller : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Tradeable")  && checkAcceptedPayment(other.gameObject) && !wait)
         {
-
-            
                 wait = true;
-
+                if(isCampfire)
+                {
+                    AkSoundEngine.PostEvent("sizzleNoise", gameObject);
+                }
+                else
+                {
+                    AkSoundEngine.PostEvent("cashRegister", gameObject);
+                }
                 Instantiate(forSale, (gameObject.transform.position + spawnVector), Quaternion.identity);
                 Destroy(other.gameObject);
-                StartCoroutine(WaitTrade());
-            
+                StartCoroutine(WaitTrade());        
         }
         else
         {
