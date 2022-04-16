@@ -65,7 +65,6 @@ public class DayController : MonoBehaviour
         float timeElapsed = 0;
         while (timeElapsed < LengthOfDay)
         {
-            //TODO: Replace TEMPDayStartTime
             //Update Time and lighting
             TimeOfDay = Mathf.Lerp(TEMPDayStartTime, 24, timeElapsed/LengthOfDay);
             timeElapsed += Time.deltaTime;
