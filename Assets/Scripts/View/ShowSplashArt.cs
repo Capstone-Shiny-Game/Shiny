@@ -57,6 +57,7 @@ public class ShowSplashArt : MonoBehaviour
     }
     public void CloseImage()
     {
+        AkSoundEngine.PostEvent("buttonClick", gameObject);
         panel.SetActive(false);
     }
 
