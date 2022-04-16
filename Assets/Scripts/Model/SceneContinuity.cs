@@ -30,15 +30,15 @@ public class SceneContinuity : MonoBehaviour
 
     private void triggerAudio(Scene current, Scene next)
     {
-        if(current.buildIndex == 0)
+        if(next.buildIndex == 0)
         {
             AkSoundEngine.PostEvent("menu", gameObject);
         }
-        else if(current.buildIndex == 1)
+        else if(next.buildIndex == 1)
         {
             AkSoundEngine.PostEvent("levelStart", gameObject);
         }
-        else
+        else if(next.buildIndex == 2)
         {
             AkSoundEngine.PostEvent("credits", gameObject);
         }
