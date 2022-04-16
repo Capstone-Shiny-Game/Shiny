@@ -12,14 +12,20 @@ public class StoreTrade_controller : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Tradeable") && checkAcceptedPayment(other.gameObject) && !wait)
+        if (other.gameObject.CompareTag("Tradeable")  && checkAcceptedPayment(other.gameObject) && !wait)
         {
 
-            wait = true;
             
-            Instantiate(forSale, (other.transform.position + new Vector3(3, 3, 3)), Quaternion.identity);
-            Destroy(other.gameObject);
-            StartCoroutine(WaitTrade());
+                wait = true;
+
+                Instantiate(forSale, (gameObject.transform.position + new Vector3(4, 4 , 4)), Quaternion.identity);
+                Destroy(other.gameObject);
+                StartCoroutine(WaitTrade());
+            
+        }
+        else
+        {
+            other.transform.position = gameObject.transform.position + new Vector3(4, 4, 4);
         }
 
     }
