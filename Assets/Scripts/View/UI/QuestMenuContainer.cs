@@ -69,8 +69,8 @@ public class QuestMenuContainer : MenuContainer
         RectTransform entry = Instantiate(questTemplate, container);
         entry.Find("Header").GetComponent<TextMeshProUGUI>().text = quest;
         entry.Find("Body").GetComponent<TextMeshProUGUI>().text = QuestManager.DescribeQuest(quest);
-        entry.Find("Checked").gameObject.SetActive(completed);
-        entry.Find("Unchecked").gameObject.SetActive(!completed);
+        // entry.Find("Checked").gameObject.SetActive(completed);
+        // entry.Find("Unchecked").gameObject.SetActive(!completed);
         entry.gameObject.SetActive(true);
     }
 }
