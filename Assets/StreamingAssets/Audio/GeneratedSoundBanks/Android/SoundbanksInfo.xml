@@ -16,7 +16,7 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3633468881" Language="SFX" Hash="3107726080">
+		<SoundBank Id="3633468881" Language="SFX" Hash="3674237795">
 			<ObjectPath>\SoundBanks\Default Work Unit\TempBank</ObjectPath>
 			<ShortName>TempBank</ShortName>
 			<Path>TempBank.bnk</Path>
@@ -263,6 +263,11 @@
 							<Path>SFX\sfx_logbreak_049E8FBE.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2607556080" Name="menu" ObjectPath="\Events\Default Work Unit\Music\menu" MaxAttenuation="0." DurationType="OneShot" DurationMin="0." DurationMax="0.">
+					<ActionSetState>
+						<ActionSetStateEntry Id="3604647259" Name="mainMenu" ObjectPath="\States\Default Work Unit\masterMusicSwitch\mainMenu"/>
+					</ActionSetState>
 				</Event>
 				<Event Id="3902133536" Name="menuExit" ObjectPath="\Events\Default Work Unit\Triggers\menuExit" DurationType="OneShot" DurationMin="1.486077" DurationMax="1.486077">
 					<IncludedMemoryFiles>

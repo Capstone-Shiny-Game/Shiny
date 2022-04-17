@@ -44,6 +44,7 @@ namespace AK
         static const AkUniqueID ICONSWITCH = 3671660722U;
         static const AkUniqueID LEVELSTART = 3372421815U;
         static const AkUniqueID LOGBREAK = 2139035606U;
+        static const AkUniqueID MENU = 2607556080U;
         static const AkUniqueID MENUEXIT = 3902133536U;
         static const AkUniqueID MENUSTART = 1447920996U;
         static const AkUniqueID METALTHUD = 3008471213U;

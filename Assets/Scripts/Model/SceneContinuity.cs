@@ -9,8 +9,10 @@ public class SceneContinuity : MonoBehaviour
     {
         if(GameObject.Find("Audio Player") != null && GameObject.Find("Audio Player") != gameObject)
         {
-            Destroy(gameObject);
+            DestroyImmediate(gameObject);
+            return;
         }
+
         DontDestroyOnLoad(transform.gameObject);
         SceneManager.activeSceneChanged += triggerAudio;
         AkSoundEngine.PostEvent("menuStart", gameObject);
@@ -21,10 +23,22 @@ public class SceneContinuity : MonoBehaviour
     private void dayStart()
     {
         AkSoundEngine.PostEvent("dayStart", gameObject);
+
+        if(SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            return;
+        }
+
+        AkSoundEngine.PostEvent("none", gameObject);
     }
 
     private void dayEnd()
     {
+        if(SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            return;
+        }
+
         AkSoundEngine.PostEvent("night", gameObject);
     }
 
