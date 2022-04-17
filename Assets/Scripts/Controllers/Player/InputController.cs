@@ -128,11 +128,11 @@ public class InputController : MonoBehaviour
         PlayerInput.GUIMap.PickupItem.performed += OnPickup;
         PlayerInput.GUIMap.Caw.performed += OnCaw;
 
-        //if (Accelerometer.current != null)
-        //{
-        //    AccelerometerAvailable = true;
-        //    InputSystem.EnableDevice(Accelerometer.current);
-        //}
+        if (Accelerometer.current != null)
+        {
+            AccelerometerAvailable = true;
+            InputSystem.EnableDevice(Accelerometer.current);
+        }
 
         Settings.OnSettingsChanged += SettingsChanged;
         SettingsChanged(null, null);
@@ -159,6 +159,9 @@ public class InputController : MonoBehaviour
 
     private void OnFlightSwap(InputAction.CallbackContext context)
     {
+        if (menuOpen)
+            return;
+
         flightSwapHandler?.Invoke();
         //disable all controls
         if (other == true)
@@ -216,7 +219,8 @@ public class InputController : MonoBehaviour
     }
     private void OnLook(InputAction.CallbackContext context)
     {
-        if (canLook && !isMoving && !menuOpen)
+        bool notMovingFromJoystick = !isMoving || (AccelerometerAvailable && UseAccelerometer);
+        if (canLook && notMovingFromJoystick && !menuOpen)
         {
             // Touchscreen t = TouchSimulation.instance.simulatedTouchscreen;
             Vector2 moveInput = context.ReadValue<Vector2>();
