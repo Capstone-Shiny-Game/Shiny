@@ -120,6 +120,8 @@ public class MenuManager : MonoBehaviour
         isPaused = false;
     }
 
+
+
     private void EnablePause()
     {
         Time.timeScale = 0f;
