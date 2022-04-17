@@ -37,6 +37,15 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Flight2"",
+                    ""type"": ""Value"",
+                    ""id"": ""7fe874e7-e555-4ae4-a6d3-1cbd6bc6cab0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Look"",
                     ""type"": ""Value"",
                     ""id"": ""25c75b4b-4825-4c58-ac84-ccc63dd9d17e"",
@@ -175,17 +184,6 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                     ""action"": ""Flight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""56ce34ff-21b7-423e-9701-d78880551348"",
-                    ""path"": ""<Accelerometer>/acceleration"",
-                    ""interactions"": """",
-                    ""processors"": ""ScaleVector3(x=8,z=12)"",
-                    ""groups"": """",
-                    ""action"": ""Flight"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
@@ -395,6 +393,17 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                     ""action"": ""Walk"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""56ce34ff-21b7-423e-9701-d78880551348"",
+                    ""path"": ""<Accelerometer>/acceleration"",
+                    ""interactions"": """",
+                    ""processors"": ""ScaleVector3(x=8,z=12)"",
+                    ""groups"": """",
+                    ""action"": ""Flight2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -596,6 +605,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
         // FlightMap
         m_FlightMap = asset.FindActionMap("FlightMap", throwIfNotFound: true);
         m_FlightMap_Flight = m_FlightMap.FindAction("Flight", throwIfNotFound: true);
+        m_FlightMap_Flight2 = m_FlightMap.FindAction("Flight2", throwIfNotFound: true);
         m_FlightMap_Look = m_FlightMap.FindAction("Look", throwIfNotFound: true);
         m_FlightMap_ResetLook = m_FlightMap.FindAction("ResetLook", throwIfNotFound: true);
         m_FlightMap_StartLook = m_FlightMap.FindAction("StartLook", throwIfNotFound: true);
@@ -673,6 +683,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
     private readonly InputActionMap m_FlightMap;
     private IFlightMapActions m_FlightMapActionsCallbackInterface;
     private readonly InputAction m_FlightMap_Flight;
+    private readonly InputAction m_FlightMap_Flight2;
     private readonly InputAction m_FlightMap_Look;
     private readonly InputAction m_FlightMap_ResetLook;
     private readonly InputAction m_FlightMap_StartLook;
@@ -686,6 +697,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
         private @PlayerControllerInput m_Wrapper;
         public FlightMapActions(@PlayerControllerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Flight => m_Wrapper.m_FlightMap_Flight;
+        public InputAction @Flight2 => m_Wrapper.m_FlightMap_Flight2;
         public InputAction @Look => m_Wrapper.m_FlightMap_Look;
         public InputAction @ResetLook => m_Wrapper.m_FlightMap_ResetLook;
         public InputAction @StartLook => m_Wrapper.m_FlightMap_StartLook;
@@ -706,6 +718,9 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                 @Flight.started -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnFlight;
                 @Flight.performed -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnFlight;
                 @Flight.canceled -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnFlight;
+                @Flight2.started -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnFlight2;
+                @Flight2.performed -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnFlight2;
+                @Flight2.canceled -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnFlight2;
                 @Look.started -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_FlightMapActionsCallbackInterface.OnLook;
@@ -737,6 +752,9 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
                 @Flight.started += instance.OnFlight;
                 @Flight.performed += instance.OnFlight;
                 @Flight.canceled += instance.OnFlight;
+                @Flight2.started += instance.OnFlight2;
+                @Flight2.performed += instance.OnFlight2;
+                @Flight2.canceled += instance.OnFlight2;
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
@@ -849,6 +867,7 @@ public partial class @PlayerControllerInput : IInputActionCollection2, IDisposab
     public interface IFlightMapActions
     {
         void OnFlight(InputAction.CallbackContext context);
+        void OnFlight2(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnResetLook(InputAction.CallbackContext context);
         void OnStartLook(InputAction.CallbackContext context);

@@ -15,6 +15,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Flight2",
+                    "type": "Value",
+                    "id": "7fe874e7-e555-4ae4-a6d3-1cbd6bc6cab0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Look",
                     "type": "Value",
                     "id": "25c75b4b-4825-4c58-ac84-ccc63dd9d17e",
@@ -153,17 +162,6 @@
                     "action": "Flight",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "56ce34ff-21b7-423e-9701-d78880551348",
-                    "path": "<Accelerometer>/acceleration",
-                    "interactions": "",
-                    "processors": "ScaleVector3(x=8,z=12)",
-                    "groups": "",
-                    "action": "Flight",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -371,6 +369,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Walk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "56ce34ff-21b7-423e-9701-d78880551348",
+                    "path": "<Accelerometer>/acceleration",
+                    "interactions": "",
+                    "processors": "ScaleVector3(x=8,z=12)",
+                    "groups": "",
+                    "action": "Flight2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

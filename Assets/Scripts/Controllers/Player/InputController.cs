@@ -100,8 +100,11 @@ public class InputController : MonoBehaviour
         // Subscribe to the events when the following is triggered:
         PlayerInput.FlightMap.walkAction.performed += OnFlightSwap;
 
-        PlayerInput.FlightMap.Flight.performed += OnFlight;
+        PlayerInput.FlightMap.Flight.performed += OnFlightJoystick;
         PlayerInput.FlightMap.Flight.canceled += OnFlightEnd;
+
+        PlayerInput.FlightMap.Flight2.performed += OnFlightAccelerometer;
+        PlayerInput.FlightMap.Flight2.canceled += OnFlightEnd;
 
         PlayerInput.FlightMap.Walk.performed += OnWalk;
         PlayerInput.FlightMap.Walk.canceled += OnWalkEnd;
@@ -190,7 +193,6 @@ public class InputController : MonoBehaviour
     private void StartLook(InputAction.CallbackContext context)
     {
         canLook = true;
-
     }
 
     private void StartTouchPrimary(InputAction.CallbackContext context)
@@ -237,51 +239,62 @@ public class InputController : MonoBehaviour
         flightLookHandler?.Invoke(0.0f, 0.0f);
     }
 
-    private void OnFlight(InputAction.CallbackContext context)
+
+    private void OnFlightJoystick(InputAction.CallbackContext context)
     {
-        isMoving = true;
 
         if (UseAccelerometer && AccelerometerAvailable)
         {
-            Vector3 input = context.ReadValue<Vector3>();
-            if (float.IsNaN(ZBias))
-                ZBias = input.z;
+            return;
+        }
 
-            float x = input.x;
-            float z = input.z - ZBias;
+        isMoving = true;
+        test.text = "N/A";
+        Vector2 moveInput = context.ReadValue<Vector2>();
+        flightMoveHandler?.Invoke(moveInput.x, moveInput.y);
+    }
 
-            test.text = $"Accelerometer: X: {x},\nZ: {input.z} - {ZBias} = {z}";
 
-            if (x < 0)
-            {
-                x += deadZone;
-                x = Mathf.Clamp(x, -1, 0);
-            }
-            else
-            {
-                x -= deadZone;
-                x = Mathf.Clamp(x, 0, 1);
-            }
+    private void OnFlightAccelerometer(InputAction.CallbackContext context)
+    {
+        if (!UseAccelerometer || !AccelerometerAvailable)
+        {
+            return;
+        }
 
-            if (z < 0)
-            {
-                z += deadZone;
-                z = Mathf.Clamp(z, -1, 0);
-            }
-            else
-            {
-                z -= deadZone;
-                z = Mathf.Clamp(z, 0, 1);
-            }
-            flightMoveHandler?.Invoke(x, z);
+        isMoving = true;
+
+        Vector3 input = context.ReadValue<Vector3>();
+        if (float.IsNaN(ZBias))
+            ZBias = input.z;
+
+        float x = input.x;
+        float z = input.z - ZBias;
+
+        test.text = $"Accelerometer: X: {x},\nZ: {input.z} - {ZBias} = {z}";
+
+        if (x < 0)
+        {
+            x += deadZone;
+            x = Mathf.Clamp(x, -1, 0);
         }
         else
         {
-            test.text = "N/A";
-            Vector2 moveInput = context.ReadValue<Vector2>();
-
-            flightMoveHandler?.Invoke(moveInput.x, moveInput.y);
+            x -= deadZone;
+            x = Mathf.Clamp(x, 0, 1);
         }
+
+        if (z < 0)
+        {
+            z += deadZone;
+            z = Mathf.Clamp(z, -1, 0);
+        }
+        else
+        {
+            z -= deadZone;
+            z = Mathf.Clamp(z, 0, 1);
+        }
+        flightMoveHandler?.Invoke(x, z);
     }
 
     public void ResetZBias()
@@ -291,11 +304,10 @@ public class InputController : MonoBehaviour
 
     private void OnFlightEnd(InputAction.CallbackContext context)
     {
-        //if (!AccelerometerAvailable || !UseAccelerometer)
-            flightMoveHandler?.Invoke(0.0f, 0.0f);
-
+        flightMoveHandler?.Invoke(0.0f, 0.0f);
         isMoving = false;
     }
+
     private void OnBrake(InputAction.CallbackContext context)
     {
         flightBrakeHandler?.Invoke(true);
