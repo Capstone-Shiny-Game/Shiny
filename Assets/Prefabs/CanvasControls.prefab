@@ -4846,7 +4846,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.15
+  m_fontSize: 37.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5139,6 +5139,7 @@ GameObject:
   - component: {fileID: 9034685481873845928}
   - component: {fileID: 4663348465797874340}
   - component: {fileID: 3371163543854479434}
+  - component: {fileID: 341050186531605860}
   - component: {fileID: 1946373695173171712}
   m_Layer: 5
   m_Name: UI Book Base Image
@@ -5224,6 +5225,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 2
   m_AspectRatio: 1.7808
+--- !u!114 &341050186531605860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742736559686031232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cb515a0b445e5d44a63ff0a1bb3306b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuBackground: {fileID: 7577587029619967965}
 --- !u!95 &1946373695173171712
 Animator:
   serializedVersion: 3
