@@ -219,7 +219,7 @@ public class InputController : MonoBehaviour
     }
     private void OnLook(InputAction.CallbackContext context)
     {
-        bool notMovingFromJoystick = !isMoving && (AccelerometerAvailable && UseAccelerometer);
+        bool notMovingFromJoystick = !isMoving || (AccelerometerAvailable && UseAccelerometer);
         if (canLook && notMovingFromJoystick && !menuOpen)
         {
             // Touchscreen t = TouchSimulation.instance.simulatedTouchscreen;
