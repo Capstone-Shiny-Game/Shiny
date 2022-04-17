@@ -228,7 +228,7 @@ public class PlayerController : MonoBehaviour, Savable
             //offset.y = walkingOffset.up;//y offset is the height of the ground in front
 
             Vector3 ground = transform.position + offset;
-            ground.y = Math.Max(walkingOffset.up, transform.NearestTerrain().SampleHeight(ground));         
+            ground.y = Math.Max(ground.y+2f, transform.NearestTerrain().SampleHeight(ground) +2f);         
             inventory.DropItem(ground, inventory.itemList[0]);
             AkSoundEngine.PostEvent("buttonClick", gameObject);
         }
