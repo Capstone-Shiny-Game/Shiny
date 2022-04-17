@@ -3195,10 +3195,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Audio Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4440341922970718796, guid: 4a0cf0a23e69b3b458f60653836cd8c6, type: 3}
-      propertyPath: unloadTriggerList.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a0cf0a23e69b3b458f60653836cd8c6, type: 3}
 --- !u!1001 &1176497898
@@ -4366,6 +4362,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1549912699}
   - component: {fileID: 1549912698}
+  - component: {fileID: 1549912700}
   m_Layer: 0
   m_Name: WwiseGlobal
   m_TagString: Untagged
@@ -4412,6 +4409,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1549912700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549912697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382fbcbc14a92f14ea58c7b5f9ec1887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: f7e1664c
+  useOtherObject: 0
+  data:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 2ad75feffa1b63241bc357c009e2135d, type: 2}
+  decodeBank: 0
+  loadAsynchronous: 0
+  saveDecodedBank: 0
+  unloadTriggerList: 958ca0ea
+  bankNameInternal: 
+  valueGuidInternal: 
 --- !u!1 &1555542274
 GameObject:
   m_ObjectHideFlags: 0
