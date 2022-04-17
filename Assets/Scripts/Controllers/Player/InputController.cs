@@ -159,6 +159,9 @@ public class InputController : MonoBehaviour
 
     private void OnFlightSwap(InputAction.CallbackContext context)
     {
+        if (menuOpen)
+            return;
+
         flightSwapHandler?.Invoke();
         //disable all controls
         if (other == true)
