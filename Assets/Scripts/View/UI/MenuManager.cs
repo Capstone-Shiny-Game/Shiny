@@ -107,22 +107,23 @@ public class MenuManager : MonoBehaviour
 
     private void DisablePause()
     {
-
         Time.timeScale = 1f; // set time back to normal
         onAllPauseMenus.SetActive(false);
-        pauseMenuBackground.SetActive(false);
+        // pauseMenuBackground.SetActive(false);
         // Enable camera controls when pause is disabled
         GameObject crow = GameObject.FindGameObjectWithTag("Player");
         // Should only have the one crow, and crow should only have the one
         // inputcontroller cs script attached
         crow.GetComponentInChildren<InputController>().menuOpen = false;
+        Animator bookAnimator = pauseMenuBackground.GetComponentInChildren<Animator>();
+        bookAnimator.SetTrigger("Close");
         isPaused = false;
     }
 
     private void EnablePause()
     {
         Time.timeScale = 0f;
-        
+
         if(onAllPauseMenus == null)
         {
             onAllPauseMenus = transform.Find("OnAllPauseMenus").gameObject;
