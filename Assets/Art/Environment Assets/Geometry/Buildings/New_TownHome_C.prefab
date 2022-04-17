@@ -409,9 +409,10 @@ GameObject:
   - component: {fileID: 8671560851332399452}
   - component: {fileID: 56029068649577433}
   - component: {fileID: 6481339997953553120}
+  - component: {fileID: 498111673567401153}
   m_Layer: 0
   m_Name: TownHome
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -479,6 +480,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &498111673567401153
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8120529306305035118}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 13.558234, y: 31.165493, z: 13.023583}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9049202581239164291
 GameObject:
   m_ObjectHideFlags: 0
@@ -1664,14 +1678,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14ea185af57456b4aa3c89bf556c8f51, type: 3}
---- !u!4 &1841697376300907561 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 14ea185af57456b4aa3c89bf556c8f51, type: 3}
-  m_PrefabInstance: {fileID: 2163345739421473730}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1352441826914559635 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 14ea185af57456b4aa3c89bf556c8f51, type: 3}
+  m_PrefabInstance: {fileID: 2163345739421473730}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1841697376300907561 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 14ea185af57456b4aa3c89bf556c8f51, type: 3}
   m_PrefabInstance: {fileID: 2163345739421473730}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2188744123045751045
