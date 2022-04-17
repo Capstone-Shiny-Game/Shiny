@@ -34,10 +34,7 @@ public class MenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (instance is null)
-        {
-            instance = this;
-        }
+        instance = this;
         menuContainers = GetComponentsInChildren<MenuContainer>(true).ToList();
         /*foreach (MenuContainer menuContainer in menuContainers) {
             Debug.Log(menuContainer.menuType);
@@ -125,6 +122,12 @@ public class MenuManager : MonoBehaviour
     private void EnablePause()
     {
         Time.timeScale = 0f;
+        
+        if(onAllPauseMenus == null)
+        {
+            onAllPauseMenus = transform.Find("OnAllPauseMenus").gameObject;
+        }
+
         onAllPauseMenus.SetActive(true);
         pauseMenuBackground.SetActive(true);
         Animator bookAnimator = pauseMenuBackground.GetComponentInChildren<Animator>();
@@ -142,5 +145,12 @@ public class MenuManager : MonoBehaviour
     public MenuType GetCurrentMenuType()
     {
         return currentMenu.menuType;
+    }
+
+    public void pauseGame()
+    {
+        AkSoundEngine.PostEvent("menuExit", gameObject);
+        AkSoundEngine.PostEvent("pause", gameObject);
+        SwitchMenu(lastOpenedPauseMenu);
     }
 }
