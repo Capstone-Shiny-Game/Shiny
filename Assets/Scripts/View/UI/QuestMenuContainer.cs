@@ -1,13 +1,11 @@
-using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 
 public class QuestMenuContainer : MenuContainer
 {
-    public GameObject questMenu;
     public GameObject activeQuestMenu;
     public GameObject completedQuestMenu;
+
     public RectTransform activeContainer;
     public RectTransform completedContainer;
     public RectTransform questTemplate;
@@ -17,16 +15,11 @@ public class QuestMenuContainer : MenuContainer
     public override void AfterEnableSetup(MenuType currentMenuType)
     {
         base.AfterEnableSetup(currentMenuType);
-        if (questMenu is null)
-        {
-            Debug.Log("quest menu container missing reference to its self");
-            return;
-        }
-        switch (subMenuType)//Set menu options for showing either completed or uncompleted quests
+        switch (subMenuType)
         {
             case MenuType.completedQuestsMenu:
                 DestoryAllChildren(completedContainer);
-                questMenu.SetActive(true);
+                gameObject.SetActive(true);
                 activeQuestMenu.SetActive(false);
                 completedQuestMenu.SetActive(true);
                 foreach (string quest in QuestManager.CompletedQuests)
@@ -37,7 +30,7 @@ public class QuestMenuContainer : MenuContainer
 
             case MenuType.activeQuestsMenu:
                 DestoryAllChildren(activeContainer);
-                questMenu.SetActive(true);
+                gameObject.SetActive(true);
                 activeQuestMenu.SetActive(true);
                 completedQuestMenu.SetActive(false);
                 foreach (string quest in QuestManager.ActiveQuests)
