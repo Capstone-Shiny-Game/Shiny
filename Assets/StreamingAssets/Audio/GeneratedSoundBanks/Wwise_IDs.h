@@ -20,6 +20,7 @@ namespace AK
         static const AkUniqueID CASHREGISTER = 3892718319U;
         static const AkUniqueID CONSTANTAMBIENCE = 3701771245U;
         static const AkUniqueID CREDITS = 2201105581U;
+        static const AkUniqueID CROWSTEP = 957501990U;
         static const AkUniqueID DAYSTART = 3232797379U;
         static const AkUniqueID DIGDIRTPILE = 3965959576U;
         static const AkUniqueID DROPPINGWHISTLE = 730116132U;
@@ -67,6 +68,7 @@ namespace AK
         static const AkUniqueID TRAIN = 3412057565U;
         static const AkUniqueID TRAINWHISTLE = 3473009269U;
         static const AkUniqueID WINDWHOOSH = 498866005U;
+        static const AkUniqueID WINGFLAP = 333542113U;
     } // namespace EVENTS
 
     namespace STATES

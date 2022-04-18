@@ -100,7 +100,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 89de7d1c5d26aa4f9bc67c6e12510450
     GuidInternal: 
-    m_lastTime: -8585514336836101353
+    m_lastTime: -8585513415107136051
     List:
     - name: TempBank
       guid: 0343e4c87739fa40950eb1ffae0303d9
@@ -128,7 +128,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 368d617cf8f4be4b9a7671dae4b5f947
     GuidInternal: 
-    m_lastTime: -8585514341090499664
+    m_lastTime: -8585513442715121569
     List:
     - name: Ambience
       guid: 9e3eb1c19f532d41bf03abd915e6e477
@@ -287,6 +287,26 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
+    - name: crowStep
+      guid: edd451a81ab7914f99eb566cde82d1a2
+      id: 957501990
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 368d617cf8f4be4b9a7671dae4b5f947
+      - ElementName: Triggers
+        ObjectType: 4
+        guid: a05feb6eb5b6be46b1bdeb2cfd1dc570
+      - ElementName: crowStep
+        ObjectType: 3
+        guid: edd451a81ab7914f99eb566cde82d1a2
+      Path: Events\Default Work Unit\Triggers\crowStep
+      maxAttenuation: 0
+      maxDuration: 0.242177
+      minDuration: 0.242177
     - name: dayStart
       guid: 883978cb2086314490e3efe76e90b2b9
       id: 3232797379
@@ -1261,6 +1281,26 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 8.874989
       minDuration: 8.874989
+    - name: wingFlap
+      guid: d54e1a95be75094c82f6defde7efb618
+      id: 333542113
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 368d617cf8f4be4b9a7671dae4b5f947
+      - ElementName: Triggers
+        ObjectType: 4
+        guid: a05feb6eb5b6be46b1bdeb2cfd1dc570
+      - ElementName: wingFlap
+        ObjectType: 3
+        guid: d54e1a95be75094c82f6defde7efb618
+      Path: Events\Default Work Unit\Triggers\wingFlap
+      maxAttenuation: 0
+      maxDuration: 0.208322
+      minDuration: 0.208322
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     PathAndIcons:

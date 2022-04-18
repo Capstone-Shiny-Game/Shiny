@@ -1,5 +1,6 @@
 Event	ID	Name			Wwise Object Path	Notes
 	161342454	cardboardThud			\Default Work Unit\Triggers\cardboardThud	
+	333542113	wingFlap			\Default Work Unit\Triggers\wingFlap	
 	491961918	forest			\Default Work Unit\Music\forest	
 	498866005	windWhoosh			\Default Work Unit\Triggers\windWhoosh	
 	730116132	droppingWhistle			\Default Work Unit\Triggers\droppingWhistle	
@@ -7,6 +8,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	772754173	farmAmbience			\Default Work Unit\Ambience\farmAmbience	
 	790879025	optionalTown			\Default Work Unit\Music\optionalTown	
 	899868173	townFarm			\Default Work Unit\Music\townFarm	
+	957501990	crowStep			\Default Work Unit\Triggers\crowStep	
 	1011622525	night			\Default Work Unit\Music\night	
 	1128916466	fishSplash			\Default Work Unit\Triggers\fishSplash	
 	1359857501	townAmbience			\Default Work Unit\Ambience\townAmbience	
@@ -81,6 +83,7 @@ Effect plug-ins	ID	Name	Type				Notes
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	39379612	home_final_loop	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Linux\SFX\home_final_loop_2F0E7CC8.wem		\Interactive Music Hierarchy\Default Work Unit\masterSwitch\home\home_final_loop\home_final_loop		696821
 	60478455	sfx_strongWind	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Linux\SFX\sfx_strongWind_2F0E7CC8.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\StrongWind\sfx_strongWind		119677
+	80698804	sfx_wingFlap	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Linux\SFX\sfx_wingFlap_049E8FBE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\WingFlap\sfx_wingFlap		2087
 	111058496	sfx_cardboardthud	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Linux\SFX\sfx_cardboardthud_049E8FBE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\CardboardThud\sfx_cardboardthud		7922
 	127478898	sfx_humanFootstepgrass_03	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Linux\SFX\sfx_humanFootstepgrass_03_049E8FBE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepGrass3\sfx_humanFootstepgrass_03		2259
 	154855309	sfx_constantAmbience	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Linux\SFX\sfx_constantAmbience_2F0E7CC8.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\ConstantAmbience\sfx_constantAmbience		727523
@@ -98,6 +101,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	330008014	sfx_humanFootstepgrass_01	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Linux\SFX\sfx_humanFootstepgrass_01_049E8FBE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepGrass1\sfx_humanFootstepgrass_01		2134
 	334618236	sfx_menuexit	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Linux\SFX\sfx_menuexit_049E8FBE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\MenuExit\sfx_menuexit		6740
 	371295247	town_final_loop	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Linux\SFX\town_final_loop_2F0E7CC8.wem		\Interactive Music Hierarchy\Default Work Unit\masterSwitch\credits\credits_final_loop\town_final_loop		681292
+	413132524	sfx_crowStep	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Linux\SFX\sfx_crowStep_049E8FBE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\CrowStep\sfx_crowStep		2000
 	419254750	forest_final_loop	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Linux\SFX\forest_final_loop_2F0E7CC8.wem		\Interactive Music Hierarchy\Default Work Unit\masterSwitch\forest\forest_final_loop\forest_final_loop		640010
 	501780942	sfx_plantGrow	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Linux\SFX\sfx_plantGrow_049E8FBE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\PlanGrow\sfx_plantGrow		4677
 	521433620	sfx_humanFootstepgrass_02	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Linux\SFX\sfx_humanFootstepgrass_02_049E8FBE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepGrass2\sfx_humanFootstepgrass_02		2295

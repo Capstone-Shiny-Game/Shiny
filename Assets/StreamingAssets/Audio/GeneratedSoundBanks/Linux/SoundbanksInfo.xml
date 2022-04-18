@@ -16,7 +16,7 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="3633468881" Language="SFX" Hash="2451406590">
+		<SoundBank Id="3633468881" Language="SFX" Hash="3916428879">
 			<ObjectPath>\SoundBanks\Default Work Unit\TempBank</ObjectPath>
 			<ShortName>TempBank</ShortName>
 			<Path>TempBank.bnk</Path>
@@ -73,6 +73,14 @@
 					<ActionSetState>
 						<ActionSetStateEntry Id="2201105581" Name="credits" ObjectPath="\States\Default Work Unit\masterMusicSwitch\credits"/>
 					</ActionSetState>
+				</Event>
+				<Event Id="957501990" Name="crowStep" ObjectPath="\Events\Default Work Unit\Triggers\crowStep" DurationType="OneShot" DurationMin="0.242177" DurationMax="0.242177">
+					<IncludedMemoryFiles>
+						<File Id="413132524" Language="SFX">
+							<ShortName>sfx_crowStep.wav</ShortName>
+							<Path>SFX\sfx_crowStep_049E8FBE.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="3232797379" Name="dayStart" ObjectPath="\Events\Default Work Unit\Ambience\dayStart" DurationType="Infinite">
 					<IncludedMemoryFiles>
@@ -488,6 +496,14 @@
 						<File Id="995605244" Language="SFX">
 							<ShortName>sfx_windWhoosh.wav</ShortName>
 							<Path>SFX\sfx_windWhoosh_049E8FBE.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="333542113" Name="wingFlap" ObjectPath="\Events\Default Work Unit\Triggers\wingFlap" DurationType="OneShot" DurationMin="0.208322" DurationMax="0.208322">
+					<IncludedMemoryFiles>
+						<File Id="80698804" Language="SFX">
+							<ShortName>sfx_wingFlap.wav</ShortName>
+							<Path>SFX\sfx_wingFlap_049E8FBE.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class PlayAudioAnim : MonoBehaviour
 {
-    private AudioSource audioSource;
-    void Start()
+    public void WingFlap()
     {
-        audioSource = GetComponent<AudioSource>();
+        AkSoundEngine.PostEvent("wingFlap", gameObject);
     }
 
-    private void WingFlap()
+    public void CrowStep()
     {
-        audioSource.Play();
+        AkSoundEngine.PostEvent("crowStep", gameObject);
     }
 }

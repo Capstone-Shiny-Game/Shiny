@@ -44,102 +44,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!82 &2061660724653455186
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 772841008434653664}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 22e0ec04b706bca40999c42ef5016074, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 0.25
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!95 &1789890149
 Animator:
   serializedVersion: 3
@@ -9958,6 +9862,8 @@ MonoBehaviour:
   RightTrail: {fileID: 5105916863276297152}
   ceiling: {fileID: 0}
   isGliding: 0
+  boostDuration: 5.35
+  boostStartTime: -1
 --- !u!114 &7695470114484064583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9972,10 +9878,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   takeOffWind: {fileID: 0}
   birdAnimator: {fileID: 1789890149}
-  bFlapBoost: {fileID: 0}
-  bFlapTakeOff: {fileID: 0}
-  bLand: {fileID: 0}
-  bPov: {fileID: 0}
+  buttonFlapBoost: {fileID: 0}
+  buttonFlapTakeOff: {fileID: 0}
+  buttonLand: {fileID: 0}
+  buttonPov: {fileID: 0}
+  buttonBrake: {fileID: 0}
   ControllerUI: {fileID: 0}
   uiInventory: {fileID: 0}
   uiHotbar: {fileID: 0}
@@ -10104,6 +10011,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 12ae123d-8c6d-43bf-8ea8-95532d84fff3
     m_ActionName: FlightMap/Walk[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/DualShock4GamepadHID/leftStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7fe874e7-e555-4ae4-a6d3-1cbd6bc6cab0
+    m_ActionName: FlightMap/Flight2
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4a54799e-fa77-4426-baf7-a05e72e289d9
+    m_ActionName: GUIMap/Caw[/Keyboard/c,/Keyboard/enter,/Keyboard/numpadEnter]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: FlightMap
@@ -11098,11 +11013,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
---- !u!4 &140313497592034138 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
-  m_PrefabInstance: {fileID: 466341486847792305}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &425255398720402915 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 260655263271149906, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
@@ -11111,6 +11021,11 @@ Transform:
 --- !u!4 &5286368483914656080 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5702739361890221537, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
+  m_PrefabInstance: {fileID: 466341486847792305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &140313497592034138 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
   m_PrefabInstance: {fileID: 466341486847792305}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &772841008434653664 stripped
