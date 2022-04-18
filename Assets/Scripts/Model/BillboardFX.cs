@@ -7,6 +7,12 @@ public class BillboardFX : MonoBehaviour
     public float VanishDistance = 100;
     void Update()
     {
+        if(Time.timeScale == 0)
+        {
+            gameObject.GetComponent<Canvas>().enabled = false;
+            return;
+        }
+
         if(Vector3.Distance(transform.position, Camera.main.transform.position) < VanishDistance)
         {
             gameObject.GetComponent<Canvas>().enabled = true;
