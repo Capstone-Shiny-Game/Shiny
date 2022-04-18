@@ -62,7 +62,7 @@ public static class QuestManager
                 }
                 else if (expected > items.Count())
                 {
-                    questItems[quest] = items.Select(TrimAndExpandName).Append($"({expected} total items)").ToArray();
+                    questItems[quest] = items.Select(TrimAndExpandName).Append($"(x{expected} total items)").ToArray();
                 }
                 else
                 {
