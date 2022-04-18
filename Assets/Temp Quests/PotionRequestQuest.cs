@@ -43,7 +43,7 @@ public class PotionRequestQuest : MonoBehaviour
         }
     }
 
-    private void startQuest(string dialogue)
+    private void startQuest()
     {
         QuestManager.StartQuest(QuestName, dialogueSystem.characterName, new string[] {Deliver1.name, Deliver2.name, Deliver3.name}, 3);
         // QuestManager.RecordDialogue(QuestName, dialogue);

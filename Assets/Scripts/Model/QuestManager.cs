@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using UnityEngine;
 
 public static class QuestManager
 {
@@ -11,7 +10,6 @@ public static class QuestManager
 
     private static readonly Dictionary<string, string[]> questItems = new Dictionary<string, string[]>();
     private static readonly Dictionary<string, string> questNPCs = new Dictionary<string, string>();
-    // private static readonly Dictionary<string, string> questRecordedDialgoues = new Dictionary<string, string>();
 
     public static IEnumerable<string> ActiveQuests => active;
     public static IEnumerable<string> CompletedQuests => completed;
@@ -64,14 +62,13 @@ public static class QuestManager
                 }
                 else if (expected > items.Count())
                 {
-                    questItems[quest] = items.Select(TrimAndExpandName).Append($"({expected} total items)").ToArray();
+                    questItems[quest] = items.Select(TrimAndExpandName).Append($"(x{expected} total items)").ToArray();
                 }
                 else
                 {
                     questItems[quest] = items.Select(TrimAndExpandName).ToArray();
                 }
             }
-            // questRecordedDialgoues[quest] = "";
         }
     }
 
@@ -94,15 +91,6 @@ public static class QuestManager
             }
         }
     }
-
-    // public static void RecordDialogue(string quest, string dialogue)
-    // {
-    //     quest = ExpandName(quest);
-    //     if (questRecordedDialgoues.ContainsKey(quest))
-    //     {
-    //         questRecordedDialgoues[quest] += dialogue;
-    //     }
-    // }
 
     public static void CompleteQuest(string quest)
     {
@@ -137,8 +125,6 @@ public static class QuestManager
             return "* Hot air balloon time trial";
         }
     }
-
-    // public static string GetQuestRecoredDialogue(string quest) => questRecordedDialgoues[quest];
 
     public static string ExpandName(string name) => Regex.Replace(name, "([a-z])([A-Z0-9\\(])", "$1 $2");
 

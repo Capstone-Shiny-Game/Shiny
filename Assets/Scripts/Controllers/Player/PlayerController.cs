@@ -320,7 +320,7 @@ public class PlayerController : MonoBehaviour, Savable
         AkSoundEngine.PostEvent("singleCaw", gameObject);
     }
 
-    private void ExitNPCDialogue(string dialogue)
+    private void ExitNPCDialogue()
     {
         ControllerUI.SetActive(true);
         //transform.position = positionBeforeDialogue;
