@@ -2260,8 +2260,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -12.999889, y: 0}
+  m_SizeDelta: {x: -26.000221, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &83160379080423631
 GameObject:
@@ -3023,10 +3023,10 @@ RectTransform:
   m_Father: {fileID: 2527310659761974326}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 74.82147, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &8712517127014717756
 CanvasRenderer:
@@ -3166,7 +3166,7 @@ GameObject:
   - component: {fileID: 7053407716530223628}
   - component: {fileID: 2341696637683977585}
   m_Layer: 5
-  m_Name: MusicVolumeSlider
+  m_Name: MasterVolumeSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3239,9 +3239,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 3663005972607196406}
   m_Direction: 0
   m_MinValue: 0.0001
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 0.0001
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3278,8 +3278,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -13, y: 0}
+  m_SizeDelta: {x: -26, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &652747069968271240
 GameObject:
@@ -3808,10 +3808,10 @@ RectTransform:
   m_Father: {fileID: 225724629141769771}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 77.65106, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &8301802573742595400
 CanvasRenderer:
@@ -4377,7 +4377,7 @@ GameObject:
   - component: {fileID: 5538305079102415514}
   - component: {fileID: 4493618358510267935}
   m_Layer: 5
-  m_Name: DialogueVolumeSlider
+  m_Name: MusicVolumeSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4450,9 +4450,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 5775291664545518866}
   m_Direction: 0
   m_MinValue: 0.0001
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 0.0001
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4845,7 +4845,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48.45
+  m_fontSize: 29.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5170,7 +5170,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400.28174, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9034685481873845928
 CanvasRenderer:
@@ -5348,7 +5348,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55.75
+  m_fontSize: 38.1
   m_fontSizeBase: 45.9
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6302,7 +6302,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 46.95
+  m_fontSize: 32.4
   m_fontSizeBase: 27.1
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -8243,7 +8243,7 @@ GameObject:
   - component: {fileID: 8149947544292429176}
   - component: {fileID: 1525814149180449216}
   m_Layer: 5
-  m_Name: MusicVolText
+  m_Name: MasterVolText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8296,7 +8296,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Music Volume
+  m_text: Master Volume
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e4f0f341c7b587498d87d409e924d39, type: 2}
   m_sharedMaterial: {fileID: 1177609637189691095, guid: 0e4f0f341c7b587498d87d409e924d39, type: 2}
@@ -9299,7 +9299,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 54.1
+  m_fontSize: 37.35
   m_fontSizeBase: 45.9
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9967,7 +9967,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7949783909724615216
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10001,8 +10001,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuType: 4
-  musicVolumeSlider: {fileID: 2341696637683977585}
-  dialogueVolumeSlider: {fileID: 4493618358510267935}
+  musicVolumeSlider: {fileID: 4493618358510267935}
+  masterVolumeSlider: {fileID: 2341696637683977585}
   invertYToggle: {fileID: 1567848477185406798}
   disableAccelerometerToggle: {fileID: 3239232972110250209}
   defaultSettings:
@@ -10649,7 +10649,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
+  m_fontSize: 49.2
   m_fontSizeBase: 45.9
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11577,7 +11577,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -11898,7 +11898,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
+  m_fontSize: 49.6
   m_fontSizeBase: 45.9
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -12735,7 +12735,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -12869,7 +12869,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 63.8
+  m_fontSize: 44
   m_fontSizeBase: 27.1
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -13533,7 +13533,7 @@ GameObject:
   - component: {fileID: 444145496225740827}
   - component: {fileID: 9172920681128014641}
   m_Layer: 5
-  m_Name: DialogueVolText
+  m_Name: MusicVolText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13586,7 +13586,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Dialogue Volume
+  m_text: Music Volume
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e4f0f341c7b587498d87d409e924d39, type: 2}
   m_sharedMaterial: {fileID: 1177609637189691095, guid: 0e4f0f341c7b587498d87d409e924d39, type: 2}
@@ -14092,7 +14092,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8074742157815481197
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16094,7 +16094,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -636.6802, y: -479.56775}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5564951623695757530
 MonoBehaviour:
