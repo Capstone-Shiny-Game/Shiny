@@ -32,6 +32,7 @@ namespace AK
         static const AkUniqueID FOOTSTEPCOBBLE3 = 3807505695U;
         static const AkUniqueID FOOTSTEPCOBBLE4 = 3807505688U;
         static const AkUniqueID FOOTSTEPCOBBLE6 = 3807505690U;
+        static const AkUniqueID FOOTSTEPGRASS = 2411038239U;
         static const AkUniqueID FOOTSTEPGRASS1 = 1505895164U;
         static const AkUniqueID FOOTSTEPGRASS2 = 1505895167U;
         static const AkUniqueID FOOTSTEPGRASS3 = 1505895166U;

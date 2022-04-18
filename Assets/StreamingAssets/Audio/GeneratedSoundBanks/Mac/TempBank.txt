@@ -28,6 +28,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	2139035606	logBreak			\Default Work Unit\Triggers\logBreak	
 	2201105581	credits			\Default Work Unit\Music\credits	
 	2336580520	ambientShine			\Default Work Unit\Triggers\ambientShine	
+	2411038239	footstepGrass			\Default Work Unit\Triggers\footstepGrass	
 	2589493456	singleCaw			\Default Work Unit\Triggers\singleCaw	
 	2607556080	menu			\Default Work Unit\Music\menu	
 	2682153188	movingWater			\Default Work Unit\Ambience\movingWater	
@@ -85,7 +86,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	60478455	sfx_strongWind	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_strongWind_0E425443.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\StrongWind\sfx_strongWind		119677
 	80698804	sfx_wingFlap	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_wingFlap_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\WingFlap\sfx_wingFlap		2087
 	111058496	sfx_cardboardthud	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_cardboardthud_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\CardboardThud\sfx_cardboardthud		7922
-	127478898	sfx_humanFootstepgrass_03	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_humanFootstepgrass_03_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepGrass3\sfx_humanFootstepgrass_03		2259
+	127478898	sfx_humanFootstepgrass_03	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_humanFootstepgrass_03_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\HumanGrassSteps\FootstepGrass3\sfx_humanFootstepgrass_03		2259
 	154855309	sfx_constantAmbience	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_constantAmbience_0E425443.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\ConstantAmbience\sfx_constantAmbience		727523
 	155913458	sfx_humanFootstepcobble_02	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_humanFootstepcobble_02_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepCobble2\sfx_humanFootstepcobble_02		2208
 	170367537	sfx_humanFootstepcobble_06	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_humanFootstepcobble_06_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepCobble6\sfx_humanFootstepcobble_06		2368
@@ -94,17 +95,17 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	231712720	sfx_cashRegister	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_cashRegister_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\CashRegister\sfx_cashRegister		7802
 	250543627	sfx_trainWhistle	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_trainWhistle_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\TrainWhistle\sfx_trainWhistle		19494
 	278557597	sfx_iconSwitch	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_iconSwitch_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\IconSwitch\sfx_iconSwitch		2294
-	300759699	sfx_humanFootstepcobble_07	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_humanFootstepcobble_07_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepGrass7\sfx_humanFootstepcobble_07		419
-	302055252	sfx_humanFootstepgrass_06	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_humanFootstepgrass_06_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepGrass6\sfx_humanFootstepgrass_06		2994
+	300759699	sfx_humanFootstepcobble_07	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_humanFootstepcobble_07_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\HumanGrassSteps\FootstepGrass7\sfx_humanFootstepcobble_07		419
+	302055252	sfx_humanFootstepgrass_06	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_humanFootstepgrass_06_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\HumanGrassSteps\FootstepGrass6\sfx_humanFootstepgrass_06		2994
 	318675150	farm_final_loop	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\farm_final_loop_0E425443.wem		\Interactive Music Hierarchy\Default Work Unit\masterSwitch\town_farm\town_final_loop\farm_final_loop		783682
 	329984790	sfx_singleCaw	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_singleCaw_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\SingCaw\sfx_singleCaw		4082
-	330008014	sfx_humanFootstepgrass_01	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_humanFootstepgrass_01_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepGrass1\sfx_humanFootstepgrass_01		2134
+	330008014	sfx_humanFootstepgrass_01	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_humanFootstepgrass_01_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\HumanGrassSteps\FootstepGrass1\sfx_humanFootstepgrass_01		2134
 	334618236	sfx_menuexit	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_menuexit_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\MenuExit\sfx_menuexit		6740
 	371295247	town_final_loop	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\town_final_loop_0E425443.wem		\Interactive Music Hierarchy\Default Work Unit\masterSwitch\credits\credits_final_loop\town_final_loop		681292
 	413132524	sfx_crowStep	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_crowStep_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\CrowStep\sfx_crowStep		2000
 	419254750	forest_final_loop	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\forest_final_loop_0E425443.wem		\Interactive Music Hierarchy\Default Work Unit\masterSwitch\forest\forest_final_loop\forest_final_loop		640010
 	501780942	sfx_plantGrow	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_plantGrow_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\PlanGrow\sfx_plantGrow		4677
-	521433620	sfx_humanFootstepgrass_02	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_humanFootstepgrass_02_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepGrass2\sfx_humanFootstepgrass_02		2295
+	521433620	sfx_humanFootstepgrass_02	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_humanFootstepgrass_02_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\HumanGrassSteps\FootstepGrass2\sfx_humanFootstepgrass_02		2295
 	554047390	sfx_switchTabs	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_switchTabs_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\SwitchTab\sfx_switchTabs		2110
 	558202217	sfx_movingWater	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_movingWater_0E425443.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\MovingWater\sfx_movingWater		382121
 	665123277	sfx_sizzleNoise	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_sizzleNoise_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\SizzleNoise\sfx_sizzleNoise		8796
@@ -112,11 +113,11 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	696442619	sfx_buttonClick	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_buttonClick_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\ButtonClick\sfx_buttonClick		1465
 	722528295	sfx_humanFootstepcobble_03	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_humanFootstepcobble_03_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepCobble3\sfx_humanFootstepcobble_03		2350
 	723798623	sfx_campFire	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_campFire_0E425443.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Campfire\sfx_campFire		287290
-	737530878	sfx_humanFootstepgrass_04	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_humanFootstepgrass_04_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepGrass4\sfx_humanFootstepgrass_04		2638
+	737530878	sfx_humanFootstepgrass_04	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_humanFootstepgrass_04_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\HumanGrassSteps\FootstepGrass4\sfx_humanFootstepgrass_04		2638
 	776790275	sfx_softBreeze	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_softBreeze_0E425443.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\SoftBreeze\sfx_softBreeze		407423
 	794497883	sfx_rockscrubmle	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_rockscrubmle_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\RockCrumble\sfx_rockscrubmle		9887
 	805232387	sfx_ambientshine	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_ambientshine_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\AmbientShine\sfx_ambientshine		31171
-	844085563	sfx_humanFootstepgrass_05	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_humanFootstepgrass_05_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\FootstepGrass5\sfx_humanFootstepgrass_05		2863
+	844085563	sfx_humanFootstepgrass_05	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_humanFootstepgrass_05_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\HumanGrassSteps\FootstepGrass5\sfx_humanFootstepgrass_05		2863
 	846985261	sfx_digNoise	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_digNoise_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\DigNoise\sfx_digNoise		5166
 	860073807	sfx_droppingWhistle	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\sfx_droppingWhistle_19FD3865.wem		\Actor-Mixer Hierarchy\Default Work Unit\Triggers\DroppingWhistle\sfx_droppingWhistle		2690
 	863537773	maintheme_final_loop	C:\Users\Matt\Documents\GitHub\Shiny_WwiseProject\.cache\Mac\SFX\maintheme_final_loop_0E425443.wem		\Interactive Music Hierarchy\Default Work Unit\masterSwitch\mainmenu\maintheme_final_loop\maintheme_final_loop		271126

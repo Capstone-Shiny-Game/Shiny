@@ -20,7 +20,7 @@
 				<GameParameter Id="2918011349" Name="MasterVolume" ObjectPath="\Game Parameters\Default Work Unit\MasterVolume"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="3633468881" Language="SFX" Hash="153087257">
+		<SoundBank Id="3633468881" Language="SFX" Hash="1234711325">
 			<ObjectPath>\SoundBanks\Default Work Unit\TempBank</ObjectPath>
 			<ShortName>TempBank</ShortName>
 			<Path>TempBank.bnk</Path>
@@ -174,6 +174,38 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="2411038239" Name="footstepGrass" ObjectPath="\Events\Default Work Unit\Triggers\footstepGrass" MaxAttenuation="100." DurationType="OneShot" DurationMin="0.25" DurationMax="0.375">
+					<IncludedMemoryFiles>
+						<File Id="127478898" Language="SFX">
+							<ShortName>sfx_humanFootstepgrass_03.wav</ShortName>
+							<Path>SFX\sfx_humanFootstepgrass_03_19FD3865.wem</Path>
+						</File>
+						<File Id="300759699" Language="SFX">
+							<ShortName>sfx_humanFootstepcobble_07.wav</ShortName>
+							<Path>SFX\sfx_humanFootstepcobble_07_19FD3865.wem</Path>
+						</File>
+						<File Id="302055252" Language="SFX">
+							<ShortName>sfx_humanFootstepgrass_06.wav</ShortName>
+							<Path>SFX\sfx_humanFootstepgrass_06_19FD3865.wem</Path>
+						</File>
+						<File Id="330008014" Language="SFX">
+							<ShortName>sfx_humanFootstepgrass_01.wav</ShortName>
+							<Path>SFX\sfx_humanFootstepgrass_01_19FD3865.wem</Path>
+						</File>
+						<File Id="521433620" Language="SFX">
+							<ShortName>sfx_humanFootstepgrass_02.wav</ShortName>
+							<Path>SFX\sfx_humanFootstepgrass_02_19FD3865.wem</Path>
+						</File>
+						<File Id="737530878" Language="SFX">
+							<ShortName>sfx_humanFootstepgrass_04.wav</ShortName>
+							<Path>SFX\sfx_humanFootstepgrass_04_19FD3865.wem</Path>
+						</File>
+						<File Id="844085563" Language="SFX">
+							<ShortName>sfx_humanFootstepgrass_05.wav</ShortName>
+							<Path>SFX\sfx_humanFootstepgrass_05_19FD3865.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="1505895164" Name="footstepGrass1" ObjectPath="\Events\Default Work Unit\Triggers\footstepGrass1" MaxAttenuation="100." DurationType="OneShot" DurationMin="0.25" DurationMax="0.25">
 					<IncludedMemoryFiles>
 						<File Id="330008014" Language="SFX">
@@ -206,7 +238,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1505895160" Name="footstepGrass5" ObjectPath="\Events\Default Work Unit\Triggers\footstepGrass5" DurationType="OneShot" DurationMin="0.375" DurationMax="0.375">
+				<Event Id="1505895160" Name="footstepGrass5" ObjectPath="\Events\Default Work Unit\Triggers\footstepGrass5" MaxAttenuation="100." DurationType="OneShot" DurationMin="0.375" DurationMax="0.375">
 					<IncludedMemoryFiles>
 						<File Id="844085563" Language="SFX">
 							<ShortName>sfx_humanFootstepgrass_05.wav</ShortName>
