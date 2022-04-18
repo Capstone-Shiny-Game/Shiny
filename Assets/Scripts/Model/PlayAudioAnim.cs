@@ -13,4 +13,9 @@ public class PlayAudioAnim : MonoBehaviour
     {
         AkSoundEngine.PostEvent("crowStep", gameObject);
     }
+
+    public void HumanStep()
+    {
+        AkSoundEngine.PostEvent("footstepGrass", gameObject);
+    }
 }

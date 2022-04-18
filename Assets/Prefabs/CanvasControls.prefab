@@ -4845,7 +4845,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 29.05
+  m_fontSize: 36.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5348,7 +5348,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38.1
+  m_fontSize: 47.9
   m_fontSizeBase: 45.9
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6302,7 +6302,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32.4
+  m_fontSize: 40.5
   m_fontSizeBase: 27.1
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -9299,7 +9299,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.35
+  m_fontSize: 46.65
   m_fontSizeBase: 45.9
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10649,7 +10649,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.2
+  m_fontSize: 60
   m_fontSizeBase: 45.9
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11898,7 +11898,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.6
+  m_fontSize: 60
   m_fontSizeBase: 45.9
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -12869,7 +12869,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44
+  m_fontSize: 55.05
   m_fontSizeBase: 27.1
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -15267,12 +15267,18 @@ MonoBehaviour:
   - hName: 3
     hat: {fileID: 919132149155446097, guid: 3a153eb02ad59b1478561c93ce57853a, type: 3}
   - hName: 4
+    hat: {fileID: 919132149155446097, guid: 8256546705f405c4386eb7003b84b48b, type: 3}
+  - hName: 5
     hat: {fileID: 0}
   currentMats:
   - objName: 0
     matName: Crow
   - objName: 1
     matName: Strawberry
+  - objName: 2
+    matName: Hearts
+  - objName: 3
+    matName: Crow
   items:
   - name: 0
     obj: {fileID: 0}
@@ -15304,6 +15310,36 @@ MonoBehaviour:
       material: {fileID: 2100000, guid: abaf6e4e65bd2e242a69828ded8015ec, type: 2}
     - mName: Striped
       material: {fileID: 2100000, guid: b33da22f70244504e8fe126262c15cba, type: 2}
+  - name: 2
+    obj: {fileID: 0}
+    mats:
+    - mName: Crow
+      material: {fileID: 2100000, guid: a95aa62b0c0a8e44fa42ad13b19eb7cb, type: 2}
+    - mName: Flower
+      material: {fileID: 2100000, guid: cf789360028a5034dab04fd4ee05a461, type: 2}
+    - mName: EAE
+      material: {fileID: 2100000, guid: f06585b9ab391c24ca5cff6406c5509d, type: 2}
+    - mName: Hearts
+      material: {fileID: 2100000, guid: a685ac6b61a208d48a4a5a7d0dbc6583, type: 2}
+    - mName: Metal
+      material: {fileID: 2100000, guid: d82ec272b75b9874cb875dea98c6b239, type: 2}
+    - mName: Wooden
+      material: {fileID: 2100000, guid: 2e0d927d93fc9904b8b2efbbe9baf9f8, type: 2}
+  - name: 3
+    obj: {fileID: 0}
+    mats:
+    - mName: Crow
+      material: {fileID: 2100000, guid: a922d97292f35cc459df6bfeb88cadbc, type: 2}
+    - mName: Flower
+      material: {fileID: 2100000, guid: 573c4ecb44da7a4459fe6246c21a9e67, type: 2}
+    - mName: WIP
+      material: {fileID: 2100000, guid: f06585b9ab391c24ca5cff6406c5509d, type: 2}
+    - mName: WIP2
+      material: {fileID: 2100000, guid: a685ac6b61a208d48a4a5a7d0dbc6583, type: 2}
+    - mName: Metal
+      material: {fileID: 2100000, guid: 7eb5a77d79ec783449e9f1746ec20ce7, type: 2}
+    - mName: Wooden
+      material: {fileID: 2100000, guid: d53414492e8061142a10f33d60f00e4b, type: 2}
   PatioMenu: {fileID: 3112407895564497397}
   crowHead: {fileID: 0}
 --- !u!1 &8778734579950366244

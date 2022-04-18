@@ -100,7 +100,7 @@ MonoBehaviour:
     ParentPath: SoundBanks\Default Work Unit
     guid: 89de7d1c5d26aa4f9bc67c6e12510450
     GuidInternal: 
-    m_lastTime: -8585513415107136051
+    m_lastTime: -8585513349024304494
     List:
     - name: TempBank
       guid: 0343e4c87739fa40950eb1ffae0303d9
@@ -128,7 +128,7 @@ MonoBehaviour:
     ParentPath: Events\Default Work Unit
     guid: 368d617cf8f4be4b9a7671dae4b5f947
     GuidInternal: 
-    m_lastTime: -8585513442715121569
+    m_lastTime: -8585513349212498357
     List:
     - name: Ambience
       guid: 9e3eb1c19f532d41bf03abd915e6e477
@@ -527,6 +527,26 @@ MonoBehaviour:
       maxAttenuation: 100
       maxDuration: 0.25
       minDuration: 0.25
+    - name: footstepGrass
+      guid: a2ccd6bca4c77144bee7d1836f80ec57
+      id: 2411038239
+      PathAndIcons:
+      - ElementName: Events
+        ObjectType: 5
+        guid: 00000000000000000000000000000000
+      - ElementName: Default Work Unit
+        ObjectType: 12
+        guid: 368d617cf8f4be4b9a7671dae4b5f947
+      - ElementName: Triggers
+        ObjectType: 4
+        guid: a05feb6eb5b6be46b1bdeb2cfd1dc570
+      - ElementName: footstepGrass
+        ObjectType: 3
+        guid: a2ccd6bca4c77144bee7d1836f80ec57
+      Path: Events\Default Work Unit\Triggers\footstepGrass
+      maxAttenuation: 100
+      maxDuration: 0.375
+      minDuration: 0.25
     - name: footstepGrass1
       guid: 62be65029ada0a41a54361a7d6ba2ff7
       id: 1505895164
@@ -624,7 +644,7 @@ MonoBehaviour:
         ObjectType: 3
         guid: c1cf249b84515946b640752733058d27
       Path: Events\Default Work Unit\Triggers\footstepGrass5
-      maxAttenuation: 0
+      maxAttenuation: 100
       maxDuration: 0.375
       minDuration: 0.375
     - name: footstepGrass6
