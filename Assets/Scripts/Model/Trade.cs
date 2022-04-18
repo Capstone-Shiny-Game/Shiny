@@ -5,6 +5,8 @@ using UnityEngine;
 public class Trade : MonoBehaviour
 {
     public List<TradeEntry> tradeMap;
+    public bool isCampfire;
+
     private GameObject player;
     private ParticleSystem particles;
     private bool hasItem;
@@ -75,9 +77,12 @@ public class Trade : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
+        AkSoundEngine.PostEvent(isCampfire ? "sizzleNoise" : "cashRegister", gameObject);
+
         GameObject returnedItem = Instantiate(item, transform.position, Quaternion.identity);
         Physics.IgnoreCollision(returnedItem.GetComponent<Collider>(), GetComponent<Collider>());
         returnedItem.GetComponent<Rigidbody>().AddForce(initialVelocity, ForceMode.Impulse);
+
 
         if (particles) 
         {
@@ -85,9 +90,7 @@ public class Trade : MonoBehaviour
             main.simulationSpeed /= 4f;
         }
 
-        yield return new WaitForSeconds(1f);
-
-        hasItem = false;
+        StartCoroutine(WaitAndReset());
     }
 
     // unacceptable item
@@ -101,9 +104,7 @@ public class Trade : MonoBehaviour
 
         item.GetComponent<Rigidbody>().AddForce(initialVelocity, ForceMode.Impulse);
 
-        yield return new WaitForSeconds(1f);
-
-        hasItem = false;
+        StartCoroutine(WaitAndReset());
     }
 
     // additional item that needs to be rejected
@@ -112,6 +113,12 @@ public class Trade : MonoBehaviour
     //    Vector3 initialVelocity = GetInitialVelocity();
     //    item.GetComponent<Rigidbody>().velocity = initialVelocity;
     //}
+
+    private IEnumerator WaitAndReset()
+    {
+        yield return new WaitForSeconds(1f);
+        hasItem = false;
+    }
 
     private Vector3 GetInitialVelocity()
     {
