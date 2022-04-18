@@ -7,28 +7,33 @@ public class Trade : MonoBehaviour
     public List<TradeEntry> tradeMap;
     private GameObject player;
     private ParticleSystem particles;
+    private bool hasItem;
 
     private void Start() 
     {
         player = GameObject.FindGameObjectWithTag("Player");
         particles = GetComponentInChildren<ParticleSystem>();
+        hasItem = false;
     }
 
     // some use collisions..
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Tradeable"))
-        {
-            TryTrade(other.gameObject);
-        }
+        HandleEnteredObj(other.gameObject);
     }
 
     // ..and others use triggers
     private void OnTriggerEnter(Collider other) 
     {
-        if (other.gameObject.CompareTag("Tradeable"))
+        HandleEnteredObj(other.gameObject);
+    }
+
+    private void HandleEnteredObj(GameObject other) 
+    {
+        if (!hasItem && other.CompareTag("Tradeable"))
         {
-            TryTrade(other.gameObject);
+            hasItem = true;
+            TryTrade(other);
         }
     }
 
@@ -46,60 +51,72 @@ public class Trade : MonoBehaviour
             }
         }
 
-        Vector3 randomVelocity = GetInitialVelocity();
+        Vector3 initialVelocity = GetInitialVelocity();
          
         if (canTrade)
         {
-            StartCoroutine(TradeItemWithDelay(returned, randomVelocity));
             Destroy(givenItem);
+            StartCoroutine(TradeItemWithDelay(returned, initialVelocity));
         }
         else
         {
-            StartCoroutine(ReturnItemWithDelay(givenItem, randomVelocity));
+            StartCoroutine(ReturnItemWithDelay(givenItem, initialVelocity));
         }
     }
 
-    private IEnumerator TradeItemWithDelay(GameObject item, Vector3 randomVelocity)
+    // acceptable item
+    private IEnumerator TradeItemWithDelay(GameObject item, Vector3 initialVelocity)
     {
         if (particles) 
         {
             var main = particles.main;
-            main.simulationSpeed = main.simulationSpeed * 4f;
+            main.simulationSpeed *= 4f;
         }
 
         yield return new WaitForSeconds(2f);
 
-        GameObject returnedItem = Instantiate(item, transform.position, transform.rotation);
+        GameObject returnedItem = Instantiate(item, transform.position, Quaternion.identity);
         Physics.IgnoreCollision(returnedItem.GetComponent<Collider>(), GetComponent<Collider>());
-        returnedItem.GetComponent<Rigidbody>().velocity = randomVelocity;
+        returnedItem.GetComponent<Rigidbody>().AddForce(initialVelocity, ForceMode.Impulse);
 
         if (particles) 
         {
             var main = particles.main;
-            main.simulationSpeed = main.simulationSpeed / 4f;
+            main.simulationSpeed /= 4f;
         }
+
+        yield return new WaitForSeconds(1f);
+
+        hasItem = false;
     }
 
-    private IEnumerator ReturnItemWithDelay(GameObject item, Vector3 randomVelocity) 
+    // unacceptable item
+    private IEnumerator ReturnItemWithDelay(GameObject item, Vector3 initialVelocity) 
     {
         Physics.IgnoreCollision(item.GetComponent<Collider>(), GetComponent<Collider>());
         item.transform.position = transform.position;
-        item.transform.rotation = transform.rotation;
+        item.transform.rotation = Quaternion.identity;
 
-        item.SetActive(false);
         yield return new WaitForSeconds(0.5f);
-        item.SetActive(true);
 
-        item.GetComponent<Rigidbody>().velocity = randomVelocity;
+        item.GetComponent<Rigidbody>().AddForce(initialVelocity, ForceMode.Impulse);
+
+        yield return new WaitForSeconds(1f);
+
+        hasItem = false;
     }
+
+    // additional item that needs to be rejected
+    //private void RejectItem(GameObject item) 
+    //{
+    //    Vector3 initialVelocity = GetInitialVelocity();
+    //    item.GetComponent<Rigidbody>().velocity = initialVelocity;
+    //}
 
     private Vector3 GetInitialVelocity()
     {
-        float ySet = 10f;
-
-        Vector3 velocity = ((player.transform.position - transform.position) / 2)
-            + new Vector3(0, ySet, 0);
-
+        Vector3 velocity = (player.transform.position - transform.position) / 2;
+        velocity.y = 10f;
         return velocity;
     }
 }
