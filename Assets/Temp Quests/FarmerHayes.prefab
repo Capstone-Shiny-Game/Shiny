@@ -164,9 +164,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2811531367824628927}
   - {fileID: 4896112876595263205}
   - {fileID: 2940944178925103350}
-  - {fileID: 2811531367824628927}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -376,7 +376,7 @@ RectTransform:
   m_Children:
   - {fileID: 2944336820178910688}
   m_Father: {fileID: 8597911739414737619}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -457,6 +457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VanishDistance: 50
+  dialUI: {fileID: 4896112876595263201}
 --- !u!1001 &2345858220808174420
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -466,7 +467,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: e8cdf2cdaf4bf834ab0435057bb66289, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e8cdf2cdaf4bf834ab0435057bb66289, type: 3}
       propertyPath: m_LocalScale.x
@@ -564,7 +565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8634655693421832514, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_Name
-      value: FishermanDialogueUI
+      value: DialogueUI
       objectReference: {fileID: 0}
     - target: {fileID: 8634655693421832514, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_IsActive
@@ -580,7 +581,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8634655693421832518, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8634655693421832518, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_AnchorMax.x

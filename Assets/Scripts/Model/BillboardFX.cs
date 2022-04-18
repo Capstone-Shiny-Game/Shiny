@@ -5,9 +5,11 @@ using UnityEngine;
 public class BillboardFX : MonoBehaviour
 {
     public float VanishDistance = 100;
+    public GameObject dialUI;
+
     void Update()
     {
-        if(Time.timeScale == 0)
+        if(Time.timeScale == 0 || (dialUI != null && dialUI.activeInHierarchy))
         {
             gameObject.GetComponent<Canvas>().enabled = false;
             return;

@@ -180,8 +180,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4896112876595263205}
   - {fileID: 834887147003584621}
+  - {fileID: 4896112876595263205}
   - {fileID: 2940944178925103350}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -474,6 +474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VanishDistance: 50
+  dialUI: {fileID: 4896112876595263201}
 --- !u!1001 &872752827939506054
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -483,7 +484,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: bf45105279e28eb4fb5f62217d36f5a2, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: bf45105279e28eb4fb5f62217d36f5a2, type: 3}
       propertyPath: m_LocalScale.x
@@ -586,7 +587,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8634655693421832514, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_Name
-      value: FishermanDialogueUI
+      value: DialogueUI
       objectReference: {fileID: 0}
     - target: {fileID: 8634655693421832514, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_IsActive
@@ -602,7 +603,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8634655693421832518, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8634655693421832518, guid: b4ce241b6d115e74dbf1e0475baaffa4, type: 3}
       propertyPath: m_AnchorMax.x
