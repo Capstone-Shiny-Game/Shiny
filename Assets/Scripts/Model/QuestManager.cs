@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using UnityEngine;
 
 public static class QuestManager
 {
@@ -46,22 +47,27 @@ public static class QuestManager
             }
             if (items != null)
             {
-                if (expected == 1 && items.Count() > 1)
+                if (quest == "Flower Power")
                 {
-                    // special case: the quest specifies a bunch of items and wants the player to deliver any one of them
-                    // for the sake of the menu, we just pick the name of one
-                    questItems[quest] = new string[] { TrimAndExpandName(items.First()) };
+                    // quest requires delivery of one of any flower
+                    questItems[quest] = new string[] { "Flower" };
+                }
+                else if (quest == "Potion of Courage")
+                {
+                    // delivery count is a lie
+                    questItems[quest] = items.Select(TrimAndExpandName).ToArray();
                 }
                 else if (expected > 1 && items.Count() == 1)
                 {
-                    // special case: the quest wants a bunch of the same item to be delivered
-                    // we do not want to strike the item off the first time we get one
-                    // so we include a count instead
-                    questItems[quest] = new string[] { $"{TrimAndExpandName(items.First())} (x{expected})" };
+                    // quest requires more than one of a single item
+                    questItems[quest] = new string[] { $"{TrimAndExpandName(items.Single())} (x{expected})" };
+                }
+                else if (expected > items.Count())
+                {
+                    questItems[quest] = items.Select(TrimAndExpandName).Append($"({expected} total items)").ToArray();
                 }
                 else
                 {
-                    // general case: the quest wants the player to bring one each of a list of items
                     questItems[quest] = items.Select(TrimAndExpandName).ToArray();
                 }
             }
@@ -72,6 +78,11 @@ public static class QuestManager
     public static void StrikeItem(string quest, string item)
     {
         quest = ExpandName(quest);
+        if (quest == "Witch Quest NPC")
+        {
+            // quest name is also a lie
+            quest = "Potion of Courage";
+        }
         item = TrimAndExpandName(item);
         if (questItems.ContainsKey(quest))
         {
