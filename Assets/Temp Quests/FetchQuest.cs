@@ -94,7 +94,7 @@ public class FetchQuest : MonoBehaviour
         InteractButton.SetActive(true);
     }
 
-    private void startQuest(string dialgoue)
+    private void startQuest()
     {
         //Check if this dialogue end is what would have triggered this event
         if(Vector3.Distance(GameObject.FindGameObjectWithTag("Player").transform.position, transform.position) < 50)
