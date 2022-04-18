@@ -12,8 +12,12 @@ public static class PatioUtility
         UMBRELLA,
         [Description("Bench")]
         BENCH,
-        [Description("Chair")]
-        CHAIR
+        [Description("Chair Left")]
+        CHAIR1,
+        [Description("Chair Right")]
+        CHAIR2,
+        [Description("Teatime Table")]
+        TABLE
 
     }
     public enum Toys
