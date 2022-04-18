@@ -15277,6 +15277,10 @@ MonoBehaviour:
     matName: Strawberry
   - objName: 2
     matName: Hearts
+  - objName: 3
+    matName: Crow
+  - objName: 4
+    matName: Flower
   items:
   - name: 0
     obj: {fileID: 0}
@@ -15330,8 +15334,8 @@ MonoBehaviour:
       material: {fileID: 2100000, guid: a922d97292f35cc459df6bfeb88cadbc, type: 2}
     - mName: Flower
       material: {fileID: 2100000, guid: 573c4ecb44da7a4459fe6246c21a9e67, type: 2}
-    - mName: WIP
-      material: {fileID: 2100000, guid: f06585b9ab391c24ca5cff6406c5509d, type: 2}
+    - mName: Patterned
+      material: {fileID: 2100000, guid: dcd2652032d9fb745987e19165dc8dd6, type: 2}
     - mName: WIP2
       material: {fileID: 2100000, guid: a685ac6b61a208d48a4a5a7d0dbc6583, type: 2}
     - mName: Metal
@@ -15339,6 +15343,21 @@ MonoBehaviour:
     - mName: Wooden
       material: {fileID: 2100000, guid: d53414492e8061142a10f33d60f00e4b, type: 2}
   - name: 4
+    obj: {fileID: 0}
+    mats:
+    - mName: Crow
+      material: {fileID: 2100000, guid: a922d97292f35cc459df6bfeb88cadbc, type: 2}
+    - mName: Flower
+      material: {fileID: 2100000, guid: 573c4ecb44da7a4459fe6246c21a9e67, type: 2}
+    - mName: Patterned
+      material: {fileID: 2100000, guid: dcd2652032d9fb745987e19165dc8dd6, type: 2}
+    - mName: WIP2
+      material: {fileID: 2100000, guid: a685ac6b61a208d48a4a5a7d0dbc6583, type: 2}
+    - mName: Metal
+      material: {fileID: 2100000, guid: 7eb5a77d79ec783449e9f1746ec20ce7, type: 2}
+    - mName: Wooden
+      material: {fileID: 2100000, guid: d53414492e8061142a10f33d60f00e4b, type: 2}
+  - name: 5
     obj: {fileID: 0}
     mats:
     - mName: Crow
