@@ -9,6 +9,7 @@ public class FarmPlot : MonoBehaviour
 
     public List<SeedCropEntry> seedCropMap;
     [SerializeField] private Transform spawnPoint;
+    [SerializeField] private GameObject plantedGeo;
 
     private GameObject s1;
     private GameObject harvestButton;
@@ -106,7 +107,14 @@ public class FarmPlot : MonoBehaviour
                 currMeshes.Add(Resources.Load<Mesh>(meshName));
             }
 
+            if (plantedGeo != null)
+            {
+                plantedGeo.SetActive(true);
+            }
+
             s1.SetActive(true);
+
+           
 
             LoadNextMesh();
             success = true;
@@ -159,7 +167,13 @@ public class FarmPlot : MonoBehaviour
         meshIndex = -1;
         harvestButton.SetActive(false);
         s1.GetComponent<MeshFilter>().sharedMesh = null;
-        foreach(flowerbedScript scr in s1.GetComponentsInChildren<flowerbedScript>())
+
+        if (plantedGeo != null)
+        {
+            plantedGeo.SetActive(false);
+        }
+
+        foreach (flowerbedScript scr in s1.GetComponentsInChildren<flowerbedScript>())
         {
             scr.updateMesh();
         }
