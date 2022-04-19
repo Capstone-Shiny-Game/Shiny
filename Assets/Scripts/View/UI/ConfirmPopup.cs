@@ -27,6 +27,8 @@ public class ConfirmPopup : MonoBehaviour
     /// <param name="handler"></param>
     public void ShowPopUP(string message, ConfirmHander handler, string confirmText = "confirm", string cancelText = "cancel")
     {
+        GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<InputController>().menuOpen = true;
+        Time.timeScale = 0f;
         this.message = message;
         confirmButtonText.text = confirmText;
         cancelButtonText.text = cancelText;
@@ -36,6 +38,8 @@ public class ConfirmPopup : MonoBehaviour
 
     public void ConfirmClicked(bool value)
     {
+        GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<InputController>().menuOpen = false;
+        Time.timeScale = 1f;
         AkSoundEngine.PostEvent("buttonClick", gameObject);
         broadcastConfirm?.Invoke(value);
     }
