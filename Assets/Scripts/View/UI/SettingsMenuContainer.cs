@@ -96,6 +96,8 @@ public class SettingsMenuContainer : MenuContainer
             preferredSettings = Settings.settingsData;
         }
         Settings.UpdateSettingData(preferredSettings);
+        AKSoundEngine.SetRTPCValue("MasterVolume", Settings.settingsData.dialogueVolume);
+        AKSoundEngine.SetRTPCValue("MusicVolume", Settings.settingsData.musicVolume);
         MenuManager.instance.SwitchMenu(nextMenuType,true);
     }
 
