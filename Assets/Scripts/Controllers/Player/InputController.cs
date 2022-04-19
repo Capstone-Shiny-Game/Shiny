@@ -75,7 +75,7 @@ public class InputController : MonoBehaviour
 
     public CawEvent CawEventHandler;
 
-    public TMP_Text test;
+    // public TMP_Text test;
     public static bool AccelerometerAvailable { get; private set; } = false;
     public bool UseAccelerometer { get; private set; }
     private bool canLook = false;
@@ -90,7 +90,7 @@ public class InputController : MonoBehaviour
         //FlightController = player.GetComponent<FlightController>();
         PlayerInput = new PlayerControllerInput();
         // test.text = "Please use input";
-        test.gameObject.SetActive(false);
+        // test.gameObject.SetActive(false);
     }
 
     public void OnEnable()
