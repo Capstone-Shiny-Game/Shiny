@@ -75,7 +75,7 @@ public class InputController : MonoBehaviour
 
     public CawEvent CawEventHandler;
 
-    public TMP_Text test;
+    // public TMP_Text test;
     public static bool AccelerometerAvailable { get; private set; } = false;
     public bool UseAccelerometer { get; private set; }
     private bool canLook = false;
@@ -89,7 +89,8 @@ public class InputController : MonoBehaviour
         //CamController = cam.GetComponent<CameraController>();
         //FlightController = player.GetComponent<FlightController>();
         PlayerInput = new PlayerControllerInput();
-        test.text = "Please use input";
+        // test.text = "Please use input";
+        // test.gameObject.SetActive(false);
     }
 
     public void OnEnable()
@@ -249,7 +250,7 @@ public class InputController : MonoBehaviour
         }
 
         isMoving = true;
-        test.text = "N/A";
+        // test.text = "N/A";
         Vector2 moveInput = context.ReadValue<Vector2>();
         flightMoveHandler?.Invoke(moveInput.x, moveInput.y);
     }
@@ -271,7 +272,7 @@ public class InputController : MonoBehaviour
         float x = input.x;
         float z = input.z - ZBias;
 
-        test.text = $"Accelerometer: X: {x},\nZ: {input.z} - {ZBias} = {z}";
+        // test.text = $"Accelerometer: X: {x},\nZ: {input.z} - {ZBias} = {z}";
 
         if (x < 0)
         {
