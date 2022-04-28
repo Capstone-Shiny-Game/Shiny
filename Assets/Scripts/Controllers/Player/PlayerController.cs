@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour, Savable
     public GameObject buttonLand;
     public GameObject buttonPov;
     public GameObject buttonBrake;
+    public ParticleSystem cawTrail;
 
 
     // public GameObject NPCUI;
@@ -261,6 +262,7 @@ public class PlayerController : MonoBehaviour, Savable
     public void Caw()
     {
         AkSoundEngine.PostEvent("singleCaw", gameObject);
+        cawTrail.Play();
     }
 
     private void OnEnable()

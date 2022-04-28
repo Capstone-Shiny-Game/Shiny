@@ -4134,7 +4134,7 @@ ParticleSystem:
     widthOverTrail:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.15
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4188,7 +4188,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 0.09411765}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -8970,7 +8970,7 @@ ParticleSystem:
     widthOverTrail:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.15
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -9024,7 +9024,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 0.09411765}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9820,10 +9820,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2.02
+  m_Radius: 0.37
+  m_Height: 2.34
   m_Direction: 2
-  m_Center: {x: 0, y: 0.3, z: 0}
+  m_Center: {x: 0, y: 0.72, z: 0}
 --- !u!114 &5828222149743021217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9836,7 +9836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75416b6c2a485994984095c04fb0ab54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Model: {fileID: 0}
+  Model: {fileID: 772841008434653664}
 --- !u!114 &7324057266532042076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9854,9 +9854,9 @@ MonoBehaviour:
   glideAngleThreshold: 0.7
   acceleration: 10
   maxDiveSpeed: 40
-  minGlideSpeed: 20
+  minGlideSpeed: 10
   maxHeight: 100
-  heightAboveLand: 25
+  heightAboveLand: 75
   isBoost: 0
   LeftTrail: {fileID: 2546136047665995552}
   RightTrail: {fileID: 5105916863276297152}
@@ -9883,6 +9883,7 @@ MonoBehaviour:
   buttonLand: {fileID: 0}
   buttonPov: {fileID: 0}
   buttonBrake: {fileID: 0}
+  cawTrail: {fileID: 951225622572986652}
   ControllerUI: {fileID: 0}
   uiInventory: {fileID: 0}
   uiHotbar: {fileID: 0}
@@ -9917,14 +9918,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7324057266532042077}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aca9080415d654e44825fedf445b4cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ForwardSpeed: 8
   BackwardsSpeed: 4
-  TurningSpeed: 60
+  TurningSpeed: 80
   isIdle: 0
 --- !u!114 &5036188381387300824
 MonoBehaviour:
@@ -10113,13 +10114,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8790865512622011130}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.061, z: -0.01}
-  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
+  m_LocalRotation: {x: 0.113648385, y: -0.04528554, z: -0.0051856213, w: 0.9924749}
+  m_LocalPosition: {x: 0.0014404105, y: -0.030799627, z: -0.023226514}
+  m_LocalScale: {x: 0.0198729, y: 0.0198729, z: 0.0198729}
   m_Children: []
   m_Father: {fileID: 425255398720402915}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 13.01, y: -5.363, z: -1.211}
 --- !u!1001 &466341486847792305
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10157,15 +10158,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.1927
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3.1927
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3.1927
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10173,7 +10174,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.05
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11013,14 +11014,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
---- !u!4 &425255398720402915 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 260655263271149906, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
-  m_PrefabInstance: {fileID: 466341486847792305}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5286368483914656080 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5702739361890221537, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
+  m_PrefabInstance: {fileID: 466341486847792305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &425255398720402915 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 260655263271149906, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
   m_PrefabInstance: {fileID: 466341486847792305}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &140313497592034138 stripped
@@ -11037,6 +11038,68 @@ GameObject:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8768233243975158805, guid: 1ac6bfb140fa9eb4b96efbb6e5425303, type: 3}
   m_PrefabInstance: {fileID: 466341486847792305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2796549113387618662
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 425255398720402915}
+    m_Modifications:
+    - target: {fileID: 3237889672644968847, guid: 4b6e066f752507a429e255c24cb5b4ef, type: 3}
+      propertyPath: m_Name
+      value: CrowCawParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022977413064019803, guid: 4b6e066f752507a429e255c24cb5b4ef, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022977413064019803, guid: 4b6e066f752507a429e255c24cb5b4ef, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0000014246548
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022977413064019803, guid: 4b6e066f752507a429e255c24cb5b4ef, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.012
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022977413064019803, guid: 4b6e066f752507a429e255c24cb5b4ef, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0000011473894
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022977413064019803, guid: 4b6e066f752507a429e255c24cb5b4ef, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022977413064019803, guid: 4b6e066f752507a429e255c24cb5b4ef, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022977413064019803, guid: 4b6e066f752507a429e255c24cb5b4ef, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022977413064019803, guid: 4b6e066f752507a429e255c24cb5b4ef, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022977413064019803, guid: 4b6e066f752507a429e255c24cb5b4ef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022977413064019803, guid: 4b6e066f752507a429e255c24cb5b4ef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4022977413064019803, guid: 4b6e066f752507a429e255c24cb5b4ef, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4b6e066f752507a429e255c24cb5b4ef, type: 3}
+--- !u!198 &951225622572986652 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3169470033261846650, guid: 4b6e066f752507a429e255c24cb5b4ef, type: 3}
+  m_PrefabInstance: {fileID: 2796549113387618662}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6935477135389726404
 PrefabInstance:
@@ -11118,6 +11181,22 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: CawEventHandler.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightLookHandler.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightSwapHandler.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightWalkHandler.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: ItemHander.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
@@ -11142,9 +11221,17 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightResetLookHandler.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: DropHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 7695470114484064583}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: CawEventHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: ItemHander.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -11158,6 +11245,10 @@ PrefabInstance:
       value: AttemptPickup
       objectReference: {fileID: 0}
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: CawEventHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7695470114484064583}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: DropHandler.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: DropItLikeItsHot
       objectReference: {fileID: 0}
@@ -11168,6 +11259,10 @@ PrefabInstance:
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: PauseHandler.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightSwapHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: PauseHandler.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -11190,6 +11285,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7324057266532042076}
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightSwapHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7695470114484064583}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightWalkHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 442309360877959849}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: CawEventHandler.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: flightBoostHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 7324057266532042076}
@@ -11198,12 +11305,56 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7324057266532042076}
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: CawEventHandler.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Caw
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightLookHandler.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightLookHandler.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightResetLookHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightResetLookHandler.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightSwapHandler.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightWalkHandler.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: flightLookHandler.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnLook
+      value: ChangeAngle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightLookHandler.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ChangeAngle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightLookHandler.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: ChangeAngle
       objectReference: {fileID: 0}
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: flightMoveHandler.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetFlightXY
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightSwapHandler.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SwapWalking
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightWalkHandler.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetWalkXY
       objectReference: {fileID: 0}
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: RotateSelectionHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -11222,12 +11373,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightResetLookHandler.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightResetLookHandler.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: ItemHander.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PlayerController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: RotateSelectionHandler.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: RotateInventory
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightResetLookHandler.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Reset
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightResetLookHandler.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Reset
       objectReference: {fileID: 0}
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: flightTogglePOVHandler.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -11250,8 +11417,40 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: CawEventHandler.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightLookHandler.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ModifyOrbitor, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightLookHandler.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ModifyOrbitor, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightLookHandler.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: ModifyOrbitor, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightSwapHandler.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightWalkHandler.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WalkingController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: RotateSelectionHandler.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightResetLookHandler.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ModifyOrbitor, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightResetLookHandler.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ModifyOrbitor, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: ItemHander.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -11270,7 +11469,35 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: CawEventHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightLookHandler.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightLookHandler.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightSwapHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightWalkHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
       propertyPath: RotateSelectionHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightResetLookHandler.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8309375004648114811, guid: 21e255874aaadcd43b2173f4bc8792fb, type: 3}
+      propertyPath: flightResetLookHandler.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
